@@ -81,6 +81,14 @@ module.exports = {
         white: "#fff",
         // yello: "#FFCA36",
       },
+      transitionProperty: {
+        'height': 'height',
+        'padding': 'padding',
+        'color':'color',
+      },
+      transitionDuration: {
+        $3: "3000ms",
+      },
     },
   },
   plugins: [],

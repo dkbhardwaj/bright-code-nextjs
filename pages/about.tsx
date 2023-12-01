@@ -11,14 +11,6 @@ const Home: React.FC = () => {
     <>
       <Banner />
       <Intro page={"header"} />
-      {/* <Intro page={'banner'} />
-      <Intro page={'portfolio'} bg={'lightGray'} />*/}
-      <IntroWithCards content={"cards"} />
-      <Intro page={"team"} bg={"lightGray"} />
-      <IntroWithCards col={4} content={"team"} />
-      <ContentWithImage />
-      <Intro page={"work"} />
-      <ContentWithImageTwo />
     </>
   );
 };

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-export default function ContentWithImage() {
+const ContentWithImage: React.FC = () => {
   return (
     <section className="contentWithImage py-32 overflow-hidden bg-opalGreen">
       <div className="bgWrap absolute w-full h-full top-0 left-0 z-[-1]">
@@ -18,5 +18,7 @@ export default function ContentWithImage() {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default ContentWithImage;
