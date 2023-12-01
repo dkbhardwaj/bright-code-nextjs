@@ -1,0 +1,30 @@
+import React from 'react'
+
+export default function HeroBanner() {
+    return (
+        <section className={`banner bg-purple text-white min-h-[600px] py-32`}>
+            <div className="container">
+                <div className="w-mainRow flex items-center">
+                    <div className="w-halfWidth mx-5">
+                        <div className="content">
+                            <h1>Build stunning websites with NextJs UI Kit</h1>
+                            <h4 className={`max-w-[350px] mt-2`}>Free Reactstrap UI Kit with Lots of &#10;
+                                Ready to Use Sections</h4>
+                            <div className="btnWrap mt-8 inline-block">
+                                <a href="#" className="blue-btn">Download Free</a>
+                            </div>
+                            <div className="btnWrap mt-8 ml-5 inline-block">
+                                <a href="#" className="transparent-btn">Download Free</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="w-halfWidth mx-5">
+                        <div className="imgwrap">
+                            <img src="/banner-img.png" alt="banner_img" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
