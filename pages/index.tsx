@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       <Banner />
       <Sticky />
       <Overview />
-      <Intro content={"header"} />
+      {/* <Intro content={"header"} /> */}
       {/* <Intro content={'banner'} />
       <Intro content={'portfolio'} bg={'lightGray'} />*/}
       <IntroWithCards content={"cards"} />

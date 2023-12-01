@@ -11,7 +11,7 @@ const Overview: React.FC = () => {
           </div>
           <div className="content w-halfWidth mx-2.5 mt-10">
             <p className="text-gray">
-              When you partner with Surescripts, you activate an entire team of
+              When you partner with us, you activate an entire team of
               experts, working alongside you to reach your goals faster. Unlock
               resources, support and programs that empower your team to keep
               learning, optimizing and realizing even more value over time.
