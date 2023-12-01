@@ -64,6 +64,7 @@ module.exports = {
       },
       colors: {
         black: "#000",
+        blackish: "#16181b",
         blue: "#0164d3",
         // brown: "#946c48",
         spaceBlack: "#263238",
@@ -71,7 +72,7 @@ module.exports = {
         darkGray: "#3e4555",
         lightGray: "#f4f8fa",
         gray: "#8d97ad",
-        // oceanGreen: "#79F7C6",
+        grayish: "#e9ecef",
         opalGreen: "#a3cac7",
         orange: "#ff6a5b",
         peach: "#fdbfa8",
@@ -82,9 +83,9 @@ module.exports = {
         // yello: "#FFCA36",
       },
       transitionProperty: {
-        'height': 'height',
-        'padding': 'padding',
-        'color':'color',
+        height: "height",
+        padding: "padding",
+        color: "color",
       },
       transitionDuration: {
         $3: "3000ms",

@@ -1,0 +1,37 @@
+.mobileMenuIcon {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Animation for the active state */
+.mobileMenuIcon.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-10px, 10px);
+}
+
+.mobileMenuIcon.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuIcon.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-10px, -11px);
+}
+.logo {
+  position: relative;
+}
+.mainRow {
+  position: unset;
+}
+.links {
+  position: unset;
+}

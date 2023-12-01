@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IntroProps {
-  page: "header" | "banner" | "work" | "portfolio" | "team";
+  content: "header" | "banner" | "work" | "portfolio" | "team" | "about";
   bg?: "lightGray";
 }
 
@@ -16,7 +16,6 @@ const Intro: React.FC<IntroProps> = (props) => {
     blurb:
       "Here you can check Demos we created you can easily use it. Its quite easy to Create your own dream website & dashboard in No-time.",
   };
-
   const banner: IntroData = {
     title: "Banners",
     blurb:
@@ -37,24 +36,31 @@ const Intro: React.FC<IntroProps> = (props) => {
     blurb:
       "Here you can check Demos we created based on WrapKit. Its quite easy to Create your own dream website & dashboard in No-time.",
   };
+  const about: IntroData = {
+    title: "About",
+    blurb:
+      "You can relay on our amazing features list and also our customer services will be great experience for you without doubt and in no-time.",
+  };
 
   var data: IntroData | undefined;
 
-  if (props.page === "header") {
+  if (props.content === "header") {
     data = header;
-  } else if (props.page === "banner") {
+  } else if (props.content === "banner") {
     data = banner;
-  } else if (props.page === "work") {
+  } else if (props.content === "work") {
     data = work;
-  } else if (props.page === "portfolio") {
+  } else if (props.content === "portfolio") {
     data = portfolio;
-  } else if (props.page === "team") {
+  } else if (props.content === "team") {
     data = team;
+  } else if (props.content === "about") {
+    data = about;
   }
 
   return (
     <section
-      className={`intro py-32 text-center ${
+      className={`intro py-20 text-center ${
         props.bg === "lightGray" ? "bg-lightGray" : ""
       }`}
     >

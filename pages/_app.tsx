@@ -7,7 +7,6 @@ import Layout from "../components/layout";
 import "../app/globals.css";
 import "../styles/global.css";
 import "../styles/buttons.css";
-import { title } from "process";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

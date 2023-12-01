@@ -69,9 +69,9 @@ const ColCards: React.FC<ColCardsProps> = ({ content, col = 3 }) => {
   const contentData = content === 'cards' ? cards : team;
 
   return (
-    <section className="introWithCards py-32">
+    <section className="introWithCards py-20">
       <div className="container">
-        <div className="w-mainRow flex flex-wrap">
+        <div className="w-mainRow -ml-2.5 flex flex-wrap">
           {contentData.map((data, index) => (
             <div key={index} className={`${col4 ? 'w-colFour' : 'w-threeCard'} mx-2.5 mb-5`}>
               <div className="card bg-white shadow-slate-100 shadow-lg">
