@@ -7,6 +7,7 @@ const Home: React.FC = () => {
     <>
       {/* <Banner />
       <Intro content={"about"} /> */}
+      <h1>about</h1>
     </>
   );
 };
