@@ -89,10 +89,11 @@ const Navigation: React.FC<NavigationProps> = () => {
                 <Link href="/">Home</Link>
               </li>
               <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link href="/about">About Me</Link>
+                <Link href="/about">Why Choose Us
+                </Link>
               </li>
               <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link href="/about">Work</Link>
+                <Link href="/about"> What we do</Link>
               </li>
               <li
                 className={`mx-5 hover:text-blue transition-color duration-300 relative ${
@@ -102,7 +103,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                 onMouseLeave={handleMouseLeave}
                 onClick={handleMobileServicesDropdownToggle}
               >
-                <Link href="#">Services</Link>
+                <Link href="#">Our clients</Link>
                 {/* Dropdown Content */}
                 <ul
                   className={`absolute ${showDropdown ? "block" : "hidden"} ${
@@ -127,7 +128,7 @@ const Navigation: React.FC<NavigationProps> = () => {
               </li>
               <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 lg:mx-0 px-4 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
                 <Link href="#" className="blue-btn">
-                  Hire Me
+                Contact
                 </Link>
               </li>
             </ul>
