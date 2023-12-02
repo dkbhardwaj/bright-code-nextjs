@@ -7,7 +7,7 @@ const HeroBanner: React.FC = () => {
         <div className="w-mainRow -ml-2.5 flex items-center">
           <div className="w-halfWidth mx-2.5">
             <div className="content">
-              <h1>Empowering Your Digital Success</h1>
+              <h1>Empowering Your Digital Success V1 </h1>
               {/* <h4 className={`max-w-[350px] mt-2`}>
                 Free Reactstrap UI Kit with Lots of Ready to Use Sections
               </h4> */}
