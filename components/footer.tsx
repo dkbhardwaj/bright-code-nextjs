@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="copyright w-full text-white text-center pt-5 mt-16 border-t border-white/[0.5]">
-          <p>© 2023 Bright Code Solution!!!</p>
+          <p>© 2023 Bright Code Solution</p>
         </div>
       </div>
     </footer>
