@@ -12,7 +12,7 @@ const ContentWithImage: React.FC = () => {
               category demos which is ready to use...
             </p>
             <div className="btnWrap mt-8">
-              <a href="#" className="black-btn">
+              <a href="#" className="pink-btn">
                 Coming Soon
               </a>
             </div>

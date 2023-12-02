@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className="footer bg-purple py-20">
       <div className="container">
         <div className="w-full text-white flex justify-between">
-          <div className={`logo max-w-[200px] max-h-[45px]`}>
+          <div className={`logo relative max-w-[200px] max-h-[45px]`}>
             <Link href="/" className="redirect">
               .
             </Link>

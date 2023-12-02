@@ -18,7 +18,7 @@ const ContentWithImage: React.FC = () => {
             </div>
           </div>
           <div className="content w-halfWidth mx-2.5">
-            <div className="imageWrap overflow-hidden rounded-lg shadow-lg w-full max-h-[350px] h-full">
+            <div className="imageWrap overflow-hidden rounded-lg w-full max-h-[350px] h-full">
               <img src="/girl.jpg" alt="girl" />
             </div>
           </div>
