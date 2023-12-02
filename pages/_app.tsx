@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Head from "next/head";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
-import Layout from "../components/layout";
+// import Layout from "../components/layout";
 import "../app/globals.css";
 import "../styles/global.css";
 import "../styles/buttons.css";
@@ -25,11 +25,11 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Head>
         <title>{defaultTitle}</title>
       </Head>
-      <Layout>
+      {/* <Layout> */}
         <main>
           <Component {...pageProps} />
         </main>
-      </Layout>
+      {/* </Layout> */}
     </>
   );
 }

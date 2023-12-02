@@ -1,12 +1,12 @@
 import React from "react";
-import Banner from "../components/banner";
-import Intro from "../components/intro";
+// import Banner from "../components/banner";
+// import Intro from "../components/intro";
 
 const Home: React.FC = () => {
   return (
     <>
-      <Banner />
-      <Intro content={"about"} />
+      {/* <Banner />
+      <Intro content={"about"} /> */}
     </>
   );
 };
