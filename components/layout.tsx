@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-// import Navigation from "./navigation";
+import Navigation from "./navigation";
 import Footer from "./footer";
 
 interface LayoutProps {
@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       {children}
       <Footer />
     </>

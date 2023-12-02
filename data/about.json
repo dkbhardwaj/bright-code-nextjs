@@ -1,0 +1,43 @@
+{
+  "page": [
+    {
+      "id": 1,
+      "title": "About",
+      "blades": [
+        {
+          "id": 11,
+          "bladeTitle": "intro",
+          "title": "Introduction",
+          "blurbs": [
+            "Welcome to our awesome website! Explore and enjoy.",
+            "Discover the latest trends in technology."
+          ]
+        },
+        {
+          "id": 12,
+          "bladeTitle": "colThreeGrid",
+          "icon": "/Icon_patient_safety.webp",
+          "card": [
+            {
+              "id": 121,
+              "title": "Company History",
+              "blurbs": [
+                "Learn more about the journey of our company.",
+                "Established in 20XX, we have been serving clients globally."
+              ]
+            },
+            {
+              "id": 122,
+              "title": "Team",
+              "icon": "/Icon_quality_care.webp",
+              "blurbs": [
+                "Meet our talented and dedicated team members.",
+                "We believe in collaboration and innovation."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
