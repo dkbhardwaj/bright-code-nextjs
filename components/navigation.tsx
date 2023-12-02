@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Style from "../styles/header.module.css";
+import Style from "../styles/navigation.module.css";
 import Link from "next/link";
 
 interface NavigationProps {}
