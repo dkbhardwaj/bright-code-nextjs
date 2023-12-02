@@ -55,7 +55,6 @@ module.exports = {
       },
       width: {
         mainContent: "calc(100% + 550px)",
-        threeCardWrap: "calc(100% + 20px)",
         mainRow: "calc(100% + 20px)",
         threeCard: "calc(33.33% - 20px)",
         colFour: "calc(25% - 20px)",

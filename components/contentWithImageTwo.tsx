@@ -2,10 +2,10 @@ import React from "react";
 
 const ContentWithImage: React.FC = () => {
   return (
-    <section className="contentWithImage py-32 overflow-hidden bg-opalGreen">
+    <section className="contentWithImage py-20 overflow-hidden">
       <div className="container">
         <div className="w-mainRow -ml-2.5 flex flex-row-reverse items-center z-1 relative">
-          <div className="content w-halfWidth mx-2.5 text-white pl-10">
+          <div className="content w-halfWidth mx-2.5 text-spaceBlack pl-10">
             <h3>Pro Version coming soon</h3>
             <p className="mt-4">
               We will add Pro Version with tons of great features and multiple

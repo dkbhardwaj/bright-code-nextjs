@@ -6,6 +6,7 @@ import ContentWithImage from "../components/contentWithImage";
 import ContentWithImageTwo from "../components/contentWithImageTwo";
 import Sticky from "../components/stickyNav";
 import Overview from "../components/overview";
+import ColThreeGrid from "../components/colThreeGrid";
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
       <Intro content={'portfolio'} bg={'lightGray'} />*/}
       <IntroWithCards content={"cards"} />
       <Intro content={"team"} bg={"lightGray"} />
+      <ColThreeGrid />
       <IntroWithCards col={4} content={"team"} />
       <ContentWithImage />
       <Intro content={"work"} />
