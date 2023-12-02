@@ -12,6 +12,8 @@ interface DropdownItem {
 const dropdownItems: DropdownItem[] = [
   { title: "Service 1", link: "/services/service1" },
   { title: "Service 2", link: "/services/service2" },
+  { title: "Service 3", link: "/services/service3" },
+  { title: "Service 4", link: "/services/service4" },
   // Add more services as needed
 ];
 
@@ -21,7 +23,6 @@ const Navigation: React.FC<NavigationProps> = () => {
 
   const preventredirect = (e: React.MouseEvent) => {
     e.preventDefault();
-    setShowDropdown(!showDropdown);
   };
   const handleDropClick = () => {
     setShowDropdown(!showDropdown);
@@ -32,6 +33,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   };
 
   const handleResize = () => {
+    setShowDropdown(false);
     if (window.innerWidth >= 991) {
       setShowMobileMenu(false);
     }
@@ -72,22 +74,50 @@ const Navigation: React.FC<NavigationProps> = () => {
                 showMobileMenu ? "lg:block" : "lg:hidden"
               } lg:absolute lg:left-0 lg:top-full lg:w-full lg:bg-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
             >
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link className="lg:p-5" href="/">Home</Link>
-              </li>
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link className="lg:p-5" href="/about">Why Choose Us</Link>
-              </li>
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link className="lg:p-5" href="/about"> What we do</Link>
+              <li
+                className={`${Style.menu} mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
+              >
+                <Link
+                  className="inline-block lg:p-5 lg:hover:bg-grayish w-full"
+                  href="/"
+                >
+                  Home
+                </Link>
               </li>
               <li
-                className={`mx-5 hover:text-blue transition-color duration-300 relative ${
-                  showDropdown ? "active text-blue" : ""
-                } lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack`}
+                className={`${Style.menu} mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
+              >
+                <Link
+                  className="inline-block lg:p-5 lg:hover:bg-grayish w-full"
+                  href="/about"
+                >
+                  Why Choose Us
+                </Link>
+              </li>
+              <li
+                className={`${Style.menu} mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
+              >
+                <Link
+                  className="inline-block lg:p-5 lg:hover:bg-grayish w-full"
+                  href="/about"
+                >
+                  {" "}
+                  What we do
+                </Link>
+              </li>
+              <li
+                className={`${
+                  Style.menu
+                } mx-5 hover:text-blue transition-color duration-300 relative ${
+                  showDropdown ? `${Style.active}` : ""
+                } lg:w-full px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:border-b-2 lg:border-lightGray`}
                 onClick={handleDropClick}
               >
-                <Link className="lg:p-5"  href="#" onClick={preventredirect}>
+                <Link
+                  className="inline-block lg:p-5 lg:hover:bg-grayish w-full"
+                  href="#"
+                  onClick={preventredirect}
+                >
                   Our clients
                 </Link>
                 {/* Dropdown Content */}
@@ -95,16 +125,16 @@ const Navigation: React.FC<NavigationProps> = () => {
                 <ul
                   className={`absolute ${
                     showDropdown ? "block" : "hidden"
-                  } w-56 -left-5 top-full bg-white py-2 rounded-md px-4 lg:relative lg:p-0 lg:w-full lg:mx-0 lg:left-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
+                  } w-56 left-0 top-[160%] bg-white py-3 rounded-md lg:relative lg:p-0 lg:pl-5 lg:w-full lg:mx-0 lg:left-0 lg:text-spaceBlack lg:cursor-pointer`}
                 >
                   {dropdownItems.map((item, index) => (
                     <li
                       key={index}
-                      className="group py-2.5 px-2 hover:bg-grayish lg:p-0"
+                      className="group py-2.5 px-3 hover:bg-grayish lg:p-0"
                     >
                       <Link
                         href={item.link}
-                        className="text-gray inline-block group-hover:text-blackish lg:p-5"
+                        className="text-gray inline-block group-hover:text-blackish lg:w-full lg:p-5 lg:text-spaceBlack lg:group-hover:text-blue"
                       >
                         {item.title}
                       </Link>

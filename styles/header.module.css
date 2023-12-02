@@ -32,6 +32,6 @@
 .mainRow {
   position: unset;
 }
-.links {
-  position: unset;
+.menu.active{
+color: #0164d3;
 }
