@@ -19,16 +19,12 @@ const Navigation: React.FC<NavigationProps> = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleMouseEnter = () => {
-    if (window.innerWidth >= 991) {
-      setShowDropdown(true);
-    }
+  const preventredirect = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowDropdown(!showDropdown);
   };
-
-  const handleMouseLeave = () => {
-    if (window.innerWidth >= 991) {
-      setShowDropdown(false);
-    }
+  const handleDropClick = () => {
+    setShowDropdown(!showDropdown);
   };
 
   const handleMobileMenuClick = () => {
@@ -38,15 +34,6 @@ const Navigation: React.FC<NavigationProps> = () => {
   const handleResize = () => {
     if (window.innerWidth >= 991) {
       setShowMobileMenu(false);
-    }
-  };
-
-  const [showMobileServicesDropdown, setShowMobileServicesDropdown] =
-    useState(false);
-
-  const handleMobileServicesDropdownToggle = () => {
-    if (window.innerWidth < 991) {
-      setShowMobileServicesDropdown(!showMobileServicesDropdown);
     }
   };
 
@@ -85,39 +72,39 @@ const Navigation: React.FC<NavigationProps> = () => {
                 showMobileMenu ? "lg:block" : "lg:hidden"
               } lg:absolute lg:left-0 lg:top-full lg:w-full lg:bg-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
             >
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link href="/">Home</Link>
+              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
+                <Link className="lg:p-5" href="/">Home</Link>
               </li>
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link href="/about">Why Choose Us
-                </Link>
+              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
+                <Link className="lg:p-5" href="/about">Why Choose Us</Link>
               </li>
-              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
-                <Link href="/about"> What we do</Link>
+              <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
+                <Link className="lg:p-5" href="/about"> What we do</Link>
               </li>
               <li
                 className={`mx-5 hover:text-blue transition-color duration-300 relative ${
-                  showDropdown ? "active" : ""
-                } lg:w-full lg:py-5 px-4 lg:mx-0 lg:text-spaceBlack`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onClick={handleMobileServicesDropdownToggle}
+                  showDropdown ? "active text-blue" : ""
+                } lg:w-full lg:py-5 px-4 lg:mx-0 lg:p-0 lg:text-spaceBlack`}
+                onClick={handleDropClick}
               >
-                <Link href="#">Our clients</Link>
+                <Link className="lg:p-5"  href="#" onClick={preventredirect}>
+                  Our clients
+                </Link>
                 {/* Dropdown Content */}
+
                 <ul
-                  className={`absolute ${showDropdown ? "block" : "hidden"} ${
-                    showMobileServicesDropdown ? "block" : ""
-                  } w-56 -left-5 top-full bg-white py-2 rounded-md border-t-2 border-blue`}
+                  className={`absolute ${
+                    showDropdown ? "block" : "hidden"
+                  } w-56 -left-5 top-full bg-white py-2 rounded-md px-4 lg:relative lg:p-0 lg:w-full lg:mx-0 lg:left-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}
                 >
                   {dropdownItems.map((item, index) => (
                     <li
                       key={index}
-                      className="group py-2.5 px-2 hover:bg-grayish"
+                      className="group py-2.5 px-2 hover:bg-grayish lg:p-0"
                     >
                       <Link
                         href={item.link}
-                        className="text-gray group-hover:text-blackish"
+                        className="text-gray inline-block group-hover:text-blackish lg:p-5"
                       >
                         {item.title}
                       </Link>
@@ -128,7 +115,7 @@ const Navigation: React.FC<NavigationProps> = () => {
               </li>
               <li className="mx-5 hover:text-blue transition-color duration-300 desktop:mx-2.5 lg:w-full lg:py-5 lg:mx-0 px-4 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray">
                 <Link href="#" className="blue-btn">
-                Contact
+                  Contact
                 </Link>
               </li>
             </ul>
