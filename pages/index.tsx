@@ -7,6 +7,7 @@ import ContentWithImageTwo from "../components/contentWithImageTwo";
 import Sticky from "../components/stickyNav";
 import Overview from "../components/overview";
 import ColThreeGrid from "../components/colThreeGrid";
+import Map from "../components/map";
 import ContactForm from "../components/contactFom";
 
 const Home: React.FC = () => {
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
       <ContentWithImage />
       <Intro content={"work"} />
       <ContentWithImageTwo />
+      <Map/>
       <ContactForm />
     </>
   );
