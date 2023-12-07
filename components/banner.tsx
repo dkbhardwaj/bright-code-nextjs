@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const HeroBanner: React.FC = () => {
   return (
@@ -7,12 +7,14 @@ const HeroBanner: React.FC = () => {
         <div className="w-mainRow -ml-2.5 flex items-center">
           <div className="w-halfWidth mx-2.5">
             <div className="content">
-              <h1>Empowering Your Digital Success </h1>
+              <h1>Empowering Your Digital Success! </h1>
               {/* <h4 className={`max-w-[350px] mt-2`}>
                 Free Reactstrap UI Kit with Lots of Ready to Use Sections
               </h4> */}
               <div className="btnWrap mt-8 inline-block">
-                <a href="#" className="blue-btn">
+                <a
+                  href="#"
+                  className="blue-btn">
                   Download Free
                 </a>
               </div>
@@ -25,7 +27,10 @@ const HeroBanner: React.FC = () => {
           </div>
           <div className="w-halfWidth mx-2.5">
             <div className="imgwrap">
-              <img src="/banner-img.png" alt="banner_img" />
+              <img
+                src="/banner-img.png"
+                alt="banner_img"
+              />
             </div>
           </div>
         </div>
