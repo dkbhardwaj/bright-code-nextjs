@@ -86,7 +86,7 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal">Elevating Visions, Bridging Realms</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal">SYNERGY OF COLLABORATION</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black" >Agency to Agency</h2>
               <p className=" text-black">
                 Our agency thrives on the synergy of collaboration. We step into
@@ -120,7 +120,7 @@ const WhyChooseUs: React.FC = () => {
       {/* Collaboration Riverflow End */}
 
       {/* Collaboration and Expertise Intro Start */}
-      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12">
+      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12 bg-extraLightGray">
         <div className="container">
           <div className="w-full z-1 relative">
             <div
@@ -129,7 +129,7 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1 bg-extraLightGray">Harmony of Minds</h6>
+              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">Harmony of Minds</h6>
               <h2  className="font-medium text-black mb-[38px]  md:mb-4" >Collaboration and Expertise</h2>
             </div>
             <div
@@ -206,7 +206,7 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Creative Catalyst in Digital Innovation</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">UNLEASHING DESIGN POTENTIAL</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Empowering Designers</h2>
               <p className="mt-5 text-black">
                 Our mission is to empower designers, allowing them to focus on
@@ -245,7 +245,7 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Navigating the Client's Journey</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">CUSTOMER-FOCUSED PHILOSOPHY</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Client-Centric Approach</h2>
               <p className="mt-5 text-black">
                 In everything you do, the final client is your ultimate
@@ -283,7 +283,7 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Horizon of Innovation</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">ELEVATING THE PARADIGM OF WEB DEVELOPMENT</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Redefining Web Development</h2>
               <p className="mt-5 text-black">
                 Our agency&#39;s agency-to-agency model redefines web
