@@ -4,13 +4,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
-import type { Metadata } from 'next';
-import Head from 'next/head';
 import Sticky from '../components/stickyNav';
 import { useState } from 'react';
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
-  title: 'Homepage',
+  title: 'Proactive Drupal Maintenance for Optimal Website Performance | Bright Code',
+  description: "Discover Bright Code's proactive Drupal Maintenance services, ensuring optimal website performance. Our expert team provides comprehensive maintenance, including core updates, module management, and security scans to safeguard your Drupal-based platform. ",
 };
 
 const Whatwedo: React.FC = () => {
@@ -49,9 +52,10 @@ const Whatwedo: React.FC = () => {
   }
   return (
     <>
-      <Head>
-        <title>{String(metadata.title)}</title>
-      </Head>
+      <NextSeo
+        title={String(metadata.title)}
+        description={String(metadata.description)}
+      />
       {/* Banner Start */}
       <section
         className={`banner banner-second banner_DarkOverlay banner_bg_img bg-darkBlue level-two text-white`}
