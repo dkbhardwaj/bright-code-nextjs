@@ -88,9 +88,6 @@ const Whatwedo: React.FC = () => {
               and a dedicated focus on your unique goals. At Bright Code, we're proud to be your partners in this
               journey, offering Dedicated Development Teams that bring your digital dreams to life.
             </h5>
-            <h5 className="text-black w-full max-w-[960px] mx-auto mt-5  md:mt-3 ">
-            Here is Dedicated Development Team is the right choise.
-            </h5>
           </div>
         </div>
       </section>
@@ -105,7 +102,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">TAILORED EXCELLENCE: DEDICATED DEV TEAMS</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >What are Dedicated Development Teams?</h2>
               <p className="mt-5 text-black">
                 Our Dedicated Development Teams are the embodiment of unwavering commitment and expertise. We tailor our
@@ -137,7 +134,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-left"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">ELEVATING YOUR DIGITAL VISION</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Empowering Your Vision, Your Way</h2>
               <p className="mt-5 text-black">
                 Our Dedicated Development Teams are designed to empower your digital vision without compromise. We
@@ -170,7 +167,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">UNLEASHING POTENTIAL</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Exceeding Expectations, Every Time</h2>
               <p className="mt-5 text-black">
                 We don't simply deliver development solutions; we consistently surpass expectations. Our expertise,
@@ -206,7 +203,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-left"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">EMPOWERING SUCCESS THROUGH PARTNERSHIP</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >The Power of Collaboration</h2>
               <p className="mt-5 text-black">
                 Collaboration is the foundation of our approach. By partnering with Bright Code, you gain access to a
