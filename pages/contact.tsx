@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Connect with Bright Code: Your Partner in Exceptional Web Development",
   description: "Ready to start a collaborative journey with Bright Code? Contact us to explore our agency-to-agency model, specialized expertise, and commitment to empowering designers and thrilling clients. Reach out today for a strategic alliance that elevates your web development aspirations.",
 };
+
 const Contact: React.FC = () => {
   const [state, handleSubmit] = useForm('maygryee');
   const [captcha, setcaptcha] = useState<string | null>();
@@ -51,6 +52,10 @@ const Contact: React.FC = () => {
   }
   return (
     <>
+    <NextSeo
+        title={String(metadata.title)}
+        description={String(metadata.description)}
+      />
       {/* Banner Start */}
       <section
         className={`banner banner-second banner_DarkOverlay banner_bg_img bg-darkBlue level-two text-white`}
