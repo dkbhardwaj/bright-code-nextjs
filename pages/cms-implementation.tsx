@@ -103,10 +103,10 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >What is CMS Implementation?</h2>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">CMS Implementation</h6>
+              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >What is Drupal Implementation?</h2>
               <p className="mt-5 text-black">
-              CMS Implementation is the art of transforming your vision into a dynamic, user-friendly digital
+              Drupal Implementation is the art of transforming your vision into a dynamic, user-friendly Drupal
                 platform. At Bright Code, we specialize in taking your content management needs and translating them
                 into a robust, tailor-made solution. We make the process of managing your digital content effortless, so
                 you can focus on what truly matters – your message.
@@ -135,7 +135,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-left"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Strengthening Your Brand</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Empowering Your Brand, Your Way</h2>
               <p className="mt-5 text-black">
               Our CMS Implementation services are designed to empower your brand's digital voice. We don't just offer
@@ -168,7 +168,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Beyond Drupal Delivery</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Exceeding Expectations, Every Time</h2>
               <p className="mt-5 text-black">
               We don't stop at just delivering a CMS; we aim to exceed your expectations. With Bright Code, you can
@@ -200,7 +200,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-left"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Unlocking Success</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >The Power of Collaboration</h2>
               <p className="mt-5 text-black">
               Collaboration is at the heart of what we do. By partnering with Bright Code, you gain access to a team
