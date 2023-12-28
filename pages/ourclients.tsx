@@ -3,13 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm, ValidationError } from '@formspree/react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import type { Metadata } from 'next';
-import Head from 'next/head';
 import { useState } from 'react';
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
-  title: 'Homepage',
-  description: " ",
+  title: 'Collaborative Excellence: Bright Code Agency-to-Agency Approach',
+  description: "Discover Bright Code's collaborative excellence in agency-to-agency partnerships. As your dedicated development partner, we bridge the realms of design and technical implementation, ensuring seamless execution for remarkable digital solutions. Learn about our client-centric approach, professionalism in partnership, and expertise without compromise. ",
 };
 
 const Ourclient: React.FC = () => {
@@ -49,9 +51,10 @@ const Ourclient: React.FC = () => {
   }
   return (
     <>
-      <Head>
-        <title>{String(metadata.title)}</title>
-      </Head>
+    <NextSeo
+        title={String(metadata.title)}
+        description={String(metadata.description)}
+      />
       {/* Banner Start */}
       <section
         className={`banner banner-second banner-with-img banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue level-two text-white  md:items-baseline`}
@@ -71,7 +74,7 @@ const Ourclient: React.FC = () => {
           <div className="banner-contenr text-left">
             <h1>Our clients</h1>
             <Link
-              href="/"
+              href="/contact"
               className=" mt-[42px] gradient-btn mx-auto  lg:mt-5">
               <span>Learn More</span>
             </Link>
