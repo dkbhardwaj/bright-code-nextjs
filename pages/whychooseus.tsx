@@ -2,14 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import type { Metadata } from "next";
-import Head from "next/head";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
-  title: "Homepage",
-  description: " ",
+  title: "Elevate Your Vision: Bright Code's Unique Agency-to-Agency Model",
+  description: "Discover why Bright Code is the preferred choice for design agencies. Our agency-to-agency model thrives on collaboration, expertise, and the art of crafting excellence. Explore our specialized expertise, empowering designers, client-centric approach, and our commitment to redefining web development for mutual growth and client satisfaction. ",
 };
 
 const WhyChooseUs: React.FC = () => {
@@ -49,9 +51,10 @@ const WhyChooseUs: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>{String(metadata.title)}</title>
-      </Head>
+    <NextSeo
+        title={String(metadata.title)}
+        description={String(metadata.description)}
+      />
       {/* Banner Start */}
       <section
         className={`banner banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue level-two text-white md:items-baseline`}
