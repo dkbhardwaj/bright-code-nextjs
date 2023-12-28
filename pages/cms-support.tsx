@@ -82,9 +82,9 @@ const Whatwedo: React.FC = () => {
         <div className="container">
           <div className="w-full z-1 relative text-center">
             <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">Empowering Your Content</h6>
-            <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">CMS Maintenance</h2>
+            <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">Drupal Maintenance</h2>
             <h5 className="text-black font-light w-full max-w-[960px] mx-auto">
-              Through our comprehensive CMS Maintenance service, we provide you with the assurance that your Drupal
+              Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal
               Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal
               performance and a seamless user experience. Our proactive approach is designed to identify and address
               potential issues before they become problems, safeguarding the ongoing success of your digital presence in
@@ -104,11 +104,11 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">What is CMS Implementation?</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">The Importance of CMS Maintenance</h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">What is Drupal Maintenance?</h2>
               <p className="mt-5 text-black">
-                CMS Maintenance refers to the ongoing process of managing and optimizing a Content Management System
-                (CMS) to ensure its smooth operation, security, and performance. CMS Maintenance is crucial for the
+                Drupal Maintenance refers to the ongoing process of managing and optimizing the Content Management System
+                (CMS) to ensure its smooth operation, security, and performance. Drupal Maintenance is crucial for the
                 sustained health and effectiveness of a website. It helps prevent security vulnerabilities, ensures
                 optimal performance, and contributes to a positive user experience, ultimately supporting the long-term
                 success of a digital presence.
