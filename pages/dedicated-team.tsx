@@ -10,7 +10,8 @@ import Sticky from '../components/stickyNav';
 import { useState } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Homepage',
+  title: 'Empower Your Projects with Dedicated Development Teams | Bright Code',
+  description: "Bright Code offers Dedicated Development Teams, ensuring your projects receive specialized expertise and a committed partnership. Discover the advantages of having a dedicated team of Drupal specialists to elevate the success of your web initiatives. ",
 };
 
 const Whatwedo: React.FC = () => {

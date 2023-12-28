@@ -3,12 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useForm, ValidationError } from '@formspree/react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import type { Metadata } from 'next';
-import Head from 'next/head';
-import { useState } from 'react';
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
-  title: 'Homepage',
+  title: 'Collaborative Excellence: Bright Code Agency-to-Agency Approach',
+  description: "Discover Bright Code's collaborative excellence in agency-to-agency partnerships. As your dedicated development partner, we bridge the realms of design and technical implementation, ensuring seamless execution for remarkable digital solutions. Learn about our client-centric approach, professionalism in partnership, and expertise without compromise. ",
 };
 
 const Ourclient: React.FC = () => {

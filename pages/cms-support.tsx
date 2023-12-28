@@ -4,13 +4,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
-import type { Metadata } from 'next';
-import Head from 'next/head';
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 import Sticky from '../components/stickyNav';
 import { useState } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Homepage',
+  title: 'Proactive Drupal Maintenance for Optimal Website Performance | Bright Code',
+  description: " Discover Bright Code's proactive Drupal Maintenance services, ensuring optimal website performance. Our expert team provides comprehensive maintenance, including core updates, module management, and security scans to safeguard your Drupal-based platform.",
 };
 
 const Whatwedo: React.FC = () => {

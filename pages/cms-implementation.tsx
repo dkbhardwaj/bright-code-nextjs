@@ -4,13 +4,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
-import type { Metadata } from 'next';
-import Head from 'next/head';
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 import Sticky from '../components/stickyNav';
 import { useState } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Homepage',
+  title: 'Efficient Drupal Implementation Services for Seamless Content Management | Bright Code',
+  description: "Explore Bright Code's Drupal Implementation services, designed for seamless content management. Elevate your digital presence with our expert-driven solutions, ensuring efficient and user-friendly CMS integration tailored to your unique needs. ",
 };
 
 const Whatwedo: React.FC = () => {
