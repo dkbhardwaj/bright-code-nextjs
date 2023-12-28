@@ -1,90 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-interface ColCardsProps {
-  content: 'cards' | 'team';
-  col?: number; // Make col optional since it's not always provided
+interface Card {
+  cardTitle: string;
+  cardBlurb: string;
+  cardsImage: string;
 }
 
-const ColCards: React.FC<ColCardsProps> = ({ content, col = 3 }) => {
+interface BladeItem {
+  title: string;
+  blurb: string;
+  subtitle?: string;
+  cards: {
+    col: number;
+    items: Array<Card>;
+  };
+}
+
+interface Blade {
+  bladeTitle: string;
+  level: string;
+  bladeItems: Array<BladeItem>;
+  bgColor: string;
+  imgPath: string;
+  textAlignment: string;
+  ctaLink: string;
+  ctaText: string;
+  ctaClass: string;
+}
+
+interface ColCardsProps {
+  data: Blade[];
+}
+
+const ColCards: React.FC<ColCardsProps> = ({ data }) => {
+  // console.log(data.bladeItems[0].cards[0].tems);
+
   const [col4, setCol4] = useState(false);
 
-  useEffect(() => {
-    if (col === 4) {
-      setCol4(true);
-    }
-  }, [col]);
-
-  const cards = [
-    {
-      title: 'Branding for Theme Designer',
-      blurb: 'Digital Marketing',
-    },
-    {
-        title: 'Button Designs Free',
-        blurb: 'Search Engine',
-    },
-    {
-        title: 'Branding & Co Agency',
-        blurb: 'Admin templates',
-    },
-    {
-        title: 'Zukandre Phoniex',
-        blurb: 'Branding',
-    },
-    {
-        title: 'Sionage Mokcup',
-        blurb: 'Wll Mockup',
-    },
-    {
-        title: 'Hard Cover Book Mock',
-        blurb: 'Book Covers',
-    },
-    // Add other card items as needed
-  ];
-
-  const team = [
-    {
-      title: 'Michael Doe',
-      profession: 'Property Specialist',
-      blurb: 'You can rely on our amazing features list and also our customer services will be a great experience.',
-    },
-    {
-        title: 'Michael Doe',
-        profession: 'Property Specialist',
-        blurb: 'You can relay on our amazing features list and also our customer services will be great experience.'
-    },
-    {
-        title: 'Michael Doe',
-        profession: 'Property Specialist',
-        blurb: 'You can relay on our amazing features list and also our customer services will be great experience.'
-    },
-    {
-        title: 'Michael Doe',
-        profession: 'Property Specialist',
-        blurb: 'You can relay on our amazing features list and also our customer services will be great experience.'
-    },
-    // Add other team items as needed
-  ];
-
-  const contentData = content === 'cards' ? cards : team;
+  // useEffect(() => {
+  //   if (col === 4) {
+  //     setCol4(true);
+  //   }
+  // }, [col]);
 
   return (
     <section className="introWithCards py-20">
       <div className="container">
         <div className="w-mainRow -ml-2.5 flex flex-wrap">
-          {contentData.map((data, index) => (
-            <div key={index} className={`${col4 ? 'w-colFour' : 'w-threeCard'} mx-2.5 mb-5`}>
-              <div className="card bg-white shadow-slate-100 shadow-lg">
-                <div className="imageWrap">
-                  <img src="/img1.jpg" alt="image" />
-                </div>
-                <div className="textWrap p-4">
-                  <h5 className='text-darkGray'>{data.title}</h5>
-                  <span className='text-gray mt-2 inline-block'>{data.blurb}</span>
-                </div>
-              </div>
+          {/* {data.bladeItems[0].cards[0].items.map((data, index) => (
+            <div
+              key={index}
+              className={`${col4 ? "w-colFour" : "w-threeCard"} mx-2.5 mb-5`}
+            > */}
+          <div className="card bg-white shadow-slate-100 shadow-lg">
+            <div className="imageWrap">
+              {/* <img src={data.cards[0].cardImage} alt="image" /> */}
             </div>
-          ))}
+            <div className="textWrap p-4">
+              {/* <h5 className="text-darkGray">{data.cards[0].cardTitle}</h5> */}
+              <span className="text-gray mt-2 inline-block">
+                {/* {data.cards[0].cardBlurb} */}
+              </span>
+            </div>
+          </div>
+          {/* </div>
+          ))} */}
         </div>
       </div>
     </section>

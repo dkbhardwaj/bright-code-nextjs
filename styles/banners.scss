@@ -1,0 +1,81 @@
+@import "./variables.scss";
+.banner-homepage {
+  position: relative;
+  background-image: url("/banner-bg-img.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+.banner-second {
+  position: relative;
+  width: 100%;
+  // min-height: 629px;
+  min-height: 534px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 100px 0 40px;
+  overflow-x: hidden;
+  @include tablet-down {
+    min-height: 440px;
+  }
+}
+.banner-with-img {
+  @include container-up {
+    padding: 144px 0 94px;
+  }
+  @include tablet-down {
+    padding-bottom: 320px;
+    align-items: baseline;
+  }
+  .banner-contenr {
+    position: relative;
+    width: 100%;
+    max-width: 510px;
+    z-index: 10;
+    @include tablet-down {
+      height: calc(100% - 320px);
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+.banner_bg_img {
+  position: relative;
+  background-image: url("/second-banner-bg-img.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+
+.banner_overlay {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 26, 53, 0.333);
+  }
+}
+.banner_DarkOverlay {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    // background-color: #011a3584;
+    background-color: rgba(1, 26, 53, 0.75);
+  }
+}
+
+.banner {
+  h1 {
+    color: white;
+  }
+}

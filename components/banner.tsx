@@ -1,42 +1,69 @@
-import React from 'react';
+// Banner.jsx
+import React from "react";
 
-const HeroBanner: React.FC = () => {
+// Assuming a structure for the blade objects
+interface Blade {
+  bladeTitle: string;
+  level: string;
+  bladeItems: Array<{ title: string; blurb: string }>;
+  bgColor: string;
+  imgPath: string;
+  textAlignment: string;
+  ctaLink: string;
+  ctaText: string;
+  ctaClass: string;
+}
+
+// Define a type for the props of the Banner component
+interface BannerProps {
+  data: Blade;
+}
+
+const Banner: React.FC<BannerProps> = ({ data }) => {
+  // console.log(data?.bladeItems[0]?.title);
+
   return (
-    <section className={`banner bg-purple text-white min-h-[530px] py-12`}>
+    <section
+      className={`banner ${
+        data.bgColor ? `bg-${data.bgColor}` : ""
+      } ${
+        data.level ? `level-${data.level}` : ""
+      } text-white min-h-[530px] py-12`}
+    >
       <div className="container">
         <div className="w-mainRow -ml-2.5 flex items-center">
-          <div className="w-halfWidth mx-2.5">
+          <div
+            className={`${
+              data.textAlignment ? `text-${data.textAlignment}` : ""
+            } ${data.level === "two" ? `w-full` : "w-halfWidth"} ${
+              !data.level ? `mx-2.5` : ""
+            }`}
+          >
             <div className="content">
-              <h1>Empowering Your Digital Success! </h1>
-              {/* <h4 className={`max-w-[350px] mt-2`}>
-                Free Reactstrap UI Kit with Lots of Ready to Use Sections
-              </h4> */}
-              <div className="btnWrap mt-8 inline-block">
-                <a
-                  href="#"
-                  className="blue-btn">
-                  Download Free
-                </a>
+              {data.bladeItems[0].title && (
+                <h1>{data?.bladeItems[0]?.title}</h1>
+              )}
+              {data.bladeItems[0].blurb && <p>{data?.bladeItems[0]?.blurb}</p>}
+              {data.bladeItems[0].title && (
+                <div className="btnWrap mt-8 inline-block">
+                  <a href={data.ctaLink} className={data.ctaClass}>
+                    {data.ctaText}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+          {data.imgPath && (
+            <div className="w-halfWidth mx-2.5">
+              <div className="imgwrap">
+                <img src={data.imgPath} alt="banner_img" />
               </div>
-              {/* <div className="btnWrap mt-8 ml-5 inline-block">
-                <a href="#" className="transparent-btn">
-                  Download Free
-                </a>
-              </div> */}
             </div>
-          </div>
-          <div className="w-halfWidth mx-2.5">
-            <div className="imgwrap">
-              <img
-                src="/banner-img.png"
-                alt="banner_img"
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
   );
 };
 
-export default HeroBanner;
+export default Banner;

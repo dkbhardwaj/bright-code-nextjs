@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <Navigation />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

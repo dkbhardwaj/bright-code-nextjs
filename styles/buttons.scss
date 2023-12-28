@@ -1,0 +1,274 @@
+@import "./variables.scss";
+
+.transparent-btn {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  font-weight: 400;
+  &:hover {
+    background-color: #fff;
+    color: #263238;
+  }
+}
+
+.pink-btn {
+  --c: #ff4d7e; /* the color*/
+  --d: #fff; /* the color*/
+  display: inline-block;
+  box-shadow: 0 0 0 0.1em inset var(--d);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  padding: 10px 25px;
+  border-radius: 8px;
+  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+  font-weight: 400;
+  cursor: pointer;
+  &.b-border {
+    --d: #263238; /* the color*/
+  }
+  &:hover {
+    --_p: 100%;
+    --c: #ff4d7e; /* the color*/
+    transition: background-position 0.4s, background-size 0s;
+    color: #fff;
+    box-shadow: 0 0 0 0.1em inset var(--c);
+  }
+  &:active {
+    box-shadow: 0 0 9e9Q inset #0009;
+    background-color: var(--c);
+    color: #fff;
+  }
+}
+
+.blue-btn {
+  --c: #0164d3; /* the color*/
+  --d: #0164d3; /* the color*/
+  display: inline-block;
+  box-shadow: 0 0 0 0.1em inset var(--d);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  padding: 10px 25px;
+  border-radius: 8px;
+  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+  font-weight: 400;
+  cursor: pointer;
+  &:hover {
+    --_p: 100%;
+    --c: #0164d3; /* the color*/
+    transition: background-position 0.4s, background-size 0s;
+    color: #fff;
+    box-shadow: 0 0 0 0.1em inset var(--c);
+  }
+  &:active {
+    box-shadow: 0 0 9e9Q inset #0009;
+    background-color: var(--c);
+    color: #fff;
+  }
+}
+
+.black-btn {
+  --c: #263238; /* the color*/
+  --d: #263238; /* the color*/
+  display: inline-block;
+  box-shadow: 0 0 0 0.1em inset var(--d);
+  --_g: linear-gradient(var(--c) 0 0) no-repeat;
+  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+    var(--_g) calc(200% - var(--_p, 0%)) 0%,
+    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+    var(--_g) calc(200% - var(--_p, 0%)) 100%;
+  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+  outline-offset: 0.1em;
+  padding: 10px 25px;
+  border-radius: 8px;
+  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+  font-weight: 400;
+  cursor: pointer;
+  &:hover {
+    --_p: 100%;
+    --c: #263238; /* the color*/
+    transition: background-position 0.4s, background-size 0s;
+    color: #fff;
+    box-shadow: 0 0 0 0.1em inset var(--c);
+  }
+  &:active {
+    box-shadow: 0 0 9e9Q inset #0009;
+    background-color: var(--c);
+    color: #fff;
+  }
+}
+.gradient-btn {
+  position: relative;
+  width: 100%;
+  max-width: 270px;
+  height: fit-content;
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px 60px 20px 28px;
+  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  border-radius: 9px;
+  text-align: left;
+  transition: all 0.5s ease-in-out;
+  &::after {
+    content: " ";
+    position: absolute;
+    top: calc(50% - 11px);
+    right: 26px;
+    width: 22px;
+    height: 22px;
+    background-image: url("/arrow-right-white.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    transition: right 0.5s ease-in-out;
+    @include desktop {
+      right: 25px;
+    }
+    @include tablet {
+      right: 20px;
+    }
+    @include tablet-down {
+      right: 16px;
+    }
+  }
+  &:hover {
+    background-image: linear-gradient(to right, #0263d3, #6704cb);
+    &::after {
+      // animation: animat 1.5s alternate infinite;
+      right: 35px;
+      @include desktop {
+        right: 30px;
+      }
+      @include tablet {
+        right: 25px;
+      }
+      @include tablet-down {
+        right: 20px;
+      }
+    }
+  }
+  @include desktop {
+    padding: 18px 50px 18px 25px;
+    max-width: 240px;
+  }
+  @include tablet {
+    padding: 15px 40px 15px 20px;
+    max-width: 200px;
+  }
+  @include tablet-down {
+    padding: 11px 32px 11px 16px;
+    max-width: 188px;
+  }
+  span {
+    position: relative;
+    font-size: 19px;
+    font-weight: 600;
+    color: #fff;
+    @include desktop {
+      font-size: 18px;
+    }
+    @include tablet {
+      font-size: 16px;
+    }
+    @include tablet-down {
+      font-size: 15px;
+    }
+  }
+  // @keyframes animat {
+  //   0% {
+  //     right: 40px;
+  //   }
+  //   100% {
+  //     right: 20px;
+  //   }
+  // }
+  &.max-w-full {
+    max-width: 100%;
+  }
+  &.bgWhiteBtn {
+    max-width: 207px;
+    background-color: #f3f3f3;
+    background-image: unset;
+    padding: 14px 60px 14px 20px;
+    &::after {
+      top: calc(50% - 9px);
+      right: 20px;
+      width: 18px;
+      height: 18px;
+      background-image: url("/arrow-right-black.svg");
+      @include tablet {
+        right: 18px;
+      }
+      @include tablet-down {
+        right: 16px;
+      }
+    }
+    &:hover {
+      background-color: #d1d1d1;
+      &::after {
+        right: 25px;
+        @include tablet {
+          right: 23px;
+        }
+        @include tablet-down {
+          right: 20px;
+        }
+      }
+    }
+    @include tablet {
+      padding: 13px 50px 13px 18px;
+      max-width: 180px;
+    }
+    @include tablet-down {
+      padding: 11px 32px 11px 16px;
+      max-width: 160px;
+    }
+    span {
+      font-size: 14px;
+      color: #000;
+    }
+  }
+  &.border-btn {
+    background-color: transparent;
+    background-image: unset;
+    max-width: 172px;
+    padding: 10px 50px 10px 16px;
+    border: solid 1px #fff;
+    &::after {
+      top: calc(50% - 7px);
+      right: 16px;
+      width: 15px;
+      height: 15px;
+      @include desktop-down {
+        background-image: url("/arrow-right-black.svg");
+      }
+    }
+    &:hover {
+      &::after {
+        right: 22px;
+      }
+    }
+    span {
+      font-size: 14px;
+      @include desktop-down {
+        color: #3e4555;
+      }
+    }
+    @include desktop-down {
+      border: solid 2px #3e4555;
+    }
+  }
+}

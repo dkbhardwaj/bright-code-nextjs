@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMapGL from 'react-map-gl';
+// import ReactMapGL from 'react-map-gl';
 
 
 const Map: React.FC = () => {
@@ -14,4 +14,3 @@ const Map: React.FC = () => {
 };
 
 export default Map;
-

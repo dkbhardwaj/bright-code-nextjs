@@ -1,0 +1,116 @@
+@import "./variables";
+.mobileMenuIcon {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+// .mobileMenuIcon.active .bar:nth-child(1) {
+//   transform: rotate(-45deg) translate(-5px, 5px);
+// }
+
+// .mobileMenuIcon.active .bar:nth-child(2) {
+//   opacity: 0;
+// }
+
+// .mobileMenuIcon.active .bar:nth-child(3) {
+//   transform: rotate(45deg) translate(-10px, -11px);
+// }
+.logo {
+  position: relative;
+}
+.mainRow {
+  position: unset;
+}
+.menu {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+    background-color: #fff;
+    @include desktop-down {
+      background-color: #3e4555;
+      // background-image: linear-gradient(to right, #0075ff, #8000ff);
+      transition: width 1s ease-in-out;
+    }
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+.menu_active {
+  color: #fff;
+  &::after {
+    width: 100%;
+  }
+}
+// .btn {
+//   @include desktop-down {
+//     --d: #263238 !important; /* the color*/
+//     box-shadow: 0 0 0 0.1em inset var(--d) !important;
+//     &:hover {
+//       --c: #ff4d7e !important; /* the color*/
+//       box-shadow: 0 0 0 0.1em inset var(--c) !important;
+//     }
+//   }
+// }
+.links {
+  position: relative;
+  width: calc(100% - 200px);
+  padding-left: 20px;
+  @include desktop-down {
+    position: unset;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+.close {
+  // position: absolute;
+  // top: 30px;
+  // right: 12px;
+  position: relative;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  // border: solid 2px #0075ff;
+  // color: #0075ff;
+  border: solid 1px #fff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    // color: #fff;
+    // border: solid 2px #8000ff;
+    // background-color: #8000ff;
+    border: solid 2px #0075ff;
+    background-color: #0075ff;
+  }
+}
