@@ -12,8 +12,8 @@ import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
-  title: "Bright Code",
-  description: "Drupal CMS Agency",
+  title: "Agency-to-Agency Drupal Development Partner | Bright Code",
+  description: "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
 };
 
 const Home: React.FC = () => {
@@ -763,8 +763,8 @@ const Home: React.FC = () => {
           <div className="socialWrap flex md:justify-center md:hidden">
               <div className="icon relative max-w-[33px] h-[33px] ">
                 <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect"
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -772,8 +772,8 @@ const Home: React.FC = () => {
               </div>
               <div className="icon relative ml-3  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
