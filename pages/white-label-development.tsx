@@ -101,9 +101,6 @@ const Whatwedo: React.FC = () => {
               creations. At Bright Code, we take pride in our role as the silent architects of digital success,
               delivering excellence through White Label Development.
               </h5>
-              <h5 className="mt-5 text-black  w-full max-w-[960px] mx-auto md:mt-3">
-              Here is what White Label Development means, for us.
-              </h5>
             </div>
           </div>
         </div>
@@ -119,7 +116,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">ELEVATING WEB DEVELOPMENT</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Empowering Your Brand, Your Way</h2>
               <p className="mt-5 text-black">
                 Our White Label Development services are designed to empower your brand. We act as your dedicated
@@ -223,7 +220,7 @@ const Whatwedo: React.FC = () => {
               data-aos="fade-left"
               data-aos-delay="500"
               data-aos-duration="1000">
-                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Masters of what we do</h6>
+                <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">SUPPORTING YOUR BRAND, OUR CORE COMMITMENT</h6>
               <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Your Success, Our Priority</h2>
               <p className="mt-5 text-black">
                 At Bright Code, we are more than just a development agency; we are your trusted partner for success.
