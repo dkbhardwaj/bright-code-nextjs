@@ -167,7 +167,7 @@ const Ourclient: React.FC = () => {
               data-aos="fade-right"
               data-aos-delay="500"
               data-aos-duration="1000">
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Expertise</h6>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">ETHICAL EXCELLENCE IN AGENCY COLLABORATION</h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">Professionalism in Partnership</h2>
               <p className="mt-5 text-black">
                 We understand that our clients, often marketing, design and development agencies themselves, rely on us
@@ -212,10 +212,10 @@ const Ourclient: React.FC = () => {
                 Our client-centric approach means that our focus is, and always will be, on making our clients happy. We
                 respect their need to safeguard their client relationships and branding confidentiality.
               </p>
-              <h5 className="mt-5 text-black font-light">
+              <p className="mt-5 text-black">
                 By not advertising their projects on our website, we honor their trust and uphold our end of the
                 partnership.
-              </h5>
+              </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
               <div
@@ -255,10 +255,10 @@ const Ourclient: React.FC = () => {
                 highlighting our expertise and the value we bring to the table. While client names and project specifics
                 remain confidential, we embrace the opportunity for one-on-one discussions—online or in person.
               </p>
-              <h5 className="mt-5 text-black font-light">
+              <p className="mt-5 text-black">
                 In these discussions, we unfold the layers of our expertise, showcasing the intricacies of our
                 problem-solving approach and the value we bring to each partnership.
-              </h5>
+              </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
               <div
