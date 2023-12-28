@@ -393,9 +393,9 @@ const Whatwedo: React.FC = () => {
           </div>
           <div className="hidden socialWrap mt-8 md:flex md:justify-center">
               <div className="icon relative max-w-[33px] h-[33px]">
-                <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+              <Link
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -403,8 +403,8 @@ const Whatwedo: React.FC = () => {
               </div>
               <div className="icon relative ml-2  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -419,8 +419,8 @@ const Whatwedo: React.FC = () => {
           <div className="socialWrap flex md:justify-center md:hidden">
               <div className="icon relative max-w-[33px] h-[33px] ">
                 <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect"
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -428,8 +428,8 @@ const Whatwedo: React.FC = () => {
               </div>
               <div className="icon relative ml-3  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>

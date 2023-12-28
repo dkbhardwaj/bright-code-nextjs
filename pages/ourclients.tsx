@@ -390,7 +390,7 @@ const Ourclient: React.FC = () => {
       </section>
       {/* Contact Form End */}
 
-        {/* Footer Start */}
+      {/* Footer Start */}
       <footer className="footer py-[90px] md:py-16 ">
       <div className="container">
         <div className="w-full text-white flex justify-between md:flex-col md:items-center">
@@ -422,9 +422,9 @@ const Ourclient: React.FC = () => {
           </div>
           <div className="hidden socialWrap mt-8 md:flex md:justify-center">
               <div className="icon relative max-w-[33px] h-[33px]">
-                <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+              <Link
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -432,8 +432,8 @@ const Ourclient: React.FC = () => {
               </div>
               <div className="icon relative ml-2  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -448,8 +448,8 @@ const Ourclient: React.FC = () => {
           <div className="socialWrap flex md:justify-center md:hidden">
               <div className="icon relative max-w-[33px] h-[33px] ">
                 <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect"
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>
@@ -457,8 +457,8 @@ const Ourclient: React.FC = () => {
               </div>
               <div className="icon relative ml-3  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
                 >
                   .
                 </Link>

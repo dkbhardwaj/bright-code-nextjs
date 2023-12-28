@@ -395,127 +395,84 @@ const Whatwedo: React.FC = () => {
         {/* Contact Form End */}
 
         {/* Footer Start */}
-        <footer className="footer py-[90px] md:py-16 ">
-          <div className="container">
-            <div className="w-full text-white flex justify-between md:flex-col md:items-center">
-              <div className="w-54">
-                <div className={`logo relative max-w-[207px] h-[57px]`}>
-                  <Link
-                    href="/"
-                    className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/brightcode_logo.png"
-                    width={300}
-                    height={100}
-                    alt="logo"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              <div className="textWrap relative md:mt-8">
-                <ul className=" relative flex flex-wrap sm:block">
-                  <li className=" relative flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4 sm:ml-0 sm:mb-3">
-                    <Link
-                      href="mailto:contact@bright-code.io"
-                      className="redirect">
-                      .
-                    </Link>
-                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                      <Image
-                        src="/mail-icon-white.svg"
-                        width={25}
-                        height={25}
-                        alt="img"
-                        className=" w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="font-semibold">contact@bright-code.io</span>
-                  </li>
-                  <li className=" relative flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  sm:ml-0">
-                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                      <Image
-                        src="/phone-icon-white.svg"
-                        width={25}
-                        height={25}
-                        alt="img"
-                        className=" w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="font-semibold">+ ‪(925) 315-5061‬</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="hidden socialWrap mt-8 md:flex md:justify-center">
-                <div className="icon relative max-w-[33px] h-[33px]">
-                  <Link
-                    href={'https://www.linkedin.com/in/bright-code-71120724a/'}
-                    className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/twitter-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-                <div className="icon relative ml-2  max-w-[33px] h-[33px]">
-                  <Link
-                    href={'https://www.linkedin.com/in/bright-code-71120724a/'}
-                    className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/linkedin-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-              </div>
+      <footer className="footer py-[90px] md:py-16 ">
+      <div className="container">
+        <div className="w-full text-white flex justify-between md:flex-col md:items-center">
+          <div className="w-54">
+            <div className={`logo relative max-w-[207px] h-[57px]`}>
+              <Link href="/" className="redirect">
+                .
+              </Link>
+              <Image src="/brightcode_logo.png" width={300} height={100} alt="logo" className=" w-full h-full object-contain" />
             </div>
-            <div className=" relative w-full flex flex-wrap justify-between mt-14 md:mt-10">
-              <div className="copyright w-fit mr-5 md:text-center md:w-full ">
-                <p className="text-white">© 2024 Bright Code Solution</p>
-              </div>
-              <div className="socialWrap flex md:justify-center md:hidden">
-                <div className="icon relative max-w-[33px] h-[33px] ">
-                  <Link
-                    href={'https://www.linkedin.com/company/bright-codeio/'}
-                    className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/twitter-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-                <div className="icon relative ml-3  max-w-[33px] h-[33px]">
-                  <Link
-                    href={'https://www.linkedin.com/in/bright-code-71120724a/'}
-                    className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/linkedin-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-            </div>
+            
           </div>
-        </footer>
-        {/* Footer End */}
+          <div className="textWrap relative md:mt-8">
+            <ul className=" relative flex flex-wrap sm:block">
+              <li className=" relative flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4 sm:ml-0 sm:mb-3">
+                <Link href="mailto:contact@bright-code.io" className="redirect">.</Link>
+                <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                  <Image src="/mail-icon-white.svg" width={25} height={25} alt="img"  className=" w-full h-full object-contain"/>
+                </div>
+                <span className="font-semibold">contact@bright-code.io</span>
+              </li>
+              <li className=" relative flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  sm:ml-0">
+                <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                  <Image src="/phone-icon-white.svg" width={25} height={25} alt="img"  className=" w-full h-full object-contain" />
+                </div>
+                <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+              </li>
+            </ul>
+          </div>
+          <div className="hidden socialWrap mt-8 md:flex md:justify-center">
+              <div className="icon relative max-w-[33px] h-[33px]">
+              <Link
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
+                >
+                  .
+                </Link>
+                <Image src="/twitter-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
+              </div>
+              <div className="icon relative ml-2  max-w-[33px] h-[33px]">
+              <Link
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
+                >
+                  .
+                </Link>
+                <Image src="/linkedin-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
+              </div>
+            </div>
+        </div>
+        <div className=" relative w-full flex flex-wrap justify-between mt-14 md:mt-10">
+          <div className="copyright w-fit mr-5 md:text-center md:w-full ">
+          <p className="text-white">© 2024 Bright Code Solution</p>
+          </div>
+          <div className="socialWrap flex md:justify-center md:hidden">
+              <div className="icon relative max-w-[33px] h-[33px] ">
+                <Link
+                  href={"https://twitter.com/BrightcodeIO"}
+                  className="redirect" target="_blank"
+                >
+                  .
+                </Link>
+                <Image src="/twitter-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
+              </div>
+              <div className="icon relative ml-3  max-w-[33px] h-[33px]">
+              <Link
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect" target="_blank"
+                >
+                  .
+                </Link>
+                <Image src="/linkedin-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
+              </div>
+            </div>
+        </div>
+      </div>
+      </footer>
+      {/* Footer End */}
       </div>
     </>
   );
