@@ -3,17 +3,15 @@ import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import type { Metadata } from "next";
-import Head from "next/head";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
+import type { Metadata } from 'next';
+import Head from 'next/head';
 import Sticky from '../components/stickyNav';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 
 export const metadata: Metadata = {
   title: 'White Label Drupal Development | Bright Code',
-  description: " Discover Bright Code's White Label Web Development services, providing seamless solutions for agencies seeking reliable and confidential development support. Elevate your brand with our expert-driven, collaborative approach to web development ",
+  description: " Discover Bright Code's White Label Web Development services, providing seamless solutions for agencies seeking reliable and confidential development support. Elevate your brand with our expert-driven, collaborative approach to web development",
 };
 
 const Whatwedo: React.FC = () => {

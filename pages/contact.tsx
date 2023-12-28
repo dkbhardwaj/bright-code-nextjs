@@ -4,15 +4,6 @@ import Link from 'next/link';
 import { useForm, ValidationError } from '@formspree/react';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import type { Metadata } from "next";
-import Head from "next/head";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
-
-export const metadata: Metadata = {
-  title: "Connect with Bright Code: Your Partner in Exceptional Web Development",
-  description: "Ready to start a collaborative journey with Bright Code? Contact us to explore our agency-to-agency model, specialized expertise, and commitment to empowering designers and thrilling clients. Reach out today for a strategic alliance that elevates your web development aspirations. ",
-};
 
 const Contact: React.FC = () => {
   const [state, handleSubmit] = useForm('maygryee');

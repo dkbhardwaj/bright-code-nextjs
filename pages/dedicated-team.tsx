@@ -10,8 +10,7 @@ import Sticky from '../components/stickyNav';
 import { useState } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Empower Your Projects with Dedicated Development Teams | Bright Code',
-  description: "Bright Code offers Dedicated Development Teams, ensuring your projects receive specialized expertise and a committed partnership. Discover the advantages of having a dedicated team of Drupal specialists to elevate the success of your web initiatives. ",
+  title: 'Homepage',
 };
 
 const Whatwedo: React.FC = () => {
@@ -371,9 +370,9 @@ const Whatwedo: React.FC = () => {
           </div>
           <div className="hidden socialWrap mt-8 md:flex md:justify-center">
               <div className="icon relative max-w-[33px] h-[33px]">
-              <Link
-                  href={"https://twitter.com/BrightcodeIO"}
-                  className="redirect" target="_blank"
+                <Link
+                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
+                  className="redirect"
                 >
                   .
                 </Link>
@@ -381,8 +380,8 @@ const Whatwedo: React.FC = () => {
               </div>
               <div className="icon relative ml-2  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect" target="_blank"
+                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
+                  className="redirect"
                 >
                   .
                 </Link>
@@ -397,8 +396,8 @@ const Whatwedo: React.FC = () => {
           <div className="socialWrap flex md:justify-center md:hidden">
               <div className="icon relative max-w-[33px] h-[33px] ">
                 <Link
-                  href={"https://twitter.com/BrightcodeIO"}
-                  className="redirect" target="_blank"
+                  href={"https://www.linkedin.com/company/bright-codeio/"}
+                  className="redirect"
                 >
                   .
                 </Link>
@@ -406,8 +405,8 @@ const Whatwedo: React.FC = () => {
               </div>
               <div className="icon relative ml-3  max-w-[33px] h-[33px]">
               <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect" target="_blank"
+                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
+                  className="redirect"
                 >
                   .
                 </Link>

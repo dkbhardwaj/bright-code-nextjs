@@ -4,14 +4,12 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import type { Metadata } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 
 export const metadata: Metadata = {
-  title: "Elevate Your Vision: Bright Code's Unique Agency-to-Agency Model",
-  description: " Discover why Bright Code is the preferred choice for design agencies. Our agency-to-agency model thrives on collaboration, expertise, and the art of crafting excellence. Explore our specialized expertise, empowering designers, client-centric approach, and our commitment to redefining web development for mutual growth and client satisfaction.",
+  title: "Homepage",
+  description: " ",
 };
 
 const WhyChooseUs: React.FC = () => {
