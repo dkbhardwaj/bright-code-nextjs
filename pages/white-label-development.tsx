@@ -3,11 +3,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import type { Metadata } from 'next';
-import Head from 'next/head';
 import Sticky from '../components/stickyNav';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
+import type { Metadata } from "next";
+import Head from "next/head";
+import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
   title: 'White Label Drupal Development | Bright Code',
@@ -50,9 +52,10 @@ const Whatwedo: React.FC = () => {
   }
   return (
     <>
-      <Head>
-        <title>{String(metadata.title)}</title>
-      </Head>
+      <NextSeo
+        title={String(metadata.title)}
+        description={String(metadata.description)}
+      />
       {/* Banner Start */}
       <section
         className={`banner banner-second banner_DarkOverlay banner_bg_img bg-darkBlue level-two text-white `}
