@@ -70,7 +70,7 @@ const WhyChooseUs: React.FC = () => {
        </div>
           <div className="banner-contenr text-left">
             <h1>Why choose us?</h1>
-            <Link href="/" className=" mt-[42px] gradient-btn mx-auto lg:mt-5"><span>Learn More</span></Link>
+            <Link href="/contact" className=" mt-[42px] gradient-btn mx-auto lg:mt-5"><span>Learn More</span></Link>
           </div>
         </div>
       </section>
