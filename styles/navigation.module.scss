@@ -15,17 +15,17 @@
   transition: 0.4s;
 }
 
-// .mobileMenuIcon.active .bar:nth-child(1) {
-//   transform: rotate(-45deg) translate(-5px, 5px);
-// }
+.mobileMenuIcon.active .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 5px);
+}
 
-// .mobileMenuIcon.active .bar:nth-child(2) {
-//   opacity: 0;
-// }
+.mobileMenuIcon.active .bar:nth-child(2) {
+  opacity: 0;
+}
 
-// .mobileMenuIcon.active .bar:nth-child(3) {
-//   transform: rotate(45deg) translate(-10px, -11px);
-// }
+.mobileMenuIcon.active .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-10px, -11px);
+}
 .logo {
   position: relative;
 }
@@ -44,8 +44,9 @@
     transition: width 0.3s ease-in-out;
     background-color: #fff;
     @include desktop-down {
-      background-color: #3e4555;
-      // background-image: linear-gradient(to right, #0075ff, #8000ff);
+      // background-color: #3e4555;
+      background-color: transparent;
+      background-image: linear-gradient(to right, #0075ff, #8000ff);
       transition: width 1s ease-in-out;
     }
   }
