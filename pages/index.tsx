@@ -57,6 +57,17 @@ const Home: React.FC = () => {
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
+        openGraph={{
+          title: "Your Open Graph Title",
+          description: "Description for Open Graph",
+          images: [
+            {
+              url: "/agency_agency-1.png",
+              alt: "Alt text for your image",
+            },
+          ],
+          site_name: "Your Site Name",
+        }}
       />
       {/* <Head>
         <title>{String(metadata.title)}</title>
