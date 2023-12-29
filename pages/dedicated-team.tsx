@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Bright Code offers Dedicated Development Teams, ensuring your projects receive specialized expertise and a committed partnership. Discover the advantages of having a dedicated team of Drupal specialists to elevate the success of your web initiatives.",
 };
 
-const Whatwedo: React.FC = () => {
+const DedicatedTeam: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   if (state.succeeded) {
@@ -424,4 +424,4 @@ const Whatwedo: React.FC = () => {
   );
 };
 
-export default Whatwedo;
+export default DedicatedTeam;

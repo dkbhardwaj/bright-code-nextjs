@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Explore Bright Code's Drupal Implementation services, designed for seamless content management. Elevate your digital presence with our expert-driven solutions, ensuring efficient and user-friendly CMS integration tailored to your unique needs.",
 };
 
-const Whatwedo: React.FC = () => {
+const CmsImplementation: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   if (state.succeeded) {
@@ -421,4 +421,4 @@ const Whatwedo: React.FC = () => {
   );
 };
 
-export default Whatwedo;
+export default CmsImplementation;

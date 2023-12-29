@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StickyStyle from "../styles/sticky.module.css";
 import { log } from "console";
+import Link from "next/link";
 
 interface StickyProps {
   ribbonVisible?: boolean;
@@ -115,46 +116,44 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
   //   });
   // };
 
-  const handleStickyClick = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    id: string,
-    borderActive: number,
-    sectionId: string,
-    offset: number
-  ) => {
-    const x = document.querySelectorAll("section");
-    const headrHeight = document.querySelector("header")?.offsetHeight || 0;
-    const stickyHeight = document.getElementById("stickyNav")?.offsetHeight || 0;
-  
-    x.forEach((item) => {
-      const attr = item.getAttribute("id");
-      const scrollPosition =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-      if (attr === id) {
-        const topp = item.getBoundingClientRect().top;
-        const d = scrollPosition + topp - 116 - stickyHeight;
-        if (topp < 0) {
-          d - headrHeight;
-        }
-  
-        window.scrollTo({
-          top: d,
-          behavior: "smooth",
-        });
-  
-        // Add the "activated" class to the clicked li
-        item.parentElement?.querySelectorAll("li").forEach((li) => {
-          li.classList.remove("activated");
-        });
-        item.classList.add("activated");
-      }
-    });
-  };
-  
-  
+  // const handleStickyClick = (
+  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  //   id: string,
+  //   borderActive: number,
+  //   sectionId: string,
+  //   offset: number
+  // ) => {
+  //   const x = document.querySelectorAll("section");
+  //   const headrHeight = document.querySelector("header")?.offsetHeight || 0;
+  //   const stickyHeight = document.getElementById("stickyNav")?.offsetHeight || 0;
+
+  //   x.forEach((item) => {
+  //     const attr = item.getAttribute("id");
+  //     const scrollPosition =
+  //       window.pageYOffset ||
+  //       document.documentElement.scrollTop ||
+  //       document.body.scrollTop ||
+  //       0;
+  //     if (attr === id) {
+  //       const topp = item.getBoundingClientRect().top;
+  //       const d = scrollPosition + topp - 116 - stickyHeight;
+  //       if (topp < 0) {
+  //         d - headrHeight;
+  //       }
+
+  //       window.scrollTo({
+  //         top: d,
+  //         behavior: "smooth",
+  //       });
+
+  //       // Add the "activated" class to the clicked li
+  //       item.parentElement?.querySelectorAll("li").forEach((li) => {
+  //         li.classList.remove("activated");
+  //       });
+  //       item.classList.add("activated");
+  //     }
+  //   });
+  // };
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     const visibleSections = entries
@@ -232,23 +231,23 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                   //   </a>
                   // </li>
                   <li
-                  key={index}
-                  datatype={data.id}
-                  className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
-                    visibleSections[0] === data.url ? "activated" : ""
-                  }`}
-                  onClick={(e) =>
-                    handleStickyClick(e, data.url, index, data.url, 50)
-                  }
-                >
-                  <a
-                    href={`/${data.url}`}
-                    aria-label={`Navigate to ${data.title}`}
-                    className={` text-[19px] font-[600] transition-all text-white hover:text-white ease-in-out xl:text-[16px]`}
+                    key={index}
+                    datatype={data.id}
+                    className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
+                      visibleSections[0] === data.url ? "activated" : ""
+                    }`}
+                    // onClick={(e) =>
+                    //   handleStickyClick(e, data.url, index, data.url, 50)
+                    // }
                   >
-                    {data.title}
-                  </a>
-                </li>
+                    <Link
+                      href={`/${data.url}`}
+                      aria-label={`Navigate to ${data.title}`}
+                      className={` text-[19px] font-[600] transition-all text-white hover:text-white ease-in-out xl:text-[16px]`}
+                    >
+                      {data.title}
+                    </Link>
+                  </li>
                 );
               })}
             </ul>
@@ -262,7 +261,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
           .activated {
             color: #ffffff;
             border: none;
-          background-color: #00000042; 
+            background-color: #00000042;
           }
         `}
       </style>

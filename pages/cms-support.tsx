@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Discover Bright Code's proactive Drupal Maintenance services, ensuring optimal website performance. Our expert team provides comprehensive maintenance, including core updates, module management, and security scans to safeguard your Drupal-based platform. ",
 };
 
-const Whatwedo: React.FC = () => {
+const CmsSupport: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   if (state.succeeded) {
@@ -482,4 +482,4 @@ const Whatwedo: React.FC = () => {
   );
 };
 
-export default Whatwedo;
+export default CmsSupport;

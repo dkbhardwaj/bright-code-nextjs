@@ -11,7 +11,8 @@ import { NextSeo } from "next-seo";
 
 export const metadata: Metadata = {
   title: "Elevate Your Vision: Bright Code's Unique Agency-to-Agency Model",
-  description: "Discover why Bright Code is the preferred choice for design agencies. Our agency-to-agency model thrives on collaboration, expertise, and the art of crafting excellence. Explore our specialized expertise, empowering designers, client-centric approach, and our commitment to redefining web development for mutual growth and client satisfaction. ",
+  description:
+    "Discover why Bright Code is the preferred choice for design agencies. Our agency-to-agency model thrives on collaboration, expertise, and the art of crafting excellence. Explore our specialized expertise, empowering designers, client-centric approach, and our commitment to redefining web development for mutual growth and client satisfaction. ",
 };
 
 const WhyChooseUs: React.FC = () => {
@@ -51,7 +52,7 @@ const WhyChooseUs: React.FC = () => {
 
   return (
     <>
-    <NextSeo
+      <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
       />
@@ -60,17 +61,35 @@ const WhyChooseUs: React.FC = () => {
         className={`banner banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue level-two text-white md:items-baseline`}
         data-aos="fade-in"
         data-aos-delay="500"
-        data-aos-duration="1000">
+        data-aos-duration="1000"
+      >
         <div className="container">
-        <div className="left_img absolute bottom-0 left-[calc(65%-204px)] w-full max-w-[390px] h-[362px] z-[2] md:w-[330px] md:max-w-full md:h-[304px] md:left-[calc(42%-212px)]">
-        <Image src="/why-choose-us/banner-left-img.png" width={400} height={400} alt="left-img" className=" w-full h-full object-cover" />
-       </div>
-       <div className="right_img absolute bottom-0 left-[65.58%] w-full max-w-[350px] h-[350px] z-[1]  md:w-[304px] md:max-w-full md:h-[304px] md:left-[42%] ">
-        <Image src="/why-choose-us/banner-right-img.png" width={400} height={400} alt="right-img"  className=" w-full h-full object-cover" />
-       </div>
+          <div className="left_img absolute bottom-0 left-[calc(65%-204px)] w-full max-w-[390px] h-[362px] z-[2] md:w-[330px] md:max-w-full md:h-[304px] md:left-[calc(42%-212px)]">
+            <Image
+              src="/why-choose-us/banner-left-img.png"
+              width={400}
+              height={400}
+              alt="left-img"
+              className=" w-full h-full object-cover"
+            />
+          </div>
+          <div className="right_img absolute bottom-0 left-[65.58%] w-full max-w-[350px] h-[350px] z-[1]  md:w-[304px] md:max-w-full md:h-[304px] md:left-[42%] ">
+            <Image
+              src="/why-choose-us/banner-right-img.png"
+              width={400}
+              height={400}
+              alt="right-img"
+              className=" w-full h-full object-cover"
+            />
+          </div>
           <div className="banner-contenr text-left">
             <h1>Why choose us?</h1>
-            <Link href="/contact" className=" mt-[42px] gradient-btn mx-auto lg:mt-5"><span>Learn More</span></Link>
+            <Link
+              href="/contact"
+              className=" mt-[42px] gradient-btn mx-auto lg:mt-5"
+            >
+              <span>Learn More</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -86,8 +105,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal">SYNERGY OF COLLABORATION</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black" >Agency to Agency</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal">
+                SYNERGY OF COLLABORATION
+              </h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black">
+                Agency to Agency
+              </h2>
               <p className=" text-black">
                 Our agency thrives on the synergy of collaboration. We step into
                 the role of your dedicated development partner, filling a
@@ -111,7 +134,13 @@ const WhyChooseUs: React.FC = () => {
                 data-aos-delay="400"
                 data-aos-duration="500"
               >
-                <Image src="/why-choose-us/col-two-img1.png" alt="White Label Developments" width={600} height={500} className=" w-full h-full object-cover" />
+                <Image
+                  src="/why-choose-us/col-two-img1.png"
+                  alt="White Label Developments"
+                  width={600}
+                  height={500}
+                  className=" w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -129,8 +158,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">Harmony of Minds</h6>
-              <h2  className="font-medium text-black mb-[38px]  md:mb-4" >Collaboration and Expertise</h2>
+              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                Harmony of Minds
+              </h6>
+              <h2 className="font-medium text-black mb-[38px]  md:mb-4">
+                Collaboration and Expertise
+              </h2>
             </div>
             <div
               className="content w-full text-center relative"
@@ -166,8 +199,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">Crafting Excellence</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Specialized Expertise</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
+                Crafting Excellence
+              </h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
+                Specialized Expertise
+              </h2>
               <p className="mt-5 text-black">
                 We bring a wealth of expertise to the table. Our team is
                 composed of Engineering Managers, Product Owners and Drupal
@@ -188,7 +225,13 @@ const WhyChooseUs: React.FC = () => {
                 data-aos-delay="400"
                 data-aos-duration="500"
               >
-                <Image src="/why-choose-us/col-two-img2.png" alt="girl" width={600} height={500}  className=" w-full h-full object-cover" />
+                <Image
+                  src="/why-choose-us/col-two-img2.png"
+                  alt="girl"
+                  width={600}
+                  height={500}
+                  className=" w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -206,8 +249,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">UNLEASHING DESIGN POTENTIAL</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Empowering Designers</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
+                UNLEASHING DESIGN POTENTIAL
+              </h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
+                Empowering Designers
+              </h2>
               <p className="mt-5 text-black">
                 Our mission is to empower designers, allowing them to focus on
                 their creativity without the weight of development concerns. We
@@ -227,7 +274,13 @@ const WhyChooseUs: React.FC = () => {
                 data-aos-delay="400"
                 data-aos-duration="500"
               >
-                <Image src="/why-choose-us/col-two-img3.png" alt="girl" width={600} height={500}  className=" w-full h-full object-cover" />
+                <Image
+                  src="/why-choose-us/col-two-img3.png"
+                  alt="girl"
+                  width={600}
+                  height={500}
+                  className=" w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -245,8 +298,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">CUSTOMER-FOCUSED PHILOSOPHY</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Client-Centric Approach</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
+                CUSTOMER-FOCUSED PHILOSOPHY
+              </h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
+                Client-Centric Approach
+              </h2>
               <p className="mt-5 text-black">
                 In everything you do, the final client is your ultimate
                 consideration. Our commitment to exceeding the expectations is
@@ -254,8 +311,8 @@ const WhyChooseUs: React.FC = () => {
                 but exceed the end-users needs.
               </p>
               <p className="mt-5 text-black">
-                Our client-centric approach guarantees that the final clients are
-                not just satisfied; they are thrilled with the end results.
+                Our client-centric approach guarantees that the final clients
+                are not just satisfied; they are thrilled with the end results.
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -265,7 +322,13 @@ const WhyChooseUs: React.FC = () => {
                 data-aos-delay="400"
                 data-aos-duration="500"
               >
-                <Image src="/why-choose-us/col-two-img4.png" alt="girl" width={600} height={500}  className=" w-full h-full object-cover" />
+                <Image
+                  src="/why-choose-us/col-two-img4.png"
+                  alt="girl"
+                  width={600}
+                  height={500}
+                  className=" w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -283,8 +346,12 @@ const WhyChooseUs: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000"
             >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">ELEVATING THE PARADIGM OF WEB DEVELOPMENT</h6>
-              <h2  className="font-medium xl-up:text-[45px] text-black mb-6" >Redefining Web Development</h2>
+              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
+                ELEVATING THE PARADIGM OF WEB DEVELOPMENT
+              </h6>
+              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
+                Redefining Web Development
+              </h2>
               <p className="mt-5 text-black">
                 Our agency&#39;s agency-to-agency model redefines web
                 development. We go beyond the role of a service provider; We are
@@ -301,7 +368,13 @@ const WhyChooseUs: React.FC = () => {
                 data-aos-delay="400"
                 data-aos-duration="500"
               >
-                <Image src="/why-choose-us/col-two-img5.png" alt="girl" width={600} height={500}  className=" w-full h-full object-cover" />
+                <Image
+                  src="/why-choose-us/col-two-img5.png"
+                  alt="girl"
+                  width={600}
+                  height={500}
+                  className=" w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
@@ -309,201 +382,262 @@ const WhyChooseUs: React.FC = () => {
       </section>
       {/* Riverflow 4 End */}
       <div className="section_bgImage bg-darkBlue smallBgImage">
-      {/* Contact Form Start */}
-      <section
-        className="contactForm text-gray-600 body-font relative pt-24 md:pt-16"
-        id="get-in-touch"
-      >
-        <div className="container px-5 mx-auto">
-          <div className={`relative w-full py-16  bgPurpleGradient  md:py-12`}>
-          <div className=" relative w-full max-w-[960px] mx-auto mb-16 text-center">
-            <h6 className="text-white title mb-[38px] md:mb-[18px] ">GET IN TOUCH</h6>
-            <h2 className="text-white mb-[38px] md:mb-[18px] ">Let&#39;s talk about your project</h2>
-            <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                You are welcome to fill in the form, and our web experts will
-                reach out to you during business hours to discuss your project.
-            </h4>
-          </div>
-          <div className="relative w-full">
-          <div
-              className="relative z-10"
-              data-aos="fade-in"
-              data-aos-delay="400"
-              data-aos-duration="400"
+        {/* Contact Form Start */}
+        <section
+          className="contactForm text-gray-600 body-font relative pt-24 md:pt-16"
+          id="get-in-touch"
+        >
+          <div className="container px-5 mx-auto">
+            <div
+              className={`relative w-full py-16  bgPurpleGradient  md:py-12`}
             >
-              <form onSubmit={handleSubmit} className=" relative w-mainRow ml-[-10px] flex flex-wrap md:w-full md:ml-0">
-                <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
-                  <label
-                    htmlFor="fullName"
-                    className="leading-6 text-[17px] text-white font-normal"
+              <div className=" relative w-full max-w-[960px] mx-auto mb-16 text-center">
+                <h6 className="text-white title mb-[38px] md:mb-[18px] ">
+                  GET IN TOUCH
+                </h6>
+                <h2 className="text-white mb-[38px] md:mb-[18px] ">
+                  Let&#39;s talk about your project
+                </h2>
+                <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
+                  You are welcome to fill in the form, and our web experts will
+                  reach out to you during business hours to discuss your
+                  project.
+                </h4>
+              </div>
+              <div className="relative w-full">
+                <div
+                  className="relative z-10"
+                  data-aos="fade-in"
+                  data-aos-delay="400"
+                  data-aos-duration="400"
+                >
+                  <form
+                    onSubmit={handleSubmit}
+                    className=" relative w-mainRow ml-[-10px] flex flex-wrap md:w-full md:ml-0"
                   >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    required={true}
-                    className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
-                  />
-                </div>
-                <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
-                  <label
-                    htmlFor="email"
-                    className="leading-6 text-[17px] text-white font-normal"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required={true}
-                    className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
-                <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
-                  <label
-                    htmlFor="subject"
-                    className="leading-6 text-[17px] text-white font-normal"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="subject"
-                    id="subject"
-                    name="subject"
-                    // value={values.subject}
-                    required={true}
-                    className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
-                <ValidationError
-                  prefix="Email"
-                  field="email"
-                  errors={state.errors}
-                />
-                <div className="relative mb-[22px] w-full mx-[10px] md:mx-0">
-                  <label
-                    htmlFor="message"
-                    className="leading-6 text-[17px] text-white font-normal"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    // value={values.message}
-                    className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  ></textarea>
-                </div>
-                <ValidationError
-                  prefix="Message"
-                  field="message"
-                  errors={state.errors}
-                />
+                    <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
+                      <label
+                        htmlFor="fullName"
+                        className="leading-6 text-[17px] text-white font-normal"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        required={true}
+                        className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
+                      />
+                    </div>
+                    <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
+                      <label
+                        htmlFor="email"
+                        className="leading-6 text-[17px] text-white font-normal"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required={true}
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+                    <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
+                      <label
+                        htmlFor="subject"
+                        className="leading-6 text-[17px] text-white font-normal"
+                      >
+                        Subject
+                      </label>
+                      <input
+                        type="subject"
+                        id="subject"
+                        name="subject"
+                        // value={values.subject}
+                        required={true}
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                    />
+                    <div className="relative mb-[22px] w-full mx-[10px] md:mx-0">
+                      <label
+                        htmlFor="message"
+                        className="leading-6 text-[17px] text-white font-normal"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        // value={values.message}
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                      ></textarea>
+                    </div>
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                    />
 
-                {/* <ReCAPTCHA
+                    {/* <ReCAPTCHA
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
                   onChange={setcaptcha}
                   className="mb-5 mx-[10px]  md:mx-0"
                 /> */}
-                <button
-                  type="submit"
-                  className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"
-                  disabled={state.submitting}
-                >
-                  <span>Submit</span>
-                </button>
-              </form>
-            </div>
-          </div>
-          </div>
-        </div>
-      </section>
-      {/* Contact Form End */}
-      
-      {/* Footer Start */}
-      <footer className="footer py-[90px] md:py-16 ">
-      <div className="container">
-        <div className="w-full text-white flex justify-between md:flex-col md:items-center">
-          <div className="w-54">
-            <div className={`logo relative max-w-[207px] h-[57px]`}>
-              <Link href="/" className="redirect">
-                .
-              </Link>
-              <Image src="/brightcode_logo.png" width={300} height={100} alt="logo" className=" w-full h-full object-contain" />
-            </div>
-            
-          </div>
-          <div className="textWrap relative md:mt-8">
-            <ul className=" relative flex flex-wrap sm:block">
-              <li className=" relative flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4 sm:ml-0 sm:mb-3">
-                <Link href="mailto:contact@bright-code.io" className="redirect">.</Link>
-                <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                  <Image src="/mail-icon-white.svg" width={25} height={25} alt="img"  className=" w-full h-full object-contain"/>
+                    <button
+                      type="submit"
+                      className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"
+                      disabled={state.submitting}
+                    >
+                      <span>Submit</span>
+                    </button>
+                  </form>
                 </div>
-                <span className="font-semibold">contact@bright-code.io</span>
-              </li>
-              <li className=" relative flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  sm:ml-0">
-                <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                  <Image src="/phone-icon-white.svg" width={25} height={25} alt="img"  className=" w-full h-full object-contain" />
-                </div>
-                <span className="font-semibold">+ ‪(925) 315-5061‬</span>
-              </li>
-            </ul>
-          </div>
-          <div className="hidden socialWrap mt-8 md:flex md:justify-center">
-              <div className="icon relative max-w-[33px] h-[33px]">
-              <Link
-                  href={"https://twitter.com/BrightcodeIO"}
-                  className="redirect" target="_blank"
-                >
-                  .
-                </Link>
-                <Image src="/twitter-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
-              </div>
-              <div className="icon relative ml-2  max-w-[33px] h-[33px]">
-              <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect" target="_blank"
-                >
-                  .
-                </Link>
-                <Image src="/linkedin-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
               </div>
             </div>
-        </div>
-        <div className=" relative w-full flex flex-wrap justify-between mt-14 md:mt-10">
-          <div className="copyright w-fit mr-5 md:text-center md:w-full ">
-          <p className="text-white">© 2024 Bright Code Solution</p>
           </div>
-          <div className="socialWrap flex md:justify-center md:hidden">
-              <div className="icon relative max-w-[33px] h-[33px] ">
-                <Link
-                  href={"https://twitter.com/BrightcodeIO"}
-                  className="redirect" target="_blank"
-                >
-                  .
-                </Link>
-                <Image src="/twitter-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
-              </div>
-              <div className="icon relative ml-3  max-w-[33px] h-[33px]">
-              <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect" target="_blank"
-                >
-                  .
-                </Link>
-                <Image src="/linkedin-white.svg" width={40} height={40} alt="icon" className=" w-full h-full object-contain"/>
-              </div>
-            </div>
-        </div>
-      </div>
-      </footer>
-      {/* Footer End */}
-      </div>
+        </section>
+        {/* Contact Form End */}
 
+        {/* Footer Start */}
+        <footer className="footer py-[90px] md:py-16 ">
+          <div className="container">
+            <div className="w-full text-white flex justify-between md:flex-col md:items-center">
+              <div className="w-54">
+                <div className={`logo relative max-w-[207px] h-[57px]`}>
+                  <Link href="/" className="redirect">
+                    .
+                  </Link>
+                  <Image
+                    src="/brightcode_logo.png"
+                    width={300}
+                    height={100}
+                    alt="logo"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+              <div className="textWrap relative md:mt-8">
+                <ul className=" relative flex flex-wrap sm:block">
+                  <li className=" relative flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4 sm:ml-0 sm:mb-3">
+                    <Link
+                      href="mailto:contact@bright-code.io"
+                      className="redirect"
+                    >
+                      .
+                    </Link>
+                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                      <Image
+                        src="/mail-icon-white.svg"
+                        width={25}
+                        height={25}
+                        alt="img"
+                        className=" w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="font-semibold">
+                      contact@bright-code.io
+                    </span>
+                  </li>
+                  <li className=" relative flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  sm:ml-0">
+                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                      <Image
+                        src="/phone-icon-white.svg"
+                        width={25}
+                        height={25}
+                        alt="img"
+                        className=" w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="hidden socialWrap mt-8 md:flex md:justify-center">
+                <div className="icon relative max-w-[33px] h-[33px]">
+                  <Link
+                    href={"https://twitter.com/BrightcodeIO"}
+                    className="redirect"
+                    target="_blank"
+                  >
+                    .
+                  </Link>
+                  <Image
+                    src="/twitter-white.svg"
+                    width={40}
+                    height={40}
+                    alt="icon"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+                <div className="icon relative ml-2  max-w-[33px] h-[33px]">
+                  <Link
+                    href={"https://www.linkedin.com/company/bright-codeio/"}
+                    className="redirect"
+                    target="_blank"
+                  >
+                    .
+                  </Link>
+                  <Image
+                    src="/linkedin-white.svg"
+                    width={40}
+                    height={40}
+                    alt="icon"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className=" relative w-full flex flex-wrap justify-between mt-14 md:mt-10">
+              <div className="copyright w-fit mr-5 md:text-center md:w-full ">
+                <p className="text-white">© 2024 Bright Code Solution</p>
+              </div>
+              <div className="socialWrap flex md:justify-center md:hidden">
+                <div className="icon relative max-w-[33px] h-[33px] ">
+                  <Link
+                    href={"https://twitter.com/BrightcodeIO"}
+                    className="redirect"
+                    target="_blank"
+                  >
+                    .
+                  </Link>
+                  <Image
+                    src="/twitter-white.svg"
+                    width={40}
+                    height={40}
+                    alt="icon"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+                <div className="icon relative ml-3  max-w-[33px] h-[33px]">
+                  <Link
+                    href={"https://www.linkedin.com/company/bright-codeio/"}
+                    className="redirect"
+                    target="_blank"
+                  >
+                    .
+                  </Link>
+                  <Image
+                    src="/linkedin-white.svg"
+                    width={40}
+                    height={40}
+                    alt="icon"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        {/* Footer End */}
+      </div>
     </>
   );
 };
