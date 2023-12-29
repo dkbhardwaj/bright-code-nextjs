@@ -20,37 +20,26 @@ export const metadata: Metadata = {
 const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
+  const [formsuccess, setformsuccess] = useState(false);
+
+  const ClearForm = () => {
+    const inputs = document.querySelectorAll(".contactForm form input");
+    for (let i = 0; i < inputs.length; i++) {
+      const element = inputs[i] as HTMLInputElement;
+      element.value = "";
+    }
+  };
+
   if (state.succeeded) {
-    return (
-      <div className="thankYouBox flex items-center justify-center py-20">
-        <div>
-          <div className="flex flex-col items-center space-y-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-green-600 w-28 h-28"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <h1 className="text-4xl font-bold">Thank You !</h1>
-            <p>Thank you for your interest!</p>
-            <div className="btnWrap">
-              <Link href="/" className="pink-btn">
-                Home
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    if (!formsuccess) {
+      setformsuccess(true);
+      ClearForm();
+    }
   }
+
+  const HideThankyouBox = () => {
+    setformsuccess(false);
+  };
 
   return (
     <>
@@ -974,6 +963,7 @@ const Home: React.FC = () => {
         </footer>
         {/* Footer End */}
       </div>
+      {formsuccess === true ? <h1>form submitted</h1> : ""}
     </>
   );
 };
