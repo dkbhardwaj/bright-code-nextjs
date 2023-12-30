@@ -6,7 +6,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
 import Sticky from "../components/stickyNav";
 import ReCAPTCHA from "react-google-recaptcha";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
@@ -15,7 +15,32 @@ export const metadata: Metadata = {
   title: "Agency-to-Agency Drupal Development Partner | Bright Code",
   description:
     "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
+  openGraph: {
+    images: [
+      {
+        url: "/agency_agency-1.png",
+        alt: "Alt text for your image",
+      },
+    ],
+    siteName: "Bright Code",
+  },
 };
+
+interface OGImage {
+  url: string;
+  alt: string;
+}
+
+interface OpenGraph {
+  images: OGImage[];
+  siteName: string;
+}
+
+interface Metadata {
+  title: string;
+  description: string;
+  openGraph?: OpenGraph;
+}
 
 const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
@@ -46,18 +71,18 @@ const Home: React.FC = () => {
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
-        openGraph={{
-          title: "Your Open Graph Title",
-          description: "Description for Open Graph",
-          images: [
-            {
-              url: "/agency_agency-1.png",
-              alt: "Alt text for your image",
-            },
-          ],
-          site_name: "Your Site Name",
-        }}
+        openGraph={
+          metadata.openGraph
+            ? {
+                title: String(metadata.title),
+                description: metadata.description || "", // Make sure it's not undefined
+                images: metadata.openGraph.images || [], // Make sure it's not undefined
+                siteName: metadata.openGraph.siteName || "", // Make sure it's not undefined
+              }
+            : undefined
+        }
       />
+
       {/* <Head>
         <title>{String(metadata.title)}</title>
       </Head> */}
@@ -968,8 +993,17 @@ const Home: React.FC = () => {
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
-              <div className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer " onClick={HideThankyouBox} >
-                <Image src="/icon-close.svg" width={40} height={40} className=" w-full h-full object-contain " alt="close" />
+              <div
+                className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer "
+                onClick={HideThankyouBox}
+              >
+                <Image
+                  src="/icon-close.svg"
+                  width={40}
+                  height={40}
+                  className=" w-full h-full object-contain "
+                  alt="close"
+                />
               </div>
               <div className="thankYouBox text-center">
                 <div className="thankU_check_icon mx-auto max-w-[112px] h-[112px] mb-4 ">
