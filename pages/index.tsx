@@ -592,11 +592,11 @@ const Home: React.FC = () => {
         {/* Our Values Intro End */}
 
         {/* Column Two Section Start */}
-        <section className="colFourCards pb-24 overflow-hidden  ">
+        <section className="colFourCards pb-24 overflow-hidden md:pb-14  ">
           <div className="container">
             <div className="w-mainRow -ml-2.5 flex flex-wrap items-center z-1 relative md:w-full md:ml-0">
               <div
-                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:mb-10 md:px-0 text-center"
+                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="400"
                 data-aos-duration="500"
@@ -617,7 +617,7 @@ const Home: React.FC = () => {
                 </p>
               </div>
               <div
-                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:mb-10 md:px-0 text-center"
+                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
                 data-aos-duration="500"
@@ -638,7 +638,7 @@ const Home: React.FC = () => {
                 </p>
               </div>
               <div
-                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:mb-0 md:px-0 text-center"
+                className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
                 data-aos-duration="500"
@@ -659,7 +659,7 @@ const Home: React.FC = () => {
                 </p>
               </div>
               <div
-                className="content w-colFour mx-2.5 mb-10  text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:mb-0 md:px-0 text-center"
+                className="content w-colFour mx-2.5 mb-10  text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
                 data-aos-duration="500"
