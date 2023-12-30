@@ -963,7 +963,50 @@ const Home: React.FC = () => {
         </footer>
         {/* Footer End */}
       </div>
-      {formsuccess === true ? <h1>form submitted</h1> : ""}
+      {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
+      {formsuccess === true ? (
+        <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
+          <div className="container">
+            <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
+              <div className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer " onClick={HideThankyouBox} >
+                <Image src="/icon-close.svg" width={40} height={40} className=" w-full h-full object-contain " alt="close" />
+              </div>
+              <div className="thankYouBox text-center">
+                <div className="thankU_check_icon mx-auto max-w-[112px] h-[112px] mb-4 ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-green-700 w-full h-full object-contain "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h1 className="text-4xl font-bold mb-4 text-black ">
+                  Thank You !
+                </h1>
+                <p className=" mb-4 text-black ">
+                  Thank you for your interest!
+                </p>
+                <div className="btnWrap">
+                  <Link href="/" className="gradient-btn">
+                    <span>Home</span>
+                  </Link>
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
     </>
   );
 };
