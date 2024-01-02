@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                 <div className="icon-img max-w-[21px] h-[21px] mr-3">
                   <Image src="/phone-icon-white.svg" width={25} height={25} alt="img"  className=" w-full h-full object-contain" />
                 </div>
-                <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+                <span className="font-semibold">+ ‪(805) 215-0549‬</span>
               </li>
             </ul>
           </div>
