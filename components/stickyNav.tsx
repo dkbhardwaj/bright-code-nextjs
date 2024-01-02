@@ -215,7 +215,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                   //   datatype={data.id}
                   //   className="px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] "
                   // >
-                  //   <a
+                  //   <Link
                   //     href={`/${data.url}`}
                   //     aria-label={`Navigate to ${data.title}`}
                   //     className={`text-black ${
@@ -228,7 +228,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                   //     }
                   //   >
                   //     {data.title}
-                  //   </a>
+                  //   </Link>
                   // </li>
                   <li
                     key={index}

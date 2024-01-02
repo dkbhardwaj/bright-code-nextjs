@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
@@ -13,47 +13,72 @@ export const metadata: Metadata = {
   title: "Collaborative Excellence: Bright Code Agency-to-Agency Approach",
   description:
     "Discover Bright Code's collaborative excellence in agency-to-agency partnerships. As your dedicated development partner, we bridge the realms of design and technical implementation, ensuring seamless execution for remarkable digital solutions. Learn about our client-centric approach, professionalism in partnership, and expertise without compromise. ",
+  openGraph: {
+    images: [
+      {
+        url: "/agency_agency-1.png",
+        alt: "Alt text for your image",
+      },
+    ],
+    siteName: "Bright Code",
+  },
 };
+
+interface OGImage {
+  url: string;
+  alt: string;
+}
+
+interface OpenGraph {
+  images: OGImage[];
+  siteName: string;
+}
+
+interface Metadata {
+  title: string;
+  description: string;
+  openGraph?: OpenGraph;
+}
 
 const Ourclient: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
+  const [formsuccess, setformsuccess] = useState(false);
+
+  const ClearForm = () => {
+    const inputs = document.querySelectorAll(".contactForm form input");
+    for (let i = 0; i < inputs.length; i++) {
+      const element = inputs[i] as HTMLInputElement;
+      element.value = "";
+    }
+  };
+
   if (state.succeeded) {
-    return (
-      <div className="thankYouBox flex items-center justify-center py-20">
-        <div>
-          <div className="flex flex-col items-center space-y-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-green-600 w-28 h-28"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <h1 className="text-4xl font-bold">Thank You !</h1>
-            <p>Thank you for your interest!</p>
-            <div className="btnWrap">
-              <Link href="/" className="pink-btn">
-                Home
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    if (!formsuccess) {
+      setformsuccess(true);
+      ClearForm();
+    }
   }
+
+  const HideThankyouBox = () => {
+    setformsuccess(false);
+  };
+
   return (
     <>
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
+        openGraph={
+          metadata.openGraph
+            ? {
+                title: String(metadata.title),
+                description: metadata.description || "", // Make sure it's not undefined
+                images: metadata.openGraph.images || [], // Make sure it's not undefined
+                siteName: metadata.openGraph.siteName || "", // Make sure it's not undefined
+              }
+            : undefined
+        }
       />
       {/* Banner Start */}
       <section
@@ -581,6 +606,60 @@ const Ourclient: React.FC = () => {
         </footer>
         {/* Footer End */}
       </div>
+
+      {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
+      {formsuccess === true ? (
+        <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
+          <div className="container">
+            <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
+              <div
+                className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer "
+                onClick={HideThankyouBox}
+              >
+                <Image
+                  src="/icon-close.svg"
+                  width={40}
+                  height={40}
+                  className=" w-full h-full object-contain "
+                  alt="close"
+                />
+              </div>
+              <div className="thankYouBox text-center">
+                <div className="thankU_check_icon mx-auto max-w-[112px] h-[112px] mb-4 ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-green-700 w-full h-full object-contain "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h1 className="text-4xl font-bold mb-4 text-black ">
+                  Thank You !
+                </h1>
+                <p className=" mb-4 text-black ">
+                  Thank you for your interest!
+                </p>
+                <div className="btnWrap">
+                  <Link href="/" className="gradient-btn">
+                    <span>Home</span>
+                  </Link>
+                </div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
     </>
   );
 };

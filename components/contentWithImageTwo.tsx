@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const ContentWithImage: React.FC = () => {
   return (
@@ -12,9 +13,9 @@ const ContentWithImage: React.FC = () => {
               category demos which is ready to use...
             </p>
             <div className="btnWrap mt-8">
-              <a href="#" className="black-btn">
+              <Link href="#" className="black-btn">
                 Coming Soon
-              </a>
+              </Link>
             </div>
           </div>
           <div className="content w-halfWidth mx-2.5">

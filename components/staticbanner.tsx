@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const HeroBanner: React.FC = () => {
   return (
@@ -12,14 +13,14 @@ const HeroBanner: React.FC = () => {
                 Free Reactstrap UI Kit with Lots of Ready to Use Sections
               </h4> */}
               <div className="btnWrap mt-8 inline-block">
-                <a href="#" className="blue-btn">
+                <Link href="#" className="blue-btn">
                   Download Free
-                </a>
+                </Link>
               </div>
               {/* <div className="btnWrap mt-8 ml-5 inline-block">
-                <a href="#" className="transparent-btn">
+                <Link href="#" className="transparent-btn">
                   Download Free
-                </a>
+                </Link>
               </div> */}
             </div>
           </div>

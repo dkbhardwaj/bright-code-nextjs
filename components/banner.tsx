@@ -1,5 +1,6 @@
 // Banner.jsx
 import React from "react";
+import Link from "next/link";
 
 // Assuming a structure for the blade objects
 interface Blade {
@@ -24,9 +25,7 @@ const Banner: React.FC<BannerProps> = ({ data }) => {
 
   return (
     <section
-      className={`banner ${
-        data.bgColor ? `bg-${data.bgColor}` : ""
-      } ${
+      className={`banner ${data.bgColor ? `bg-${data.bgColor}` : ""} ${
         data.level ? `level-${data.level}` : ""
       } text-white min-h-[530px] py-12`}
     >
@@ -46,9 +45,9 @@ const Banner: React.FC<BannerProps> = ({ data }) => {
               {data.bladeItems[0].blurb && <p>{data?.bladeItems[0]?.blurb}</p>}
               {data.bladeItems[0].title && (
                 <div className="btnWrap mt-8 inline-block">
-                  <a href={data.ctaLink} className={data.ctaClass}>
+                  <Link href={data.ctaLink} className={data.ctaClass}>
                     {data.ctaText}
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>

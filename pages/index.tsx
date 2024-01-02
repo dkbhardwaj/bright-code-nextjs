@@ -82,10 +82,6 @@ const Home: React.FC = () => {
             : undefined
         }
       />
-
-      {/* <Head>
-        <title>{String(metadata.title)}</title>
-      </Head> */}
       {/* Banner Start */}
       <section
         className={`banner  banner-with-img banner_overlay banner-homepage relative overflow-x-hidden bg-darkBlue level-two flex items-end text-white pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
@@ -384,9 +380,9 @@ const Home: React.FC = () => {
                 dedicated development team while remaining behind the scenes.
               </p>
               {/* <div className="btnWrap mt-5">
-                <a href="/white-label-development" className="black-btn">
+                <Link href="/white-label-development" className="black-btn">
                   Learn More
-                </a>
+                </Link>
               </div> */}
               <Link
                 href="/white-label-development"
@@ -444,9 +440,9 @@ const Home: React.FC = () => {
                 your unique project requirements.
               </p>
               {/* <div className="btnWrap mt-5">
-                <a href="/dedicated-team" className="black-btn">
+                <Link href="/dedicated-team" className="black-btn">
                   Learn More
-                </a>
+                </Link>
               </div> */}
               <Link
                 href="/dedicated-team"
@@ -504,9 +500,9 @@ const Home: React.FC = () => {
                 clients' brand objectives.
               </p>
               {/* <div className="btnWrap mt-5">
-                <a href="/cms-implementation" className="black-btn">
+                <Link href="/cms-implementation" className="black-btn">
                   Learn More
-                </a>
+                </Link>
               </div> */}
               <Link
                 href="/cms-implementation"
@@ -566,9 +562,9 @@ const Home: React.FC = () => {
                 standards of security and compliance.
               </p>
               {/* <div className="btnWrap mt-5">
-                <a href="/cms-support" className="black-btn">
+                <Link href="/cms-support" className="black-btn">
                   Learn More
-                </a>
+                </Link>
               </div> */}
               <Link
                 href="/cms-support"
@@ -988,6 +984,7 @@ const Home: React.FC = () => {
         </footer>
         {/* Footer End */}
       </div>
+
       {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
       {formsuccess === true ? (
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
