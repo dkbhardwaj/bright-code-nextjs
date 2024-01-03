@@ -64,7 +64,7 @@ const Navigation: React.FC<NavigationProps> = () => {
 
   return (
     <header
-      className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-50 lg:py-5`}
+      className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}
     >
       <div className="container">
         <div className={`${Style.mainRow} flex items-center justify-between`}>
