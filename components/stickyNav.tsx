@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StickyStyle from "../styles/sticky.module.css";
+import Style from "../styles/stickyNav.module.scss";
 import { log } from "console";
 import Link from "next/link";
 
@@ -8,6 +9,15 @@ interface StickyProps {
 }
 
 const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
+
+
+  const [isArrowDownClicked, setArrowDownClicked] = useState(false);
+  const handleArrowClick = () => {
+    setArrowDownClicked(!isArrowDownClicked);
+  };
+
+
+
   const stickyData = [
     {
       id: "1",
@@ -243,7 +253,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                     <Link
                       href={`/${data.url}`}
                       aria-label={`Navigate to ${data.title}`}
-                      className={` text-[19px] font-[600] transition-all text-white hover:text-white ease-in-out xl:text-[16px]`}
+                      className={` text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
                     >
                       {data.title}
                     </Link>
@@ -258,13 +268,63 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
       )}
       <style jsx>
         {`
-          .activated {
-            color: #ffffff;
-            border: none;
-            background-color: #00000042;
+          @media (min-width: 991px) {
+            .activated {
+              color: #ffffff;
+              border: none;
+              background-color: #00000042;
+            }
           }
         `}
       </style>
+
+      {winWidth <= 991 ? (
+        <section
+          className={`sticky top-[116px] ${StickyStyle.mainSticky} z-50 bg-bgBluePurple  transition-all duration-300 ease-in-out shadow-bottom-white-shadow`}
+          style={isSticky ? headheight : { top: 0 }}
+          id="stickyNav"
+          data-aos="fade-in"
+          data-aos-delay="500"
+          data-aos-duration="1000"
+        >
+          <div className="container">
+            <div
+              className={`${
+                Style.mobile_stickyNav
+              } relative w-full block ${isArrowDownClicked ? Style.toggleClass : ''}`}
+            >
+              <div
+                className={`${Style.down_arrow}`}
+                onClick={handleArrowClick}
+              >
+              </div>
+              <ul className={` relative w-full block px-5  sm:pl-0 `}>
+                {stickyData.map((data, index) => {
+                  return (
+                    <li
+                      key={index}
+                      datatype={data.id}
+                      className={` py-[25px] relative w-full bg-transparent sm:py-[20px] ${
+                        visibleSections[0] === data.url ? "activated" : ""
+                      }`}
+                    >
+                      <Link
+                        href={`/${data.url}`}
+                        aria-label={`Navigate to ${data.title}`}
+                        className={` text-[19px] font-[600] text-white hover:opacity-70 transition duration-500 ease-in-out sm:text-[16px]`}
+                      >
+                        {data.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : (
+        ""
+      )}
     </>
   );
 };
