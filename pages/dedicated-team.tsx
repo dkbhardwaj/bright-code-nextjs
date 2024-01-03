@@ -100,7 +100,7 @@ const DedicatedTeam: React.FC = () => {
 
       {/* Dedicated Development Team Intro Start */}
       <section
-        className={`intro py-20 md:py-14`}
+        className={`intro py-20 md:py-14 overflow-x-hidden`}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"

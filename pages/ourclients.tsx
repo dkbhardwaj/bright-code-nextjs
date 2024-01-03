@@ -164,7 +164,7 @@ const Ourclient: React.FC = () => {
       {/* Collaboration Riverflow End */}
 
       {/* Collaboration and Expertise Intro Start */}
-      <section className="overview py-24  bg-extraLightGray md:py-16">
+      <section className="overview py-24  bg-extraLightGray md:py-16  overflow-x-hidden">
         <div className="container">
           <div className="w-full z-1 relative">
             <div

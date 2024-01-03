@@ -173,7 +173,7 @@ const WhyChooseUs: React.FC = () => {
       {/* Collaboration Riverflow End */}
 
       {/* Collaboration and Expertise Intro Start */}
-      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12 bg-extraLightGray">
+      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12 bg-extraLightGray overflow-x-hidden ">
         <div className="container">
           <div className="w-full z-1 relative">
             <div

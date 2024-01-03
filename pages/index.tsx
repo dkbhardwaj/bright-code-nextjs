@@ -130,7 +130,7 @@ const Home: React.FC = () => {
 
       {/* Why Choose Us Intro Start */}
       <section
-        className={`intro pb-24 pt-[132px] text-center tablet:pt-24 md:py-12`}
+        className={`intro pb-24 pt-[132px] text-center tablet:pt-24 md:py-12 overflow-x-hidden`}
         id="why-choose-us"
         data-aos="fade-up"
         data-aos-delay="400"
@@ -338,7 +338,7 @@ const Home: React.FC = () => {
 
       {/* What we do Intro Start */}
       <section
-        className={`intro pt-[86px] pb-[50px] text-center tablet:py-9 md:pt-5 md:pb-0 `}
+        className={`intro pt-[86px] pb-[50px] text-center tablet:py-9 md:pt-5 md:pb-0 overflow-x-hidden `}
         id="what-we-do"
         data-aos="fade-up"
         data-aos-delay="300"
@@ -596,7 +596,7 @@ const Home: React.FC = () => {
       <div className="section_bgImage bg-darkBlue">
         {/* Our Values Intro Start */}
         <section
-          className={`intro pb-[132px] pt-[140px] md:pt-16  md:pb-14 text-center`}
+          className={`intro pb-[132px] pt-[140px] md:pt-16  md:pb-14 text-center overflow-x-hidden `}
           id="our-values"
           data-aos="fade-up"
           data-aos-delay="400"
