@@ -217,6 +217,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                 >
                   <li
                     className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <Link className="inline-block w-full text-[14px] " href="/">
                       Home
@@ -224,6 +225,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </li>
                   <li
                     className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <Link
                       className="inline-block w-full text-[14px]"
@@ -234,6 +236,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </li>
                   <li
                     className={`${Style.menu}  mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <Link
                       className="inline-block w-full text-[14px] "
@@ -244,18 +247,17 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </li>
                   <li
                     className={`${Style.menu}
-                    
-              
-
                      mx-[22px]  transition-color duration-300 relative ${
                        showDropdown ? `${Style.active}` : ""
                      } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
                     // onClick={handleDropClick}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <Link
                       className="inline-block w-full text-[14px] "
                       href="/ourclients"
                       // onClick={preventredirect}
+                      onClick={handleMobileMenuCloseClick}
                     >
                       Our clients
                     </Link>
@@ -263,12 +265,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                   <Link
                     href="/contact"
                     className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <span>Contact</span>
                   </Link>
                   <Link
                     href="/contact"
                     className={`${Style.btn} gradient-btn !hidden lg:!inline-block my-8 !shadow-none`}
+                    onClick={handleMobileMenuCloseClick}
                   >
                     <span>Contact</span>
                   </Link>
