@@ -1,7 +1,11 @@
 @import "./variables";
 
 .mobile_stickyNav {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  padding: 0 20px;
   &.toggleClass {
     .down_arrow {
       transform: rotate(225deg);
@@ -23,7 +27,7 @@
   .down_arrow {
     position: absolute;
     top: 28px;
-    right: 8px;
+    right: 23px;
     width: 14px;
     height: 14px;
     background-color: transparent;

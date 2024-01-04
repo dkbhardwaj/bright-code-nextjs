@@ -280,7 +280,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
 
       {winWidth <= 991 ? (
         <section
-          className={`sticky top-[116px] ${StickyStyle.mainSticky} z-50 bg-bgBluePurple  transition-all duration-300 ease-in-out shadow-bottom-white-shadow`}
+          className={`sticky top-[116px] ${StickyStyle.mainSticky} z-50 min-h-[80px] bg-bgBluePurple  transition-all duration-300 ease-in-out shadow-bottom-white-shadow`}
           style={isSticky ? headheight : { top: 0 }}
           id="stickyNav"
           data-aos="fade-in"
@@ -291,14 +291,14 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
             <div
               className={`${
                 Style.mobile_stickyNav
-              } relative w-full block ${isArrowDownClicked ? Style.toggleClass : ''}`}
+              }  w-full block ${isArrowDownClicked ? Style.toggleClass : ''}`}
             >
               <div
                 className={`${Style.down_arrow}`}
                 onClick={handleArrowClick}
               >
               </div>
-              <ul className={` relative w-full block px-5  sm:pl-0 `}>
+              <ul className={` relative w-full block pr-5 `}>
                 {stickyData.map((data, index) => {
                   return (
                     <li
