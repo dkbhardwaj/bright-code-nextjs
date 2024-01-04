@@ -43,6 +43,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
 
 
   // const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+
   // const handleStickyClick = (
   //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
   //   index: number
@@ -50,6 +51,32 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
   //   e.preventDefault();
   //   setClickedIndex(index);
   // };
+  // const sortedStickyData = clickedIndex !== null
+  //   ? [
+  //       stickyData[clickedIndex],
+  //       ...stickyData.slice(0, clickedIndex),
+  //       ...stickyData.slice(clickedIndex + 1),
+  //     ]
+  //   : stickyData;
+
+
+  // const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
+
+  // const [clickedIndex, setClickedIndex] = useState<number | null>(
+  //   isLocalStorageAvailable
+  //     ? parseInt(localStorage.getItem("clickedIndex") || "0", 10)
+  //     : null
+  // );
+
+  // const handleStickyClick = (
+  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  //   index: number
+  // ) => {
+  //   e.preventDefault();
+  //   setClickedIndex(index);
+  //   isLocalStorageAvailable && localStorage.setItem("clickedIndex", index.toString());
+  // };
+
   // const sortedStickyData = clickedIndex
   //   ? [
   //       stickyData[clickedIndex],
@@ -58,22 +85,34 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
   //     ]
   //   : stickyData;
 
-  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
+
+  const [clickedId, setClickedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Initialize clickedId from local storage on the client side
+    if (isLocalStorageAvailable) {
+      const storedId = localStorage.getItem("clickedId") || null;
+      setClickedId(storedId);
+    }
+  }, [isLocalStorageAvailable]);
 
   const handleStickyClick = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    index: number
+    id: string
   ) => {
     e.preventDefault();
-    setClickedIndex(index);
+    setClickedId(id);
+    isLocalStorageAvailable && localStorage.setItem("clickedId", id);
   };
-  const sortedStickyData = clickedIndex !== null
+
+  const sortedStickyData = clickedId
     ? [
-        stickyData[clickedIndex],
-        ...stickyData.slice(0, clickedIndex),
-        ...stickyData.slice(clickedIndex + 1),
+        stickyData.find(item => item.id === clickedId) || stickyData[0],
+        ...stickyData.filter(item => item.id !== clickedId),
       ]
     : stickyData;
+
 
 
 
@@ -389,7 +428,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                   );
                 })}
               </ul> */}
-              <ul className={` relative w-full block pr-5 `}>
+              {/* <ul className={` relative w-full block pr-5 `}>
                 {sortedStickyData.map((data, index) => (
                   <li
                     key={index}
@@ -403,6 +442,26 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                       href={`/${data.url}`}
                       aria-label={`Navigate to ${data.title}`}
                       className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
+                    >
+                      {data.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul> */}
+              <ul className={`relative w-full block pr-5`}>
+                {sortedStickyData.map((data) => (
+                  <li
+                    key={data.id}
+                    datatype={data.id}
+                    className={`py-[25px] relative w-full bg-transparent sm:py-[20px] ${
+                      visibleSections.includes(data.title) ? "activated" : ""
+                    }`}
+                    onClick={(e) => handleStickyClick(e, data.id)}
+                  >
+                    <Link
+                      href={`/${data.url}`}
+                      aria-label={`Navigate to ${data.title}`}
+                      className={`text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
                     >
                       {data.title}
                     </Link>
