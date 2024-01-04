@@ -8,6 +8,31 @@ interface StickyProps {
   ribbonVisible?: boolean;
 }
 
+
+const stickyData = [
+  {
+    id: "1",
+    title: "White Label Development",
+    url: "white-label-development",
+  },
+  {
+    id: "2",
+    title: "Dedicated Development Team",
+    url: "dedicated-team",
+  },
+  {
+    id: "3",
+    title: "CMS Implementation",
+    url: "cms-implementation",
+  },
+  {
+    id: "4",
+    title: "CMS Maintenance",
+    url: "cms-support",
+  },
+];
+
+
 const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
 
 
@@ -17,29 +42,63 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
   };
 
 
+  // const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  // const handleStickyClick = (
+  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  //   index: number
+  // ) => {
+  //   e.preventDefault();
+  //   setClickedIndex(index);
+  // };
+  // const sortedStickyData = clickedIndex
+  //   ? [
+  //       stickyData[clickedIndex],
+  //       ...stickyData.slice(0, clickedIndex),
+  //       ...stickyData.slice(clickedIndex + 1),
+  //     ]
+  //   : stickyData;
 
-  const stickyData = [
-    {
-      id: "1",
-      title: "White Label Development",
-      url: "white-label-development",
-    },
-    {
-      id: "2",
-      title: "Dedicated Development Team",
-      url: "dedicated-team",
-    },
-    {
-      id: "3",
-      title: "CMS Implementation",
-      url: "cms-implementation",
-    },
-    {
-      id: "4",
-      title: "CMS Maintenance",
-      url: "cms-support",
-    },
-  ];
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+
+  const handleStickyClick = (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    index: number
+  ) => {
+    e.preventDefault();
+    setClickedIndex(index);
+  };
+  const sortedStickyData = clickedIndex !== null
+    ? [
+        stickyData[clickedIndex],
+        ...stickyData.slice(0, clickedIndex),
+        ...stickyData.slice(clickedIndex + 1),
+      ]
+    : stickyData;
+
+
+
+  // const stickyData = [
+  //   {
+  //     id: "1",
+  //     title: "White Label Development",
+  //     url: "white-label-development",
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "Dedicated Development Team",
+  //     url: "dedicated-team",
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "CMS Implementation",
+  //     url: "cms-implementation",
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "CMS Maintenance",
+  //     url: "cms-support",
+  //   },
+  // ];
 
   const [isSticky, setSticky] = useState(false);
   const [headerHeight, setheaderHeight] = useState(0);
@@ -205,6 +264,8 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
     };
   });
 
+  
+
   return (
     <>
       {winWidth > 991 ? (
@@ -262,11 +323,20 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
               })}
             </ul>
           </div>
+          <style jsx>
+            {`
+              .activated {
+                color: #ffffff;
+                border: none;
+                background-color: #00000042;
+              }
+            `}
+          </style>
         </section>
       ) : (
         ""
       )}
-      <style jsx>
+      {/* <style jsx>
         {`
           @media (min-width: 991px) {
             .activated {
@@ -276,11 +346,11 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
             }
           }
         `}
-      </style>
+      </style> */}
 
       {winWidth <= 991 ? (
         <section
-          className={`sticky top-[116px] ${StickyStyle.mainSticky} z-50 min-h-[80px] bg-bgBluePurple  transition-all duration-300 ease-in-out shadow-bottom-white-shadow`}
+          className={`sticky top-[116px] ${StickyStyle.mainSticky} z-50 min-h-[80px] bg-bgBluePurple  transition-all duration-300 ease-in-out shadow-bottom-white-shadow sm:min-h-[70px] `}
           style={isSticky ? headheight : { top: 0 }}
           id="stickyNav"
           data-aos="fade-in"
@@ -298,7 +368,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                 onClick={handleArrowClick}
               >
               </div>
-              <ul className={` relative w-full block pr-5 `}>
+              {/* <ul className={` relative w-full block pr-5 `}>
                 {stickyData.map((data, index) => {
                   return (
                     <li
@@ -318,6 +388,26 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                     </li>
                   );
                 })}
+              </ul> */}
+              <ul className={` relative w-full block pr-5 `}>
+                {sortedStickyData.map((data, index) => (
+                  <li
+                    key={index}
+                    datatype={data.id}
+                    className={` py-[25px] relative w-full bg-transparent sm:py-[20px] ${
+                      visibleSections[0] === data.url ? "activated" : ""
+                    }`}
+                    onClick={(e) => handleStickyClick(e, index)}
+                  >
+                    <Link
+                      href={`/${data.url}`}
+                      aria-label={`Navigate to ${data.title}`}
+                      className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
+                    >
+                      {data.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
