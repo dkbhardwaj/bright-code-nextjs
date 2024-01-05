@@ -43,6 +43,30 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
+const stickyData = [
+
+  {
+    id: "1",
+    title: "CMS Implementation",
+    url: "cms-implementation",
+  },
+  {
+    id: "2",
+    title: "White Label Development",
+    url: "white-label-development",
+  },
+  {
+    id: "3",
+    title: "Dedicated Development Team",
+    url: "dedicated-team",
+  },
+  {
+    id: "4",
+    title: "CMS Maintenance",
+    url: "cms-support",
+  },
+];
+
 const CmsImplementation: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
@@ -98,7 +122,7 @@ const CmsImplementation: React.FC = () => {
         </div>
       </section>
       {/* Banner End */}
-      <Sticky ribbonVisible={true} />
+      <Sticky ribbonVisible={true} data={stickyData} />
 
       {/* CMS Implementation Intro Start */}
       <section

@@ -4,37 +4,23 @@ import Style from "../styles/stickyNav.module.scss";
 import { log } from "console";
 import Link from "next/link";
 
-interface StickyProps {
-  ribbonVisible?: boolean;
+interface stickyItme {
+  id: string,
+  title: string,
+  url: string
 }
 
+interface StickyProps {
+  ribbonVisible?: boolean;
+  data?: stickyItme[];
+}
 
-const stickyData = [
-  {
-    id: "1",
-    title: "White Label Development",
-    url: "white-label-development",
-  },
-  {
-    id: "2",
-    title: "Dedicated Development Team",
-    url: "dedicated-team",
-  },
-  {
-    id: "3",
-    title: "CMS Implementation",
-    url: "cms-implementation",
-  },
-  {
-    id: "4",
-    title: "CMS Maintenance",
-    url: "cms-support",
-  },
-];
-
-
-const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
-
+// const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data }) => {
+const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
+   console.log(data);
+   const stickyData = data;
+   
+   console.log(ribbonVisible);
 
   const [isArrowDownClicked, setArrowDownClicked] = useState(false);
   const handleArrowClick = () => {
@@ -42,102 +28,33 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
   };
 
 
-  // const [clickedIndex, setClickedIndex] = useState<number | null>(null);
-
-  // const handleStickyClick = (
-  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  //   index: number
-  // ) => {
-  //   e.preventDefault();
-  //   setClickedIndex(index);
-  // };
-  // const sortedStickyData = clickedIndex !== null
-  //   ? [
-  //       stickyData[clickedIndex],
-  //       ...stickyData.slice(0, clickedIndex),
-  //       ...stickyData.slice(clickedIndex + 1),
-  //     ]
-  //   : stickyData;
-
-
   // const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
 
-  // const [clickedIndex, setClickedIndex] = useState<number | null>(
-  //   isLocalStorageAvailable
-  //     ? parseInt(localStorage.getItem("clickedIndex") || "0", 10)
-  //     : null
-  // );
+  // const [clickedId, setClickedId] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   // Initialize clickedId from local storage on the client side
+  //   if (isLocalStorageAvailable) {
+  //     const storedId = localStorage.getItem("clickedId") || null;
+  //     setClickedId(storedId);
+  //   }
+  // }, [isLocalStorageAvailable]);
 
   // const handleStickyClick = (
   //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  //   index: number
+  //   id: string
   // ) => {
   //   e.preventDefault();
-  //   setClickedIndex(index);
-  //   isLocalStorageAvailable && localStorage.setItem("clickedIndex", index.toString());
+  //   setClickedId(id);
+  //   isLocalStorageAvailable && localStorage.setItem("clickedId", id);
   // };
 
-  // const sortedStickyData = clickedIndex
+  // const sortedStickyData = clickedId
   //   ? [
-  //       stickyData[clickedIndex],
-  //       ...stickyData.slice(0, clickedIndex),
-  //       ...stickyData.slice(clickedIndex + 1),
+  //       stickyData.find(item => item.id === clickedId) || stickyData[0],
+  //       ...stickyData.filter(item => item.id !== clickedId),
   //     ]
   //   : stickyData;
-
-  const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
-
-  const [clickedId, setClickedId] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Initialize clickedId from local storage on the client side
-    if (isLocalStorageAvailable) {
-      const storedId = localStorage.getItem("clickedId") || null;
-      setClickedId(storedId);
-    }
-  }, [isLocalStorageAvailable]);
-
-  const handleStickyClick = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    id: string
-  ) => {
-    e.preventDefault();
-    setClickedId(id);
-    isLocalStorageAvailable && localStorage.setItem("clickedId", id);
-  };
-
-  const sortedStickyData = clickedId
-    ? [
-        stickyData.find(item => item.id === clickedId) || stickyData[0],
-        ...stickyData.filter(item => item.id !== clickedId),
-      ]
-    : stickyData;
-
-
-
-
-  // const stickyData = [
-  //   {
-  //     id: "1",
-  //     title: "White Label Development",
-  //     url: "white-label-development",
-  //   },
-  //   {
-  //     id: "2",
-  //     title: "Dedicated Development Team",
-  //     url: "dedicated-team",
-  //   },
-  //   {
-  //     id: "3",
-  //     title: "CMS Implementation",
-  //     url: "cms-implementation",
-  //   },
-  //   {
-  //     id: "4",
-  //     title: "CMS Maintenance",
-  //     url: "cms-support",
-  //   },
-  // ];
 
   const [isSticky, setSticky] = useState(false);
   const [headerHeight, setheaderHeight] = useState(0);
@@ -318,7 +235,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
         >
           <div className="container">
             <ul className="flex relative w-fit mx-auto sm:justify-between">
-              {stickyData.map((data, index) => {
+              {data.map((data, index) => {
                 return (
                   // <li
                   //   key={index}
@@ -407,8 +324,8 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                 onClick={handleArrowClick}
               >
               </div>
-              {/* <ul className={` relative w-full block pr-5 `}>
-                {stickyData.map((data, index) => {
+              <ul className={` relative w-full block pr-5 `}>
+                {data.map((data, index) => {
                   return (
                     <li
                       key={index}
@@ -420,35 +337,15 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                       <Link
                         href={`/${data.url}`}
                         aria-label={`Navigate to ${data.title}`}
-                        className={` text-[19px] font-[600] text-white hover:opacity-70 transition duration-500 ease-in-out sm:text-[16px]`}
+                        className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
                       >
                         {data.title}
                       </Link>
                     </li>
                   );
                 })}
-              </ul> */}
-              {/* <ul className={` relative w-full block pr-5 `}>
-                {sortedStickyData.map((data, index) => (
-                  <li
-                    key={index}
-                    datatype={data.id}
-                    className={` py-[25px] relative w-full bg-transparent sm:py-[20px] ${
-                      visibleSections[0] === data.url ? "activated" : ""
-                    }`}
-                    onClick={(e) => handleStickyClick(e, index)}
-                  >
-                    <Link
-                      href={`/${data.url}`}
-                      aria-label={`Navigate to ${data.title}`}
-                      className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
-                    >
-                      {data.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul> */}
-              <ul className={`relative w-full block pr-5`}>
+              </ul>
+              {/* <ul className={`relative w-full block pr-5`}>
                 {sortedStickyData.map((data) => (
                   <li
                     key={data.id}
@@ -467,7 +364,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible }) => {
                     </Link>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
             </div>
           </div>
         </section>
