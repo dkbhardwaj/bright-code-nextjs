@@ -4,19 +4,28 @@ import Style from "../styles/stickyNav.module.scss";
 import { log } from "console";
 import Link from "next/link";
 
+import { useRouter } from "next/router";
+
 interface stickyItme {
   id: string,
   title: string,
   url: string
 }
 
+// interface StickyProps {
+//   ribbonVisible?: boolean;
+//   data?: stickyItme[];
+// }
 interface StickyProps {
   ribbonVisible?: boolean;
-  data?: stickyItme[];
+  data?: { id: string; title: string; url: string }[];
+  clickedId: string | null;
+  setClickedId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-// const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data }) => {
-const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
+
+// const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
+const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, setClickedId }) => {
    console.log(data);
    const stickyData = data;
    
@@ -26,6 +35,18 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
   const handleArrowClick = () => {
     setArrowDownClicked(!isArrowDownClicked);
   };
+
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const currentUrlData = data.find((item) => router.asPath === `/${item.url}`);
+    if (currentUrlData) {
+      setClickedId(currentUrlData.id);
+    }
+  }, [router.asPath, data, setClickedId]);
+
+
 
 
   // const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
@@ -235,7 +256,7 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
         >
           <div className="container">
             <ul className="flex relative w-fit mx-auto sm:justify-between">
-              {data.map((data, index) => {
+              {data.map((dataItem, index) => {
                 return (
                   // <li
                   //   key={index}
@@ -257,22 +278,37 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
                   //     {data.title}
                   //   </Link>
                   // </li>
+                  // <li
+                  //   key={index}
+                  //   datatype={data.id}
+                  //   className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
+                  //     visibleSections[0] === data.url ? "activated" : ""
+                  //   }`}
+                  //   // onClick={(e) =>
+                  //   //   handleStickyClick(e, data.url, index, data.url, 50)
+                  //   // }
+                  // >
+                  //   <Link
+                  //     href={`/${data.url}`}
+                  //     aria-label={`Navigate to ${data.title}`}
+                  //     className={` text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
+                  //   >
+                  //     {data.title}
+                  //   </Link>
+                  // </li>
                   <li
-                    key={index}
-                    datatype={data.id}
+                    key={dataItem.id}
                     className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
-                      visibleSections[0] === data.url ? "activated" : ""
+                      clickedId === dataItem.id ? "activated" : ""
                     }`}
-                    // onClick={(e) =>
-                    //   handleStickyClick(e, data.url, index, data.url, 50)
-                    // }
+                    onClick={() => setClickedId(dataItem.id)}
                   >
                     <Link
-                      href={`/${data.url}`}
-                      aria-label={`Navigate to ${data.title}`}
-                      className={` text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
+                      href={`/${dataItem.url}`}
+                      aria-label={`Navigate to ${dataItem.title}`}
+                      className={`text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
                     >
-                      {data.title}
+                      {dataItem.title}
                     </Link>
                   </li>
                 );
@@ -325,21 +361,21 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
               >
               </div>
               <ul className={` relative w-full block pr-5 `}>
-                {data.map((data, index) => {
+                {data.map((dataItem, index) => {
                   return (
                     <li
                       key={index}
-                      datatype={data.id}
+                      datatype={dataItem.id}
                       className={` py-[25px] relative w-full bg-transparent sm:py-[20px] ${
-                        visibleSections[0] === data.url ? "activated" : ""
+                        visibleSections[0] === dataItem.url ? "activated" : ""
                       }`}
                     >
                       <Link
-                        href={`/${data.url}`}
-                        aria-label={`Navigate to ${data.title}`}
+                        href={`/${dataItem.url}`}
+                        aria-label={`Navigate to ${dataItem.title}`}
                         className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
                       >
-                        {data.title}
+                        {dataItem.title}
                       </Link>
                     </li>
                   );

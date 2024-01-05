@@ -66,6 +66,7 @@ const stickyData = [
 ];
 
 const DedicatedTeam: React.FC = () => {
+  const [clickedId, setClickedId] = useState<string | null>(null);
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
@@ -120,7 +121,8 @@ const DedicatedTeam: React.FC = () => {
         </div>
       </section>
       {/* Banner End */}
-      <Sticky ribbonVisible={true} data={stickyData} />
+      {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
+      <Sticky ribbonVisible={true} data={stickyData} clickedId={clickedId} setClickedId={setClickedId} />
 
       {/* Dedicated Development Team Intro Start */}
       <section

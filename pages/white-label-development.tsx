@@ -66,6 +66,7 @@ const stickyData = [
 ];
 
 const WhiteLabelDevelopment: React.FC = () => {
+  const [clickedId, setClickedId] = useState<string | null>(null);
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
@@ -120,7 +121,8 @@ const WhiteLabelDevelopment: React.FC = () => {
         </div>
       </section>
       {/* Banner End */}
-      <Sticky ribbonVisible={true} data={stickyData} />
+      {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
+      <Sticky ribbonVisible={true} data={stickyData} clickedId={clickedId} setClickedId={setClickedId} />
 
       {/* White Label Development Intro Start */}
       <section
