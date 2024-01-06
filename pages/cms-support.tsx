@@ -43,34 +43,34 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const stickyData = [
-  {
-    id: "1",
-    title: "CMS Maintenance",
-    url: "cms-support",
-  },
-  {
-    id: "2",
-    title: "White Label Development",
-    url: "white-label-development",
-  },
-  {
-    id: "3",
-    title: "Dedicated Development Team",
-    url: "dedicated-team",
-  },
-  {
-    id: "4",
-    title: "CMS Implementation",
-    url: "cms-implementation",
-  },
-];
+interface StickyItem {
+  id: string;
+  title: string;
+  url: string;
+}
+
+
+
 
 const CmsSupport: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
+
+
+  const [winWidth, setWinWidth] = useState(0);
+  useEffect(() => {
+    const handleResize = () => {
+      setWinWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -90,6 +90,56 @@ const CmsSupport: React.FC = () => {
   const HideThankyouBox = () => {
     setformsuccess(false);
   };
+
+
+
+  const desktopStickyData: StickyItem[] = [
+    {
+      id: "1",
+      title: "White Label Development",
+      url: "white-label-development",
+    },
+    {
+      id: "2",
+      title: "Dedicated Development Team",
+      url: "dedicated-team",
+    },
+    {
+      id: "3",
+      title: "CMS Implementation",
+      url: "cms-implementation",
+    },
+    {
+      id: "4",
+      title: "CMS Maintenance",
+      url: "cms-support",
+    },
+  ];
+
+  const mobileStickyData: StickyItem[] = [
+    {
+      id: "1",
+      title: "CMS Maintenance",
+      url: "cms-support",
+    },
+    {
+      id: "2",
+      title: "White Label Development",
+      url: "white-label-development",
+    },
+    {
+      id: "3",
+      title: "Dedicated Development Team",
+      url: "dedicated-team",
+    },
+    {
+      id: "4",
+      title: "CMS Implementation",
+      url: "cms-implementation",
+    },
+  ];
+
+  const stickyData = winWidth > 991 ? desktopStickyData : mobileStickyData;
 
   return (
     <>
