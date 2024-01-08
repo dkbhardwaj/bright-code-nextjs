@@ -816,11 +816,13 @@ const Home: React.FC = () => {
                       errors={state.errors}
                     />
 
-                    {/* <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  onChange={setcaptcha}
-                  className="mb-5"
-                /> */}
+                    <ReCAPTCHA
+                      sitekey={
+                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      }
+                      onChange={setcaptcha}
+                      className="mb-5"
+                    />
                     <button
                       type="submit"
                       className="gradient-btn mx-auto max-w-full"

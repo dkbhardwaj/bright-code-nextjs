@@ -42,7 +42,6 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-
 interface StickyItem {
   id: string;
   title: string;
@@ -55,9 +54,6 @@ const DedicatedTeam: React.FC = () => {
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
 
-
-
-
   const [winWidth, setWinWidth] = useState(0);
   useEffect(() => {
     const handleResize = () => {
@@ -69,8 +65,6 @@ const DedicatedTeam: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -90,7 +84,6 @@ const DedicatedTeam: React.FC = () => {
   const HideThankyouBox = () => {
     setformsuccess(false);
   };
-
 
   const desktopStickyData: StickyItem[] = [
     {
@@ -172,7 +165,12 @@ const DedicatedTeam: React.FC = () => {
       </section>
       {/* Banner End */}
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
-      <Sticky ribbonVisible={true} data={stickyData} clickedId={clickedId} setClickedId={setClickedId} />
+      <Sticky
+        ribbonVisible={true}
+        data={stickyData}
+        clickedId={clickedId}
+        setClickedId={setClickedId}
+      />
 
       {/* Dedicated Development Team Intro Start */}
       <section
@@ -494,11 +492,13 @@ const DedicatedTeam: React.FC = () => {
                       errors={state.errors}
                     />
 
-                    {/* <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  onChange={setcaptcha}
-                  className="mb-5 mx-[10px]  md:mx-0"
-                /> */}
+                    <ReCAPTCHA
+                      sitekey={
+                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      }
+                      onChange={setcaptcha}
+                      className="mb-5 mx-[10px]  md:mx-0"
+                    />
                     <button
                       type="submit"
                       className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"

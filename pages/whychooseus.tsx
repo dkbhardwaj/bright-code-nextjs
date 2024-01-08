@@ -510,11 +510,13 @@ const WhyChooseUs: React.FC = () => {
                       errors={state.errors}
                     />
 
-                    {/* <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  onChange={setcaptcha}
-                  className="mb-5 mx-[10px]  md:mx-0"
-                /> */}
+                    <ReCAPTCHA
+                      sitekey={
+                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      }
+                      onChange={setcaptcha}
+                      className="mb-5 mx-[10px]  md:mx-0"
+                    />
                     <button
                       type="submit"
                       className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"
