@@ -46,6 +46,7 @@ const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
+  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -817,9 +818,10 @@ const Home: React.FC = () => {
                     />
 
                     <ReCAPTCHA
-                      sitekey={
-                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
-                      }
+                      // sitekey={
+                      //   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      // }
+                      sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
                       onChange={setcaptcha}
                       className="mb-5"
                     />
