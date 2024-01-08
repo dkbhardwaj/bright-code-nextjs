@@ -46,7 +46,7 @@ const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
-  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
