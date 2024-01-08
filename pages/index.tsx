@@ -821,10 +821,10 @@ const Home: React.FC = () => {
                     />
 
                     <ReCAPTCHA
-                      // sitekey={
-                      //   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
-                      // }
-                      sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
+                      sitekey={
+                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      }
+                      // sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
                       onChange={onChange}
                       className="mb-5"
                     />
