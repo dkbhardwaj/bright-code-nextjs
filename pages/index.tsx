@@ -10,7 +10,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-
+function onChange(token: string | null) {
+  console.log("Captcha token:", token);
+}
 export const metadata: Metadata = {
   title: "Agency-to-Agency Drupal Development Partner | Bright Code",
   description:
@@ -47,9 +49,6 @@ const Home: React.FC = () => {
   // const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
   // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
-  function onChange(token: string | null) {
-    console.log("Captcha token:", token);
-  }
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -821,10 +820,10 @@ const Home: React.FC = () => {
                     />
 
                     <ReCAPTCHA
-                      sitekey={
-                        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
-                      }
-                      // sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
+                      // sitekey={
+                      //   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
+                      // }
+                      sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
                       onChange={onChange}
                       className="mb-5"
                     />
