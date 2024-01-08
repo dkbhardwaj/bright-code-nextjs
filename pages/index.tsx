@@ -44,9 +44,12 @@ interface Metadata {
 
 const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
-  const [captcha, setcaptcha] = useState<string | null>();
+  // const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
   // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  function onChange(token: string | null) {
+    console.log("Captcha token:", token);
+  }
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -822,7 +825,7 @@ const Home: React.FC = () => {
                       //   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
                       // }
                       sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
-                      onChange={setcaptcha}
+                      onChange={onChange}
                       className="mb-5"
                     />
                     <button
