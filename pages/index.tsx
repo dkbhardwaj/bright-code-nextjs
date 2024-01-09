@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
 import Sticky from "../components/stickyNav";
-import ReCAPTCHA from "react-google-recaptcha";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 // import type { Metadata } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
   // const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
-  // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -818,15 +818,49 @@ const Home: React.FC = () => {
                       field="message"
                       errors={state.errors}
                     />
-
+                    <input
+                      type="hidden"
+                      id="g-recaptcha-response"
+                      name="g-recaptcha-response"
+                    />
                     {/* <ReCAPTCHA
                       // sitekey={
                       //   process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string
                       // }
-                      sitekey="6LdO4O8hAAAAAETU0vVyILUcuG-J7VLe5XDiV8fY"
+                      sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
                       onChange={onChange}
                       className="mb-5"
                     /> */}
+                    <GoogleReCaptchaProvider
+                      reCaptchaKey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
+                      language="english"
+                      scriptProps={{
+                        async: false,
+                        defer: false,
+                        appendTo: "head",
+                        nonce: undefined,
+                      }}
+                      container={{
+                        element: "g-recaptcha", // replace with your actual ID
+                        parameters: {
+                          badge: "inline",
+                          theme: "dark",
+                        },
+                      }}
+                    >
+                      <React.Fragment></React.Fragment>
+                    </GoogleReCaptchaProvider>
+
+                    <div
+                      id="g-recaptcha"
+                      className="g-recaptcha my-4"
+                      data-sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
+                    ></div>
+                    <input
+                      type="hidden"
+                      id="g-recaptcha-response"
+                      name="g-recaptcha-response"
+                    ></input>
                     <button
                       type="submit"
                       className="gradient-btn mx-auto max-w-full"
