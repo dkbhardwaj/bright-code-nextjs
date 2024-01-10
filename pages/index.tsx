@@ -945,7 +945,7 @@ const Home: React.FC = () => {
                 </li>
                 <li className=" relative mb-2 ">
                   <a
-                    href="/"
+                    href="/cms-support"
                     className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                   >
                     CMS Maintenance
@@ -995,7 +995,7 @@ const Home: React.FC = () => {
                   <span className="font-semibold">+ ‪(925) 315-5061‬</span>
                 </li>
               </ul>
-              <form action="/" className=" relative w-full">
+              {/* <form action="/" className=" relative w-full">
                 <div className="signUp-wrap relative w-full flex overflow-hidden">
                   <div className="wrap w-[calc(100%-124px)] ">
                     <label
@@ -1018,7 +1018,7 @@ const Home: React.FC = () => {
                     </button>
                   </div>
                 </div>
-              </form>
+              </form> */}
 
               <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
                 <div className="icon relative max-w-[33px] h-[33px] ">
