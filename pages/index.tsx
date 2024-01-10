@@ -251,86 +251,7 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-            {/* <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-              data-aos="fade-up"
-              data-aos-delay="300"
-              data-aos-duration="1000"
-            >
-              <div className="card bg-white shadow-slate-100 shadow-lg">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <img
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/img4.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="textWrap p-5">
-                  <h5 className="text-darkGray">Zukandre Phoniex</h5>
-                  <span className="text-gray mt-5 line-clamp-4 text-ellipsis">
-                    Branding
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-              data-aos="fade-up"
-              data-aos-delay="600"
-              data-aos-duration="1000"
-            >
-              <div className="card bg-white shadow-slate-100 shadow-lg">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <img
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/img5.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="textWrap p-5">
-                  <h5 className="text-darkGray">Sionage Mokcup</h5>
-                  <span className="text-gray mt-5 line-clamp-4 text-ellipsis">
-                    Wll Mockup
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-              data-aos="fade-up"
-              data-aos-delay="900"
-              data-aos-duration="1000"
-            >
-              <div className="card bg-white shadow-slate-100 shadow-lg">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <img
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/img6.jpg"
-                    alt="image"
-                  />
-                </div>
-                <div className="textWrap p-5">
-                  <h5 className="text-darkGray">Hard Cover Book Mock</h5>
-                  <span className="text-gray mt-5 line-clamp-4 text-ellipsis">
-                    Book Covers
-                  </span>
-                </div>
-              </div>
-            </div> */}
-            {/* <div className="btnWrap w-full text-center mt-10">
-              <Link href="/whychooseus" className="pink-btn b-border">
-                Learn More
-              </Link>
-            </div> */}
+           
             <Link href="/whychooseus" className=" mt-7 gradient-btn mx-auto">
               <span>Learn More</span>
             </Link>
@@ -912,7 +833,7 @@ const Home: React.FC = () => {
                 />
               </div>
               <p className=" text-[14px] text-white mt-2 md:text-center">
-                Spaces - Water Garden 2450 Colorado Ave, Santa Monica, CA 90404,
+                2450 Colorado Ave, Santa Monica, CA 90404,
                 United States
               </p>
             </div>
@@ -1092,7 +1013,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </footer>
+        </footer>
         {/* Footer End */}
       </div>
 
