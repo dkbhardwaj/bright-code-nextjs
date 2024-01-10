@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import Sticky from "../components/stickyNav";
 // import type { Metadata } from "next";
 import Head from "next/head";
@@ -217,11 +216,6 @@ const Contact: React.FC = () => {
                       errors={state.errors}
                     />
 
-                    <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                  onChange={setcaptcha}
-                  className="mb-5"
-                />
                     <button
                       type="submit"
                       className="gradient-btn mx-auto max-w-full"
