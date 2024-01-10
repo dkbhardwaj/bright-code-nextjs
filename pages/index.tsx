@@ -894,103 +894,137 @@ const Home: React.FC = () => {
 
         {/* Footer Start */}
         <footer className="footer py-[90px] md:py-16 ">
-          <div className="container">
-            <div className="w-full text-white flex justify-between md:flex-col md:items-center">
-              <div className="w-54">
-                <div className={`logo relative max-w-[207px] h-[57px]`}>
-                  <Link href="/" className="redirect">
-                    .
-                  </Link>
-                  <Image
-                    src="/brightcode_logo.png"
-                    width={300}
-                    height={100}
-                    alt="logo"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
+        <div className="container">
+          <div className="w-full text-white flex justify-between md:flex-col md:items-center">
+            <div className=" relative w-full max-w-[250px] pr-4 md:max-w-full ">
+              <div
+                className={`logo relative max-w-[207px] h-[57px] md:mx-auto `}
+              >
+                <Link href="/" className="redirect">
+                  .
+                </Link>
+                <Image
+                  src="/brightcode_logo.png"
+                  width={300}
+                  height={100}
+                  alt="logo"
+                  className=" w-full h-full object-contain"
+                />
               </div>
-              <div className="textWrap relative md:mt-8">
-                <ul className=" relative flex flex-wrap sm:block">
-                  <li className=" relative flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4 sm:ml-0 sm:mb-3">
-                    <Link
-                      href="mailto:contact@bright-code.io"
-                      className="redirect"
-                    >
-                      .
-                    </Link>
-                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                      <Image
-                        src="/mail-icon-white.svg"
-                        width={25}
-                        height={25}
-                        alt="img"
-                        className=" w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="font-semibold">
-                      contact@bright-code.io
-                    </span>
-                  </li>
-                  <li className=" relative flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  sm:ml-0">
-                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                      <Image
-                        src="/phone-icon-white.svg"
-                        width={25}
-                        height={25}
-                        alt="img"
-                        className=" w-full h-full object-contain"
-                      />
-                    </div>
-                    <span className="font-semibold">+ ‪(805) 215-0549‬</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="hidden socialWrap mt-8 md:flex md:justify-center">
-                <div className="icon relative max-w-[33px] h-[33px]">
+              <p className=" text-[14px] text-white mt-2 md:text-center">
+                Spaces - Water Garden 2450 Colorado Ave, Santa Monica, CA 90404,
+                United States
+              </p>
+            </div>
+            <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
+              <h6 className=" font-medium mb-4">About</h6>
+              <ul>
+                <li className=" relative mb-2 ">
+                  <a
+                    href="/whychooseus"
+                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                  >
+                    Why Choose us
+                  </a>
+                </li>
+                <li className=" relative mb-2 ">
+                  <a
+                    href="/white-label-development"
+                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                  >
+                    What we do
+                  </a>
+                </li>
+                <li className=" relative mb-2 ">
+                  <a
+                    href="/ourclients"
+                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                  >
+                    Our clients
+                  </a>
+                </li>
+                <li className=" relative mb-2 ">
+                  <a
+                    href="/"
+                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                  >
+                    CMS Maintenance
+                  </a>
+                </li>
+                {/* <li className=" relative mb-2 "><a href="/" className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">Affiliate program</a></li> */}
+                <li className=" relative mb-2 ">
+                  <a
+                    href="/contact"
+                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                  >
+                    Contact us
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="textWrap relative w-full max-w-[475px] md:mt-8   md:mx-auto">
+              <ul className=" relative flex flex-wrap justify-end sm:block">
+                <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
                   <Link
-                    href={"https://twitter.com/BrightcodeIO"}
+                    href="mailto:contact@bright-code.io"
                     className="redirect"
-                    target="_blank"
                   >
                     .
                   </Link>
-                  <Image
-                    src="/twitter-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
+                  <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                    <Image
+                      src="/mail-icon-white.svg"
+                      width={25}
+                      height={25}
+                      alt="img"
+                      className=" w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="font-semibold">contact@bright-code.io</span>
+                </li>
+                <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 sm:mx-auto ">
+                  <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                    <Image
+                      src="/phone-icon-white.svg"
+                      width={25}
+                      height={25}
+                      alt="img"
+                      className=" w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+                </li>
+              </ul>
+              <form action="/" className=" relative w-full">
+                <div className="signUp-wrap relative w-full flex overflow-hidden">
+                  <div className="wrap w-[calc(100%-124px)] ">
+                    <label
+                      htmlFor="email"
+                      className="leading-6 text-0 text-white font-normal hidden "
+                    >
+                      .
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="w-full relative py-[10px] px-3 bg-transparent border-[1px] border-solid border-white border-r-0 rounded-bl-[9px] rounded-tl-[9px] text-[16px] outline-none text-gray-700 leading-6"
+                      placeholder="Type your email"
+                    />
+                  </div>
+                  <div className="wrap w-full max-w-[124px] ">
+                    <button type="submit" className=" submit-btn w-full ">
+                      Subscribe
+                    </button>
+                  </div>
                 </div>
-                <div className="icon relative ml-2  max-w-[33px] h-[33px]">
+              </form>
+
+              <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
+                <div className="icon relative max-w-[33px] h-[33px] ">
                   <Link
                     href={"https://www.linkedin.com/company/bright-codeio/"}
                     className="redirect"
-                    target="_blank"
-                  >
-                    .
-                  </Link>
-                  <Image
-                    src="/linkedin-white.svg"
-                    width={40}
-                    height={40}
-                    alt="icon"
-                    className=" w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className=" relative w-full flex flex-wrap justify-between mt-14 md:mt-10">
-              <div className="copyright w-fit mr-5 md:text-center md:w-full ">
-                <p className="text-white">© 2024 Bright Code Solution</p>
-              </div>
-              <div className="socialWrap flex md:justify-center md:hidden">
-                <div className="icon relative max-w-[33px] h-[33px] ">
-                  <Link
-                    href={"https://twitter.com/BrightcodeIO"}
-                    className="redirect"
-                    target="_blank"
                   >
                     .
                   </Link>
@@ -1004,9 +1038,8 @@ const Home: React.FC = () => {
                 </div>
                 <div className="icon relative ml-3  max-w-[33px] h-[33px]">
                   <Link
-                    href={"https://www.linkedin.com/company/bright-codeio/"}
+                    href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                     className="redirect"
-                    target="_blank"
                   >
                     .
                   </Link>
@@ -1020,8 +1053,46 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
+            <div className="hidden socialWrap mt-8 md:flex md:justify-center">
+              <div className="icon relative max-w-[33px] h-[33px]">
+                <Link
+                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
+                  className="redirect"
+                >
+                  .
+                </Link>
+                <Image
+                  src="/twitter-white.svg"
+                  width={40}
+                  height={40}
+                  alt="icon"
+                  className=" w-full h-full object-contain"
+                />
+              </div>
+              <div className="icon relative ml-2  max-w-[33px] h-[33px]">
+                <Link
+                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
+                  className="redirect"
+                >
+                  .
+                </Link>
+                <Image
+                  src="/linkedin-white.svg"
+                  width={40}
+                  height={40}
+                  alt="icon"
+                  className=" w-full h-full object-contain"
+                />
+              </div>
+            </div>
           </div>
-        </footer>
+          <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
+            <div className="copyright w-full text-center ">
+              <p className="text-white">© 2024 Bright Code Solution</p>
+            </div>
+          </div>
+        </div>
+      </footer>
         {/* Footer End */}
       </div>
 
