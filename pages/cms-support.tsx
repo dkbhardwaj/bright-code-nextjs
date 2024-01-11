@@ -567,7 +567,7 @@ const CmsSupport: React.FC = () => {
 
                     <div
                       id="g-recaptcha"
-                      className="g-recaptcha my-4"
+                      className="g-recaptcha my-4 mx-[10px]"
                       data-sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
                     ></div>
                     <input
