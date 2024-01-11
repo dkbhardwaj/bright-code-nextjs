@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import Sticky from "../components/stickyNav";
 import { useState } from "react";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 // import type { Metadata } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
@@ -470,6 +471,37 @@ const WhiteLabelDevelopment: React.FC = () => {
                       errors={state.errors}
                     />
 
+                    <GoogleReCaptchaProvider
+                      reCaptchaKey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
+                      language="english"
+                      scriptProps={{
+                        async: false,
+                        defer: false,
+                        appendTo: "head",
+                        nonce: undefined,
+                      }}
+                      container={{
+                        element: "g-recaptcha", // replace with your actual ID
+                        parameters: {
+                          badge: "inline",
+                          theme: "dark",
+                        },
+                      }}
+                    >
+                      <React.Fragment></React.Fragment>
+                    </GoogleReCaptchaProvider>
+
+                    <div
+                      id="g-recaptcha"
+                      className="g-recaptcha my-4"
+                      data-sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
+                    ></div>
+                    <input
+                      type="hidden"
+                      id="g-recaptcha-response"
+                      name="g-recaptcha-response"
+                    ></input>
+
                     <button
                       type="submit"
                       className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"
@@ -487,108 +519,109 @@ const WhiteLabelDevelopment: React.FC = () => {
 
         {/* Footer Start */}
         <footer className="footer py-[90px] md:py-16 ">
-        <div className="container">
-          <div className="w-full text-white flex justify-between md:flex-col md:items-center">
-            <div className=" relative w-full max-w-[250px] pr-4 md:max-w-full ">
-              <div
-                className={`logo relative max-w-[207px] h-[57px] md:mx-auto `}
-              >
-                <Link href="/" className="redirect">
-                  .
-                </Link>
-                <Image
-                  src="/brightcode_logo.png"
-                  width={300}
-                  height={100}
-                  alt="logo"
-                  className=" w-full h-full object-contain"
-                />
-              </div>
-              <p className=" text-[14px] text-white mt-2 md:text-center">
-                2450 Colorado Ave, Santa Monica, CA 90404,
-                United States
-              </p>
-            </div>
-            <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
-              <h6 className=" font-medium mb-4">About</h6>
-              <ul>
-                <li className=" relative mb-2 ">
-                  <a
-                    href="/whychooseus"
-                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                  >
-                    Why Choose us
-                  </a>
-                </li>
-                <li className=" relative mb-2 ">
-                  <a
-                    href="/white-label-development"
-                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                  >
-                    What we do
-                  </a>
-                </li>
-                <li className=" relative mb-2 ">
-                  <a
-                    href="/ourclients"
-                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                  >
-                    Our clients
-                  </a>
-                </li>
-                <li className=" relative mb-2 ">
-                  <a
-                    href="/cms-support"
-                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                  >
-                    CMS Maintenance
-                  </a>
-                </li>
-                {/* <li className=" relative mb-2 "><a href="/" className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">Affiliate program</a></li> */}
-                <li className=" relative mb-2 ">
-                  <a
-                    href="/contact"
-                    className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                  >
-                    Contact us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="textWrap relative w-full max-w-[475px] md:mt-8   md:mx-auto">
-              <ul className=" relative flex flex-wrap justify-end sm:block">
-                <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
-                  <Link
-                    href="mailto:contact@bright-code.io"
-                    className="redirect"
-                  >
+          <div className="container">
+            <div className="w-full text-white flex justify-between md:flex-col md:items-center">
+              <div className=" relative w-full max-w-[250px] pr-4 md:max-w-full ">
+                <div
+                  className={`logo relative max-w-[207px] h-[57px] md:mx-auto `}
+                >
+                  <Link href="/" className="redirect">
                     .
                   </Link>
-                  <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                    <Image
-                      src="/mail-icon-white.svg"
-                      width={25}
-                      height={25}
-                      alt="img"
-                      className=" w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="font-semibold">contact@bright-code.io</span>
-                </li>
-                <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 sm:mx-auto ">
-                  <div className="icon-img max-w-[21px] h-[21px] mr-5">
-                    <Image
-                      src="/phone-icon-white.svg"
-                      width={25}
-                      height={25}
-                      alt="img"
-                      className=" w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="font-semibold">+ ‪(925) 315-5061‬</span>
-                </li>
-              </ul>
-              {/* <form action="/" className=" relative w-full">
+                  <Image
+                    src="/brightcode_logo.png"
+                    width={300}
+                    height={100}
+                    alt="logo"
+                    className=" w-full h-full object-contain"
+                  />
+                </div>
+                <p className=" text-[14px] text-white mt-2 md:text-center">
+                  2450 Colorado Ave, Santa Monica, CA 90404, United States
+                </p>
+              </div>
+              <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
+                <h6 className=" font-medium mb-4">About</h6>
+                <ul>
+                  <li className=" relative mb-2 ">
+                    <a
+                      href="/whychooseus"
+                      className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                    >
+                      Why Choose us
+                    </a>
+                  </li>
+                  <li className=" relative mb-2 ">
+                    <a
+                      href="/white-label-development"
+                      className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                    >
+                      What we do
+                    </a>
+                  </li>
+                  <li className=" relative mb-2 ">
+                    <a
+                      href="/ourclients"
+                      className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                    >
+                      Our clients
+                    </a>
+                  </li>
+                  <li className=" relative mb-2 ">
+                    <a
+                      href="/cms-support"
+                      className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                    >
+                      CMS Maintenance
+                    </a>
+                  </li>
+                  {/* <li className=" relative mb-2 "><a href="/" className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">Affiliate program</a></li> */}
+                  <li className=" relative mb-2 ">
+                    <a
+                      href="/contact"
+                      className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                    >
+                      Contact us
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div className="textWrap relative w-full max-w-[475px] md:mt-8   md:mx-auto">
+                <ul className=" relative flex flex-wrap justify-end sm:block">
+                  <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
+                    <Link
+                      href="mailto:contact@bright-code.io"
+                      className="redirect"
+                    >
+                      .
+                    </Link>
+                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                      <Image
+                        src="/mail-icon-white.svg"
+                        width={25}
+                        height={25}
+                        alt="img"
+                        className=" w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="font-semibold">
+                      contact@bright-code.io
+                    </span>
+                  </li>
+                  <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 sm:mx-auto ">
+                    <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                      <Image
+                        src="/phone-icon-white.svg"
+                        width={25}
+                        height={25}
+                        alt="img"
+                        className=" w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+                  </li>
+                </ul>
+                {/* <form action="/" className=" relative w-full">
                 <div className="signUp-wrap relative w-full flex overflow-hidden">
                   <div className="wrap w-[calc(100%-124px)] ">
                     <label
@@ -613,10 +646,45 @@ const WhiteLabelDevelopment: React.FC = () => {
                 </div>
               </form> */}
 
-              <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
-                <div className="icon relative max-w-[33px] h-[33px] ">
+                <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
+                  <div className="icon relative max-w-[33px] h-[33px] ">
+                    <Link
+                      href={"https://www.linkedin.com/company/bright-codeio/"}
+                      className="redirect"
+                    >
+                      .
+                    </Link>
+                    <Image
+                      src="/twitter-white.svg"
+                      width={40}
+                      height={40}
+                      alt="icon"
+                      className=" w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="icon relative ml-3  max-w-[33px] h-[33px]">
+                    <Link
+                      href={
+                        "https://www.linkedin.com/in/bright-code-71120724a/"
+                      }
+                      className="redirect"
+                    >
+                      .
+                    </Link>
+                    <Image
+                      src="/linkedin-white.svg"
+                      width={40}
+                      height={40}
+                      alt="icon"
+                      className=" w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="hidden socialWrap mt-8 md:flex md:justify-center">
+                <div className="icon relative max-w-[33px] h-[33px]">
                   <Link
-                    href={"https://www.linkedin.com/company/bright-codeio/"}
+                    href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                     className="redirect"
                   >
                     .
@@ -629,7 +697,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                     className=" w-full h-full object-contain"
                   />
                 </div>
-                <div className="icon relative ml-3  max-w-[33px] h-[33px]">
+                <div className="icon relative ml-2  max-w-[33px] h-[33px]">
                   <Link
                     href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                     className="redirect"
@@ -646,45 +714,12 @@ const WhiteLabelDevelopment: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden socialWrap mt-8 md:flex md:justify-center">
-              <div className="icon relative max-w-[33px] h-[33px]">
-                <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
-                >
-                  .
-                </Link>
-                <Image
-                  src="/twitter-white.svg"
-                  width={40}
-                  height={40}
-                  alt="icon"
-                  className=" w-full h-full object-contain"
-                />
-              </div>
-              <div className="icon relative ml-2  max-w-[33px] h-[33px]">
-                <Link
-                  href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                  className="redirect"
-                >
-                  .
-                </Link>
-                <Image
-                  src="/linkedin-white.svg"
-                  width={40}
-                  height={40}
-                  alt="icon"
-                  className=" w-full h-full object-contain"
-                />
+            <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
+              <div className="copyright w-full text-center ">
+                <p className="text-white">© 2024 Bright Code Solution</p>
               </div>
             </div>
           </div>
-          <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
-            <div className="copyright w-full text-center ">
-              <p className="text-white">© 2024 Bright Code Solution</p>
-            </div>
-          </div>
-        </div>
         </footer>
         {/* Footer End */}
       </div>
