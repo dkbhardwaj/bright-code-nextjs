@@ -520,7 +520,7 @@ const Ourclient: React.FC = () => {
                   />
                 </div>
                 <p className=" text-[14px] text-white mt-2 md:text-center">
-                  2450 Colorado Ave, Santa Monica, CA 90404, United States
+                  2450 Colorado Ave, Suite 100E, Santa Monica, CA 90404, United States
                 </p>
               </div>
               <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
