@@ -113,30 +113,20 @@ const Contact: React.FC = () => {
               <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
                 <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
                   <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10 ">
-                    If you are interested in learning more about Bright Code and
-                    how we can work together to achieve your goals, we encourage
-                    you to get in touch with us directly. We value direct,
-                    one-on-one discussions where we can understand your unique
-                    needs and explore the potential for collaboration.
+                  Interested in learning more about us and our clients?
                   </h4>
                   <br />
                   <h5 className="text-white font-light">
-                    At Bright Code, we stand by our commitment to
-                    professionalism, trust, and confidentiality. We believe in
-                    the power of collaboration, and by working as a partner, we
-                    can empower you to shine in the spotlight.
+                    You may have noticed that we do not showcase our clients or their projects on our website. This conscious choice mirrors our unwavering dedication to two guiding principles: trust and confidentiality.
                   </h5>
                   <br />
                   <h5 className="text-white font-light">
-                    Your success is our success, and we look forward to the
-                    possibility of working together to delight your clients and
-                    achieve remarkable results.
+                    We deeply believe in the strength of collaboration, and as your trusted partner, we're excited to help you shine in the spotlight.
                   </h5>
 
                   <br />
                   <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10">
-                    Thank you for considering Bright Code as your trusted
-                    partner.
+                    Let's connect!
                   </h4>
                 </div>
                 <div
