@@ -121,7 +121,7 @@ const Ourclient: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Colaboration
+                Collaboration
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
                 Agency to Agency
