@@ -160,7 +160,6 @@ const CmsImplementation: React.FC = () => {
         <div className="container">
           <div className="w-full text-center relative z-10">
             <h1>What we do?</h1>
-            <h2 className={`text-mediumGray`}>(and do well)</h2>
           </div>
         </div>
       </section>
