@@ -870,7 +870,7 @@ const Home: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <div className="textWrap relative w-full max-w-[475px] md:mt-8   md:mx-auto">
+              <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
                 <ul className=" relative flex flex-wrap justify-end sm:block">
                   <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
                     <Link
