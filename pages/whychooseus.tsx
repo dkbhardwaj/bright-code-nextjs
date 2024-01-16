@@ -565,7 +565,7 @@ const WhyChooseUs: React.FC = () => {
                   How Can We Help With Your Next Project?
                 </h2>
                 <p className=" text-white ">
-                  Get in touch with Shiv for a free consultation. He is based in Livermore CA.
+                  Get in touch with Shiv for a free consultation. He is based in Los Angeles CA.
                 </p>
               </div>
               <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
