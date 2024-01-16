@@ -406,23 +406,6 @@ const WhyChooseUs: React.FC = () => {
       </section>
       {/* Riverflow 4 End */}
       <div className="section_bgImage bg-darkBlue smallBgImage">
-        <section className=" relative w-full pt-28 md:pt-14 ">
-          <div className="container px-5 mx-auto">
-            <div className="intro_with_image relative flex flex-wrap items-center md:block ">
-              <div className="content relative w-[calc(100%-200px)] pr-28 md:pr-0 md:text-center md:w-full md:mb-5 ">
-                <h2 className="font-medium xl-up:text-[45px] text-white mb-6">
-                  How Can We Help With Your Next Project?
-                </h2>
-                <p className=" text-white ">
-                  Get in touch with DK Bhardwaj for a free consultation. He is based in Livermore CA. He has been involved in Drupal and Open Source community for the last 14 years.
-                </p>
-              </div>
-              <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
-                <Image src="/why-choose-us/dk-headshot.jpeg" width={220} height={220} alt="img" className=" w-full h-full object-cover " />
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Contact Form Start */}
         <section
@@ -573,6 +556,24 @@ const WhyChooseUs: React.FC = () => {
           </div>
         </section>
         {/* Contact Form End */}
+
+        <section className=" relative w-full pt-28 md:pt-14 ">
+          <div className="container px-5 mx-auto">
+            <div className="intro_with_image relative flex flex-wrap items-center md:block ">
+              <div className="content relative w-[calc(100%-200px)] pr-28 md:pr-0 md:text-center md:w-full md:mb-5 ">
+                <h2 className="font-medium xl-up:text-[45px] text-white mb-6">
+                  How Can We Help With Your Next Project?
+                </h2>
+                <p className=" text-white ">
+                  Get in touch with Shiv for a free consultation. He is based in Livermore CA.
+                </p>
+              </div>
+              <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
+                <Image src="/why-choose-us/shiv-headshot.jpg" width={220} height={220} alt="img" className=" w-full h-full object-cover " />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Footer Start */}
         <footer className="footer py-[90px] md:py-16 ">
