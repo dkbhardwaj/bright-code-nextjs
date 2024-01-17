@@ -457,9 +457,7 @@ const CmsSupport: React.FC = () => {
                   Let&#39;s talk about your project
                 </h2>
                 <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                  You are welcome to fill in the form, and our web experts will
-                  reach out to you during business hours to discuss your
-                  project.
+                Fill in the form and our experts will reach out to you.
                 </h4>
               </div>
               <div className="relative w-full">
