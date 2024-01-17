@@ -416,16 +416,24 @@ const WhyChooseUs: React.FC = () => {
             <div
               className={`relative w-full py-16  bgPurpleGradient  md:py-12`}
             >
-              <div className=" relative w-full max-w-[960px] mx-auto mb-16 text-center">
-                <h6 className="text-white title mb-[38px] md:mb-[18px] ">
-                  GET IN TOUCH
-                </h6>
-                <h2 className="text-white mb-[38px] md:mb-[18px] ">
-                  Let&#39;s talk about your project
-                </h2>
-                <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                Fill in the form and our experts will reach out to you.
-                </h4>
+              {/* <div className=" relative w-full max-w-[960px] mx-auto mb-16 text-center">
+                
+              </div> */}
+              <div className="intro_with_image relative flex flex-wrap items-center mb-16 md:block ">
+                <div className="content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6 ">
+                  <h6 className="text-white title mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    GET IN TOUCH
+                  </h6>
+                  <h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    Let&#39;s talk about your project
+                  </h2>
+                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
+                  Fill in the form and our experts will reach out to you.
+                  </h4>
+                </div>
+                <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
+                  <Image src="/why-choose-us/shiv-headshot.jpg" width={220} height={220} alt="img" className=" w-full h-full object-cover " />
+                </div>
               </div>
               <div className="relative w-full">
                 <div
@@ -555,7 +563,7 @@ const WhyChooseUs: React.FC = () => {
         </section>
         {/* Contact Form End */}
 
-        <section className=" relative w-full pt-28 md:pt-14 ">
+        {/* <section className=" relative w-full pt-28 md:pt-14 ">
           <div className="container px-5 mx-auto">
             <div className="intro_with_image relative flex flex-wrap items-center md:block ">
               <div className="content relative w-[calc(100%-200px)] pr-28 md:pr-0 md:text-center md:w-full md:mb-5 ">
@@ -571,7 +579,7 @@ const WhyChooseUs: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Footer Start */}
         <footer className="footer py-[90px] md:py-16 ">
