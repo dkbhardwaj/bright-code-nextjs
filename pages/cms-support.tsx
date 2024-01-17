@@ -690,7 +690,7 @@ const CmsSupport: React.FC = () => {
                         className=" w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-semibold">+ ‪(925) 315-5061‬</span>
+                    <span className="font-semibold">+ ‪805-215-0549‬</span>
                   </li>
                 </ul>
                 {/* <form action="/" className=" relative w-full">
