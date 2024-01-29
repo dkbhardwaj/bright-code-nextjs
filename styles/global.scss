@@ -300,3 +300,34 @@ span.title {
     }
   }
 }
+.image-with-list {
+  .image-with-list-content {
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: -63px;
+      width: calc(100% + 126px);
+      height: 100%;
+      background-image: linear-gradient(to right, #8000ff, #fff 50%);
+      border-radius: 55px;
+      opacity: 0.7;
+      z-index: 1;
+    }
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: -63px;
+      width: calc(100% + 126px);
+      height: 100%;
+      background-image: url("/case-study/man-img.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 55px;
+      z-index: -1;
+    }
+  }
+}
