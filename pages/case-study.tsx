@@ -56,22 +56,22 @@ const CaseStudy: React.FC = () => {
       {/* Banner End */}
 
       {/* Image With List Start */}
-      {/* <section className=' image-with-list relative w-full pt-20 '>
+      <section className=' image-with-list relative w-full pt-20 '>
         <div className="container">
-          <div className="image-with-list-content py-20 ">
-            <div className="list-content relative z-[5] ">
-              <h2>Key Takeaways</h2>
-              <ul>
-                <li>Better climate governance</li>
-                <li>Insurer is well-positioned to meet climate-related disclosure requirements</li>
-                <li>Insurer demonstrated leadership and satisfied investor and stakeholder concerns</li>
-                <li>Project expanded to encompass different perils and regions</li>
-                <li>Factors unrelated to climate changes, for example increases in exposure, are likely to be a more meaningful driver of near-term risk</li>
+          <div className="image-with-list-content flex justify-end py-[74px] ">
+            <div className="list-content relative w-full max-w-[526px] z-[5] ">
+              <h2 className=' text-[45px] mb-[42px] '>Key Takeaways</h2>
+              <ul className=' list-none relative w-full block pl-[25px] '>
+                <li className=' font-light leading-[28px] '>Better climate governance</li>
+                <li className=' font-light leading-[28px] '>Insurer is well-positioned to meet climate-related disclosure requirements</li>
+                <li className=' font-light leading-[28px] '>Insurer demonstrated leadership and satisfied investor and stakeholder concerns</li>
+                <li className=' font-light leading-[28px] '>Project expanded to encompass different perils and regions</li>
+                <li className=' font-light leading-[28px] '>Factors unrelated to climate changes, for example increases in exposure, are likely to be a more meaningful driver of near-term risk</li>
               </ul>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Image With List End */}
 
 
@@ -87,9 +87,6 @@ const CaseStudy: React.FC = () => {
           <div className="w-full z-1 relative">
             <div
               className="content w-full text-center relative"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
             >
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
                 The Challenge
@@ -153,9 +150,6 @@ const CaseStudy: React.FC = () => {
           <div className="w-full z-1 relative">
             <div
               className="content w-full text-center relative"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
             >
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
                 The Solution 
@@ -262,9 +256,6 @@ const CaseStudy: React.FC = () => {
           <div className="w-full z-1 relative">
             <div
               className="content w-full text-center relative"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
             >
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
               The Outcome
