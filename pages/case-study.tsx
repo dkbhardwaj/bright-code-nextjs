@@ -36,48 +36,48 @@ const CaseStudy: React.FC = () => {
     <>
     {/* Banner Start */}
     <section
-        className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-24 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
+        className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
       >
         <div className="container">
           <div className="w-full max-w-[490px] relative z-[5] text-left">
             <h6 className=' text-white mb-2 '>CASE STUDY</h6>
-            <h2
-              className="header-h2 text-[45px] text-white mb-5 "
+            <h1
+              className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 "
               data-aos="fade-left"
               data-aos-delay="400"
               data-aos-duration="500"
             >
               Taking the Lead on Climate Change Risk
-            </h2>
-            <p className=' text-[18px] font-medium text-[#ababab] '>How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.</p>
+            </h1>
+            <p className=' lg-up:text-[18px] font-medium text-[#ababab] lg-up:leading-[30px] '>How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.</p>
           </div>
         </div>
       </section>
       {/* Banner End */}
 
       {/* List With Social Icon Start */}
-      <section className=' list-with-social-icon relative w-full py-[106px] '>
+      <section className=' list-with-social-icon relative w-full py-[106px] lg:py-20 md:!py-12 '>
         <div className="container">
-          <div className="list-with-icon-content relative w-full flex flex-wrap ">
-            <div className="list-content w-[calc(100%-265px)] ">
-              <ul className=' relative w-full flex pr-5 '>
-                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Better Climate Governance</li>
-                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Satisfied Investor And Stakeholder Concerns</li>
-                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Equipped to Meet Climate-Related Disclosure Requirements</li>
+          <div className="list-with-icon-content relative w-full flex flex-wrap md:block ">
+            <div className="list-content w-[calc(100%-265px)] md:w-full md:mb-5 ">
+              <ul className=' relative w-full flex pr-5 xl:block md:pr-0 '>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full xl:mb-4 lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>Better Climate Governance</li>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full xl:mb-4 lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>Satisfied Investor And Stakeholder Concerns</li>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>Equipped to Meet Climate-Related Disclosure Requirements</li>
               </ul>
             </div>
-            <div className="social-icon-content relative w-full max-w-[265px] h-fit rounded-[20px] bg-[#f6eeff] py-[28px] px-[36px] flex items-center justify-between ">
+            <div className="social-icon-content relative w-full max-w-[265px] h-fit rounded-[20px] bg-[#f6eeff] py-[28px] px-[36px] flex items-center justify-between md:py-[22px] md:px-[30px] ">
               <span className=' text-[15px] font-normal leading-[21px] text-black '>Share To:</span>
               <div className="social-icon flex flex-wrap ml-2 ">
-                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
                   <Link href="/"  className="redirect">.</Link>
                   <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
                 </div>
-                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
                   <Link href="/"  className="redirect">.</Link>
                   <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
                 </div>
-                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
                   <Link href="/"  className="redirect">.</Link>
                   <Image src="/case-study/facebook-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
                 </div>
@@ -89,11 +89,11 @@ const CaseStudy: React.FC = () => {
        {/* List With Social Icon End */}
 
       {/* Image With List Start */}
-      <section className=' image-with-list relative w-full '>
+      <section className=' image-with-list relative w-full overflow-hidden '>
         <div className="container">
-          <div className="image-with-list-content flex justify-end pt-[74px] pb-[105px] ">
-            <div className="list-content relative w-full max-w-[526px] z-[5] ">
-              <h2 className=' text-[45px] mb-[42px] '>Key Takeaways</h2>
+          <div className="image-with-list-content flex justify-end pt-[74px] pb-[100px] md:featured md:justify-start lg:pt-14 lg:pb-20 md:!py-12 ">
+            <div className="list-content relative w-full max-w-[526px] z-[5] md:max-w-[100%] ">
+              <h2 className=' lg-up:text-[45px] mb-[42px] lg:mb-[36px] md:!mb-6 '>Key Takeaways</h2>
               <ul className=' list-none relative w-full block pl-[25px] '>
                 <li className=' font-light leading-[28px] '>Better climate governance</li>
                 <li className=' font-light leading-[28px] '>Insurer is well-positioned to meet climate-related disclosure requirements</li>
@@ -110,7 +110,7 @@ const CaseStudy: React.FC = () => {
 
       {/*  Intro Start */}
       <section
-        className={`intro pt-20 pb-8 md:pt-14 md:pb-3 overflow-x-hidden `}
+        className={`intro pt-32 pb-8 md:pt-14 md:pb-3 overflow-x-hidden `}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"
@@ -219,8 +219,8 @@ const CaseStudy: React.FC = () => {
                     alt="Agency to agency services"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <p>The insurer was already using Moody’s RMS catastrophe models across its business, which were embedded into its underwriting and corporate management process. However, “bending its EP curve” would not deliver the insights needed to capture future climate change risk and drive strategic decision-making. While the insurer was an industry leader in understanding and quantifying.</p>
+                <div className="textWrap py-9 px-5 md:py-5">
+                  <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The insurer was already using Moody’s RMS catastrophe models across its business, which were embedded into its underwriting and corporate management process. However, “bending its EP curve” would not deliver the insights needed to capture future climate change risk and drive strategic decision-making. While the insurer was an industry leader in understanding and quantifying.</p>
                 </div>
               </div>
             </div>
@@ -243,8 +243,8 @@ const CaseStudy: React.FC = () => {
                     alt="Client Centric development"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <p>The project kicked off looking at North American Hurricane and Australian Cyclone, assessing three specific time horizons: 2030, 2050 and 2100. Moody’s RMS analysts worked with the carrier’s internal catastrophe modeling and exposure management team, analyzing a Representative Concentration Pathway (RCP) scenario for future greenhouse gas concentrations awrad...</p>
+                <div className="textWrap py-9 px-5 md:py-5">
+                  <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The project kicked off looking at North American Hurricane and Australian Cyclone, assessing three specific time horizons: 2030, 2050 and 2100. Moody’s RMS analysts worked with the carrier’s internal catastrophe modeling and exposure management team, analyzing a Representative Concentration Pathway (RCP) scenario for future greenhouse gas concentrations awrad...</p>
                 </div>
               </div>
             </div>
@@ -267,8 +267,8 @@ const CaseStudy: React.FC = () => {
                     alt="Empowering designers"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <p>The company felt Moody’s RMS was best positioned to interpret scientific consensus around climate change and its likely impact on physical risk from natural perils. Working with Moody’s RMS also offered stakeholders an "external seal of approval," enabling the organization to demonstrate that it had worked with industry-leading analysts and taken concrete steps to build a clear view of how climate change...</p>
+                <div className="textWrap py-9 px-5 md:py-5">
+                  <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The company felt Moody’s RMS was best positioned to interpret scientific consensus around climate change and its likely impact on physical risk from natural perils. Working with Moody’s RMS also offered stakeholders an "external seal of approval," enabling the organization to demonstrate that it had worked with industry-leading analysts and taken concrete steps to build a clear view of how climate change...</p>
                 </div>
               </div>
             </div>
@@ -279,7 +279,7 @@ const CaseStudy: React.FC = () => {
 
       {/*  Intro Start */}
       <section
-        className={`intro pt-20 pb-8 md:pt-14 md:pb-3 overflow-x-hidden `}
+        className={`intro pb-4 md:pb-3 overflow-x-hidden `}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"
@@ -341,11 +341,11 @@ const CaseStudy: React.FC = () => {
 
      
         {/* Three Card Section Start*/}
-        <section className="introWithCards py-20 md:py-10">
+        <section className="introWithCards relative w-full overflow-hidden py-32 md:py-10">
         <div className="container">
-          <div className=" featured pt-20 pb-16 "> 
+          <div className=" featured pt-20 pb-14 "> 
             <div
-            className="content w-full text-center relative mb-10 "
+            className="content w-full text-center relative mb-[90px] "
           >
             <h2 className="font-medium text-black ">Related Information
             </h2>

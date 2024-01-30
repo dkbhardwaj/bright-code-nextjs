@@ -320,6 +320,13 @@ span.title {
       border-radius: 55px;
       // opacity: 0.7;
       z-index: 1;
+      @include tablet-down {
+        background-image: linear-gradient(
+          to right,
+          rgba(183, 117, 249, 0.902),
+          rgba(246, 239, 252, 0.902) 70%
+        );
+      }
     }
     &::after {
       content: " ";
