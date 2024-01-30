@@ -110,7 +110,7 @@ const CaseStudy: React.FC = () => {
 
       {/*  Intro Start */}
       <section
-        className={`intro pt-32 pb-8 md:pt-14 md:pb-3 overflow-x-hidden `}
+        className={`intro relative w-full pt-32 pb-8 xl:pt-24 xl:pb-6 md:!pt-14 lg:!pb-0 overflow-hidden `}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"
@@ -143,7 +143,7 @@ const CaseStudy: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <p className="mt-5  text-black">
+              <p className=" text-black">
                 A major global insurer was under growing pressure from shareholders to understand how climate change was impacting its underwriting portfolios, both now and into the future under multiple climate change scenarios up to the end of the century. The aim was to use the information for longer-term business planning to prepare and adjust its property catastrophe underwriting.
               </p>
               <p className="mt-5  text-black">
@@ -173,7 +173,7 @@ const CaseStudy: React.FC = () => {
 
       {/*  Intro Start */}
       <section
-        className={`intro pt-20 pb-16 md:pt-14 md:pb-8 overflow-x-hidden `}
+        className={`intro relative w-full pt-20 pb-16 lg:pt-14 md:!pt-9 md:pb-8 overflow-hidden `}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"
@@ -219,7 +219,7 @@ const CaseStudy: React.FC = () => {
                     alt="Agency to agency services"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 md:py-5">
+                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
                   <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The insurer was already using Moody’s RMS catastrophe models across its business, which were embedded into its underwriting and corporate management process. However, “bending its EP curve” would not deliver the insights needed to capture future climate change risk and drive strategic decision-making. While the insurer was an industry leader in understanding and quantifying.</p>
                 </div>
               </div>
@@ -243,7 +243,7 @@ const CaseStudy: React.FC = () => {
                     alt="Client Centric development"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 md:py-5">
+                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
                   <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The project kicked off looking at North American Hurricane and Australian Cyclone, assessing three specific time horizons: 2030, 2050 and 2100. Moody’s RMS analysts worked with the carrier’s internal catastrophe modeling and exposure management team, analyzing a Representative Concentration Pathway (RCP) scenario for future greenhouse gas concentrations awrad...</p>
                 </div>
               </div>
@@ -267,7 +267,7 @@ const CaseStudy: React.FC = () => {
                     alt="Empowering designers"
                   />
                 </div>
-                <div className="textWrap py-9 px-5 md:py-5">
+                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
                   <p className=' text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis '>The company felt Moody’s RMS was best positioned to interpret scientific consensus around climate change and its likely impact on physical risk from natural perils. Working with Moody’s RMS also offered stakeholders an "external seal of approval," enabling the organization to demonstrate that it had worked with industry-leading analysts and taken concrete steps to build a clear view of how climate change...</p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ const CaseStudy: React.FC = () => {
 
       {/*  Intro Start */}
       <section
-        className={`intro pb-4 md:pb-3 overflow-x-hidden `}
+        className={`intro relative w-full pb-4 md:pb-0 overflow-hidden `}
         id="white-label-development"
         data-aos="fade-up"
         data-aos-delay="700"
@@ -311,7 +311,7 @@ const CaseStudy: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <p className="mt-5  text-black">
+              <p className=" text-black">
               The new insights were critical to increasing confidence with shareholders and supporting business planning. The ability to effectively communicate climate change risk using traditional industry loss metrics, such as average annual loss, helped the insurer’s senior leadership team gain instant credibility with shareholders. Furthermore, with both a near- and long-term view of climate risk, they were able to plan more effectively for the uncertainty that climate change brings to their book of business.
               </p>
               <p className="mt-5  text-black">
@@ -341,11 +341,11 @@ const CaseStudy: React.FC = () => {
 
      
         {/* Three Card Section Start*/}
-        <section className="introWithCards relative w-full overflow-hidden py-32 md:py-10">
+        <section className="introWithCards relative w-full overflow-hidden py-32 md:pt-8 md:pb-14">
         <div className="container">
-          <div className=" featured pt-20 pb-14 "> 
+          <div className=" featured pt-20 pb-14 lg:pt-16 md:!pt-14 md:pb-12 "> 
             <div
-            className="content w-full text-center relative mb-[90px] "
+            className="content w-full text-center relative mb-[90px] lg:mb-16 md:!mb-12 "
           >
             <h2 className="font-medium text-black ">Related Information
             </h2>
