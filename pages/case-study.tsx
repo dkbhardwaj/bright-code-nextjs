@@ -55,10 +55,43 @@ const CaseStudy: React.FC = () => {
       </section>
       {/* Banner End */}
 
-      {/* Image With List Start */}
-      <section className=' image-with-list relative w-full pt-20 '>
+      {/* List With Social Icon Start */}
+      <section className=' list-with-social-icon relative w-full py-[106px] '>
         <div className="container">
-          <div className="image-with-list-content flex justify-end py-[74px] ">
+          <div className="list-with-icon-content relative w-full flex flex-wrap ">
+            <div className="list-content w-[calc(100%-265px)] ">
+              <ul className=' relative w-full flex pr-5 '>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Better Climate Governance</li>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Satisfied Investor And Stakeholder Concerns</li>
+                <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover '>Equipped to Meet Climate-Related Disclosure Requirements</li>
+              </ul>
+            </div>
+            <div className="social-icon-content relative w-full max-w-[265px] h-fit rounded-[20px] bg-[#f6eeff] py-[28px] px-[36px] flex items-center justify-between ">
+              <span className=' text-[15px] font-normal leading-[21px] text-black '>Share To:</span>
+              <div className="social-icon flex flex-wrap ml-2 ">
+                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                  <Link href="/"  className="redirect">.</Link>
+                  <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
+                </div>
+                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                  <Link href="/"  className="redirect">.</Link>
+                  <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                </div>
+                <div className="icon max-w-[26px] h-[26px] ml-[8px] ">
+                  <Link href="/"  className="redirect">.</Link>
+                  <Image src="/case-study/facebook-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+       {/* List With Social Icon End */}
+
+      {/* Image With List Start */}
+      <section className=' image-with-list relative w-full '>
+        <div className="container">
+          <div className="image-with-list-content flex justify-end pt-[74px] pb-[105px] ">
             <div className="list-content relative w-full max-w-[526px] z-[5] ">
               <h2 className=' text-[45px] mb-[42px] '>Key Takeaways</h2>
               <ul className=' list-none relative w-full block pl-[25px] '>
