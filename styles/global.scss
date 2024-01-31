@@ -59,6 +59,12 @@ h2 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.text_gradient2 {
+  font-weight: 500;
+  background: linear-gradient(to right, #8000ff, #0075ff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 h3 {
   // font-size: 44px;
   font-size: 35px;
