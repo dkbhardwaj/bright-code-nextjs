@@ -39,13 +39,13 @@ const CaseStudy: React.FC = () => {
         className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
       >
         <div className="container">
-          <div className="w-full max-w-[490px] relative z-[5] text-left">
+          <div className="w-full max-w-[490px] relative z-[5] text-left" 
+              data-aos="fade-left"
+              data-aos-delay="200"
+              data-aos-duration="400">
             <h6 className=' text-white mb-2 '>CASE STUDY</h6>
             <h1
               className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 "
-              data-aos="fade-left"
-              data-aos-delay="400"
-              data-aos-duration="500"
             >
               Taking the Lead on Climate Change Risk
             </h1>
@@ -70,11 +70,11 @@ const CaseStudy: React.FC = () => {
               <span className=' text-[15px] font-normal leading-[21px] text-black '>Share To:</span>
               <div className="social-icon flex flex-wrap ml-2 ">
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                  <Link href="/"  className="redirect">.</Link>
+                  <Link href={"https://twitter.com/intent/tweet?url=https://company/bright-codeio/"}  className="redirect">.</Link>
                   <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                  <Link href="/"  className="redirect">.</Link>
+                  <Link href={"https://www.linkedin.com/company/bright-codeio/"}  className="redirect">.</Link>
                   <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
@@ -113,8 +113,8 @@ const CaseStudy: React.FC = () => {
         className={`intro relative w-full pt-32 pb-8 xl:pt-24 xl:pb-6 md:!pt-14 lg:!pb-0 overflow-hidden `}
         id="white-label-development"
         data-aos="fade-up"
-        data-aos-delay="700"
-        data-aos-duration="1000"
+        data-aos-delay="500"
+        data-aos-duration="800"
       >
         <div className="container">
           <div className="w-full z-1 relative">
@@ -140,7 +140,7 @@ const CaseStudy: React.FC = () => {
             <div
               className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
               data-aos="fade-right"
-              data-aos-delay="400"
+              data-aos-delay="300"
               data-aos-duration="500"
             >
               <p className=" text-black">
@@ -154,7 +154,7 @@ const CaseStudy: React.FC = () => {
               <div
                 className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
                 data-aos="fade-left"
-                data-aos-delay="400"
+                data-aos-delay="300"
                 data-aos-duration="500"
               >
                 <Image
@@ -176,8 +176,8 @@ const CaseStudy: React.FC = () => {
         className={`intro relative w-full pt-20 pb-16 lg:pt-14 md:!pt-9 md:pb-8 overflow-hidden `}
         id="white-label-development"
         data-aos="fade-up"
-        data-aos-delay="700"
-        data-aos-duration="1000"
+        data-aos-delay="500"
+        data-aos-duration="800"
       >
         <div className="container">
           <div className="w-full z-1 relative">
