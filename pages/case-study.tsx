@@ -36,7 +36,7 @@ const CaseStudy: React.FC = () => {
     <>
     {/* Banner Start */}
     <section
-        className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
+        className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-center bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
       >
         <div className="container">
           <div className="w-full max-w-[490px] relative z-[5] text-left" 
@@ -672,7 +672,7 @@ const CaseStudy: React.FC = () => {
               </div>
               <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
                 <ul className=" relative flex flex-wrap justify-end sm:block">
-                  <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
+                  <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 md:mx-auto ">
                     <Link
                       href="mailto:contact@bright-code.io"
                       className="redirect"
@@ -692,7 +692,7 @@ const CaseStudy: React.FC = () => {
                       contact@bright-code.io
                     </span>
                   </li>
-                  <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 sm:mx-auto ">
+                  <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 md:mx-auto ">
                     <div className="icon-img max-w-[21px] h-[21px] mr-5">
                       <Image
                         src="/phone-icon-white.svg"
