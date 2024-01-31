@@ -569,7 +569,7 @@ const Ourclient: React.FC = () => {
               </div>
               <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
                 <ul className=" relative flex flex-wrap justify-end sm:block">
-                  <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 sm:mx-auto ">
+                  <li className=" relative w-fit flex items-center px-5 py-2 border-[1px] border-solid border-white rounded-[9px]  mb-5 sm:mb-3 md:mx-auto ">
                     <Link
                       href="mailto:contact@bright-code.io"
                       className="redirect"
@@ -589,7 +589,7 @@ const Ourclient: React.FC = () => {
                       contact@bright-code.io
                     </span>
                   </li>
-                  <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 sm:mx-auto ">
+                  <li className=" relative w-fit flex items-center  px-5 py-2 border-[1px] border-solid border-white rounded-[9px] ml-4  mb-5 sm:mb-3 md:mx-auto ">
                     <div className="icon-img max-w-[21px] h-[21px] mr-5">
                       <Image
                         src="/phone-icon-white.svg"
