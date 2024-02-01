@@ -9,14 +9,21 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import { TwitterShareButton } from 'next-share';
+import { LinkedinShareButton } from 'next-share';
+import { FacebookShareButton } from 'next-share';
+
 
 const CaseStudy: React.FC = () => {
   const router = useRouter();
-  const baseUrl = typeof window !== 'undefined' && window.location.origin;
+  const baseUrl =  typeof window !== 'undefined' ? window.location.href : '';
   console.log(baseUrl);
   
   const link = encodeURI(`${baseUrl}${router.asPath}`);
   console.log(link);
+
+
+
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
@@ -77,16 +84,32 @@ const CaseStudy: React.FC = () => {
               <span className=' text-[15px] font-normal leading-[21px] text-black '>Share To:</span>
               <div className="social-icon flex flex-wrap ml-2 ">
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                <Link href={`https://twitter.com/share?url=${link}`} className="redirect">.</Link>
-                  <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
+                {/* <Link href={`https://twitter.com/share?url=${link}`} className="redirect">.</Link> */}
+                  
+                  <TwitterShareButton
+                    url={link}
+                    // title={'next-share is a social share buttons for your next React apps.'}
+                  >
+                    <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
+                  </TwitterShareButton>
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}  className="redirect">.</Link>
-                  <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                {/* <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}  className="redirect">.</Link> */}
+                  
+                  <LinkedinShareButton url={link}>
+                    <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                  </LinkedinShareButton>
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`}  className="redirect">.</Link>
-                  <Image src="/case-study/facebook-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                {/* <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`}  className="redirect">.</Link> */}
+                  
+                  <FacebookShareButton
+                    url={link}
+                    // quote={'next-share is a social share buttons for your next React apps.'}
+                    // hashtag={'#nextshare'}
+                  >
+                    <Image src="/case-study/facebook-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
+                  </FacebookShareButton>
                 </div>
               </div>
             </div>
