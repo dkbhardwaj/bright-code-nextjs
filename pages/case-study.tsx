@@ -12,12 +12,11 @@ import { useRouter } from "next/router";
 
 const CaseStudy: React.FC = () => {
   const router = useRouter();
-  console.log(window.location.origin);
-  const baseUrl = typeof window !== 'undefined' && window.location.origin;
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  console.log(baseUrl);
+  
   const link = encodeURI(`${baseUrl}${router.asPath}`);
-
-
-
+  console.log(link);
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
