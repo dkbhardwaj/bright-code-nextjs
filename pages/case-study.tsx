@@ -12,7 +12,8 @@ import { useRouter } from "next/router";
 
 const CaseStudy: React.FC = () => {
   const router = useRouter();
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
+  console.log(window.location.origin);
+  const baseUrl = typeof window !== 'undefined' && window.location.origin;
   const link = encodeURI(`${baseUrl}${router.asPath}`);
 
 
