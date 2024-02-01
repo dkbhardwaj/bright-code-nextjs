@@ -84,29 +84,20 @@ const CaseStudy: React.FC = () => {
               <span className=' text-[15px] font-normal leading-[21px] text-black '>Share To:</span>
               <div className="social-icon flex flex-wrap ml-2 ">
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                {/* <Link href={`https://twitter.com/share?url=${link}`} className="redirect">.</Link> */}
-                  
                   <TwitterShareButton
                     url={link}
-                    // title={'next-share is a social share buttons for your next React apps.'}
                   >
                     <Image src="/case-study/twitter-black-icon.svg" width={50} height={50} className=' w-full h-full object-contain ' alt="icon" />
                   </TwitterShareButton>
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                {/* <Link href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}  className="redirect">.</Link> */}
-                  
                   <LinkedinShareButton url={link}>
                     <Image src="/case-study/linkedin-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
                   </LinkedinShareButton>
                 </div>
                 <div className="icon relative max-w-[26px] h-[26px] ml-[8px] ">
-                {/* <Link href={`https://www.facebook.com/sharer/sharer.php?u=${link}`}  className="redirect">.</Link> */}
-                  
                   <FacebookShareButton
                     url={link}
-                    // quote={'next-share is a social share buttons for your next React apps.'}
-                    // hashtag={'#nextshare'}
                   >
                     <Image src="/case-study/facebook-black-icon.svg"width={50} height={50} className=' w-full h-full object-contain '  alt="icon" />
                   </FacebookShareButton>
