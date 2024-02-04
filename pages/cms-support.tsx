@@ -719,7 +719,7 @@ const CmsSupport: React.FC = () => {
                 <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
                   <div className="icon relative max-w-[33px] h-[33px] ">
                     <Link
-                      href={"https://www.linkedin.com/company/bright-codeio/"}
+                      href={"https://twitter.com/brightcodeio"}
                       className="redirect"
                     >
                       .
@@ -735,7 +735,7 @@ const CmsSupport: React.FC = () => {
                   <div className="icon relative ml-3  max-w-[33px] h-[33px]">
                     <Link
                       href={
-                        "https://www.linkedin.com/in/bright-code-71120724a/"
+                        "https://www.linkedin.com/company/bright-codeio/"
                       }
                       className="redirect"
                     >

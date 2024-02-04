@@ -682,7 +682,7 @@ const WhyChooseUs: React.FC = () => {
                         className=" w-full h-full object-contain"
                       />
                     </div>
-                    <span className="font-semibold">+ ‪805-215-0549</span>
+                    <span className="font-semibold">+ ‪805-215-0549‬</span>
                   </li>
                 </ul>
                 {/* <form action="/" className=" relative w-full">
@@ -713,7 +713,7 @@ const WhyChooseUs: React.FC = () => {
                 <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
                   <div className="icon relative max-w-[33px] h-[33px] ">
                     <Link
-                      href={"https://www.linkedin.com/company/bright-codeio/"}
+                      href={"https://twitter.com/brightcodeio"}
                       className="redirect"
                     >
                       .
@@ -729,7 +729,7 @@ const WhyChooseUs: React.FC = () => {
                   <div className="icon relative ml-3  max-w-[33px] h-[33px]">
                     <Link
                       href={
-                        "https://www.linkedin.com/in/bright-code-71120724a/"
+                        "https://www.linkedin.com/company/bright-codeio/"
                       }
                       className="redirect"
                     >
