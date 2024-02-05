@@ -232,14 +232,14 @@ span.title {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/bg-image.svg");
+    background-image: url("/background-image.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
   }
   &.smallBgImage {
     &::before {
-      background-image: url("/small-bg-image.svg");
+      background-image: url("/small-background-image.png");
       background-position: top;
     }
   }
