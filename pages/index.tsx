@@ -855,11 +855,11 @@ const Home: React.FC = () => {
                 <p className=" mb-4 text-black ">
                   Thank you for your interest!
                 </p>
-                <div className="btnWrap">
+                {/* <div className="btnWrap">
                   <Link href="/" className="gradient-btn">
                     <span>Home</span>
                   </Link>
-                </div>
+                </div> */}
                 <div></div>
               </div>
             </div>
