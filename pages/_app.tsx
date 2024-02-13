@@ -88,6 +88,25 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const googleTagScript = `<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-11070673099');
+  </script>`;
+  const conversionScript = `<!-- Event snippet for Contact us page conversion page -->
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
+  </script>`;
+
+  useEffect(() => {
+    let head = document.getElementsByTagName("head")[0];
+    head.innerHTML += googleTagScript;
+    head.innerHTML += conversionScript;
+  });
   return (
     <>
       <Head>
