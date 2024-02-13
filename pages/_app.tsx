@@ -11,6 +11,7 @@ import "../styles/banners.scss";
 import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
+// import GoogleAdsConversion from "../components/gTag";
 
 export const metadata: Metadata = {
   title: "Bright Code",
@@ -68,17 +69,13 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   gtag('js', new Date());
   gtag('config', 'AW-11070673099');
 </script>`;
-  const conversionScript = `<!-- Event snippet for Contact us page conversion page -->
-<script>
-  gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
-</script>`;
+
 
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
     head.innerHTML += gtagScript;
     head.innerHTML += gtagManagerScript;
     head.innerHTML += googleTagScript;
-    head.innerHTML += conversionScript;
   }, []);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -116,6 +113,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           media="all"
         ></link>
       </Head>
+      {/* <GoogleAdsConversion /> */}
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
