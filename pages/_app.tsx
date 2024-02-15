@@ -11,7 +11,7 @@ import "../styles/banners.scss";
 import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
-// import GoogleAdsConversion from "../components/gTag";
+import GoogleAnalytics from "@bradgarropy/next-google-analytics";
 
 export const metadata: Metadata = {
   title: "Bright Code",
@@ -70,13 +70,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   gtag('config', 'AW-11070673099');
 </script>`;
 
-
-  useEffect(() => {
-    let head = document.getElementsByTagName("head")[0];
-    head.innerHTML += gtagScript;
-    head.innerHTML += gtagManagerScript;
-    head.innerHTML += googleTagScript;
-  }, []);
+  // useEffect(() => {
+  //   let head = document.getElementsByTagName("head")[0];
+  //   head.innerHTML += gtagScript;
+  //   head.innerHTML += gtagManagerScript;
+  //   head.innerHTML += googleTagScript;
+  // }, []);
 
   const [isVisible, setIsVisible] = useState(false);
   const handleScroll = () => {
@@ -103,6 +102,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      <GoogleAnalytics measurementId="AW-11070673099" />
       <Head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link
