@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   description: "Drupal CMS Agency",
 };
 
+declare global {
+  interface Window {
+    dataLayer: any[]; // Define the dataLayer property
+  }
+}
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -70,6 +76,37 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   gtag('config', 'AW-11070673099');
 </script>`;
 
+  useEffect(() => {
+    // Google Ads Conversion Tracking Code
+    const script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=AW-11070673099";
+    script.async = true;
+    document.head.appendChild(script);
+    console.log("Script tag inserted");
+    window.dataLayer = window.dataLayer || [];
+
+    // Modified gtag function to handle 'js' command separately
+    function gtag(command: string, configId: string, options?: any) {
+      if (command === "js") {
+        window.dataLayer.push({
+          event: "command",
+          command: "config",
+          config: configId,
+          ...options,
+        });
+      } else {
+        window.dataLayer.push({
+          event: "command",
+          command: command,
+          config: configId,
+          ...options,
+        });
+      }
+    }
+
+    gtag("js", "AW-11070673099"); // Note: 'js' command expects 'configId' as the second argument
+    // End Google Ads Conversion Tracking Code
+  }, []);
   // useEffect(() => {
   //   let head = document.getElementsByTagName("head")[0];
   //   head.innerHTML += gtagScript;
@@ -102,7 +139,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      <GoogleAnalytics measurementId="AW-11070673099" />
+      {/* <GoogleAnalytics measurementId="AW-11070673099" /> */}
       <Head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link
