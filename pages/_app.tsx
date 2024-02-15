@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
 import GoogleAnalytics from "@bradgarropy/next-google-analytics";
+import { Helmet } from "react-helmet";
 
 export const metadata: Metadata = {
   title: "Bright Code",
@@ -76,43 +77,43 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   gtag('config', 'AW-11070673099');
 </script>`;
 
-  useEffect(() => {
-    // Google Ads Conversion Tracking Code
-    const script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=AW-11070673099";
-    script.async = true;
-    document.head.appendChild(script);
-    console.log("Script tag inserted");
-    window.dataLayer = window.dataLayer || [];
-
-    // Modified gtag function to handle 'js' command separately
-    function gtag(command: string, configId: string, options?: any) {
-      if (command === "js") {
-        window.dataLayer.push({
-          event: "command",
-          command: "config",
-          config: configId,
-          ...options,
-        });
-      } else {
-        window.dataLayer.push({
-          event: "command",
-          command: command,
-          config: configId,
-          ...options,
-        });
-      }
-    }
-
-    gtag("js", "AW-11070673099"); // Note: 'js' command expects 'configId' as the second argument
-    // End Google Ads Conversion Tracking Code
-  }, []);
   // useEffect(() => {
-  //   let head = document.getElementsByTagName("head")[0];
-  //   head.innerHTML += gtagScript;
-  //   head.innerHTML += gtagManagerScript;
-  //   head.innerHTML += googleTagScript;
+  //   // Google Ads Conversion Tracking Code
+  //   const script = document.createElement("script");
+  //   script.src = "https://www.googletagmanager.com/gtag/js?id=AW-11070673099";
+  //   script.async = true;
+  //   document.head.appendChild(script);
+  //   console.log("Script tag inserted");
+  //   window.dataLayer = window.dataLayer || [];
+
+  //   // Modified gtag function to handle 'js' command separately
+  //   function gtag(command: string, configId: string, options?: any) {
+  //     if (command === "js") {
+  //       window.dataLayer.push({
+  //         event: "command",
+  //         command: "config",
+  //         config: configId,
+  //         ...options,
+  //       });
+  //     } else {
+  //       window.dataLayer.push({
+  //         event: "command",
+  //         command: command,
+  //         config: configId,
+  //         ...options,
+  //       });
+  //     }
+  //   }
+
+  //   gtag("js", "AW-11070673099"); // Note: 'js' command expects 'configId' as the second argument
+  //   // End Google Ads Conversion Tracking Code
   // }, []);
+  useEffect(() => {
+    let head = document.getElementsByTagName("head")[0];
+    head.innerHTML += gtagScript;
+    head.innerHTML += gtagManagerScript;
+    // head.innerHTML += googleTagScript;
+  }, []);
 
   const [isVisible, setIsVisible] = useState(false);
   const handleScroll = () => {
@@ -140,7 +141,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       {/* <GoogleAnalytics measurementId="AW-11070673099" /> */}
-      <Head>
+      <Helmet>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link
           rel="stylesheet"
@@ -149,8 +150,19 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           type="text/css"
           media="all"
         ></link>
-      </Head>
-      {/* <GoogleAdsConversion /> */}
+
+        {/* <!-- Google tag (gtag.js) --> */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"
+        ></script>
+        <script>
+          {`  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-11070673099');`}
+        </script>
+      </Helmet>
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
