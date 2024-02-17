@@ -11,7 +11,6 @@ import "../styles/banners.scss";
 import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
-import { Helmet } from "react-helmet";
 import { GTMHeadScript } from "../components/Gscripts";
 
 export const metadata: Metadata = {
@@ -107,9 +106,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
-        <GTMHeadScript />
-      </Head>
-      <Helmet>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link
           rel="stylesheet"
@@ -118,7 +114,8 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           type="text/css"
           media="all"
         ></link>
-      </Helmet>
+        <GTMHeadScript />
+      </Head>
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
