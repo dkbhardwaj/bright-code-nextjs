@@ -142,7 +142,7 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-delay="500"
               data-aos-duration="1000">
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">What we do.</h6>
-              <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">Bunsiness to Bunsiness.</h2>
+              <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">Business to Business.</h2>
             </div>
             <div
               className="content w-full text-center relative"
