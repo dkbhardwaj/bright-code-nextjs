@@ -55,11 +55,12 @@ const CaseStudy: React.FC = () => {
             data-aos-delay="200"
             data-aos-duration="400">
             <h6 className=" text-white mb-2 ">CASE STUDY</h6>
-            <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 "></h1>
+            <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 ">
+              Revitalizing Healthcare Web Presence: A Migration Success
+            </h1>
             <p className=" lg-up:text-[18px] font-medium text-[#ababab] lg-up:leading-[30px] ">
-              How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure
-              the impact of physical climate risk on its book of business and get ahead of the curve on climate
-              disclosure reporting.
+              Our agency was tasked with creating a new website for a major player in the healthcare industry. The
+              client's initial website, built on Sitefinity, lacked the flexibility needed in their dynamic environment.
             </p>
           </div>
         </div>
@@ -73,13 +74,13 @@ const CaseStudy: React.FC = () => {
             <div className="list-content w-[calc(100%-265px)] md:w-full md:mb-5 ">
               <ul className=" relative w-full flex pr-5 xl:block md:pr-0 ">
                 <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full xl:mb-4 lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>
-                  Better Climate Governance
+                  500+ Articles Migrated Flawlessly
                 </li>
                 <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full xl:mb-4 lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>
-                  Satisfied Investor And Stakeholder Concerns
+                  Enhanced Content Management
                 </li>
                 <li className=' relative w-full max-w-[262px] text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:max-w-full lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '>
-                  Equipped to Meet Climate-Related Disclosure Requirements
+                  Satisfied Client Content Concerns
                 </li>
               </ul>
             </div>
@@ -133,19 +134,24 @@ const CaseStudy: React.FC = () => {
             <div className="list-content relative w-full max-w-[526px] z-[5] md:max-w-[100%] ">
               <h2 className=" lg-up:text-[45px] mb-[42px] lg:mb-[36px] md:!mb-6 ">Key Takeaways</h2>
               <ul className=" list-none relative w-full block pl-[25px] ">
-                <li className=" font-light leading-[28px] ">Better climate governance</li>
                 <li className=" font-light leading-[28px] ">
-                  Insurer is well-positioned to meet climate-related disclosure requirements
+                  Successful migration of more than 500 articles to the new Drupal website without direct database
+                  access.
                 </li>
                 <li className=" font-light leading-[28px] ">
-                  Insurer demonstrated leadership and satisfied investor and stakeholder concerns
+                  Implementation of a solution that allowed in-house editors to easily edit and manage website content.
                 </li>
                 <li className=" font-light leading-[28px] ">
-                  Project expanded to encompass different perils and regions
+                  Custom coding and website scrapping can efficiently overcome the lack of direct database access for
+                  content migration.
                 </li>
                 <li className=" font-light leading-[28px] ">
-                  Factors unrelated to climate changes, for example increases in exposure, are likely to be a more
-                  meaningful driver of near-term risk
+                  A temporary database can serve as a powerful tool for content cleaning and style application in
+                  website migrations.
+                </li>
+                <li className=" font-light leading-[28px] ">
+                  Close collaboration with the client is crucial for understanding and meeting their specific needs,
+                  especially in industry-specific contexts.
                 </li>
               </ul>
             </div>
@@ -165,7 +171,9 @@ const CaseStudy: React.FC = () => {
           <div className="w-full z-1 relative">
             <div className="content w-full text-center relative">
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">The Challenge</h6>
-              <h2 className="font-medium text-black ">Climate Change Disclosure and Governance</h2>
+              <h2 className="font-medium text-black ">
+                Overcoming Legacy Limitations: Website Transformation for Healthcare Leader
+              </h2>
             </div>
           </div>
         </div>
@@ -182,17 +190,21 @@ const CaseStudy: React.FC = () => {
               data-aos-delay="300"
               data-aos-duration="500">
               <p className=" text-black">
-                A major global insurer was under growing pressure from shareholders to understand how climate change was
-                impacting its underwriting portfolios, both now and into the future under multiple climate change
-                scenarios up to the end of the century. The aim was to use the information for longer-term business
-                planning to prepare and adjust its property catastrophe underwriting.
+                In the rapidly evolving healthcare industry, our client faced a significant digital bottleneck with
+                their outdated Sitefinity website. This platform no longer served their needs for flexibility and ease
+                of content management, crucial for their dynamic operational environment.
+              </p>
+              <p className="mt-5 text-black">
+                The challenge was twofold: not only did the client desire a modern, agile website with Drupal for its
+                superior content management capabilities, but they also needed to preserve a vast repository of over 500
+                invaluable articles. These articles represented a wealth of knowledge and were integral to the client's
+                online presence and authority in the healthcare sector.
               </p>
               <p className="mt-5  text-black">
-                The insurer was also aware of growing regulatory pressure, including disclosure frameworks such as TCFD
-                (Task Force on Climate-Related Financial Disclosure), which are currently voluntary but are already
-                influencing climate change regulatory disclosures. The company wanted to provide metrics around its
-                physical climate risk exposure as part of a wider push to take the lead on responsibilities around ESG,
-                sustainability risk, and climate transition.
+                The migration posed a unique set of hurdles. The client's inability to access the old website's database
+                directly meant that traditional methods of content migration were off the table. This limitation
+                necessitated a creative and custom solution to transfer and transform the articles without loss of data
+                integrity or relevance.
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
