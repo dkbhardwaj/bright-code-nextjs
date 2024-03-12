@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
 
+import { GTMHeadScript } from "../components/Gscripts";
+
 export const metadata: Metadata = {
   title: "Bright Code",
   description: "Drupal CMS Agency",
@@ -104,6 +106,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           type="text/css"
           media="all"
         ></link>
+        <GTMHeadScript />
       </Head>
       <NextSeo
         title={String(metadata.title)}
