@@ -11,18 +11,11 @@ import "../styles/banners.scss";
 import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
-import { GTMHeadScript } from "../components/Gscripts";
 
 export const metadata: Metadata = {
   title: "Bright Code",
   description: "Drupal CMS Agency",
 };
-
-declare global {
-  interface Window {
-    dataLayer: any[]; // Define the dataLayer property
-  }
-}
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -66,24 +59,19 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     f.parentNode.insertBefore( j, f );
   } )( window, document, ‘script’, ‘dataLayer’, ‘GTM-KVK3JT9’ );
   
-</script>`;
-  const googleTagScript = `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"></script>
+</script>
+<!-- Event snippet for Contact us page conversion page -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-11070673099');
-</script>`;
-
+  gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
+</script>
+`;
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
     head.innerHTML += gtagScript;
     head.innerHTML += gtagManagerScript;
-    head.innerHTML += googleTagScript;
   }, []);
-
   const [isVisible, setIsVisible] = useState(false);
+
   const handleScroll = () => {
     // Show the button when scrolling down, hide when at the top
     setIsVisible(window.scrollY > 200);
@@ -97,26 +85,25 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   };
 
   useEffect(() => {
+    // Add scroll event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
+
+    // Remove scroll event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       <Head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        {/* <link
+        <link
           rel="stylesheet"
           id="google-fonts-1-css"
           href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen+Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CLato%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Condensed%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=6.0.1"
           type="text/css"
           media="all"
-        ></link> */}
-         <link rel="preconnect" href="https://fonts.googleapis.com" />
-         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" ></link>
-        <GTMHeadScript />
+        ></link>
       </Head>
       <NextSeo
         title={String(metadata.title)}

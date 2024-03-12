@@ -52,6 +52,14 @@ export const GTMHeadScript = () => {
           `,
         }}
       />
+      {/* <!-- Event snippet for Contact us page conversion page --> */}
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
+          `,
+        }}
+      />
     </>
   );
 };
