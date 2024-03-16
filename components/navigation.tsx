@@ -242,7 +242,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       className="inline-block w-full text-[14px] "
                       href="/white-label-development"
                     >
-                      What we do
+                      Agency2Agency
                     </Link>
                   </li>
                   <li
@@ -255,11 +255,11 @@ const Navigation: React.FC<NavigationProps> = () => {
                   >
                     <Link
                       className="inline-block w-full text-[14px] "
-                      href="/ourclients"
+                      href="/full-service"
                       // onClick={preventredirect}
                       onClick={handleMobileMenuCloseClick}
                     >
-                      Our clients
+                      Full Service
                     </Link>
                   </li>
                   <Link
