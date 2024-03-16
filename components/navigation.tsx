@@ -242,7 +242,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       className="inline-block w-full text-[14px] "
                       href="/white-label-development"
                     >
-                      Agency2Agency
+                      Agency to Agency
                     </Link>
                   </li>
                   <li
