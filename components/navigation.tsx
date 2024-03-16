@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Style from "../styles/navigation.module.scss";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Style from '../styles/navigation.module.scss';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface NavigationProps {}
 
@@ -12,10 +12,10 @@ interface DropdownItem {
 }
 
 const dropdownItems: DropdownItem[] = [
-  { title: "Service 1", link: "/services/service1" },
-  { title: "Service 2", link: "/services/service2" },
-  { title: "Service 3", link: "/services/service3" },
-  { title: "Service 4", link: "/services/service4" },
+  { title: 'Service 1', link: '/services/service1' },
+  { title: 'Service 2', link: '/services/service2' },
+  { title: 'Service 3', link: '/services/service3' },
+  { title: 'Service 4', link: '/services/service4' },
   // Add more services as needed
 ];
 
@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   // }
   const handleClick = () => {
     // Use the router to navigate to the desired page
-    router.push("/white-label-development");
+    router.push('/white-label-development');
   };
 
   const preventredirect = (e: React.MouseEvent) => {
@@ -58,18 +58,18 @@ const Navigation: React.FC<NavigationProps> = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
-    <header
-      className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}
-    >
+    <header className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}>
       <div className="container">
         <div className={`${Style.mainRow} flex items-center justify-between`}>
           <div className={`${Style.logo} max-w-[200px] max-h-[45px]`}>
-            <Link href="/" className="redirect">
+            <Link
+              href="/"
+              className="redirect">
               .
             </Link>
             <Image
@@ -80,16 +80,11 @@ const Navigation: React.FC<NavigationProps> = () => {
               className=" w-full h-full object-contain"
             />
           </div>
-          <div
-            className={`${Style.links} ${Style.mobileMenu} lg:flex lg:justify-end`}
-          >
+          <div className={`${Style.links} ${Style.mobileMenu} lg:flex lg:justify-end`}>
             {/* Hamburger menu icon for mobile */}
             <div
-              className={`${Style.mobileMenuIcon} ${
-                showMobileMenu ? Style.active : ""
-              } hidden lg:flex`}
-              onClick={handleMobileMenuClick}
-            >
+              className={`${Style.mobileMenuIcon} ${showMobileMenu ? Style.active : ''} hidden lg:flex`}
+              onClick={handleMobileMenuClick}>
               <span className={`${Style.bar}`}></span>
               <span className={`${Style.bar}`}></span>
               <span className={`${Style.bar}`}></span>
@@ -111,11 +106,11 @@ const Navigation: React.FC<NavigationProps> = () => {
               </li>
               <li
                 className={`${Style.menu} ${isActive(
-                  '/whychooseus'
+                  '/why-choose-us'
                 )}  mx-8  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:p-0 lg:text-spaceBlack lg:cursor-pointer lg:border-b-2 lg:border-lightGray`}>
                 <Link
                   className="inline-block lg:p-5 lg:hover:bg-grayish w-full"
-                  href="/whychooseus">
+                  href="/why-choose-us">
                   Why Choose us
                 </Link>
               </li>
@@ -182,19 +177,16 @@ const Navigation: React.FC<NavigationProps> = () => {
             </ul> */}
             <div
               className={`header-menu ${
-                showMobileMenu ? "lg:left-0" : "lg:!-left-[calc(100vw+500px)]"
-              } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}
-            >
+                showMobileMenu ? 'lg:left-0' : 'lg:!-left-[calc(100vw+500px)]'
+              } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}>
               <div
-                className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}
-              >
+                className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}>
                 <div
-                  className={`${Style.logo_wrapper}  hidden relative w-full py-5 px-3 mb-7 lg:!flex bg-bgBluePurple flex-wrap items-center justify-between `}
-                >
-                  <div
-                    className={`${Style.logo} relative max-w-[200px] max-h-[45px]`}
-                  >
-                    <Link href="/" className="redirect">
+                  className={`${Style.logo_wrapper}  hidden relative w-full py-5 px-3 mb-7 lg:!flex bg-bgBluePurple flex-wrap items-center justify-between `}>
+                  <div className={`${Style.logo} relative max-w-[200px] max-h-[45px]`}>
+                    <Link
+                      href="/"
+                      className="redirect">
                       .
                     </Link>
                     <Image
@@ -207,73 +199,64 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </div>
                   <div
                     className={`${Style.close} hidden lg:!flex`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     X
                   </div>
                 </div>
                 <ul
-                  className={`flex items-center text-white   lg:mx-0 lg:flex-wrap lg:text-spaceBlack  lg:!justify-start lg:px-3 `}
-                >
+                  className={`flex items-center text-white   lg:mx-0 lg:flex-wrap lg:text-spaceBlack  lg:!justify-start lg:px-3 `}>
                   <li
                     className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <Link className="inline-block w-full text-[14px] " href="/">
+                    onClick={handleMobileMenuCloseClick}>
+                    <Link
+                      className="inline-block w-full text-[14px] "
+                      href="/">
                       Home
                     </Link>
                   </li>
                   <li
                     className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     <Link
                       className="inline-block w-full text-[14px]"
-                      href="/whychooseus"
-                    >
+                      href="/why-choose-us">
                       Why Choose us
                     </Link>
                   </li>
                   <li
                     className={`${Style.menu}  mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     <Link
                       className="inline-block w-full text-[14px] "
-                      href="/white-label-development"
-                    >
+                      href="/white-label-development">
                       Agency to Agency
                     </Link>
                   </li>
                   <li
                     className={`${Style.menu}
                      mx-[22px]  transition-color duration-300 relative ${
-                       showDropdown ? `${Style.active}` : ""
+                       showDropdown ? `${Style.active}` : ''
                      } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
                     // onClick={handleDropClick}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     <Link
                       className="inline-block w-full text-[14px] "
                       href="/full-service"
                       // onClick={preventredirect}
-                      onClick={handleMobileMenuCloseClick}
-                    >
+                      onClick={handleMobileMenuCloseClick}>
                       Full Service
                     </Link>
                   </li>
                   <Link
                     href="/contact"
                     className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     <span>Contact</span>
                   </Link>
                   <Link
                     href="/contact"
                     className={`${Style.btn} gradient-btn !hidden lg:!inline-block my-8 !shadow-none`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                    onClick={handleMobileMenuCloseClick}>
                     <span>Contact</span>
                   </Link>
                 </ul>

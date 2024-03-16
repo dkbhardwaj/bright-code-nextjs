@@ -1,31 +1,31 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-import Sticky from "../components/stickyNav";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useForm, ValidationError } from '@formspree/react';
+import { useState } from 'react';
+import Sticky from '../components/stickyNav';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 // import type { Metadata } from "next";
-import Head from "next/head";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
-import { log } from "console";
+import Head from 'next/head';
+import { useEffect } from 'react';
+import { NextSeo } from 'next-seo';
+import { log } from 'console';
 function onChange(token: string | null) {
-  console.log("Captcha token:", token);
+  console.log('Captcha token:', token);
 }
 export const metadata: Metadata = {
-  title: "Agency-to-Agency Drupal Development Partner | Bright Code",
+  title: 'Agency-to-Agency Drupal Development Partner | Bright Code',
   description:
     "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
   openGraph: {
     images: [
       {
-        url: "/agency_agency-1.png",
-        alt: "Alt text for your image",
+        url: '/agency_agency-1.png',
+        alt: 'Alt text for your image',
       },
     ],
-    siteName: "Bright Code",
+    siteName: 'Bright Code',
   },
 };
 
@@ -46,7 +46,7 @@ interface Metadata {
 }
 
 const Home: React.FC = () => {
-  const [state, handleSubmit] = useForm("maygryee");
+  const [state, handleSubmit] = useForm('maygryee');
   // const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
   const [cross, setCross] = useState(false);
@@ -58,14 +58,12 @@ const Home: React.FC = () => {
   };
 
   const ClearForm = () => {
-    const inputs = document.querySelectorAll(".contactForm form input");
-    const textArea = document.querySelector(
-      ".contactForm form textarea"
-    ) as HTMLInputElement;
-    textArea.value = "";
+    const inputs = document.querySelectorAll('.contactForm form input');
+    const textArea = document.querySelector('.contactForm form textarea') as HTMLInputElement;
+    textArea.value = '';
     for (let i = 0; i < inputs.length; i++) {
       const element = inputs[i] as HTMLInputElement;
-      element.value = "";
+      element.value = '';
     }
   };
 
@@ -91,17 +89,16 @@ const Home: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || "", // Make sure it's not undefined
+                description: metadata.description || '', // Make sure it's not undefined
                 images: metadata.openGraph.images || [], // Make sure it's not undefined
-                siteName: metadata.openGraph.siteName || "", // Make sure it's not undefined
+                siteName: metadata.openGraph.siteName || '', // Make sure it's not undefined
               }
             : undefined
         }
       />
       {/* Banner Start */}
       <section
-        className={`banner  banner-with-img banner_overlay banner-homepage relative overflow-x-hidden bg-darkBlue level-two flex items-end text-white pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
-      >
+        className={`banner  banner-with-img banner_overlay banner-homepage relative overflow-x-hidden bg-darkBlue level-two flex items-end text-white pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}>
         <div className="right_img absolute bottom-0 left-[62%] w-full max-w-[538px] h-[536px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:left-[65%] md:h-[310px] md:max-w-[325px] md:!left-auto md:right-[calc(35%-200px)] ">
           <Image
             src="/home/banner-right-img.png"
@@ -126,17 +123,15 @@ const Home: React.FC = () => {
               className="header-h1"
               data-aos="fade-left"
               data-aos-delay="400"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               Empowering Designers, Thrilling Clients.
             </h1>
             <Link
-              href="/whychooseus"
+              href="/why-choose-us"
               className=" mt-14 gradient-btn mx-auto md:mt-6"
               data-aos="fade-right"
               data-aos-delay="300"
-              data-aos-duration="300"
-            >
+              data-aos-duration="300">
               <span>Get Started</span>
             </Link>
           </div>
@@ -150,13 +145,10 @@ const Home: React.FC = () => {
         id="why-choose-us"
         data-aos="fade-up"
         data-aos-delay="400"
-        data-aos-duration="400"
-      >
+        data-aos-duration="400">
         <div className="container">
           <div className="w-full mx-auto">
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              Why Choose us?
-            </h6>
+            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">Why Choose us?</h6>
             <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
               Our agency-to-agency model is built on <br />
               <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
@@ -164,9 +156,8 @@ const Home: React.FC = () => {
               </span>
             </h2>
             <h5 className="text-black w-full max-w-[960px] mx-auto">
-              As a specialized development agency, our core purpose is to
-              empower design agencies to deliver exceptional web solutions to
-              their clients.
+              As a specialized development agency, our core purpose is to empower design agencies to deliver exceptional
+              web solutions to their clients.
             </h5>
           </div>
         </div>
@@ -181,11 +172,12 @@ const Home: React.FC = () => {
               className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
               data-aos="fade-up"
               data-aos-delay="400"
-              data-aos-duration="400"
-            >
+              data-aos-duration="400">
               <div className="card bg-white h-full ">
                 <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
+                  <Link
+                    className="redirect"
+                    href={`#`}>
                     .
                   </Link>
                   <Image
@@ -199,9 +191,8 @@ const Home: React.FC = () => {
                 <div className="textWrap py-9 px-5 text-center md:p-5">
                   <h4 className="text-black">Collaborative</h4>
                   <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    Our agency thrives on the synergy of collaboration. We step
-                    into the role of your dedicated development partner, filling
-                    a crucial gap in your service offerings.
+                    Our agency thrives on the synergy of collaboration. We step into the role of your dedicated
+                    development partner, filling a crucial gap in your service offerings.
                   </span>
                 </div>
               </div>
@@ -210,11 +201,12 @@ const Home: React.FC = () => {
               className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
               data-aos="fade-up"
               data-aos-delay="500"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               <div className="card bg-white h-full">
                 <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
+                  <Link
+                    className="redirect"
+                    href={`#`}>
                     .
                   </Link>
                   <Image
@@ -228,9 +220,8 @@ const Home: React.FC = () => {
                 <div className="textWrap py-9 px-5 text-center md:p-5">
                   <h4 className="text-black">Client-Centric</h4>
                   <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis  text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    We know that clients are your ultimate consideration. We
-                    ensure that the websites we develop not only meet but exceed
-                    the end-users needs.
+                    We know that clients are your ultimate consideration. We ensure that the websites we develop not
+                    only meet but exceed the end-users needs.
                   </span>
                 </div>
               </div>
@@ -239,11 +230,12 @@ const Home: React.FC = () => {
               className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
               data-aos="fade-up"
               data-aos-delay="600"
-              data-aos-duration="600"
-            >
+              data-aos-duration="600">
               <div className="card bg-white h-full">
                 <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
+                  <Link
+                    className="redirect"
+                    href={`#`}>
                     .
                   </Link>
                   <Image
@@ -257,15 +249,16 @@ const Home: React.FC = () => {
                 <div className="textWrap py-9 px-5 text-center md:p-5">
                   <h4 className="text-black">Empowering</h4>
                   <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis  text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    Our mission is to empower designers. We understand that a
-                    design's potential can only be fully realized when paired
-                    with a capable development team.
+                    Our mission is to empower designers. We understand that a design's potential can only be fully
+                    realized when paired with a capable development team.
                   </span>
                 </div>
               </div>
             </div>
 
-            <Link href="/whychooseus" className=" mt-7 gradient-btn mx-auto">
+            <Link
+              href="/why-choose-us"
+              className=" mt-7 gradient-btn mx-auto">
               <span>Learn More</span>
             </Link>
           </div>
@@ -279,8 +272,7 @@ const Home: React.FC = () => {
         id="what-we-do"
         data-aos="fade-up"
         data-aos-delay="300"
-        data-aos-duration="500"
-      >
+        data-aos-duration="500">
         <div className="container">
           <div className="w-full max-w-[600px] mx-auto">
             <h2 className="text-black text-[65px] font-semibold desktop:text-[42px] tablet:text-[36px] md:text-[32px]">
@@ -299,22 +291,20 @@ const Home: React.FC = () => {
               className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
               data-aos="fade-left"
               data-aos-delay="400"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               <h3>
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   White Label Development
                 </span>
               </h3>
               <p className="mt-5 text-black">
-                In the world of web development, the invisible hand of expertise
-                often guides the most remarkable creations. At Bright Code, we
-                take pride in our role as the silent architects of digital
-                success, delivering excellence through White Label Development.
+                In the world of web development, the invisible hand of expertise often guides the most remarkable
+                creations. At Bright Code, we take pride in our role as the silent architects of digital success,
+                delivering excellence through White Label Development.
               </p>
               <p className="mt-5  text-black">
-                We offer development services under your brand, acting as your
-                dedicated development team while remaining behind the scenes.
+                We offer development services under your brand, acting as your dedicated development team while
+                remaining behind the scenes.
               </p>
               {/* <div className="btnWrap mt-5">
                 <Link href="/white-label-development" className="black-btn">
@@ -323,8 +313,7 @@ const Home: React.FC = () => {
               </div> */}
               <Link
                 href="/white-label-development"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
+                className=" mt-5 bgWhiteBtn gradient-btn mx-auto">
                 <span>Learn More</span>
               </Link>
             </div>
@@ -333,8 +322,7 @@ const Home: React.FC = () => {
                 className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
                 data-aos="fade-right"
                 data-aos-delay="400"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <Image
                   src="/home/col-two-img1.png"
                   alt="White Label Developments"
@@ -357,24 +345,20 @@ const Home: React.FC = () => {
               className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
               data-aos="fade-right"
               data-aos-delay="400"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               <h3>
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   Dedicated Development Teams
                 </span>
               </h3>
               <p className="mt-5  text-black">
-                In the dynamic landscape of web development, the true mark of
-                excellence is achieved through collaboration and a dedicated
-                focus on your unique goals. At Bright Code, we're proud to be
-                your partners in this journey, offering Dedicated Development
-                Teams that bring your digital dreams to life.
+                In the dynamic landscape of web development, the true mark of excellence is achieved through
+                collaboration and a dedicated focus on your unique goals. At Bright Code, we're proud to be your
+                partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.
               </p>
               <p className="mt-5  text-black">
-                We provide specialized, dedicated development teams to
-                collaborate with your agency, ensuring tailored solutions for
-                your unique project requirements.
+                We provide specialized, dedicated development teams to collaborate with your agency, ensuring tailored
+                solutions for your unique project requirements.
               </p>
               {/* <div className="btnWrap mt-5">
                 <Link href="/dedicated-team" className="black-btn">
@@ -383,8 +367,7 @@ const Home: React.FC = () => {
               </div> */}
               <Link
                 href="/dedicated-team"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
+                className=" mt-5 bgWhiteBtn gradient-btn mx-auto">
                 <span>Learn More</span>
               </Link>
             </div>
@@ -393,8 +376,7 @@ const Home: React.FC = () => {
                 className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
                 data-aos="fade-left"
                 data-aos-delay="400"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <Image
                   src="/home/col-two-img2.png"
                   alt="girl"
@@ -417,24 +399,20 @@ const Home: React.FC = () => {
               className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
               data-aos="fade-left"
               data-aos-delay="400"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               <h3>
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   CMS Implementation
                 </span>
               </h3>
               <p className="mt-5  text-black">
-                In the ever-evolving digital landscape, your content is the
-                cornerstone of your online presence. At Bright Code, we
-                understand the significance of efficient Content Management
-                System (CMS) Implementation in ensuring your brand's message is
-                delivered seamlessly to your audience.
+                In the ever-evolving digital landscape, your content is the cornerstone of your online presence. At
+                Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation
+                in ensuring your brand's message is delivered seamlessly to your audience.
               </p>
               <p className="mt-5 text-black">
-                We implement customized CMS solutions to streamline content
-                management, enhance user experiences, and align with your
-                clients' brand objectives.
+                We implement customized CMS solutions to streamline content management, enhance user experiences, and
+                align with your clients' brand objectives.
               </p>
               {/* <div className="btnWrap mt-5">
                 <Link href="/cms-implementation" className="black-btn">
@@ -443,8 +421,7 @@ const Home: React.FC = () => {
               </div> */}
               <Link
                 href="/cms-implementation"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
+                className=" mt-5 bgWhiteBtn gradient-btn mx-auto">
                 <span>Learn More</span>
               </Link>
             </div>
@@ -453,8 +430,7 @@ const Home: React.FC = () => {
                 className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
                 data-aos="fade-right"
                 data-aos-delay="400"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <Image
                   src="/home/col-two-img3.png"
                   alt="girl"
@@ -477,26 +453,22 @@ const Home: React.FC = () => {
               className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
               data-aos="fade-right"
               data-aos-delay="400"
-              data-aos-duration="500"
-            >
+              data-aos-duration="500">
               <h3>
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   CMS Support & maintenance
                 </span>
               </h3>
               <p className="mt-5 text-black">
-                Monthly CMS Maintenance is crucial for the sustained health,
-                security, and optimal performance of a website. This ensures
-                that the website is fortified with the latest security patches,
-                protecting it from potential threats and unauthorized access.
-                Monthly CMS Maintenance is an investment in the long-term
+                Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a
+                website. This ensures that the website is fortified with the latest security patches, protecting it from
+                potential threats and unauthorized access. Monthly CMS Maintenance is an investment in the long-term
                 sustainability, security, and performance of your website.
               </p>
               <p className="mt-5 text-black">
-                It's a proactive strategy that not only prevents potential
-                issues but also ensures that the website continues to deliver an
-                excellent experience to users while meeting the highest
-                standards of security and compliance.
+                It's a proactive strategy that not only prevents potential issues but also ensures that the website
+                continues to deliver an excellent experience to users while meeting the highest standards of security
+                and compliance.
               </p>
               {/* <div className="btnWrap mt-5">
                 <Link href="/cms-support" className="black-btn">
@@ -505,8 +477,7 @@ const Home: React.FC = () => {
               </div> */}
               <Link
                 href="/cms-support"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
+                className=" mt-5 bgWhiteBtn gradient-btn mx-auto">
                 <span>Learn More</span>
               </Link>
             </div>
@@ -515,8 +486,7 @@ const Home: React.FC = () => {
                 className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
                 data-aos="fade-left"
                 data-aos-delay="400"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <Image
                   src="/home/col-two-img4.png"
                   alt="girl"
@@ -537,8 +507,7 @@ const Home: React.FC = () => {
           id="our-values"
           data-aos="fade-up"
           data-aos-delay="400"
-          data-aos-duration="500"
-        >
+          data-aos-duration="500">
           <div className="container">
             <div className="w-full max-w-[600px] mx-auto">
               <h2 className="text-white  text-[65px] font-semibold  desktop:text-[42px] tablet:text-[36px] md:text-[32px]">
@@ -557,8 +526,7 @@ const Home: React.FC = () => {
                 className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="400"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                   <Image
                     src="/icon-star.svg"
@@ -570,16 +538,15 @@ const Home: React.FC = () => {
                 </div>
                 <h5 className="text-white">Expertise</h5>
                 <p className="mt-4 text-[15px] text-lightGray leading-[26px] ">
-                  Our unwavering commitment to expertise signifies the depth of
-                  knowledge and skill we bring to every project.
+                  Our unwavering commitment to expertise signifies the depth of knowledge and skill we bring to every
+                  project.
                 </p>
               </div>
               <div
                 className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                   <Image
                     src="/icon-partnership.svg"
@@ -591,16 +558,15 @@ const Home: React.FC = () => {
                 </div>
                 <h5 className="text-white">Collaborative approach</h5>
                 <p className="mt-4 text-[15px] text-lightGray leading-[26px]">
-                  Collaboration is in our DNA. We believe that the best
-                  solutions emerge when diverse minds come together.
+                  Collaboration is in our DNA. We believe that the best solutions emerge when diverse minds come
+                  together.
                 </p>
               </div>
               <div
                 className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                   <Image
                     src="/icon-certificate.svg"
@@ -612,16 +578,15 @@ const Home: React.FC = () => {
                 </div>
                 <h5 className="text-white">Commitment to excellence</h5>
                 <p className="mt-4 text-[15px] text-lightGray leading-[26px]">
-                  Excellence is not just a principle; it's the essence of Bright
-                  Code. We infuse it into the interactions with our clients.
+                  Excellence is not just a principle; it's the essence of Bright Code. We infuse it into the
+                  interactions with our clients.
                 </p>
               </div>
               <div
                 className="content w-colFour mx-2.5 mb-10  text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
                 data-aos="fade-up"
                 data-aos-delay="500"
-                data-aos-duration="500"
-              >
+                data-aos-duration="500">
                 <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                   <Image
                     src="/icon-idea.svg"
@@ -633,8 +598,7 @@ const Home: React.FC = () => {
                 </div>
                 <h5 className="text-white">Innovation</h5>
                 <p className="mt-4 text-[15px] text-lightGray leading-[26px]">
-                  We embrace a culture of continuous improvement, staing ahead
-                  of technological advancements.
+                  We embrace a culture of continuous improvement, staing ahead of technological advancements.
                 </p>
               </div>
             </div>
@@ -645,12 +609,9 @@ const Home: React.FC = () => {
         {/* Contact Form Start */}
         <section
           className="contactForm text-gray-600 body-font relative"
-          id="get-in-touch"
-        >
+          id="get-in-touch">
           <div className="container px-5 mx-auto">
-            <div
-              className={`relative w-full py-[68px] bgPurpleGradient md:py-12`}
-            >
+            <div className={`relative w-full py-[68px] bgPurpleGradient md:py-12`}>
               <div className=" relative w-full mb-16 text-center  md:mb-8">
                 <h6 className="text-white title mb-8 md:mb-2">GET IN TOUCH</h6>
                 <h2 className="text-white mb-5">Let&#39;s talk!</h2>
@@ -658,35 +619,30 @@ const Home: React.FC = () => {
               <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
                 <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
                   <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10 ">
-                    If you are interested in learning more about Bright Code and
-                    how we can work together to achieve your goals, we encourage
-                    you to get in touch with us directly.
+                    If you are interested in learning more about Bright Code and how we can work together to achieve
+                    your goals, we encourage you to get in touch with us directly.
                   </h4>
                   <br />
                   <h5 className="text-white font-light">
-                    We value direct, one-on-one discussions where we can
-                    understand your unique needs and explore the potential for
-                    collaboration.
+                    We value direct, one-on-one discussions where we can understand your unique needs and explore the
+                    potential for collaboration.
                   </h5>
 
                   <br />
                   <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10">
-                    Thank you for considering Bright Code as your trusted
-                    partner.
+                    Thank you for considering Bright Code as your trusted partner.
                   </h4>
                 </div>
                 <div
                   className="w-halfWidth mx-2.5 bg-transparent rounded-lg pl-[52px] lg:pl-4  md:!p-0 relative z-10 md:w-full md:mx-0 "
                   data-aos="fade-left"
                   data-aos-delay="400"
-                  data-aos-duration="500"
-                >
+                  data-aos-duration="500">
                   <form onSubmit={handleSubmit}>
                     <div className="relative mb-5">
                       <label
                         htmlFor="fullName"
-                        className="leading-6 text-[17px] text-white font-normal"
-                      >
+                        className="leading-6 text-[17px] text-white font-normal">
                         Name
                       </label>
                       <input
@@ -700,8 +656,7 @@ const Home: React.FC = () => {
                     <div className="relative mb-5">
                       <label
                         htmlFor="email"
-                        className="leading-6 text-[17px] text-white font-normal"
-                      >
+                        className="leading-6 text-[17px] text-white font-normal">
                         Email
                       </label>
                       <input
@@ -715,8 +670,7 @@ const Home: React.FC = () => {
                     <div className="relative mb-5">
                       <label
                         htmlFor="subject"
-                        className="leading-6 text-[17px] text-white font-normal"
-                      >
+                        className="leading-6 text-[17px] text-white font-normal">
                         Subject
                       </label>
                       <input
@@ -736,16 +690,14 @@ const Home: React.FC = () => {
                     <div className="relative mb-5">
                       <label
                         htmlFor="message"
-                        className="leading-6 text-[17px] text-white font-normal"
-                      >
+                        className="leading-6 text-[17px] text-white font-normal">
                         Message
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         // value={values.message}
-                        className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                      ></textarea>
+                        className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                     </div>
                     <ValidationError
                       prefix="Message"
@@ -758,36 +710,32 @@ const Home: React.FC = () => {
                       scriptProps={{
                         async: false,
                         defer: false,
-                        appendTo: "head",
+                        appendTo: 'head',
                         nonce: undefined,
                       }}
                       container={{
-                        element: "g-recaptcha", // replace with your actual ID
+                        element: 'g-recaptcha', // replace with your actual ID
                         parameters: {
-                          badge: "inline",
-                          theme: "dark",
+                          badge: 'inline',
+                          theme: 'dark',
                         },
-                      }}
-                    >
+                      }}>
                       <React.Fragment></React.Fragment>
                     </GoogleReCaptchaProvider>
 
                     <div
                       id="g-recaptcha"
                       className="g-recaptcha my-4"
-                      data-sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
-                    ></div>
+                      data-sitekey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"></div>
                     <input
                       type="hidden"
                       id="g-recaptcha-response"
-                      name="g-recaptcha-response"
-                    ></input>
+                      name="g-recaptcha-response"></input>
 
                     <button
                       type="submit"
                       className="gradient-btn mx-auto max-w-full"
-                      disabled={state.submitting}
-                    >
+                      disabled={state.submitting}>
                       <span>Submit</span>
                     </button>
                   </form>
@@ -807,8 +755,7 @@ const Home: React.FC = () => {
                 width="600"
                 height="460"
                 loading="lazy"
-                className="w-full h-full"
-              ></iframe>
+                className="w-full h-full"></iframe>
             </div>
           </div>
         </section>
@@ -822,8 +769,7 @@ const Home: React.FC = () => {
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
               <div
                 className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer "
-                onClick={HideThankyouBox}
-              >
+                onClick={HideThankyouBox}>
                 <Image
                   src="/icon-close.svg"
                   width={40}
@@ -840,8 +786,7 @@ const Home: React.FC = () => {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    stroke-width="1"
-                  >
+                    stroke-width="1">
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -849,14 +794,14 @@ const Home: React.FC = () => {
                     />
                   </svg>
                 </div>
-                <h1 className="text-4xl font-bold mb-4 text-black ">
-                  Thank You !
-                </h1>
-                <p className=" mb-4 text-black ">
-                  Thank you for your interest!
-                </p>
-                <div className="btnWrap" onClick={HideThankyouBox}>
-                  <Link href="/" className="gradient-btn">
+                <h1 className="text-4xl font-bold mb-4 text-black ">Thank You !</h1>
+                <p className=" mb-4 text-black ">Thank you for your interest!</p>
+                <div
+                  className="btnWrap"
+                  onClick={HideThankyouBox}>
+                  <Link
+                    href="/"
+                    className="gradient-btn">
                     <span>Home</span>
                   </Link>
                 </div>
@@ -865,7 +810,7 @@ const Home: React.FC = () => {
           </div>
         </section>
       ) : (
-        ""
+        ''
       )}
     </>
   );
