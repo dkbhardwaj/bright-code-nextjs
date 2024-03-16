@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
 
+import { GTMHeadScript } from "../components/Gscripts";
+
 export const metadata: Metadata = {
   title: "Bright Code",
   description: "Drupal CMS Agency",
@@ -59,7 +61,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     f.parentNode.insertBefore( j, f );
   } )( window, document, ‘script’, ‘dataLayer’, ‘GTM-KVK3JT9’ );
   
-</script>`;
+</script>
+<!-- Event snippet for Contact us page conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
+</script>
+`;
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
     head.innerHTML += gtagScript;
@@ -91,7 +98,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
-        {/* <title>{String(metadata.title)}</title> */}
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link
           rel="stylesheet"
@@ -100,6 +106,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           type="text/css"
           media="all"
         ></link>
+        <GTMHeadScript />
       </Head>
       <NextSeo
         title={String(metadata.title)}

@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
+const conversionScript = `<!-- Event snippet for Contact us page conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});
+</script>`;
+
 interface OGImage {
   url: string;
   alt: string;
@@ -65,6 +70,11 @@ const Contact: React.FC = () => {
   const HideThankyouBox = () => {
     setformsuccess(false);
   };
+
+  useEffect(() => {
+    let head = document.getElementsByTagName("head")[0];
+    head.innerHTML += conversionScript;
+  }, []);
 
   return (
     <>
@@ -113,15 +123,20 @@ const Contact: React.FC = () => {
               <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
                 <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
                   <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10 ">
-                  Interested in learning more about us and our clients?
+                    Interested in learning more about us and our clients?
                   </h4>
                   <br />
                   <h5 className="text-white font-light">
-                    You may have noticed that we do not showcase our clients or their projects on our website. This conscious choice mirrors our unwavering dedication to two guiding principles: trust and confidentiality.
+                    You may have noticed that we do not showcase our clients or
+                    their projects on our website. This conscious choice mirrors
+                    our unwavering dedication to two guiding principles: trust
+                    and confidentiality.
                   </h5>
                   <br />
                   <h5 className="text-white font-light">
-                    We deeply believe in the strength of collaboration, and as your trusted partner, we're excited to help you shine in the spotlight.
+                    We deeply believe in the strength of collaboration, and as
+                    your trusted partner, we're excited to help you shine in the
+                    spotlight.
                   </h5>
 
                   <br />
@@ -268,8 +283,6 @@ const Contact: React.FC = () => {
           </div>
         </section>
         {/* Map End */}
-
-
       </div>
       {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
       {formsuccess === true ? (
