@@ -116,7 +116,7 @@ const WhiteLabelDevelopment: React.FC = () => {
       >
         <div className="container">
           <div className="w-full text-center relative z-10">
-            <h1>What we do?</h1>
+            <h1>Full service agency</h1>
           </div>
         </div>
       </section>
