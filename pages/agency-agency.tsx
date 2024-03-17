@@ -116,7 +116,7 @@ const WhiteLabelDevelopment: React.FC = () => {
       >
         <div className="container">
           <div className="w-full text-center relative z-10">
-            <h1>Agency to Agency?</h1>
+            <h1>Agency to Agency</h1>
           </div>
         </div>
       </section>
@@ -184,7 +184,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 ELEVATING WEB DEVELOPMENT
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Empowering Your Brand, Your Way
+              White Label Development
               </h2>
               <p className="mt-5 text-black">
                 Our White Label Development services are designed to empower
@@ -229,22 +229,16 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Surpassing Milestones
+              Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Exceeding Expectations, Every Time
+                Dedicated Development Team
               </h2>
               <p className="mt-5 text-black">
-                We go beyond the typical development approach. At Bright Code,
-                we&#39;re committed to elevating your reputation and ensuring
-                exceptional client satisfaction. By partnering with us, you
-                guarantee that your clients receive not just good websites, but
-                exceptional ones.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
               </p>
               <p className="mt-5 text-black">
-                Our expertise in web development, combined with your creative
-                design prowess, creates a synergy that consistently surpasses
-                expectations.
+              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -279,10 +273,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Harmonizing Success
+              Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                The Power of Collaboration
+                CMS Implementation
               </h2>
               <p className="mt-5 text-black">
                 Collaboration is at the core of what we do. By choosing us for
@@ -327,10 +321,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                SUPPORTING YOUR BRAND, OUR CORE COMMITMENT
+                Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Your Success, Our Priority
+              CMS Maintenance
               </h2>
               <p className="mt-5 text-black">
                 At Bright Code, we are more than just a development agency; we
