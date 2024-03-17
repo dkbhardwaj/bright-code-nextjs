@@ -47,7 +47,7 @@ const stickyData = [
   {
     id: "1",
     title: "Headless CMS",
-    url: "headless-cmd",
+    url: "headless-cms",
   },
   {
     id: "2",
