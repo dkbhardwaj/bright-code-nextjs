@@ -149,7 +149,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 Unlocking Excellence.
               </h6>
               <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
-                White Label Development.
+                Agency to Agency Development.
               </h2>
             </div>
             <div
@@ -181,20 +181,16 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                ELEVATING WEB DEVELOPMENT
+               Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
               White Label Development
               </h2>
               <p className="mt-5 text-black">
-                Our White Label Development services are designed to empower
-                your brand. We act as your dedicated development team, working
-                hand-in-hand to meticulously craft web solutions that align
-                perfectly with your design vision.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
               </p>
               <p className="mt-5 text-black">
-                The end result is a website that exemplifies your commitment to
-                excellence.
+              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -279,14 +275,10 @@ const WhiteLabelDevelopment: React.FC = () => {
                 CMS Implementation
               </h2>
               <p className="mt-5 text-black">
-                Collaboration is at the core of what we do. By choosing us for
-                your web development needs, you open doors to a world of
-                possibilities.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
               </p>
               <p className="mt-5 text-black">
-                Our collaborative culture and commitment to professionalism
-                ensure that your clients receive the best of both worlds: your
-                design excellence and our technical expertise.
+              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -327,17 +319,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               CMS Maintenance
               </h2>
               <p className="mt-5 text-black">
-                At Bright Code, we are more than just a development agency; we
-                are your trusted partner for success. White Label Development is
-                a canvas where your brand shines. Delight your clients, exceed
-                their expectations, and elevate your agency&#39;s reputation
-                with Bright Code as your collaborative partner in digital
-                excellence.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
               </p>
               <p className="mt-5 text-black">
-                Experience the power of White Label Development with Bright
-                Code. Your success is our success, and together, we&#39;ll excel
-                in the world of web solutions.
+              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
