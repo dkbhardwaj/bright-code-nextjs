@@ -38,16 +38,16 @@ const Footer: React.FC = () => {
               </li>
               <li className=" relative mb-2 ">
                 <a
-                  href="/white-label-development"
+                  href="/full-service"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">
-                  What we do
+                  Full Service
                 </a>
               </li>
               <li className=" relative mb-2 ">
                 <a
-                  href="/ourclients"
+                  href="/agency-agency"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">
-                  Our clients
+                  Agency to Agency
                 </a>
               </li>
               <li className=" relative mb-2 ">
