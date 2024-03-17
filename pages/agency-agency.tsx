@@ -159,10 +159,7 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h5 className="text-black font-light  w-full max-w-[960px] mx-auto">
-                In the world of web development, the invisible hand of expertise
-                often guides the most remarkable creations. At Bright Code, we
-                take pride in our role as the silent architects of digital
-                success, delivering excellence through White Label Development.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
               </h5>
             </div>
           </div>
