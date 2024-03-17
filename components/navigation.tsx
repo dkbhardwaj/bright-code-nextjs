@@ -228,7 +228,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                     onClick={handleMobileMenuCloseClick}>
                     <Link
                       className="inline-block w-full text-[14px] "
-                      href="/white-label-development">
+                      href="/agency-agency">
                       Agency to Agency
                     </Link>
                   </li>
