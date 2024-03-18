@@ -235,7 +235,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       href="/full-service"
                       // onClick={preventredirect}
                       onClick={handleMobileMenuCloseClick}>
-                      Full Service
+                      Web Development
                     </Link>
                   </li>
                   <li
@@ -244,7 +244,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                         <Link
                           className="inline-block w-full text-[14px] "
                           href="/agency-agency">
-                          Agency to Agency
+                          For Agencies
                         </Link>
                   </li>
                   <Link
