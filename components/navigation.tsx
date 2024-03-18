@@ -226,8 +226,8 @@ const Navigation: React.FC<NavigationProps> = () => {
                   <li
                     className={`${Style.menu}
                     mx-[22px]  transition-color duration-300 relative ${
-                       showDropdown ? `${Style.active}` : ''
-                     } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
+                      showDropdown ? `${Style.active}` : ''
+                    } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
                     // onClick={handleDropClick}
                     onClick={handleMobileMenuCloseClick}>
                     <Link
@@ -239,13 +239,13 @@ const Navigation: React.FC<NavigationProps> = () => {
                     </Link>
                   </li>
                   <li
-                        className={`${Style.menu}  mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                        onClick={handleMobileMenuCloseClick}>
-                        <Link
-                          className="inline-block w-full text-[14px] "
-                          href="/agency-agency">
-                          For Agencies
-                        </Link>
+                    className={`${Style.menu}  mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    onClick={handleMobileMenuCloseClick}>
+                    <Link
+                      className="inline-block w-full text-[14px] "
+                      href="/partnerships">
+                      For Agencies
+                    </Link>
                   </li>
                   <Link
                     href="/contact"

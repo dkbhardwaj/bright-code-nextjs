@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
               </li>
               <li className=" relative mb-2 ">
                 <a
-                  href="/agency-agency"
+                  href="/partnerships"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">
                   Agency to Agency
                 </a>
