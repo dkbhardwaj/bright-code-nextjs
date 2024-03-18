@@ -116,7 +116,7 @@ const WhiteLabelDevelopment: React.FC = () => {
       >
         <div className="container">
           <div className="w-full text-center relative z-10">
-            <h1>Agency to Agency</h1>
+            <h1>For Agencies</h1>
           </div>
         </div>
       </section>
@@ -149,7 +149,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 Unlocking Excellence.
               </h6>
               <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
-                Agency to Agency Development.
+                Partnership Development.
               </h2>
             </div>
             <div

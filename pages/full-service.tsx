@@ -149,7 +149,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 Unlocking Excellence.
               </h6>
               <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
-                White Label Development.
+                Website Development.
               </h2>
             </div>
             <div
