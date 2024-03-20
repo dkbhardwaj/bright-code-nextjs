@@ -232,7 +232,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                     onClick={handleMobileMenuCloseClick}>
                     <Link
                       className="inline-block w-full text-[14px] "
-                      href="/full-service"
+                      href="/webdevelopment"
                       // onClick={preventredirect}
                       onClick={handleMobileMenuCloseClick}>
                       Web Development

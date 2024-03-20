@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               </li>
               <li className=" relative mb-2 ">
                 <a
-                  href="/full-service"
+                  href="/webdevelopment"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out ">
                   Full Service
                 </a>
