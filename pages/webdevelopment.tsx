@@ -46,21 +46,16 @@ interface Metadata {
 const stickyData = [
   {
     id: "1",
-    title: "Headless CMS",
-    url: "headless-cms",
+    title: "Wordpress Development Team",
+    url: "wordpress-development",
   },
   {
     id: "2",
-    title: "Dedicated Development Team",
-    url: "dedicated-team",
+    title: "Drupal Development Team",
+    url: "wordpress-development",
   },
   {
     id: "3",
-    title: "CMS Implementation",
-    url: "cms-implementation",
-  },
-  {
-    id: "4",
     title: "CMS Maintenance",
     url: "cms-support",
   },
@@ -184,7 +179,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 ELEVATING WEB DEVELOPMENT
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Empowering Your Brand, Your Way
+                UX services
               </h2>
               <p className="mt-5 text-black">
                 Our White Label Development services are designed to empower
