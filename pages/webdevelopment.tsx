@@ -46,12 +46,12 @@ interface Metadata {
 const stickyData = [
   {
     id: "1",
-    title: "Wordpress Development Team",
+    title: "Wordpress Development",
     url: "wordpress-development",
   },
   {
     id: "2",
-    title: "Drupal Development Team",
+    title: "Drupal Development",
     url: "wordpress-development",
   },
   {
