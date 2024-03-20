@@ -141,7 +141,7 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-                Unlocking Excellence.
+              Eyebrow goes here
               </h6>
               <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
                 Website Development.
@@ -176,7 +176,7 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                ELEVATING WEB DEVELOPMENT
+              Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
                 UX services
@@ -224,10 +224,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Surpassing Milestones
+              Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Exceeding Expectations, Every Time
+               Sitemap
               </h2>
               <p className="mt-5 text-black">
                 We go beyond the typical development approach. At Bright Code,
@@ -274,10 +274,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Harmonizing Success
+                Eyebrow goes here
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                The Power of Collaboration
+                Design
               </h2>
               <p className="mt-5 text-black">
                 Collaboration is at the core of what we do. By choosing us for
@@ -325,7 +325,7 @@ const WhiteLabelDevelopment: React.FC = () => {
                 SUPPORTING YOUR BRAND, OUR CORE COMMITMENT
               </h6>
               <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Your Success, Our Priority
+                Development
               </h2>
               <p className="mt-5 text-black">
                 At Bright Code, we are more than just a development agency; we
