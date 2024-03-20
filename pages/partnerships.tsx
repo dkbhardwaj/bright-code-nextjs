@@ -159,7 +159,7 @@ const WhiteLabelDevelopment: React.FC = () => {
               data-aos-duration="1000"
             >
               <h5 className="text-black font-light  w-full max-w-[960px] mx-auto">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
+              Our agency-to-agency model is built on collaboration and expertise. As a specialized development agency, our core purpose is to empower design agencies to deliver exceptional web solutions to their clients.
               </h5>
             </div>
           </div>
@@ -184,10 +184,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               White Label Development
               </h2>
               <p className="mt-5 text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
+              Our White Label Development services are designed to empower your brand. We act as your dedicated development team, working hand-in-hand to meticulously craft web solutions that align perfectly with your design vision.
               </p>
               <p className="mt-5 text-black">
-              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
+              At Bright Code, we take pride in our role as the silent architects of digital success.
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -228,10 +228,10 @@ const WhiteLabelDevelopment: React.FC = () => {
                 Dedicated Development Team
               </h2>
               <p className="mt-5 text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
+              Our Dedicated Development Teams are designed to empower your digital vision without compromise. We operate as an extension of your in-house team, diligently working together to transform your concepts into polished, high-performing web solutions
               </p>
               <p className="mt-5 text-black">
-              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
+              Our collaborative culture and commitment to professionalism ensure that your projects are executed with precision and excellence. 
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -272,10 +272,10 @@ const WhiteLabelDevelopment: React.FC = () => {
                 CMS Implementation
               </h2>
               <p className="mt-5 text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
+              In the ever-evolving digital landscape, your content is the cornerstone of your online presence.Whether you're a design agency or a CEO looking to enhance your online presence, we collaborate closely with you to ensure the system we implement is a seamless fit.
               </p>
               <p className="mt-5 text-black">
-              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
+              We make the process of managing your digital content effortless, so you can focus on what truly matters – your message.
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
@@ -316,10 +316,10 @@ const WhiteLabelDevelopment: React.FC = () => {
               CMS Maintenance
               </h2>
               <p className="mt-5 text-black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante dolor. Nunc lobortis nunc sem, tincidunt condimentum odio fermentum mollis. In gravida augue vitae mauris semper, at condimentum lacus ullamcorper. Nullam sodales quam ut blandit accumsan.
+              Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience. 
               </p>
               <p className="mt-5 text-black">
-              Suspendisse fermentum nunc vitae suscipit vehicula. Nunc lacus mi, tempus eget nisi in, imperdiet iaculis tellus. 
+              Our proactive approach is designed to identify and address potential issues before they become problems
               </p>
             </div>
             <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
