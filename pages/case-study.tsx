@@ -50,6 +50,13 @@ const CaseStudy: React.FC = () => {
   };
   return (
     <>
+      <Head>
+         <link
+          rel="canonical"
+          href="https://www.bright-code.io/case-study"
+          key="canonical"
+        />
+      </Head>
     {/* Banner Start */}
     <section
         className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px] bg-[url('/case-study/banner-bg-img.png')] bg-center bg-cover bg-no-repeat desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
