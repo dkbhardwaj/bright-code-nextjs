@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate-sitemap": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,6 +24,7 @@
     "next": "13.5.4",
     "next-seo": "^6.4.0",
     "next-share": "^0.27.0",
+    "next-sitemap": "^4.2.3",
     "nodemailer": "^6.9.7",
     "react": "^18",
     "react-dom": "^18",
