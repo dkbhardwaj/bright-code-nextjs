@@ -99,9 +99,9 @@ const Home: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || "", // Make sure it's not undefined
-                images: metadata.openGraph.images || [], // Make sure it's not undefined
-                siteName: metadata.openGraph.siteName || "", // Make sure it's not undefined
+                description: metadata.description || "", 
+                images: metadata.openGraph.images || [],
+                siteName: metadata.openGraph.siteName || "", 
               }
             : undefined
         }
