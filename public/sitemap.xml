@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap><loc>https://www.bright-code.io/sitemap-0.xml</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/case-study</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/cms-implementation</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/cms-support</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/contact</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/dedicated-team</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/ourclients</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/white-label-development</loc></sitemap>
+<sitemap><loc>https://www.bright-code.io/whychooseus</loc></sitemap>
 </sitemapindex>
