@@ -84,13 +84,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Head>
-         <link
-          rel="canonical"
-          href="https://www.bright-code.io/"
-          key="canonical"
-        />
-      </Head>
     
       <NextSeo
         title={String(metadata.title)}

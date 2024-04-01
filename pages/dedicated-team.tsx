@@ -136,13 +136,6 @@ const DedicatedTeam: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <link
-          rel="canonical"
-          href="https://www.bright-code.io/dedicated-team"
-          key="canonical"
-        />
-      </Head>
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
