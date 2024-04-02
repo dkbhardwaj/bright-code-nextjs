@@ -11,6 +11,20 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { log } from "console";
+import HeroBanner from "../components/Herobanner";
+import Introduction from "../components/Introduction";
+import ColThreeCards from "../components/ColThreeCards";
+import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+import {
+  intro,
+  intro2,
+  contentWithImage,
+  contentWithImage2,
+  contentWithImage3,
+  contentWithImage4,
+  intro3,
+} from "../data/homepage/data";
+
 function onChange(token: string | null) {
   console.log("Captcha token:", token);
 }
@@ -84,7 +98,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-    
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
@@ -92,448 +105,35 @@ const Home: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || "", 
+                description: metadata.description || "",
                 images: metadata.openGraph.images || [],
-                siteName: metadata.openGraph.siteName || "", 
+                siteName: metadata.openGraph.siteName || "",
               }
             : undefined
         }
       />
-      {/* Banner Start */}
-      <section
-        className={`banner  banner-with-img banner_overlay banner-homepage relative overflow-x-hidden bg-darkBlue level-two flex items-end text-white pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
-      >
-        <div className="right_img absolute bottom-0 left-[62%] w-full max-w-[538px] h-[536px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:left-[65%] md:h-[310px] md:max-w-[325px] md:!left-auto md:right-[calc(35%-200px)] ">
-          <Image
-            src="/home/banner-right-img.png"
-            width={550}
-            height={550}
-            alt="right-img"
-            className=" w-full h-full object-cover"
-          />
-        </div>
-        <div className="left_img absolute bottom-0 right-[61%] w-full max-w-[526px] h-[506px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:right-[65%] md:h-[310px] md:max-w-[325px] md:!right-[35%] ">
-          <Image
-            src="/home/banner-left-img.png"
-            width={550}
-            height={550}
-            alt="left-img"
-            className=" w-full h-full object-cover"
-          />
-        </div>
-        <div className="container">
-          <div className="w-full max-w-[574px] mx-auto relative z-[2] text-center">
-            <h1
-              className="header-h1"
-              data-aos="fade-left"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              Empowering Designers, Thrilling Clients.
-            </h1>
-            <Link
-              href="/whychooseus"
-              className=" mt-14 gradient-btn mx-auto md:mt-6"
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-duration="300"
-            >
-              <span>Get Started</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Banner End */}
+      <HeroBanner />
 
-      {/* Why Choose Us Intro Start */}
-      <section
-        className={`intro pb-24 pt-[132px] text-center tablet:pt-24 md:py-12 overflow-x-hidden`}
-        id="why-choose-us"
-        data-aos="fade-up"
-        data-aos-delay="400"
-        data-aos-duration="400"
-      >
-        <div className="container">
-          <div className="w-full mx-auto">
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              Why Choose us?
-            </h6>
-            <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
-              Our agency-to-agency model is built on <br />
-              <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
-                collaboration and expertise.
-              </span>
-            </h2>
-            <h5 className="text-black w-full max-w-[960px] mx-auto">
-              As a specialized development agency, our core purpose is to
-              empower design agencies to deliver exceptional web solutions to
-              their clients.
-            </h5>
-          </div>
-        </div>
-      </section>
-      {/* Why Choose Us Intro End */}
+      <Introduction data={intro} />
 
-      {/* Three Card Section Start*/}
-      <section className="introWithCards pb-20 md:pb-10">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0">
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-              data-aos="fade-up"
-              data-aos-delay="400"
-              data-aos-duration="400"
-            >
-              <div className="card bg-white h-full ">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105  h-full w-full"
-                    src="/home/col-three-img1.png"
-                    width={400}
-                    height={300}
-                    alt="Agency to agency services"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <h4 className="text-black">Collaborative</h4>
-                  <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    Our agency thrives on the synergy of collaboration. We step
-                    into the role of your dedicated development partner, filling
-                    a crucial gap in your service offerings.
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="500"
-            >
-              <div className="card bg-white h-full">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/home/col-three-img2.png"
-                    width={400}
-                    height={300}
-                    alt="Client Centric development"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <h4 className="text-black">Client-Centric</h4>
-                  <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis  text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    We know that clients are your ultimate consideration. We
-                    ensure that the websites we develop not only meet but exceed
-                    the end-users needs.
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-              data-aos="fade-up"
-              data-aos-delay="600"
-              data-aos-duration="600"
-            >
-              <div className="card bg-white h-full">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/home/col-three-img3.png"
-                    width={400}
-                    height={300}
-                    alt="Empowering designers"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 text-center md:p-5">
-                  <h4 className="text-black">Empowering</h4>
-                  <span className="text-gray font-light mt-[30px] line-clamp-4 text-ellipsis  text-[15px] leading-[26px] md:text-[14px] md:leading-[22px] md:mt-4 ">
-                    Our mission is to empower designers. We understand that a
-                    design's potential can only be fully realized when paired
-                    with a capable development team.
-                  </span>
-                </div>
-              </div>
-            </div>
+      <ColThreeCards />
 
-            <Link href="/whychooseus" className=" mt-7 gradient-btn mx-auto">
-              <span>Learn More</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Three Card Section End*/}
+      <Introduction data={intro2} />
 
-      {/* What we do Intro Start */}
-      <section
-        className={`intro pt-[86px] pb-[50px] text-center tablet:py-9 md:pt-5 md:pb-0 overflow-x-hidden `}
-        id="what-we-do"
-        data-aos="fade-up"
-        data-aos-delay="300"
-        data-aos-duration="500"
-      >
-        <div className="container">
-          <div className="w-full max-w-[600px] mx-auto">
-            <h2 className="text-black text-[65px] font-semibold desktop:text-[42px] tablet:text-[36px] md:text-[32px]">
-              What we do
-            </h2>
-          </div>
-        </div>
-      </section>
-      {/* What we do Intro End */}
+      <ContentWithImageColTwo data={contentWithImage} />
 
-      {/* Riverflow 1 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h3>
-                <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
-                  White Label Development
-                </span>
-              </h3>
-              <p className="mt-5 text-black">
-                In the world of web development, the invisible hand of expertise
-                often guides the most remarkable creations. At Bright Code, we
-                take pride in our role as the silent architects of digital
-                success, delivering excellence through White Label Development.
-              </p>
-              <p className="mt-5  text-black">
-                We offer development services under your brand, acting as your
-                dedicated development team while remaining behind the scenes.
-              </p>
-              {/* <div className="btnWrap mt-5">
-                <Link href="/white-label-development" className="black-btn">
-                  Learn More
-                </Link>
-              </div> */}
-              <Link
-                href="/white-label-development"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
-                <span>Learn More</span>
-              </Link>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img1.png"
-                  alt="White Label Developments"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 1 End */}
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-      {/* Riverflow 2 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0 featured  md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h3>
-                <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
-                  Dedicated Development Teams
-                </span>
-              </h3>
-              <p className="mt-5  text-black">
-                In the dynamic landscape of web development, the true mark of
-                excellence is achieved through collaboration and a dedicated
-                focus on your unique goals. At Bright Code, we're proud to be
-                your partners in this journey, offering Dedicated Development
-                Teams that bring your digital dreams to life.
-              </p>
-              <p className="mt-5  text-black">
-                We provide specialized, dedicated development teams to
-                collaborate with your agency, ensuring tailored solutions for
-                your unique project requirements.
-              </p>
-              {/* <div className="btnWrap mt-5">
-                <Link href="/dedicated-team" className="black-btn">
-                  Learn More
-                </Link>
-              </div> */}
-              <Link
-                href="/dedicated-team"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
-                <span>Learn More</span>
-              </Link>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img2.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 2 End */}
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-      {/* Riverflow 3 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0  md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h3>
-                <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
-                  CMS Implementation
-                </span>
-              </h3>
-              <p className="mt-5  text-black">
-                In the ever-evolving digital landscape, your content is the
-                cornerstone of your online presence. At Bright Code, we
-                understand the significance of efficient Content Management
-                System (CMS) Implementation in ensuring your brand's message is
-                delivered seamlessly to your audience.
-              </p>
-              <p className="mt-5 text-black">
-                We implement customized CMS solutions to streamline content
-                management, enhance user experiences, and align with your
-                clients' brand objectives.
-              </p>
-              {/* <div className="btnWrap mt-5">
-                <Link href="/cms-implementation" className="black-btn">
-                  Learn More
-                </Link>
-              </div> */}
-              <Link
-                href="/cms-implementation"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
-                <span>Learn More</span>
-              </Link>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img3.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 3 End */}
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-      {/* Riverflow 4 Start */}
-      <section className="contentWithImage pb-[112px]  md:pb-16 overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0 featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h3>
-                <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
-                  CMS Support & maintenance
-                </span>
-              </h3>
-              <p className="mt-5 text-black">
-                Monthly CMS Maintenance is crucial for the sustained health,
-                security, and optimal performance of a website. This ensures
-                that the website is fortified with the latest security patches,
-                protecting it from potential threats and unauthorized access.
-                Monthly CMS Maintenance is an investment in the long-term
-                sustainability, security, and performance of your website.
-              </p>
-              <p className="mt-5 text-black">
-                It's a proactive strategy that not only prevents potential
-                issues but also ensures that the website continues to deliver an
-                excellent experience to users while meeting the highest
-                standards of security and compliance.
-              </p>
-              {/* <div className="btnWrap mt-5">
-                <Link href="/cms-support" className="black-btn">
-                  Learn More
-                </Link>
-              </div> */}
-              <Link
-                href="/cms-support"
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
-              >
-                <span>Learn More</span>
-              </Link>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img4.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 4 End */}
       <div className="section_bgImage bg-darkBlue">
         {/* Our Values Intro Start */}
-        <section
+
+        <Introduction data={intro3} />
+
+        {/* <section
           className={`intro pb-[132px] pt-[140px] md:pt-16  md:pb-14 text-center overflow-x-hidden `}
           id="our-values"
           data-aos="fade-up"
@@ -547,7 +147,7 @@ const Home: React.FC = () => {
               </h2>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* Our Values Intro End */}
 
         {/* Column Two Section Start */}
