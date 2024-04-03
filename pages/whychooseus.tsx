@@ -13,6 +13,7 @@ import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import Overview from "../components/Overview";
 import {
   contentWithImage,
+  overview,
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
@@ -95,7 +96,7 @@ const WhyChooseUs: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage} />
 
-      <Overview />
+      <Overview data={overview} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
 

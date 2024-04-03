@@ -19,6 +19,18 @@ const contentWithImage = {
   paddingmedium: true,
 }
 
+const overview = {
+  subTitleHidden: false,
+  subtitle: "Harmony of Minds",
+  titleHidden: false,
+  title: "Collaboration and Expertise",
+  paragraph: "In the fast-paced world of digital solutions, strategic collaboration is the cornerstone of lasting success. We act as the strategic ally that design agencies can rely on for seamless project execution. We understand the nuances of the industry, stay ahead of technological trends, and align our services with the evolving needs of design agencies. Our agency-to-agency model is built on collaboration and expertise. With us by your side, you’re not just gaining a development partner; you’re forging a strategic alliance geared towards mutual growth and client satisfaction.",
+  paragraph2: "",
+  bgExtraLightGray: true,
+  bgWhite: false,
+  maxWidthH5: false,
+}
+
 const contentWithImage2 = {
   subTitleHidden: false,
   subtitle: "Crafting Excellence",
@@ -104,4 +116,4 @@ const contentWithImage5 = {
 }
 
 
-export { contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5 };
+export { contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5 };
