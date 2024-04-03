@@ -1,13 +1,10 @@
 const contentWithImage = {
-  subTitleHidden: false,
   subtitle: "SYNERGY OF COLLABORATION",
-  titleHidden: false,
   title: "Agency to Agency",
   titleSpan: "",
   paragraph: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in their service offerings.",
   paragraph2: "While design agencies excel in crafting visually stunning concepts, the seamless execution of these visions requires the technical prowess of a dedicated development team.",
   paragraph3: "Bright Code becomes the bridge that connects these two realms, ensuring that the synergy between creativity and technical implementation is not just maintained but elevated.",
-  hiddenbutton: true,
   btnUrl: "",
   btnText: "",
   imageUrl: "/why-choose-us/col-two-img1.png",
@@ -20,9 +17,7 @@ const contentWithImage = {
 }
 
 const overview = {
-  subTitleHidden: false,
   subtitle: "Harmony of Minds",
-  titleHidden: false,
   title: "Collaboration and Expertise",
   paragraph: "In the fast-paced world of digital solutions, strategic collaboration is the cornerstone of lasting success. We act as the strategic ally that design agencies can rely on for seamless project execution. We understand the nuances of the industry, stay ahead of technological trends, and align our services with the evolving needs of design agencies. Our agency-to-agency model is built on collaboration and expertise. With us by your side, you’re not just gaining a development partner; you’re forging a strategic alliance geared towards mutual growth and client satisfaction.",
   paragraph2: "",
@@ -32,15 +27,12 @@ const overview = {
 }
 
 const contentWithImage2 = {
-  subTitleHidden: false,
   subtitle: "Crafting Excellence",
-  titleHidden: false,
   title: "Specialized Expertise",
   titleSpan: "",
   paragraph: "We bring a wealth of expertise to the table. Our team is composed of Engineering Managers, Product Owners and Drupal specialists, ensuring that we are not just a development team but a high-caliber one with a deep understanding of the platform.",
   paragraph2: "Our specialized knowledge allows us to execute intricate designs flawlessly, creating web solutions that are as beautiful as they are functional.",
   paragraph3: "",
-  hiddenbutton: true,
   btnUrl: "",
   btnText: "",
   imageUrl: "/why-choose-us/col-two-img2.png",
@@ -53,15 +45,12 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subTitleHidden: false,
   subtitle: "UNLEASHING DESIGN POTENTIAL",
-  titleHidden: false,
   title: "Empowering Designers",
   titleSpan: "",
   paragraph: "Our mission is to empower designers, allowing them to focus on their creativity without the weight of development concerns. We understand that a design's potential can only be fully realized when paired with a capable development team.",
   paragraph2: "We give designers the freedom to dream big and create exceptional designs, confident that you're there to bring those visions to life.",
   paragraph3: "",
-  hiddenbutton: true,
   btnUrl: "",
   btnText: "",
   imageUrl: "/why-choose-us/col-two-img3.png",
@@ -74,15 +63,12 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
-  subTitleHidden: false,
   subtitle: "CUSTOMER-FOCUSED PHILOSOPHY",
-  titleHidden: false,
   title: "Client-Centric Approach",
   titleSpan: "",
   paragraph: "In everything you do, the final client is your ultimate consideration. Our commitment to exceeding the expectations is unwavering. We ensure that the websites we develop not only meet but exceed the end-users needs.",
   paragraph2: "Our client-centric approach guarantees that the final clients are not just satisfied; they are thrilled with the end results.",
   paragraph3: "",
-  hiddenbutton: true,
   btnUrl: "",
   btnText: "",
   imageUrl: "/why-choose-us/col-two-img4.png",
@@ -95,15 +81,12 @@ const contentWithImage4 = {
 }
 
 const contentWithImage5 = {
-  subTitleHidden: false,
   subtitle: "ELEVATING THE PARADIGM OF WEB DEVELOPMENT",
-  titleHidden: false,
   title: "Redefining Web Development",
   titleSpan: "",
   paragraph: "Our agency's agency-to-agency model redefines web development. We go beyond the role of a service provider; We are your partner in realizing your creative aspirations.",
   paragraph2: "Our mission is clear: to empower designers and thrill clients.",
   paragraph3: "",
-  hiddenbutton: true,
   btnUrl: "",
   btnText: "",
   imageUrl: "/why-choose-us/col-two-img5.png",

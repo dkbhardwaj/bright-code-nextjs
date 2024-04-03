@@ -38,22 +38,28 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
       >
         <div className="container">
           <div className="w-full mx-auto">
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              {subtitle}
-            </h6>
+            {subtitle && (
+              <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                {subtitle}
+              </h6>
+            )}
             <h2
               className={`${titleLarge === true ? "large" : ""} ${
                 titleWhite === true ? "text-white" : ""
               } font-medium text-black mb-[38px] md:mb-[20px]`}
             >
               {title} <br />
-              <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
-                {titleSpan}
-              </span>
+              {titleSpan && (
+                <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
+                  {titleSpan}
+                </span>
+              )}
             </h2>
-            <h5 className="text-black w-full max-w-[960px] mx-auto">
-              {paragraph}
-            </h5>
+            {paragraph && (
+              <h5 className="text-black w-full max-w-[960px] mx-auto">
+                {paragraph}
+              </h5>
+            )}
           </div>
         </div>
       </section>

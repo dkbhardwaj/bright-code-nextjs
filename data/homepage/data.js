@@ -21,15 +21,12 @@ const intro2 = {
 };
 
 const contentWithImage = {
-  subTitleHidden: true,
   subtitle: "",
-  titleHidden: true,
   title: "",
   titleSpan: "White Label Development",
   paragraph: "In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
   paragraph2: "We offer development services under your brand, acting as your dedicated development team while remaining behind the scenes.",
   paragraph3: "",
-  hiddenbutton: false,
   btnUrl: "/white-label-development",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img1.png",
@@ -42,15 +39,12 @@ const contentWithImage = {
 }
 
 const contentWithImage2 = {
-  subTitleHidden: true,
   subtitle: "",
-  titleHidden: true,
   title: "",
   titleSpan: "Dedicated Development Teams",
   paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus on your unique goals. At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
   paragraph2: "We provide specialized, dedicated development teams to collaborate with your agency, ensuring tailored solutions for your unique project requirements.",
   paragraph3: "",
-  hiddenbutton: false,
   btnUrl: "/dedicated-team",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img2.png",
@@ -63,15 +57,12 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subTitleHidden: true,
   subtitle: "",
-  titleHidden: true,
   title: "",
   titleSpan: "CMS Implementation",
   paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence. At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
   paragraph2: "We implement customized CMS solutions to streamline content management, enhance user experiences, and align with your clients' brand objectives.",
   paragraph3: "",
-  hiddenbutton: false,
   btnUrl: "/cms-implementation",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img3.png",
@@ -84,15 +75,12 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
-  subTitleHidden: true,
   subtitle: "",
-  titleHidden: true,
   title: "",
   titleSpan: "CMS Support & maintenance",
   paragraph: "Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a website. This ensures that the website is fortified with the latest security patches, protecting it from potential threats and unauthorized access. Monthly CMS Maintenance is an investment in the long-term sustainability, security, and performance of your website.",
   paragraph2: "It's a proactive strategy that not only prevents potential issues but also ensures that the website continues to deliver an excellent experience to users while meeting the highest standards of security and compliance.",
   paragraph3: "",
-  hiddenbutton: false,
   btnUrl: "/cms-support",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img4.png",
