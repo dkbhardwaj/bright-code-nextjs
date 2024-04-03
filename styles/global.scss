@@ -86,9 +86,11 @@ h3 {
   font-weight: 500;
   @include tablet {
     font-size: 28px;
+    line-height: 40px;
   }
   @include tablet-down {
     font-size: 26px;
+    line-height: 36px;
   }
 }
 h4 {
@@ -363,12 +365,12 @@ span.title {
         margin-bottom: 2px;
       }
     }
-    h2 {
-      margin-bottom: 30px;
-      @include tablet-down {
-        margin-bottom: 15px;
-      }
-    }
+    // h2 {
+    //   margin-bottom: 30px;
+    //   @include tablet-down {
+    //     margin-bottom: 15px;
+    //   }
+    // }
     p {
       margin-bottom: 30px;
       &:last-of-type {

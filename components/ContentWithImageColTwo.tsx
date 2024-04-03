@@ -4,11 +4,15 @@ import Link from "next/link";
 
 interface contentWithImageProps {
   data: {
+    subTitleHidden: boolean;
     subtitle: string;
+    titleHidden: boolean;
     title: string;
     titleSpan: string;
     paragraph: string;
     paragraph2: string;
+    paragraph3: string;
+    hiddenbutton: boolean;
     btnUrl: string;
     btnText: string;
     imageUrl: string;
@@ -17,14 +21,21 @@ interface contentWithImageProps {
     animatContent: string;
     animatImage: string;
     paddinglargebottom: boolean;
+    paddingmedium: boolean;
   };
 }
 
 const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
   const {
+    subTitleHidden,
+    subtitle,
+    titleHidden,
+    title,
     titleSpan,
     paragraph,
     paragraph2,
+    paragraph3,
+    hiddenbutton,
     btnUrl,
     btnText,
     imageUrl,
@@ -33,12 +44,15 @@ const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
     animatContent,
     animatImage,
     paddinglargebottom,
+    paddingmedium,
   } = data;
   return (
     <>
       <section
         className={`${
           paddinglargebottom === true ? "padding-large-bottom" : ""
+        } ${
+          paddingmedium === true ? "padding-medium" : ""
         } contentWithImage overflow-hidden`}
       >
         <div className="container">
@@ -53,6 +67,20 @@ const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
+              <h6
+                className={`${
+                  subTitleHidden === true ? "hidden" : ""
+                } text-[#8000FF] uppercase font-normal`}
+              >
+                {subtitle}
+              </h6>
+              <h2
+                className={` ${
+                  titleHidden === true ? "hidden " : ""
+                } font-medium xl-up:text-[45px] text-black mb-[30px] md:mb-[15px] `}
+              >
+                {title}
+              </h2>
               <h3>
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   {titleSpan}
@@ -60,9 +88,12 @@ const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
               </h3>
               <p className="mt-5 text-black">{paragraph}</p>
               <p className="mt-5  text-black">{paragraph2}</p>
+              <p className="mt-5  text-black">{paragraph3}</p>
               <Link
                 href={btnUrl}
-                className=" mt-5 bgWhiteBtn gradient-btn mx-auto"
+                className={` ${
+                  hiddenbutton === true ? "!hidden" : ""
+                } mt-5 bgWhiteBtn gradient-btn mx-auto`}
               >
                 <span>{btnText}</span>
               </Link>

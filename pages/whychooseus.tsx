@@ -8,6 +8,16 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
+import BannerSecond from "../components/BannerSecond";
+import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+import Overview from "../components/Overview";
+import {
+  contentWithImage,
+  contentWithImage2,
+  contentWithImage3,
+  contentWithImage4,
+  contentWithImage5,
+} from "../dataWhychooseus/data";
 
 export const metadata: Metadata = {
   title: "Elevate Your Vision: Bright Code's Unique Agency-to-Agency Model",
@@ -80,333 +90,22 @@ const WhyChooseUs: React.FC = () => {
             : undefined
         }
       />
-      {/* Banner Start */}
-      <section
-        className={`banner banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue level-two text-white md:items-baseline`}
-        data-aos="fade-in"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-      >
-        <div className="container">
-          <div className="left_img absolute bottom-0 left-[calc(65%-204px)] w-full max-w-[390px] h-[362px] z-[2] md:w-[330px] md:max-w-full md:h-[304px] md:left-[calc(42%-212px)]">
-            <Image
-              src="/why-choose-us/banner-left-img.png"
-              width={400}
-              height={400}
-              alt="left-img"
-              className=" w-full h-full object-cover"
-            />
-          </div>
-          <div className="right_img absolute bottom-0 left-[65.58%] w-full max-w-[350px] h-[350px] z-[1]  md:w-[304px] md:max-w-full md:h-[304px] md:left-[42%] ">
-            <Image
-              src="/why-choose-us/banner-right-img.png"
-              width={400}
-              height={400}
-              alt="right-img"
-              className=" w-full h-full object-cover"
-            />
-          </div>
-          <div className="banner-contenr text-left">
-            <h1>Why choose us?</h1>
-            <Link
-              href="/contact"
-              className=" mt-[42px] gradient-btn mx-auto lg:mt-5"
-            >
-              <span>Learn More</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* Banner End */}
 
-      {/* Collaboration Riverflow Start */}
-      <section className="contentWithImage py-16 md:py-5">
-        <div className="container">
-          <div className="content-outer w-mainRow -ml-2.5 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack  md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal">
-                SYNERGY OF COLLABORATION
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black">
-                Agency to Agency
-              </h2>
-              <p className=" text-black">
-                Our agency thrives on the synergy of collaboration. We step into
-                the role of your dedicated development partner, filling a
-                crucial gap in their service offerings.
-              </p>
-              <p className=" text-black">
-                While design agencies excel in crafting visually stunning
-                concepts, the seamless execution of these visions requires the
-                technical prowess of a dedicated development team.
-              </p>
-              <p className=" text-black">
-                Bright Code becomes the bridge that connects these two realms,
-                ensuring that the synergy between creativity and technical
-                implementation is not just maintained but elevated.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/why-choose-us/col-two-img1.png"
-                  alt="White Label Developments"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Collaboration Riverflow End */}
+      <BannerSecond />
 
-      {/* Collaboration and Expertise Intro Start */}
-      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12 bg-extraLightGray overflow-x-hidden ">
-        <div className="container">
-          <div className="w-full z-1 relative">
-            <div
-              className="content w-full text-center relative"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-                Harmony of Minds
-              </h6>
-              <h2 className="font-medium text-black mb-[38px]  md:mb-4">
-                Collaboration and Expertise
-              </h2>
-            </div>
-            <div
-              className="content w-full text-center relative"
-              data-aos="fade-left"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h5 className="text-black font-light">
-                In the fast-paced world of digital solutions, strategic
-                collaboration is the cornerstone of lasting success. We act as
-                the strategic ally that design agencies can rely on for seamless
-                project execution. We understand the nuances of the industry,
-                stay ahead of technological trends, and align our services with
-                the evolving needs of design agencies. Our agency-to-agency
-                model is built on collaboration and expertise. With us by your
-                side, you’re not just gaining a development partner; you’re
-                forging a strategic alliance geared towards mutual growth and
-                client satisfaction.
-              </h5>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Collaboration and Expertise Intro End */}
+      <ContentWithImageColTwo data={contentWithImage} />
 
-      {/* Riverflow 1 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Crafting Excellence
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Specialized Expertise
-              </h2>
-              <p className="mt-5 text-black">
-                We bring a wealth of expertise to the table. Our team is
-                composed of Engineering Managers, Product Owners and Drupal
-                specialists, ensuring that we are not just a development team
-                but a high-caliber one with a deep understanding of the
-                platform.
-              </p>
-              <p className="mt-5 text-black">
-                Our specialized knowledge allows us to execute intricate designs
-                flawlessly, creating web solutions that are as beautiful as they
-                are functional.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/why-choose-us/col-two-img2.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 1 End */}
+      <Overview />
 
-      {/* Riverflow 2 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0 featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                UNLEASHING DESIGN POTENTIAL
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Empowering Designers
-              </h2>
-              <p className="mt-5 text-black">
-                Our mission is to empower designers, allowing them to focus on
-                their creativity without the weight of development concerns. We
-                understand that a design&#39;s potential can only be fully
-                realized when paired with a capable development team.
-              </p>
-              <p className="mt-5 text-black">
-                We give designers the freedom to dream big and create
-                exceptional designs, confident that you&#39;re there to bring
-                those visions to life.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/why-choose-us/col-two-img3.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 2 End */}
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-      {/* Riverflow 3 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack  md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                CUSTOMER-FOCUSED PHILOSOPHY
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Client-Centric Approach
-              </h2>
-              <p className="mt-5 text-black">
-                In everything you do, the final client is your ultimate
-                consideration. Our commitment to exceeding the expectations is
-                unwavering. We ensure that the websites we develop not only meet
-                but exceed the end-users needs.
-              </p>
-              <p className="mt-5 text-black">
-                Our client-centric approach guarantees that the final clients
-                are not just satisfied; they are thrilled with the end results.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/why-choose-us/col-two-img4.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 3 End */}
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-      {/* Riverflow 4 Start */}
-      <section className="contentWithImage overflow-hidden pb-32 md:pb-16 ">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0 featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                ELEVATING THE PARADIGM OF WEB DEVELOPMENT
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Redefining Web Development
-              </h2>
-              <p className="mt-5 text-black">
-                Our agency&#39;s agency-to-agency model redefines web
-                development. We go beyond the role of a service provider; We are
-                your partner in realizing your creative aspirations.
-              </p>
-              <p className="mt-5 text-black">
-                Our mission is clear: to empower designers and thrill clients.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/why-choose-us/col-two-img5.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 4 End */}
+      <ContentWithImageColTwo data={contentWithImage4} />
+
+      <ContentWithImageColTwo data={contentWithImage5} />
+
       <div className="section_bgImage bg-darkBlue smallBgImage">
-
         {/* Contact Form Start */}
         <section
           className="contactForm text-gray-600 body-font relative pt-24 md:pt-16"
@@ -428,11 +127,17 @@ const WhyChooseUs: React.FC = () => {
                     Let&#39;s talk about your project
                   </h2>
                   <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                  Fill in the form and our experts will reach out to you.
+                    Fill in the form and our experts will reach out to you.
                   </h4>
                 </div>
                 <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
-                  <Image src="/why-choose-us/shiv-headshot.jpg" width={220} height={220} alt="img" className=" w-full h-full object-cover " />
+                  <Image
+                    src="/why-choose-us/shiv-headshot.jpg"
+                    width={220}
+                    height={220}
+                    alt="img"
+                    className=" w-full h-full object-cover "
+                  />
                 </div>
               </div>
               <div className="relative w-full">

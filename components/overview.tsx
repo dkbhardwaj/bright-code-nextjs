@@ -1,44 +1,47 @@
 import React from "react";
 
-interface BladeItem {
-  title: string;
-  blurb: string;
-  subtitle?: string;
-}
-
-interface Blade {
-  bladeTitle: string;
-  level: string;
-  bladeItems: Array<BladeItem>;
-  bgColor: string;
-  imgPath: string;
-  textAlignment: string;
-  ctaLink: string;
-  ctaText: string;
-  ctaClass: string;
-}
-
-// Define a type for the props of the Intro component
-interface IntroProps {
-  data: Blade;
-}
-
-const Overview: React.FC<IntroProps> = ({ data }) => {
+const Overview: React.FC = () => {
   return (
-    <section className="overview pt-32 pb-20">
-      <div className="container">
-        <div className="w-mainRow -ml-2.5 flex z-1 relative">
-          <div className="content w-halfWidth mx-2.5 pr-10">
-            <span className="title">{data.bladeItems[0].subtitle}</span>
-            <h2 className="text-darkGray mt-2">{data.bladeItems[0].title}</h2>
-          </div>
-          <div className="content w-halfWidth mx-2.5 mt-10">
-            <p className="text-gray">{data.bladeItems[0].blurb}</p>
+    <>
+      <section className="overview pt-16 pb-20 md:pt-8 md:pb-12 bg-extraLightGray overflow-x-hidden ">
+        <div className="container">
+          <div className="w-full z-1 relative">
+            <div
+              className="content w-full text-center relative"
+              data-aos="fade-right"
+              data-aos-delay="500"
+              data-aos-duration="1000"
+            >
+              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                Harmony of Minds
+              </h6>
+              <h2 className="font-medium text-black mb-[38px]  md:mb-4">
+                Collaboration and Expertise
+              </h2>
+            </div>
+            <div
+              className="content w-full text-center relative"
+              data-aos="fade-left"
+              data-aos-delay="500"
+              data-aos-duration="1000"
+            >
+              <h5 className="text-black font-light">
+                In the fast-paced world of digital solutions, strategic
+                collaboration is the cornerstone of lasting success. We act as
+                the strategic ally that design agencies can rely on for seamless
+                project execution. We understand the nuances of the industry,
+                stay ahead of technological trends, and align our services with
+                the evolving needs of design agencies. Our agency-to-agency
+                model is built on collaboration and expertise. With us by your
+                side, you’re not just gaining a development partner; you’re
+                forging a strategic alliance geared towards mutual growth and
+                client satisfaction.
+              </h5>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
-
 export default Overview;
