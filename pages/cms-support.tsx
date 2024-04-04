@@ -11,6 +11,17 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
+import Overview from "../components/overview";
+import BannerThird from "../components/BannerThird";
+import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+import {
+  overview,
+  contentWithImage,
+  contentWithImage2,
+  contentWithImage3,
+  contentWithImage4,
+  contentWithImage5,
+} from "../dataCmsSupport/data";
 
 export const metadata: Metadata = {
   title:
@@ -151,20 +162,9 @@ const CmsSupport: React.FC = () => {
             : undefined
         }
       />
-      {/* Banner Start */}
-      <section
-        className={`banner banner-second banner_DarkOverlay banner_bg_img bg-darkBlue level-two text-white`}
-        data-aos="fade-in"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-      >
-        <div className="container">
-          <div className="w-full text-center relative z-10">
-            <h1>What we do?</h1>
-          </div>
-        </div>
-      </section>
-      {/* Banner End */}
+
+      <BannerThird />
+
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
       <Sticky
         ribbonVisible={true}
@@ -173,272 +173,17 @@ const CmsSupport: React.FC = () => {
         setClickedId={setClickedId}
       />
 
-      {/* CMS Implementation Intro Start */}
-      <section
-        className={`intro py-20 md:py-14 overflow-x-hidden`}
-        id="white-label-development"
-        data-aos="fade-up"
-        data-aos-delay="700"
-        data-aos-duration="1000"
-      >
-        <div className="container">
-          <div className="w-full z-1 relative text-center">
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              Empowering Your Content
-            </h6>
-            <h2 className="font-medium text-black mb-[38px] md:mb-[20px] ">
-              Drupal Maintenance
-            </h2>
-            <h5 className="text-black font-light w-full max-w-[960px] mx-auto">
-              Through our comprehensive Drupal Maintenance service, we provide
-              you with the assurance that your Drupal Content Management System
-              (CMS) is not only kept current and secure but also finely tuned
-              for optimal performance and a seamless user experience. Our
-              proactive approach is designed to identify and address potential
-              issues before they become problems, safeguarding the ongoing
-              success of your digital presence in the long run.
-            </h5>
-          </div>
-        </div>
-      </section>
-      {/*  CMS Implementation Intro End */}
+      <Overview data={overview} />
 
-      {/* Riverflow 1 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5  py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0  featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                The Importance of CMS Maintenance
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                What is Drupal Maintenance?
-              </h2>
-              <p className="mt-5 text-black">
-                Drupal Maintenance refers to the ongoing process of managing and
-                optimizing the Content Management System (CMS) to ensure its
-                smooth operation, security, and performance. Drupal Maintenance
-                is crucial for the sustained health and effectiveness of a
-                website. It helps prevent security vulnerabilities, ensures
-                optimal performance, and contributes to a positive user
-                experience, ultimately supporting the long-term success of a
-                digital presence.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-              >
-                <Image
-                  src="/what-we-do/col-two4-img1.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 1 End */}
+      <ContentWithImageColTwo data={contentWithImage} />
 
-      {/* Riverflow 2 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Core Drupal Maintenance
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Security and Stability
-              </h2>
-              <p className="mt-5 text-black">
-                Core Drupal Maintenance involves the essential upkeep of the
-                Drupal Content Management System (CMS). This includes regularly
-                updating the Drupal core to leverage the latest features,
-                enhancements, and crucial security patches. Additionally, our
-                team manages and updates Drupal modules, ensuring that the
-                website's functionalities remain robust and any potential
-                security vulnerabilities are promptly addressed.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-              >
-                <Image
-                  src="/what-we-do/col-two4-img2.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 2 End */}
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-      {/* Riverflow 3 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0  featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Security and Performance Optimization
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                CMS Maintenance Expertise
-              </h2>
-              <p className="mt-5 text-black">
-                Security and Performance Optimization for Drupal is about
-                safeguarding the integrity and efficiency of the digital
-                platform. We conduct regular security scans and audits tailored
-                specifically to Drupal, identifying and mitigating potential
-                risks to fortify the system. Simultaneously, our team focuses on
-                optimizing Drupal's performance through strategies such as
-                database optimization, efficient caching mechanisms, and
-                thorough code reviews.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-              >
-                <Image
-                  src="/what-we-do/col-two4-img3.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 3 End */}
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-      {/* Riverflow 4 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex flex-row-reverse items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-left"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                User and Access Management
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Access Control and User Governance
-              </h2>
-              <p className="mt-5 text-black">
-                User and Access Management in Drupal involves a meticulous
-                review of user access within the CMS. We ensure precise
-                permissions aligned with roles, promptly revoking access for
-                inactive users to enhance security. Our team also provides
-                Drupal-specific security training, empowering your team for
-                secure CMS navigation. This approach ensures a robust and secure
-                Drupal-based digital platform.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-right"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-              >
-                <Image
-                  src="/what-we-do/col-two4-img4.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 4 End */}
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-      {/* Riverflow 5 Start */}
-      <section className="contentWithImage overflow-hidden pb-16 md:pb-8">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0  featured md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="500"
-              data-aos-duration="1000"
-            >
-              <h6 className="text-[#8000FF] uppercase font-normal mb-4 md:mb-1">
-                Emergency Support and Content Management
-              </h6>
-              <h2 className="font-medium xl-up:text-[45px] text-black mb-6">
-                Support and Content
-              </h2>
-              <p className="mt-5 text-black">
-                Support and Content Management in Drupal encompass a proactive
-                approach to address critical issues promptly and ensure
-                effective content oversight. Our team provides emergency support
-                tailored to Drupal-related challenges, minimizing downtime and
-                potential damage. Simultaneously, we handle Drupal content with
-                regular reviews and updates, aligning it with business goals and
-                user expectations.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="500"
-                data-aos-duration="1000"
-              >
-                <Image
-                  src="/what-we-do/col-two4-img3.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 5 End */}
+      <ContentWithImageColTwo data={contentWithImage5} />
 
       <ContactForm />
     </>
