@@ -11,7 +11,7 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Overview from "../components/Overview";
+import Overview from "../components/overview";
 import BannerThird from "../components/BannerThird";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {

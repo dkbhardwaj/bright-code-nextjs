@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import BannerSecond from "../components/BannerSecond";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-import Overview from "../components/Overview";
+import Overview from "../components/overview";
 import {
   contentWithImage,
   overview,
