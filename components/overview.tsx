@@ -65,6 +65,15 @@ const Overview: React.FC<overviewProps> = ({ data }) => {
                   {paragraph}
                 </h5>
               )}
+              {paragraph2 && (
+                <h5
+                  className={` ${
+                    maxWidthH5 === true ? "w-full max-w-[960px]  mx-auto" : ""
+                  } text-black font-light mt-5 md:mt-3  `}
+                >
+                  {paragraph2}
+                </h5>
+              )}
             </div>
           </div>
         </div>
