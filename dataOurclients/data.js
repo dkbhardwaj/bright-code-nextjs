@@ -25,6 +25,8 @@ const overview = {
   bgExtraLightGray: true,
   bgWhite: false,
   maxWidthH5: false,
+  paddingLargeTop: false,
+  noPaddingBottom: false,
 }
 
 const contentWithImage2 = {

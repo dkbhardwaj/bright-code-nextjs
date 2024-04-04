@@ -10,6 +10,8 @@ const overview = {
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,
+  paddingLargeTop: false,
+  noPaddingBottom: false,
 }
 
 const contentWithImage = {

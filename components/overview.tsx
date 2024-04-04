@@ -9,6 +9,8 @@ interface overviewProps {
     bgExtraLightGray: boolean;
     bgWhite: boolean;
     maxWidthH5: boolean;
+    noPaddingBottom: boolean;
+    paddingLargeTop: boolean;
   };
 }
 
@@ -21,12 +23,16 @@ const Overview: React.FC<overviewProps> = ({ data }) => {
     bgExtraLightGray,
     bgWhite,
     maxWidthH5,
+    noPaddingBottom,
+    paddingLargeTop,
   } = data;
   return (
     <>
       <section
         className={`${bgExtraLightGray === true ? "bg-extraLightGray" : ""} ${
           bgWhite === true ? "bg-white" : ""
+        } ${noPaddingBottom === true ? "no-padding-bottom" : ""}  ${
+          paddingLargeTop === true ? "padding-large-top" : ""
         } overview  py-20 md:py-12 overflow-x-hidden `}
       >
         <div className="container">
