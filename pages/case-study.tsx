@@ -18,7 +18,15 @@ import Banner from "../components/Banner";
 import ListWithSocialicon from "../components/ListWithSocialicon";
 import ImageWithList from "../components/ImageWithList";
 import Overview from "../components/overview";
-import { overview } from "../dataCaseStudy/data";
+import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+import IntroWithCards from "../components/IntroWithCards";
+import {
+  overview,
+  contentWithImage,
+  overview2,
+  overview3,
+  contentWithImage2,
+} from "../dataCaseStudy/data";
 
 const CaseStudy: React.FC = () => {
   const router = useRouter();
@@ -60,262 +68,15 @@ const CaseStudy: React.FC = () => {
 
       <Overview data={overview} />
 
-      {/* Riverflow 1 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0  md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-duration="500"
-            >
-              <p className=" text-black">
-                A major global insurer was under growing pressure from
-                shareholders to understand how climate change was impacting its
-                underwriting portfolios, both now and into the future under
-                multiple climate change scenarios up to the end of the century.
-                The aim was to use the information for longer-term business
-                planning to prepare and adjust its property catastrophe
-                underwriting.
-              </p>
-              <p className="mt-5  text-black">
-                The insurer was also aware of growing regulatory pressure,
-                including disclosure frameworks such as TCFD (Task Force on
-                Climate-Related Financial Disclosure), which are currently
-                voluntary but are already influencing climate change regulatory
-                disclosures. The company wanted to provide metrics around its
-                physical climate risk exposure as part of a wider push to take
-                the lead on responsibilities around ESG, sustainability risk,
-                and climate transition.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="300"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img1.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 1 End */}
+      <ContentWithImageColTwo data={contentWithImage} />
 
-      {/*  Intro Start */}
-      <section
-        className={`intro relative w-full pt-20 pb-16 lg:pt-14 md:!pt-9 md:pb-8 overflow-hidden `}
-        id="white-label-development"
-        data-aos="fade-up"
-        data-aos-delay="500"
-        data-aos-duration="800"
-      >
-        <div className="container">
-          <div className="w-full z-1 relative">
-            <div className="content w-full text-center relative">
-              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-                The Solution
-              </h6>
-              <h2 className="font-medium text-black ">
-                Climate Risk Expertise and Flexible Analytics from Moody’s RMS
-              </h2>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/*  Intro End */}
+      <Overview data={overview2} />
 
-      {/* Three Card Section Start*/}
-      <section className="introWithCards pb-20 md:pb-10">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0">
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-              data-aos="fade-up"
-              data-aos-delay="400"
-              data-aos-duration="400"
-            >
-              <div className="card bg-white h-full ">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105  h-full w-full"
-                    src="/what-we-do/col-two2-img1.png"
-                    width={400}
-                    height={300}
-                    alt="Agency to agency services"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
-                  <p className=" text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis ">
-                    The insurer was already using Moody’s RMS catastrophe models
-                    across its business, which were embedded into its
-                    underwriting and corporate management process. However,
-                    “bending its EP curve” would not deliver the insights needed
-                    to capture future climate change risk and drive strategic
-                    decision-making. While the insurer was an industry leader in
-                    understanding and quantifying.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="500"
-            >
-              <div className="card bg-white h-full">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/what-we-do/col-two2-img3.png"
-                    width={400}
-                    height={300}
-                    alt="Client Centric development"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
-                  <p className=" text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis ">
-                    The project kicked off looking at North American Hurricane
-                    and Australian Cyclone, assessing three specific time
-                    horizons: 2030, 2050 and 2100. Moody’s RMS analysts worked
-                    with the carrier’s internal catastrophe modeling and
-                    exposure management team, analyzing a Representative
-                    Concentration Pathway (RCP) scenario for future greenhouse
-                    gas concentrations awrad...
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-              data-aos="fade-up"
-              data-aos-delay="600"
-              data-aos-duration="600"
-            >
-              <div className="card bg-white h-full">
-                <div className="relative imageWrap group h-[260px] tablet:h-[220px] phablet:h-[220px] sm:h-[200px] overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
-                  <Link className="redirect" href={`#`}>
-                    .
-                  </Link>
-                  <Image
-                    className="object-cover transition-transform duration-300 group-hover:scale-105 h-full w-full"
-                    src="/why-choose-us/col-two-img2.png"
-                    width={400}
-                    height={300}
-                    alt="Empowering designers"
-                  />
-                </div>
-                <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
-                  <p className=" text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis ">
-                    The company felt Moody’s RMS was best positioned to
-                    interpret scientific consensus around climate change and its
-                    likely impact on physical risk from natural perils. Working
-                    with Moody’s RMS also offered stakeholders an "external seal
-                    of approval," enabling the organization to demonstrate that
-                    it had worked with industry-leading analysts and taken
-                    concrete steps to build a clear view of how climate
-                    change...
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Three Card Section End*/}
+      <IntroWithCards />
 
-      {/*  Intro Start */}
-      <section
-        className={`intro relative w-full pb-4 md:pb-0 overflow-hidden `}
-        id="white-label-development"
-        data-aos="fade-up"
-        data-aos-delay="700"
-        data-aos-duration="1000"
-      >
-        <div className="container">
-          <div className="w-full z-1 relative">
-            <div className="content w-full text-center relative">
-              <h6 className="title text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-                The Outcome
-              </h6>
-              <h2 className="font-medium text-black ">
-                Clarity Around Climate Change and its Impact on the Portfolio
-              </h2>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/*  Intro End */}
+      <Overview data={overview3} />
 
-      {/* Riverflow 2 Start */}
-      <section className="contentWithImage overflow-hidden">
-        <div className="container">
-          <div className="w-mainRow -ml-2.5 py-16 flex items-center z-1 relative md:flex-wrap md:w-full md:ml-0  md:py-12">
-            <div
-              className="content w-halfWidth mx-2.5 text-spaceBlack md:pr-0 md:w-full md:mx-0 md:mb-10"
-              data-aos="fade-right"
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              <p className=" text-black">
-                The new insights were critical to increasing confidence with
-                shareholders and supporting business planning. The ability to
-                effectively communicate climate change risk using traditional
-                industry loss metrics, such as average annual loss, helped the
-                insurer’s senior leadership team gain instant credibility with
-                shareholders. Furthermore, with both a near- and long-term view
-                of climate risk, they were able to plan more effectively for the
-                uncertainty that climate change brings to their book of
-                business.
-              </p>
-              <p className="mt-5  text-black">
-                Equipped with insights based on multiple climate change
-                scenarios, the insurer is building new capabilities to
-                operationalize climate change science to meet the new and
-                emerging business and regulatory challenges. Next steps include
-                licensing the new Moody’s RMS climate change models for European
-                Windstorm, North Atlantic Hurricane, and European Flood risk.
-                With these new models that embed into their view of risk, the
-                company can now easily incorporate climate change insights
-                across different time horizons into their existing workflows.
-              </p>
-            </div>
-            <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-              <div
-                className="imageWrap w-full  h-[458px] tablet:h-[280px] sm:h-[260px]  relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
-              >
-                <Image
-                  src="/home/col-two-img2.png"
-                  alt="girl"
-                  width={600}
-                  height={500}
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Riverflow 2 End */}
+      <ContentWithImageColTwo data={contentWithImage2} />
 
       {/* Intro with Content Start */}
       <section className=" intro relative w-full pt-32 lg:pt-20 md:pt-6 ">
