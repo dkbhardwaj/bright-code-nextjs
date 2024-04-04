@@ -16,7 +16,7 @@ import Introduction from "../components/Introduction";
 import ColThreeCards from "../components/ColThreeCards";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import ColFourCards from "../components/ColFourCards";
-import FooterMap from "@/components/FooterMap";
+import FooterMap from "../components/FooterMap";
 import {
   intro,
   intro2,

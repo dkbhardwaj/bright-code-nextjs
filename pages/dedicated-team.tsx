@@ -15,6 +15,7 @@ import Overview from "../components/overview";
 import BannerThird from "../components/BannerThird";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {
+  bannerThird,
   overview,
   contentWithImage,
   contentWithImage2,
@@ -161,7 +162,7 @@ const DedicatedTeam: React.FC = () => {
         }
       />
 
-      <BannerThird />
+      <BannerThird data={bannerThird} />
 
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
       <Sticky

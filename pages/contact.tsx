@@ -9,6 +9,9 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
+import BannerThird from "../components/BannerThird";
+import { bannerThird } from "../dataContact/data";
+import FooterMap from "../components/FooterMap";
 
 export const metadata: Metadata = {
   title:
@@ -92,20 +95,9 @@ const Contact: React.FC = () => {
             : undefined
         }
       />
-      {/* Banner Start */}
-      <section
-        className={`banner banner-second banner_DarkOverlay banner_bg_img bg-darkBlue level-two text-white`}
-        data-aos="fade-in"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-      >
-        <div className="container">
-          <div className="w-full text-center relative z-10">
-            <h1>Contact Us</h1>
-          </div>
-        </div>
-      </section>
-      {/* Banner End */}
+
+      <BannerThird data={bannerThird} />
+
       <div className="section_bgImage bg-darkBlue">
         {/* Contact Form Start */}
         <section
@@ -268,21 +260,7 @@ const Contact: React.FC = () => {
         </section>
         {/* Contact Form End */}
 
-        {/* Map Start */}
-        <section className="relative map  py-20 md:pb-0 md:pt-14">
-          <div className="container px-5 mx-auto">
-            <div className="map-area w-sectionGradient relative left-[-74px] h-[453px] rounded-[55px] overflow-hidden xl:w-full xl:left-auto xl:rounded-[30px] md:h-[320px] md:!rounded-none md:!w-[calc(100%+40px)] md:!left-[-20px] ">
-              <iframe
-                src="https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5999680504724!2d-118.4755961742846!3d34.028477873166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bbfdc805103f%3A0xe2b048c364c959d1!2sSpaces%20-%20Water%20Garden!5e0!3m2!1sen!2sin!4v1703144756322!5m2!1sen!2sin"
-                width="600"
-                height="460"
-                loading="lazy"
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
-        </section>
-        {/* Map End */}
+        <FooterMap />
       </div>
       {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
       {formsuccess === true ? (

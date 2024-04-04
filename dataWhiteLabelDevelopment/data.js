@@ -1,3 +1,7 @@
+const bannerThird = {
+  title: "What we do?",
+}
+
 const overview = {
   subtitle: "Unlocking Excellence.",
   title: "White Label Development.",
@@ -80,4 +84,4 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-export { overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4 };
+export { bannerThird, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4 };

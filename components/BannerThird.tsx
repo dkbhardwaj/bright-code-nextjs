@@ -1,6 +1,13 @@
 import React from "react";
 
-const BannerThird: React.FC = () => {
+interface BannerThirdProps {
+  data: {
+    title: string;
+  };
+}
+
+const BannerThird: React.FC<BannerThirdProps> = ({ data }) => {
+  const { title } = data;
   return (
     <>
       <section
@@ -11,7 +18,7 @@ const BannerThird: React.FC = () => {
       >
         <div className="container">
           <div className="w-full text-center relative z-10">
-            <h1>What we do?</h1>
+            {title && <h1>{title}</h1>}
           </div>
         </div>
       </section>

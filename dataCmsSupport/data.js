@@ -1,3 +1,7 @@
+const bannerThird = {
+  title: "What we do?",
+}
+
 const overview = {
   subtitle: "Empowering Your Content",
   title: "Drupal Maintenance",
@@ -98,4 +102,4 @@ const contentWithImage5 = {
   paddingmedium: false,
 }
 
-export { overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5 };
+export { bannerThird, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5 };

@@ -15,6 +15,7 @@ import Overview from "../components/overview";
 import BannerThird from "../components/BannerThird";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {
+  bannerThird,
   overview,
   contentWithImage,
   contentWithImage2,
@@ -118,7 +119,7 @@ const WhiteLabelDevelopment: React.FC = () => {
         }
       />
 
-      <BannerThird />
+      <BannerThird data={bannerThird} />
 
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
       <Sticky

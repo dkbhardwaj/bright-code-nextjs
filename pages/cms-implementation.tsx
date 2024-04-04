@@ -15,6 +15,7 @@ import Overview from "../components/overview";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import BannerThird from "../components/BannerThird";
 import {
+  bannerThird,
   overview,
   contentWithImage,
   contentWithImage2,
@@ -162,7 +163,7 @@ const CmsImplementation: React.FC = () => {
         }
       />
 
-      <BannerThird />
+      <BannerThird data={bannerThird} />
 
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
       <Sticky
