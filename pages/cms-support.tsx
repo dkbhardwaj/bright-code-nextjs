@@ -440,7 +440,7 @@ const CmsSupport: React.FC = () => {
       </section>
       {/* Riverflow 5 End */}
 
-      <ContactForm/>
+      <ContactForm />
     </>
   );
 };
