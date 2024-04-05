@@ -1,17 +1,18 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-import Sticky from "../components/stickyNav";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useForm, ValidationError } from "@formspree/react";
+// import { useState } from "react";
+// import Sticky from "../components/stickyNav";
 // import type { Metadata } from "next";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+// import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import BannerThird from "../components/BannerThird";
-import { bannerThird } from "../dataContact/data";
+import ContactFormSecond from "../components/ContactFormSecond";
 import FooterMap from "../components/FooterMap";
+import { bannerThird, contactForm } from "../dataContact/data";
 
 export const metadata: Metadata = {
   title:
@@ -51,28 +52,28 @@ interface Metadata {
 }
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("maygryee");
-  const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
+  // const [state, handleSubmit] = useForm("maygryee");
+  // const [captcha, setcaptcha] = useState<string | null>();
+  // const [formsuccess, setformsuccess] = useState(false);
 
-  const ClearForm = () => {
-    const inputs = document.querySelectorAll(".contactForm form input");
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
-      element.value = "";
-    }
-  };
+  // const ClearForm = () => {
+  //   const inputs = document.querySelectorAll(".contactForm form input");
+  //   for (let i = 0; i < inputs.length; i++) {
+  //     const element = inputs[i] as HTMLInputElement;
+  //     element.value = "";
+  //   }
+  // };
 
-  if (state.succeeded) {
-    if (!formsuccess) {
-      setformsuccess(true);
-      ClearForm();
-    }
-  }
+  // if (state.succeeded) {
+  //   if (!formsuccess) {
+  //     setformsuccess(true);
+  //     ClearForm();
+  //   }
+  // }
 
-  const HideThankyouBox = () => {
-    setformsuccess(false);
-  };
+  // const HideThankyouBox = () => {
+  //   setformsuccess(false);
+  // };
 
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
@@ -99,8 +100,10 @@ const Contact: React.FC = () => {
       <BannerThird data={bannerThird} />
 
       <div className="section_bgImage bg-darkBlue">
+        <ContactFormSecond data={contactForm} />
+
         {/* Contact Form Start */}
-        <section
+        {/* <section
           className="contactForm text-gray-600 body-font relative   pt-16 "
           id="get-in-touch"
         >
@@ -257,13 +260,13 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* Contact Form End */}
 
         <FooterMap />
       </div>
       {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
-      {formsuccess === true ? (
+      {/* {formsuccess === true ? (
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
@@ -314,7 +317,7 @@ const Contact: React.FC = () => {
         </section>
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 };

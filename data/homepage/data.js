@@ -127,4 +127,14 @@ const intro3 = {
   paddingmediumbottom: true,
 };
 
-export { intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3 };
+const contactForm = {
+  paddingmediumtop: false,
+  subtitle: "GET IN TOUCH",
+  title: "Let's talk!",
+  paragraphBold: "If you are interested in learning more about Bright Code and how we can work together to achieve your goals, we encourage you to get in touch with us directly.",
+  paragraph: "We value direct, one-on-one discussions where we can understand your unique needs and explore the potential for collaboration.",
+  paragraph2: "",
+  paragraphBold2: "Thank you for considering Bright Code as your trusted partner.",
+}
+
+export { intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, contactForm };

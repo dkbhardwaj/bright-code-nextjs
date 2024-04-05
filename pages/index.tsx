@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-import Sticky from "../components/stickyNav";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { useForm, ValidationError } from "@formspree/react";
+// import { useState } from "react";
+// import Sticky from "../components/stickyNav";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 // import type { Metadata } from "next";
 import Head from "next/head";
@@ -16,6 +16,7 @@ import Introduction from "../components/Introduction";
 import ColThreeCards from "../components/ColThreeCards";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import ColFourCards from "../components/ColFourCards";
+import ContactFormSecond from "../components/ContactFormSecond";
 import FooterMap from "../components/FooterMap";
 import {
   intro,
@@ -26,6 +27,7 @@ import {
   contentWithImage3,
   contentWithImage4,
   intro3,
+  contactForm,
 } from "../data/homepage/data";
 
 function onChange(token: string | null) {
@@ -63,42 +65,6 @@ interface Metadata {
 }
 
 const Home: React.FC = () => {
-  const [state, handleSubmit] = useForm("maygryee");
-  // const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
-  const [cross, setCross] = useState(false);
-
-  // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
-
-  const handleReload = () => {
-    window.location.reload();
-  };
-
-  const ClearForm = () => {
-    const inputs = document.querySelectorAll(".contactForm form input");
-    const textArea = document.querySelector(
-      ".contactForm form textarea"
-    ) as HTMLInputElement;
-    textArea.value = "";
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
-      element.value = "";
-    }
-  };
-
-  if (state.succeeded) {
-    if (formsuccess === false) {
-      setformsuccess(true);
-      ClearForm();
-    }
-  }
-
-  const HideThankyouBox = () => {
-    if (formsuccess === true) {
-      setCross(true);
-    }
-  };
-
   return (
     <>
       <NextSeo
@@ -136,8 +102,10 @@ const Home: React.FC = () => {
 
         <ColFourCards />
 
+        <ContactFormSecond data={contactForm} />
+
         {/* Contact Form Start */}
-        <section
+        {/* <section
           className="contactForm text-gray-600 body-font relative"
           id="get-in-touch"
         >
@@ -289,14 +257,14 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         {/* Contact Form End */}
 
         <FooterMap />
       </div>
 
       {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
-      {formsuccess === true && cross == false ? (
+      {/* {formsuccess === true && cross == false ? (
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
@@ -346,7 +314,7 @@ const Home: React.FC = () => {
         </section>
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 };
