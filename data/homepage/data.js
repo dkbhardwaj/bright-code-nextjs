@@ -9,6 +9,30 @@ const intro = {
   paddingmediumbottom: false,
 };
 
+const colThreeCards = {
+  paddingLarge: false,
+  featuredClass: false,
+  title: "",
+  bgTransparent: false,
+  imageUrl1: "/home/col-three-img1.png",
+  imageAlt1: "Agency to agency services",
+  cardTitle1: "Collaborative",
+  cardParagraph1: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in your service offerings.",
+
+  imageUrl2: "/home/col-three-img2.png",
+  imageAlt2: "Client Centric development",
+  cardTitle2: "Client-Centric",
+  cardParagraph2: "We know that clients are your ultimate consideration. We ensure that the websites we develop not only meet but exceed the end-users needs.",
+
+  imageUrl3: "/home/col-three-img3.png",
+  imageAlt3: "Empowering designers",
+  cardTitle3: "Empowering",
+  cardParagraph3: "Our mission is to empower designers. We understand that a design's potential can only be fully realized when paired with a capable development team.",
+
+  btntext: "Learn More",
+  btnUrl: "/whychooseus",
+}
+
 const intro2 = {
   subtitle: "",
   title: "What we do",
@@ -103,4 +127,4 @@ const intro3 = {
   paddingmediumbottom: true,
 };
 
-export { intro, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3 };
+export { intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3 };

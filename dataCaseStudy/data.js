@@ -100,4 +100,29 @@ const overview4 = {
   noPaddingBottom: true,
 }
 
-export { overview, contentWithImage, overview2, overview3, contentWithImage2, overview4 };
+const colThreeCards = {
+  paddingLarge: true,
+  featuredClass: true,
+  title: "Related Information",
+  bgTransparent: true,
+  imageUrl1: "/case-study/card-img-1.png",
+  imageAlt1: "Climate Change",
+  cardTitle1: "Climate Change",
+  cardParagraph1: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+
+  imageUrl2: "/case-study/card-img-2.png",
+  imageAlt2: "Climate Change Models",
+  cardTitle2: "Climate Change Models",
+  cardParagraph2: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+
+  imageUrl3: "/case-study/card-img-3.png",
+  imageAlt3: "Risk and Strategy",
+  cardTitle3: "Access Risk and Strategy",
+  cardParagraph3: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+
+  btntext: "",
+  btnUrl: "",
+
+}
+
+export { overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards };

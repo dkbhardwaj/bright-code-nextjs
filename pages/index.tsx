@@ -19,6 +19,7 @@ import ColFourCards from "../components/ColFourCards";
 import FooterMap from "../components/FooterMap";
 import {
   intro,
+  colThreeCards,
   intro2,
   contentWithImage,
   contentWithImage2,
@@ -118,7 +119,7 @@ const Home: React.FC = () => {
 
       <Introduction data={intro} />
 
-      <ColThreeCards />
+      <ColThreeCards data={colThreeCards} />
 
       <Introduction data={intro2} />
 
