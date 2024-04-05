@@ -26,6 +26,7 @@ import {
   overview2,
   overview3,
   contentWithImage2,
+  overview4,
 } from "../dataCaseStudy/data";
 
 const CaseStudy: React.FC = () => {
@@ -78,45 +79,7 @@ const CaseStudy: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage2} />
 
-      {/* Intro with Content Start */}
-      <section className=" intro relative w-full pt-32 lg:pt-20 md:pt-6 ">
-        <div className="container">
-          <div className="intro_content">
-            <h2 className=" text-[45px]  mb-[50px] lg:mb-[36px] md:!mb-6  desktop:text-[36px] tablet:text-[33px] md:text-[30px] ">
-              <span className=" text_gradient2 text-[45px]  desktop:text-[36px] tablet:text-[33px] md:text-[30px] ">
-                The Solution -
-              </span>{" "}
-              Climate Risk Expertise and Flexible Analytics from Moody’s RMS
-            </h2>
-            <p className=" text-black mb-[45px] lg:mb-[30px] md:!mb-5">
-              The insurer was already using Moody’s RMS catastrophe models
-              across its business, which were embedded into its underwriting and
-              corporate management process. However, “bending its EP curve”
-              would not deliver the insights needed to capture future climate
-              change risk and drive strategic decision-making. While the insurer
-              was an industry leader in understanding and quantifying.
-            </p>
-            <p className=" text-black mb-[45px] lg:mb-[30px] md:!mb-5">
-              The project kicked off looking at North American Hurricane and
-              Australian Cyclone, assessing three specific time horizons: 2030,
-              2050 and 2100. Moody’s RMS analysts worked with the carrier’s
-              internal catastrophe modeling and exposure management team,
-              analyzing a Representative Concentration Pathway (RCP) scenario
-              for future greenhouse gas concentrations awrad...
-            </p>
-            <p className=" text-black ">
-              The company felt Moody’s RMS was best positioned to interpret
-              scientific consensus around climate change and its likely impact
-              on physical risk from natural perils. Working with Moody’s RMS
-              also offered stakeholders an "external seal of approval," enabling
-              the organization to demonstrate that it had worked with
-              industry-leading analysts and taken concrete steps to build a
-              clear view of how climate change...
-            </p>
-          </div>
-        </div>
-      </section>
-      {/* Intro with Content End */}
+      <Overview data={overview4} />
 
       {/* Three Card Section Start*/}
       <section className="introWithCards relative w-full overflow-hidden py-32 md:pt-20 md:pb-14">

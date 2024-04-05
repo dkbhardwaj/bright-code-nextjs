@@ -1,13 +1,18 @@
 const overview = {
+  textLeft: false,
   subtitle: "The Challenge",
   title: "Climate Change Disclosure and Governance",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
+
 }
 
 
@@ -30,10 +35,14 @@ const contentWithImage = {
 }
 
 const overview2 = {
+  textLeft: false,
   subtitle: "The Solution",
   title: "Climate Risk Expertise and Flexible Analytics from Moody’s RMS",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
@@ -42,10 +51,14 @@ const overview2 = {
 }
 
 const overview3 = {
+  textLeft: false,
   subtitle: "The Outcome",
   title: "Clarity Around Climate Change and its Impact on the Portfolio",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
@@ -71,4 +84,20 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-export { overview, contentWithImage, overview2, overview3, contentWithImage2 };
+const overview4 = {
+  textLeft: true,
+  subtitle: "",
+  title: "",
+  titleSpan: "The Solution - ",
+  titleWithSpan: "Climate Risk Expertise and Flexible Analytics from Moody’s RMS",
+  paragraph: "The insurer was already using Moody’s RMS catastrophe models across its business, which were embedded into its underwriting and corporate management process. However, “bending its EP curve” would not deliver the insights needed to capture future climate change risk and drive strategic decision-making. While the insurer was an industry leader in understanding and quantifying.",
+  paragraph2: "The project kicked off looking at North American Hurricane and Australian Cyclone, assessing three specific time horizons: 2030, 2050 and 2100. Moody’s RMS analysts worked with the carrier’s internal catastrophe modeling and exposure management team, analyzing a Representative Concentration Pathway (RCP) scenario for future greenhouse gas concentrations awrad...",
+  paragraph3: "The company felt Moody’s RMS was best positioned to interpret scientific consensus around climate change and its likely impact on physical risk from natural perils. Working with Moody’s RMS also offered stakeholders an 'external seal of approval,' enabling the organization to demonstrate that it had worked with industry-leading analysts and taken concrete steps to build a clear view of how climate change...",
+  bgExtraLightGray: false,
+  bgWhite: true,
+  maxWidthH5: false,
+  paddingLargeTop: true,
+  noPaddingBottom: true,
+}
+
+export { overview, contentWithImage, overview2, overview3, contentWithImage2, overview4 };

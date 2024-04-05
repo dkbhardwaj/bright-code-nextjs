@@ -3,15 +3,20 @@ const bannerThird = {
 }
 
 const overview = {
+  textLeft: false,
   subtitle: "Elevate Your Digital Vision.",
   title: "Dedicated Dev Team",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus  on your unique goals.At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,
   paddingLargeTop: false,
   noPaddingBottom: false,
+
 }
 
 const contentWithImage = {

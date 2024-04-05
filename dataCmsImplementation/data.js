@@ -3,10 +3,14 @@ const bannerThird = {
 }
 
 const overview = {
+  textLeft: false,
   subtitle: "Empowering Your Content",
   title: "CMS Implementation",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence. At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

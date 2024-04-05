@@ -18,15 +18,20 @@ const contentWithImage = {
 }
 
 const overview = {
+  textLeft: false,
   subtitle: "Our Commitment to Trust and Confidentiality",
   title: "How we work",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "At Bright Code, our fundamental mission is to empower our clients to deliver remarkable digital solutions and exceed the expectations of their end clients. We believe in the power of collaboration, and our role as a trusted partner reflects our commitment to our clients and their needs.",
   paragraph2: "You may have noticed that we do not showcase our clients or their projects on our website. This choice is intentional and  reflects our unwavering dedication to two key principles: trust and confidentiality.",
+  paragraph3: "",
   bgExtraLightGray: true,
   bgWhite: false,
   maxWidthH5: false,
   paddingLargeTop: false,
   noPaddingBottom: false,
+
 }
 
 const contentWithImage2 = {

@@ -3,10 +3,14 @@ const bannerThird = {
 }
 
 const overview = {
+  textLeft: false,
   subtitle: "Empowering Your Content",
   title: "Drupal Maintenance",
+  titleSpan: "",
+  titleWithSpan: "",
   paragraph: "Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience.Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
   paragraph2: "",
+  paragraph3: "",
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,
