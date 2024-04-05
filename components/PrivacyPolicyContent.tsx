@@ -24,7 +24,10 @@ const PrivacyPolicyContent: React.FC = () => {
 
             <h5>Company Name: Bright Code</h5>
 
-            <h5>Address: 3590 N First St Suite 300 San Jose, CA 95134</h5>
+            <h5>
+              Address: 2450 Colorado Ave, Suite 100E, Santa Monica, CA 90404,
+              United States
+            </h5>
 
             <h5>Email: contact@bright-code.io</h5>
             <br />
