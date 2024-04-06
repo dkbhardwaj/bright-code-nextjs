@@ -105,7 +105,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }, []);
 
   const router = useRouter();
-  // let [currentUrl, setCanonicalUrl] = useState("");
+  // const [currentUrl, setCanonicalUrl] = useState("");
   // useEffect(() => {
   //   setCanonicalUrl(window.location.origin + router.asPath);
   // }, [router.asPath]);

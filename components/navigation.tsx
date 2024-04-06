@@ -77,6 +77,7 @@ const Navigation: React.FC<NavigationProps> = () => {
               alt="logo"
               width={250}
               height={50}
+              loading="lazy"
               className=" w-full h-full object-contain"
             />
           </div>
@@ -202,6 +203,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       alt="logo"
                       width={250}
                       height={50}
+                      loading="lazy"
                       className=" w-full h-full object-contain"
                     />
                   </div>

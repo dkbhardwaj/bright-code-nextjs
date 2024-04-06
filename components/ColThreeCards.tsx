@@ -84,6 +84,7 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
                       src={imageUrl1}
                       width={400}
                       height={300}
+                      loading="lazy"
                       alt={imageAlt1}
                     />
                   </div>
@@ -112,6 +113,7 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
                       src={imageUrl2}
                       width={400}
                       height={300}
+                      loading="lazy"
                       alt={imageAlt2}
                     />
                   </div>
@@ -140,6 +142,7 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
                       src={imageUrl3}
                       width={400}
                       height={300}
+                      loading="lazy"
                       alt={imageAlt3}
                     />
                   </div>

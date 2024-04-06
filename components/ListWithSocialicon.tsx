@@ -43,6 +43,7 @@ const ListWithSocialicon: React.FC = () => {
                       src="/case-study/twitter-black-icon.svg"
                       width={50}
                       height={50}
+                      loading="lazy"
                       className=" w-full h-full object-contain "
                       alt="icon"
                     />
@@ -54,6 +55,7 @@ const ListWithSocialicon: React.FC = () => {
                       src="/case-study/linkedin-black-icon.svg"
                       width={50}
                       height={50}
+                      loading="lazy"
                       className=" w-full h-full object-contain "
                       alt="icon"
                     />
@@ -65,6 +67,7 @@ const ListWithSocialicon: React.FC = () => {
                       src="/case-study/facebook-black-icon.svg"
                       width={50}
                       height={50}
+                      loading="lazy"
                       className=" w-full h-full object-contain "
                       alt="icon"
                     />

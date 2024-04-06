@@ -20,6 +20,7 @@ const ColFourCards: React.FC = () => {
                   alt="icon"
                   width={45}
                   height={45}
+                  loading="lazy"
                   className="w-full h-full object-contain relative z-10"
                 />
               </div>
@@ -41,6 +42,7 @@ const ColFourCards: React.FC = () => {
                   alt="icon"
                   width={45}
                   height={45}
+                  loading="lazy"
                   className="w-full h-full object-contain relative z-10"
                 />
               </div>
@@ -62,6 +64,7 @@ const ColFourCards: React.FC = () => {
                   alt="icon"
                   width={45}
                   height={45}
+                  loading="lazy"
                   className="w-full h-full object-contain relative z-10"
                 />
               </div>
@@ -83,6 +86,7 @@ const ColFourCards: React.FC = () => {
                   alt="icon"
                   width={45}
                   height={45}
+                  loading="lazy"
                   className="w-full h-full object-contain relative z-10"
                 />
               </div>

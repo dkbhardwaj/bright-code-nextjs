@@ -17,6 +17,7 @@ const BannerFourth: React.FC = () => {
               src="/our-clients/banner-img.png"
               width={700}
               height={500}
+              loading="lazy"
               alt="right-img"
               className=" w-full h-full object-cover"
             />

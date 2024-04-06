@@ -105,6 +105,7 @@ const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
                   alt="img"
                   width={600}
                   height={500}
+                  loading="lazy"
                   className=" w-full h-full object-cover"
                 />
               </div>

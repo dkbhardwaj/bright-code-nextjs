@@ -238,6 +238,7 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                   src="/icon-close.svg"
                   width={40}
                   height={40}
+                  loading="lazy"
                   className=" w-full h-full object-contain "
                   alt="close"
                 />

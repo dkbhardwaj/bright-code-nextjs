@@ -17,6 +17,7 @@ const BannerSecond: React.FC = () => {
               src="/why-choose-us/banner-left-img.png"
               width={400}
               height={400}
+              loading="lazy"
               alt="left-img"
               className=" w-full h-full object-cover"
             />
@@ -26,6 +27,7 @@ const BannerSecond: React.FC = () => {
               src="/why-choose-us/banner-right-img.png"
               width={400}
               height={400}
+              loading="lazy"
               alt="right-img"
               className=" w-full h-full object-cover"
             />

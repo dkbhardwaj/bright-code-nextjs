@@ -24,6 +24,7 @@ const IntroWithCards: React.FC = () => {
                     src="/what-we-do/col-two2-img1.png"
                     width={400}
                     height={300}
+                    loading="lazy"
                     alt="Agency to agency services"
                   />
                 </div>
@@ -56,6 +57,7 @@ const IntroWithCards: React.FC = () => {
                     src="/what-we-do/col-two2-img3.png"
                     width={400}
                     height={300}
+                    loading="lazy"
                     alt="Client Centric development"
                   />
                 </div>
@@ -88,6 +90,7 @@ const IntroWithCards: React.FC = () => {
                     src="/why-choose-us/col-two-img2.png"
                     width={400}
                     height={300}
+                    loading="lazy"
                     alt="Empowering designers"
                   />
                 </div>

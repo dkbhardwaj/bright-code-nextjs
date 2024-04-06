@@ -1,7 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Herobanner: React.FC = () => {
   return (
@@ -14,6 +13,7 @@ const Herobanner: React.FC = () => {
             src="/home/banner-right-img.png"
             width={550}
             height={550}
+            loading="lazy"
             alt="right-img"
             className=" w-full h-full object-cover"
           />
@@ -23,6 +23,7 @@ const Herobanner: React.FC = () => {
             src="/home/banner-left-img.png"
             width={550}
             height={550}
+            loading="lazy"
             alt="left-img"
             className=" w-full h-full object-cover"
           />
@@ -50,6 +51,6 @@ const Herobanner: React.FC = () => {
         </div>
       </section>
     </>
-  )
+  );
 };
 export default Herobanner;
