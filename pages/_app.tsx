@@ -95,12 +95,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      <Head>
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      {/* <Head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> */}
 
-        {/* <link rel="canonical" href={canonicalUrl} key="canonical" /> */}
-        <GTMHeadScript />
-      </Head>
+      {/* <link rel="canonical" href={canonicalUrl} key="canonical" /> */}
+      {/* <GTMHeadScript />
+      </Head> */}
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
