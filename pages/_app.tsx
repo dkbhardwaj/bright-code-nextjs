@@ -36,19 +36,19 @@ type AppPropsWithLayout = AppProps & {
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
-  //   const getLayout = Component.getLayout ?? ((page) => page);
-  //   useEffect(() => {
-  //     var anchors = document.querySelectorAll("a");
-  //     anchors.forEach((element) => {
-  //       if (!element.host.includes("master.d2ex0xpyl1a0p4.amplifyapp")) {
-  //         //element.setAttribute("target", "_blank");
-  //       }
-  //     });
-  //   });
-  //   useEffect(() => {
-  //     initAOS(); // Initialize AOS when the app mounts on the client side
-  //   }, []);
-  //   const gtagScript = `<script type=‘text/javascript’ src=‘https://www.googletagmanager.com/gtag/js?id=UA-254354410-1’ id=‘google_gtagjs-js’ async></script>
+  const getLayout = Component.getLayout ?? ((page) => page);
+  useEffect(() => {
+    var anchors = document.querySelectorAll("a");
+    anchors.forEach((element) => {
+      if (!element.host.includes("master.d2ex0xpyl1a0p4.amplifyapp")) {
+        //element.setAttribute("target", "_blank");
+      }
+    });
+  });
+  useEffect(() => {
+    initAOS(); // Initialize AOS when the app mounts on the client side
+  }, []);
+  // const gtagScript = `<script type=‘text/javascript’ src=‘https://www.googletagmanager.com/gtag/js?id=UA-254354410-1’ id=‘google_gtagjs-js’ async></script>
   //   <script type=‘text/javascript’ id=‘google_gtagjs-js-after’>
   //   window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
   //   gtag(‘set’, ‘linker’, {“domains”:[“www.bright-code.io”]} );
@@ -57,7 +57,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   //   gtag(“config”, “UA-254354410-1”, {“anonymize_ip”:true});
   //   gtag(“config”, “G-0J63B1FNF9");
   //   </script>`;
-  //   const gtagManagerScript = `<script type=“text/javascript”>
+  // const gtagManagerScript = `<script type=“text/javascript”>
   //   ( function( w, d, s, l, i ) {
   //     w[l] = w[l] || [];
   //     w[l].push( {‘gtm.start’: new Date().getTime(), event: ‘gtm.js’} );
@@ -69,7 +69,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   //   } )( window, document, ‘script’, ‘dataLayer’, ‘GTM-KVK3JT9’ );
 
   // </script>`;
-  //   const googleTagScript = `<!-- Google tag (gtag.js) -->
+  // const googleTagScript = `<!-- Google tag (gtag.js) -->
   // <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"></script>
   // <script>
   //   window.dataLayer = window.dataLayer || [];

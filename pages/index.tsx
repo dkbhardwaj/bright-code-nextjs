@@ -74,9 +74,9 @@ const Home: React.FC = () => {
             : undefined
         }
       />
-      {/* <HeroBanner />
+      <HeroBanner />
 
-      <Introduction data={intro} />
+      {/* <Introduction data={intro} />
 
       <ColThreeCards data={colThreeCards} />
 
