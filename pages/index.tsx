@@ -97,7 +97,7 @@ const Home: React.FC = () => {
 
         <ContactFormSecond data={contactForm} />
 
-        {/* <FooterMap /> */}
+        <FooterMap />
       </div>
     </>
   );
