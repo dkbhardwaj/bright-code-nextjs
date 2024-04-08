@@ -78,7 +78,7 @@ const Home: React.FC = () => {
 
       <Introduction data={intro} />
 
-      {/* <ColThreeCards data={colThreeCards} />
+      <ColThreeCards data={colThreeCards} />
 
       <Introduction data={intro2} />
 
@@ -95,10 +95,10 @@ const Home: React.FC = () => {
 
         <ColFourCards />
 
-        <ContactFormSecond data={contactForm} />
+        {/* <ContactFormSecond data={contactForm} /> */}
 
         <FooterMap />
-      </div> */}
+      </div>
     </>
   );
 };

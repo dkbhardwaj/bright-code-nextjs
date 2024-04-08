@@ -69,9 +69,9 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
             <div className="w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0">
               <div
                 className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-                data-aos="fade-up"
-                data-aos-delay="400"
-                data-aos-duration="400"
+                // data-aos="fade-up"
+                // data-aos-delay="400"
+                // data-aos-duration="400"
               >
                 <div
                   className={` ${
@@ -98,9 +98,9 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
               </div>
               <div
                 className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-                data-aos="fade-up"
-                data-aos-delay="500"
-                data-aos-duration="500"
+                // data-aos="fade-up"
+                // data-aos-delay="500"
+                // data-aos-duration="500"
               >
                 <div
                   className={` ${
@@ -127,9 +127,9 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
               </div>
               <div
                 className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0 sm:mb-0`}
-                data-aos="fade-up"
-                data-aos-delay="600"
-                data-aos-duration="600"
+                // data-aos="fade-up"
+                // data-aos-delay="600"
+                // data-aos-duration="600"
               >
                 <div
                   className={` ${
