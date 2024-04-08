@@ -76,9 +76,9 @@ const Home: React.FC = () => {
       />
       <HeroBanner />
 
-      {/* <Introduction data={intro} />
+      <Introduction data={intro} />
 
-      <ColThreeCards data={colThreeCards} />
+      {/* <ColThreeCards data={colThreeCards} />
 
       <Introduction data={intro2} />
 
