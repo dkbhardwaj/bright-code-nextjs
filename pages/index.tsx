@@ -95,7 +95,7 @@ const Home: React.FC = () => {
 
         <ColFourCards />
 
-        {/* <ContactFormSecond data={contactForm} /> */}
+        <ContactFormSecond data={contactForm} />
 
         <FooterMap />
       </div>

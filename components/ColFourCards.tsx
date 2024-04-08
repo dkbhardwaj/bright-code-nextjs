@@ -10,9 +10,9 @@ const ColFourCards: React.FC = () => {
           <div className="w-mainRow -ml-2.5 flex flex-wrap items-center z-1 relative md:w-full md:ml-0">
             <div
               className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
-              data-aos="fade-up"
-              data-aos-delay="400"
-              data-aos-duration="500"
+              // data-aos="fade-up"
+              // data-aos-delay="400"
+              // data-aos-duration="500"
             >
               <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                 <Image
@@ -32,9 +32,9 @@ const ColFourCards: React.FC = () => {
             </div>
             <div
               className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="500"
+              // data-aos="fade-up"
+              // data-aos-delay="500"
+              // data-aos-duration="500"
             >
               <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                 <Image
@@ -54,9 +54,9 @@ const ColFourCards: React.FC = () => {
             </div>
             <div
               className="content w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="500"
+              // data-aos="fade-up"
+              // data-aos-delay="500"
+              // data-aos-duration="500"
             >
               <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                 <Image
@@ -76,9 +76,9 @@ const ColFourCards: React.FC = () => {
             </div>
             <div
               className="content w-colFour mx-2.5 mb-10  text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
-              data-aos="fade-up"
-              data-aos-delay="500"
-              data-aos-duration="500"
+              // data-aos="fade-up"
+              // data-aos-delay="500"
+              // data-aos-duration="500"
             >
               <div className="icon-wrap mx-auto max-w-[41px] h-[41px] before:content-[''] relative mt-[15px] mb-9 before:absolute before:left-[-15px] before:top-[-15px] before:w-iconBeforeW before:h-iconBeforeH before:bg-[#ffffff2b] before:rounded-[15px] before:transition-colors before:duration-500 hover:before:bg-purplePink">
                 <Image

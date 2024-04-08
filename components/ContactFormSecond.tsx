@@ -107,9 +107,9 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
               </div>
               <div
                 className="w-halfWidth mx-2.5 bg-transparent rounded-lg pl-[52px] lg:pl-4  md:!p-0 relative z-10 md:w-full md:mx-0 "
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
+                // data-aos="fade-left"
+                // data-aos-delay="400"
+                // data-aos-duration="500"
               >
                 <form onSubmit={handleSubmit}>
                   <div className="relative mb-5">
