@@ -74,7 +74,7 @@ const Home: React.FC = () => {
             : undefined
         }
       />
-      <HeroBanner />
+      {/* <HeroBanner />
 
       <Introduction data={intro} />
 
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
         <ContactFormSecond data={contactForm} />
 
         <FooterMap />
-      </div>
+      </div> */}
     </>
   );
 };
