@@ -45,9 +45,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       }
     });
   });
-  // useEffect(() => {
-  //   initAOS(); // Initialize AOS when the app mounts on the client side
-  // }, []);
+  useEffect(() => {
+    initAOS(); // Initialize AOS when the app mounts on the client side
+  }, []);
   // const gtagScript = `<script type=‘text/javascript’ src=‘https://www.googletagmanager.com/gtag/js?id=UA-254354410-1’ id=‘google_gtagjs-js’ async></script>
   //   <script type=‘text/javascript’ id=‘google_gtagjs-js-after’>
   //   window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
