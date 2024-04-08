@@ -13,6 +13,7 @@ import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
 import { GTMHeadScript } from "../components/Gscripts";
 import { useRouter } from "next/router";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export const metadata: Metadata = {
   title: "Bright Code",
@@ -84,26 +85,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     head.innerHTML += googleTagScript;
   }, []);
 
-  const [isVisible, setIsVisible] = useState(false);
-  const handleScroll = () => {
-    // Show the button when scrolling down, hide when at the top
-    setIsVisible(window.scrollY > 200);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const router = useRouter();
   // const [currentUrl, setCanonicalUrl] = useState("");
   // useEffect(() => {
@@ -116,18 +97,6 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <>
       <Head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        {/* <link
-          rel="stylesheet"
-          id="google-fonts-1-css"
-          href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CPoppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen+Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CLato%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Condensed%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;display=auto&amp;ver=6.0.1"
-          type="text/css"
-          media="all"
-        ></link> */}
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
-        {/* <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        ></link> */}
 
         {/* <link rel="canonical" href={canonicalUrl} key="canonical" /> */}
         <GTMHeadScript />
@@ -141,14 +110,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <main>
           <Component {...pageProps} />
         </main>
-        <button
-          onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 p-4 bg-blue-500 bg-bgBluePurple rounded-full shadow-lg transition-opacity duration-300 z-50 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <span className="block relative top-[3px] w-4 h-4 border-t-2 border-r-2 border-white transform rotate-[-45deg]"></span>
-        </button>
+        <ScrollToTopButton />
       </Layout>
     </>
   );
