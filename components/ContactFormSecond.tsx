@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+// import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
 
 interface contactFormSecondProps {
   data: {
@@ -64,6 +65,13 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
       setCross(true);
     }
   };
+
+  const GoogleReCaptchaProvider = dynamic(() =>
+    import("react-google-recaptcha-v3").then(
+      (module) => module.GoogleReCaptchaProvider
+    )
+  );
+
   return (
     <>
       <section
