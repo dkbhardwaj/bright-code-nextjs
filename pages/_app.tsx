@@ -9,9 +9,9 @@ import "../styles/global.scss";
 import "../styles/buttons.scss";
 import "../styles/banners.scss";
 import { useEffect, useState } from "react";
-import { initAOS } from "../api/aos.js";
+// import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
-import { GTMHeadScript } from "../components/Gscripts";
+// import { GTMHeadScript } from "../components/Gscripts";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 

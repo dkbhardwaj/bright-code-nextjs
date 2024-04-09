@@ -3,14 +3,15 @@ import React from "react";
 import Head from "next/head";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
 import { log } from "console";
-import HeroBanner from "../components/Herobanner";
+// import HeroBanner from "../components/Herobanner";
 import Introduction from "../components/Introduction";
 import ColThreeCards from "../components/ColThreeCards";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import ColFourCards from "../components/ColFourCards";
-import ContactFormSecond from "../components/ContactFormSecond";
-import FooterMap from "../components/FooterMap";
+// import ContactFormSecond from "../components/ContactFormSecond";
+// import FooterMap from "../components/FooterMap";
 import {
   intro,
   colThreeCards,
@@ -56,6 +57,14 @@ interface Metadata {
   description: string;
   openGraph?: OpenGraph;
 }
+
+const HeroBanner = dynamic(() => import("../components/Herobanner"));
+
+const ContactFormSecond = dynamic(
+  () => import("../components/ContactFormSecond")
+);
+
+const FooterMap = dynamic(() => import("../components/FooterMap"));
 
 const Home: React.FC = () => {
   return (
