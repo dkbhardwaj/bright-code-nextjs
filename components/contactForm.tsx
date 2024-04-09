@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+// import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import dynamic from "next/dynamic";
 
 const ContactForm: React.FC = () => {
   const [state, handleSubmit] = useForm("maygryee");
@@ -28,6 +29,12 @@ const ContactForm: React.FC = () => {
   const HideThankyouBox = () => {
     setformsuccess(false);
   };
+
+  const GoogleReCaptchaProvider = dynamic(() =>
+    import("react-google-recaptcha-v3").then(
+      (module) => module.GoogleReCaptchaProvider
+    )
+  );
   return (
     <>
       <div className="section_bgImage bg-darkBlue smallBgImage">
