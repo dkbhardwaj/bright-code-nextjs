@@ -3,10 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
-// import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import dynamic from "next/dynamic";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
-const ContactForm: React.FC = () => {
+interface contactFormProps {
+  data: {
+    formintrowithImage: boolean;
+    formcontent: boolean;
+  };
+}
+
+const ContactForm: React.FC<contactFormProps> = ({ data }) => {
+  const { formintrowithImage, formcontent } = data;
+
   const [state, handleSubmit] = useForm("maygryee");
   const [captcha, setcaptcha] = useState<string | null>();
   const [formsuccess, setformsuccess] = useState(false);
@@ -29,12 +37,6 @@ const ContactForm: React.FC = () => {
   const HideThankyouBox = () => {
     setformsuccess(false);
   };
-
-  const GoogleReCaptchaProvider = dynamic(() =>
-    import("react-google-recaptcha-v3").then(
-      (module) => module.GoogleReCaptchaProvider
-    )
-  );
   return (
     <>
       <div className="section_bgImage bg-darkBlue smallBgImage">
@@ -47,7 +49,39 @@ const ContactForm: React.FC = () => {
             <div
               className={`relative w-full py-16  bgPurpleGradient  md:py-12`}
             >
-              <div className=" relative w-full max-w-[960px] mx-auto mb-16 text-center">
+              <div
+                className={`${
+                  formintrowithImage === true ? "!flex" : ""
+                } intro_with_image relative  flex-wrap items-center mb-16 md:block hidden `}
+              >
+                <div
+                  className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6 `}
+                >
+                  <h6 className="text-white title mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    GET IN TOUCH
+                  </h6>
+                  <h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    Let&#39;s talk about your project
+                  </h2>
+                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
+                    Fill in the form and our experts will reach out to you.
+                  </h4>
+                </div>
+                <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
+                  <Image
+                    src="/why-choose-us/shiv-headshot.jpg"
+                    width={220}
+                    height={220}
+                    alt="img"
+                    className=" w-full h-full object-cover "
+                  />
+                </div>
+              </div>
+              <div
+                className={`${
+                  formcontent === true ? "!block" : ""
+                } relative w-full max-w-[960px] mx-auto mb-16 text-center hidden `}
+              >
                 <h6 className="text-white title mb-[38px] md:mb-[18px] ">
                   GET IN TOUCH
                 </h6>

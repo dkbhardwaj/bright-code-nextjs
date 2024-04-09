@@ -18,6 +18,7 @@ import {
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
+  contactform,
 } from "../dataOurclients/data";
 
 export const metadata: Metadata = {
@@ -104,7 +105,7 @@ const Ourclient: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm />
+      <ContactForm data={contactform} />
     </>
   );
 };

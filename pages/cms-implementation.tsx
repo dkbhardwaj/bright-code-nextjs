@@ -21,6 +21,7 @@ import {
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
+  contactform,
 } from "../dataCmsImplementation/data";
 
 export const metadata: Metadata = {
@@ -183,7 +184,7 @@ const CmsImplementation: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm />
+      <ContactForm data={contactform} />
     </>
   );
 };

@@ -29,6 +29,7 @@ import {
   contentWithImage2,
   overview4,
   colThreeCards,
+  contactform,
 } from "../dataCaseStudy/data";
 
 const CaseStudy: React.FC = () => {
@@ -85,7 +86,7 @@ const CaseStudy: React.FC = () => {
 
       <ColThreeCards data={colThreeCards} />
 
-      <ContactForm />
+      <ContactForm data={contactform} />
     </>
   );
 };

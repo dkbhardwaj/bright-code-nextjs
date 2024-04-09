@@ -88,4 +88,9 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-export { contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4 };
+const contactform = {
+  formintrowithImage: false,
+  formcontent: true,
+}
+
+export { contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };

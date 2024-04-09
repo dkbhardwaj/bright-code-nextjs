@@ -21,6 +21,7 @@ import {
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
+  contactform,
 } from "../dataWhiteLabelDevelopment/data";
 
 export const metadata: Metadata = {
@@ -139,7 +140,7 @@ const WhiteLabelDevelopment: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm />
+      <ContactForm data={contactform} />
     </>
   );
 };

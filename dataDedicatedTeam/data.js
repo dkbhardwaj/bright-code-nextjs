@@ -91,4 +91,9 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-export { bannerThird, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4 };
+const contactform = {
+  formintrowithImage: false,
+  formcontent: true,
+}
+
+export { bannerThird, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };

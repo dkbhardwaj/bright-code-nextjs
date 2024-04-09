@@ -125,4 +125,9 @@ const colThreeCards = {
 
 }
 
-export { overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards };
+const contactform = {
+  formintrowithImage: false,
+  formcontent: true,
+}
+
+export { overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards, contactform };
