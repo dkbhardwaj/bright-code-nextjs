@@ -1,17 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-// import type { Metadata } from "next";
-import Head from "next/head";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { TwitterShareButton } from "next-share";
-import { LinkedinShareButton } from "next-share";
-import { FacebookShareButton } from "next-share";
 
 import ContactForm from "../components/contactForm";
 import Banner from "../components/Banner";
@@ -40,28 +28,6 @@ const CaseStudy: React.FC = () => {
   const link = encodeURI(`${baseUrl}${router.asPath}`);
   console.log(link);
 
-  const [state, handleSubmit] = useForm("maygryee");
-  const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
-
-  const ClearForm = () => {
-    const inputs = document.querySelectorAll(".contactForm form input");
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
-      element.value = "";
-    }
-  };
-
-  if (state.succeeded) {
-    if (!formsuccess) {
-      setformsuccess(true);
-      ClearForm();
-    }
-  }
-
-  const HideThankyouBox = () => {
-    setformsuccess(false);
-  };
   return (
     <>
       <Banner />

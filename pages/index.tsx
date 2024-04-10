@@ -1,17 +1,12 @@
 "use client";
 import React from "react";
 import Head from "next/head";
-import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import { log } from "console";
-// import HeroBanner from "../components/Herobanner";
 import Introduction from "../components/Introduction";
 import ColThreeCards from "../components/ColThreeCards";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import ColFourCards from "../components/ColFourCards";
-// import ContactFormSecond from "../components/ContactFormSecond";
-// import FooterMap from "../components/FooterMap";
 import {
   intro,
   colThreeCards,

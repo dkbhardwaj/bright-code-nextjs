@@ -1,15 +1,8 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
 import Sticky from "../components/stickyNav";
 import ContactForm from "../components/contactForm";
 import { useState } from "react";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-// import type { Metadata } from "next";
-import Head from "next/head";
-import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import Overview from "../components/overview";
 import BannerThird from "../components/BannerThird";
@@ -80,28 +73,6 @@ const stickyData = [
 
 const WhiteLabelDevelopment: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);
-  const [state, handleSubmit] = useForm("maygryee");
-  const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
-
-  const ClearForm = () => {
-    const inputs = document.querySelectorAll(".contactForm form input");
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
-      element.value = "";
-    }
-  };
-
-  if (state.succeeded) {
-    if (!formsuccess) {
-      setformsuccess(true);
-      ClearForm();
-    }
-  }
-
-  const HideThankyouBox = () => {
-    setformsuccess(false);
-  };
 
   return (
     <>

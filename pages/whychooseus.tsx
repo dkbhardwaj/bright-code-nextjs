@@ -1,12 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-// import type { Metadata } from "next";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import Head from "next/head";
-import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import BannerSecond from "../components/BannerSecond";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
