@@ -184,14 +184,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                     className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
                     onClick={handleMobileMenuCloseClick}
                   >
-                    <span>Contact</span>
+                    <span>Free Consultation</span>
                   </Link>
                   <Link
                     href="/contact"
                     className={`${Style.btn} gradient-btn !hidden lg:!inline-block my-8 !shadow-none`}
                     onClick={handleMobileMenuCloseClick}
                   >
-                    <span>Contact</span>
+                    <span>Free Consultation</span>
                   </Link>
                 </ul>
               </div>
