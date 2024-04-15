@@ -178,8 +178,26 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
-          <div className="copyright w-full text-center ">
+          <div className="copyright w-full flex justify-center sm:block sm:text-center ">
             <p className="text-white">© 2024 Bright Code Solution</p>
+            <ul className=" relative w-fit flex sm:w-full sm:justify-center ">
+              <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] sm:before:hidden sm:!ml-0 sm:!pl-0 ">
+                <Link
+                  href="https://www.bright-code.io/privacy-policy"
+                  className="text-white md:text-[14px] md:leading-[24px] "
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] ">
+                <Link
+                  href="https://www.bright-code.io/sitemap.xml"
+                  className="text-white md:text-[14px] md:leading-[24px] "
+                >
+                  Sitemap
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
