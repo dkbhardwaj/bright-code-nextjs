@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
                   href="/contact"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                 >
-                  Contact us
+                  Free Consultation
                 </a>
               </li>
             </ul>
