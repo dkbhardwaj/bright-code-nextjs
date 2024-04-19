@@ -48,14 +48,13 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     initAOS(); // Initialize AOS when the app mounts on the client side
   }, []);
-  const gtagScript = `<script type=‘text/javascript’ src=‘https://www.googletagmanager.com/gtag/js?id=UA-254354410-1’ id=‘google_gtagjs-js’ async></script>
-    <script type=‘text/javascript’ id=‘google_gtagjs-js-after’>
-    window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-    gtag(‘set’, ‘linker’, {“domains”:[“www.bright-code.io”]} );
-    gtag(“js”, new Date());
-    gtag(“set”, “developer_id.dZTNiMT”, true);
-    gtag(“config”, “UA-254354410-1”, {“anonymize_ip”:true});
-    gtag(“config”, “G-0J63B1FNF9");
+  
+  const gtagScript = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5EMG95WSZ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J5EMG95WSZ');
     </script>`;
   const gtagManagerScript = `<script type=“text/javascript”>
     ( function( w, d, s, l, i ) {
