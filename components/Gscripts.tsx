@@ -52,6 +52,19 @@ export const GTMHeadScript = () => {
           `,
         }}
       />
+      {/* <!-- Google tag (gtag.js) --> */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-J5EMG95WSZ"
+      ></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: ` window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-J5EMG95WSZ');`,
+        }}
+      />
 
       {/* <!-- Event snippet for Contact us page conversion page --> */}
       <script

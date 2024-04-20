@@ -11,7 +11,7 @@ import "../styles/banners.scss";
 import { useEffect, useState } from "react";
 import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
-// import { GTMHeadScript } from "../components/Gscripts";
+import { GTMHeadScript } from "../components/Gscripts";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
@@ -48,7 +48,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     initAOS(); // Initialize AOS when the app mounts on the client side
   }, []);
-  
+
   const gtagScript = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5EMG95WSZ"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -75,7 +75,15 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-11070673099');
-  </script>`;
+  </script>
+  <!-- Google tag (gtag.js) -->
+<script async src=“https://www.googletagmanager.com/gtag/js?id=G-J5EMG95WSZ”></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(‘js’, new Date());
+  gtag(‘config’, ‘G-J5EMG95WSZ’);
+</script>`;
 
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
@@ -94,12 +102,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      {/* <Head>
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> */}
+      <Head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-      {/* <link rel="canonical" href={canonicalUrl} key="canonical" /> */}
-      {/* <GTMHeadScript />
-      </Head> */}
+        {/* <link rel="canonical" href={canonicalUrl} key="canonical" /> */}
+        <GTMHeadScript />
+      </Head>
       <NextSeo
         title={String(metadata.title)}
         description={String(metadata.description)}
