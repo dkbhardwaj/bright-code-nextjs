@@ -11,6 +11,7 @@ const contactForm = {
   paragraph: "You may have noticed that we do not showcase our clients or their projects on our website. This conscious choice mirrors our unwavering dedication to two guiding principles: trust and confidentiality.",
   paragraph2: "We deeply believe in the strength of collaboration, and as your trusted partner, we're excited to help you shine in the spotlight.",
   paragraphBold2: "Let's connect!",
+  introImageUrl: "/why-choose-us/shiv-headshot.jpg",
 }
 
 export { bannerThird, contactForm };

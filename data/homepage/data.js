@@ -135,6 +135,7 @@ const contactForm = {
   paragraph: "We value direct, one-on-one discussions where we can understand your unique needs and explore the potential for collaboration.",
   paragraph2: "",
   paragraphBold2: "Thank you for considering Bright Code as your trusted partner.",
+  introImageUrl: "",
 }
 
 export { intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, contactForm };

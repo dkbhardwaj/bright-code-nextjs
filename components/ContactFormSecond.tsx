@@ -16,6 +16,7 @@ interface contactFormSecondProps {
     paragraph: string;
     paragraph2: string;
     paragraphBold2: string;
+    introImageUrl: string;
   };
 }
 
@@ -28,6 +29,7 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
     paragraph,
     paragraph2,
     paragraphBold2,
+    introImageUrl,
   } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
@@ -84,13 +86,44 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
           <div
             className={`relative w-full py-[68px] bgPurpleGradient md:py-12`}
           >
-            <div className=" relative w-full mb-16 text-center  md:mb-8">
-              {subtitle && (
-                <h6 className="text-white title mb-8 md:mb-2">{subtitle}</h6>
-              )}
+            {introImageUrl ? (
+              <div
+                className={`
+                } intro_with_image relative flex flex-wrap items-center mb-16 md:block  `}
+              >
+                <div
+                  className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6`}
+                >
+                  {subtitle && (
+                    <h6 className="text-white title mb-8 md:mb-2">
+                      {subtitle}
+                    </h6>
+                  )}
 
-              {title && <h2 className="text-white mb-5">{title}</h2>}
-            </div>
+                  {title && <h2 className="text-white mb-5">{title}</h2>}
+                </div>
+                {introImageUrl && (
+                  <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
+                    <Image
+                      src={introImageUrl}
+                      width={220}
+                      height={220}
+                      alt="img"
+                      className=" w-full h-full object-cover "
+                    />
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className=" introText relative w-full mb-16 text-center  md:mb-8">
+                {subtitle && (
+                  <h6 className="text-white title mb-8 md:mb-2">{subtitle}</h6>
+                )}
+
+                {title && <h2 className="text-white mb-5">{title}</h2>}
+              </div>
+            )}
+
             <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
               <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
                 {paragraphBold && (
