@@ -135,6 +135,35 @@ const intro3 = {
   paddingmediumbottom: true,
 };
 
+const colFourCard = {
+  colFour: [
+    {
+      id: 1,
+      iconUrl: "/icon-star.svg",
+      title: "Expertise",
+      paragraph: "Our unwavering commitment to expertise signifies the depth of knowledge and skill we bring to every project.",
+    },
+    {
+      id: 2,
+      iconUrl: "/icon-partnership.svg",
+      title: "Collaborative approac",
+      paragraph: "Collaboration is in our DNA. We believe that the best solutions emerge when diverse minds come together.",
+    },
+    {
+      id: 3,
+      iconUrl: "/icon-certificate.svg",
+      title: "Commitment to excellence",
+      paragraph: "Excellence is not just a principle; it's the essence of Bright Code. We infuse it into the interactions with our clients.",
+    },
+    {
+      id: 4,
+      iconUrl: "/icon-idea.svg",
+      title: "Innovation",
+      paragraph: "We embrace a culture of continuous improvement, staing ahead of technological advancements.",
+    }
+  ]
+}
+
 const contactForm = {
   paddingmediumtop: false,
   subtitle: "GET IN TOUCH",
@@ -150,4 +179,4 @@ const footerMap = {
   iframeUrl: "https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5999680504724!2d-118.4755961742846!3d34.028477873166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bbfdc805103f%3A0xe2b048c364c959d1!2sSpaces%20-%20Water%20Garden!5e0!3m2!1sen!2sin!4v1703144756322!5m2!1sen!2sin",
 }
 
-export { heroBanner, intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, contactForm, footerMap };
+export { heroBanner, intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, colFourCard, contactForm, footerMap };

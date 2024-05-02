@@ -17,6 +17,7 @@ import {
   contentWithImage3,
   contentWithImage4,
   intro3,
+  colFourCard,
   contactForm,
   footerMap,
 } from "../data/homepage/data";
@@ -99,7 +100,7 @@ const Home: React.FC = () => {
       <div className="section_bgImage bg-darkBlue">
         <Introduction data={intro3} />
 
-        <ColFourCards />
+        <ColFourCards data={colFourCard} />
 
         <ContactFormSecond data={contactForm} />
 
