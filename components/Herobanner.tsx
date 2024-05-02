@@ -1,8 +1,19 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+interface heroBannerData {
+  data: {
+    bannerRightImg: string;
+    bannerLeftImg: string;
+    mainTitle: string;
+    buttonUrl: string;
+    buttonText: string;
+  };
+}
 
-const Herobanner: React.FC = () => {
+const Herobanner: React.FC<heroBannerData> = ({ data }) => {
+  const { bannerRightImg, bannerLeftImg, mainTitle, buttonUrl, buttonText } =
+    data;
   return (
     <>
       <section
@@ -10,7 +21,7 @@ const Herobanner: React.FC = () => {
       >
         <div className="right_img absolute bottom-0 left-[62%] w-full max-w-[538px] h-[536px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:left-[65%] md:h-[310px] md:max-w-[325px] md:!left-auto md:right-[calc(35%-200px)] ">
           <Image
-            src="/home/banner-right-img.png"
+            src={bannerRightImg}
             width={550}
             height={550}
             loading="lazy"
@@ -20,7 +31,7 @@ const Herobanner: React.FC = () => {
         </div>
         <div className="left_img absolute bottom-0 right-[61%] w-full max-w-[526px] h-[506px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:right-[65%] md:h-[310px] md:max-w-[325px] md:!right-[35%] ">
           <Image
-            src="/home/banner-left-img.png"
+            src={bannerLeftImg}
             width={550}
             height={550}
             loading="lazy"
@@ -36,16 +47,16 @@ const Herobanner: React.FC = () => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              Empowering Designers, Thrilling Clients.
+              {mainTitle}
             </h1>
             <Link
-              href="/whychooseus"
+              href={buttonUrl}
               className=" mt-14 gradient-btn mx-auto md:mt-6"
               data-aos="fade-right"
               data-aos-delay="300"
               data-aos-duration="300"
             >
-              <span>Get Started</span>
+              <span>{buttonText}</span>
             </Link>
           </div>
         </div>
