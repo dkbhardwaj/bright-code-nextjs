@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 import BannerThird from "../components/BannerThird";
 import ContactFormSecond from "../components/ContactFormSecond";
 import FooterMap from "../components/FooterMap";
-import { bannerThird, contactForm } from "../dataContact/data";
+import { bannerThird, contactForm, footerMap } from "../dataContact/data";
 
 export const metadata: Metadata = {
   title:
@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
       <div className="section_bgImage bg-darkBlue">
         <ContactFormSecond data={contactForm} />
 
-        <FooterMap />
+        <FooterMap data={footerMap} />
       </div>
     </>
   );

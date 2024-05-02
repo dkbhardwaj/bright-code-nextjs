@@ -17,6 +17,7 @@ import {
   contentWithImage4,
   intro3,
   contactForm,
+  footerMap,
 } from "../data/homepage/data";
 
 function onChange(token: string | null) {
@@ -101,7 +102,7 @@ const Home: React.FC = () => {
 
         <ContactFormSecond data={contactForm} />
 
-        <FooterMap />
+        <FooterMap data={footerMap} />
       </div>
     </>
   );
