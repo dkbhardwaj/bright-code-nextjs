@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface bannerData {
   data: {
@@ -16,8 +17,10 @@ const Banner: React.FC<bannerData> = ({ data }) => {
         className={`banner banner_third relative overflow-x-hidden bg-darkBlue level-two flex items-center text-white pt-28 pb-10 min-h-[752px]  desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
       >
         <div className="bannerBgImage absolute top-0 left-0 w-full h-full  ">
-          <img
+          <Image
             src="/case-study/banner-bg-img.png"
+            width={2500}
+            height={1200}
             alt="bg-img"
             className=" w-full h-full object-cover object-center "
           />

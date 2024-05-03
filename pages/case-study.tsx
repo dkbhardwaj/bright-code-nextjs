@@ -12,6 +12,7 @@ import ColThreeCards from "../components/ColThreeCards";
 import {
   bannercontent,
   listWithSocialIcon,
+  imagewithlist,
   overview,
   contentWithImage,
   overview2,
@@ -36,7 +37,7 @@ const CaseStudy: React.FC = () => {
 
       <ListWithSocialicon data={listWithSocialIcon} />
 
-      <ImageWithList />
+      <ImageWithList data={imagewithlist} />
 
       <Overview data={overview} />
 

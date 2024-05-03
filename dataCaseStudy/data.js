@@ -20,6 +20,31 @@ const listWithSocialIcon = {
     }
   ]
 }
+const imagewithlist = {
+  title: "Key Takeaways",
+  listItem: [
+    {
+      id: 1,
+      listContent: "Better climate governance",
+    },
+    {
+      id: 2,
+      listContent: "Insurer is well-positioned to meet climate-related disclosure requirements",
+    },
+    {
+      id: 3,
+      listContent: "Insurer demonstrated leadership and satisfied investor and stakeholder concerns",
+    },
+    {
+      id: 4,
+      listContent: "Project expanded to encompass different perils and regions",
+    },
+    {
+      id: 5,
+      listContent: "Factors unrelated to climate changes, for example increases in exposure, are likely to be a more meaningful driver of near-term risk",
+    }
+  ]
+}
 
 const overview = {
   textLeft: false,
@@ -153,4 +178,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannercontent, listWithSocialIcon, overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards, contactform };
+export { bannercontent, listWithSocialIcon, imagewithlist, overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards, contactform };
