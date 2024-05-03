@@ -11,6 +11,7 @@ import IntroWithCards from "../components/IntroWithCards";
 import ColThreeCards from "../components/ColThreeCards";
 import {
   bannercontent,
+  listWithSocialIcon,
   overview,
   contentWithImage,
   overview2,
@@ -33,7 +34,7 @@ const CaseStudy: React.FC = () => {
     <>
       <Banner data={bannercontent} />
 
-      <ListWithSocialicon />
+      <ListWithSocialicon data={listWithSocialIcon} />
 
       <ImageWithList />
 

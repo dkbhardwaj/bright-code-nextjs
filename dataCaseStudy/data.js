@@ -4,6 +4,23 @@ const bannercontent = {
   description: "How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.",
 }
 
+const listWithSocialIcon = {
+  listItem: [
+    {
+      id: 1,
+      listcontent: "Better Climate Governance",
+    },
+    {
+      id: 2,
+      listcontent: "Satisfied Investor And Stakeholder Concerns",
+    },
+    {
+      id: 3,
+      listcontent: "Equipped to Meet Climate-Related Disclosure Requirements",
+    }
+  ]
+}
+
 const overview = {
   textLeft: false,
   subtitle: "The Challenge",
@@ -136,4 +153,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannercontent, overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards, contactform };
+export { bannercontent, listWithSocialIcon, overview, contentWithImage, overview2, overview3, contentWithImage2, overview4, colThreeCards, contactform };
