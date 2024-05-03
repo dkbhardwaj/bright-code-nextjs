@@ -5,6 +5,7 @@ import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import Overview from "../components/overview";
 import ContactForm from "../components/contactForm";
 import {
+  bannersecond,
   contentWithImage,
   overview,
   contentWithImage2,
@@ -63,7 +64,7 @@ const WhyChooseUs: React.FC = () => {
         }
       />
 
-      <BannerSecond />
+      <BannerSecond data={bannersecond} />
 
       <ContentWithImageColTwo data={contentWithImage} />
 

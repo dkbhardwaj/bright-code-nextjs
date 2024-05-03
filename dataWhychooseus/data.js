@@ -1,3 +1,11 @@
+const bannersecond = {
+  bannerLeftImg: "/why-choose-us/banner-left-img.png",
+  bannerRightImg: "/why-choose-us/banner-right-img.png",
+  mainTitle: "Why choose us?",
+  buttonUrl: "/contact",
+  buttonText: "Learn More",
+}
+
 const contentWithImage = {
   subtitle: "SYNERGY OF COLLABORATION",
   title: "Agency to Agency",
@@ -111,4 +119,4 @@ const contactform = {
 }
 
 
-export { contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };
+export { bannersecond, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };
