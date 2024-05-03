@@ -1,3 +1,9 @@
+const bannerfourth = {
+  bannerImg: "/our-clients/banner-img.png",
+  mainTitle: "Our clients",
+  buttonUrl: "/contact",
+  buttonText: "Learn More",
+}
 
 const contentWithImage = {
   subtitle: "Collaboration",
@@ -93,4 +99,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { bannerfourth, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };

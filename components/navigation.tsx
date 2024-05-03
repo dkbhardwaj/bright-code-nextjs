@@ -188,7 +188,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </Link>
                   <Link
                     href="/contact"
-                    className={`${Style.btn} gradient-btn !hidden lg:!inline-block my-8 !shadow-none`}
+                    className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
                     onClick={handleMobileMenuCloseClick}
                   >
                     <span>Free Consultation</span>

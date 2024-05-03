@@ -5,6 +5,7 @@ import BannerFourth from "../components/BannerFourth";
 import Overview from "../components/overview";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {
+  bannerfourth,
   contentWithImage,
   overview,
   contentWithImage2,
@@ -62,7 +63,7 @@ const Ourclient: React.FC = () => {
         }
       />
 
-      <BannerFourth />
+      <BannerFourth data={bannerfourth} />
 
       <ContentWithImageColTwo data={contentWithImage} />
 
