@@ -7,15 +7,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface stickyItme {
-  id: string,
-  title: string,
-  url: string
+  id: string;
+  title: string;
+  url: string;
 }
 
-// interface StickyProps {
-//   ribbonVisible?: boolean;
-//   data?: stickyItme[];
-// }
 interface StickyProps {
   ribbonVisible?: boolean;
   data?: { id: string; title: string; url: string }[];
@@ -23,59 +19,33 @@ interface StickyProps {
   setClickedId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-
 // const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
-const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, setClickedId }) => {
-   console.log(data);
-   const stickyData = data;
-   
-   console.log(ribbonVisible);
+const Sticky: React.FC<StickyProps> = ({
+  ribbonVisible,
+  data = [],
+  clickedId,
+  setClickedId,
+}) => {
+  console.log(data);
+  const stickyData = data;
+
+  console.log(ribbonVisible);
 
   const [isArrowDownClicked, setArrowDownClicked] = useState(false);
   const handleArrowClick = () => {
     setArrowDownClicked(!isArrowDownClicked);
   };
 
-
   const router = useRouter();
 
   useEffect(() => {
-    const currentUrlData = data.find((item) => router.asPath === `/${item.url}`);
+    const currentUrlData = data.find(
+      (item) => router.asPath === `/${item.url}`
+    );
     if (currentUrlData) {
       setClickedId(currentUrlData.id);
     }
   }, [router.asPath, data, setClickedId]);
-
-
-
-
-  // const isLocalStorageAvailable = typeof window !== "undefined" && window.localStorage;
-
-  // const [clickedId, setClickedId] = useState<string | null>(null);
-
-  // useEffect(() => {
-  //   // Initialize clickedId from local storage on the client side
-  //   if (isLocalStorageAvailable) {
-  //     const storedId = localStorage.getItem("clickedId") || null;
-  //     setClickedId(storedId);
-  //   }
-  // }, [isLocalStorageAvailable]);
-
-  // const handleStickyClick = (
-  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  //   id: string
-  // ) => {
-  //   e.preventDefault();
-  //   setClickedId(id);
-  //   isLocalStorageAvailable && localStorage.setItem("clickedId", id);
-  // };
-
-  // const sortedStickyData = clickedId
-  //   ? [
-  //       stickyData.find(item => item.id === clickedId) || stickyData[0],
-  //       ...stickyData.filter(item => item.id !== clickedId),
-  //     ]
-  //   : stickyData;
 
   const [isSticky, setSticky] = useState(false);
   const [headerHeight, setheaderHeight] = useState(0);
@@ -124,82 +94,6 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, se
   const headheight = {
     top: headerHeight,
   };
-  // const handleStickyClick = (
-  //   e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  //   id: string,
-  //   borderActive: number,
-  //   sectionId: string,
-  //   offset: number
-  // ) => {
-  //   const x = document.querySelectorAll("section");
-  //   // e.preventDefault();
-  //   const headrHeight = document.querySelector("header")?.offsetHeight || 0;
-  //   const stickyHeight =
-  //     document.getElementById("stickyNav")?.offsetHeight || 0;
-  //   // console.log("stick", stickyHeight);
-
-  //   x.forEach((item) => {
-  //     const attr = item.getAttribute("id");
-  //     const scrollPosition =
-  //       window.pageYOffset ||
-  //       document.documentElement.scrollTop ||
-  //       document.body.scrollTop ||
-  //       0;
-  //     if (attr === id) {
-  //       const topp = item.getBoundingClientRect().top;
-  //       // console.log(topp);
-  //       const d = scrollPosition + topp - 116 - stickyHeight;
-  //       if (topp < 0) {
-  //         // d = d - headrHeight;
-  //         d - headrHeight;
-  //       }
-
-  //       window.scrollTo({
-  //         top: d,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   });
-  // };
-
-  // const handleStickyClick = (
-  //   e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  //   id: string,
-  //   borderActive: number,
-  //   sectionId: string,
-  //   offset: number
-  // ) => {
-  //   const x = document.querySelectorAll("section");
-  //   const headrHeight = document.querySelector("header")?.offsetHeight || 0;
-  //   const stickyHeight = document.getElementById("stickyNav")?.offsetHeight || 0;
-
-  //   x.forEach((item) => {
-  //     const attr = item.getAttribute("id");
-  //     const scrollPosition =
-  //       window.pageYOffset ||
-  //       document.documentElement.scrollTop ||
-  //       document.body.scrollTop ||
-  //       0;
-  //     if (attr === id) {
-  //       const topp = item.getBoundingClientRect().top;
-  //       const d = scrollPosition + topp - 116 - stickyHeight;
-  //       if (topp < 0) {
-  //         d - headrHeight;
-  //       }
-
-  //       window.scrollTo({
-  //         top: d,
-  //         behavior: "smooth",
-  //       });
-
-  //       // Add the "activated" class to the clicked li
-  //       item.parentElement?.querySelectorAll("li").forEach((li) => {
-  //         li.classList.remove("activated");
-  //       });
-  //       item.classList.add("activated");
-  //     }
-  //   });
-  // };
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     const visibleSections = entries
@@ -240,8 +134,6 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, se
       window.removeEventListener("resize", handleResize);
     };
   });
-
-  
 
   return (
     <>
@@ -328,17 +220,6 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, se
       ) : (
         ""
       )}
-      {/* <style jsx>
-        {`
-          @media (min-width: 991px) {
-            .activated {
-              color: #ffffff;
-              border: none;
-              background-color: #00000042;
-            }
-          }
-        `}
-      </style> */}
 
       {winWidth <= 991 ? (
         <section
@@ -351,15 +232,14 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, se
         >
           <div className="container">
             <div
-              className={`${
-                Style.mobile_stickyNav
-              }  w-full block ${isArrowDownClicked ? Style.toggleClass : ''}`}
+              className={`${Style.mobile_stickyNav}  w-full block ${
+                isArrowDownClicked ? Style.toggleClass : ""
+              }`}
             >
               <div
                 className={`${Style.down_arrow}`}
                 onClick={handleArrowClick}
-              >
-              </div>
+              ></div>
               <ul className={` relative w-full block pr-5 `}>
                 {data.map((dataItem, index) => {
                   return (
@@ -381,26 +261,6 @@ const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [], clickedId, se
                   );
                 })}
               </ul>
-              {/* <ul className={`relative w-full block pr-5`}>
-                {sortedStickyData.map((data) => (
-                  <li
-                    key={data.id}
-                    datatype={data.id}
-                    className={`py-[25px] relative w-full bg-transparent sm:py-[20px] ${
-                      visibleSections.includes(data.title) ? "activated" : ""
-                    }`}
-                    onClick={(e) => handleStickyClick(e, data.id)}
-                  >
-                    <Link
-                      href={`/${data.url}`}
-                      aria-label={`Navigate to ${data.title}`}
-                      className={`text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
-                    >
-                      {data.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul> */}
             </div>
           </div>
         </section>

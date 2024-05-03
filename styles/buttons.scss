@@ -1,116 +1,116 @@
 @import "./variables.scss";
 
-.transparent-btn {
-  display: inline-block;
-  background-color: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  padding: 10px 25px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in;
-  font-weight: 400;
-  &:hover {
-    background-color: #fff;
-    color: #263238;
-  }
-}
+// .transparent-btn {
+//   display: inline-block;
+//   background-color: transparent;
+//   border: 1px solid #fff;
+//   color: #fff;
+//   padding: 10px 25px;
+//   border-radius: 8px;
+//   cursor: pointer;
+//   transition: all 0.2s ease-in;
+//   font-weight: 400;
+//   &:hover {
+//     background-color: #fff;
+//     color: #263238;
+//   }
+// }
 
-.pink-btn {
-  --c: #ff4d7e; /* the color*/
-  --d: #fff; /* the color*/
-  display: inline-block;
-  box-shadow: 0 0 0 0.1em inset var(--d);
-  --_g: linear-gradient(var(--c) 0 0) no-repeat;
-  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-    var(--_g) calc(200% - var(--_p, 0%)) 0%,
-    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-    var(--_g) calc(200% - var(--_p, 0%)) 100%;
-  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
-  outline-offset: 0.1em;
-  padding: 10px 25px;
-  border-radius: 8px;
-  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
-  font-weight: 400;
-  cursor: pointer;
-  &.b-border {
-    --d: #263238; /* the color*/
-  }
-  &:hover {
-    --_p: 100%;
-    --c: #ff4d7e; /* the color*/
-    transition: background-position 0.4s, background-size 0s;
-    color: #fff;
-    box-shadow: 0 0 0 0.1em inset var(--c);
-  }
-  &:active {
-    box-shadow: 0 0 9e9Q inset #0009;
-    background-color: var(--c);
-    color: #fff;
-  }
-}
+// .pink-btn {
+//   --c: #ff4d7e; /* the color*/
+//   --d: #fff; /* the color*/
+//   display: inline-block;
+//   box-shadow: 0 0 0 0.1em inset var(--d);
+//   --_g: linear-gradient(var(--c) 0 0) no-repeat;
+//   background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 0%,
+//     var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 100%;
+//   background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+//   outline-offset: 0.1em;
+//   padding: 10px 25px;
+//   border-radius: 8px;
+//   transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+//   font-weight: 400;
+//   cursor: pointer;
+//   &.b-border {
+//     --d: #263238; /* the color*/
+//   }
+//   &:hover {
+//     --_p: 100%;
+//     --c: #ff4d7e; /* the color*/
+//     transition: background-position 0.4s, background-size 0s;
+//     color: #fff;
+//     box-shadow: 0 0 0 0.1em inset var(--c);
+//   }
+//   &:active {
+//     box-shadow: 0 0 9e9Q inset #0009;
+//     background-color: var(--c);
+//     color: #fff;
+//   }
+// }
 
-.blue-btn {
-  --c: #0164d3; /* the color*/
-  --d: #0164d3; /* the color*/
-  display: inline-block;
-  box-shadow: 0 0 0 0.1em inset var(--d);
-  --_g: linear-gradient(var(--c) 0 0) no-repeat;
-  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-    var(--_g) calc(200% - var(--_p, 0%)) 0%,
-    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-    var(--_g) calc(200% - var(--_p, 0%)) 100%;
-  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
-  outline-offset: 0.1em;
-  padding: 10px 25px;
-  border-radius: 8px;
-  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
-  font-weight: 400;
-  cursor: pointer;
-  &:hover {
-    --_p: 100%;
-    --c: #0164d3; /* the color*/
-    transition: background-position 0.4s, background-size 0s;
-    color: #fff;
-    box-shadow: 0 0 0 0.1em inset var(--c);
-  }
-  &:active {
-    box-shadow: 0 0 9e9Q inset #0009;
-    background-color: var(--c);
-    color: #fff;
-  }
-}
+// .blue-btn {
+//   --c: #0164d3; /* the color*/
+//   --d: #0164d3; /* the color*/
+//   display: inline-block;
+//   box-shadow: 0 0 0 0.1em inset var(--d);
+//   --_g: linear-gradient(var(--c) 0 0) no-repeat;
+//   background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 0%,
+//     var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 100%;
+//   background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+//   outline-offset: 0.1em;
+//   padding: 10px 25px;
+//   border-radius: 8px;
+//   transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+//   font-weight: 400;
+//   cursor: pointer;
+//   &:hover {
+//     --_p: 100%;
+//     --c: #0164d3; /* the color*/
+//     transition: background-position 0.4s, background-size 0s;
+//     color: #fff;
+//     box-shadow: 0 0 0 0.1em inset var(--c);
+//   }
+//   &:active {
+//     box-shadow: 0 0 9e9Q inset #0009;
+//     background-color: var(--c);
+//     color: #fff;
+//   }
+// }
 
-.black-btn {
-  --c: #263238; /* the color*/
-  --d: #263238; /* the color*/
-  display: inline-block;
-  box-shadow: 0 0 0 0.1em inset var(--d);
-  --_g: linear-gradient(var(--c) 0 0) no-repeat;
-  background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
-    var(--_g) calc(200% - var(--_p, 0%)) 0%,
-    var(--_g) calc(var(--_p, 0%) - 100%) 100%,
-    var(--_g) calc(200% - var(--_p, 0%)) 100%;
-  background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
-  outline-offset: 0.1em;
-  padding: 10px 25px;
-  border-radius: 8px;
-  transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
-  font-weight: 400;
-  cursor: pointer;
-  &:hover {
-    --_p: 100%;
-    --c: #263238; /* the color*/
-    transition: background-position 0.4s, background-size 0s;
-    color: #fff;
-    box-shadow: 0 0 0 0.1em inset var(--c);
-  }
-  &:active {
-    box-shadow: 0 0 9e9Q inset #0009;
-    background-color: var(--c);
-    color: #fff;
-  }
-}
+// .black-btn {
+//   --c: #263238; /* the color*/
+//   --d: #263238; /* the color*/
+//   display: inline-block;
+//   box-shadow: 0 0 0 0.1em inset var(--d);
+//   --_g: linear-gradient(var(--c) 0 0) no-repeat;
+//   background: var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 0%,
+//     var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+//     var(--_g) calc(200% - var(--_p, 0%)) 100%;
+//   background-size: 50.5% calc(var(--_p, 0%) / 2 + 0.5%);
+//   outline-offset: 0.1em;
+//   padding: 10px 25px;
+//   border-radius: 8px;
+//   transition: box-shadow 0.4s, background-size 0.4s, background-position 0s 0.4s;
+//   font-weight: 400;
+//   cursor: pointer;
+//   &:hover {
+//     --_p: 100%;
+//     --c: #263238; /* the color*/
+//     transition: background-position 0.4s, background-size 0s;
+//     color: #fff;
+//     box-shadow: 0 0 0 0.1em inset var(--c);
+//   }
+//   &:active {
+//     box-shadow: 0 0 9e9Q inset #0009;
+//     background-color: var(--c);
+//     color: #fff;
+//   }
+// }
 .gradient-btn {
   position: relative;
   width: 100%;
@@ -170,7 +170,7 @@
   }
   @include tablet-down {
     padding: 11px 32px 11px 16px;
-    max-width: 188px;
+    max-width: 200px;
   }
   span {
     position: relative;
@@ -244,7 +244,8 @@
   &.border-btn {
     background-color: transparent;
     background-image: unset;
-    max-width: 172px;
+    // max-width: 172px;
+    max-width: 200px;
     padding: 10px 50px 10px 16px;
     border: solid 1px #fff;
     &::after {
