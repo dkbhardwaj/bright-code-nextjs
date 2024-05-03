@@ -16,6 +16,7 @@ import {
   overview,
   contentWithImage,
   overview2,
+  introwithcards,
   overview3,
   contentWithImage2,
   overview4,
@@ -45,7 +46,7 @@ const CaseStudy: React.FC = () => {
 
       <Overview data={overview2} />
 
-      <IntroWithCards />
+      <IntroWithCards data={introwithcards} />
 
       <Overview data={overview3} />
 
