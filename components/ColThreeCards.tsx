@@ -51,7 +51,7 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
       <section
         className={`${
           paddingLarge === true ? "padding-large" : ""
-        } colThree_cards`}
+        } colThree_cards overflow-x-hidden `}
       >
         <div className="container">
           <div

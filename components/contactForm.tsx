@@ -52,7 +52,7 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
               <div
                 className={`${
                   formintrowithImage === true ? "!flex" : ""
-                } intro_with_image relative  flex-wrap items-center mb-16 md:block hidden `}
+                } intro_with_image relative  flex-wrap items-center mb-16 md:flex-col hidden `}
               >
                 <div
                   className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6 `}
@@ -115,7 +115,7 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
                         id="fullName"
                         name="fullName"
                         required={true}
-                        className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
+                        className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
                       />
                     </div>
                     <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
@@ -130,7 +130,7 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
                         id="email"
                         name="email"
                         required={true}
-                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
                     <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
@@ -146,7 +146,7 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
                         name="subject"
                         // value={values.subject}
                         required={true}
-                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
                     <ValidationError
@@ -165,7 +165,7 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
                         id="message"
                         name="message"
                         // value={values.message}
-                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                       ></textarea>
                     </div>
                     <ValidationError

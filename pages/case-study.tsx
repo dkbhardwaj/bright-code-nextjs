@@ -10,6 +10,7 @@ import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import IntroWithCards from "../components/IntroWithCards";
 import ColThreeCards from "../components/ColThreeCards";
 import {
+  bannercontent,
   overview,
   contentWithImage,
   overview2,
@@ -30,7 +31,7 @@ const CaseStudy: React.FC = () => {
 
   return (
     <>
-      <Banner />
+      <Banner data={bannercontent} />
 
       <ListWithSocialicon />
 
