@@ -158,24 +158,32 @@ const colFourCard = {
   colFour: [
     {
       id: 1,
+      cardDelay: "400",
+      cardDuration: "400",
       iconUrl: "/icon-star.svg",
       title: "Expertise",
       paragraph: "Our unwavering commitment to expertise signifies the depth of knowledge and skill we bring to every project.",
     },
     {
       id: 2,
+      cardDelay: "500",
+      cardDuration: "500",
       iconUrl: "/icon-partnership.svg",
       title: "Collaborative approac",
       paragraph: "Collaboration is in our DNA. We believe that the best solutions emerge when diverse minds come together.",
     },
     {
       id: 3,
+      cardDelay: "600",
+      cardDuration: "600",
       iconUrl: "/icon-certificate.svg",
       title: "Commitment to excellence",
       paragraph: "Excellence is not just a principle; it's the essence of Bright Code. We infuse it into the interactions with our clients.",
     },
     {
       id: 4,
+      cardDelay: "700",
+      cardDuration: "700",
       iconUrl: "/icon-idea.svg",
       title: "Innovation",
       paragraph: "We embrace a culture of continuous improvement, staing ahead of technological advancements.",
