@@ -1,34 +1,25 @@
-'use client';
 import React from 'react';
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import dynamic from 'next/dynamic';
+import ContactForm from '../components/contactForm';
+import BannerFourth from '../components/BannerFourth';
 import Introduction from '../components/Introduction';
-import ColThreeCards from '../components/ColThreeCards';
+import Overview from '../components/overview';
 import ContentWithImageColTwo from '../components/ContentWithImageColTwo';
-import ColFourCards from '../components/ColFourCards';
 import {
-  heroBanner,
   intro,
-  colThreeCards,
-  intro2,
+  bannerfourth,
   contentWithImage,
+  overview,
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
-  intro3,
-  colFourCard,
-  contactForm,
-  footerMap,
-} from '../data/homepage/data';
+  contactform,
+} from '../data/agencies';
 
-function onChange(token: string | null) {
-  console.log('Captcha token:', token);
-}
 export const metadata: Metadata = {
-  title: 'Agency-to-Agency Drupal Development Partner | Bright Code',
+  title: 'Collaborative Excellence: Bright Code Agency-to-Agency Approach',
   description:
-    "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
+    "Discover Bright Code's collaborative excellence in agency-to-agency partnerships. As your dedicated development partner, we bridge the realms of design and technical implementation, ensuring seamless execution for remarkable digital solutions. Learn about our client-centric approach, professionalism in partnership, and expertise without compromise. ",
   openGraph: {
     images: [
       {
@@ -56,13 +47,7 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const HeroBanner = dynamic(() => import('../components/Herobanner'));
-
-const ContactFormSecond = dynamic(() => import('../components/ContactFormSecond'));
-
-const FooterMap = dynamic(() => import('../components/FooterMap'));
-
-const Home: React.FC = () => {
+const Ourclient: React.FC = () => {
   return (
     <>
       <NextSeo
@@ -72,22 +57,21 @@ const Home: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || '',
-                images: metadata.openGraph.images || [],
-                siteName: metadata.openGraph.siteName || '',
+                description: metadata.description || '', // Make sure it's not undefined
+                images: metadata.openGraph.images || [], // Make sure it's not undefined
+                siteName: metadata.openGraph.siteName || '', // Make sure it's not undefined
               }
             : undefined
         }
       />
-      <HeroBanner data={heroBanner} />
+
+      <BannerFourth data={bannerfourth} />
 
       <Introduction data={intro} />
 
-      <ColThreeCards data={colThreeCards} />
-
-      <Introduction data={intro2} />
-
       <ContentWithImageColTwo data={contentWithImage} />
+
+      <Overview data={overview} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
 
@@ -95,17 +79,9 @@ const Home: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <div className="section_bgImage bg-darkBlue">
-        <Introduction data={intro3} />
-
-        <ColFourCards data={colFourCard} />
-
-        <ContactFormSecond data={contactForm} />
-
-        <FooterMap data={footerMap} />
-      </div>
+      <ContactForm data={contactform} />
     </>
   );
 };
 
-export default Home;
+export default Ourclient;

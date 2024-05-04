@@ -1,9 +1,22 @@
 const bannerfourth = {
   bannerImg: "/our-clients/banner-img.png",
-  mainTitle: "Our clients",
+  mainTitle: "For agencies",
   buttonUrl: "/contact",
   buttonText: "Learn More",
 }
+
+const intro = {
+  subtitle: "Why Choose us?",
+  title: "Our agency-to-agency model is built to",
+  titleSpan: "empower designers.",
+  paragraph: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in their service offerings.",
+  btnUrl: "",
+  titleLarge: false,
+  nopaddingbottom: false,
+  titleWhite: false,
+  nopaddingbottom: true,
+  paddingmediumbottom: false,
+};
 
 const contentWithImage = {
   subtitle: "Collaboration",
@@ -99,4 +112,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannerfourth, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { intro, bannerfourth, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };

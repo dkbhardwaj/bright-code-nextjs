@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import Head from "next/head";
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
-import Introduction from "../components/Introduction";
-import ColThreeCards from "../components/ColThreeCards";
-import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-import ColFourCards from "../components/ColFourCards";
+'use client';
+import React from 'react';
+import Head from 'next/head';
+import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
+import Introduction from '../components/Introduction';
+import ColThreeCards from '../components/ColThreeCards';
+import ContentWithImageColTwo from '../components/ContentWithImageColTwo';
+import ColFourCards from '../components/ColFourCards';
 import {
   heroBanner,
   intro,
@@ -20,23 +20,23 @@ import {
   colFourCard,
   contactForm,
   footerMap,
-} from "../data/homepage/data";
+} from '../data/homepage';
 
 function onChange(token: string | null) {
-  console.log("Captcha token:", token);
+  console.log('Captcha token:', token);
 }
 export const metadata: Metadata = {
-  title: "Agency-to-Agency Drupal Development Partner | Bright Code",
+  title: 'Agency-to-Agency Drupal Development Partner | Bright Code',
   description:
     "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
   openGraph: {
     images: [
       {
-        url: "/agency_agency-1.png",
-        alt: "Alt text for your image",
+        url: '/agency_agency-1.png',
+        alt: 'Alt text for your image',
       },
     ],
-    siteName: "Bright Code",
+    siteName: 'Bright Code',
   },
 };
 
@@ -56,13 +56,11 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const HeroBanner = dynamic(() => import("../components/Herobanner"));
+const HeroBanner = dynamic(() => import('../components/Herobanner'));
 
-const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond")
-);
+const ContactFormSecond = dynamic(() => import('../components/ContactFormSecond'));
 
-const FooterMap = dynamic(() => import("../components/FooterMap"));
+const FooterMap = dynamic(() => import('../components/FooterMap'));
 
 const Home: React.FC = () => {
   return (
@@ -74,9 +72,9 @@ const Home: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || "",
+                description: metadata.description || '',
                 images: metadata.openGraph.images || [],
-                siteName: metadata.openGraph.siteName || "",
+                siteName: metadata.openGraph.siteName || '',
               }
             : undefined
         }

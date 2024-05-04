@@ -1,14 +1,14 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
 
-import ContactForm from "../components/contactForm";
-import Banner from "../components/Banner";
-import ListWithSocialicon from "../components/ListWithSocialicon";
-import ImageWithList from "../components/ImageWithList";
-import Overview from "../components/overview";
-import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-import IntroWithCards from "../components/IntroWithCards";
-import ColThreeCards from "../components/ColThreeCards";
+import ContactForm from '../components/contactForm';
+import Banner from '../components/Banner';
+import ListWithSocialicon from '../components/ListWithSocialicon';
+import ImageWithList from '../components/ImageWithList';
+import Overview from '../components/overview';
+import ContentWithImageColTwo from '../components/ContentWithImageColTwo';
+import IntroWithCards from '../components/IntroWithCards';
+import ColThreeCards from '../components/ColThreeCards';
 import {
   bannercontent,
   listWithSocialIcon,
@@ -22,11 +22,11 @@ import {
   overview4,
   colThreeCards,
   contactform,
-} from "../dataCaseStudy/data";
+} from '../data/caseStudies/data';
 
 const CaseStudy: React.FC = () => {
   const router = useRouter();
-  const baseUrl = typeof window !== "undefined" ? window.location.href : "";
+  const baseUrl = typeof window !== 'undefined' ? window.location.href : '';
   console.log(baseUrl);
 
   const link = encodeURI(`${baseUrl}${router.asPath}`);

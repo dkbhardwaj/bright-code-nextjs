@@ -1,24 +1,23 @@
-import React from "react";
-import { useEffect } from "react";
-import { NextSeo } from "next-seo";
-import BannerThird from "../components/BannerThird";
-import ContactFormSecond from "../components/ContactFormSecond";
-import FooterMap from "../components/FooterMap";
-import { bannerThird, contactForm, footerMap } from "../dataContact/data";
+import React from 'react';
+import { useEffect } from 'react';
+import { NextSeo } from 'next-seo';
+import BannerThird from '../components/BannerThird';
+import ContactFormSecond from '../components/ContactFormSecond';
+import FooterMap from '../components/FooterMap';
+import { bannerThird, contactForm, footerMap } from '../data/contact';
 
 export const metadata: Metadata = {
-  title:
-    "Connect with Bright Code: Your Partner in Exceptional Web Development",
+  title: 'Connect with Bright Code: Your Partner in Exceptional Web Development',
   description:
-    "Ready to start a collaborative journey with Bright Code? Contact us to explore our agency-to-agency model, specialized expertise, and commitment to empowering designers and thrilling clients. Reach out today for a strategic alliance that elevates your web development aspirations.",
+    'Ready to start a collaborative journey with Bright Code? Contact us to explore our agency-to-agency model, specialized expertise, and commitment to empowering designers and thrilling clients. Reach out today for a strategic alliance that elevates your web development aspirations.',
   openGraph: {
     images: [
       {
-        url: "/agency_agency-1.png",
-        alt: "Alt text for your image",
+        url: '/agency_agency-1.png',
+        alt: 'Alt text for your image',
       },
     ],
-    siteName: "Bright Code",
+    siteName: 'Bright Code',
   },
 };
 
@@ -45,7 +44,7 @@ interface Metadata {
 
 const Contact: React.FC = () => {
   useEffect(() => {
-    let head = document.getElementsByTagName("head")[0];
+    let head = document.getElementsByTagName('head')[0];
     head.innerHTML += conversionScript;
   }, []);
 
@@ -58,9 +57,9 @@ const Contact: React.FC = () => {
           metadata.openGraph
             ? {
                 title: String(metadata.title),
-                description: metadata.description || "", // Make sure it's not undefined
+                description: metadata.description || '', // Make sure it's not undefined
                 images: metadata.openGraph.images || [], // Make sure it's not undefined
-                siteName: metadata.openGraph.siteName || "", // Make sure it's not undefined
+                siteName: metadata.openGraph.siteName || '', // Make sure it's not undefined
               }
             : undefined
         }

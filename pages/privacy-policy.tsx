@@ -1,7 +1,7 @@
-import React from "react";
-import BannerThird from "../components/BannerThird";
-import { bannerThird } from "../dataPrivacyPolicy/data";
-import PrivacyPolicyContent from "../components/PrivacyPolicyContent";
+import React from 'react';
+import BannerThird from '../components/BannerThird';
+import { bannerThird } from '../data/privacyPolicy';
+import PrivacyPolicyContent from '../components/PrivacyPolicyContent';
 
 const PrivacyPolicy: React.FC = () => {
   return (
