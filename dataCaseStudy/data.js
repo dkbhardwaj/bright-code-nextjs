@@ -99,7 +99,7 @@ const overview2 = {
 }
 
 const introwithcards = {
-  colThreeCards: [
+  colThreeCard: [
     {
       id: 1,
       cardDelay: "400",
@@ -182,20 +182,37 @@ const colThreeCards = {
   featuredClass: true,
   title: "Related Information",
   bgTransparent: true,
-  imageUrl1: "/case-study/card-img-1.png",
-  imageAlt1: "Climate Change",
-  cardTitle1: "Climate Change",
-  cardParagraph1: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
 
-  imageUrl2: "/case-study/card-img-2.png",
-  imageAlt2: "Climate Change Models",
-  cardTitle2: "Climate Change Models",
-  cardParagraph2: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+  threeCards: [
+    {
+      id: 1,
+      cardDelay: "400",
+      cardDuration: "400",
+      imageUrl: "/case-study/card-img-1.png",
+      imageAlt: "Climate Change",
+      cardTitle: "Climate Change",
+      cardDetail: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+    },
+    {
+      id: 2,
+      cardDelay: "500",
+      cardDuration: "500",
+      imageUrl: "/case-study/card-img-2.png",
+      imageAlt: "Climate Change Models",
+      cardTitle: "Climate Change Models",
+      cardDetail: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
 
-  imageUrl3: "/case-study/card-img-3.png",
-  imageAlt3: "Risk and Strategy",
-  cardTitle3: "Access Risk and Strategy",
-  cardParagraph3: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+    },
+    {
+      id: 3,
+      cardDelay: "600",
+      cardDuration: "600",
+      imageUrl: "/case-study/card-img-3.png",
+      imageAlt: "Risk and Strategy",
+      cardTitle: "Access Risk and Strategy",
+      cardDetail: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium",
+    },
+  ],
 
   btntext: "",
   btnUrl: "",

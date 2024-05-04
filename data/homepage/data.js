@@ -22,20 +22,39 @@ const colThreeCards = {
   featuredClass: false,
   title: "",
   bgTransparent: false,
-  imageUrl1: "/home/col-three-img1.png",
-  imageAlt1: "Agency to agency services",
-  cardTitle1: "Collaborative",
-  cardParagraph1: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in your service offerings.",
 
-  imageUrl2: "/home/col-three-img2.png",
-  imageAlt2: "Client Centric development",
-  cardTitle2: "Client-Centric",
-  cardParagraph2: "We know that clients are your ultimate consideration. We ensure that the websites we develop not only meet but exceed the end-users needs.",
+  threeCards: [
+    {
+      id: 1,
+      cardDelay: "400",
+      cardDuration: "400",
+      imageUrl: "/home/col-three-img1.png",
+      imageAlt: "Agency to agency services",
+      cardTitle: "Collaborative",
+      cardDetail: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in your service offerings.",
 
-  imageUrl3: "/home/col-three-img3.png",
-  imageAlt3: "Empowering designers",
-  cardTitle3: "Empowering",
-  cardParagraph3: "Our mission is to empower designers. We understand that a design's potential can only be fully realized when paired with a capable development team.",
+    },
+    {
+      id: 2,
+      cardDelay: "500",
+      cardDuration: "500",
+      imageUrl: "/home/col-three-img2.png",
+      imageAlt: "Client Centric development",
+      cardTitle: "Client-Centric",
+      cardDetail: "We know that clients are your ultimate consideration. We ensure that the websites we develop not only meet but exceed the end-users needs.",
+
+    },
+    {
+      id: 3,
+      cardDelay: "600",
+      cardDuration: "600",
+      imageUrl: "/home/col-three-img3.png",
+      imageAlt: "Empowering designers",
+      cardTitle: "Empowering",
+      cardDetail: "Our mission is to empower designers. We understand that a design's potential can only be fully realized when paired with a capable development team.",
+
+    },
+  ],
 
   btntext: "Learn More",
   btnUrl: "/whychooseus",

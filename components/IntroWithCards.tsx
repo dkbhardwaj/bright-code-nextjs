@@ -4,7 +4,7 @@ import Link from "next/link";
 
 interface introWithCardsData {
   data: {
-    colThreeCards: {
+    colThreeCard: {
       id: number;
       cardDelay: string;
       cardDuration: string;
@@ -21,7 +21,7 @@ const IntroWithCards: React.FC<introWithCardsData> = ({ data }) => {
       <section className="introWithCards">
         <div className="container">
           <div className="w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0">
-            {data?.colThreeCards.map((colThree) => (
+            {data?.colThreeCard.map((colThree) => (
               <div
                 className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
                 data-aos="fade-up"
