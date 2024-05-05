@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IntroductionProps {
   data: {
@@ -6,6 +6,7 @@ interface IntroductionProps {
     title: string;
     titleSpan: string;
     paragraph: string;
+    paragraph2: string;
     titleLarge: boolean;
     nopaddingbottom: boolean;
     titleWhite: boolean;
@@ -19,6 +20,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     title,
     titleSpan,
     paragraph,
+    paragraph2,
     titleLarge,
     nopaddingbottom,
     titleWhite,
@@ -28,26 +30,20 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   return (
     <>
       <section
-        className={`${nopaddingbottom === true ? "no-padding-bottom" : ""} ${
-          paddingmediumbottom === true ? "padding-medium-bottom" : ""
+        className={`${nopaddingbottom === true ? 'no-padding-bottom' : ''} ${
+          paddingmediumbottom === true ? 'padding-medium-bottom' : ''
         } intro padding-large-top padding-medium-bottom  text-center overflow-x-hidden`}
         id="why-choose-us"
         data-aos="fade-up"
         data-aos-delay="400"
-        data-aos-duration="400"
-      >
+        data-aos-duration="400">
         <div className="container">
           <div className="w-full mx-auto">
-            {subtitle && (
-              <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-                {subtitle}
-              </h6>
-            )}
+            {subtitle && <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">{subtitle}</h6>}
             <h2
-              className={`${titleLarge === true ? "large" : ""} ${
-                titleWhite === true ? "text-white" : ""
-              } font-medium text-black mb-[38px] md:mb-[20px]`}
-            >
+              className={`${titleLarge === true ? 'large' : ''} ${
+                titleWhite === true ? 'text-white' : ''
+              } font-medium text-black mb-[38px] md:mb-[20px]`}>
               {title} <br />
               {titleSpan && (
                 <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
@@ -55,11 +51,9 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 </span>
               )}
             </h2>
-            {paragraph && (
-              <h5 className="text-black w-full max-w-[960px] mx-auto">
-                {paragraph}
-              </h5>
-            )}
+            {paragraph && <h5 className="text-black w-full max-w-[960px] mx-auto">{paragraph}</h5>}
+            <br />
+            {paragraph2 && <h5 className="text-black w-full max-w-[960px] mx-auto">{paragraph2}</h5>}
           </div>
         </div>
       </section>

@@ -10,7 +10,8 @@ const intro = {
   subtitle: "Why Choose us?",
   title: "Our agency model is built on",
   titleSpan: "collaboration and expertise.",
-  paragraph: "As a specialized development agency, our core purpose is to empower marketers to deliver exceptional results for their companies.",
+  paragraph: "Bright Code has partnered with a myriad of businesses, collaborating closely with CMOs, senior VPs, and marketing directors. We grasp the paramount importance of deadlines and budgets within the marketing sphere.",
+  paragraph2: "As a specialized development agency, based in California, our core purpose is to empower marketers to deliver exceptional results for their companies.",
   titleLarge: false,
   nopaddingbottom: false,
   titleWhite: false,
@@ -30,7 +31,7 @@ const colThreeCards = {
   imageUrl2: "/home/col-three-img2.png",
   imageAlt2: "Client Centric development",
   cardTitle2: "Results driven",
-  cardParagraph2: "We understand that you need results. We ensure that the websites we develop not only meet but exceed your needs.",
+  cardParagraph2: "We understand marketers. You you need results. We ensure that the websites we develop not only meet but exceed your needs.",
 
   imageUrl3: "/home/col-three-img3.png",
   imageAlt3: "Empowering designers",

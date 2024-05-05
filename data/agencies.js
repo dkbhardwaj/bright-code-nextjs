@@ -8,8 +8,9 @@ const bannerfourth = {
 const intro = {
   subtitle: "Why Choose us?",
   title: "Our agency-to-agency model is built to",
-  titleSpan: "empower designers.",
-  paragraph: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in their service offerings.",
+  titleSpan: "empower partners.",
+  paragraph: "Unlock the power of collaboration with our agency-to-agency web development services. We specialize in forming dynamic partnerships with design and marketing agencies, seamlessly integrating our expertise to deliver results for end clients.",
+  paragraph2: "Together, we ensure that every project exceeds expectations and drives tangible success.",
   btnUrl: "",
   titleLarge: false,
   nopaddingbottom: false,
@@ -42,8 +43,8 @@ const overview = {
   title: "How we work",
   titleSpan: "",
   titleWithSpan: "",
-  paragraph: "At Bright Code, our fundamental mission is to empower our clients to deliver remarkable digital solutions and exceed the expectations of their end clients. We believe in the power of collaboration, and our role as a trusted partner reflects our commitment to our clients and their needs.",
-  paragraph2: "You may have noticed that we do not showcase our clients or their projects on our website. This choice is intentional and  reflects our unwavering dedication to two key principles: trust and confidentiality.",
+  paragraph: "At Bright Code, our fundamental mission for the agency-to-agency program is to empower our partners to deliver remarkable digital solutions and exceed the expectations of their end clients. We believe in the power of collaboration, and our role as a trusted partner reflects our commitment.",
+  paragraph2: "You may have noticed that we do not showcase our partners or their projects on our website. This choice is intentional and  reflects our unwavering dedication to two key principles: trust and confidentiality.",
   paragraph3: "",
   bgExtraLightGray: true,
   bgWhite: false,
@@ -72,8 +73,8 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subtitle: "About Us",
-  title: "Client-Centric Approach",
+  subtitle: "Our Approach",
+  title: "Client-Centric",
   titleSpan: "",
   paragraph: "Our client-centric approach means that our focus is, and always  will be, on making our clients happy. We respect their need to safeguard their client relationships and branding confidentiality.",
   paragraph2: "By not advertising their projects on our website, we honor their trust and uphold our end of the partnership.",
@@ -90,7 +91,7 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
-  subtitle: "About Us",
+  subtitle: "Expertise Meets Collaboration",
   title: "Highlighting Expertise Without Compromise",
   titleSpan: "",
   paragraph: "Although we do not showcase specific client names or project details, we remain committed to highlighting our expertise and the value we bring to the table. While client names and project specifics remain confidential, we embrace the opportunity for one-on-one discussions—online or in person.",

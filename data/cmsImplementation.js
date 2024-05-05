@@ -22,7 +22,7 @@ const contentWithImage = {
   subtitle: "CMS Implementation",
   title: "What is Drupal Implementation?",
   titleSpan: "",
-  paragraph: "Drupal Implementation is the art of transforming your vision into a dynamic, user- friendly Drupal platform.At Bright Code, we specialize in taking your content management needs and translating them into a robust, tailor - made solution.We make  the process of managing your digital content effortless, so you can focus on what truly matters – your message.",
+  paragraph: "Drupal Implementation is the art of transforming your vision into a dynamic, user- friendly Drupal platform. At Bright Code, we specialize in taking your content management needs and translating them into a robust, tailor - made solution. We make  the process of managing your digital content effortless, so you can focus on what truly matters – your message.",
   paragraph2: "",
   paragraph3: "",
   btnUrl: "",

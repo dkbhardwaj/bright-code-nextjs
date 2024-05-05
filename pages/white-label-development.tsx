@@ -51,23 +51,23 @@ interface Metadata {
 const stickyData = [
   {
     id: '1',
-    title: 'White Label Development',
-    url: 'white-label-development',
-  },
-  {
-    id: '2',
-    title: 'Dedicated Development Team',
-    url: 'dedicated-team',
-  },
-  {
-    id: '3',
     title: 'CMS Implementation',
     url: 'cms-implementation',
   },
   {
-    id: '4',
+    id: '2',
     title: 'CMS Maintenance',
     url: 'cms-support',
+  },
+  {
+    id: '3',
+    title: 'White Label Development',
+    url: 'white-label-development',
+  },
+  {
+    id: '4',
+    title: 'Dedicated Development Team',
+    url: 'dedicated-team',
   },
 ];
 
