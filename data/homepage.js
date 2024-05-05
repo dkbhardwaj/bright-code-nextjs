@@ -47,6 +47,7 @@ const intro2 = {
   title: "What we do",
   titleSpan: "",
   paragraph: "",
+  paragraph2: "",
   titleLarge: true,
   nopaddingbottom: true,
   titleWhite: false,
@@ -54,6 +55,8 @@ const intro2 = {
 };
 
 const contentWithImage = {
+  title: "",
+  subtitle: "",
   titleSpan: "CMS Implementation",
   paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence.",
   paragraph2: " At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
@@ -70,6 +73,8 @@ const contentWithImage = {
 }
 
 const contentWithImage2 = {
+  title: "",
+  subtitle: "",
   titleSpan: "CMS Support & maintenance",
   paragraph: "Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a website. This ensures that the website is fortified with the latest security patches, protecting it from potential threats and unauthorized access.",
   paragraph2: "Monthly CMS Maintenance is an investment in the long-term sustainability, security, and performance of your website.",
@@ -86,6 +91,8 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
+  title: "",
+  subtitle: "",
   titleSpan: "White Label Development",
   paragraph: "Our agency-to-agency program empowers designer agencies to deliver results for their clients",
   paragraph2: "At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
@@ -102,6 +109,8 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
+  title: "",
+  subtitle: "",
   titleSpan: "Dedicated Development Teams",
   paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus on your unique goals. At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
   paragraph2: "We provide specialized, dedicated development teams ensuring tailored solutions for your unique project requirements.",
@@ -123,6 +132,7 @@ const intro3 = {
   title: "Our values",
   titleSpan: "",
   paragraph: "",
+  paragraph2: "",
   titleLarge: true,
   nopaddingbottom: false,
   titleWhite: true,
