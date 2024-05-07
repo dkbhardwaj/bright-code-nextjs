@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
@@ -9,15 +10,13 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://unpkg.com/aos@next/dist/aos.css"
           />
-          <Script
-            strategy="afterInteractive"
+          <script
             type="text/javascript"
             src="https://www.googletagmanager.com/gtag/js?id=UA-254354410-1"
             id="google_gtagjs-js"
             async
-          ></Script>
-          <Script
-            strategy="afterInteractive"
+          ></script>
+          <script
             type="text/javascript"
             id="google_gtagjs-js-after"
             dangerouslySetInnerHTML={{
@@ -30,8 +29,7 @@ class MyDocument extends Document {
           `,
             }}
           />
-          <Script
-            strategy="afterInteractive"
+          <script
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: ` ( function( w, d, s, l, i ) {
@@ -48,12 +46,11 @@ class MyDocument extends Document {
           />
 
           {/* <!-- Google tag (gtag.js) --> */}
-          <Script
-            strategy="afterInteractive"
+          <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"
-          ></Script>
-          <Script
+          ></script>
+          <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -63,12 +60,11 @@ class MyDocument extends Document {
             }}
           />
           {/* <!-- Google tag (gtag.js) --> */}
-          <Script
-            strategy="afterInteractive"
+          <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-J5EMG95WSZ"
-          ></Script>
-          <Script
+          ></script>
+          <script
             dangerouslySetInnerHTML={{
               __html: ` window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -78,8 +74,7 @@ class MyDocument extends Document {
           />
 
           {/* <!-- Event snippet for Contact us page conversion page --> */}
-          <Script
-            strategy="afterInteractive"
+          <script
             dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});`,
             }}
