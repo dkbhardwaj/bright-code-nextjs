@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
   const handleScroll = () => {
-    // Show the button when scrolling down, hide when at the top
     setIsVisible(window.scrollY > 200);
   };
 

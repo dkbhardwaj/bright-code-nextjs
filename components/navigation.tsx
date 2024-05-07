@@ -167,13 +167,11 @@ const Navigation: React.FC<NavigationProps> = () => {
                      mx-[22px]  transition-color duration-300 relative ${
                        showDropdown ? `${Style.active}` : ""
                      } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
-                    // onClick={handleDropClick}
                     onClick={handleMobileMenuCloseClick}
                   >
                     <Link
                       className="inline-block w-full text-[14px] "
                       href="/ourclients"
-                      // onClick={preventredirect}
                       onClick={handleMobileMenuCloseClick}
                     >
                       Our clients

@@ -40,7 +40,6 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
   return (
     <>
       <div className="section_bgImage bg-darkBlue smallBgImage">
-        {/* Contact Form Start */}
         <section
           className="contactForm text-gray-600 body-font relative pt-24 md:pt-16"
           id="get-in-touch"
@@ -218,9 +217,8 @@ const ContactForm: React.FC<contactFormProps> = ({ data }) => {
             </div>
           </div>
         </section>
-        {/* Contact Form End */}
       </div>
-      {/* {formsuccess === true ? <h1>form submitted</h1> : ""} */}
+
       {formsuccess === true ? (
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
