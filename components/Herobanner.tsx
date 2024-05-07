@@ -48,9 +48,9 @@ const Herobanner: React.FC<heroBannerData> = ({ data }) => {
             {mainTitle && (
               <h1
                 className="header-h1"
-                data-aos="fade-left"
-                data-aos-delay="400"
-                data-aos-duration="500"
+                // data-aos="fade-left"
+                // data-aos-delay="400"
+                // data-aos-duration="500"
               >
                 {mainTitle}
               </h1>
@@ -59,9 +59,9 @@ const Herobanner: React.FC<heroBannerData> = ({ data }) => {
               <Link
                 href={buttonUrl}
                 className=" mt-14 gradient-btn mx-auto md:mt-6"
-                data-aos="fade-right"
-                data-aos-delay="300"
-                data-aos-duration="300"
+                // data-aos="fade-right"
+                // data-aos-delay="300"
+                // data-aos-duration="300"
               >
                 <span>{buttonText}</span>
               </Link>

@@ -49,9 +49,9 @@ const ColThreeCards: React.FC<colThreeCardsProps> = ({ data }) => {
               {data?.threeCards.map((card) => (
                 <div
                   className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
-                  data-aos="fade-up"
-                  data-aos-delay={card.cardDelay}
-                  data-aos-duration={card.cardDuration}
+                  // data-aos="fade-up"
+                  // data-aos-delay={card.cardDelay}
+                  // data-aos-duration={card.cardDuration}
                   key={card.id}
                 >
                   <div
