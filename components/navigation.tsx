@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Style from "../styles/navigation.module.scss";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 interface NavigationProps {}
 
@@ -16,32 +15,11 @@ const dropdownItems: DropdownItem[] = [
   { title: "Service 2", link: "/services/service2" },
   { title: "Service 3", link: "/services/service3" },
   { title: "Service 4", link: "/services/service4" },
-  // Add more services as needed
 ];
 
 const Navigation: React.FC<NavigationProps> = () => {
-  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  // function isActive(route: string): string {
-  //   if (route === router.pathname) {
-  //     return `${Style.menu_active}`;
-  //   } else {
-  //     return "";
-  //   }
-  // }
-  const handleClick = () => {
-    // Use the router to navigate to the desired page
-    router.push("/white-label-development");
-  };
-
-  const preventredirect = (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
-  const handleDropClick = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   const handleMobileMenuClick = () => {
     setShowMobileMenu(!showMobileMenu);

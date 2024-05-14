@@ -1,6 +1,6 @@
 import React from "react";
 
-interface textContentData {
+interface TextContentData {
   data: {
     details: {
       id: number;
@@ -10,9 +10,8 @@ interface textContentData {
   };
 }
 
-const PrivacyPolicyContent: React.FC<textContentData> = ({ data }) => {
+const PrivacyPolicyContent: React.FC<TextContentData> = ({ data }) => {
   return (
-    <>
       <section className="page_content padding-medium">
         <div className="container">
           {data?.details.map((text) => (
@@ -32,7 +31,6 @@ const PrivacyPolicyContent: React.FC<textContentData> = ({ data }) => {
           ))}
         </div>
       </section>
-    </>
   );
 };
 export default PrivacyPolicyContent;

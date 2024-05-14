@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import StickyStyle from "../styles/sticky.module.css";
 import Style from "../styles/stickyNav.module.scss";
-import { log } from "console";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
@@ -19,14 +18,9 @@ const Sticky: React.FC<StickyProps> = ({
   clickedId,
   setClickedId,
 }) => {
-  console.log(data);
-  const stickyData = data;
-
-  console.log(ribbonVisible);
-
-  const [isArrowDownClicked, setArrowDownClicked] = useState(false);
+  const [isArrowDownClicked, setIsArrowDownClicked] = useState(false);
   const handleArrowClick = () => {
-    setArrowDownClicked(!isArrowDownClicked);
+    setIsArrowDownClicked(!isArrowDownClicked);
   };
 
   const router = useRouter();
@@ -41,10 +35,9 @@ const Sticky: React.FC<StickyProps> = ({
   }, [router.asPath, data, setClickedId]);
 
   const [isSticky, setSticky] = useState(false);
-  const [headerHeight, setheaderHeight] = useState(0);
-  const [stick, setstick] = useState<number>(0);
+  const [headerHeight, setHeaderHeight] = useState(0);
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-  const [winWidth, isWinWidth] = useState(0);
+  const [winWidth, setWinWidth] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -52,7 +45,7 @@ const Sticky: React.FC<StickyProps> = ({
       const sticky = document.querySelector("#stickyNav");
       var topp = sticky?.getBoundingClientRect().top;
       const headr = document.querySelector("header")?.offsetHeight || 0;
-      setheaderHeight((prevHeight) => {
+      setHeaderHeight((prevHeight) => {
         return headr;
       });
       const handleNavScroll = () => {
@@ -107,7 +100,7 @@ const Sticky: React.FC<StickyProps> = ({
 
   useEffect(() => {
     const handleResize = () => {
-      isWinWidth(window.innerWidth);
+      setWinWidth(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
