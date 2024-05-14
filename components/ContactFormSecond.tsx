@@ -259,7 +259,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
-              <div
+              <button
                 className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer "
                 onClick={HideThankyouBox}
               >
@@ -271,7 +271,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                   className=" w-full h-full object-contain "
                   alt="close"
                 />
-              </div>
+              </button>
               <div className="thankYouBox text-center">
                 <div className="thankU_check_icon mx-auto max-w-[112px] h-[112px] mb-4 ">
                   <svg
