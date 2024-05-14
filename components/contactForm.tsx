@@ -5,37 +5,36 @@ import { useForm, ValidationError } from "@formspree/react";
 import { useState } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
-interface contactFormProps {
+interface ContactFormProps {
   data: {
     formintrowithImage: boolean;
     formcontent: boolean;
   };
 }
 
-const ContactForm: React.FC<contactFormProps> = ({ data }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
   const { formintrowithImage, formcontent } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
-  const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
+  const [formsuccess, setFormsuccess] = useState(false);
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
+    for (let i of inputs) {
+      const element = i as HTMLInputElement;
       element.value = "";
     }
   };
 
   if (state.succeeded) {
     if (!formsuccess) {
-      setformsuccess(true);
+      setFormsuccess(true);
       ClearForm();
     }
   }
 
   const HideThankyouBox = () => {
-    setformsuccess(false);
+    setFormsuccess(false);
   };
   return (
     <>

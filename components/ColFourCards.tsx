@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-interface colFourCardData {
+interface ColFourCardData {
   data: {
     colFour: {
       id: number;
@@ -14,7 +14,7 @@ interface colFourCardData {
   };
 }
 
-const ColFourCards: React.FC<colFourCardData> = ({ data }) => {
+const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
   return (
     <section className="colFourCards pb-24 overflow-hidden md:pb-14">
       <div className="container">

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
 import dynamic from "next/dynamic";
 
-interface contactFormSecondProps {
+interface ContactFormSecondProps {
   data: {
     paddingmediumtop: boolean;
     subtitle: string;
@@ -18,7 +17,7 @@ interface contactFormSecondProps {
   };
 }
 
-const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
+const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
   const {
     paddingmediumtop,
     subtitle,
@@ -31,7 +30,7 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
   } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
-  const [formsuccess, setformsuccess] = useState(false);
+  const [formsuccess, setFormsuccess] = useState(false);
   const [cross, setCross] = useState(false);
 
   const ClearForm = () => {
@@ -40,15 +39,15 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
       ".contactForm form textarea"
     ) as HTMLInputElement;
     textArea.value = "";
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
+    for (let i of inputs) {
+      const element = i as HTMLInputElement;
       element.value = "";
     }
   };
 
   if (state.succeeded) {
     if (formsuccess === false) {
-      setformsuccess(true);
+      setFormsuccess(true);
       ClearForm();
     }
   }
@@ -281,11 +280,11 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    stroke-width="1"
+                    strokeWidth="1"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
