@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-interface colFourCardData {
+interface ColFourCardData {
   data: {
     colFour: {
       id: number;
+      cardDelay: string;
+      cardDuration: string;
       iconUrl: string;
       title: string;
       paragraph: string;
@@ -12,7 +14,7 @@ interface colFourCardData {
   };
 }
 
-const ColFourCards: React.FC<colFourCardData> = ({ data }) => {
+const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
   return (
     <section className="colFourCards pb-24 overflow-hidden md:pb-14">
       <div className="container">
@@ -21,8 +23,8 @@ const ColFourCards: React.FC<colFourCardData> = ({ data }) => {
             <div
               className="col_four w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
               data-aos="fade-up"
-              data-aos-delay="400"
-              data-aos-duration="500"
+              data-aos-delay={item.cardDelay}
+              data-aos-duration={item.cardDuration}
               key={item.id}
             >
               {item.iconUrl && (

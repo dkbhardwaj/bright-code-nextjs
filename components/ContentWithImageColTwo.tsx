@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface contentWithImageProps {
+interface ContentWithImageProps {
   data: {
     subtitle: string;
     title: string;
@@ -22,7 +22,7 @@ interface contentWithImageProps {
   };
 }
 
-const ContentWithImageColTwo: React.FC<contentWithImageProps> = ({ data }) => {
+const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
   const {
     subtitle,
     title,

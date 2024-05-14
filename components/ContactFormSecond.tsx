@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import { useState } from "react";
-// import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import { useEffect } from "react";
 import dynamic from "next/dynamic";
 
-interface contactFormSecondProps {
+interface ContactFormSecondProps {
   data: {
     paddingmediumtop: boolean;
     subtitle: string;
@@ -20,7 +17,7 @@ interface contactFormSecondProps {
   };
 }
 
-const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
+const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
   const {
     paddingmediumtop,
     subtitle,
@@ -33,15 +30,8 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
   } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
-  // const [captcha, setcaptcha] = useState<string | null>();
-  const [formsuccess, setformsuccess] = useState(false);
+  const [formsuccess, setFormsuccess] = useState(false);
   const [cross, setCross] = useState(false);
-
-  // console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
-
-  const handleReload = () => {
-    window.location.reload();
-  };
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -49,15 +39,15 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
       ".contactForm form textarea"
     ) as HTMLInputElement;
     textArea.value = "";
-    for (let i = 0; i < inputs.length; i++) {
-      const element = inputs[i] as HTMLInputElement;
+    for (let i of inputs) {
+      const element = i as HTMLInputElement;
       element.value = "";
     }
   };
 
   if (state.succeeded) {
     if (formsuccess === false) {
-      setformsuccess(true);
+      setFormsuccess(true);
       ClearForm();
     }
   }
@@ -194,7 +184,6 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                       type="subject"
                       id="subject"
                       name="subject"
-                      // value={values.subject}
                       required={true}
                       className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
@@ -214,7 +203,6 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                     <textarea
                       id="message"
                       name="message"
-                      // value={values.message}
                       className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-[106px] text-base outline-none text-gray-700 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                     ></textarea>
                   </div>
@@ -271,7 +259,7 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">
           <div className="container">
             <div className="thankU_overlay relative bg-white rounded-md min-h-[600px] p-10 flex justify-center items-center z-20 ">
-              <div
+              <button
                 className="close_icon max-w-[34px] h-[34px] absolute top-5 right-5 cursor-pointer "
                 onClick={HideThankyouBox}
               >
@@ -283,7 +271,7 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                   className=" w-full h-full object-contain "
                   alt="close"
                 />
-              </div>
+              </button>
               <div className="thankYouBox text-center">
                 <div className="thankU_check_icon mx-auto max-w-[112px] h-[112px] mb-4 ">
                   <svg
@@ -292,11 +280,11 @@ const ContactFormSecond: React.FC<contactFormSecondProps> = ({ data }) => {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    stroke-width="1"
+                    strokeWidth="1"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>

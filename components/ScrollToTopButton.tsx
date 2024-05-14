@@ -1,10 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
   const handleScroll = () => {
-    // Show the button when scrolling down, hide when at the top
     setIsVisible(window.scrollY > 200);
   };
 
@@ -23,15 +21,13 @@ export default function ScrollToTopButton() {
   }, []);
 
   return (
-    <>
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 p-4 bg-blue-500 bg-bgBluePurple rounded-full shadow-lg transition-opacity duration-300 z-50 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <span className="block relative top-[3px] w-4 h-4 border-t-2 border-r-2 border-white transform rotate-[-45deg]"></span>
-      </button>
-    </>
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-6 right-6 p-4 bg-blue-500 bg-bgBluePurple rounded-full shadow-lg transition-opacity duration-300 z-50 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <span className="block relative top-[3px] w-4 h-4 border-t-2 border-r-2 border-white transform rotate-[-45deg]"></span>
+    </button>
   );
 }

@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import StickyStyle from "../styles/sticky.module.css";
 import Style from "../styles/stickyNav.module.scss";
-import { log } from "console";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
-
-interface stickyItme {
-  id: string;
-  title: string;
-  url: string;
-}
 
 interface StickyProps {
   ribbonVisible?: boolean;
@@ -19,21 +12,15 @@ interface StickyProps {
   setClickedId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-// const Sticky: React.FC<StickyProps> = ({ ribbonVisible, data = [] }) => {
 const Sticky: React.FC<StickyProps> = ({
   ribbonVisible,
   data = [],
   clickedId,
   setClickedId,
 }) => {
-  console.log(data);
-  const stickyData = data;
-
-  console.log(ribbonVisible);
-
-  const [isArrowDownClicked, setArrowDownClicked] = useState(false);
+  const [isArrowDownClicked, setIsArrowDownClicked] = useState(false);
   const handleArrowClick = () => {
-    setArrowDownClicked(!isArrowDownClicked);
+    setIsArrowDownClicked(!isArrowDownClicked);
   };
 
   const router = useRouter();
@@ -48,10 +35,9 @@ const Sticky: React.FC<StickyProps> = ({
   }, [router.asPath, data, setClickedId]);
 
   const [isSticky, setSticky] = useState(false);
-  const [headerHeight, setheaderHeight] = useState(0);
-  const [stick, setstick] = useState<number>(0);
+  const [headerHeight, setHeaderHeight] = useState(0);
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
-  const [winWidth, isWinWidth] = useState(0);
+  const [winWidth, setWinWidth] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,15 +45,12 @@ const Sticky: React.FC<StickyProps> = ({
       const sticky = document.querySelector("#stickyNav");
       var topp = sticky?.getBoundingClientRect().top;
       const headr = document.querySelector("header")?.offsetHeight || 0;
-      setheaderHeight((prevHeight) => {
-        // console.log(prevHeight);
+      setHeaderHeight((prevHeight) => {
         return headr;
       });
       const handleNavScroll = () => {
         topp = sticky?.getBoundingClientRect().top;
         const currentScrollTop = window.scrollY;
-        const isScrolledDown = currentScrollTop < lastScrollTop;
-        // console.log(topp);
         if (topp) {
           if (topp !== null && topp < headr) {
             sticky?.classList.add(`${StickyStyle.fix}`);
@@ -85,12 +68,7 @@ const Sticky: React.FC<StickyProps> = ({
       };
     }, 100);
   }, []);
-  // useEffect(() => {
-  //   console.log(headerHeight);
-  // }, [headerHeight]);
-  const auto = {
-    top: `auto`,
-  };
+
   const headheight = {
     top: headerHeight,
   };
@@ -122,11 +100,10 @@ const Sticky: React.FC<StickyProps> = ({
 
   useEffect(() => {
     const handleResize = () => {
-      isWinWidth(window.innerWidth);
+      setWinWidth(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
-    // Initial call to set window size
     handleResize();
 
     // Clean up event listener on component unmount
@@ -150,44 +127,6 @@ const Sticky: React.FC<StickyProps> = ({
             <ul className="flex relative w-fit mx-auto sm:justify-between">
               {data.map((dataItem, index) => {
                 return (
-                  // <li
-                  //   key={index}
-                  //   datatype={data.id}
-                  //   className="px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] "
-                  // >
-                  //   <Link
-                  //     href={`/${data.url}`}
-                  //     aria-label={`Navigate to ${data.title}`}
-                  //     className={`text-black ${
-                  //       visibleSections[0] === data.url
-                  //         ? "border-b-4 border-white activated"
-                  //         : ""
-                  //     } text-[19px] font-[600] transition-all text-white hover:border-b-4 hover:border-white hover:text-white ease-in-out`}
-                  //     onClick={(e) =>
-                  //       handleStickyClick(e, data.url, index, data.url, 50)
-                  //     }
-                  //   >
-                  //     {data.title}
-                  //   </Link>
-                  // </li>
-                  // <li
-                  //   key={index}
-                  //   datatype={data.id}
-                  //   className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
-                  //     visibleSections[0] === data.url ? "activated" : ""
-                  //   }`}
-                  //   // onClick={(e) =>
-                  //   //   handleStickyClick(e, data.url, index, data.url, 50)
-                  //   // }
-                  // >
-                  //   <Link
-                  //     href={`/${data.url}`}
-                  //     aria-label={`Navigate to ${data.title}`}
-                  //     className={` text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
-                  //   >
-                  //     {data.title}
-                  //   </Link>
-                  // </li>
                   <li
                     key={dataItem.id}
                     className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${

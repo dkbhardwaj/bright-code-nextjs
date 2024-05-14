@@ -7,7 +7,7 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <>
       <BannerThird data={bannerThird} />
-      <PrivacyPolicyContent />
+      <PrivacyPolicyContent data={textContent} />
     </>
   );
 };
