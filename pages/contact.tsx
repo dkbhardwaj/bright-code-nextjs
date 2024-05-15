@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import BannerThird from "../components/BannerThird";
+import BannerSecond from "../components/BannerSecond";
 import ContactFormSecond from "../components/ContactFormSecond";
 import FooterMap from "../components/FooterMap";
-import { bannerThird, contactForm, footerMap } from "../dataContact/data";
+import { bannersecond, contactForm, footerMap } from "../dataContact/data";
 
 export const metadata: Metadata = {
   title:
@@ -66,7 +66,7 @@ const Contact: React.FC = () => {
         }
       />
 
-      <BannerThird data={bannerThird} />
+      <BannerSecond data={bannersecond} />
 
       <div className="section_bgImage bg-darkBlue">
         <ContactFormSecond data={contactForm} />

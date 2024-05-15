@@ -1,12 +1,12 @@
 import React from "react";
-import BannerThird from "../components/BannerThird";
+import BannerSecond from "../components/BannerSecond";
 import PrivacyPolicyContent from "../components/PrivacyPolicyContent";
-import { bannerThird, textContent } from "../dataPrivacyPolicy/data";
+import { bannersecond, textContent } from "../dataPrivacyPolicy/data";
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <>
-      <BannerThird data={bannerThird} />
+      <BannerSecond data={bannersecond} />
       <PrivacyPolicyContent data={textContent} />
     </>
   );

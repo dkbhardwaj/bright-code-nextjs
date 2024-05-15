@@ -1,5 +1,11 @@
-const bannerThird = {
-  title: "Privacy Policy",
+
+
+const bannersecond = {
+  bannerLeftImg: "",
+  bannerRightImg: "",
+  mainTitle: "Privacy Policy",
+  buttonUrl: "",
+  buttonText: "",
 }
 
 const textContent = {
@@ -58,4 +64,4 @@ const textContent = {
   ]
 }
 
-export { bannerThird, textContent };
+export { bannersecond, textContent };

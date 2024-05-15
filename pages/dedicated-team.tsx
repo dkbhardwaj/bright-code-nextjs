@@ -6,10 +6,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import Overview from "../components/overview";
-import BannerThird from "../components/BannerThird";
+import BannerSecond from "../components/BannerSecond";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {
-  bannerThird,
+  bannersecond,
   overview,
   contentWithImage,
   contentWithImage2,
@@ -135,7 +135,7 @@ const DedicatedTeam: React.FC = () => {
         }
       />
 
-      <BannerThird data={bannerThird} />
+      <BannerSecond data={bannersecond} />
 
       {/* <Sticky ribbonVisible={true} data={stickyData} /> */}
       <Sticky

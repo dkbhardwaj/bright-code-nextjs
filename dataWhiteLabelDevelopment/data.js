@@ -1,5 +1,11 @@
-const bannerThird = {
-  title: "What we do?",
+
+
+const bannersecond = {
+  bannerLeftImg: "",
+  bannerRightImg: "",
+  mainTitle: "What we do?",
+  buttonUrl: "",
+  buttonText: "",
 }
 
 const overview = {
@@ -96,4 +102,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannerThird, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
