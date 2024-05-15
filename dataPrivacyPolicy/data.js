@@ -3,6 +3,7 @@
 const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
+  bannerOneImg: "",
   mainTitle: "Privacy Policy",
   buttonUrl: "",
   buttonText: "",

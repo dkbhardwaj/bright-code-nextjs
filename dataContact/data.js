@@ -4,6 +4,7 @@
 const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
+  bannerOneImg: "",
   mainTitle: "Contact Us",
   buttonUrl: "",
   buttonText: "",

@@ -1,11 +1,11 @@
 import React from "react";
 import { NextSeo } from "next-seo";
 import ContactForm from "../components/contactForm";
-import BannerFourth from "../components/BannerFourth";
+import BannerSecond from "../components/BannerSecond";
 import Overview from "../components/overview";
 import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
 import {
-  bannerfourth,
+  bannersecond,
   contentWithImage,
   overview,
   contentWithImage2,
@@ -63,7 +63,7 @@ const Ourclient: React.FC = () => {
         }
       />
 
-      <BannerFourth data={bannerfourth} />
+      <BannerSecond data={bannersecond} />
 
       <ContentWithImageColTwo data={contentWithImage} />
 

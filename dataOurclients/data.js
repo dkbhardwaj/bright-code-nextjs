@@ -1,5 +1,9 @@
-const bannerfourth = {
-  bannerImg: "/our-clients/banner-img.png",
+
+
+const bannersecond = {
+  bannerLeftImg: "",
+  bannerRightImg: "",
+  bannerOneImg: "/our-clients/banner-img.png",
   mainTitle: "Our clients",
   buttonUrl: "/contact",
   buttonText: "Learn More",
@@ -99,4 +103,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannerfourth, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { bannersecond, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };

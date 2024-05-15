@@ -6,6 +6,7 @@ interface BannerSecondData {
   data: {
     bannerLeftImg: string;
     bannerRightImg: string;
+    bannerOneImg: string;
     mainTitle: string;
     buttonUrl: string;
     buttonText: string;
@@ -13,8 +14,14 @@ interface BannerSecondData {
 }
 
 const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
-  const { bannerLeftImg, bannerRightImg, mainTitle, buttonUrl, buttonText } =
-    data;
+  const {
+    bannerLeftImg,
+    bannerRightImg,
+    bannerOneImg,
+    mainTitle,
+    buttonUrl,
+    buttonText,
+  } = data;
 
   const hasImages = bannerLeftImg || bannerRightImg;
 
@@ -52,6 +59,30 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                 />
               </div>
             )}
+            <div className="banner-content text-left">
+              {mainTitle && <h1 className=" text-white ">{mainTitle}</h1>}
+              {buttonText && (
+                <Link
+                  href={buttonUrl}
+                  className=" mt-[42px] gradient-btn mx-auto lg:mt-5"
+                >
+                  <span>{buttonText}</span>
+                </Link>
+              )}
+            </div>
+          </>
+        ) : bannerOneImg ? (
+          <>
+            <div className="right_img absolute bottom-0 left-[45%] w-full max-w-[655px] h-[413px] z-[1] xl:w-[490px] xl:max-w-full xl:h-[310px] md:left-[14%] xs:left-0 ">
+              <Image
+                src={bannerOneImg}
+                width={700}
+                height={500}
+                loading="lazy"
+                alt="right-img"
+                className=" w-full h-full object-cover"
+              />
+            </div>
             <div className="banner-content text-left">
               {mainTitle && <h1 className=" text-white ">{mainTitle}</h1>}
               {buttonText && (
