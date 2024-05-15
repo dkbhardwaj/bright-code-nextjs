@@ -1,11 +1,5 @@
 @import "./variables.scss";
-.banner-homepage {
-  position: relative;
-  background-image: url("/banner-bg-img.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 1;
-}
+
 .banner-second {
   position: relative;
   width: 100%;
@@ -27,7 +21,7 @@
     padding-bottom: 320px;
     align-items: baseline;
   }
-  .banner-contenr {
+  .banner-content {
     position: relative;
     width: 100%;
     max-width: 510px;
@@ -72,13 +66,7 @@
   }
 }
 
-.banner {
-  h1 {
-    color: white;
-  }
-}
-
-.banner_third {
+.banner_overlayImg {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;

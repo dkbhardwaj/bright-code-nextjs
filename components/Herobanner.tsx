@@ -16,7 +16,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
     data;
   return (
     <section
-      className={`banner  banner-with-img banner_overlay banner-homepage relative overflow-x-hidden bg-darkBlue level-two flex items-end text-white pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
+      className={`banner-with-img banner_overlay relative bg-[url("/banner-bg-img.svg")] bg-no-repeat bg-cover  overflow-x-hidden bg-darkBlue flex items-end text-white z-[1] pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
     >
       {bannerRightImg && (
         <div className="right_img absolute bottom-0 left-[62%] w-full max-w-[538px] h-[536px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:left-[65%] md:h-[310px] md:max-w-[325px] md:!left-auto md:right-[calc(35%-200px)] ">
@@ -46,7 +46,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
         <div className="w-full max-w-[574px] mx-auto relative z-[2] text-center">
           {mainTitle && (
             <h1
-              className="header-h1"
+              className="header-h1 text-white "
               // data-aos="fade-left"
               // data-aos-delay="400"
               // data-aos-duration="500"

@@ -17,7 +17,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
     data;
   return (
     <section
-      className={`banner banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue level-two text-white md:items-baseline`}
+      className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
       data-aos="fade-in"
       data-aos-delay="500"
       data-aos-duration="1000"
@@ -47,8 +47,8 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
             />
           </div>
         )}
-        <div className="banner-contenr text-left">
-          {mainTitle && <h1>{mainTitle}</h1>}
+        <div className="banner-content text-left">
+          {mainTitle && <h1 className=" text-white ">{mainTitle}</h1>}
           {buttonText && (
             <Link
               href={buttonUrl}
