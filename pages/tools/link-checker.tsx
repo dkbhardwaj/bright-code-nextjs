@@ -7,6 +7,8 @@ import Introduction from "../../components/Introduction";
 import ColThreeCards from "../../components/ColThreeCards";
 import ContentWithImageColTwo from "../../components/ContentWithImageColTwo";
 import ColFourCards from "../../components/ColFourCards";
+import LinkChecker from "../../components/LinkChecker";
+
 import {
   heroBanner,
   intro,
@@ -84,6 +86,8 @@ const Home: React.FC = () => {
       <HeroBanner data={heroBanner} />
 
       <Introduction data={intro} />
+      
+      <LinkChecker />
 
       <ColThreeCards data={colThreeCards} />
 
