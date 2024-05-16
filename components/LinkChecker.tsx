@@ -86,7 +86,7 @@ const LinkChecker = () => {
                                 <span>Check</span>
                             </button>
                         </form>
-                        { loading ? <div className="loader"></div> : resStatus ? <h3>Gate Timeout 504 error</h3> : linkStatus && (
+                        { loading ? <div className="loader"></div> : resStatus ? <h3 className='text-white '>Gateway Timeout 504 error</h3> : linkStatus && (
                             <ul className='mt-[40px]'>
                                 <li className='flex'>
                                     <h4 className='max-w-[200px] w-full text-white'>Status </h4> <h4 className='max-w-[500px] w-full text-white'> URL</h4>
