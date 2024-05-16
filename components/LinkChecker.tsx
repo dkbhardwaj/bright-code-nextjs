@@ -59,7 +59,7 @@ const LinkChecker = () => {
                         </div>
                         <form
                             onSubmit={(e) => handleSubmit(e)}
-                            className=" relative w-mainRow ml-[-10px] flex flex-wrap md:w-full md:ml-0"
+                            className=" relative w-mainRow ml-[-10px] flex flex-wrap md:w-full md:ml-0 mt-[30px]"
                         >
                             <div className="relative mb-[22px] w-full mx-[10px] md:w-full md:mx-0">
                                 <label
@@ -86,18 +86,18 @@ const LinkChecker = () => {
                                 <span>Check</span>
                             </button>
                         </form>
-                        { loading ? <div className="loader"></div> : resStatus ? <h3 className='text-white '>Gateway Timeout 504 error</h3> : linkStatus && (
+                        { loading ? <div className="loader"></div> : resStatus ? <h3 className='text-white mt-[20px]'>Gateway Timeout 504 error</h3> : linkStatus && (
                             <ul className='mt-[40px]'>
-                                <li className='flex'>
-                                    <h4 className='max-w-[200px] w-full text-white'>Status </h4> <h4 className='max-w-[500px] w-full text-white'> URL</h4>
+                                <li className='flex '>
+                                    <h4 className='max-w-[200px] w-full text-white sm:max-w-full'>Status </h4> <h4 className='max-w-[500px] w-full text-white sm:max-w-full'> URL</h4>
                                 </li>
                                 {Object.entries(linkStatus).every(([, status]) => status === 'OK') ? (
                                     <li><p>No results found</p></li>
                                 ) : (
                                     (Object.entries(linkStatus) as [string, string][]).map(([link, status]) => (
                                         status !== 'OK' && (
-                                            <li key={link} className='flex'>
-                                                <p className='max-w-[200px] w-full inline-block text-white'>404 {status}</p>
+                                            <li key={link} className='flex sm:mt-[10px]'>
+                                                <p className='max-w-[200px] w-full inline-block text-white sm:max-w-full sm:mr-[10px]'>404 {status}</p>
                                                 <p><Link href={link} className='text-white'>{link}:</Link></p>
                                             </li>
                                         )
