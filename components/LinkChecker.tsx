@@ -4,7 +4,7 @@ import React from 'react'
 const LinkChecker = () => {
 
     return (
-        <div className="section_bgImage bg-darkBlue py-[120px] mb-[80px]">
+        <div className="section_bgImage bg-darkBlue py-[120px]">
             <section className="linkChecker ">
                 <div className="container">
 
