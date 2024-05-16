@@ -27,7 +27,8 @@ const LinkChecker = () => {
         try {
 
             const response = await fetch(`/api/checkStatus?url=${encodeURIComponent(url)}`);
-
+            console.log(response.status);
+            
             const data = await response.json();
             console.log(data);
             setLoading(false) 
