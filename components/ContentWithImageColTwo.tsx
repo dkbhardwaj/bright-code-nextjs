@@ -103,7 +103,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 alt="img"
                 width={600}
                 height={500}
-                loading="eager"
+                loading="lazy"
                 className=" w-full h-full object-cover"
               />
             </div>

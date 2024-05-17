@@ -41,7 +41,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                   src={bannerLeftImg}
                   width={400}
                   height={400}
-                  loading="eager"
+                  loading="lazy"
                   alt="left-img"
                   className=" w-full h-full object-cover"
                 />
@@ -53,7 +53,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                   src={bannerRightImg}
                   width={400}
                   height={400}
-                  loading="eager"
+                  loading="lazy"
                   alt="right-img"
                   className=" w-full h-full object-cover"
                 />
@@ -78,7 +78,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                 src={bannerOneImg}
                 width={700}
                 height={500}
-                loading="eager"
+                loading="lazy"
                 alt="right-img"
                 className=" w-full h-full object-cover"
               />

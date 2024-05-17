@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                 src="/brightcode_logo.png"
                 width={300}
                 height={100}
-                loading="eager"
+                loading="lazy"
                 alt="logo"
                 className=" w-full h-full object-contain"
               />
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                     src="/mail-icon-white.svg"
                     width={25}
                     height={25}
-                    loading="eager"
+                    loading="lazy"
                     alt="img"
                     className=" w-full h-full object-contain"
                   />
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                     src="/phone-icon-white.svg"
                     width={25}
                     height={25}
-                    loading="eager"
+                    loading="lazy"
                     alt="img"
                     className=" w-full h-full object-contain"
                   />
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                   src="/twitter-white.svg"
                   width={40}
                   height={40}
-                  loading="eager"
+                  loading="lazy"
                   alt="icon"
                   className=" w-full h-full object-contain"
                 />
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
                   src="/linkedin-white.svg"
                   width={40}
                   height={40}
-                  loading="eager"
+                  loading="lazy"
                   alt="icon"
                   className=" w-full h-full object-contain"
                 />
@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
                 src="/twitter-white.svg"
                 width={40}
                 height={40}
-                loading="eager"
+                loading="lazy"
                 alt="icon"
                 className=" w-full h-full object-contain"
               />
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
                 src="/linkedin-white.svg"
                 width={40}
                 height={40}
-                loading="eager"
+                loading="lazy"
                 alt="icon"
                 className=" w-full h-full object-contain"
               />

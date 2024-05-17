@@ -24,7 +24,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
             src={bannerRightImg}
             width={550}
             height={550}
-            loading="eager"
+            loading="lazy"
             alt="right-img"
             className=" w-full h-full object-cover"
           />
@@ -36,7 +36,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
             src={bannerLeftImg}
             width={550}
             height={550}
-            loading="eager"
+            loading="lazy"
             alt="left-img"
             className=" w-full h-full object-cover"
           />
