@@ -11,7 +11,7 @@ interface ImageWithListData {
 }
 
 const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
-  const { title } = data;
+  const { title, listItem } = data;
   return (
     <section className=" image-with-list relative w-full overflow-hidden ">
       <div className="container">
@@ -22,9 +22,9 @@ const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
                 {title}
               </h2>
             )}
-            {data?.listItem && (
+            {listItem && (
               <ul className=" list-none relative w-full block pl-[25px] ">
-                {data?.listItem.map((item) => (
+                {listItem.map((item) => (
                   <li className=" font-light leading-[28px] " key={item.id}>
                     {item.listContent}
                   </li>

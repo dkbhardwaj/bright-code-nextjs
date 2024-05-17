@@ -28,6 +28,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     subtitle,
     title,
     titleSpan,
+    paragraphText,
     btnUrl,
     btnText,
     imageUrl,
@@ -76,11 +77,13 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 </span>
               )}
             </h3>
-            {data?.paragraphText &&
-              data?.paragraphText.map((item, index) => (
-                <p className="mt-5 text-black" key={index}>
-                  {item.paragraph}
-                </p>
+            {paragraphText &&
+              paragraphText.map((item, index) => (
+                <p
+                  className="mt-5 text-black"
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
+                />
               ))}
             {btnText && (
               <Link

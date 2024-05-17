@@ -27,8 +27,8 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
 
   return (
     <section
-      className={`${nopaddingbottom === true ? "no-padding-bottom" : ""} ${
-        paddingmediumbottom === true ? "padding-medium-bottom" : ""
+      className={`${nopaddingbottom ? "no-padding-bottom" : ""} ${
+        paddingmediumbottom ? "padding-medium-bottom" : ""
       } intro padding-large-top padding-medium-bottom  text-center overflow-x-hidden`}
       id="why-choose-us"
       // data-aos="fade-up"
@@ -43,8 +43,8 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             </h6>
           )}
           <h2
-            className={`${titleLarge === true ? "large" : ""} ${
-              titleWhite === true ? "text-white" : ""
+            className={`${titleLarge ? "large" : ""} ${
+              titleWhite ? "text-white" : ""
             } font-medium text-black mb-[38px] md:mb-[20px]`}
           >
             {title} <br />
