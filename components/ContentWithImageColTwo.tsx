@@ -7,9 +7,6 @@ interface ContentWithImageProps {
     subtitle: string;
     title: string;
     titleSpan: string;
-    paragraph: string;
-    paragraph2: string;
-    paragraph3: string;
     btnUrl: string;
     btnText: string;
     imageUrl: string;
@@ -19,6 +16,10 @@ interface ContentWithImageProps {
     animatImage: string;
     paddinglargebottom: boolean;
     paddingmedium: boolean;
+    paragraphText: {
+      id: number;
+      paragraph: string;
+    }[];
   };
 }
 
@@ -27,9 +28,6 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     subtitle,
     title,
     titleSpan,
-    paragraph,
-    paragraph2,
-    paragraph3,
     btnUrl,
     btnText,
     imageUrl,
@@ -42,16 +40,14 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
   } = data;
   return (
     <section
-      className={`${
-        paddinglargebottom === true ? "padding-large-bottom" : ""
-      } ${
-        paddingmedium === true ? "padding-medium" : ""
+      className={`${paddinglargebottom ? "padding-large-bottom" : ""} ${
+        paddingmedium ? "padding-medium" : ""
       } contentWithImage overflow-hidden`}
     >
       <div className="container">
         <div
-          className={`${rowReverse === true ? "flex-row-reverse" : ""} ${
-            featuredClass === true ? "featured" : ""
+          className={`${rowReverse ? "flex-row-reverse" : ""} ${
+            featuredClass ? "featured" : ""
           } w-mainRow -ml-2.5 py-16 flex  items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12`}
         >
           <div
@@ -80,9 +76,12 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 </span>
               )}
             </h3>
-            {paragraph && <p className="mt-5 text-black">{paragraph}</p>}
-            {paragraph2 && <p className="mt-5 text-black">{paragraph2}</p>}
-            {paragraph3 && <p className="mt-5 text-black">{paragraph3}</p>}
+            {data?.paragraphText &&
+              data?.paragraphText.map((item, index) => (
+                <p className="mt-5 text-black" key={index}>
+                  {item.paragraph}
+                </p>
+              ))}
             {btnText && (
               <Link
                 href={btnUrl}
