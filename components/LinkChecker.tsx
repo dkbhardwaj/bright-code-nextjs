@@ -70,11 +70,11 @@ const LinkChecker: React.FC = () => {
             </section>
             {
                     showResult && loading ? 
-                    <div className="loaderWrap w-full h-[100vh]">
+                    <div className="loaderWrap w-full h-[100vh] ">
                         <div className="loader"></div>
                     </div>
-                    : <section className={`resultWrap flex pt-[50px] pb-[100px] ${showResult ? 'black' : 'hidden'}`}>
-                        <div className="sidebarWrap max-w-[230px] p-[20px] bg-bgBluePurple h-[100vh] rounded-r-[20px]">
+                    : <section className={`resultWrap flex pt-[50px] pb-[100px] md:pt-0 ${showResult ? 'black' : 'hidden'}`}>
+                        <div className="sidebarWrap max-w-[230px] p-[20px] bg-bgBluePurple h-[100vh] rounded-r-[20px] md:left-[-100%] relative md:max-w-full md:absolute ">
                             <div className="sidebarBody">
                                 <div className="sidebarMain">
                                     <ul>
@@ -107,14 +107,14 @@ const LinkChecker: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="fullPage w-[calc(100%-360px)] ml-[50px]">
+                        <div className="fullPage w-[calc(100%-360px)] ml-[50px] desktop:w-[calc(100%-300px)] tablet:w-[calc(100%-300px)] md:w-full md:mx-[20px]">
                             <div className="introHeading mb-[20px]">
                                 <div className="item ">
                                     <p className='font-bold text-white'>Project:- </p>
                                     <p></p>
                                 </div>
                             </div>
-                            <div className={`cardWrap flex w-[calc(100%+20px)] ml-[-10px] flex-wrap ${showTab == 0 ? 'block' : 'hidden'}`} id="1">
+                            <div className={`cardWrap flex w-[calc(100%+20px)] ml-[-10px] flex-wrap ${showTab == 0 ? 'block' : 'hidden'}`}>
                                 <div className="card w-[calc(33.33%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
                                     <Link href={''} className='redirect'>.</Link>
                                     <div className="content">
