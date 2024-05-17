@@ -100,6 +100,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                       height={220}
                       alt="img"
                       className=" w-full h-full object-cover "
+                      loading="eager"
                     />
                   </div>
                 )}
@@ -267,7 +268,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                   src="/icon-close.svg"
                   width={40}
                   height={40}
-                  loading="lazy"
+                  loading="eager"
                   className=" w-full h-full object-contain "
                   alt="close"
                 />

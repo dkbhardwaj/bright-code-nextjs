@@ -71,6 +71,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                     height={220}
                     alt="img"
                     className=" w-full h-full object-cover "
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -227,7 +228,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                   src="/icon-close.svg"
                   width={40}
                   height={40}
-                  loading="lazy"
+                  loading="eager"
                   className=" w-full h-full object-contain "
                   alt="close"
                 />

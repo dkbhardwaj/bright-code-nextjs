@@ -64,7 +64,7 @@ const ColThreeCards: React.FC<ColThreeCardsProps> = ({ data }) => {
                       src={card.imageUrl}
                       width={400}
                       height={300}
-                      loading="lazy"
+                      loading="eager"
                       alt={card.imageAlt}
                     />
                   </div>

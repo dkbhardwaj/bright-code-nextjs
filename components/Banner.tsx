@@ -22,7 +22,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
           height={1200}
           alt="bg-img"
           className=" w-full h-full object-cover object-center "
-          loading="lazy"
+          loading="eager"
         />
       </div>
       <div className="container">

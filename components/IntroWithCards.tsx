@@ -39,7 +39,7 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
                       src={colThree.cardImage}
                       width={400}
                       height={300}
-                      loading="lazy"
+                      loading="eager"
                       alt={colThree.imgAlt}
                     />
                   </div>

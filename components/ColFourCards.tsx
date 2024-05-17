@@ -34,7 +34,7 @@ const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
                     alt="icon"
                     width={45}
                     height={45}
-                    loading="lazy"
+                    loading="eager"
                     className="w-full h-full object-contain relative z-10"
                   />
                 </div>
