@@ -26,7 +26,6 @@ const LinkChecker = () => {
                                     type="text"
                                     id="fullName"
                                     name="fullName"
-                                    value=""
                                     required={true}
                                     className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
                                 />
