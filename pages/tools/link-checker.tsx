@@ -58,14 +58,6 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-// const HeroBanner = dynamic(() => import("../../components/Herobanner"));
-
-// const ContactFormSecond = dynamic(
-//   () => import("../../components/ContactFormSecond")
-// );
-
-// const FooterMap = dynamic(() => import("../../components/FooterMap"));
-
 const Home: React.FC = () => {
   return (
     <>
@@ -83,33 +75,9 @@ const Home: React.FC = () => {
             : undefined
         }
       />
-      {/* <HeroBanner data={heroBanner} />
-
-      <Introduction data={intro} /> */}
 
       <LinkChecker />
 
-      {/* <ColThreeCards data={colThreeCards} />
-
-      <Introduction data={intro2} />
-
-      <ContentWithImageColTwo data={contentWithImage} />
-
-      <ContentWithImageColTwo data={contentWithImage2} />
-
-      <ContentWithImageColTwo data={contentWithImage3} />
-
-      <ContentWithImageColTwo data={contentWithImage4} /> */}
-
-      {/* <div className="section_bgImage bg-darkBlue">
-        <Introduction data={intro3} />
-
-        <ColFourCards data={colFourCard} />
-
-        <ContactFormSecond data={contactForm} />
-
-        <FooterMap data={footerMap} />
-      </div> */}
     </>
   );
 };
