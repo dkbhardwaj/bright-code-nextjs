@@ -6,6 +6,7 @@ const LinkChecker: React.FC = () => {
     const [showResult, setShowResult] = useState(false);
     const [showTab, setShowTab] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [showSideBar, setShowSideBar] = useState(false)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
@@ -19,8 +20,10 @@ const LinkChecker: React.FC = () => {
     const tabHandler = (val: number): void => {
         setShowTab(val)
     }
-
-
+    const menuHandler = () => {
+        showSideBar ? setShowSideBar(false) : setShowSideBar(true) 
+        
+    }
 
     return (
         <div className="section_bgImage bg-darkBlue py-[120px] linkChecker">
@@ -73,8 +76,11 @@ const LinkChecker: React.FC = () => {
                     <div className="loaderWrap w-full h-[100vh] ">
                         <div className="loader"></div>
                     </div>
-                    : <section className={`resultWrap flex pt-[50px] pb-[100px] md:pt-0 ${showResult ? 'black' : 'hidden'}`}>
-                        <div className="sidebarWrap max-w-[230px] p-[20px] bg-bgBluePurple h-[100vh] rounded-r-[20px] md:left-[-100%] relative md:max-w-full md:absolute ">
+                    : <section className={`resultWrap  flex pt-[50px] pb-[100px] md:pt-0 ${showResult ? 'black' : 'hidden'}`}>
+                        <div className={`showMenu cursor-pointer py-[10px] px-[20px] bg-black fixed text-white top-[70px] md:block hidden`} onClick={() => menuHandler()}>
+                            {showSideBar ? 'Hide Menu' : 'show Menu'}
+                        </div>
+                        <div className={`sidebarWrap max-w-[230px] p-[20px] bg-bgBluePurple h-[100vh] rounded-r-[20px] ${showSideBar ? 'md:left-0' : 'md:left-[-100%]'} transition-all ease-in-out duration-700 relative md:max-w-full md:absolute md:z-[99]`}>
                             <div className="sidebarBody">
                                 <div className="sidebarMain">
                                     <ul>

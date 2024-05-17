@@ -1,32 +1,8 @@
 "use client";
 import React from "react";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
-// import dynamic from "next/dynamic";
-// import Introduction from "../../components/Introduction";
-// import ColThreeCards from "../../components/ColThreeCards";
-// import ContentWithImageColTwo from "../../components/ContentWithImageColTwo";
-// import ColFourCards from "../../components/ColFourCards";
 import LinkChecker from "../../components/LinkChecker";
 
-// import {
-//   heroBanner,
-//   intro,
-//   colThreeCards,
-//   intro2,
-//   contentWithImage,
-//   contentWithImage2,
-//   contentWithImage3,
-//   contentWithImage4,
-//   intro3,
-//   colFourCard,
-//   contactForm,
-//   footerMap,
-// } from "../../data/homepage/data";
-
-// function onChange(token: string | null) {
-//   console.log("Captcha token:", token);
-// }
 export const metadata: Metadata = {
   title: "Agency-to-Agency Drupal Development Partner | Bright Code",
   description:
