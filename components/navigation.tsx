@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Style from "../styles/navigation.module.scss";
 import Link from "next/link";
@@ -14,24 +14,46 @@ const Navigation: React.FC<NavigationProps> = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleMobileMenuClick = () => {
-    setShowMobileMenu(!showMobileMenu);
-  };
-  const handleMobileMenuCloseClick = () => {
-    setShowMobileMenu(false);
-  };
+  // const handleMobileMenuClick = () => {
+  //   setShowMobileMenu(!showMobileMenu);
+  // };
+  // const handleMobileMenuCloseClick = () => {
+  //   setShowMobileMenu(false);
+  // };
 
-  const handleResize = () => {
+  // const handleResize = () => {
+  //   setShowDropdown(false);
+  //   if (window.innerWidth >= 991) {
+  //     setShowMobileMenu(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
+  // --------
+
+  const handleMobileMenuClick = useCallback(() => {
+    setShowMobileMenu((prevState) => !prevState);
+  }, []);
+
+  const handleMobileMenuCloseClick = useCallback(() => {
+    setShowMobileMenu(false);
+  }, []);
+
+  const handleResize = useCallback(() => {
     setShowDropdown(false);
     if (window.innerWidth >= 991) {
       setShowMobileMenu(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [handleResize]);
 
   return (
     <header
