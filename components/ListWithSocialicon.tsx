@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { TwitterShareButton } from "next-share";
-import { LinkedinShareButton } from "next-share";
-import { FacebookShareButton } from "next-share";
+import { TwitterShareButton, LinkedinShareButton, FacebookShareButton } from "next-share";
 
 interface ListWithSocialIconData {
   data: {

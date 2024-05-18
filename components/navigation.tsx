@@ -10,13 +10,6 @@ interface DropdownItem {
   link: string;
 }
 
-const dropdownItems: DropdownItem[] = [
-  { title: "Service 1", link: "/services/service1" },
-  { title: "Service 2", link: "/services/service2" },
-  { title: "Service 3", link: "/services/service3" },
-  { title: "Service 4", link: "/services/service4" },
-];
-
 const Navigation: React.FC<NavigationProps> = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);

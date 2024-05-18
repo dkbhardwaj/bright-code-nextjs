@@ -31,6 +31,7 @@
     "react-dom": "^18",
     "react-google-recaptcha-v3": "^1.10.1",
     "sass": "^1.69.5",
+    "sonarqube-scanner": "^3.5.0",
     "stringify": "^5.2.0"
   },
   "devDependencies": {
