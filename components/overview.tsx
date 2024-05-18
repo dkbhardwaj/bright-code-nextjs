@@ -7,14 +7,15 @@ interface OverviewProps {
     title: string;
     titleSpan: string;
     titleWithSpan: string;
-    paragraph: string;
-    paragraph2: string;
-    paragraph3: string;
     bgExtraLightGray: boolean;
     bgWhite: boolean;
     maxWidthH5: boolean;
     noPaddingBottom: boolean;
     paddingLargeTop: boolean;
+    paragraphText: {
+      id: number;
+      paragraph: string;
+    }[];
   };
 }
 
@@ -25,28 +26,31 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
     title,
     titleSpan,
     titleWithSpan,
-    paragraph,
-    paragraph2,
-    paragraph3,
+    paragraphText,
     bgExtraLightGray,
     bgWhite,
     maxWidthH5,
     noPaddingBottom,
     paddingLargeTop,
   } = data;
+
+  const sectionClasses = [
+    bgExtraLightGray && "bg-extraLightGray",
+    bgWhite && "bg-white",
+    noPaddingBottom && "no-padding-bottom",
+    paddingLargeTop && "padding-large-top",
+    "overview py-20 md:py-12 overflow-x-hidden",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <section
-      className={`${bgExtraLightGray === true ? "bg-extraLightGray" : ""} ${
-        bgWhite === true ? "bg-white" : ""
-      } ${noPaddingBottom === true ? "no-padding-bottom" : ""}  ${
-        paddingLargeTop === true ? "padding-large-top" : ""
-      } overview  py-20 md:py-12 overflow-x-hidden `}
-    >
+    <section className={sectionClasses}>
       <div className="container">
         <div className="w-full z-1 relative">
           <div
             className={` ${
-              textLeft === true ? " !text-left" : ""
+              textLeft ? " !text-left" : ""
             } content w-full text-center relative`}
             data-aos="fade-right"
             data-aos-delay="500"
@@ -82,39 +86,22 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
           </div>
           <div
             className={` ${
-              textLeft === true ? " !text-left" : ""
+              textLeft ? " !text-left" : ""
             } content w-full text-center relative`}
             data-aos="fade-left"
             data-aos-delay="500"
             data-aos-duration="1000"
           >
-            {paragraph && (
-              <h5
-                className={` ${
-                  maxWidthH5 === true ? "w-full max-w-[960px]  mx-auto" : ""
-                } text-black font-light  `}
-              >
-                {paragraph}
-              </h5>
-            )}
-            {paragraph2 && (
-              <h5
-                className={` ${
-                  maxWidthH5 === true ? "w-full max-w-[960px]  mx-auto" : ""
-                } text-black font-light mt-5 md:mt-3  `}
-              >
-                {paragraph2}
-              </h5>
-            )}
-            {paragraph3 && (
-              <h5
-                className={` ${
-                  maxWidthH5 === true ? "w-full max-w-[960px]  mx-auto" : ""
-                } text-black font-light mt-5 md:mt-3  `}
-              >
-                {paragraph3}
-              </h5>
-            )}
+            {paragraphText &&
+              paragraphText.map((item, index) => (
+                <h5
+                  key={index}
+                  className={` ${
+                    maxWidthH5 ? "w-full max-w-[960px]  mx-auto" : ""
+                  } text-black font-light mt-5  `}
+                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
+                />
+              ))}
           </div>
         </div>
       </div>

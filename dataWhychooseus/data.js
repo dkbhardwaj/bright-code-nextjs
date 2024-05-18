@@ -42,9 +42,12 @@ const overview = {
   title: "Collaboration and Expertise",
   titleSpan: "",
   titleWithSpan: "",
-  paragraph: "In the fast-paced world of digital solutions, strategic collaboration is the cornerstone of lasting success. We act as the strategic ally that design agencies can rely on for seamless project execution. We understand the nuances of the industry, stay ahead of technological trends, and align our services with the evolving needs of design agencies. Our agency-to-agency model is built on collaboration and expertise. With us by your side, you’re not just gaining a development partner; you’re forging a strategic alliance geared towards mutual growth and client satisfaction.",
-  paragraph2: "",
-  paragraph3: "",
+  paragraphText: [
+    {
+      id: 1,
+      paragraph: "In the fast-paced world of digital solutions, strategic collaboration is the cornerstone of lasting success. We act as the strategic ally that design agencies can rely on for seamless project execution. We understand the nuances of the industry, stay ahead of technological trends, and align our services with the evolving needs of design agencies. Our agency-to-agency model is built on collaboration and expertise. With us by your side, you’re not just gaining a development partner; you’re forging a strategic alliance geared towards mutual growth and client satisfaction.",
+    },
+  ],
   bgExtraLightGray: true,
   bgWhite: false,
   maxWidthH5: false,

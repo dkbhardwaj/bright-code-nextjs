@@ -25,13 +25,6 @@ import {
 } from "../dataCaseStudy/data";
 
 const CaseStudy: React.FC = () => {
-  const router = useRouter();
-  const baseUrl = typeof window !== "undefined" ? window.location.href : "";
-  console.log(baseUrl);
-
-  const link = encodeURI(`${baseUrl}${router.asPath}`);
-  console.log(link);
-
   return (
     <>
       <Banner data={bannercontent} />

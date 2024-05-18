@@ -15,9 +15,12 @@ const overview = {
   title: "Drupal Maintenance",
   titleSpan: "",
   titleWithSpan: "",
-  paragraph: "Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience.Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
-  paragraph2: "",
-  paragraph3: "",
+  paragraphText: [
+    {
+      id: 1,
+      paragraph: "Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience.Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
+    },
+  ],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

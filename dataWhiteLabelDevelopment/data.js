@@ -15,9 +15,12 @@ const overview = {
   title: "White Label Development.",
   titleSpan: "",
   titleWithSpan: "",
-  paragraph: "In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
-  paragraph2: "",
-  paragraph3: "",
+  paragraphText: [
+    {
+      id: 1,
+      paragraph: "In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
+    },
+  ],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

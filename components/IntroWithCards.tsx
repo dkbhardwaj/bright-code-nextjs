@@ -16,11 +16,12 @@ interface IntroWithCardsData {
 }
 
 const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
+  const { colThreeCard } = data;
   return (
     <section className="introWithCards">
       <div className="container">
         <div className="w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0">
-          {data?.colThreeCard.map((colThree) => (
+          {colThreeCard.map((colThree) => (
             <div
               className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
               data-aos="fade-up"
@@ -46,9 +47,10 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
                 )}
                 <div className="textWrap py-9 px-5 md:py-5 sm:px-0 ">
                   {colThree.cardContent && (
-                    <p className=" text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis ">
-                      {colThree.cardContent}
-                    </p>
+                    <p
+                      className=" text-black line-clamp-[10] overflow-hidden text-overflow-ellipsis "
+                      dangerouslySetInnerHTML={{ __html: colThree.cardContent }}
+                    />
                   )}
                 </div>
               </div>
