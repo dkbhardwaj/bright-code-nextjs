@@ -1,14 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
-import ContactForm from "../components/contactForm";
-import Banner from "../components/Banner";
-import ListWithSocialicon from "../components/ListWithSocialicon";
-import ImageWithList from "../components/ImageWithList";
-import Overview from "../components/overview";
-import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-import IntroWithCards from "../components/IntroWithCards";
-import ColThreeCards from "../components/ColThreeCards";
+// import ContactForm from "../components/contactForm";
+// import Banner from "../components/Banner";
+// import ListWithSocialicon from "../components/ListWithSocialicon";
+// import ImageWithList from "../components/ImageWithList";
+// import Overview from "../components/overview";
+// import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+// import IntroWithCards from "../components/IntroWithCards";
+// import ColThreeCards from "../components/ColThreeCards";
 import {
   bannercontent,
   listWithSocialIcon,
@@ -24,32 +25,47 @@ import {
   contactform,
 } from "../dataCaseStudy/data";
 
+const ContactForm = dynamic(() => import("../components/contactForm"));
+const Banner = dynamic(() => import("../components/Banner"));
+const ListWithSocialicon = dynamic(
+  () => import("../components/ListWithSocialicon")
+);
+const ImageWithList = dynamic(() => import("../components/ImageWithList"));
+const Overview = dynamic(() => import("../components/overview"));
+const ContentWithImageColTwo = dynamic(
+  () => import("../components/ContentWithImageColTwo")
+);
+const IntroWithCards = dynamic(() => import("../components/IntroWithCards"));
+const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
+
 const CaseStudy: React.FC = () => {
   return (
     <>
       <Banner data={bannercontent} />
 
-      <ListWithSocialicon data={listWithSocialIcon} />
+      <Suspense fallback={<div></div>}>
+        <ListWithSocialicon data={listWithSocialIcon} />
 
-      <ImageWithList data={imagewithlist} />
+        <ImageWithList data={imagewithlist} />
 
-      <Overview data={overview} />
+        <Overview data={overview} />
 
-      <ContentWithImageColTwo data={contentWithImage} />
+        <ContentWithImageColTwo data={contentWithImage} />
 
-      <Overview data={overview2} />
+        <Overview data={overview2} />
 
-      <IntroWithCards data={introwithcards} />
+        <IntroWithCards data={introwithcards} />
 
-      <Overview data={overview3} />
+        <Overview data={overview3} />
 
-      <ContentWithImageColTwo data={contentWithImage2} />
+        <ContentWithImageColTwo data={contentWithImage2} />
 
-      <Overview data={overview4} />
+        <Overview data={overview4} />
 
-      <ColThreeCards data={colThreeCards} />
+        <ColThreeCards data={colThreeCards} />
 
-      <ContactForm data={contactform} />
+        <ContactForm data={contactform} />
+      </Suspense>
     </>
   );
 };
