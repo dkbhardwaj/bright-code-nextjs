@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
@@ -16,20 +16,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
 
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
-
-  const [reCaptchaLoaded, setReCaptchaLoaded] = useState(false);
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
-    script.async = true;
-    script.defer = true;
-    script.onload = () => setReCaptchaLoaded(true);
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   const ClearForm = () => {
     const inputs = document.querySelectorAll(".contactForm form input");
@@ -184,7 +170,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                       errors={state.errors}
                     />
 
-                    {/* <GoogleReCaptchaProvider
+                    <GoogleReCaptchaProvider
                       reCaptchaKey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
                       language="english"
                       scriptProps={{
@@ -202,29 +188,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                       }}
                     >
                       <React.Fragment></React.Fragment>
-                    </GoogleReCaptchaProvider> */}
-
-                    {reCaptchaLoaded && (
-                      <GoogleReCaptchaProvider
-                        reCaptchaKey="6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE"
-                        language="english"
-                        scriptProps={{
-                          async: false,
-                          defer: false,
-                          appendTo: "head",
-                          nonce: undefined,
-                        }}
-                        container={{
-                          element: "g-recaptcha", // replace with your actual ID
-                          parameters: {
-                            badge: "inline",
-                            theme: "dark",
-                          },
-                        }}
-                      >
-                        <React.Fragment></React.Fragment>
-                      </GoogleReCaptchaProvider>
-                    )}
+                    </GoogleReCaptchaProvider>
 
                     <div
                       id="g-recaptcha"
