@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
       <BannerSecond data={bannersecond} />
 
       <div className="section_bgImage bg-darkBlue">
-        <Suspense fallback={<div></div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <ContactFormSecond data={contactForm} />
 
           <FooterMap data={footerMap} />

@@ -155,7 +155,7 @@ const CmsSupport: React.FC = () => {
         setClickedId={setClickedId}
       />
 
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Overview data={overview} />
 
         <ContentWithImageColTwo data={contentWithImage} />

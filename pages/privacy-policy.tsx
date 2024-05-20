@@ -14,7 +14,7 @@ const PrivacyPolicy: React.FC = () => {
     <>
       <BannerSecond data={bannersecond} />
 
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <PrivacyPolicyContent data={textContent} />
       </Suspense>
     </>

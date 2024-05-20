@@ -43,7 +43,7 @@ const CaseStudy: React.FC = () => {
     <>
       <Banner data={bannercontent} />
 
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <ListWithSocialicon data={listWithSocialIcon} />
 
         <ImageWithList data={imagewithlist} />

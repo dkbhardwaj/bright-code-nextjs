@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
       />
       <HeroBanner data={heroBanner} />
 
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Introduction data={intro} />
 
         <ColThreeCards data={colThreeCards} />

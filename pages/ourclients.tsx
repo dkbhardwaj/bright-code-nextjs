@@ -73,7 +73,7 @@ const Ourclient: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <ContentWithImageColTwo data={contentWithImage} />
 
         <Overview data={overview} />
