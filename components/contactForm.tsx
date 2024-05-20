@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha,
-} from "react-google-recaptcha-v3";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 interface ContactFormProps {
   data: {
@@ -15,31 +12,6 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
-  // const { formintrowithImage, formcontent } = data;
-
-  // const [state, handleSubmit] = useForm("maygryee");
-  // const [formsuccess, setFormsuccess] = useState(false);
-
-  // const ClearForm = () => {
-  //   const inputs = document.querySelectorAll(".contactForm form input");
-  //   for (let i of inputs) {
-  //     const element = i as HTMLInputElement;
-  //     element.value = "";
-  //   }
-  // };
-
-  // if (state.succeeded) {
-  //   if (!formsuccess) {
-  //     setFormsuccess(true);
-  //     ClearForm();
-  //   }
-  // }
-
-  // const HideThankyouBox = () => {
-  //   setFormsuccess(false);
-  // };
-  // -----------
-
   const { formintrowithImage, formcontent } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
@@ -63,19 +35,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
   const HideThankyouBox = () => {
     setFormsuccess(false);
   };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = `https://www.google.com/recaptcha/api.js?render=6LfR00opAAAAAC9ut3OSMHiIQ6gJZoBiT9VPRFlE`;
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <>
       <div className="section_bgImage bg-darkBlue smallBgImage">
