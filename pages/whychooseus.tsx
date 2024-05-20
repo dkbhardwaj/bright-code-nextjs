@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { NextSeo } from "next-seo";
-import BannerSecond from "../components/BannerSecond";
-import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-import Overview from "../components/overview";
-import ContactForm from "../components/contactForm";
+// import BannerSecond from "../components/BannerSecond";
+// import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+// import Overview from "../components/overview";
+// import ContactForm from "../components/contactForm";
+import dynamic from "next/dynamic";
 import {
   bannersecond,
   contentWithImage,
@@ -46,6 +47,13 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
+const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContentWithImageColTwo = dynamic(
+  () => import("../components/ContentWithImageColTwo")
+);
+const Overview = dynamic(() => import("../components/overview"));
+const ContactForm = dynamic(() => import("../components/contactForm"));
+
 const WhyChooseUs: React.FC = () => {
   return (
     <>
@@ -66,21 +74,23 @@ const WhyChooseUs: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      <ContentWithImageColTwo data={contentWithImage} />
+      <Suspense fallback={<div></div>}>
+        <ContentWithImageColTwo data={contentWithImage} />
 
-      <Overview data={overview} />
+        <Overview data={overview} />
 
-      <ContentWithImageColTwo data={contentWithImage2} />
+        <ContentWithImageColTwo data={contentWithImage2} />
 
-      <ContentWithImageColTwo data={contentWithImage3} />
+        <ContentWithImageColTwo data={contentWithImage3} />
 
-      <ContentWithImageColTwo data={contentWithImage4} />
+        <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContentWithImageColTwo data={contentWithImage5} />
+        <ContentWithImageColTwo data={contentWithImage5} />
 
-      <div className="section_bgImage bg-darkBlue smallBgImage">
-        <ContactForm data={contactform} />
-      </div>
+        <div className="section_bgImage bg-darkBlue smallBgImage">
+          <ContactForm data={contactform} />
+        </div>
+      </Suspense>
     </>
   );
 };

@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Sticky from "../components/stickyNav";
-import ContactForm from "../components/contactForm";
+// import ContactForm from "../components/contactForm";
 import { useState } from "react";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import Overview from "../components/overview";
-import BannerSecond from "../components/BannerSecond";
-import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+// import Overview from "../components/overview";
+// import BannerSecond from "../components/BannerSecond";
+// import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
+import dynamic from "next/dynamic";
 import {
   bannersecond,
   overview,
@@ -54,6 +55,13 @@ interface StickyItem {
   title: string;
   url: string;
 }
+
+const ContactForm = dynamic(() => import("../components/contactForm"));
+const Overview = dynamic(() => import("../components/overview"));
+const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContentWithImageColTwo = dynamic(
+  () => import("../components/ContentWithImageColTwo")
+);
 
 const DedicatedTeam: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);
@@ -145,17 +153,19 @@ const DedicatedTeam: React.FC = () => {
         setClickedId={setClickedId}
       />
 
-      <Overview data={overview} />
+      <Suspense fallback={<div></div>}>
+        <Overview data={overview} />
 
-      <ContentWithImageColTwo data={contentWithImage} />
+        <ContentWithImageColTwo data={contentWithImage} />
 
-      <ContentWithImageColTwo data={contentWithImage2} />
+        <ContentWithImageColTwo data={contentWithImage2} />
 
-      <ContentWithImageColTwo data={contentWithImage3} />
+        <ContentWithImageColTwo data={contentWithImage3} />
 
-      <ContentWithImageColTwo data={contentWithImage4} />
+        <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm data={contactform} />
+        <ContactForm data={contactform} />
+      </Suspense>
     </>
   );
 };

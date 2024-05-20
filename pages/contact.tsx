@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
-import BannerSecond from "../components/BannerSecond";
-import ContactFormSecond from "../components/ContactFormSecond";
-import FooterMap from "../components/FooterMap";
+// import BannerSecond from "../components/BannerSecond";
+// import ContactFormSecond from "../components/ContactFormSecond";
+// import FooterMap from "../components/FooterMap";
+import dynamic from "next/dynamic";
 import { bannersecond, contactForm, footerMap } from "../dataContact/data";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
+const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContactFormSecond = dynamic(
+  () => import("../components/ContactFormSecond")
+);
+const FooterMap = dynamic(() => import("../components/FooterMap"));
+
 const Contact: React.FC = () => {
   useEffect(() => {
     let head = document.getElementsByTagName("head")[0];
@@ -69,9 +76,11 @@ const Contact: React.FC = () => {
       <BannerSecond data={bannersecond} />
 
       <div className="section_bgImage bg-darkBlue">
-        <ContactFormSecond data={contactForm} />
+        <Suspense fallback={<div></div>}>
+          <ContactFormSecond data={contactForm} />
 
-        <FooterMap data={footerMap} />
+          <FooterMap data={footerMap} />
+        </Suspense>
       </div>
     </>
   );
