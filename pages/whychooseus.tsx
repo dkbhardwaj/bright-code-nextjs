@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { NextSeo } from "next-seo";
 // import BannerSecond from "../components/BannerSecond";
 // import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
@@ -49,15 +49,10 @@ interface Metadata {
 
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo"),
-  { suspense: true }
+  () => import("../components/ContentWithImageColTwo")
 );
-const Overview = dynamic(() => import("../components/overview"), {
-  suspense: true,
-});
-const ContactForm = dynamic(() => import("../components/contactForm"), {
-  suspense: true,
-});
+const Overview = dynamic(() => import("../components/overview"));
+const ContactForm = dynamic(() => import("../components/contactForm"));
 
 const WhyChooseUs: React.FC = () => {
   return (
@@ -79,23 +74,21 @@ const WhyChooseUs: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
-        <Overview data={overview} />
+      <Overview data={overview} />
 
-        <ContentWithImageColTwo data={contentWithImage2} />
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-        <ContentWithImageColTwo data={contentWithImage3} />
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-        <ContentWithImageColTwo data={contentWithImage4} />
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-        <ContentWithImageColTwo data={contentWithImage5} />
+      <ContentWithImageColTwo data={contentWithImage5} />
 
-        <div className="section_bgImage bg-darkBlue smallBgImage">
-          <ContactForm data={contactform} />
-        </div>
-      </Suspense>
+      <div className="section_bgImage bg-darkBlue smallBgImage">
+        <ContactForm data={contactform} />
+      </div>
     </>
   );
 };

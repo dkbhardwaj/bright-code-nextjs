@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import Sticky from "../components/stickyNav";
 // import ContactForm from "../components/contactForm";
 import { useState } from "react";
@@ -56,16 +56,11 @@ interface StickyItem {
   url: string;
 }
 
+const ContactForm = dynamic(() => import("../components/contactForm"));
+const Overview = dynamic(() => import("../components/overview"));
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
-const ContactForm = dynamic(() => import("../components/contactForm"), {
-  suspense: true,
-});
-const Overview = dynamic(() => import("../components/overview"), {
-  suspense: true,
-});
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo"),
-  { suspense: true }
+  () => import("../components/ContentWithImageColTwo")
 );
 
 const DedicatedTeam: React.FC = () => {
@@ -158,19 +153,17 @@ const DedicatedTeam: React.FC = () => {
         setClickedId={setClickedId}
       />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Overview data={overview} />
+      <Overview data={overview} />
 
-        <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
-        <ContentWithImageColTwo data={contentWithImage2} />
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-        <ContentWithImageColTwo data={contentWithImage3} />
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-        <ContentWithImageColTwo data={contentWithImage4} />
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-        <ContactForm data={contactform} />
-      </Suspense>
+      <ContactForm data={contactform} />
     </>
   );
 };

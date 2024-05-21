@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { NextSeo } from "next-seo";
 // import ContactForm from "../components/contactForm";
 // import BannerSecond from "../components/BannerSecond";
@@ -46,16 +46,11 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
+const ContactForm = dynamic(() => import("../components/contactForm"));
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
-const ContactForm = dynamic(() => import("../components/contactForm"), {
-  suspense: true,
-});
-const Overview = dynamic(() => import("../components/overview"), {
-  suspense: true,
-});
+const Overview = dynamic(() => import("../components/overview"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo"),
-  { suspense: true }
+  () => import("../components/ContentWithImageColTwo")
 );
 
 const Ourclient: React.FC = () => {
@@ -78,19 +73,17 @@ const Ourclient: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
-        <Overview data={overview} />
+      <Overview data={overview} />
 
-        <ContentWithImageColTwo data={contentWithImage2} />
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-        <ContentWithImageColTwo data={contentWithImage3} />
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-        <ContentWithImageColTwo data={contentWithImage4} />
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-        <ContactForm data={contactform} />
-      </Suspense>
+      <ContactForm data={contactform} />
     </>
   );
 };

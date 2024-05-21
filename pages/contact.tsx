@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 // import BannerSecond from "../components/BannerSecond";
@@ -46,12 +46,9 @@ interface Metadata {
 
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
 const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond"),
-  { suspense: true }
+  () => import("../components/ContactFormSecond")
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"), {
-  suspense: true,
-});
+const FooterMap = dynamic(() => import("../components/FooterMap"));
 
 const Contact: React.FC = () => {
   useEffect(() => {
@@ -79,11 +76,9 @@ const Contact: React.FC = () => {
       <BannerSecond data={bannersecond} />
 
       <div className="section_bgImage bg-darkBlue">
-        <Suspense fallback={<div>Loading...</div>}>
-          <ContactFormSecond data={contactForm} />
+        <ContactFormSecond data={contactForm} />
 
-          <FooterMap data={footerMap} />
-        </Suspense>
+        <FooterMap data={footerMap} />
       </div>
     </>
   );

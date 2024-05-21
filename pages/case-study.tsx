@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
@@ -25,59 +25,45 @@ import {
   contactform,
 } from "../dataCaseStudy/data";
 
+const ContactForm = dynamic(() => import("../components/contactForm"));
 const Banner = dynamic(() => import("../components/Banner"));
 const ListWithSocialicon = dynamic(
-  () => import("../components/ListWithSocialicon"),
-  { suspense: true }
+  () => import("../components/ListWithSocialicon")
 );
-const ImageWithList = dynamic(() => import("../components/ImageWithList"), {
-  suspense: true,
-});
-const Overview = dynamic(() => import("../components/overview"), {
-  suspense: true,
-});
+const ImageWithList = dynamic(() => import("../components/ImageWithList"));
+const Overview = dynamic(() => import("../components/overview"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo"),
-  { suspense: true }
+  () => import("../components/ContentWithImageColTwo")
 );
-const IntroWithCards = dynamic(() => import("../components/IntroWithCards"), {
-  suspense: true,
-});
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"), {
-  suspense: true,
-});
-const ContactForm = dynamic(() => import("../components/contactForm"), {
-  suspense: true,
-});
+const IntroWithCards = dynamic(() => import("../components/IntroWithCards"));
+const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
 
 const CaseStudy: React.FC = () => {
   return (
     <>
       <Banner data={bannercontent} />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <ListWithSocialicon data={listWithSocialIcon} />
+      <ListWithSocialicon data={listWithSocialIcon} />
 
-        <ImageWithList data={imagewithlist} />
+      <ImageWithList data={imagewithlist} />
 
-        <Overview data={overview} />
+      <Overview data={overview} />
 
-        <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
-        <Overview data={overview2} />
+      <Overview data={overview2} />
 
-        <IntroWithCards data={introwithcards} />
+      <IntroWithCards data={introwithcards} />
 
-        <Overview data={overview3} />
+      <Overview data={overview3} />
 
-        <ContentWithImageColTwo data={contentWithImage2} />
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-        <Overview data={overview4} />
+      <Overview data={overview4} />
 
-        <ColThreeCards data={colThreeCards} />
+      <ColThreeCards data={colThreeCards} />
 
-        <ContactForm data={contactform} />
-      </Suspense>
+      <ContactForm data={contactform} />
     </>
   );
 };

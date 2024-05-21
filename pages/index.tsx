@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
@@ -58,26 +58,16 @@ interface Metadata {
 
 const HeroBanner = dynamic(() => import("../components/Herobanner"));
 const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond"),
-  { suspense: true }
+  () => import("../components/ContactFormSecond")
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"), {
-  suspense: true,
-});
+const FooterMap = dynamic(() => import("../components/FooterMap"));
 
-const Introduction = dynamic(() => import("../components/Introduction"), {
-  suspense: true,
-});
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"), {
-  suspense: true,
-});
+const Introduction = dynamic(() => import("../components/Introduction"));
+const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo"),
-  { suspense: true }
+  () => import("../components/ContentWithImageColTwo")
 );
-const ColFourCards = dynamic(() => import("../components/ColFourCards"), {
-  suspense: true,
-});
+const ColFourCards = dynamic(() => import("../components/ColFourCards"));
 
 const Home: React.FC = () => {
   return (
@@ -98,31 +88,29 @@ const Home: React.FC = () => {
       />
       <HeroBanner data={heroBanner} />
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <Introduction data={intro} />
+      <Introduction data={intro} />
 
-        <ColThreeCards data={colThreeCards} />
+      <ColThreeCards data={colThreeCards} />
 
-        <Introduction data={intro2} />
+      <Introduction data={intro2} />
 
-        <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
-        <ContentWithImageColTwo data={contentWithImage2} />
+      <ContentWithImageColTwo data={contentWithImage2} />
 
-        <ContentWithImageColTwo data={contentWithImage3} />
+      <ContentWithImageColTwo data={contentWithImage3} />
 
-        <ContentWithImageColTwo data={contentWithImage4} />
+      <ContentWithImageColTwo data={contentWithImage4} />
 
-        <div className="section_bgImage bg-darkBlue">
-          <Introduction data={intro3} />
+      <div className="section_bgImage bg-darkBlue">
+        <Introduction data={intro3} />
 
-          <ColFourCards data={colFourCard} />
+        <ColFourCards data={colFourCard} />
 
-          <ContactFormSecond data={contactForm} />
+        <ContactFormSecond data={contactForm} />
 
-          <FooterMap data={footerMap} />
-        </div>
-      </Suspense>
+        <FooterMap data={footerMap} />
+      </div>
     </>
   );
 };
