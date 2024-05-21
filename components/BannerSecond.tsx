@@ -24,10 +24,13 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
   } = data;
 
   const hasImages = bannerLeftImg || bannerRightImg;
+  const hasnotImages = !bannerLeftImg && !bannerRightImg && !bannerOneImg;
 
   return (
     <section
-      className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
+      className={` banner-second banner_DarkOverlay banner_bg_img  bg-darkBlue text-white md:items-baseline ${
+        hasnotImages ? "" : "banner-with-img"
+      }`}
       data-aos="fade-in"
       data-aos-delay="500"
       data-aos-duration="1000"

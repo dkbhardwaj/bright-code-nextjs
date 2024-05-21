@@ -57,12 +57,17 @@ interface StickyItem {
   url: string;
 }
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
-const Overview = dynamic(() => import("../components/overview"));
-const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
-);
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContactForm = dynamic(() => import("../components/contactForm"), {
+  suspense: true,
+});
+const Overview = dynamic(() => import("../components/overview"), {
+  suspense: true,
+});
+const ContentWithImageColTwo = dynamic(
+  () => import("../components/ContentWithImageColTwo"),
+  { suspense: true }
+);
 
 const CmsImplementation: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);

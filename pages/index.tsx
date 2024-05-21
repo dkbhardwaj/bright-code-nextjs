@@ -58,16 +58,26 @@ interface Metadata {
 
 const HeroBanner = dynamic(() => import("../components/Herobanner"));
 const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond")
+  () => import("../components/ContactFormSecond"),
+  { suspense: true }
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"));
+const FooterMap = dynamic(() => import("../components/FooterMap"), {
+  suspense: true,
+});
 
-const Introduction = dynamic(() => import("../components/Introduction"));
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
+const Introduction = dynamic(() => import("../components/Introduction"), {
+  suspense: true,
+});
+const ColThreeCards = dynamic(() => import("../components/ColThreeCards"), {
+  suspense: true,
+});
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../components/ContentWithImageColTwo"),
+  { suspense: true }
 );
-const ColFourCards = dynamic(() => import("../components/ColFourCards"));
+const ColFourCards = dynamic(() => import("../components/ColFourCards"), {
+  suspense: true,
+});
 
 const Home: React.FC = () => {
   return (

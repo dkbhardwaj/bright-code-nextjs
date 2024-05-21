@@ -25,18 +25,30 @@ import {
   contactform,
 } from "../dataCaseStudy/data";
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
 const Banner = dynamic(() => import("../components/Banner"));
 const ListWithSocialicon = dynamic(
-  () => import("../components/ListWithSocialicon")
+  () => import("../components/ListWithSocialicon"),
+  { suspense: true }
 );
-const ImageWithList = dynamic(() => import("../components/ImageWithList"));
-const Overview = dynamic(() => import("../components/overview"));
+const ImageWithList = dynamic(() => import("../components/ImageWithList"), {
+  suspense: true,
+});
+const Overview = dynamic(() => import("../components/overview"), {
+  suspense: true,
+});
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../components/ContentWithImageColTwo"),
+  { suspense: true }
 );
-const IntroWithCards = dynamic(() => import("../components/IntroWithCards"));
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
+const IntroWithCards = dynamic(() => import("../components/IntroWithCards"), {
+  suspense: true,
+});
+const ColThreeCards = dynamic(() => import("../components/ColThreeCards"), {
+  suspense: true,
+});
+const ContactForm = dynamic(() => import("../components/contactForm"), {
+  suspense: true,
+});
 
 const CaseStudy: React.FC = () => {
   return (

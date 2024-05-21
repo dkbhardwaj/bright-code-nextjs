@@ -72,11 +72,16 @@ const stickyData = [
   },
 ];
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
-const Overview = dynamic(() => import("../components/overview"));
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContactForm = dynamic(() => import("../components/contactForm"), {
+  suspense: true,
+});
+const Overview = dynamic(() => import("../components/overview"), {
+  suspense: true,
+});
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../components/ContentWithImageColTwo"),
+  { suspense: true }
 );
 
 const WhiteLabelDevelopment: React.FC = () => {

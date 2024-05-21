@@ -46,9 +46,12 @@ interface Metadata {
 
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
 const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond")
+  () => import("../components/ContactFormSecond"),
+  { suspense: true }
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"));
+const FooterMap = dynamic(() => import("../components/FooterMap"), {
+  suspense: true,
+});
 
 const Contact: React.FC = () => {
   useEffect(() => {

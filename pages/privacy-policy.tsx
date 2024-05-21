@@ -6,7 +6,8 @@ import { bannersecond, textContent } from "../dataPrivacyPolicy/data";
 
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
 const PrivacyPolicyContent = dynamic(
-  () => import("../components/PrivacyPolicyContent")
+  () => import("../components/PrivacyPolicyContent"),
+  { suspense: true }
 );
 
 const PrivacyPolicy: React.FC = () => {
