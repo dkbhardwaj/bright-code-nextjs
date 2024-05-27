@@ -32,7 +32,7 @@ const LinkChecker: React.FC = () => {
 
                     <div className="formWrapper bgPurpleGradient py-[50px]">
                         <div className="intro text-center">
-                            <h2 className='text-white'>Check 404 link on your site</h2>
+                            <h2 className='text-white'>Check 404 link</h2>
                         </div>
                         <form
                             onSubmit={(e) => handleSubmit(e)}
