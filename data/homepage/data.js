@@ -1,7 +1,7 @@
 const heroBanner = {
   bannerRightImg: "/home/banner-right-img.png",
   bannerLeftImg: "/home/banner-left-img.png",
-  mainTitle: "Empowering Designers, Thrilling Clients",
+  mainTitle: "Empowering Designers, Thrilling Clients.",
   buttonUrl: "/whychooseus",
   buttonText: "Get Started",
 }
