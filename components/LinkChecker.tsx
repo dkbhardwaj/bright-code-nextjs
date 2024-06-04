@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
+import {getDocument} from '@/src/lib/firebase/firestore';
 
 const LinkChecker: React.FC = () => {
-
+    getDocument();
     const [showResult, setShowResult] = useState(false);
     const [showTab, setShowTab] = useState(0);
     const [loading, setLoading] = useState(true);

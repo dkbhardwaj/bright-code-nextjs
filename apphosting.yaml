@@ -1,0 +1,14 @@
+env:
+  # Get these values from the Firebase console
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    value: AIzaSyAZrLQahcf89e10L_tKJHQdBxduWSemiAw
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    value: bright-code-404-check.firebaseapp.com
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    value: bright-code-404-check
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    value: bright-code-404-check.appspot.com
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    value: 570944479301
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    value: 1:570944479301:web:314c439b660240ff31832c
