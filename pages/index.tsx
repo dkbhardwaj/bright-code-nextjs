@@ -1,29 +1,14 @@
-"use client";
 import React from "react";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-// import Introduction from "../components/Introduction";
-// import ColThreeCards from "../components/ColThreeCards";
-// import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-// import ColFourCards from "../components/ColFourCards";
+
 import {
   heroBanner,
-  intro,
-  colThreeCards,
-  intro2,
-  contentWithImage,
-  contentWithImage2,
-  contentWithImage3,
-  contentWithImage4,
-  intro3,
-  colFourCard,
-  contactForm,
-  footerMap,
+
 } from "../data/homepage/data";
 
 function onChange(token: string | null) {
-  console.log("Captcha token:", token);
+
 }
 export const metadata: Metadata = {
   title: "Agency-to-Agency Drupal Development Partner | Bright Code",
@@ -60,15 +45,6 @@ const HeroBanner = dynamic(() => import("../components/Herobanner"));
 const ContactFormSecond = dynamic(
   () => import("../components/ContactFormSecond")
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"));
-
-const Introduction = dynamic(() => import("../components/Introduction"));
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
-const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
-);
-const ColFourCards = dynamic(() => import("../components/ColFourCards"));
-
 const Home: React.FC = () => {
   return (
     <>
@@ -88,28 +64,7 @@ const Home: React.FC = () => {
       />
       <HeroBanner data={heroBanner} />
 
-      <Introduction data={intro} />
-
-      <ColThreeCards data={colThreeCards} />
-
-      <Introduction data={intro2} />
-
-      <ContentWithImageColTwo data={contentWithImage} />
-
-      <ContentWithImageColTwo data={contentWithImage2} />
-
-      <ContentWithImageColTwo data={contentWithImage3} />
-
-      <ContentWithImageColTwo data={contentWithImage4} />
-
       <div className="section_bgImage bg-darkBlue">
-        <Introduction data={intro3} />
-
-        <ColFourCards data={colFourCard} />
-
-        <ContactFormSecond data={contactForm} />
-
-        <FooterMap data={footerMap} />
       </div>
     </>
   );
