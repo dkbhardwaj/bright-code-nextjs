@@ -17,7 +17,7 @@ const overview = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus  on your unique goals.At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
+      paragraph: "Our Dedicated Development Teams means tailored support for every project. Whether it's agency-to-agency collaboration or business driven development, we assemble a specialized team to cater to the unique requirements of each venture.",
     },
   ],
   bgExtraLightGray: false,
@@ -35,7 +35,11 @@ const contentWithImage = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our Dedicated Development Teams are the embodiment of unwavering commitment and expertise. We tailor our teams to match your specific needs, seamlessly integrating with your agency to become your in-house development arm. This collaborative approach ensures a harmonious blend of our technical proficiency and your creative vision.",
+      paragraph: "Our Dedicated Development Teams are the embodiment of unwavering commitment and expertise. We tailor our teams to match your specific needs, seamlessly integrating with your team to become your in-house development arm. This collaborative approach ensures a harmonious blend of our technical proficiency and your creative vision.",
+    },
+    {
+      id: 2,
+      paragraph: "By customizing our teams to fit the specific needs of our clients, we maximize efficiency, creativity, and collaboration, ultimately leading to the success of the project.",
     },
   ],
   btnUrl: "",

@@ -12,13 +12,17 @@ const bannersecond = {
 const overview = {
   textLeft: false,
   subtitle: "Empowering Your Content",
-  title: "Drupal Maintenance",
+  title: "CMS Maintenance",
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Through our comprehensive Drupal Maintenance service, we provide you with the assurance that your Drupal Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience.Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
+      paragraph: "Through our comprehensive Drupal & Wordpress Maintenance service, we provide you with the assurance that your Content Management System (CMS) is not only kept current and secure but also finely tuned for optimal performance and a seamless user experience.",
+    },
+    {
+      id: 2,
+      paragraph: "Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
     },
   ],
   bgExtraLightGray: false,
@@ -30,12 +34,16 @@ const overview = {
 
 const contentWithImage = {
   subtitle: "The Importance of CMS Maintenance",
-  title: "What is Drupal Maintenance?",
+  title: "What is CMS Maintenance?",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Drupal Maintenance refers to the ongoing process of managing and optimizing the Content Management System (CMS) to ensure its smooth operation, security, and performance. Drupal Maintenance is crucial for the sustained health and effectiveness of a website. It helps prevent security vulnerabilities, ensures optimal performance, and contributes to a positive user experience, ultimately supporting the long-term success of a digital presence.",
+      paragraph: "CMS Maintenance refers to the ongoing process of managing and optimizing the Content Management System (CMS) to ensure its smooth operation, security, and performance. This is crucial for the sustained health and effectiveness of a website.",
+    },
+    {
+      id: 2,
+      paragraph: "It helps prevent security vulnerabilities, ensures optimal performance, and contributes to a positive user experience, ultimately supporting the long-term success of a digital presence.",
     },
   ],
   btnUrl: "",
@@ -50,13 +58,17 @@ const contentWithImage = {
 }
 
 const contentWithImage2 = {
-  subtitle: "Core Drupal Maintenance",
+  subtitle: "CORE CMS MAINTENANCE",
   title: "Security and Stability",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Core Drupal Maintenance involves the essential upkeep of the Drupal Content Management System (CMS). This includes regularly updating the Drupal core to leverage the latest features, enhancements, and crucial security patches. Additionally, our team manages and updates Drupal modules, ensuring that the website's functionalities remain robust and any potential security vulnerabilities are promptly addressed.",
+      paragraph: "Core Maintenance involves the essential upkeep of the Content Management System (CMS). This includes regularly updating the core to leverage the latest features, enhancements, and crucial security patches.",
+    },
+    {
+      id: 2,
+      paragraph: "Additionally, our team manages and updates modules and plugins, ensuring that the website's functionalities remain robust and any potential security vulnerabilities are promptly addressed",
     },
   ],
   btnUrl: "",
@@ -77,7 +89,11 @@ const contentWithImage3 = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "Security and Performance Optimization for Drupal is about safeguarding the integrity and efficiency of the digital platform. We conduct regular security scans and audits tailored specifically to Drupal, identifying and mitigating potential risks to fortify the system. Simultaneously, our team focuses on optimizing Drupal's performance through strategies such as database optimization, efficient caching mechanisms, and thorough code reviews.",
+      paragraph: "Security and Performance Optimization is about safeguarding the integrity and efficiency of the digital platform. We conduct regular security scans and audits tailored specifically for the website, identifying and mitigating potential risks to fortify the system.",
+    },
+    {
+      id: 2,
+      paragraph: "Simultaneously, our team focuses on optimizing performance through strategies such as database optimization, efficient caching mechanisms, and thorough code reviews.",
     },
   ],
   btnUrl: "",
@@ -98,7 +114,11 @@ const contentWithImage4 = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "User and Access Management in Drupal involves a meticulous review of user access within the CMS. We ensure precise permissions aligned with roles, promptly revoking access for inactive users to enhance security. Our team also provides Drupal-specific security training, empowering your team for secure CMS navigation. This approach ensures a robust and secure Drupal-based digital platform.",
+      paragraph: "User and Access Management involves a meticulous review of user access within the CMS. We ensure precise permissions aligned with roles, promptly revoking access for inactive users to enhance security. Our team also provides CMS-specific security training, empowering your team for secure navigation.",
+    },
+    {
+      id: 2,
+      paragraph: "This approach ensures a robust and secure digital platform.",
     },
   ],
   btnUrl: "",
@@ -119,7 +139,11 @@ const contentWithImage5 = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "Support and Content Management in Drupal encompass a proactive approach to address critical issues promptly and ensure effective content oversight. Our team provides emergency support tailored to Drupal-related challenges, minimizing downtime and potential damage. Simultaneously, we handle Drupal content with regular reviews and updates, aligning it with business goals and user expectations.",
+      paragraph: "Support and Content Management encompass a proactive approach to address critical issues promptly and ensure effective content oversight. Our team provides emergency support tailored to Drupal and Wordpress-related challenges, minimizing downtime and potential damage.",
+    },
+    {
+      id: 2,
+      paragraph: "Simultaneously, we handle CMS content with regular reviews and updates, aligning it with business goals and user expectations.",
     },
   ],
   btnUrl: "",

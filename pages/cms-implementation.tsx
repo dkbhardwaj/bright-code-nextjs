@@ -16,6 +16,7 @@ import {
   contentWithImage2,
   contentWithImage3,
   contentWithImage4,
+  contentWithImage5,
   contactform,
 } from "../dataCmsImplementation/data";
 
@@ -163,6 +164,8 @@ const CmsImplementation: React.FC = () => {
       <ContentWithImageColTwo data={contentWithImage3} />
 
       <ContentWithImageColTwo data={contentWithImage4} />
+
+      <ContentWithImageColTwo data={contentWithImage5} />
 
       <ContactForm data={contactform} />
     </>

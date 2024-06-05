@@ -17,8 +17,12 @@ const overview = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence. At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
+      paragraph: "At Bright Code, we specialize in CMS implementation services tailored to meet the diverse needs of businesses across various industries. Our service caters to a wide range of clients, from startups looking to establish their online presence to established companies seeking to enhance their digital capabilities.",
     },
+    {
+      id: 2,
+      paragraph: "With our expertise and customized solutions, we empower businesses to streamline content management processes, improve website performance, and deliver engaging digital experiences to their target audience.",
+    }
   ],
   bgExtraLightGray: false,
   bgWhite: true,
@@ -28,14 +32,18 @@ const overview = {
 }
 
 const contentWithImage = {
-  subtitle: "CMS Implementation",
+  subtitle: "DRUPAL IMPLEMENTATION",
   title: "What is Drupal Implementation?",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Drupal Implementation is the art of transforming your vision into a dynamic, user- friendly Drupal platform.At Bright Code, we specialize in taking your content management needs and translating them into a robust, tailor - made solution.We make  the process of managing your digital content effortless, so you can focus on what truly matters – your message.",
+      paragraph: "Drupal Implementation is the art of transforming your vision into a dynamic, user- friendly Drupal platform. At Bright Code, we specialize in taking your content management needs and translating them into a robust, tailor - made solution.",
     },
+    {
+      id: 2,
+      paragraph: "We make the process of managing your digital content effortless, so you can focus on what truly matters – your message.",
+    }
   ],
   btnUrl: "",
   btnText: "",
@@ -49,18 +57,13 @@ const contentWithImage = {
 }
 
 const contentWithImage2 = {
-  subtitle: "Strengthening Your Brand",
-  title: "Empowering Your Brand, Your Way",
+  subtitle: "WORDPRESS IMPLEMENTATION",
+  title: "What about Wordpress?",
   titleSpan: "",
-  paragraphText: [
-    {
-      id: 1,
-      paragraph: "Our CMS Implementation services are designed to empower your brand's digital voice. We don't just offer off-the-shelf solutions; we craft customized CMS platforms that perfectly align with your brand's unique identity and objectives. Whether you're a design agency or a CEO looking to enhance your online presence, we collaborate closely with you to ensure the system we implement is a seamless fit.",
-    },
-  ],
+  paragraphText: [],
   btnUrl: "",
   btnText: "",
-  imageUrl: "/what-we-do/col-two3-img2.png",
+  imageUrl: "/what-we-do/col-two3-img1.png",
   rowReverse: true,
   featuredClass: false,
   animatContent: "fade-left",
@@ -70,18 +73,22 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subtitle: "Beyond Drupal Delivery",
-  title: "Exceeding Expectations, Every Time",
+  subtitle: "Strengthening Your Brand",
+  title: "Empowering Your Brand, Your Way",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "We don't stop at just delivering a CMS; we aim to exceed your expectations. With Bright Code, you can trust that your CMS will be not only user-friendly but also capable of managing your content efficiently. Our technical expertise combines with your content strategies, creating a synergy that enables you to achieve unparalleled results.",
+      paragraph: "Our CMS Implementation services are designed to empower your brand's digital voice. We don't just offer off-the-shelf solutions; we craft customized CMS platforms that perfectly align with your brand's unique identity and objectives.",
     },
+    {
+      id: 2,
+      paragraph: "Whether you're a Senior VP or a Marketing Director looking to enhance your online presence, we collaborate closely with you to ensure the system we implement is a seamless fit.",
+    }
   ],
   btnUrl: "",
   btnText: "",
-  imageUrl: "/what-we-do/col-two3-img3.png",
+  imageUrl: "/what-we-do/col-two3-img2.png",
   rowReverse: false,
   featuredClass: true,
   animatContent: "fade-right",
@@ -91,22 +98,51 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
+  subtitle: "Beyond Drupal Delivery",
+  title: "Exceeding Expectations, Every Time",
+  titleSpan: "",
+  paragraphText: [
+    {
+      id: 1,
+      paragraph: "We don't stop at just delivering a CMS; we aim to exceed your expectations. With Bright Code, you can trust that your CMS will be not only user-friendly but also capable of managing your content efficiently.",
+    },
+    {
+      id: 2,
+      paragraph: "Our technical expertise combines with your content strategies, creating a synergy that enables you to achieve unparalleled results.",
+    },
+  ],
+  btnUrl: "",
+  btnText: "",
+  imageUrl: "/what-we-do/col-two3-img3.png",
+  rowReverse: true,
+  featuredClass: false,
+  animatContent: "fade-left",
+  animatImage: "fade-right",
+  paddinglargebottom: false,
+  paddingmedium: false,
+}
+
+const contentWithImage5 = {
   subtitle: "Unlocking Success",
   title: "The Power of Collaboration",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Collaboration is at the heart of what we do. By partnering with Bright Code, you gain access to a team of experts who are fully aligned with your content management objectives. Our collaborative culture and commitment to professionalism ensure that your CMS is implemented seamlessly and efficiently.",
+      paragraph: "Collaboration is at the heart of what we do. By partnering with Bright Code, you gain access to a team of experts who are fully aligned with your content management objectives.",
+    },
+    {
+      id: 2,
+      paragraph: "Our collaborative culture and commitment to professionalism ensure that your CMS is implemented seamlessly and efficiently",
     },
   ],
   btnUrl: "",
   btnText: "",
   imageUrl: "/what-we-do/col-two3-img4.png",
-  rowReverse: true,
-  featuredClass: false,
-  animatContent: "fade-left",
-  animatImage: "fade-right",
+  rowReverse: false,
+  featuredClass: true,
+  animatContent: "fade-right",
+  animatImage: "fade-left",
   paddinglargebottom: true,
   paddingmedium: false,
 }
@@ -116,4 +152,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };

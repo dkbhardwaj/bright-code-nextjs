@@ -18,7 +18,7 @@ const overview = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
+      paragraph: "White label Development provides agencies with the opportunity to offer development services to their clients under their own brand, without having an in-house development team. In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through this service.",
     },
   ],
   bgExtraLightGray: false,
@@ -36,7 +36,7 @@ const contentWithImage = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our White Label Development services are designed to empower your brand. We act as your dedicated development team, working hand-in-hand to meticulously craft web solutions that align  perfectly with your design vision.",
+      paragraph: "Our White Label Development services are designed to empower your brand. We act as your dedicated development team, working hand-in-hand to meticulously craft web solutions that align perfectly with your design vision.",
     },
     {
       id: 2,
@@ -56,7 +56,7 @@ const contentWithImage = {
 
 const contentWithImage2 = {
   subtitle: "Surpassing Milestones",
-  title: "Exceeding Expectations, Every Time",
+  title: "Exceeding Expectations",
   titleSpan: "",
   paragraphText: [
     {
