@@ -58,6 +58,29 @@ interface StickyItem {
   url: string;
 }
 
+const stickyData = [
+  {
+    id: "1",
+    title: "CMS Implementation",
+    url: "cms-implementation",
+  },
+  {
+    id: "2",
+    title: "CMS Maintenance",
+    url: "cms-support",
+  },
+  {
+    id: "3",
+    title: "White Label Development",
+    url: "white-label-development",
+  },
+  {
+    id: "4",
+    title: "Dedicated Development Team",
+    url: "dedicated-team",
+  },
+];
+
 const ContactForm = dynamic(() => import("../components/contactForm"));
 const Overview = dynamic(() => import("../components/overview"));
 const ContentWithImageColTwo = dynamic(
@@ -68,65 +91,65 @@ const BannerSecond = dynamic(() => import("../components/BannerSecond"));
 const CmsImplementation: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);
 
-  const [winWidth, setWinWidth] = useState(0);
-  useEffect(() => {
-    const handleResize = () => {
-      setWinWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  // const [winWidth, setWinWidth] = useState(0);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWinWidth(window.innerWidth);
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  const desktopStickyData: StickyItem[] = [
-    {
-      id: "1",
-      title: "White Label Development",
-      url: "white-label-development",
-    },
-    {
-      id: "2",
-      title: "Dedicated Development Team",
-      url: "dedicated-team",
-    },
-    {
-      id: "3",
-      title: "CMS Implementation",
-      url: "cms-implementation",
-    },
-    {
-      id: "4",
-      title: "CMS Maintenance",
-      url: "cms-support",
-    },
-  ];
+  // const desktopStickyData: StickyItem[] = [
+  //   {
+  //     id: "1",
+  //     title: "White Label Development",
+  //     url: "white-label-development",
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "Dedicated Development Team",
+  //     url: "dedicated-team",
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "CMS Implementation",
+  //     url: "cms-implementation",
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "CMS Maintenance",
+  //     url: "cms-support",
+  //   },
+  // ];
 
-  const mobileStickyData: StickyItem[] = [
-    {
-      id: "1",
-      title: "CMS Implementation",
-      url: "cms-implementation",
-    },
-    {
-      id: "2",
-      title: "White Label Development",
-      url: "white-label-development",
-    },
-    {
-      id: "3",
-      title: "Dedicated Development Team",
-      url: "dedicated-team",
-    },
-    {
-      id: "4",
-      title: "CMS Maintenance",
-      url: "cms-support",
-    },
-  ];
+  // const mobileStickyData: StickyItem[] = [
+  //   {
+  //     id: "1",
+  //     title: "CMS Implementation",
+  //     url: "cms-implementation",
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "White Label Development",
+  //     url: "white-label-development",
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Dedicated Development Team",
+  //     url: "dedicated-team",
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "CMS Maintenance",
+  //     url: "cms-support",
+  //   },
+  // ];
 
-  const stickyData = winWidth > 991 ? desktopStickyData : mobileStickyData;
+  // const stickyData = winWidth > 991 ? desktopStickyData : mobileStickyData;
 
   return (
     <>

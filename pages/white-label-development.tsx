@@ -3,6 +3,7 @@ import React from "react";
 import Sticky from "../components/stickyNav";
 // import ContactForm from "../components/contactForm";
 import { useState } from "react";
+import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 // import Overview from "../components/overview";
 // import BannerSecond from "../components/BannerSecond";
@@ -49,28 +50,34 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const stickyData = [
-  {
-    id: "1",
-    title: "White Label Development",
-    url: "white-label-development",
-  },
-  {
-    id: "2",
-    title: "Dedicated Development Team",
-    url: "dedicated-team",
-  },
-  {
-    id: "3",
-    title: "CMS Implementation",
-    url: "cms-implementation",
-  },
-  {
-    id: "4",
-    title: "CMS Maintenance",
-    url: "cms-support",
-  },
-];
+interface StickyItem {
+  id: string;
+  title: string;
+  url: string;
+}
+
+// const stickyData = [
+//   {
+//     id: "1",
+//     title: "White Label Development",
+//     url: "white-label-development",
+//   },
+//   {
+//     id: "2",
+//     title: "Dedicated Development Team",
+//     url: "dedicated-team",
+//   },
+//   {
+//     id: "3",
+//     title: "CMS Implementation",
+//     url: "cms-implementation",
+//   },
+//   {
+//     id: "4",
+//     title: "CMS Maintenance",
+//     url: "cms-support",
+//   },
+// ];
 
 const ContactForm = dynamic(() => import("../components/contactForm"));
 const Overview = dynamic(() => import("../components/overview"));
@@ -81,6 +88,66 @@ const ContentWithImageColTwo = dynamic(
 
 const WhiteLabelDevelopment: React.FC = () => {
   const [clickedId, setClickedId] = useState<string | null>(null);
+
+  const [winWidth, setWinWidth] = useState(0);
+  useEffect(() => {
+    const handleResize = () => {
+      setWinWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const desktopStickyData: StickyItem[] = [
+    {
+      id: "1",
+      title: "CMS Implementation",
+      url: "cms-implementation",
+    },
+    {
+      id: "2",
+      title: "CMS Maintenance",
+      url: "cms-support",
+    },
+    {
+      id: "3",
+      title: "White Label Development",
+      url: "white-label-development",
+    },
+    {
+      id: "4",
+      title: "Dedicated Development Team",
+      url: "dedicated-team",
+    },
+  ];
+
+  const mobileStickyData: StickyItem[] = [
+    {
+      id: "1",
+      title: "White Label Development",
+      url: "white-label-development",
+    },
+    {
+      id: "2",
+      title: "CMS Implementation",
+      url: "cms-implementation",
+    },
+    {
+      id: "3",
+      title: "CMS Maintenance",
+      url: "cms-support",
+    },
+    {
+      id: "4",
+      title: "Dedicated Development Team",
+      url: "dedicated-team",
+    },
+  ];
+
+  const stickyData = winWidth > 991 ? desktopStickyData : mobileStickyData;
 
   return (
     <>

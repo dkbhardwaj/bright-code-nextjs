@@ -143,7 +143,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   >
                     <Link
                       className="inline-block w-full text-[14px] "
-                      href="/white-label-development"
+                      href="/cms-implementation"
                     >
                       What we do
                     </Link>
