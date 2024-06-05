@@ -6,8 +6,6 @@ import "../app/globals.css";
 import "../styles/global.scss";
 import "../styles/buttons.scss";
 import "../styles/banners.scss";
-import { useEffect } from "react";
-import { initAOS } from "../api/aos.js";
 
 
 
