@@ -218,7 +218,7 @@ const colFourCard = {
       cardDelay: "500",
       cardDuration: "500",
       iconUrl: "/icon-partnership.svg",
-      title: "Collaborative approac",
+      title: "Collaborative approach",
       paragraph: "Collaboration is in our DNA. We believe that the best solutions emerge when diverse minds come together.",
     },
     {
