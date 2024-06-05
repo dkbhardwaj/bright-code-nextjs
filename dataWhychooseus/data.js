@@ -9,20 +9,20 @@ const bannersecond = {
 
 const contentWithImage = {
   subtitle: "SYNERGY OF COLLABORATION",
-  title: "Agency to Agency",
+  title: "Delivering Success",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in their service offerings.",
+      paragraph: "At Bright Code, success isn't just a goal; it's a commitment. With a versatile approach tailored to the unique needs of each client, we deliver results for marketers across the spectrum, from fast-paced startups to established corporations.",
     },
     {
       id: 2,
-      paragraph: "While design agencies excel in crafting visually stunning concepts, the seamless execution of these visions requires the technical prowess of a dedicated development team.",
+      paragraph: "Our experience spans across various industries and company sizes, enabling us to offer tailored solutions that drive tangible results.",
     },
     {
       id: 3,
-      paragraph: "Bright Code becomes the bridge that connects these two realms, ensuring that the synergy between creativity and technical implementation is not just maintained but elevated.",
+      paragraph: "By focusing on building lasting relationships clients can trust that their projects will be completed promptly, within the agreed-upon budget, and with uncompromising quality.",
     },
   ],
   btnUrl: "",
@@ -38,14 +38,22 @@ const contentWithImage = {
 
 const overview = {
   textLeft: false,
-  subtitle: "Harmony of Minds",
+  subtitle: "EFFICIENCY MEETS EXCELLENCE",
   title: "Collaboration and Expertise",
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the fast-paced world of digital solutions, strategic collaboration is the cornerstone of lasting success. We act as the strategic ally that design agencies can rely on for seamless project execution. We understand the nuances of the industry, stay ahead of technological trends, and align our services with the evolving needs of design agencies. Our agency-to-agency model is built on collaboration and expertise. With us by your side, you’re not just gaining a development partner; you’re forging a strategic alliance geared towards mutual growth and client satisfaction.",
+      paragraph: "In the competitive landscape of web development, meeting deadlines and working within budget constraints are a must. At our agency, we pride ourselves on our ability to excel in both areas.",
+    },
+    {
+      id: 2,
+      paragraph: "Engaging directly with CMOs, senior VPs, and marketing directors, we deeply understand the need of meeting deadlines and budgets in the marketing landscape. Our experience working with various stakeholders across industries has equipped us with a nuanced understanding of these critical factors.",
+    },
+    {
+      id: 3,
+      paragraph: "Our track record demonstrates our commitment to delivering high-quality results on time and within budget, consistently exceeding the expectations of our esteemed clients.",
     },
   ],
   bgExtraLightGray: true,
@@ -82,17 +90,21 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subtitle: "UNLEASHING DESIGN POTENTIAL",
-  title: "Empowering Designers",
+  subtitle: "UNLEASHING MARKETING POTENTIAL",
+  title: "Empowering Marketers",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our mission is to empower designers, allowing them to focus on their creativity without the weight of development concerns. We understand that a design's potential can only be fully realized when paired with a capable development team.",
+      paragraph: "Empowering marketers is at the heart of what we do at Bright Code. We understand the pivotal role marketers play in driving business growth and success.",
     },
     {
       id: 2,
-      paragraph: "We give designers the freedom to dream big and create exceptional designs, confident that you're there to bring those visions to life.",
+      paragraph: "By providing tailored digital solutions and support, we empower marketers to unleash their creativity and achieve their strategic objectives.",
+    },
+    {
+      id: 3,
+      paragraph: "All within budget and on time.",
     },
   ],
   btnUrl: "",
@@ -113,11 +125,11 @@ const contentWithImage4 = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "In everything you do, the final client is your ultimate consideration. Our commitment to exceeding the expectations is unwavering. We ensure that the websites we develop not only meet but exceed the end-users needs.",
+      paragraph: "In everything we do, the client is our ultimate consideration. Our commitment to exceeding the expectations is unwavering. We ensure that the websites we develop not only meet but exceed your needs.",
     },
     {
       id: 2,
-      paragraph: "Our client-centric approach guarantees that the final clients are not just satisfied; they are thrilled with the end results.",
+      paragraph: "Our collaborative approach ensures that marketers have the tools and resources they need to reach their target audiences, and drive meaningful engagement.",
     },
   ],
   btnUrl: "",
@@ -138,11 +150,11 @@ const contentWithImage5 = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our agency's agency-to-agency model redefines web development. We go beyond the role of a service provider; We are your partner in realizing your creative aspirations.",
+      paragraph: "Our agency's model redefines web development. We go beyond the role of a service provider; We are your partner in realizing your creative aspirations.",
     },
     {
       id: 2,
-      paragraph: "Our mission is clear: to empower designers and thrill clients.",
+      paragraph: "Our mission is clear: to empower marketers and deliver results.",
     },
   ],
   btnUrl: "",

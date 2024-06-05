@@ -7,6 +7,7 @@ import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import {
   bannersecond,
+  intro,
   contentWithImage,
   overview,
   contentWithImage2,
@@ -48,6 +49,7 @@ interface Metadata {
 
 const ContactForm = dynamic(() => import("../components/contactForm"));
 const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const Introduction = dynamic(() => import("../components/Introduction"));
 const Overview = dynamic(() => import("../components/overview"));
 const ContentWithImageColTwo = dynamic(
   () => import("../components/ContentWithImageColTwo")
@@ -72,6 +74,8 @@ const Ourclient: React.FC = () => {
       />
 
       <BannerSecond data={bannersecond} />
+
+      <Introduction data={intro} />
 
       <ContentWithImageColTwo data={contentWithImage} />
 

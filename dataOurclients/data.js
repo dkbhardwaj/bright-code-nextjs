@@ -4,10 +4,30 @@ const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "/our-clients/banner-img.png",
-  mainTitle: "Our clients",
+  mainTitle: "For Agencies",
   buttonUrl: "/contact",
   buttonText: "Learn More",
 }
+
+const intro = {
+  subtitle: "Why Choose us?",
+  title: "Our agency-to-agency model is built to",
+  titleSpan: "empower partners.",
+  paragraphContent: [
+    {
+      id: 1,
+      paragraph: "Unlock the power of collaboration with our agency-to-agency web development services. We specialize in forming dynamic partnerships with design and marketing agencies, seamlessly integrating our expertise to deliver results for end clients.",
+    },
+    {
+      id: 2,
+      paragraph: "Together, we ensure that every project exceeds expectations and drives tangible success."
+    },
+  ],
+  titleLarge: false,
+  nopaddingbottom: true,
+  titleWhite: false,
+  paddingmediumbottom: false,
+};
 
 const contentWithImage = {
   subtitle: "Collaboration",
@@ -47,11 +67,11 @@ const overview = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "At Bright Code, our fundamental mission is to empower our clients to deliver remarkable digital solutions and exceed the expectations of their end clients. We believe in the power of collaboration, and our role as a trusted partner reflects our commitment to our clients and their needs.",
+      paragraph: "At Bright Code, our fundamental mission for the agency-to-agency program is to empower our partners to deliver remarkable digital solutions and exceed the expectations of their end clients. We believe in the power of collaboration, and our role as a trusted partner reflects our commitment.",
     },
     {
       id: 2,
-      paragraph: "You may have noticed that we do not showcase our clients or their projects on our website. This choice is intentional and  reflects our unwavering dedication to two key principles: trust and confidentiality.",
+      paragraph: "You may have noticed that we do not showcase our partners or their projects on our website. This choice is intentional and reflects our unwavering dedication to two key principles: trust and confidentiality.",
     },
   ],
   bgExtraLightGray: true,
@@ -88,13 +108,13 @@ const contentWithImage2 = {
 }
 
 const contentWithImage3 = {
-  subtitle: "About Us",
-  title: "Client-Centric Approach",
+  subtitle: "OUR APPROACH",
+  title: "Client-Centric",
   titleSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our client-centric approach means that our focus is, and always  will be, on making our clients happy. We respect their need to safeguard their client relationships and branding confidentiality.",
+      paragraph: "Our client-centric approach means that our focus is, and always will be, on making our clients happy. We respect their need to safeguard their client relationships and branding confidentiality.",
     },
     {
       id: 2,
@@ -113,7 +133,7 @@ const contentWithImage3 = {
 }
 
 const contentWithImage4 = {
-  subtitle: "About Us",
+  subtitle: "EXPERTISE MEETS COLLABORATION",
   title: "Highlighting Expertise Without Compromise",
   titleSpan: "",
   paragraphText: [
@@ -142,4 +162,4 @@ const contactform = {
   formcontent: true,
 }
 
-export { bannersecond, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export { bannersecond, intro, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
