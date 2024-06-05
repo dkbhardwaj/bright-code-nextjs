@@ -108,7 +108,22 @@ const Navigation: React.FC<NavigationProps> = () => {
                     onClick={handleMobileMenuCloseClick}
                   >
                     <Link className="inline-block w-full text-[14px] " href="/">
-                      Home
+                      For Marketers
+                    </Link>
+                  </li>
+                  <li
+                    className={`${Style.menu}
+                     mx-[22px]  transition-color duration-300 relative ${
+                       showDropdown ? `${Style.active}` : ""
+                     } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
+                    onClick={handleMobileMenuCloseClick}
+                  >
+                    <Link
+                      className="inline-block w-full text-[14px] "
+                      href="/ourclients"
+                      onClick={handleMobileMenuCloseClick}
+                    >
+                      For agencies
                     </Link>
                   </li>
                   <li
@@ -133,21 +148,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       What we do
                     </Link>
                   </li>
-                  <li
-                    className={`${Style.menu}
-                     mx-[22px]  transition-color duration-300 relative ${
-                       showDropdown ? `${Style.active}` : ""
-                     } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <Link
-                      className="inline-block w-full text-[14px] "
-                      href="/ourclients"
-                      onClick={handleMobileMenuCloseClick}
-                    >
-                      Our clients
-                    </Link>
-                  </li>
+
                   <Link
                     href="/contact"
                     className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}

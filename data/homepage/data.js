@@ -1,16 +1,25 @@
 const heroBanner = {
   bannerRightImg: "/home/banner-right-img.png",
   bannerLeftImg: "/home/banner-left-img.png",
-  mainTitle: "Empowering Designers, Thrilling Clients.",
+  mainTitle: "Empowering Marketers, Delivering Results.",
   buttonUrl: "/whychooseus",
   buttonText: "Get Started",
 }
 
 const intro = {
   subtitle: "Why Choose us?",
-  title: "Our agency-to-agency model is built on",
+  title: "Our agency model is built on",
   titleSpan: "collaboration and expertise.",
-  paragraph: "As a specialized development agency, our core purpose is to empower design agencies to deliver exceptional web solutions to their clients.",
+  paragraphContent: [
+    {
+      id: 1,
+      paragraph: "Bright Code has partnered with a myriad of businesses, collaborating closely with CMOs, senior VPs, and marketing directors. We grasp the paramount importance of deadlines and budgets within the marketing sphere.",
+    },
+    {
+      id: 2,
+      paragraph: "As a specialized development agency, based in California, our core purpose is to empower marketers to deliver exceptional results for their companies."
+    },
+  ],
   titleLarge: false,
   nopaddingbottom: false,
   titleWhite: false,
@@ -31,7 +40,7 @@ const colThreeCards = {
       imageUrl: "/home/col-three-img1.png",
       imageAlt: "Agency to agency services",
       cardTitle: "Collaborative",
-      cardDetail: "Our agency thrives on the synergy of collaboration. We step into the role of your dedicated development partner, filling a crucial gap in your service offerings.",
+      cardDetail: "Our agency thrives on the synergy of collaboration. We step into the role of your development partner, creating the tools you need to deliver.",
 
     },
     {
@@ -40,8 +49,8 @@ const colThreeCards = {
       cardDuration: "500",
       imageUrl: "/home/col-three-img2.png",
       imageAlt: "Client Centric development",
-      cardTitle: "Client-Centric",
-      cardDetail: "We know that clients are your ultimate consideration. We ensure that the websites we develop not only meet but exceed the end-users needs.",
+      cardTitle: "Results driven",
+      cardDetail: "We understand marketers. You you need results. We ensure that the websites we develop not only meet but exceed your needs.",
 
     },
     {
@@ -51,7 +60,7 @@ const colThreeCards = {
       imageUrl: "/home/col-three-img3.png",
       imageAlt: "Empowering designers",
       cardTitle: "Empowering",
-      cardDetail: "Our mission is to empower designers. We understand that a design's potential can only be fully realized when paired with a capable development team.",
+      cardDetail: "Our mission is to empower digital marketers. We know that your needs as a marketing leader can only be realized when paired with a top development team.",
 
     },
   ],
@@ -64,7 +73,7 @@ const intro2 = {
   subtitle: "",
   title: "What we do",
   titleSpan: "",
-  paragraph: "",
+  paragraphContent: [],
   titleLarge: true,
   nopaddingbottom: true,
   titleWhite: false,
@@ -74,18 +83,22 @@ const intro2 = {
 const contentWithImage = {
   subtitle: "",
   title: "",
-  titleSpan: "White Label Development",
+  titleSpan: "CMS Implementation",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
+      paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence.",
     },
     {
       id: 2,
-      paragraph: "We offer development services under your brand, acting as your dedicated development team while remaining behind the scenes.",
+      paragraph: "At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
+    },
+    {
+      id: 3,
+      paragraph: "We implement customized CMS solutions to streamline content management, enhance user experiences, and align with your brand objectives.",
     },
   ],
-  btnUrl: "/white-label-development",
+  btnUrl: "/cms-implementation",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img1.png",
   rowReverse: true,
@@ -99,20 +112,24 @@ const contentWithImage = {
 const contentWithImage2 = {
   subtitle: "",
   title: "",
-  titleSpan: "Dedicated Development Teams",
+  titleSpan: "CMS Support & maintenance",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus on your unique goals. At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
+      paragraph: "Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a website. This ensures that the website is fortified with the latest security patches, protecting it from potential threats and unauthorized access.",
     },
     {
       id: 2,
-      paragraph: "We provide specialized, dedicated development teams to collaborate with your agency, ensuring tailored solutions for your unique project requirements.",
+      paragraph: "Monthly CMS Maintenance is an investment in the long-term sustainability, security, and performance of your website.",
+    },
+    {
+      id: 3,
+      paragraph: "It's a proactive strategy that not only prevents potential issues but also ensures that the website continues to deliver an excellent experience to users while meeting the highest standards of security and compliance.",
     },
   ],
-  btnUrl: "/dedicated-team",
+  btnUrl: "/cms-support",
   btnText: "Learn More",
-  imageUrl: "/home/col-two-img2.png",
+  imageUrl: "/home/col-two-img4.png",
   rowReverse: false,
   featuredClass: true,
   animatContent: "fade-right",
@@ -124,18 +141,22 @@ const contentWithImage2 = {
 const contentWithImage3 = {
   subtitle: "",
   title: "",
-  titleSpan: "CMS Implementation",
+  titleSpan: "White Label Development",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence. At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
+      paragraph: "Our agency-to-agency program empowers designer agencies to deliver results for their clients",
     },
     {
       id: 2,
-      paragraph: "We implement customized CMS solutions to streamline content management, enhance user experiences, and align with your clients' brand objectives.",
+      paragraph: "At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
+    },
+    {
+      id: 3,
+      paragraph: "We offer development services under your brand, acting as your dedicated development team while remaining behind the scenes.",
     },
   ],
-  btnUrl: "/cms-implementation",
+  btnUrl: "/white-label-development",
   btnText: "Learn More",
   imageUrl: "/home/col-two-img3.png",
   rowReverse: true,
@@ -149,20 +170,20 @@ const contentWithImage3 = {
 const contentWithImage4 = {
   subtitle: "",
   title: "",
-  titleSpan: "CMS Support & maintenance",
+  titleSpan: "Dedicated Development Teams",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a website. This ensures that the website is fortified with the latest security patches, protecting it from potential threats and unauthorized access. Monthly CMS Maintenance is an investment in the long-term sustainability, security, and performance of your website.",
+      paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus on your unique goals.At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
     },
     {
       id: 2,
-      paragraph: "It's a proactive strategy that not only prevents potential issues but also ensures that the website continues to deliver an excellent experience to users while meeting the highest standards of security and compliance.",
+      paragraph: "We provide specialized, dedicated development teams ensuring tailored solutions for your unique project requirements.",
     },
   ],
-  btnUrl: "/cms-support",
+  btnUrl: "/dedicated-team",
   btnText: "Learn More",
-  imageUrl: "/home/col-two-img4.png",
+  imageUrl: "/home/col-two-img2.png",
   rowReverse: false,
   featuredClass: true,
   animatContent: "fade-right",
@@ -175,7 +196,7 @@ const intro3 = {
   subtitle: "",
   title: "Our values",
   titleSpan: "",
-  paragraph: "",
+  paragraphContent: [],
   titleLarge: true,
   nopaddingbottom: false,
   titleWhite: true,

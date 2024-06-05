@@ -31,6 +31,22 @@ const Footer: React.FC = () => {
             <ul>
               <li className=" relative mb-2 ">
                 <a
+                  href="/"
+                  className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                >
+                  For Marketers
+                </a>
+              </li>
+              <li className=" relative mb-2 ">
+                <a
+                  href="/ourclients"
+                  className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
+                >
+                  For Agencies
+                </a>
+              </li>
+              <li className=" relative mb-2 ">
+                <a
                   href="/whychooseus"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                 >
@@ -39,26 +55,10 @@ const Footer: React.FC = () => {
               </li>
               <li className=" relative mb-2 ">
                 <a
-                  href="/white-label-development"
+                  href="/cms-implementation"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                 >
                   What we do
-                </a>
-              </li>
-              <li className=" relative mb-2 ">
-                <a
-                  href="/ourclients"
-                  className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                >
-                  Our clients
-                </a>
-              </li>
-              <li className=" relative mb-2 ">
-                <a
-                  href="/cms-support"
-                  className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                >
-                  CMS Maintenance
                 </a>
               </li>
               <li className=" relative mb-2 ">

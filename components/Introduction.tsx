@@ -5,11 +5,14 @@ interface IntroductionProps {
     subtitle: string;
     title: string;
     titleSpan: string;
-    paragraph: string;
     titleLarge: boolean;
     nopaddingbottom: boolean;
     titleWhite: boolean;
     paddingmediumbottom: boolean;
+    paragraphContent: {
+      id: number;
+      paragraph: string;
+    }[];
   };
 }
 
@@ -18,11 +21,11 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     subtitle,
     title,
     titleSpan,
-    paragraph,
     titleLarge,
     nopaddingbottom,
     titleWhite,
     paddingmediumbottom,
+    paragraphContent,
   } = data;
 
   return (
@@ -51,11 +54,14 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               </span>
             )}
           </h2>
-          {paragraph && (
-            <h5 className="text-black w-full max-w-[960px] mx-auto">
-              {paragraph}
-            </h5>
-          )}
+          {paragraphContent &&
+            paragraphContent.map((text, index) => (
+              <h5
+                key={index}
+                className="text-black w-full max-w-[960px] mx-auto mt-5 "
+                dangerouslySetInnerHTML={{ __html: text.paragraph }}
+              />
+            ))}
         </div>
       </div>
     </section>
