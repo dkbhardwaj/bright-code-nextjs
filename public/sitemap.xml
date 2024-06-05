@@ -1,48 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://www.bright-code.io/</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>1.00</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/whychooseus</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/white-label-development</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/ourclients</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/contact</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/dedicated-team</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/cms-implementation</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/cms-support</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
-<loc>https://www.bright-code.io/privacy-policy</loc>
-<lastmod>2024-04-14T05:35:02+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://www.bright-code.io/</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/whychooseus</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/white-label-development</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/ourclients</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/contact</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/dedicated-team</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/cms-implementation</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/cms-support</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.bright-code.io/privacy-policy</loc>
+        <lastmod>2024-04-14T05:35:02+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+</urlset>
