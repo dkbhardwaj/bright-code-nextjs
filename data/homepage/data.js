@@ -2,7 +2,7 @@ const heroBanner = {
   bannerRightImg: "/home/banner-right-img.png",
   bannerLeftImg: "/home/banner-left-img.png",
   mainTitle: "Empowering Marketers, Delivering Results.",
-  buttonUrl: "/whychooseus",
+  buttonUrl: "/contact",
   buttonText: "Get Started",
 }
 
