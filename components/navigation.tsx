@@ -123,7 +123,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       href="/ourclients"
                       onClick={handleMobileMenuCloseClick}
                     >
-                      For agencies
+                      For Agencies
                     </Link>
                   </li>
                   <li
