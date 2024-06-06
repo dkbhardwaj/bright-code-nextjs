@@ -5,6 +5,7 @@ const bannersecond = {
   bannerRightImg: "",
   bannerOneImg: "/our-clients/banner-img.png",
   mainTitle: "For Agencies",
+  paragraphContent: [],
   buttonUrl: "/contact",
   buttonText: "Learn More",
 }

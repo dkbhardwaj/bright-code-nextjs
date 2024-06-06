@@ -14,6 +14,10 @@ interface ContactFormSecondProps {
     paragraph2: string;
     paragraphBold2: string;
     introImageUrl: string;
+    listItems: {
+      id: number;
+      listContent: string;
+    }[];
   };
 }
 
@@ -27,6 +31,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
     paragraph2,
     paragraphBold2,
     introImageUrl,
+    listItems,
   } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
@@ -118,23 +123,34 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
             <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
               <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
                 {paragraphBold && (
-                  <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10 ">
+                  <h4 className="text-white text-[23px] mb-5 md:text-[20px] xl-up:leading-10 ">
                     {paragraphBold}
                   </h4>
                 )}
-                <br />
                 {paragraph && (
-                  <h5 className="text-white font-light">{paragraph}</h5>
+                  <h5 className="text-white font-light mb-5">{paragraph}</h5>
                 )}
-                <br />
                 {paragraph2 && (
-                  <h5 className="text-white font-light">{paragraph2}</h5>
+                  <h5 className="text-white font-light mb-5">{paragraph2}</h5>
                 )}
-                <br />
                 {paragraphBold2 && (
-                  <h4 className="text-white text-[23px] md:text-[20px] xl-up:leading-10 ">
+                  <h4 className="text-white text-[23px] mb-5 md:text-[20px] xl-up:leading-10 ">
                     {paragraphBold2}
                   </h4>
+                )}
+                {listItems && (
+                  <ul className=" list-none relative w-full block ">
+                    {listItems.map((listItem, index) => (
+                      <li className=" mb-5 " key={index}>
+                        <h5
+                          className="text-white font-light"
+                          dangerouslySetInnerHTML={{
+                            __html: listItem.listContent,
+                          }}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
               <div

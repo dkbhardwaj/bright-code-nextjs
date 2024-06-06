@@ -249,6 +249,7 @@ const contactForm = {
   paragraph2: "",
   paragraphBold2: "Thank you for considering Bright Code as your trusted partner.",
   introImageUrl: "",
+  listItems: [],
 }
 
 const footerMap = {

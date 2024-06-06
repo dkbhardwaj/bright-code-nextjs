@@ -3,6 +3,7 @@ const bannersecond = {
   bannerRightImg: "/why-choose-us/banner-right-img.png",
   bannerOneImg: "",
   mainTitle: "Why choose us?",
+  paragraphContent: [],
   buttonUrl: "/contact",
   buttonText: "Learn More",
 }
