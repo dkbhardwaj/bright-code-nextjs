@@ -13,7 +13,7 @@ const bannersecond = {
     },
     {
       id: 2,
-      paragraph: "Ready to take the first step towards transforming your digital presence? Fill out the form below to schedule your free 30-minute consultation and discover the Bright Code difference.",
+      paragraph: "Ready to take the first step towards transforming your digital presence? Fill out the form below.",
     },
   ],
   buttonUrl: "",
@@ -23,9 +23,9 @@ const bannersecond = {
 
 const contactForm = {
   paddingmediumtop: true,
-  subtitle: "GET IN TOUCH",
+  subtitle: "Why Schedule a Free Consultation?",
   title: "Let's talk!",
-  paragraphBold: "Why Schedule a Free Consultation?",
+  paragraphBold: "",
   paragraph: "",
   paragraph2: "",
   paragraphBold2: "",
