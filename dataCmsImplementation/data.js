@@ -58,7 +58,7 @@ const contentWithImage = {
 
 const contentWithImage2 = {
   subtitle: "WORDPRESS IMPLEMENTATION",
-  title: "What about Wordpress?",
+  title: "What about WordPress?",
   titleSpan: "",
   paragraphText: [
     {
