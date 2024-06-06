@@ -10,6 +10,10 @@ interface BannerSecondData {
     mainTitle: string;
     buttonUrl: string;
     buttonText: string;
+    paragraphContent: {
+      id: number;
+      paragraph: string;
+    }[];
   };
 }
 
@@ -19,6 +23,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
     bannerRightImg,
     bannerOneImg,
     mainTitle,
+    paragraphContent,
     buttonUrl,
     buttonText,
   } = data;
@@ -101,6 +106,14 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
         ) : (
           <div className="w-full text-center relative z-10">
             {mainTitle && <h1 className="text-white">{mainTitle}</h1>}
+            {paragraphContent &&
+              paragraphContent.map((text, index) => (
+                <p
+                  key={index}
+                  className="text-white opacity-[0.6] mt-5 "
+                  dangerouslySetInnerHTML={{ __html: text.paragraph }}
+                />
+              ))}
             {buttonText && (
               <Link
                 href={buttonUrl}

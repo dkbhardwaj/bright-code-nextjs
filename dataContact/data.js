@@ -5,7 +5,17 @@ const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
-  mainTitle: "Contact Us",
+  mainTitle: "Free 30-Minute Consultation",
+  paragraphContent: [
+    {
+      id: 1,
+      paragraph: "At Bright Code, we believe in the power of collaboration and expertise. As subject matter experts in Drupal and WordPress development, we offer a unique opportunity to explore how we can elevate your digital presence through a complimentary 30-minute consultation.",
+    },
+    {
+      id: 2,
+      paragraph: "Ready to take the first step towards transforming your digital presence? Fill out the form below.",
+    },
+  ],
   buttonUrl: "",
   buttonText: "",
 }
@@ -13,13 +23,27 @@ const bannersecond = {
 
 const contactForm = {
   paddingmediumtop: true,
-  subtitle: "GET IN TOUCH",
-  title: "Let's talk!",
-  paragraphBold: "Interested in learning more about us and our clients?",
-  paragraph: "You may have noticed that we do not showcase our clients or their projects on our website. This conscious choice mirrors our unwavering dedication to two guiding principles: trust and confidentiality.",
-  paragraph2: "We deeply believe in the strength of collaboration, and as your trusted partner, we're excited to help you shine in the spotlight.",
-  paragraphBold2: "Let's connect!",
+  subtitle: "Let's talk!",
+  title: "Why Schedule a Free Consultation?",
+  paragraphBold: "",
+  paragraph: "",
+  paragraph2: "",
+  paragraphBold2: "",
   introImageUrl: "/why-choose-us/shiv-headshot.jpg",
+  listItems: [
+    {
+      id: 1,
+      listContent: "<b>Expert Guidance:</b> Receive insights from our seasoned professionals who have successfully delivered numerous projects for businesses and agencies alike.",
+    },
+    {
+      id: 2,
+      listContent: "<b>Tailored Solutions:</b> Discuss your specific needs and challenges, and discover how our customized solutions can drive your success.",
+    },
+    {
+      id: 3,
+      listContent: "<b>No Obligation:</b> This consultation is a risk-free opportunity to understand the value we bring, without any commitment.",
+    },
+  ],
 }
 
 

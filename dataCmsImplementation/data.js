@@ -4,6 +4,7 @@ const bannersecond = {
   bannerRightImg: "",
   bannerOneImg: "",
   mainTitle: "What we do?",
+  paragraphContent: [],
   buttonUrl: "",
   buttonText: "",
 }
