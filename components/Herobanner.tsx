@@ -24,7 +24,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
             src={bannerRightImg}
             width={550}
             height={550}
-            loading="lazy"
+            // loading="lazy"
             alt="right-img"
             className=" w-full h-full object-cover"
             priority
@@ -37,7 +37,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
             src={bannerLeftImg}
             width={550}
             height={550}
-            loading="lazy"
+            // loading="lazy"
             alt="left-img"
             className=" w-full h-full object-cover"
             priority
@@ -46,13 +46,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
       )}
       <div className="container">
         <div className="w-full max-w-[574px] mx-auto relative z-[2] text-center">
-          {mainTitle && (
-            <h1
-              className="header-h1 text-white "
-            >
-              {mainTitle}
-            </h1>
-          )}
+          {mainTitle && <h1 className="header-h1 text-white ">{mainTitle}</h1>}
           {buttonText && (
             <Link
               href={buttonUrl}

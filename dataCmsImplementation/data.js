@@ -60,7 +60,20 @@ const contentWithImage2 = {
   subtitle: "WORDPRESS IMPLEMENTATION",
   title: "What about Wordpress?",
   titleSpan: "",
-  paragraphText: [],
+  paragraphText: [
+    {
+      id: 1,
+      paragraph: "At Bright Code, we specialize in WordPress implementation, creating powerful, user-friendly websites for both startups and established companies.",
+    },
+    {
+      id: 2,
+      paragraph: "Our services cover setup, customization, plugin integration, and ongoing support, ensuring your site meets business objectives and delivers an excellent user experience.",
+    },
+    {
+      id: 3,
+      paragraph: "We handle complex requirements with tailored solutions, empowering your business to thrive online.",
+    }
+  ],
   btnUrl: "",
   btnText: "",
   imageUrl: "/what-we-do/col-two3-img1.png",

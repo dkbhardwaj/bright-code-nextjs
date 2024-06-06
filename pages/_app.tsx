@@ -46,7 +46,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   }, []);
 
   const router = useRouter();
-  let currentUrl = "https://www.bright-code.io/" + router.asPath;
+  let currentUrl = "https://www.bright-code.io" + router.asPath;
 
   return (
     <>
