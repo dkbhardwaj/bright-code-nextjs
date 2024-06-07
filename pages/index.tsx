@@ -26,9 +26,9 @@ function onChange(token: string | null) {
   console.log("Captcha token:", token);
 }
 export const metadata: Metadata = {
-  title: "Agency-to-Agency Drupal Development Partner | Bright Code",
+  title: "Expert Web Development for Companies & Agencies | Bright Code IO",
   description:
-    "Empower your design agency with our collaborative and client-centric Drupal development services. Bright Code is your dedicated partner, filling the crucial gap in your service offerings. Thrive on the synergy of collaboration, exceed end-users' needs, and unleash the full potential of your designs.",
+    "Partner with Bright Code IO for expert web development tailored to companies and agencies. We specialize in seamless integration, custom code development, and CMS optimization to help you exceed your digital goals.",
   openGraph: {
     images: [
       {
