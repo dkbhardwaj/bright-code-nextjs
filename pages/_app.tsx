@@ -12,6 +12,13 @@ import { initAOS } from "../api/aos.js";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "700", "900", "600"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Bright Code",
@@ -56,7 +63,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         canonical={currentUrl}
       />
       <Layout>
-        <main>
+        <main className={poppins.className}>
           <Component {...pageProps} />
         </main>
         <ScrollToTopButton />
