@@ -14,7 +14,7 @@ class MyDocument extends Document {
             type="text/javascript"
             src="https://www.googletagmanager.com/gtag/js?id=UA-254354410-1"
             id="google_gtagjs-js"
-            async
+            defer
           ></script>
           <script
             type="text/javascript"
@@ -47,7 +47,7 @@ class MyDocument extends Document {
 
           {/* <!-- Google tag (gtag.js) --> */}
           <script
-            async
+            defer
             src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"
           ></script>
           <script
