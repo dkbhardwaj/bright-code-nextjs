@@ -13,11 +13,11 @@ const intro = {
   paragraphContent: [
     {
       id: 1,
-      paragraph: "Bright Code has partnered with a myriad of businesses, collaborating closely with CMOs, senior VPs, and marketing directors. We grasp the paramount importance of deadlines and budgets within the marketing sphere.",
+      paragraph: "Bright Code is a specialized web development agency that partners with fellow agencies, businesses, nonprofits, and educational institutions to create the best platform to tell your story. We create digital solutions that empower exceptional results.",
     },
     {
       id: 2,
-      paragraph: "As a specialized development agency, based in California, our core purpose is to empower marketers to deliver exceptional results for their companies."
+      paragraph: ""
     },
   ],
   titleLarge: false,
