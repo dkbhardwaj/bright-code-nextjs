@@ -206,7 +206,7 @@ const colFourCard = {
 const contactForm = {
   paddingmediumtop: false,
   subtitle: "",
-  title: "Let's talk!",
+  title: "Let's Talk!",
   paragraphBold: "Every project starts with a direct discussion to understand your unique needs and how we can collaborate.",
   paragraph: "Reach out to get started.",
   paragraph2: "",
