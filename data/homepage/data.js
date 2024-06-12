@@ -24,6 +24,8 @@ const intro = {
   nopaddingbottom: true,
   titleWhite: false,
   paddingmediumbottom: false,
+  btntext: "Learn More",
+  btnUrl: "#get-in-touch",
 };
 
 const intro2 = {
@@ -35,6 +37,8 @@ const intro2 = {
   nopaddingbottom: true,
   titleWhite: false,
   paddingmediumbottom: false,
+  btntext: "",
+  btnUrl: "",
 };
 
 const contentWithImage = {
@@ -158,6 +162,8 @@ const intro3 = {
   nopaddingbottom: false,
   titleWhite: true,
   paddingmediumbottom: true,
+  btntext: "",
+  btnUrl: "",
 };
 
 const colFourCard = {
@@ -207,8 +213,6 @@ const contactForm = {
   paragraphBold2: "",
   introImageUrl: "",
   listItems: [],
-  btntext: "Learn More",
-  btnUrl: "/whychooseus",
 }
 
 const footerMap = {

@@ -44,8 +44,6 @@ const contactForm = {
       listContent: "<b>No Obligation:</b> This consultation is a risk-free opportunity to understand the value we bring, without any commitment.",
     },
   ],
-  btntext: "",
-  btnUrl: "",
 }
 
 

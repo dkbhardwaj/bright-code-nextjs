@@ -28,6 +28,8 @@ const intro = {
   nopaddingbottom: true,
   titleWhite: false,
   paddingmediumbottom: false,
+  btntext: "",
+  btnUrl: "",
 };
 
 const contentWithImage = {

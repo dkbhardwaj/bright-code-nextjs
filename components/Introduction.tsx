@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface IntroductionProps {
   data: {
@@ -13,6 +14,8 @@ interface IntroductionProps {
       id: number;
       paragraph: string;
     }[];
+    btntext: string;
+    btnUrl: string;
   };
 }
 
@@ -26,6 +29,8 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     titleWhite,
     paddingmediumbottom,
     paragraphContent,
+    btntext,
+    btnUrl,
   } = data;
 
   return (
@@ -76,6 +81,11 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 dangerouslySetInnerHTML={{ __html: text.paragraph }}
               />
             ))}
+          {btntext && (
+            <Link href={btnUrl} className=" mt-7 gradient-btn mx-auto">
+              <span>{btntext}</span>
+            </Link>
+          )}
         </div>
       </div>
     </section>
