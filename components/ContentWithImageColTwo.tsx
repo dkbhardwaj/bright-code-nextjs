@@ -41,13 +41,15 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
   } = data;
   return (
     <section
-      className={`${paddinglargebottom ? "padding-large-bottom" : ""} ${paddingmedium ? "padding-medium" : ""
-        } contentWithImage overflow-hidden`}
+      className={`${paddinglargebottom ? "padding-large-bottom" : ""} ${
+        paddingmedium ? "padding-medium" : ""
+      } contentWithImage overflow-hidden`}
     >
       <div className="container">
         <div
-          className={`${rowReverse ? "flex-row-reverse" : ""} ${featuredClass ? "featured" : ""
-            } w-mainRow -ml-2.5 py-16 flex  items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12`}
+          className={`${rowReverse ? "flex-row-reverse" : ""} ${
+            featuredClass ? "featured" : ""
+          } w-mainRow -ml-2.5 py-16 flex  items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12`}
         >
           <div
             className={` content w-halfWidth mx-2.5 text-spaceBlack md:pl-0 md:w-full md:mx-0 md:mb-10 `}
@@ -75,13 +77,14 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 </span>
               )}
             </h3>
-            {paragraphText && paragraphText.map((item, index) => (
-              <p
-                className="mt-5 text-black"
-                key={index}
-                dangerouslySetInnerHTML={{ __html: item.paragraph }}
-              />
-            ))}
+            {paragraphText &&
+              paragraphText.map((item, index) => (
+                <p
+                  className="mt-5 text-black"
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
+                />
+              ))}
             {btnText && (
               <Link
                 href={btnUrl}
@@ -93,7 +96,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
           </div>
           <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
             <div
-              className="imageWrap w-full h-[458px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
+              className="imageWrap w-full h-[400px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
               data-aos={animatImage}
               data-aos-delay="400"
               data-aos-duration="500"
