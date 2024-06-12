@@ -73,19 +73,19 @@ const contentWithImage = {
 const contentWithImage2 = {
   subtitle: "",
   title: "",
-  titleSpan: "CMS Support & maintenance",
+  titleSpan: "Web design and implementation",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Monthly CMS Maintenance is crucial for the sustained health, security, and optimal performance of a website. This ensures that the website is fortified with the latest security patches, protecting it from potential threats and unauthorized access.",
+      paragraph: "We have provided web development and maintenance service to Marketing Companies, Startups, AD Agencies, Design Firms and PR firms, Government and NonProfit entities.",
     },
     {
       id: 2,
-      paragraph: "Monthly CMS Maintenance is an investment in the long-term sustainability, security, and performance of your website.",
+      paragraph: "",
     },
     {
       id: 3,
-      paragraph: "It's a proactive strategy that not only prevents potential issues but also ensures that the website continues to deliver an excellent experience to users while meeting the highest standards of security and compliance.",
+      paragraph: "",
     },
   ],
   btnUrl: "/cms-support",
@@ -102,19 +102,19 @@ const contentWithImage2 = {
 const contentWithImage3 = {
   subtitle: "",
   title: "",
-  titleSpan: "White Label Development",
+  titleSpan: "Dedicated development teams",
   paragraphText: [
     {
       id: 1,
-      paragraph: "Our agency-to-agency program empowers designer agencies to deliver results for their clients",
+      paragraph: "We offer dedicated teams for your short and long term projects. We offer white label development with inhouse assurance.",
     },
     {
       id: 2,
-      paragraph: "At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through White Label Development.",
+      paragraph: "",
     },
     {
       id: 3,
-      paragraph: "We offer development services under your brand, acting as your dedicated development team while remaining behind the scenes.",
+      paragraph: "",
     },
   ],
   btnUrl: "/white-label-development",
@@ -131,15 +131,15 @@ const contentWithImage3 = {
 const contentWithImage4 = {
   subtitle: "",
   title: "",
-  titleSpan: "Dedicated Development Teams",
+  titleSpan: "CMS implementation and management",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the dynamic landscape of web development, the true mark of excellence is achieved through collaboration and a dedicated focus on your unique goals.At Bright Code, we're proud to be your partners in this journey, offering Dedicated Development Teams that bring your digital dreams to life.",
+      paragraph: "We develop advanced CMS platforms to meet your organizations needs. Flexibility and forward thinking is core to our design and we have had a privilege of service major brand names.",
     },
     {
       id: 2,
-      paragraph: "We provide specialized, dedicated development teams ensuring tailored solutions for your unique project requirements.",
+      paragraph: "",
     },
   ],
   btnUrl: "/dedicated-team",
@@ -205,10 +205,10 @@ const colFourCard = {
 
 const contactForm = {
   paddingmediumtop: false,
-  subtitle: "GET IN TOUCH",
+  subtitle: "",
   title: "Let's talk!",
-  paragraphBold: "Every project starts with a direct discussion to understand your unique needs and how we can collaborate. Reach out to get started.",
-  paragraph: "",
+  paragraphBold: "Every project starts with a direct discussion to understand your unique needs and how we can collaborate.",
+  paragraph: "Reach out to get started.",
   paragraph2: "",
   paragraphBold2: "",
   introImageUrl: "",
