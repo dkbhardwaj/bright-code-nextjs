@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 interface IntroductionProps {
   data: {
@@ -32,6 +34,25 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     btntext,
     btnUrl,
   } = data;
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    handleHashChange();
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
   return (
     <section
