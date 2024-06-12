@@ -42,18 +42,28 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               {subtitle}
             </h6>
           )}
-          <h2
-            className={`${titleLarge ? "large" : ""} ${
-              titleWhite ? "text-white" : ""
-            } font-medium text-black mb-[38px] md:mb-[20px]`}
-          >
-            {title} <br />
-            {titleSpan && (
-              <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
+          {titleSpan ? (
+            <h2
+              className={`${titleLarge ? "large" : ""} ${
+                titleWhite ? "text-white" : ""
+              } font-medium text-black mb-[38px] md:mb-[20px]`}
+            >
+              {title}
+              <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
                 {titleSpan}
               </span>
-            )}
-          </h2>
+            </h2>
+          ) : (
+            title && (
+              <h2
+                className={`${titleLarge ? "large" : ""} ${
+                  titleWhite ? "text-white" : ""
+                } font-medium text-black mb-[38px] md:mb-[20px]`}
+              >
+                {title}
+              </h2>
+            )
+          )}
           {paragraphContent &&
             paragraphContent.map((text, index) => (
               <h5
