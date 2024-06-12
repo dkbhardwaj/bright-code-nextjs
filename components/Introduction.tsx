@@ -46,7 +46,9 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             <h2
               className={`${titleLarge ? "large" : ""} ${
                 titleWhite ? "text-white" : ""
-              } font-medium text-black mb-[38px] md:mb-[20px]`}
+              } ${
+                paragraphContent ? "mb-0" : "mb-[38px] md:mb-[20px]"
+              } font-medium text-black `}
             >
               {title}
               <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
@@ -58,7 +60,9 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               <h2
                 className={`${titleLarge ? "large" : ""} ${
                   titleWhite ? "text-white" : ""
-                } font-medium text-black mb-[38px] md:mb-[20px]`}
+                } ${
+                  paragraphContent ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                } font-medium text-black `}
               >
                 {title}
               </h2>
