@@ -40,19 +40,19 @@ const intro2 = {
 const contentWithImage = {
   subtitle: "",
   title: "",
-  titleSpan: "CMS Implementation",
+  titleSpan: "Digital strategy",
   paragraphText: [
     {
       id: 1,
-      paragraph: "In the ever-evolving digital landscape, your content is the cornerstone of your online presence.",
+      paragraph: "With over 10+ years of bringing our customers goals into reality, we can help you align your marketing strategy with an in-depth digital strategy.",
     },
     {
       id: 2,
-      paragraph: "At Bright Code, we understand the significance of efficient Content Management System (CMS) Implementation in ensuring your brand's message is delivered seamlessly to your audience.",
+      paragraph: "",
     },
     {
       id: 3,
-      paragraph: "We implement customized CMS solutions to streamline content management, enhance user experiences, and align with your brand objectives.",
+      paragraph: "",
     },
   ],
   btnUrl: "/cms-implementation",
