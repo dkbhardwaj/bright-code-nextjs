@@ -18,6 +18,8 @@ interface ContactFormSecondProps {
       id: number;
       listContent: string;
     }[];
+    btntext: string;
+    btnUrl: string;
   };
 }
 
@@ -32,6 +34,8 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
     paragraphBold2,
     introImageUrl,
     listItems,
+    btntext,
+    btnUrl,
   } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
@@ -151,6 +155,11 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                       </li>
                     ))}
                   </ul>
+                )}
+                {btntext && (
+                  <Link href={btnUrl} className=" mt-7 gradient-btn mx-auto">
+                    <span>{btntext}</span>
+                  </Link>
                 )}
               </div>
               <div

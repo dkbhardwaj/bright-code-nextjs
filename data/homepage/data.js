@@ -21,53 +21,10 @@ const intro = {
     },
   ],
   titleLarge: false,
-  nopaddingbottom: false,
+  nopaddingbottom: true,
   titleWhite: false,
   paddingmediumbottom: false,
 };
-
-const colThreeCards = {
-  paddingLarge: false,
-  featuredClass: false,
-  title: "",
-  bgTransparent: false,
-
-  threeCards: [
-    {
-      id: 1,
-      cardDelay: "400",
-      cardDuration: "400",
-      imageUrl: "/home/col-three-img1.png",
-      imageAlt: "Agency to agency services",
-      cardTitle: "Collaborative",
-      cardDetail: "Our agency thrives on the synergy of collaboration. We step into the role of your development partner, creating the tools you need to deliver.",
-
-    },
-    {
-      id: 2,
-      cardDelay: "500",
-      cardDuration: "500",
-      imageUrl: "/home/col-three-img2.png",
-      imageAlt: "Client Centric development",
-      cardTitle: "Results driven",
-      cardDetail: "We understand marketers. You you need results. We ensure that the websites we develop not only meet but exceed your needs.",
-
-    },
-    {
-      id: 3,
-      cardDelay: "600",
-      cardDuration: "600",
-      imageUrl: "/home/col-three-img3.png",
-      imageAlt: "Empowering designers",
-      cardTitle: "Empowering",
-      cardDetail: "Our mission is to empower digital marketers. We know that your needs as a marketing leader can only be realized when paired with a top development team.",
-
-    },
-  ],
-
-  btntext: "Learn More",
-  btnUrl: "/whychooseus",
-}
 
 const intro2 = {
   subtitle: "",
@@ -250,6 +207,8 @@ const contactForm = {
   paragraphBold2: "Thank you for considering Bright Code as your trusted partner.",
   introImageUrl: "",
   listItems: [],
+  btntext: "Learn More",
+  btnUrl: "/whychooseus",
 }
 
 const footerMap = {
@@ -257,4 +216,4 @@ const footerMap = {
   mapImageUrl: "/santa-monica.jpeg",
 }
 
-export { heroBanner, intro, colThreeCards, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, colFourCard, contactForm, footerMap };
+export { heroBanner, intro, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, colFourCard, contactForm, footerMap };

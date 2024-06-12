@@ -3,14 +3,9 @@ import React from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-// import Introduction from "../components/Introduction";
-// import ColThreeCards from "../components/ColThreeCards";
-// import ContentWithImageColTwo from "../components/ContentWithImageColTwo";
-// import ColFourCards from "../components/ColFourCards";
 import {
   heroBanner,
   intro,
-  colThreeCards,
   intro2,
   contentWithImage,
   contentWithImage2,
@@ -63,7 +58,6 @@ const ContactFormSecond = dynamic(
 const FooterMap = dynamic(() => import("../components/FooterMap"));
 
 const Introduction = dynamic(() => import("../components/Introduction"));
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
 const ContentWithImageColTwo = dynamic(
   () => import("../components/ContentWithImageColTwo")
 );
@@ -89,8 +83,6 @@ const Home: React.FC = () => {
       <HeroBanner data={heroBanner} />
 
       <Introduction data={intro} />
-
-      <ColThreeCards data={colThreeCards} />
 
       <Introduction data={intro2} />
 
