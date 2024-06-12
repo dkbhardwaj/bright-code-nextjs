@@ -28,7 +28,7 @@ const intro = {
 
 const intro2 = {
   subtitle: "",
-  title: "What we do",
+  title: "What We Do",
   titleSpan: "",
   paragraphContent: [],
   titleLarge: true,
@@ -151,7 +151,7 @@ const contentWithImage4 = {
 
 const intro3 = {
   subtitle: "",
-  title: "Our values",
+  title: "Our Values",
   titleSpan: "",
   paragraphContent: [],
   titleLarge: true,
@@ -168,23 +168,23 @@ const colFourCard = {
       cardDuration: "400",
       iconUrl: "/icon-star.svg",
       title: "Expertise",
-      paragraph: "Our unwavering commitment to expertise signifies the depth of knowledge and skill we bring to every project.",
+      paragraph: "",
     },
     {
       id: 2,
       cardDelay: "500",
       cardDuration: "500",
       iconUrl: "/icon-partnership.svg",
-      title: "Collaborative approach",
-      paragraph: "Collaboration is in our DNA. We believe that the best solutions emerge when diverse minds come together.",
+      title: "Collaboration",
+      paragraph: "",
     },
     {
       id: 3,
       cardDelay: "600",
       cardDuration: "600",
       iconUrl: "/icon-certificate.svg",
-      title: "Commitment to excellence",
-      paragraph: "Excellence is not just a principle; it's the essence of Bright Code. We infuse it into the interactions with our clients.",
+      title: "Excellence",
+      paragraph: "",
     },
     {
       id: 4,
@@ -192,7 +192,7 @@ const colFourCard = {
       cardDuration: "700",
       iconUrl: "/icon-idea.svg",
       title: "Innovation",
-      paragraph: "We embrace a culture of continuous improvement, staing ahead of technological advancements.",
+      paragraph: "",
     }
   ]
 }
@@ -201,10 +201,10 @@ const contactForm = {
   paddingmediumtop: false,
   subtitle: "GET IN TOUCH",
   title: "Let's talk!",
-  paragraphBold: "If you are interested in learning more about Bright Code and how we can work together to achieve your goals, we encourage you to get in touch with us directly.",
-  paragraph: "We value direct, one-on-one discussions where we can understand your unique needs and explore the potential for collaboration.",
+  paragraphBold: "Every project starts with a direct discussion to understand your unique needs and how we can collaborate. Reach out to get started.",
+  paragraph: "",
   paragraph2: "",
-  paragraphBold2: "Thank you for considering Bright Code as your trusted partner.",
+  paragraphBold2: "",
   introImageUrl: "",
   listItems: [],
   btntext: "Learn More",
