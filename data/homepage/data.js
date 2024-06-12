@@ -1,15 +1,15 @@
 const heroBanner = {
   bannerRightImg: "/home/banner-right-img.png",
   bannerLeftImg: "/home/banner-left-img.png",
-  mainTitle: "Empowering Marketers, Delivering Results.",
+  mainTitle: "Empowering Client, Delivering Results.",
   buttonUrl: "/contact",
   buttonText: "Get Started",
 }
 
 const intro = {
-  subtitle: "Why Choose us?",
-  title: "Our agency model is built on",
-  titleSpan: "collaboration and expertise.",
+  subtitle: "collaboration and expertise",
+  title: "",
+  titleSpan: "",
   paragraphContent: [
     {
       id: 1,

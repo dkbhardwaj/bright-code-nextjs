@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
                   href="/whychooseus"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                 >
-                  Why Choose us
+                  Why Choose Us
                 </a>
               </li>
               <li className=" relative mb-2 ">
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
                   href="/cms-implementation"
                   className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
                 >
-                  What we do
+                  What We Do
                 </a>
               </li>
               <li className=" relative mb-2 ">

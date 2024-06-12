@@ -134,7 +134,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       className="inline-block w-full text-[14px]"
                       href="/whychooseus"
                     >
-                      Why Choose us
+                      Why Choose Us
                     </Link>
                   </li>
                   <li
@@ -145,7 +145,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       className="inline-block w-full text-[14px] "
                       href="/cms-implementation"
                     >
-                      What we do
+                      What We Do
                     </Link>
                   </li>
 
