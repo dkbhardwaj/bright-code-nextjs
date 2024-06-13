@@ -205,9 +205,9 @@ const contactForm = {
   subtitle: "",
   title: "Let's Talk!",
   paragraphBold: "Every project starts with a direct discussion to understand your unique needs and how we can collaborate.",
-  paragraph: "Reach out to get started.",
+  paragraph: "",
   paragraph2: "",
-  paragraphBold2: "",
+  paragraphBold2: "Reach out to get started.",
   introImageUrl: "",
   listItems: [],
 }
