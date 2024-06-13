@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 interface IntroductionProps {
   data: {
@@ -17,7 +15,6 @@ interface IntroductionProps {
       paragraph: string;
     }[];
     btntext: string;
-    btnUrl: string;
   };
 }
 
@@ -32,27 +29,19 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     paddingmediumbottom,
     paragraphContent,
     btntext,
-    btnUrl,
   } = data;
 
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    };
-    window.addEventListener("hashchange", handleHashChange);
-    handleHashChange();
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
+  const handleScroll = () => {
+    const targetElement = document.getElementById("get-in-touch");
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+      window.history.replaceState(
+        null,
+        document.title,
+        window.location.pathname
+      );
+    }
+  };
 
   return (
     <section
@@ -103,9 +92,12 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               />
             ))}
           {btntext && (
-            <Link href={btnUrl} className=" mt-7 gradient-btn mx-auto">
+            <div
+              className=" cursor-pointer mt-7 gradient-btn mx-auto"
+              onClick={handleScroll}
+            >
               <span>{btntext}</span>
-            </Link>
+            </div>
           )}
         </div>
       </div>

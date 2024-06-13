@@ -29,7 +29,6 @@ const intro = {
   titleWhite: false,
   paddingmediumbottom: false,
   btntext: "",
-  btnUrl: "",
 };
 
 const contentWithImage = {

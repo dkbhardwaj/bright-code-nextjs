@@ -25,7 +25,6 @@ const intro = {
   titleWhite: false,
   paddingmediumbottom: false,
   btntext: "Learn More",
-  btnUrl: "#get-in-touch",
 };
 
 const intro2 = {
@@ -38,7 +37,6 @@ const intro2 = {
   titleWhite: false,
   paddingmediumbottom: false,
   btntext: "",
-  btnUrl: "",
 };
 
 const contentWithImage = {
@@ -163,7 +161,6 @@ const intro3 = {
   titleWhite: true,
   paddingmediumbottom: true,
   btntext: "",
-  btnUrl: "",
 };
 
 const colFourCard = {
