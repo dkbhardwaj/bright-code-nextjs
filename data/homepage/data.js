@@ -1,14 +1,14 @@
 const heroBanner = {
   bannerRightImg: "/home/banner-right-img.png",
   bannerLeftImg: "/home/banner-left-img.png",
-  mainTitle: "Empowering Client, Delivering Results.",
+  mainTitle: "Empowering Clients, Delivering Results.",
   buttonUrl: "/contact",
   buttonText: "Get Started",
 }
 
 const intro = {
-  subtitle: "collaboration and expertise",
-  title: "",
+  subtitle: "",
+  title: "collaboration and expertise",
   titleSpan: "",
   paragraphContent: [
     {
