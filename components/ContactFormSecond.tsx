@@ -111,17 +111,29 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                 )}
               </div>
             ) : (
-              <div className=" introText relative w-full mb-16 text-center  md:mb-8">
-                {subtitle && (
-                  <h6 className="text-white title mb-8 md:mb-2">{subtitle}</h6>
-                )}
-
-                {title && <h2 className="text-white mb-5">{title}</h2>}
-              </div>
+              subtitle && (
+                <div className=" introText relative w-full mb-16 text-center  md:mb-8">
+                  {subtitle && (
+                    <h6 className="text-white title mb-8 md:mb-2">
+                      {subtitle}
+                    </h6>
+                  )}
+                  {title && <h2 className="text-white mb-5">{title}</h2>}
+                </div>
+              )
             )}
 
             <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
               <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
+                {title && (
+                  <h2
+                    className={`text-white mb-5  ${
+                      introImageUrl && subtitle ? "hidden" : "block"
+                    }`}
+                  >
+                    {title}
+                  </h2>
+                )}
                 {paragraphBold && (
                   <h4 className="text-white text-[23px] mb-5 md:text-[20px] xl-up:leading-10 ">
                     {paragraphBold}
