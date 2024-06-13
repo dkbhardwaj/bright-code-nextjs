@@ -23,7 +23,7 @@ const bannersecond = {
 
 const contactForm = {
   paddingmediumtop: true,
-  subtitle: "Let's talk!",
+  subtitle: "Let's Talk!",
   title: "Why Schedule a Free Consultation?",
   paragraphBold: "",
   paragraph: "",

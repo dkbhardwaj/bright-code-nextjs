@@ -24,7 +24,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
           width={2500}
           height={900}
           alt="bg-img"
-          className=" w-full h-full object-cover"
+          className=" w-full h-full object-cover object-center"
           loading="lazy"
         />
       </div>
