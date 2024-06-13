@@ -51,7 +51,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
             />
           </div>
         )}
-        <div className="w-full max-w-[750px] ml-auto relative z-[2] text-right lg:max-w-[545px] md:text-center md:mx-auto ">
+        <div className="w-full max-w-[750px] ml-auto relative z-[2] text-left lg:max-w-[545px] md:text-center md:mx-auto ">
           {mainTitle && <h1 className="header-h1 text-white ">{mainTitle}</h1>}
           {buttonText && (
             <Link
