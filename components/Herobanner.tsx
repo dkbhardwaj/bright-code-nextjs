@@ -21,11 +21,13 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
       <div className="bg_image absolute top-0 left-0 w-full h-full ">
         <Image
           src="/banner-bg-img.svg"
-          width={2500}
-          height={900}
+          // width={2500}
+          // height={900}
           alt="bg-img"
           className=" w-full h-full object-cover object-center"
-          loading="lazy"
+          priority
+          layout="fill"
+          objectFit="cover"
         />
       </div>
       <div className="container">

@@ -104,9 +104,10 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               <Image
                 src={imageUrl}
                 alt="img"
-                width={600}
-                height={500}
-                loading="lazy"
+                // width={600}
+                // height={500}
+             priority
+             layout="fill"
                 className=" w-full h-full object-cover"
               />
             </div>
