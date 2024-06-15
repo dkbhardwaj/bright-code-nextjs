@@ -1,5 +1,5 @@
 const heroBanner = {
-  bannerRightImg: "/home/banner-right-img.png",
+  bannerBgImg: "/banner-bg-img.svg",
   bannerLeftImg: "/home/banner-left-img.png",
   mainTitle: "Empowering Clients, Delivering Results.",
   buttonUrl: "/contact",
