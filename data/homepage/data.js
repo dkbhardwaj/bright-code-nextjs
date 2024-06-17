@@ -8,8 +8,8 @@ const heroBanner = {
 
 const intro = {
   subtitle: "",
-  title: "collaboration and expertise",
-  titleSpan: "",
+  title: "",
+  titleSpan: "Collaboration and Expertise",
   paragraphContent: [
     {
       id: 1,
