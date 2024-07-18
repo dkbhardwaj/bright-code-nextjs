@@ -53,8 +53,8 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
               textLeft ? " !text-left" : ""
             } content w-full text-center relative`}
             data-aos="fade-right"
-            data-aos-delay="500"
-            data-aos-duration="1000"
+            data-aos-delay="400"
+            data-aos-duration="600"
           >
             {subtitle && (
               <h6
@@ -89,8 +89,8 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
               textLeft ? " !text-left" : ""
             } content w-full text-center relative`}
             data-aos="fade-left"
-            data-aos-delay="500"
-            data-aos-duration="1000"
+            data-aos-delay="400"
+            data-aos-duration="600"
           >
             {paragraphText &&
               paragraphText.map((item, index) => (

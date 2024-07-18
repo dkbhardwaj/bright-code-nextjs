@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -8,12 +9,10 @@ import {
   overview,
   contentWithImage,
   overview2,
-  introwithcards,
   overview3,
   contentWithImage2,
   contentWithImage3,
   overview4,
-  colThreeCards,
   contactform,
 } from "../../dataAlgoliaImplementation/data";
 
@@ -27,8 +26,6 @@ const Overview = dynamic(() => import("../../components/overview"));
 const ContentWithImageColTwo = dynamic(
   () => import("../../components/ContentWithImageColTwo")
 );
-const IntroWithCards = dynamic(() => import("../../components/IntroWithCards"));
-const ColThreeCards = dynamic(() => import("../../components/ColThreeCards"));
 
 const AlgoliaImplementation: React.FC = () => {
   return (
@@ -44,10 +41,6 @@ const AlgoliaImplementation: React.FC = () => {
       <ContentWithImageColTwo data={contentWithImage2} />
       <ContentWithImageColTwo data={contentWithImage3} />
       <Overview data={overview4} />
-
-      {/* <IntroWithCards data={introwithcards} /> */}
-
-      {/* <ColThreeCards data={colThreeCards} /> */}
 
       <ContactForm data={contactform} />
     </>

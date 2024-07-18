@@ -123,7 +123,8 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 // width={600}
                 // height={500}
                 priority
-                layout="fill"
+                fill
+                style={{ objectFit: "cover" }}
                 className=" w-full h-full object-cover"
               />
             </div>

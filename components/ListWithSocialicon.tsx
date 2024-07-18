@@ -1,7 +1,12 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { TwitterShareButton, LinkedinShareButton, FacebookShareButton } from "next-share";
+import {
+  TwitterShareButton,
+  LinkedinShareButton,
+  FacebookShareButton,
+} from "next-share";
 
 interface ListWithSocialIconData {
   data: {
@@ -15,12 +20,20 @@ interface ListWithSocialIconData {
 const ListWithSocialicon: React.FC<ListWithSocialIconData> = ({ data }) => {
   const { listItem } = data;
 
-  const router = useRouter();
-  const baseUrl = typeof window !== "undefined" ? window.location.href : "";
-  console.log(baseUrl);
+  // const router = useRouter();
+  // const baseUrl = typeof window !== "undefined" ? window.location.href : "";
+  // console.log(baseUrl);
 
-  const link = encodeURI(`${baseUrl}${router.asPath}`);
-  console.log(link);
+  // const link = encodeURI(`${baseUrl}${router.asPath}`);
+  // console.log(link);
+
+  const router = useRouter();
+  const baseUrl =
+    typeof window !== "undefined"
+      ? window.location.origin
+      : process.env.NEXT_PUBLIC_BASE_URL;
+
+  const link = `${baseUrl}${router.asPath}`;
 
   return (
     <section className="list-with-social-icon relative w-full py-[106px] lg:py-20 md:!py-12 ">
