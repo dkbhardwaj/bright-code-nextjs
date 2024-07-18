@@ -34,8 +34,7 @@ const AlgoliaImplementation: React.FC = () => {
   return (
     <>
       <Banner data={bannercontent} />
-
-      {/* <ListWithSocialicon data={listWithSocialIcon} /> */}
+      <ListWithSocialicon data={listWithSocialIcon} />
 
       <Overview data={overview} />
       <ImageWithList data={imagewithlist} />

@@ -1,8 +1,24 @@
 export const bannercontent = {
-  subTitle: "CASE STUDY",
-  mainTitle: "Taking the Lead on Climate Change Risk",
-  description: "How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.",
+  subTitle: "",
+  mainTitle: "Enhancing College Search Functionality with Algolia: A Case Study on Improved Relevance, Speed, and Personalization",
+  description: "",
 };
+export const listWithSocialIcon = {
+  listItem: [
+    {
+      id: 1,
+      listcontent: "25% increase in page views per session",
+    },
+    {
+      id: 2,
+      listcontent: "40% increase in successful search outcomes",
+    },
+    {
+      id: 3,
+      listcontent: "15% decrease in bounce rates",
+    }
+  ]
+}
 export const overview = {
   textLeft: false,
   subtitle: "Overview",
@@ -18,7 +34,7 @@ export const overview = {
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
-  paddingLargeTop: true,
+  paddingLargeTop: false,
   noPaddingBottom: false,
 
 };
@@ -227,22 +243,7 @@ export const overview4 = {
 
 
 
-export const listWithSocialIcon = {
-  listItem: [
-    {
-      id: 1,
-      listcontent: "Better Climate Governance",
-    },
-    {
-      id: 2,
-      listcontent: "Satisfied Investor And Stakeholder Concerns",
-    },
-    {
-      id: 3,
-      listcontent: "Equipped to Meet Climate-Related Disclosure Requirements",
-    }
-  ]
-}
+
 
 
 
