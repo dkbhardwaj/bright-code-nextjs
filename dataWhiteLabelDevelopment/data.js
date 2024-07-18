@@ -22,6 +22,8 @@ const overview = {
       paragraph: "White label Development provides agencies with the opportunity to offer development services to their clients under their own brand, without having an in-house development team. In the world of web development, the invisible hand of expertise often guides the most remarkable creations. At Bright Code, we take pride in our role as the silent architects of digital success, delivering excellence through this service.",
     },
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

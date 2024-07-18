@@ -25,6 +25,8 @@ const overview = {
       paragraph: "With our expertise and customized solutions, we empower businesses to streamline content management processes, improve website performance, and deliver engaging digital experiences to their target audience.",
     }
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

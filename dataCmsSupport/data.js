@@ -26,6 +26,8 @@ const overview = {
       paragraph: "Our proactive approach is designed to identify and address potential issues before they become problems, safeguarding the ongoing success of your digital presence in the long run.",
     },
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

@@ -21,6 +21,8 @@ const overview = {
       paragraph: "Our Dedicated Development Teams means tailored support for every project. Whether it's agency-to-agency collaboration or business driven development, we assemble a specialized team to cater to the unique requirements of each venture.",
     },
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: true,

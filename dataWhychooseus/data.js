@@ -58,6 +58,8 @@ const overview = {
       paragraph: "Our track record demonstrates our commitment to delivering high-quality results on time and within budget, consistently exceeding the expectations of our esteemed clients.",
     },
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: true,
   bgWhite: false,
   maxWidthH5: false,

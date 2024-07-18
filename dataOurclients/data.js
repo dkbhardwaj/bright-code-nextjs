@@ -77,6 +77,8 @@ const overview = {
       paragraph: "You may have noticed that we do not showcase our partners or their projects on our website. This choice is intentional and reflects our unwavering dedication to two key principles: trust and confidentiality.",
     },
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: true,
   bgWhite: false,
   maxWidthH5: false,

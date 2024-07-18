@@ -16,6 +16,14 @@ interface OverviewProps {
       id: number;
       paragraph: string;
     }[];
+    listItem: {
+      id: number;
+      listContent: string;
+    }[];
+    paragraphText2: {
+      id: number;
+      paragraph: string;
+    }[];
   };
 }
 
@@ -27,11 +35,13 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
     titleSpan,
     titleWithSpan,
     paragraphText,
+    paragraphText2,
     bgExtraLightGray,
     bgWhite,
     maxWidthH5,
     noPaddingBottom,
     paddingLargeTop,
+    listItem,
   } = data;
 
   const sectionClasses = [
@@ -94,6 +104,30 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
           >
             {paragraphText &&
               paragraphText.map((item, index) => (
+                <h5
+                  key={index}
+                  className={` ${
+                    maxWidthH5 ? "w-full max-w-[960px]  mx-auto" : ""
+                  } text-black font-light mt-5  `}
+                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
+                />
+              ))}
+            {listItem && (
+              <ul className=" relative w-full block pl-[25px] mt-5 ">
+                {listItem.map((item, index) => (
+                  <li
+                    className=" font-light leading-[28px] list-disc "
+                    key={index}
+                  >
+                    <h5
+                      dangerouslySetInnerHTML={{ __html: item.listContent }}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+            {paragraphText2 &&
+              paragraphText2.map((item, index) => (
                 <h5
                   key={index}
                   className={` ${

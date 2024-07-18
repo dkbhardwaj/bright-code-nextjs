@@ -31,6 +31,8 @@ export const overview = {
       paragraph: "A nationally recognized college in New York faced challenges with its outdated search functionality, which was slow, irrelevant, and lacked personalization and analytics. To address these issues, the college implemented Algolia's advanced search solutions with the help of the Bright Code programmers. The project took one month and involved iterative improvements such as defining searchable attributes, setting custom rankings, and optimizing search requests. The implementation resulted in a more efficient, relevant, and personalized search experience, greatly enhancing user satisfaction and engagement.",
     }
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
@@ -63,6 +65,8 @@ export const overview2 = {
       paragraph: "",
     }
   ],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
@@ -119,6 +123,8 @@ export const overview3 = {
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [],
+  listItem: [],
+  paragraphText2: [],
   bgExtraLightGray: false,
   bgWhite: true,
   maxWidthH5: false,
@@ -177,7 +183,7 @@ export const contentWithImage3 = {
     },
     {
       id: 3,
-      listContent: "<b>Steps Involved:</b> <li>Defined searchable attributes.</li><li>Set up custom ranking with business metrics.</li><li>Added necessary synonyms and removed stop words.</li><li>Created rules for specific search phrases to ensure accurate results.</li><li>Optimized search requests by implementing a 3-second delay on typing to search.</li>",
+      listContent: "<b>Steps Involved:</b> <ul><li>Defined searchable attributes.</li><li>Set up custom ranking with business metrics.</li><li>Added necessary synonyms and removed stop words.</li><li>Created rules for specific search phrases to ensure accurate results.</li><li>Optimized search requests by implementing a 3-second delay on typing to search.</li></ul>",
     },
   ],
   paragraphText: [],
@@ -222,12 +228,33 @@ export const overview4 = {
       id: 6,
       paragraph: "Key measurable outcomes included: ",
     },
+
+  ],
+  listItem: [
     {
-      id: 7,
-      paragraph: "<li><b>Search Speed:</b> Search query response times improved dramatically, with average search speeds decreasing from several seconds to under one second.</li> <li><b>User Engagement:</b> There was a notable increase in user engagement metrics. Page views per session increased by 25%, and the bounce rate decreased by 15%.</li> <li><b>Search Relevance:</b> The relevance of search results improved, as indicated by a 40% increase in successful search outcomes (users finding what they were looking for on the first try).</li> <li><b>Analytics and Insights:</b> The college gained valuable insights into user search behavior, enabling continuous improvements and more targeted content strategies.</li> <li><b>Personalization:</b> Personalized search experiences enhanced user satisfaction, particularly among prospective students using the Program Finder.</li>",
+      id: 1,
+      listContent: "<b>Search Speed:</b> Search query response times improved dramatically, with average search speeds decreasing from several seconds to under one second.",
     },
     {
-      id: 8,
+      id: 2,
+      listContent: "<b>User Engagement:</b> There was a notable increase in user engagement metrics. Page views per session increased by 25%, and the bounce rate decreased by 15%.",
+    },
+    {
+      id: 3,
+      listContent: "<b>Search Relevance:</b> The relevance of search results improved, as indicated by a 40% increase in successful search outcomes (users finding what they were looking for on the first try).",
+    },
+    {
+      id: 4,
+      listContent: "<b>Analytics and Insights:</b> The college gained valuable insights into user search behavior, enabling continuous improvements and more targeted content strategies.",
+    },
+    {
+      id: 5,
+      listContent: "<b>Personalization:</b> Personalized search experiences enhanced user satisfaction, particularly among prospective students using the Program Finder.",
+    },
+  ],
+  paragraphText2: [
+    {
+      id: 1,
       paragraph: "Overall, the implementation of Algolia not only resolved the previous issues but also provided a robust, scalable search solution that significantly enhanced the college's online presence and user experience.",
     },
   ],
