@@ -36,6 +36,7 @@ const contentWithImage = {
   subtitle: "DRUPAL IMPLEMENTATION",
   title: "What is Drupal Implementation?",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -61,6 +62,7 @@ const contentWithImage2 = {
   subtitle: "WORDPRESS IMPLEMENTATION",
   title: "What about WordPress?",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -90,6 +92,7 @@ const contentWithImage3 = {
   subtitle: "Strengthening Your Brand",
   title: "Empowering Your Brand, Your Way",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -115,6 +118,7 @@ const contentWithImage4 = {
   subtitle: "Beyond Drupal Delivery",
   title: "Exceeding Expectations, Every Time",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -140,6 +144,7 @@ const contentWithImage5 = {
   subtitle: "Unlocking Success",
   title: "The Power of Collaboration",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

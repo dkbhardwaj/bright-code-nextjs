@@ -37,6 +37,7 @@ const contentWithImage = {
   subtitle: "The Importance of CMS Maintenance",
   title: "What is CMS Maintenance?",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -62,6 +63,7 @@ const contentWithImage2 = {
   subtitle: "CORE CMS MAINTENANCE",
   title: "Security and Stability",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -87,6 +89,7 @@ const contentWithImage3 = {
   subtitle: "Security and Performance Optimization",
   title: "CMS Maintenance Expertise",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -112,6 +115,7 @@ const contentWithImage4 = {
   subtitle: "User and Access Management",
   title: "Access Control and User Governance",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -137,6 +141,7 @@ const contentWithImage5 = {
   subtitle: "Emergency Support and Content Management",
   title: "Support and Content",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

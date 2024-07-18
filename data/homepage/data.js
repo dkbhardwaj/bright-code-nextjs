@@ -43,6 +43,7 @@ const contentWithImage = {
   subtitle: "",
   title: "",
   titleSpan: "Digital strategy",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -72,6 +73,7 @@ const contentWithImage2 = {
   subtitle: "",
   title: "",
   titleSpan: "Web design and implementation",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -101,6 +103,7 @@ const contentWithImage3 = {
   subtitle: "",
   title: "",
   titleSpan: "Dedicated development teams",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -130,6 +133,7 @@ const contentWithImage4 = {
   subtitle: "",
   title: "",
   titleSpan: "CMS implementation and management",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

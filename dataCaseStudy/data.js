@@ -66,6 +66,7 @@ const contentWithImage = {
   subtitle: "",
   title: "",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -148,6 +149,7 @@ const contentWithImage2 = {
   subtitle: "",
   title: "",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

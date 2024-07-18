@@ -34,6 +34,7 @@ const contentWithImage = {
   subtitle: "ELEVATING WEB DEVELOPMENT",
   title: "Empowering Your Brand, Your Way",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -59,6 +60,7 @@ const contentWithImage2 = {
   subtitle: "Surpassing Milestones",
   title: "Exceeding Expectations",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -84,6 +86,7 @@ const contentWithImage3 = {
   subtitle: "Harmonizing Success",
   title: "The Power of Collaboration",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -109,6 +112,7 @@ const contentWithImage4 = {
   subtitle: "SUPPORTING YOUR BRAND, OUR CORE COMMITMENT",
   title: "Your Success, Our Priority",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

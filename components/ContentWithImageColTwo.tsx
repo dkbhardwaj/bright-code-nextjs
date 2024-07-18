@@ -16,6 +16,10 @@ interface ContentWithImageProps {
     animatImage: string;
     paddinglargebottom: boolean;
     paddingmedium: boolean;
+    listItem: {
+      id: number;
+      listContent: string;
+    }[];
     paragraphText: {
       id: number;
       paragraph: string;
@@ -38,6 +42,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     animatImage,
     paddinglargebottom,
     paddingmedium,
+    listItem,
   } = data;
   return (
     <section
@@ -77,6 +82,17 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 </span>
               )}
             </h3>
+            {listItem && (
+              <ul className=" list-none relative w-full block ">
+                {listItem.map((item, index) => (
+                  <li
+                    className=" font-light leading-[28px] "
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: item.listContent }}
+                  />
+                ))}
+              </ul>
+            )}
             {paragraphText &&
               paragraphText.map((item, index) => (
                 <p
@@ -106,8 +122,8 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 alt="img"
                 // width={600}
                 // height={500}
-             priority
-             layout="fill"
+                priority
+                layout="fill"
                 className=" w-full h-full object-cover"
               />
             </div>

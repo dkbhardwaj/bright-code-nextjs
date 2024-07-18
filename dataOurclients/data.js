@@ -35,6 +35,7 @@ const contentWithImage = {
   subtitle: "Collaboration",
   title: "Agency to Agency",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -88,6 +89,7 @@ const contentWithImage2 = {
   subtitle: "ETHICAL EXCELLENCE IN AGENCY COLLABORATION",
   title: "Professionalism in Partnership",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -113,6 +115,7 @@ const contentWithImage3 = {
   subtitle: "OUR APPROACH",
   title: "Client-Centric",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -138,6 +141,7 @@ const contentWithImage4 = {
   subtitle: "EXPERTISE MEETS COLLABORATION",
   title: "Highlighting Expertise Without Compromise",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

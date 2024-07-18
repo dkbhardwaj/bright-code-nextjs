@@ -132,6 +132,12 @@ p {
     font-size: 14px;
     line-height: 24px;
   }
+  b {
+    font-weight: 700;
+  }
+  a {
+    font-weight: 700;
+  }
 }
 
 span {
@@ -146,6 +152,15 @@ ul {
     line-height: 30px;
     @include phablet-down {
       font-size: 14px;
+    }
+    b {
+      font-weight: 700;
+    }
+    a {
+      font-weight: 700;
+    }
+    li {
+      list-style: inside;
     }
   }
 }

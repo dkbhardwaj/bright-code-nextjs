@@ -12,6 +12,7 @@ const contentWithImage = {
   subtitle: "SYNERGY OF COLLABORATION",
   title: "Delivering Success",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -69,6 +70,7 @@ const contentWithImage2 = {
   subtitle: "Crafting Excellence",
   title: "Specialized Expertise",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -94,6 +96,7 @@ const contentWithImage3 = {
   subtitle: "UNLEASHING MARKETING POTENTIAL",
   title: "Empowering Marketers",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -123,6 +126,7 @@ const contentWithImage4 = {
   subtitle: "CUSTOMER-FOCUSED PHILOSOPHY",
   title: "Client-Centric Approach",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -148,6 +152,7 @@ const contentWithImage5 = {
   subtitle: "ELEVATING THE PARADIGM OF WEB DEVELOPMENT",
   title: "Redefining Web Development",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,

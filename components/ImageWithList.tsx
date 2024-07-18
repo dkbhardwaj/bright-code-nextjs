@@ -24,10 +24,12 @@ const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
             )}
             {listItem && (
               <ul className=" list-none relative w-full block pl-[25px] ">
-                {listItem.map((item) => (
-                  <li className=" font-light leading-[28px] " key={item.id}>
-                    {item.listContent}
-                  </li>
+                {listItem.map((item, index) => (
+                  <li
+                    className=" font-light leading-[28px] "
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: item.listContent }}
+                  />
                 ))}
               </ul>
             )}

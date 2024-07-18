@@ -33,6 +33,7 @@ const contentWithImage = {
   subtitle: "TAILORED EXCELLENCE: DEDICATED DEV TEAMS",
   title: "What are Dedicated Development Teams?",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -58,6 +59,7 @@ const contentWithImage2 = {
   subtitle: "ELEVATING YOUR DIGITAL VISION",
   title: "Empowering Your Vision, Your Way",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -79,6 +81,7 @@ const contentWithImage3 = {
   subtitle: "UNLEASHING POTENTIAL",
   title: "Exceeding Expectations, Every Time",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
@@ -104,6 +107,7 @@ const contentWithImage4 = {
   subtitle: "EMPOWERING SUCCESS THROUGH PARTNERSHIP",
   title: "The Power of Collaboration",
   titleSpan: "",
+  listItem: [],
   paragraphText: [
     {
       id: 1,
