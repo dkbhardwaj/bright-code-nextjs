@@ -1,4 +1,4 @@
-const heroBanner = {
+export const heroBanner = {
   bannerBgImg: "/banner-bg-img.svg",
   bannerLeftImg: "/home/banner-left-img.png",
   mainTitle: "Empowering Clients, Delivering Results.",
@@ -6,7 +6,7 @@ const heroBanner = {
   buttonText: "Get Started",
 }
 
-const intro = {
+export const intro = {
   subtitle: "",
   title: "",
   titleSpan: "Collaboration and Expertise",
@@ -27,7 +27,7 @@ const intro = {
   btntext: "Learn More",
 };
 
-const intro2 = {
+export const intro2 = {
   subtitle: "",
   title: "What We Do",
   titleSpan: "",
@@ -39,7 +39,7 @@ const intro2 = {
   btntext: "",
 };
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "",
   title: "",
   titleSpan: "Digital strategy",
@@ -69,7 +69,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "",
   title: "",
   titleSpan: "Web design and implementation",
@@ -99,7 +99,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "",
   title: "",
   titleSpan: "Dedicated development teams",
@@ -129,7 +129,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "",
   title: "",
   titleSpan: "CMS implementation and management",
@@ -155,7 +155,7 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const intro3 = {
+export const intro3 = {
   subtitle: "",
   title: "Our Values",
   titleSpan: "",
@@ -167,7 +167,7 @@ const intro3 = {
   btntext: "",
 };
 
-const colFourCard = {
+export const colFourCard = {
   colFour: [
     {
       id: 1,
@@ -204,7 +204,7 @@ const colFourCard = {
   ]
 }
 
-const contactForm = {
+export const contactForm = {
   paddingmediumtop: false,
   subtitle: "",
   title: "Let's Talk!",
@@ -216,9 +216,16 @@ const contactForm = {
   listItems: [],
 }
 
-const footerMap = {
+export const footerMap = {
   iframeUrl: "https://maps.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.5999680504724!2d-118.4755961742846!3d34.028477873166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bbfdc805103f%3A0xe2b048c364c959d1!2sSpaces%20-%20Water%20Garden!5e0!3m2!1sen!2sin!4v1703144756322!5m2!1sen!2sin",
   mapImageUrl: "/santa-monica.jpeg",
 }
 
-export { heroBanner, intro, intro2, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, intro3, colFourCard, contactForm, footerMap };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}
+
+

@@ -1,4 +1,4 @@
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "/why-choose-us/banner-left-img.png",
   bannerRightImg: "/why-choose-us/banner-right-img.png",
   bannerOneImg: "",
@@ -8,7 +8,7 @@ const bannersecond = {
   buttonText: "Learn More",
 }
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "SYNERGY OF COLLABORATION",
   title: "Delivering Success",
   titleSpan: "",
@@ -38,7 +38,7 @@ const contentWithImage = {
   paddingmedium: true,
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "EFFICIENCY MEETS EXCELLENCE",
   title: "Collaboration and Expertise",
@@ -68,7 +68,7 @@ const overview = {
 
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "Crafting Excellence",
   title: "Specialized Expertise",
   titleSpan: "",
@@ -94,7 +94,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "UNLEASHING MARKETING POTENTIAL",
   title: "Empowering Marketers",
   titleSpan: "",
@@ -124,7 +124,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "CUSTOMER-FOCUSED PHILOSOPHY",
   title: "Client-Centric Approach",
   titleSpan: "",
@@ -150,7 +150,7 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contentWithImage5 = {
+export const contentWithImage5 = {
   subtitle: "ELEVATING THE PARADIGM OF WEB DEVELOPMENT",
   title: "Redefining Web Development",
   titleSpan: "",
@@ -176,10 +176,14 @@ const contentWithImage5 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: true,
   formcontent: false,
 }
 
-
-export { bannersecond, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}

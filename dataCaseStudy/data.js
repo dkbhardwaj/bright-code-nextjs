@@ -1,10 +1,10 @@
-const bannercontent = {
+export const bannercontent = {
   subTitle: "CASE STUDY",
   mainTitle: "Taking the Lead on Climate Change Risk",
   description: "How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.",
 }
 
-const listWithSocialIcon = {
+export const listWithSocialIcon = {
   listItem: [
     {
       id: 1,
@@ -20,7 +20,7 @@ const listWithSocialIcon = {
     }
   ]
 }
-const imagewithlist = {
+export const imagewithlist = {
   title: "Key Takeaways",
   listItem: [
     {
@@ -46,7 +46,7 @@ const imagewithlist = {
   ]
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "The Challenge",
   title: "Climate Change Disclosure and Governance",
@@ -63,8 +63,7 @@ const overview = {
 
 }
 
-
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "",
   title: "",
   titleSpan: "",
@@ -90,7 +89,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const overview2 = {
+export const overview2 = {
   textLeft: false,
   subtitle: "The Solution",
   title: "Climate Risk Expertise and Flexible Analytics from Moody’s RMS",
@@ -106,7 +105,7 @@ const overview2 = {
   noPaddingBottom: true,
 }
 
-const introwithcards = {
+export const introwithcards = {
   colThreeCard: [
     {
       id: 1,
@@ -135,7 +134,7 @@ const introwithcards = {
   ]
 }
 
-const overview3 = {
+export const overview3 = {
   textLeft: false,
   subtitle: "The Outcome",
   title: "Clarity Around Climate Change and its Impact on the Portfolio",
@@ -151,7 +150,7 @@ const overview3 = {
   noPaddingBottom: true,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "",
   title: "",
   titleSpan: "",
@@ -177,7 +176,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const overview4 = {
+export const overview4 = {
   textLeft: true,
   subtitle: "",
   title: "",
@@ -206,7 +205,7 @@ const overview4 = {
   noPaddingBottom: true,
 }
 
-const colThreeCards = {
+export const colThreeCards = {
   paddingLarge: true,
   featuredClass: true,
   title: "Related Information",
@@ -248,9 +247,15 @@ const colThreeCards = {
 
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannercontent, listWithSocialIcon, imagewithlist, overview, contentWithImage, overview2, introwithcards, overview3, contentWithImage2, overview4, colThreeCards, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}
+

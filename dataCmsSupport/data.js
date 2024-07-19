@@ -1,6 +1,6 @@
 
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
@@ -10,7 +10,7 @@ const bannersecond = {
   buttonText: "",
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "Empowering Your Content",
   title: "CMS Maintenance",
@@ -35,7 +35,7 @@ const overview = {
   noPaddingBottom: false,
 }
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "The Importance of CMS Maintenance",
   title: "What is CMS Maintenance?",
   titleSpan: "",
@@ -61,7 +61,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "CORE CMS MAINTENANCE",
   title: "Security and Stability",
   titleSpan: "",
@@ -87,7 +87,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "Security and Performance Optimization",
   title: "CMS Maintenance Expertise",
   titleSpan: "",
@@ -113,7 +113,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "User and Access Management",
   title: "Access Control and User Governance",
   titleSpan: "",
@@ -139,7 +139,7 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contentWithImage5 = {
+export const contentWithImage5 = {
   subtitle: "Emergency Support and Content Management",
   title: "Support and Content",
   titleSpan: "",
@@ -165,9 +165,14 @@ const contentWithImage5 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}

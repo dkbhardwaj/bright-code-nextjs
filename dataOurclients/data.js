@@ -1,6 +1,6 @@
 
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "/our-clients/banner-img.png",
@@ -10,7 +10,7 @@ const bannersecond = {
   buttonText: "Learn More",
 }
 
-const intro = {
+export const intro = {
   subtitle: "Why Choose us?",
   title: "Our agency-to-agency model is built to",
   titleSpan: "empower partners.",
@@ -31,7 +31,7 @@ const intro = {
   btntext: "",
 };
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "Collaboration",
   title: "Agency to Agency",
   titleSpan: "",
@@ -61,7 +61,7 @@ const contentWithImage = {
   paddingmedium: true,
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "Our Commitment to Trust and Confidentiality",
   title: "How we work",
@@ -87,7 +87,7 @@ const overview = {
 
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "ETHICAL EXCELLENCE IN AGENCY COLLABORATION",
   title: "Professionalism in Partnership",
   titleSpan: "",
@@ -113,7 +113,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "OUR APPROACH",
   title: "Client-Centric",
   titleSpan: "",
@@ -139,7 +139,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "EXPERTISE MEETS COLLABORATION",
   title: "Highlighting Expertise Without Compromise",
   titleSpan: "",
@@ -165,9 +165,14 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannersecond, intro, contentWithImage, overview, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}

@@ -1,6 +1,6 @@
 
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
@@ -10,7 +10,7 @@ const bannersecond = {
   buttonText: "",
 }
 
-const textContent = {
+export const textContent = {
   details: [
     {
       id: 1,
@@ -61,4 +61,9 @@ const textContent = {
   ]
 }
 
-export { bannersecond, textContent };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}

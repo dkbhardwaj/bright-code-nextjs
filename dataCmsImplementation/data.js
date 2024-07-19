@@ -1,5 +1,5 @@
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
@@ -9,7 +9,7 @@ const bannersecond = {
   buttonText: "",
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "Empowering Your Content",
   title: "CMS Implementation",
@@ -34,7 +34,7 @@ const overview = {
   noPaddingBottom: false,
 }
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "DRUPAL IMPLEMENTATION",
   title: "What is Drupal Implementation?",
   titleSpan: "",
@@ -60,7 +60,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "WORDPRESS IMPLEMENTATION",
   title: "What about WordPress?",
   titleSpan: "",
@@ -90,7 +90,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "Strengthening Your Brand",
   title: "Empowering Your Brand, Your Way",
   titleSpan: "",
@@ -116,7 +116,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "Beyond Drupal Delivery",
   title: "Exceeding Expectations, Every Time",
   titleSpan: "",
@@ -142,7 +142,7 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contentWithImage5 = {
+export const contentWithImage5 = {
   subtitle: "Unlocking Success",
   title: "The Power of Collaboration",
   titleSpan: "",
@@ -168,9 +168,14 @@ const contentWithImage5 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contentWithImage5, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}

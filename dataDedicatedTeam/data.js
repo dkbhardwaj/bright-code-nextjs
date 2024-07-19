@@ -1,5 +1,5 @@
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
@@ -9,7 +9,7 @@ const bannersecond = {
   buttonText: "",
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "Elevate Your Digital Vision.",
   title: "Dedicated Dev Team",
@@ -31,7 +31,7 @@ const overview = {
 
 }
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "TAILORED EXCELLENCE: DEDICATED DEV TEAMS",
   title: "What are Dedicated Development Teams?",
   titleSpan: "",
@@ -57,7 +57,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "ELEVATING YOUR DIGITAL VISION",
   title: "Empowering Your Vision, Your Way",
   titleSpan: "",
@@ -79,7 +79,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "UNLEASHING POTENTIAL",
   title: "Exceeding Expectations, Every Time",
   titleSpan: "",
@@ -105,7 +105,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "EMPOWERING SUCCESS THROUGH PARTNERSHIP",
   title: "The Power of Collaboration",
   titleSpan: "",
@@ -127,9 +127,15 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}
+

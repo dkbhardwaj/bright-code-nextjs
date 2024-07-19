@@ -1,6 +1,6 @@
 
 
-const bannersecond = {
+export const bannersecond = {
   bannerLeftImg: "",
   bannerRightImg: "",
   bannerOneImg: "",
@@ -10,7 +10,7 @@ const bannersecond = {
   buttonText: "",
 }
 
-const overview = {
+export const overview = {
   textLeft: false,
   subtitle: "Unlocking Excellence.",
   title: "White Label Development.",
@@ -32,7 +32,7 @@ const overview = {
 
 }
 
-const contentWithImage = {
+export const contentWithImage = {
   subtitle: "ELEVATING WEB DEVELOPMENT",
   title: "Empowering Your Brand, Your Way",
   titleSpan: "",
@@ -58,7 +58,7 @@ const contentWithImage = {
   paddingmedium: false,
 }
 
-const contentWithImage2 = {
+export const contentWithImage2 = {
   subtitle: "Surpassing Milestones",
   title: "Exceeding Expectations",
   titleSpan: "",
@@ -84,7 +84,7 @@ const contentWithImage2 = {
   paddingmedium: false,
 }
 
-const contentWithImage3 = {
+export const contentWithImage3 = {
   subtitle: "Harmonizing Success",
   title: "The Power of Collaboration",
   titleSpan: "",
@@ -110,7 +110,7 @@ const contentWithImage3 = {
   paddingmedium: false,
 }
 
-const contentWithImage4 = {
+export const contentWithImage4 = {
   subtitle: "SUPPORTING YOUR BRAND, OUR CORE COMMITMENT",
   title: "Your Success, Our Priority",
   titleSpan: "",
@@ -136,9 +136,14 @@ const contentWithImage4 = {
   paddingmedium: false,
 }
 
-const contactform = {
+export const contactform = {
   formintrowithImage: false,
   formcontent: true,
 }
 
-export { bannersecond, overview, contentWithImage, contentWithImage2, contentWithImage3, contentWithImage4, contactform };
+export default function abc() {
+  return (
+    <>
+    </>
+  )
+}
