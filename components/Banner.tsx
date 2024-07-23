@@ -6,11 +6,12 @@ interface BannerData {
     subTitle: string;
     mainTitle: string;
     description: string;
+    mainTitleSpan: string;
   };
 }
 
 const Banner: React.FC<BannerData> = ({ data }) => {
-  const { subTitle, mainTitle, description } = data;
+  const { subTitle, mainTitle, mainTitleSpan, description } = data;
   return (
     <section
       className={`banner banner_overlayImg relative overflow-x-hidden bg-darkBlue flex items-center text-white pt-28 pb-10 min-h-[752px]  desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
@@ -36,6 +37,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
           {mainTitle && (
             <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 ">
               {mainTitle}
+              <span className="h3 text-white">{mainTitleSpan}</span>
             </h1>
           )}
           {description && (

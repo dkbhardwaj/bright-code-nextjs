@@ -1,6 +1,7 @@
 export const bannercontent = {
   subTitle: "",
-  mainTitle: "Enhancing College Search Functionality with Algolia: A Case Study on Improved Relevance, Speed, and Personalization",
+  mainTitle: "Enhancing a College’s Search Functionality with Algolia:",
+  mainTitleSpan: " A case study on improved search result relevance, speed, and personalization.",
   description: "",
 };
 export const listWithSocialIcon = {
@@ -28,7 +29,7 @@ export const overview = {
   paragraphText: [
     {
       id: 1,
-      paragraph: "A nationally recognized college in New York faced challenges with its outdated search functionality, which was slow, irrelevant, and lacked personalization and analytics. To address these issues, the college implemented Algolia's advanced search solutions with the help of the Bright Code programmers. The project took one month and involved iterative improvements such as defining searchable attributes, setting custom rankings, and optimizing search requests. The implementation resulted in a more efficient, relevant, and personalized search experience, greatly enhancing user satisfaction and engagement.",
+      paragraph: "A nationally recognized college in New York faced challenges with its outdated search functionality, which was slow, produced irrelevant results, and lacked personalization or analytics. To address these issues, the college implemented Algolia's advanced search solutions with the help of the Bright Code programmers. The project took one month and involved iterative improvements such as defining searchable attributes, setting custom rankings, and optimizing search requests. The implementation resulted in a more efficient, relevant, and personalized search experience, greatly enhancing user satisfaction and engagement.",
     }
   ],
   listItem: [],
@@ -103,7 +104,7 @@ export const contentWithImage = {
     },
     {
       id: 2,
-      paragraph: "The college's previous search functionality faced several critical issues. The most significant challenge was the relevance of search results, as users often encountered irrelevant information, making it difficult to find what they needed. Additionally, the system lacked analytics, preventing the college from gaining insights into user search behavior. There was no capability for personalization, meaning the search experience couldn't be tailored to individual users. Lastly, the old search system was slow, leading to a frustrating user experience and decreased engagement. These issues necessitated a comprehensive overhaul of the search functionality.",
+      paragraph: "The previous search functionality faced several critical issues. The most significant challenge was the relevance of search results, as users often encountered irrelevant information, making it difficult to find what they needed. Additionally, the system lacked analytics, preventing the college from gaining insights into user search behavior. There was no capability for personalization, meaning the search experience couldn't be tailored to individual users. Lastly, the old search system was slow, leading to a frustrating user experience and decreased engagement. These issues necessitated a comprehensive overhaul of the search functionality.",
     },
   ],
   btnUrl: "",

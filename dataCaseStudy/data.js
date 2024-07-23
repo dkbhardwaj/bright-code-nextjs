@@ -1,6 +1,7 @@
 export const bannercontent = {
   subTitle: "CASE STUDY",
   mainTitle: "Taking the Lead on Climate Change Risk",
+  mainTitleSpan: "",
   description: "How a major global insurance company used innovative climate change solutions from Moody’s RMS to measure the impact of physical climate risk on its book of business and get ahead of the curve on climate disclosure reporting.",
 }
 
