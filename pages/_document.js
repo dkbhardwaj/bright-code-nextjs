@@ -25,7 +25,7 @@ class MyDocument extends Document {
           gtag(“js”, new Date());
           gtag(“set”, “developer_id.dZTNiMT”, true);
           gtag(“config”, “UA-254354410-1”, {“anonymize_ip”:true});
-          gtag(“config”, “G-0J63B1FNF9");
+          gtag(“config”, “G-P1LQ3NF157");
           `,
             }}
           />
@@ -48,14 +48,14 @@ class MyDocument extends Document {
           {/* <!-- Google tag (gtag.js) --> */}
           <script
             defer
-            src="https://www.googletagmanager.com/gtag/js?id=AW-11070673099"
+            src="https://www.googletagmanager.com/gtag/js?id=AW-16650844425"
           ></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'AW-11070673099');
+          gtag('config', 'AW-16650844425');
           `,
             }}
           />
