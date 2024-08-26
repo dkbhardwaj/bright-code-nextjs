@@ -1,8 +1,8 @@
 export const bannercontent = {
   subTitle: "",
-  mainTitle: "Enhancing a College’s Search Functionality with Algolia:",
+  mainTitle: "Revolutionizing a College’s Search Functionality with Algolia:",
   mainTitleSpan:
-    " A Success Story on How to Enhance Relevance, Speed, And Personalization.",
+    "A Success Story on How to Enhance Relevance, Speed, And Personalization.",
   description: "",
 };
 export const listWithSocialIcon = {
