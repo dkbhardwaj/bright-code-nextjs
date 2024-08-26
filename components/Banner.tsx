@@ -28,7 +28,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
       </div>
       <div className="container">
         <div
-          className="w-full max-w-[490px] relative z-[5] text-left"
+          className="w-full max-w-[760px] relative z-[5] text-left"
           data-aos="fade-left"
           data-aos-delay="200"
           data-aos-duration="400"
@@ -37,6 +37,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
           {mainTitle && (
             <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 ">
               {mainTitle}
+              </br>
               <span className="h3 text-white">{mainTitleSpan}</span>
             </h1>
           )}
