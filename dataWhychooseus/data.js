@@ -65,7 +65,7 @@ export const overview = {
   maxWidthH5: false,
   paddingLargeTop: false,
   noPaddingBottom: false,
-
+  noPaddingTop: false,
 }
 
 export const contentWithImage2 = {

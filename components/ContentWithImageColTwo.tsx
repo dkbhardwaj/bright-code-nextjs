@@ -69,13 +69,13 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             )}
             {title && (
               <h2
-                className={` font-medium xl-up:text-[45px] text-black mb-[30px] md:mb-[15px] `}
+                className={` font-medium xl-up:text-[45px] text-black mb-[20px] md:mb-[10px] `}
               >
                 {title}
               </h2>
             )}
 
-            <h3>
+            <h3 className="mb-[20px] md:mb-[10px]">
               {titleSpan && (
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   {titleSpan}

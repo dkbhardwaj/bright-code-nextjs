@@ -61,7 +61,7 @@ export const overview = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
-
+  noPaddingTop: false,
 }
 
 export const contentWithImage = {
@@ -104,6 +104,7 @@ export const overview2 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
+  noPaddingTop: false,
 }
 
 export const introwithcards = {
@@ -149,6 +150,7 @@ export const overview3 = {
   maxWidthH5: false,
   paddingLargeTop: false,
   noPaddingBottom: true,
+  noPaddingTop: false,
 }
 
 export const contentWithImage2 = {
@@ -204,6 +206,7 @@ export const overview4 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
+  noPaddingTop: false,
 }
 
 export const colThreeCards = {

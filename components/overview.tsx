@@ -11,6 +11,7 @@ interface OverviewProps {
     bgWhite: boolean;
     maxWidthH5: boolean;
     noPaddingBottom: boolean;
+    noPaddingTop: boolean;
     paddingLargeTop: boolean;
     paragraphText: {
       id: number;
@@ -40,6 +41,7 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
     bgWhite,
     maxWidthH5,
     noPaddingBottom,
+    noPaddingTop,
     paddingLargeTop,
     listItem,
   } = data;
@@ -48,8 +50,9 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
     bgExtraLightGray && "bg-extraLightGray",
     bgWhite && "bg-white",
     noPaddingBottom && "no-padding-bottom",
+    noPaddingTop && "no-padding-top",
     paddingLargeTop && "padding-large-top",
-    "overview py-20 md:py-12 overflow-x-hidden",
+    "overview py-20 md:py-12 overflow-x-hidden",  
   ]
     .filter(Boolean)
     .join(" ");
@@ -74,7 +77,7 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
               </h6>
             )}
             {title && (
-              <h2 className={` font-medium text-black mb-[38px]  md:mb-4`}>
+              <h2 className={` font-medium text-black mb-[38px] md:mb-4`}>
                 {titleSpan && (
                   <span className="text_gradient text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
                     {titleSpan}
@@ -85,11 +88,9 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
             )}
             {titleSpan && (
               <h2
-                className={`  text-[45px]  mb-[50px] lg:mb-[36px] md:!mb-6  desktop:text-[36px] tablet:text-[33px] md:text-[30px]`}
+                className={` ${!textLeft && " text-center "}  text-[45px]  mb-[50px] lg:mb-[36px] md:!mb-6  desktop:text-[36px] tablet:text-[33px] md:text-[30px]`}
               >
-                <span className=" text_gradient2 text-[45px]  desktop:text-[36px] tablet:text-[33px] md:text-[30px] ">
-                  {titleSpan}
-                </span>
+                <span className=" text_gradient2 text-[45px]  desktop:text-[36px] tablet:text-[33px] md:text-[30px] "  dangerouslySetInnerHTML={{ __html: titleSpan }} />
                 {titleWithSpan}
               </h2>
             )}

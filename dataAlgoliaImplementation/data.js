@@ -1,7 +1,8 @@
 export const bannercontent = {
   subTitle: "",
   mainTitle: "Enhancing a College’s Search Functionality with Algolia:",
-  mainTitleSpan: " A case study on improved search result relevance, speed, and personalization.",
+  mainTitleSpan:
+    " A Success Story on How to Enhance Relevance, Speed, And Personalization.",
   description: "",
 };
 export const listWithSocialIcon = {
@@ -17,20 +18,21 @@ export const listWithSocialIcon = {
     {
       id: 3,
       listcontent: "15% decrease in bounce rates",
-    }
-  ]
-}
+    },
+  ],
+};
 export const overview = {
   textLeft: false,
-  subtitle: "Overview",
+  subtitle: "Summary",
   title: "",
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [
     {
       id: 1,
-      paragraph: "A nationally recognized college in New York faced challenges with its outdated search functionality, which was slow, produced irrelevant results, and lacked personalization or analytics. To address these issues, the college implemented Algolia's advanced search solutions with the help of the Bright Code programmers. The project took one month and involved iterative improvements such as defining searchable attributes, setting custom rankings, and optimizing search requests. The implementation resulted in a more efficient, relevant, and personalized search experience, greatly enhancing user satisfaction and engagement.",
-    }
+      paragraph:
+        "A well-established educational institution in the U.S. was facing challenges with its outdated search functionality, which hindered users from efficiently accessing the website's search and Curriculum Program Finder. The system was slow, delivered irrelevant results, and lacked personalization and analytics, leading to a poor user experience. To resolve these issues, the college partnered with Bright Code programmers to implement Algolia's advanced search solutions. The project took just one month to implement and included iterative improvements such as defining searchable attributes, creating custom rankings, and optimizing search requests. This resulted in a faster, more personalized, and relevant search experience, significantly boosting user engagement and satisfaction.",
+    },
   ],
   listItem: [],
   paragraphText2: [],
@@ -39,32 +41,42 @@ export const overview = {
   maxWidthH5: false,
   paddingLargeTop: false,
   noPaddingBottom: false,
-
+  noPaddingTop: false,
+  
 };
 export const imagewithlist = {
-  title: "Key Takeaways",
+  title: "Key Outcomes",
   listItem: [
     {
       id: 1,
-      listContent: "<b>Program Finder:</b> Helps students easily find and filter through the college's offered programs.",
+      listContent: "<b><1s Average Search Speed </b>",
     },
     {
       id: 2,
-      listContent: "<b>Site-Wide Search:</b> Enhanced search functionality allows visitors to quickly access the information they need.",
+      listContent: "<b>+25% Page Views per Session</b>",
     },
-  ]
+    {
+      id: 3,
+      listContent: "<b>+40% Successful Search Outcomes</b>",
+    },
+    {
+      id: 4,
+      listContent: "<b>-15% Bounce Rates</b>",
+    },
+  ],
 };
 export const overview2 = {
   textLeft: false,
-  subtitle: "The Challenge",
-  title: "The College faced several issues with their previous search functionality:",
+  subtitle: "Challenge",
+  title:
+    "The college's outdated search system faced several problems, prompting the need for a complete overhaul.",
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [
     {
       id: 1,
       paragraph: "",
-    }
+    },
   ],
   listItem: [],
   paragraphText2: [],
@@ -73,7 +85,8 @@ export const overview2 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
-
+  noPaddingTop: false,
+  
 };
 export const contentWithImage = {
   subtitle: "",
@@ -82,19 +95,23 @@ export const contentWithImage = {
   listItem: [
     {
       id: 1,
-      listContent: "<b>Relevance of Search Results:</b> The results were often irrelevant, making it difficult for users to find the information they needed.",
+      listContent:
+        "<b>Search Relevance:</b>Users had a hard time finding the information they were looking for because the results were often irrelevant.",
     },
     {
       id: 2,
-      listContent: "<b>No Analytics for Search Terms:</b> The college lacked insights into what users were searching for, hindering their ability to improve the search experience.",
+      listContent:
+        "<b>Lack of Analytics:</b>  The college could not improve the search experience because they lacked relevant insights about what people were looking for.",
     },
     {
       id: 3,
-      listContent: "<b>No Personalization:</b> The search could not be tailored to individual users' needs.",
+      listContent:
+        "<b>Lack of Personalization:</b>  The search could not be customized to the specific requirements of individual users.",
     },
     {
       id: 4,
-      listContent: "<b>Slow Performance:</b> The old search system was slow, leading to a poor user experience.",
+      listContent:
+        "<b>Slow Performance:</b>  The old search system was slow, leading to a frustrating user experience.",
     },
   ],
   paragraphText: [
@@ -104,7 +121,8 @@ export const contentWithImage = {
     },
     {
       id: 2,
-      paragraph: "The previous search functionality faced several critical issues. The most significant challenge was the relevance of search results, as users often encountered irrelevant information, making it difficult to find what they needed. Additionally, the system lacked analytics, preventing the college from gaining insights into user search behavior. There was no capability for personalization, meaning the search experience couldn't be tailored to individual users. Lastly, the old search system was slow, leading to a frustrating user experience and decreased engagement. These issues necessitated a comprehensive overhaul of the search functionality.",
+      paragraph:
+        "",
     },
   ],
   btnUrl: "",
@@ -116,11 +134,13 @@ export const contentWithImage = {
   animatImage: "fade-left",
   paddinglargebottom: false,
   paddingmedium: false,
-}
+};
+
 export const overview3 = {
   textLeft: false,
-  subtitle: "The Solution",
-  title: "Why was Algolia chosen as the solution for the college's search functionality needs?",
+  subtitle: "Solution",
+  title:
+    "After careful evaluation, Algolia was chosen as it met all of the college's search functionality needs.",
   titleSpan: "",
   titleWithSpan: "",
   paragraphText: [],
@@ -131,7 +151,9 @@ export const overview3 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
-}
+  
+  noPaddingTop: false,
+};
 export const contentWithImage2 = {
   subtitle: "",
   title: "",
@@ -139,23 +161,28 @@ export const contentWithImage2 = {
   listItem: [
     {
       id: 1,
-      listContent: "<b>High Relevance:</b> Algolia's algorithms ensure relevant search results, addressing previous irrelevance issues.",
+      listContent:
+        "<b>High Search Relevance:</b> Algolia's advanced algorithms are powered by AI, ensuring relevant search results while addressing previous irrelevance issues.",
     },
     {
       id: 2,
-      listContent: "<b>Analytics Capabilities:</b> Robust analytics track and understand search terms, refining the search experience.",
+      listContent:
+        "<b>Analytics:</b> Powerful analytics are used to monitor and understand search terms, improving the search process.",
     },
     {
       id: 3,
-      listContent: "<b>Personalization:</b> Supports personalized search experiences tailored to individual users' needs.",
+      listContent:
+        "<b>Personalization:</b>  The solution provides personalized search experiences based on user needs.",
     },
     {
       id: 4,
-      listContent: "<b>Speed:</b> Known for fast search performance, significantly enhancing user experience.",
+      listContent:
+        "<b>Speed:</b>  Fast search performance improves user experience.",
     },
     {
       id: 5,
-      listContent: "<b>Scalability and Flexibility:</b> Scalable solutions that integrate seamlessly with existing systems.",
+      listContent:
+        "<b>Scalability and Flexibility:</b>  The solution is scalable and flexible, integrating seamlessly with existing systems.",
     },
   ],
   paragraphText: [],
@@ -168,23 +195,17 @@ export const contentWithImage2 = {
   animatImage: "fade-right",
   paddinglargebottom: false,
   paddingmedium: false,
-}
+};
 export const contentWithImage3 = {
   subtitle: "",
-  title: "Implementation Process:",
-  titleSpan: "",
+  title: "Implementation Process",
+  titleSpan:
+    "The new search implementation took just one month and used an iterative approach.",
   listItem: [
     {
       id: 1,
-      listContent: "<b>Duration:</b> The implementation took 1 month.",
-    },
-    {
-      id: 2,
-      listContent: "<b>Methodology:</b> An iterative approach was used.",
-    },
-    {
-      id: 3,
-      listContent: "<b>Steps Involved:</b> <ul><li>Defined searchable attributes.</li><li>Set up custom ranking with business metrics.</li><li>Added necessary synonyms and removed stop words.</li><li>Created rules for specific search phrases to ensure accurate results.</li><li>Optimized search requests by implementing a 3-second delay on typing to search.</li></ul>",
+      listContent:
+        "<b>Steps Involved:</b> <ul><li>Defining searchable attributes.</li><li>Setting up custom ranking with business metrics.</li><li>Adding necessary synonyms and removing stop words.</li><li>Creating rules for specific search phrases to ensure accurate results.</li><li>Optimizing search requests by implementing a 3-second delay on typing to search.</li></ul>",
     },
   ],
   paragraphText: [],
@@ -196,67 +217,38 @@ export const contentWithImage3 = {
   animatContent: "fade-right",
   animatImage: "fade-left",
   paddinglargebottom: false,
-  paddingmedium: false,
-}
+  paddingmedium: true,
+};
 export const overview4 = {
   textLeft: true,
   subtitle: "",
   title: "",
-  titleSpan: "The outcome - ",
-  titleWithSpan: "",
-  paragraphText: [
-    {
-      id: 1,
-      paragraph: "The implementation of Algolia's search functionality transformed the college's search experience, yielding great results.",
-    },
-    {
-      id: 2,
-      paragraph: "Search query response times dropped dramatically, with average speeds now under one second. This improvement was reflected in user engagement metrics, with a 25% increase in page views per session and a 15% decrease in bounce rates. ",
-    },
-    {
-      id: 3,
-      paragraph: "The relevance of search results improved significantly, leading to a 40% increase in successful search outcomes. Additionally, the college gained valuable insights through enhanced analytics, allowing for ongoing refinements and more targeted content strategies.",
-    },
-    {
-      id: 4,
-      paragraph: "Personalization features further boosted user satisfaction, particularly among prospective students using the new Program Finder. ",
-    },
-    {
-      id: 5,
-      paragraph: "Overall, Algolia provided a robust, scalable search solution that significantly enhanced the college's online presence and user experience.",
-    },
-    {
-      id: 6,
-      paragraph: "Key measurable outcomes included: ",
-    },
-
-  ],
+  titleSpan: "Outcome <br>",
+  titleWithSpan:
+    " Enhanced the college's search experience by implementing Algolia's functionality, delivering outstanding results.",
+  paragraphText: [],
   listItem: [
     {
       id: 1,
-      listContent: "<b>Search Speed:</b> Search query response times improved dramatically, with average search speeds decreasing from several seconds to under one second.",
+      listContent:
+        "<b>Quicker response times.</b> Search query response times dropped dramatically, with average speeds now <b>under one second</b>. This improvement was reflected in user engagement metrics, with a <b>25% increase in page views per session</b> and a <b>15% decrease in bounce rates </b>.",
     },
     {
       id: 2,
-      listContent: "<b>User Engagement:</b> There was a notable increase in user engagement metrics. Page views per session increased by 25%, and the bounce rate decreased by 15%.",
+      listContent:
+        "<b>Improved relevance.</b> The relevance of search results improved significantly, leading to a 40% increase in successful search outcomes. Additionally, the college gained valuable insights through enhanced analytics, allowing for ongoing refinements and more targeted content strategies.",
     },
     {
       id: 3,
-      listContent: "<b>Search Relevance:</b> The relevance of search results improved, as indicated by a 40% increase in successful search outcomes (users finding what they were looking for on the first try).",
-    },
-    {
-      id: 4,
-      listContent: "<b>Analytics and Insights:</b> The college gained valuable insights into user search behavior, enabling continuous improvements and more targeted content strategies.",
-    },
-    {
-      id: 5,
-      listContent: "<b>Personalization:</b> Personalized search experiences enhanced user satisfaction, particularly among prospective students using the Program Finder.",
+      listContent:
+        "<b>Improved Customization.</b> Personalization features increased user satisfaction, especially among prospective students using the new Program Finder.",
     },
   ],
   paragraphText2: [
     {
       id: 1,
-      paragraph: "Overall, the implementation of Algolia not only resolved the previous issues but also provided a robust, scalable search solution that significantly enhanced the college's online presence and user experience.",
+      paragraph:
+        "Overall, Algolia delivered a strong, scalable search solution that not only solved the initial issue but also greatly improved the college's online presence and user experience.",
     },
   ],
   bgExtraLightGray: false,
@@ -264,16 +256,46 @@ export const overview4 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: false,
-}
+  noPaddingTop: true,
+};
+export const overview5 = {
+  textLeft: true,
+  subtitle: "",
+  title: "",
+  titleSpan: "Objectives <br>",
+  titleWithSpan:
+    "The client requested a scalable yet reliable search functionality to enhance the user experience.",
+    paragraphText: [],
+  listItem: [
+    {
+      id: 1,
+      listContent:
+        "<b>Enhanced Search Functionality.</b> A powerful and personalized search function that delivers relevant information.",
+    },
+    {
+      id: 2,
+      listContent:
+        "<b>Improved user experience.</b> Quick search results, low bounce rates.",
+    },
+    {
+      id: 3,
+      listContent:
+        "<b>Fast Implementation.</b> To minimize disruptions for users, students and staff.",
+    },
+  ],
+  paragraphText2: [],
+  bgExtraLightGray: false,
+  bgWhite: true,
+  maxWidthH5: false,
+  paddingLargeTop: false,
+  noPaddingBottom: true,
+  noPaddingTop: false,
+};
 export const contactform = {
   formintrowithImage: false,
   formcontent: true,
-}
-
+};
 
 export default function abc() {
-  return (
-    <>
-    </>
-  )
+  return <></>;
 }

@@ -9,6 +9,7 @@ import {
   overview,
   contentWithImage,
   overview2,
+  overview5,
   overview3,
   contentWithImage2,
   contentWithImage3,
@@ -32,11 +33,11 @@ const AlgoliaImplementation: React.FC = () => {
     <>
       <Banner data={bannercontent} />
       <ListWithSocialicon data={listWithSocialIcon} />
-
       <Overview data={overview} />
       <ImageWithList data={imagewithlist} />
       <Overview data={overview2} />
       <ContentWithImageColTwo data={contentWithImage} />
+      <Overview data={overview5} />
       <Overview data={overview3} />
       <ContentWithImageColTwo data={contentWithImage2} />
       <ContentWithImageColTwo data={contentWithImage3} />

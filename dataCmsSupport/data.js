@@ -33,6 +33,7 @@ export const overview = {
   maxWidthH5: true,
   paddingLargeTop: false,
   noPaddingBottom: false,
+  noPaddingTop: false,
 }
 
 export const contentWithImage = {
