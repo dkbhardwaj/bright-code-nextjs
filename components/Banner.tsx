@@ -28,7 +28,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
       </div>
       <div className="container">
         <div
-          className="w-full max-w-[490px] relative z-[5] text-left"
+          className="w-full relative z-[5] text-left"
           data-aos="fade-left"
           data-aos-delay="200"
           data-aos-duration="400"
