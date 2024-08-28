@@ -41,8 +41,7 @@ export const overview = {
   maxWidthH5: false,
   paddingLargeTop: false,
   noPaddingBottom: false,
-  noPaddingTop: false,
-  
+  noPaddingTop: true,
 };
 export const imagewithlist = {
   title: "Key Outcomes",
@@ -86,7 +85,6 @@ export const overview2 = {
   paddingLargeTop: true,
   noPaddingBottom: true,
   noPaddingTop: false,
-  
 };
 export const contentWithImage = {
   subtitle: "",
@@ -121,8 +119,7 @@ export const contentWithImage = {
     },
     {
       id: 2,
-      paragraph:
-        "",
+      paragraph: "",
     },
   ],
   btnUrl: "",
@@ -151,7 +148,7 @@ export const overview3 = {
   maxWidthH5: false,
   paddingLargeTop: true,
   noPaddingBottom: true,
-  
+
   noPaddingTop: false,
 };
 export const contentWithImage2 = {
@@ -265,7 +262,7 @@ export const overview5 = {
   titleSpan: "Objectives <br>",
   titleWithSpan:
     "The client requested a scalable yet reliable search functionality to enhance the user experience.",
-    paragraphText: [],
+  paragraphText: [],
   listItem: [
     {
       id: 1,

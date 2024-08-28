@@ -35,10 +35,12 @@ const Banner: React.FC<BannerData> = ({ data }) => {
         >
           {subTitle && <h6 className=" text-white mb-2 ">{subTitle}</h6>}
           {mainTitle && (
-            <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white mb-[30px]  lg:mb-5 ">
+            <>
+            <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white ">
               {mainTitle}
-              <span className="h3 text-white">{mainTitleSpan}</span>
             </h1>
+             <span className="h3 text-white inline-block mb-[30px] mt-[10px] ">{mainTitleSpan}</span>
+            </>
           )}
           {description && (
             <p
