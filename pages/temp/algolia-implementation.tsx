@@ -31,7 +31,7 @@ const ContentWithImageColTwo = dynamic(
 const AlgoliaImplementation: React.FC = () => {
   return (
     <>
-      <Banner data={bannercontent} />
+      {/* <Banner data={bannercontent} /> */}
       <ListWithSocialicon data={listWithSocialIcon} />
       <Overview data={overview} />
       <ImageWithList data={imagewithlist} />

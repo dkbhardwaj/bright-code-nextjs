@@ -41,7 +41,7 @@ const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
 const CaseStudy: React.FC = () => {
   return (
     <>
-      <Banner data={bannercontent} />
+      {/* <Banner data={bannercontent} /> */}
 
       <ListWithSocialicon data={listWithSocialIcon} />
 
