@@ -7,6 +7,7 @@ interface BannerData {
     title: string;
     mainTitleSpan: string;
     description: string;
+    eyebrowText: string;
     backgroundImage: {
       fields: {
         file: {
@@ -18,7 +19,7 @@ interface BannerData {
 }
 
 const Banner: React.FC<BannerData> = ({ data }) => {
-  const { subTitle, title, backgroundImage, description,mainTitleSpan } = data;
+  const { subTitle, title, backgroundImage, description,eyebrowText } = data;
   
   return (
     <section
@@ -41,7 +42,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
           data-aos-delay="200"
           data-aos-duration="400"
         >
-          {/* {title && <h6 className=" text-white mb-2 ">{title}</h6>} */}
+          {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
           {title && (
             <>
             <h1 className="header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white ">
