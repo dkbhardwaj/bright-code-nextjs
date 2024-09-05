@@ -10,15 +10,12 @@ import {
 
 interface ListWithSocialIconData {
   data: {
-    listItem: {
-      id: number;
-      listcontent: string;
-    }[];
+    markdown: string;
   };
 }
 
 const ListWithSocialicon: React.FC<ListWithSocialIconData> = ({ data }) => {
-  const { listItem } = data;
+  const { markdown } = data;
 
   // const router = useRouter();
   // const baseUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -39,19 +36,8 @@ const ListWithSocialicon: React.FC<ListWithSocialIconData> = ({ data }) => {
     <section className="list-with-social-icon relative w-full py-[106px] lg:py-20 md:!py-12 ">
       <div className="container">
         <div className="list-with-icon-content relative w-full flex flex-wrap md:block ">
-          {listItem && (
-            <div className="list-content w-[calc(100%-265px)] md:w-full md:mb-5 ">
-              <ul className=" relative w-[calc(100%+20px)] ml-[-10px] flex flex-wrap pr-3 xl:pr-5 xl:block xl:w-full xl:ml-0 md:pr-0 ">
-                {listItem.map((item) => (
-                  <li
-                    className=' relative w-[calc(33.33%-20px)] mx-[10px] mb-5 text-[20px] leading-[28px] font-medium text-black pl-[46px] before:content-[""] before:absolute before:top-0 before:left-0 before:w-[30px] before:h-[30px] before:rounded-[50%] before:bg-[url("/case-study/check-icon-2.svg")] before:bg-no-repeat before:bg-cover xl:w-full xl:mx-0 xl:mb-4 lg:text-[18px] lg:before:w-[25px] lg:before:h-[25px] sm:!text-[16px] sm:!before:w-[20px] sm:!before:h-[20px] sm:pl-[34px] sm:before:top-[2px] '
-                    key={item.id}
-                  >
-                    {item.listcontent}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {markdown && (
+            <div className="list-content w-[calc(100%-265px)] md:w-full md:mb-5 " dangerouslySetInnerHTML={{ __html: markdown }}/>
           )}
           <div className="social-icon-content relative w-full max-w-[265px] h-fit rounded-[20px] bg-[#f6eeff] py-[28px] px-[36px] flex items-center justify-between md:py-[22px] md:px-[30px] ">
             <span className=" text-[15px] font-normal leading-[21px] text-black ">

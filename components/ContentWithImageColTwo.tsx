@@ -4,45 +4,43 @@ import Link from "next/link";
 
 interface ContentWithImageProps {
   data: {
-    subtitle: string;
+    subTitle: string;
     title: string;
-    titleSpan: string;
+    eyebrowText: string;
     btnUrl: string;
     btnText: string;
-    imageUrl: string;
-    rowReverse: boolean;
+    foregroundImage: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
+    imageOnLeft: boolean;
     featuredClass: boolean;
     animatContent: string;
     animatImage: string;
     paddinglargebottom: boolean;
     paddingmedium: boolean;
-    listItem: {
-      id: number;
-      listContent: string;
-    }[];
-    paragraphText: {
-      id: number;
-      paragraph: string;
-    }[];
+    markdown: string;
   };
 }
 
 const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
   const {
-    subtitle,
+    subTitle,
     title,
-    titleSpan,
-    paragraphText,
+    eyebrowText,
+    markdown,
     btnUrl,
     btnText,
-    imageUrl,
-    rowReverse,
+    foregroundImage,
+    imageOnLeft,
     featuredClass,
     animatContent,
     animatImage,
     paddinglargebottom,
     paddingmedium,
-    listItem,
   } = data;
   return (
     <section
@@ -52,7 +50,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     >
       <div className="container">
         <div
-          className={`${rowReverse ? "flex-row-reverse" : ""} ${
+          className={`${imageOnLeft ? "flex-row-reverse featured" : ""} ${
             featuredClass ? "featured" : ""
           } w-mainRow -ml-2.5 py-16 flex  items-center z-1 relative md:flex-wrap md:w-full md:ml-0 md:py-12`}
         >
@@ -62,9 +60,9 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             data-aos-delay="400"
             data-aos-duration="500"
           >
-            {subtitle && (
+            {eyebrowText && (
               <h6 className={` text-[#8000FF] uppercase font-normal`}>
-                {subtitle}
+                {eyebrowText}
               </h6>
             )}
             {title && (
@@ -76,31 +74,35 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             )}
 
             <h3 className="mb-[20px] md:mb-[10px]">
-              {titleSpan && (
+              {subTitle && (
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
-                  {titleSpan}
+                  {subTitle}
                 </span>
               )}
             </h3>
-            {listItem && (
-              <ul className=" list-none relative w-full block ">
-                {listItem.map((item, index) => (
-                  <li
-                    className=" font-light leading-[28px] "
-                    key={index}
-                    dangerouslySetInnerHTML={{ __html: item.listContent }}
-                  />
-                ))}
-              </ul>
+            {markdown && (
+              <div
+              className="leading-[28px] "
+              dangerouslySetInnerHTML={{ __html: markdown }}
+              />
+              // <ul className=" list-none relative w-full block ">
+              //   {listItem.map((item, index) => (
+              //     <li
+              //       className=" font-light leading-[28px] "
+              //       key={index}
+              //       dangerouslySetInnerHTML={{ __html: item.listContent }}
+              //     />
+              //   ))}
+              // </ul>
             )}
-            {paragraphText &&
+            {/* {paragraphText &&
               paragraphText.map((item, index) => (
                 <p
                   className="mt-5 text-black"
                   key={index}
                   dangerouslySetInnerHTML={{ __html: item.paragraph }}
                 />
-              ))}
+              ))} */}
             {btnText && (
               <Link
                 href={btnUrl}
@@ -118,7 +120,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               data-aos-duration="500"
             >
               <Image
-                src={imageUrl}
+                src={`https:${foregroundImage?.fields?.file?.url}`}
                 alt="img"
                 // width={600}
                 // height={500}

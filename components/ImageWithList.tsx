@@ -3,15 +3,12 @@ import React from "react";
 interface ImageWithListData {
   data: {
     title: string;
-    listItem: {
-      id: number;
-      listContent: string;
-    }[];
+    markdown: string;
   };
 }
 
 const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
-  const { title, listItem } = data;
+  const { title, markdown } = data;
   return (
     <section className=" image-with-list relative w-full overflow-hidden ">
       <div className="container">
@@ -27,16 +24,17 @@ const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
                 {title}
               </h2>
             )}
-            {listItem && (
-              <ul className=" list-none relative w-full block pl-[25px] ">
-                {listItem.map((item, index) => (
-                  <li
-                    className=" font-light leading-[28px] "
-                    key={index}
-                    dangerouslySetInnerHTML={{ __html: item.listContent }}
-                  />
-                ))}
-              </ul>
+            {markdown && (
+              <div className="relative pl-[25px]" dangerouslySetInnerHTML={{ __html: markdown }}/>
+              // <ul> className=" list-none relative w-full block  ">
+              //   {listItem.map((item, index) => (
+              //     <li
+              //       className=" font-light leading-[28px] "
+              //       key={index}
+              //       dangerouslySetInnerHTML={{ __html: item.listContent }}
+              //     />
+              //   ))}
+              // </ul>
             )}
           </div>
         </div>

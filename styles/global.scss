@@ -460,3 +460,76 @@ span.title {
     }
   }
 }
+
+
+
+.list-with-social-icon ul {
+  position: relative;
+  width: calc(100% + 20px);
+  margin-left: -10px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 3rem; /* 12px */
+  /* xl breakpoint */
+  @media (min-width: 1280px) {
+    padding-right: 5rem; /* 20px */
+    display: block;
+    width: 100%;
+    margin-left: 0;
+  }
+  /* md breakpoint */
+  @media (min-width: 768px) {
+    padding-right: 0;
+  }
+}
+
+.list-with-social-icon ul li {
+  position: relative;
+  width: calc(33.33% - 20px);
+  margin: 0 10px 5px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500; /* Medium */
+  color: black;
+  padding-left: 46px;
+  
+  /* Before pseudo-element */
+    &::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url("/case-study/check-icon-2.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+   }
+  /* xl breakpoint */
+  @media (min-width: 1280px) {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 18px;
+    background-size: 25px 25px;
+  }
+  
+  /* sm breakpoint */
+  @media (max-width: 639px) {
+    font-size: 16px;
+    background-size: 20px 20px;
+    padding-left: 34px;
+    top: 2px;
+  }
+}
+
+.intro{ 
+  li{
+  list-style: disc;
+ }
+ ul{
+    padding-left: 25px;
+    margin-top: 20px;
+ }
+}

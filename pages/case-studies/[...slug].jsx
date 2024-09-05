@@ -1,5 +1,4 @@
 import React from 'react'
-import {client} from "../../lib/contentful/client"
 import {fetchEntryBySlug} from "../../lib/contentful/pageData"
 // import { useRouter } fr om "next/router";
 import PageBuilder from '../../components/PageBuilder'
@@ -8,8 +7,6 @@ export default function CaseStudies({entry,slug}) {
   
 
   
-
-  console.log(entry)
   return (
     <>
       <PageBuilder pageComponents={entry} />
