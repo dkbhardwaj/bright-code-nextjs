@@ -17,7 +17,7 @@ export default function CaseStudies({entry,slug}) {
 
 export async function getServerSideProps(context) {
  
-  let slug = `/${context.query.slug}`
+  let slug = `${context.query.slug}`
   // // Fetch data from external API
   const entry = await fetchEntryBySlug(slug, "caseStudies");
 

@@ -99,7 +99,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
           {description &&
             // description.map((text, index) => (
               <h5
-                className={`text-black w-full max-w-[960px]  mt-5 ${!leftAlign && 'mx-auto'}`}
+                className={`!text-black w-full max-w-[960px]  mt-5 ${!leftAlign && 'mx-auto'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             // ))

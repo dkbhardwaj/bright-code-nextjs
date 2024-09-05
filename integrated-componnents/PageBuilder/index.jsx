@@ -14,7 +14,7 @@ export default function PageBuilder({pageComponents}) {
 
     let bladeList = pageBuilder(pageComponents.fields.section);
    
-    console.log(pageComponents.fields.section)
+    // console.log(pageComponents.fields.section)
     return (
 			<>
             {bladeList.map((blade, index) => {
