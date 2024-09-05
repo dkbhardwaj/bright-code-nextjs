@@ -74,20 +74,20 @@ const WhyChooseUs: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      <ContentWithImageColTwo data={contentWithImage} />
+      {/* <ContentWithImageColTwo data={contentWithImage} /> */}
 
       <Overview data={overview} />
 
-      <ContentWithImageColTwo data={contentWithImage2} />
+      {/* <ContentWithImageColTwo data={contentWithImage2} />
 
       <ContentWithImageColTwo data={contentWithImage3} />
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContentWithImageColTwo data={contentWithImage5} />
+      <ContentWithImageColTwo data={contentWithImage5} /> */}
 
       <div className="section_bgImage bg-darkBlue smallBgImage">
-        <ContactForm data={contactform} />
+        {/* <ContactForm data={contactform} /> */}
       </div>
     </>
   );

@@ -155,7 +155,7 @@ const DedicatedTeam: React.FC = () => {
 
       <Overview data={overview} />
 
-      <ContentWithImageColTwo data={contentWithImage} />
+      {/* <ContentWithImageColTwo data={contentWithImage} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
 
@@ -163,7 +163,7 @@ const DedicatedTeam: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm data={contactform} />
+      <ContactForm data={contactform} /> */}
     </>
   );
 };

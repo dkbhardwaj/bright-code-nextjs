@@ -32,18 +32,18 @@ const AlgoliaImplementation: React.FC = () => {
   return (
     <>
       {/* <Banner data={bannercontent} /> */}
-      <ListWithSocialicon data={listWithSocialIcon} />
+      {/* <ListWithSocialicon data={listWithSocialIcon} />
       <Overview data={overview} />
       <ImageWithList data={imagewithlist} />
       <Overview data={overview2} />
-      <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} /> */}
       <Overview data={overview5} />
       <Overview data={overview3} />
-      <ContentWithImageColTwo data={contentWithImage2} />
+      {/* <ContentWithImageColTwo data={contentWithImage2} />
       <ContentWithImageColTwo data={contentWithImage3} />
       <Overview data={overview4} />
 
-      <ContactForm data={contactform} />
+      <ContactForm data={contactform} /> */}
     </>
   );
 };

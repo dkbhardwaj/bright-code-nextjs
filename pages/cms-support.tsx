@@ -156,7 +156,7 @@ const CmsSupport: React.FC = () => {
       />
 
       <Overview data={overview} />
-
+{/* 
       <ContentWithImageColTwo data={contentWithImage} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
@@ -165,9 +165,9 @@ const CmsSupport: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContentWithImageColTwo data={contentWithImage5} />
+      <ContentWithImageColTwo data={contentWithImage5} /> */}
 
-      <ContactForm data={contactform} />
+      {/* <ContactForm data={contactform} /> */}
     </>
   );
 };

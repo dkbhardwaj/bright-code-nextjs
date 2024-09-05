@@ -177,7 +177,7 @@ const WhiteLabelDevelopment: React.FC = () => {
       />
 
       <Overview data={overview} />
-
+{/* 
       <ContentWithImageColTwo data={contentWithImage} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
@@ -186,7 +186,7 @@ const WhiteLabelDevelopment: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm data={contactform} />
+      <ContactForm data={contactform} /> */}
     </>
   );
 };
