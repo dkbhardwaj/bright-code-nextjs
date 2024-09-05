@@ -180,7 +180,7 @@ const CmsImplementation: React.FC = () => {
 
       <Overview data={overview} />
 
-      {/* <ContentWithImageColTwo data={contentWithImage} />
+      <ContentWithImageColTwo data={contentWithImage} />
 
       <ContentWithImageColTwo data={contentWithImage2} />
 
@@ -190,7 +190,7 @@ const CmsImplementation: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage5} />
 
-      <ContactForm data={contactform} /> */}
+      <ContactForm data={contactform} />
     </>
   );
 };

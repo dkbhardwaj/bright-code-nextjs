@@ -6,12 +6,45 @@ export const bannercontent = {
 }
 
 export const listWithSocialIcon = {
-  markdown: "<ul> <li>Better Climate Governance</li> <li>Satisfied Investor And Stakeholder Concerns</li> <li>Equipped to Meet Climate-Related Disclosure Requirements</li></ul>"
+  listItem: [
+    {
+      id: 1,
+      listcontent: "Better Climate Governance",
+    },
+    {
+      id: 2,
+      listcontent: "Satisfied Investor And Stakeholder Concerns",
+    },
+    {
+      id: 3,
+      listcontent: "Equipped to Meet Climate-Related Disclosure Requirements",
+    }
+  ]
 }
 export const imagewithlist = {
   title: "Key Takeaways",
-  markdown: "<ul> <li>Better Climate Governance</li> <li>Insurer is well-positioned to meet climate-related disclosure requirements</li> <li>Insurer is well-positioned to meet climate-related disclosure requirements</li> <li>Project expanded to encompass different perils and regions</li></ul>"
-  
+  listItem: [
+    {
+      id: 1,
+      listContent: "Better climate governance",
+    },
+    {
+      id: 2,
+      listContent: "Insurer is well-positioned to meet climate-related disclosure requirements",
+    },
+    {
+      id: 3,
+      listContent: "Insurer demonstrated leadership and satisfied investor and stakeholder concerns",
+    },
+    {
+      id: 4,
+      listContent: "Project expanded to encompass different perils and regions",
+    },
+    {
+      id: 5,
+      listContent: "Factors unrelated to climate changes, for example increases in exposure, are likely to be a more meaningful driver of near-term risk",
+    }
+  ]
 }
 
 export const overview = {
@@ -219,12 +252,8 @@ export const colThreeCards = {
 }
 
 export const contactform = {
-  fullWidth: "", 
-  title: "Let's talk about your project", 
-  subtitle: "Fill in the form and our experts will reach out to you.", 
-  eyebrowTextts: "GET IN TOUCH",
-  // formintrowithImage: false,
-  // formcontent: true,
+  formintrowithImage: false,
+  formcontent: true,
 }
 
 export default function abc() {

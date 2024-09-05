@@ -82,7 +82,7 @@ const Home: React.FC = () => {
       />
       <HeroBanner data={heroBanner} />
 
-      {/* <Introduction data={intro} />
+      <Introduction data={intro} />
 
       <Introduction data={intro2} />
 
@@ -92,10 +92,10 @@ const Home: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage3} />
 
-      <ContentWithImageColTwo data={contentWithImage4} /> */}
+      <ContentWithImageColTwo data={contentWithImage4} />
 
       <div className="section_bgImage bg-darkBlue">
-        {/* <Introduction data={intro3} /> */}
+        <Introduction data={intro3} />
 
         <ColFourCards data={colFourCard} />
 

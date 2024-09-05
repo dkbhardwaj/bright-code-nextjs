@@ -7,12 +7,15 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 interface ContactFormProps {
   data: {
     formintrowithImage: boolean;
-    formcontent: boolean;
+    fullWidth: boolean;
+    title: string;
+    subtitle: string;
+    eyebrowText: string;
   };
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
-  const { formintrowithImage, formcontent } = data;
+  const { formintrowithImage, fullWidth, title, subtitle, eyebrowText } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
@@ -54,15 +57,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                 <div
                   className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6 `}
                 >
-                  <h6 className="text-white title mb-[38px] lg:mb-6 md:mb-[18px] ">
-                    GET IN TOUCH
-                  </h6>
-                  <h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
-                    Let&#39;s talk about your project
-                  </h2>
-                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
+                   {eyebrowText && 
+                    (<h6 className="text-white uppercase title mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    {eyebrowText}
+                    </h6>)
+                   }
+                  {title && 
+                    (<h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
+                      {title}
+                    </h2>)
+                   }
+                  
+                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
+                  {/* <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
                     Fill in the form and our experts will reach out to you.
-                  </h4>
+                  </h4> */}
                 </div>
                 <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
                   <Image
@@ -77,18 +86,21 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
               </div>
               <div
                 className={`${
-                  formcontent === true ? "!block" : ""
+                  subtitle ? "!block" : ""
                 } relative w-full max-w-[960px] mx-auto mb-16 text-center hidden `}
               >
-                <h6 className="text-white title mb-[38px] md:mb-[18px] ">
-                  GET IN TOUCH
-                </h6>
-                <h2 className="text-white mb-[38px] md:mb-[18px] ">
-                  Let&#39;s talk about your project
-                </h2>
-                <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                  Fill in the form and our experts will reach out to you.
-                </h4>
+                 {eyebrowText && 
+                    (<h6 className="text-white uppercase title mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    {eyebrowText}
+                    </h6>)
+                   }
+                  {title && 
+                    (<h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
+                      {title}
+                    </h2>)
+                   }
+                  
+                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
               </div>
               <div className="relative w-full">
                 <div

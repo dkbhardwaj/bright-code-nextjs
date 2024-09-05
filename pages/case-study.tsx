@@ -41,7 +41,7 @@ const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
 const CaseStudy: React.FC = () => {
   return (
     <>
-      {/* <Banner data={bannercontent} /> */}
+      <Banner data={bannercontent} />
 
       <ListWithSocialicon data={listWithSocialIcon} />
 
@@ -49,7 +49,7 @@ const CaseStudy: React.FC = () => {
 
       <Overview data={overview} />
 
-      {/* <ContentWithImageColTwo data={contentWithImage} /> */}
+      <ContentWithImageColTwo data={contentWithImage} />
 
       <Overview data={overview2} />
 
@@ -57,13 +57,13 @@ const CaseStudy: React.FC = () => {
 
       <Overview data={overview3} />
 
-      {/* <ContentWithImageColTwo data={contentWithImage2} /> */}
+      <ContentWithImageColTwo data={contentWithImage2} />
 
       <Overview data={overview4} />
 
       <ColThreeCards data={colThreeCards} />
 
-      {/* <ContactForm data={contactform} /> */}
+      <ContactForm data={contactform} />
     </>
   );
 };

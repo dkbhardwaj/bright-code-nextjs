@@ -1,35 +1,46 @@
 import React from "react";
 import Link from "next/link";
+// import {getDataById} from "../lib/contentful/getDataById"
+// import { Entry, EntrySkeletonType } from "contentful";
+
 
 interface IntroductionProps {
   data: {
-    subtitle: string;
+    eyebrowText: string;
     title: string;
-    titleSpan: string;
+    gradientText: string;
     titleLarge: boolean;
     nopaddingbottom: boolean;
     titleWhite: boolean;
     paddingmediumbottom: boolean;
-    paragraphContent: {
-      id: number;
-      paragraph: string;
-    }[];
+    description: string[];
     btntext: string;
+    leftAlign: Boolean;
+    sectionPadding: string;
   };
+ 
+
 }
 
+
 const Introduction: React.FC<IntroductionProps> = ({ data }) => {
+ 
   const {
-    subtitle,
+    eyebrowText,
     title,
-    titleSpan,
+    gradientText,
     titleLarge,
     nopaddingbottom,
     titleWhite,
     paddingmediumbottom,
-    paragraphContent,
+    description,
     btntext,
+    leftAlign,
+    sectionPadding
   } = data;
+
+  
+
 
   const handleScroll = () => {
     const targetElement = document.getElementById("get-in-touch");
@@ -42,33 +53,35 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
       );
     }
   };
+  
 
+  
   return (
     <section
       className={`${nopaddingbottom ? "no-padding-bottom" : ""} ${
         paddingmediumbottom ? "padding-medium-bottom" : ""
-      } intro padding-large-top padding-medium-bottom  text-center overflow-x-hidden`}
+      }  intro  ${sectionPadding}  text-center overflow-x-hidden`}
       id="why-choose-us"
     >
       <div className="container">
-        <div className="w-full mx-auto">
-          {subtitle && (
+        <div className={`w-full mx-auto ${leftAlign && 'text-left' }`}>
+          {eyebrowText && (
             <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              {subtitle}
+              {eyebrowText}
             </h6>
           )}
-          {titleSpan ? (
+          {gradientText ? (
             <h2
               className={`${titleLarge ? "large" : ""} ${
                 titleWhite ? "text-white" : ""
               } ${
-                paragraphContent ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                description ? "mb-0" : "mb-[38px] md:mb-[20px]"
               } font-medium text-black `}
             >
-              {title}
               <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
-                {titleSpan}
+                {gradientText}
               </span>
+              {title}
             </h2>
           ) : (
             title && (
@@ -76,21 +89,21 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 className={`${titleLarge ? "large" : ""} ${
                   titleWhite ? "text-white" : ""
                 } ${
-                  paragraphContent ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                  description ? "mb-0" : "mb-[38px] md:mb-[20px]"
                 } font-medium text-black `}
               >
                 {title}
               </h2>
             )
           )}
-          {paragraphContent &&
-            paragraphContent.map((text, index) => (
+          {description &&
+            // description.map((text, index) => (
               <h5
-                key={index}
-                className="text-black w-full max-w-[960px] mx-auto mt-5 "
-                dangerouslySetInnerHTML={{ __html: text.paragraph }}
+                className={`text-black w-full max-w-[960px]  mt-5 ${!leftAlign && 'mx-auto'}`}
+                dangerouslySetInnerHTML={{ __html: description }}
               />
-            ))}
+            // ))
+            }
           {btntext && (
             <div
               className=" cursor-pointer mt-7 gradient-btn mx-auto"
@@ -105,3 +118,4 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   );
 };
 export default Introduction;
+

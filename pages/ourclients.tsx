@@ -75,7 +75,7 @@ const Ourclient: React.FC = () => {
 
       <BannerSecond data={bannersecond} />
 
-      {/* <Introduction data={intro} />
+      <Introduction data={intro} />
 
       <ContentWithImageColTwo data={contentWithImage} />
 
@@ -87,7 +87,7 @@ const Ourclient: React.FC = () => {
 
       <ContentWithImageColTwo data={contentWithImage4} />
 
-      <ContactForm data={contactform} /> */}
+      <ContactForm data={contactform} />
     </>
   );
 };
