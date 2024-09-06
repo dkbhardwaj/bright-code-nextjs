@@ -6,6 +6,7 @@ import Introduction from "../Introduction"
 import ContentWithImage from "../ContentWithImageColTwo"
 import ImageWithList from "../ImageWithList"
 import ContactForm from "../contactForm"
+import IntroWithCards from "../IntroWithCards"
 
 
 
@@ -49,6 +50,9 @@ function pageBuilder(data) {
 
 		} else if (blade.sys?.contentType?.sys?.id === "contactForm") {
 			blades.push(<ContactForm data={blade?.fields} />);
+
+		} else if (blade.sys?.contentType?.sys?.id === "introWithCards") {
+			blades.push(<IntroWithCards data={blade?.fields} />);
 
 		}
 	});
