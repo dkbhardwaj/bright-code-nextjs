@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {fetchCardsData} from "../lib/contentful/getCardsData"
 import { title } from 'process';
-// Define the Card and ContentfulEntry interfaces
+
 interface Card {
   sys: {
     id: string;
@@ -56,8 +56,6 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
   })
 
   
-
-  console.log(data)
   return (
     <section className={`introWithCards ${sectionPadding}`}>
       <div className="container">

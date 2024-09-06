@@ -15,16 +15,15 @@ export default function PageBuilder({pageComponents}) {
 
     let bladeList = pageBuilder(pageComponents.fields.section);
    
-    // console.log(pageComponents.fields.section)
     return (
 			<>
-            {bladeList.map((blade, index) => {
-				return (
-						<div key={index}>
-							{blade}
-						</div>
-				);
-			})}
+				{bladeList.map((blade, index) => {
+					return (
+							<React.Fragment key={index}>
+								{blade}
+							</React.Fragment>
+					);
+				})}
             </>
 	);
 }
