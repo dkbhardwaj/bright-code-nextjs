@@ -84,24 +84,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               className="leading-[28px] !text-black "
               dangerouslySetInnerHTML={{ __html: markdown }}
               />
-              // <ul className=" list-none relative w-full block ">
-              //   {listItem.map((item, index) => (
-              //     <li
-              //       className=" font-light leading-[28px] "
-              //       key={index}
-              //       dangerouslySetInnerHTML={{ __html: item.listContent }}
-              //     />
-              //   ))}
-              // </ul>
             )}
-            {/* {paragraphText &&
-              paragraphText.map((item, index) => (
-                <p
-                  className="mt-5 text-black"
-                  key={index}
-                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
-                />
-              ))} */}
             {btnText && (
               <Link
                 href={btnUrl}
