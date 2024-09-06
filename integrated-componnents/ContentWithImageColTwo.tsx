@@ -70,17 +70,18 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 {title}
               </h2>
             )}
-
+            {subTitle && (
             <h3 className="mb-[20px] md:mb-[10px]">
-              {subTitle && (
+              
                 <span className="text_gradient text-[35px] leading-[46px] tablet:text-[30px] tablet:leading-[42px] md:text-[27px] md:leading-[40px]">
                   {subTitle}
                 </span>
-              )}
+              
             </h3>
+            )}
             {markdown && (
               <div
-              className="leading-[28px] "
+              className="leading-[28px] !text-black "
               dangerouslySetInnerHTML={{ __html: markdown }}
               />
               // <ul className=" list-none relative w-full block ">

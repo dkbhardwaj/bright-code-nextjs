@@ -58,9 +58,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   
   return (
     <section
-      className={`${nopaddingbottom ? "no-padding-bottom" : ""} ${
-        paddingmediumbottom ? "padding-medium-bottom" : ""
-      }  intro  ${sectionPadding}  text-center overflow-x-hidden`}
+      className={`intro  ${sectionPadding}  text-center overflow-x-hidden`}
       id="why-choose-us"
     >
       <div className="container">
@@ -99,7 +97,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
           {description &&
             // description.map((text, index) => (
               <h5
-                className={`!text-black w-full max-w-[960px]  mt-5 ${!leftAlign && 'mx-auto'}`}
+                className={`!text-black w-full max-w-[960px] !text-black mt-5 ${!leftAlign && 'mx-auto'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             // ))
