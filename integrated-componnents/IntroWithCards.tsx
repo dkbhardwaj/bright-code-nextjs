@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {fetchCardsData} from "../lib/contentful/getCardsData"
+import { title } from 'process';
 // Define the Card and ContentfulEntry interfaces
 interface Card {
   sys: {
@@ -27,13 +28,14 @@ interface IntroWithCardsData {
   data: {
     sectionPadding: string;
     heading: string;
+    title: string;
     cards: Card[];
     background:boolean;
   };
 }
 
 const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
-  const { cards, sectionPadding, background, heading } = data;
+  const { cards, title, sectionPadding, background, heading } = data;
   
   const [cardsData , setCardsData] = useState<Card[]>();
   
@@ -55,11 +57,16 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
 
   
 
-
+  console.log(data)
   return (
     <section className={`introWithCards ${sectionPadding}`}>
       <div className="container">
         <div className={`w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0 ${background && "featured pt-20 pb-14 lg:pt-16 md:!pt-14 md:pb-12"}`}>
+          {title && 
+          <div className="content w-full text-center relative mb-[90px] lg:mb-16 md:!mb-12 ">
+          <h2 className="font-medium text-black ">{title}</h2>
+          </div>
+          }
           {cardsData != undefined && cardsData?.map((card) => (
             <div
               className={`w-threeCard mx-2.5 mb-5 tablet:w-halfWidth phablet:w-halfWidth sm:w-full sm:mx-0`}
