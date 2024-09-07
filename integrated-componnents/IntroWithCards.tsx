@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {fetchCardsData} from "../lib/contentful/getCardsData"
-import { title } from 'process';
+
 
 interface Card {
   sys: {
@@ -45,7 +45,6 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
       try {
         let x = await fetchCardsData(cards);
         setCardsData(x)
-        console.log(x)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
