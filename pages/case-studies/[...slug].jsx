@@ -7,7 +7,7 @@ import PageBuilder from '../../integrated-componnents/PageBuilder'
 
 
 export default function CaseStudies({entry,slug}) {
-  let seoData = entry.fields.seoData.fields
+  let seoData = entry?.fields?.seoData?.fields
   
   return (
     <>
