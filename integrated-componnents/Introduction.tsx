@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-// import {getDataById} from "../lib/contentful/getDataById"
+import { classifyStr } from "../lib/utils/string"
 // import { Entry, EntrySkeletonType } from "contentful";
 
 
@@ -17,22 +17,24 @@ interface IntroductionProps {
     btntext: string;
     leftAlign: Boolean;
     sectionPadding: string;
+    bgColor: string;
   };
  
 
 }
 
+type TwConfigKeys = 'white' | 'gray';
+
 
 const Introduction: React.FC<IntroductionProps> = ({ data }) => {
- 
+
   const {
     eyebrowText,
     title,
     gradientText,
     titleLarge,
-    nopaddingbottom,
     titleWhite,
-    paddingmediumbottom,
+    bgColor,
     description,
     btntext,
     leftAlign,
@@ -53,12 +55,18 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
       );
     }
   };
-  
 
+
+  const twConfig: Record<TwConfigKeys, string> = {
+    white: 'bg-white',
+    gray: 'bg-extraLightGray',
+  };
+  
+  const bgColorClass = bgColor ? twConfig[classifyStr(bgColor) as TwConfigKeys] : '';
   
   return (
     <section
-      className={`intro  ${sectionPadding}  text-center overflow-x-hidden`}
+      className={`intro  ${sectionPadding}  text-center overflow-x-hidden ${bgColorClass}`}
       id="why-choose-us"
     >
       <div className="container">
