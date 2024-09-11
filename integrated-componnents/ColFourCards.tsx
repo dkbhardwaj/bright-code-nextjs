@@ -26,7 +26,7 @@ interface ColFourCardData {
 
 const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
 
-    console.log(data?.iconWithTextBlock)
+  
   return (
     <section className="colFourCards overflow-hidden md:pb-14">
       <div className="container">
