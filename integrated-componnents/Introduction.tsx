@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { classifyStr } from "../lib/utils/string"
 // import { Entry, EntrySkeletonType } from "contentful";
+import Button from "./Button"
 
 
 interface IntroductionProps {
@@ -14,7 +15,7 @@ interface IntroductionProps {
     titleWhite: boolean;
     paddingmediumbottom: boolean;
     description: string[];
-    btntext: string;
+    cta: JSON;
     leftAlign: Boolean;
     sectionPadding: string;
     bgColor: string;
@@ -36,25 +37,12 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     titleWhite,
     bgColor,
     description,
-    btntext,
+    cta,
     leftAlign,
     sectionPadding
   } = data;
 
-  
 
-
-  const handleScroll = () => {
-    const targetElement = document.getElementById("get-in-touch");
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-      window.history.replaceState(
-        null,
-        document.title,
-        window.location.pathname
-      );
-    }
-  };
 
 
   const twConfig: Record<TwConfigKeys, string> = {
@@ -103,20 +91,13 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             )
           )}
           {description &&
-            // description.map((text, index) => (
               <h5
                 className={`!text-black w-full max-w-[960px] !text-black mt-5 ${!leftAlign && 'mx-auto'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
-            // ))
             }
-          {btntext && (
-            <div
-              className=" cursor-pointer mt-7 gradient-btn mx-auto"
-              onClick={handleScroll}
-            >
-              <span>{btntext}</span>
-            </div>
+          {cta && (
+            <Button ctaData={cta} classes={'cursor-pointer mt-7 mx-auto'} />
           )}
         </div>
       </div>

@@ -37,7 +37,7 @@ export default function CaseStudies({entry,slug}) {
       />
 
      
-      <PageBuilder pageComponents={entry} />
+      <PageBuilder pageComponents={entry?.fields?.section} />
     </>
   )
 }

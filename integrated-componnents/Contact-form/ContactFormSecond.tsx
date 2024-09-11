@@ -4,35 +4,51 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import dynamic from "next/dynamic";
 
+// interface ContactFormSecondProps {
+//   data: {
+//     paddingmediumtop: boolean;
+//     subtitle: string;
+//     title: string;
+//     paragraphBold: string;
+//     paragraph: string;
+//     paragraph2: string;
+//     paragraphBold2: string;
+//     introImageUrl: string;
+//     listItems: {
+//       id: number;
+//       listContent: string;
+//     }[];
+//   };
+// }
 interface ContactFormSecondProps {
   data: {
-    paddingmediumtop: boolean;
-    subtitle: string;
+    fullWidth: boolean;
     title: string;
-    paragraphBold: string;
-    paragraph: string;
-    paragraph2: string;
-    paragraphBold2: string;
-    introImageUrl: string;
-    listItems: {
-      id: number;
-      listContent: string;
-    }[];
+    subtitle: string;
+    eyebrowText: string;
+    introImageUrl: any;
+    sectionPadding:{
+      fields:{
+        padding:string;
+      }
+    }
   };
 }
 
 const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
-  const {
-    paddingmediumtop,
-    subtitle,
-    title,
-    paragraphBold,
-    paragraph,
-    paragraph2,
-    paragraphBold2,
-    introImageUrl,
-    listItems,
-  } = data;
+  // const {
+  //   paddingmediumtop,
+  //   subtitle,
+  //   title,
+  //   paragraphBold,
+  //   paragraph,
+  //   paragraph2,
+  //   paragraphBold2,
+  //   introImageUrl,
+  //   listItems,
+  // } = data;
+
+  const {fullWidth, title, subtitle, eyebrowText , introImageUrl, sectionPadding } = data;
 
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
@@ -72,16 +88,14 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
   return (
     <>
       <section
-        className={` ${
-          paddingmediumtop === true ? "padding-medium-top" : ""
-        } contactForm text-gray-600 body-font relative`}
+        className={`contactForm ${sectionPadding?.fields.padding} text-gray-600 body-font relative`}
         id="get-in-touch"
       >
         <div className="container px-5 mx-auto">
           <div
             className={`relative w-full py-[68px] bgPurpleGradient md:py-12`}
           >
-            {introImageUrl && (
+            {/* {introImageUrl && (
               <div
                 className={`
                 } intro_with_image relative flex flex-wrap items-center mb-16 md:block  `}
@@ -110,7 +124,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                   </div>
                 )}
               </div>
-            )}
+            )} */}
             {/* ) : (
               subtitle && (
                 <div className=" introText relative w-full mb-16 text-center  md:mb-8">
@@ -131,43 +145,16 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                     introImageUrl ? "hidden" : "block"
                   }`}
                 >
-                  {subtitle && (
+                  {eyebrowText && (
                     <h6 className="text-white title mb-8 md:mb-2">
-                      {subtitle}
+                      {eyebrowText}
                     </h6>
                   )}
-                  {title && <h2 className="text-white mb-5">{title}</h2>}
+                  {title && (<h2 className="text-white mb-5">{title}</h2>)}
                 </div>
-                {paragraphBold && (
-                  <h4 className="text-white text-[23px] mb-5 md:text-[20px] xl-up:leading-10 ">
-                    {paragraphBold}
-                  </h4>
-                )}
-                {paragraph && (
-                  <h5 className="text-white font-light mb-5">{paragraph}</h5>
-                )}
-                {paragraph2 && (
-                  <h5 className="text-white font-light mb-5">{paragraph2}</h5>
-                )}
-                {paragraphBold2 && (
-                  <h4 className="text-white text-[23px] mb-5 md:text-[20px] xl-up:leading-10 ">
-                    {paragraphBold2}
-                  </h4>
-                )}
-                {listItems && (
-                  <ul className=" list-none relative w-full block ">
-                    {listItems.map((listItem, index) => (
-                      <li className=" mb-5 " key={index}>
-                        <h5
-                          className="text-white font-light"
-                          dangerouslySetInnerHTML={{
-                            __html: listItem.listContent,
-                          }}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                {subtitle && 
+                  <div className="footer-text"  dangerouslySetInnerHTML={{ __html: subtitle }}/>
+                }
               </div>
               <div
                 className="w-halfWidth mx-2.5 bg-transparent rounded-lg pl-[52px] lg:pl-4  md:!p-0 relative z-10 md:w-full md:mx-0 "

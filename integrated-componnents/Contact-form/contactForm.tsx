@@ -16,7 +16,7 @@ interface ContactFormProps {
 
 const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
   const { formintrowithImage, fullWidth, title, subtitle, eyebrowText } = data;
-
+    console.log(fullWidth)
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
 
@@ -68,10 +68,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                     </h2>)
                    }
                   
-                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
-                  {/* <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] ">
-                    Fill in the form and our experts will reach out to you.
-                  </h4> */}
+                  <div className="text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
+        
                 </div>
                 <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
                   <Image
