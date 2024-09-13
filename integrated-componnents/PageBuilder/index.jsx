@@ -2,6 +2,7 @@ import React from 'react'
 //sections
 import HeroBanner from "../Herobanner"
 import Banner from "../Banner"
+import BannerSecond from "../BannerSecond"
 import ListWithSocialicons from "../ListWithSocialicon"
 import Introduction from "../Introduction"
 import ContentWithImage from "../ContentWithImageColTwo"
@@ -33,12 +34,15 @@ export default function PageBuilder({pageComponents}) {
 
 function pageBuilder(data) {
 	let blades = [];
-   
+    console.log(data)
 	data.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);
 
-		}else if (blade.sys?.contentType?.sys?.id === "bannerThirdLevel") {
+		} else if (blade.sys?.contentType?.sys?.id === "bannerSecond") {
+			blades.push(<BannerSecond  data={blade?.fields} />);
+
+		} else if (blade.sys?.contentType?.sys?.id === "bannerThirdLevel") {
 			blades.push(<Banner  data={blade?.fields} />);
 
 		} else if (blade.sys?.contentType?.sys?.id === "intro") {

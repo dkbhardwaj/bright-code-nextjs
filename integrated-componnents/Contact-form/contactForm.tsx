@@ -85,7 +85,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
               <div
                 className={`${
                   subtitle ? "!block" : ""
-                } relative w-full max-w-[960px] mx-auto mb-16 text-center hidden `}
+                } relative form-content w-full max-w-[960px] mx-auto mb-16 text-center hidden `}
               >
                  {eyebrowText && 
                     (<h6 className="text-white uppercase title mb-[38px] lg:mb-6 md:mb-[18px] ">
@@ -98,7 +98,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                     </h2>)
                    }
                   
-                  <h4 className="text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
+                  <div className="!text-white text-[23px] md:text-[20px] leading-[35px] " dangerouslySetInnerHTML={{ __html: subtitle }}/>
               </div>
               <div className="relative w-full">
                 <div
