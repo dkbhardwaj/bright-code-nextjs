@@ -34,7 +34,7 @@ export default function PageBuilder({pageComponents}) {
 
 function pageBuilder(data) {
 	let blades = [];
-    console.log(data)
+   
 	data.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);

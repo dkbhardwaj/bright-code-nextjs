@@ -2,17 +2,32 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Style from "../styles/navigation.module.scss";
 import Link from "next/link";
+import {client} from "../lib/contentful/client" 
+import { UrlObject } from "url";
 
 interface NavigationProps {}
 
-interface DropdownItem {
-  title: string;
-  link: string;
+// interface DropdownItem {
+//   title: string;
+//   link: string;
+  
+// }
+interface NavigationItem {
+  menuLink: any;
+  cta?: {
+    fields: {
+      ctaLink: string;
+      ctaText: string;
+    };
+  };
 }
 
 const Navigation: React.FC<NavigationProps> = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [menus, setMenus] = useState<NavigationItem | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const handleMobileMenuClick = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -33,6 +48,28 @@ const Navigation: React.FC<NavigationProps> = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const getNav = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: 'navigation',
+        });
+
+       const navItem = response.items[0]?.fields as unknown as NavigationItem;
+        setMenus(navItem || null);
+      } catch (err) {
+        setError('Failed to fetch data');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getNav();
+  }, []);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+ 
   return (
     <header
       className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}
@@ -103,66 +140,42 @@ const Navigation: React.FC<NavigationProps> = () => {
                 <ul
                   className={`flex items-center text-white   lg:mx-0 lg:flex-wrap lg:text-spaceBlack  lg:!justify-start lg:px-3 `}
                 >
-                  <li
+                  {
+                    menus?.menuLink && (
+                      menus?.menuLink.map((menuItem: { fields: { path: string | UrlObject; label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; })=>
+                        (
+                          <li
                     className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
                     onClick={handleMobileMenuCloseClick}
                   >
-                    <Link className="inline-block w-full text-[14px] " href="/">
-                      For Marketers
+                    <Link className="inline-block w-full text-[14px] " href= {menuItem.fields?.path}>
+                      {menuItem.fields?.label}
                     </Link>
                   </li>
-                  <li
-                    className={`${Style.menu}
-                     mx-[22px]  transition-color duration-300 relative ${
-                       showDropdown ? `${Style.active}` : ""
-                     } desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 `}
-                    onClick={handleMobileMenuCloseClick}
-                  >
+                        )
+                      )
+                    )
+                  }
+              
+                  {menus?.cta && (
+                    <>
                     <Link
-                      className="inline-block w-full text-[14px] "
-                      href="/ourclients"
-                      onClick={handleMobileMenuCloseClick}
-                    >
-                      For Agencies
-                    </Link>
-                  </li>
-                  <li
-                    className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <Link
-                      className="inline-block w-full text-[14px]"
-                      href="/whychooseus"
-                    >
-                      Why Choose Us
-                    </Link>
-                  </li>
-                  <li
-                    className={`${Style.menu}  mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <Link
-                      className="inline-block w-full text-[14px] "
-                      href="/cms-implementation"
-                    >
-                      What We Do
-                    </Link>
-                  </li>
-
-                  <Link
-                    href="/contact"
+                    href={menus?.cta?.fields?.ctaLink}
                     className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
                     onClick={handleMobileMenuCloseClick}
                   >
-                    <span>Free Consultation</span>
+                    <span>{menus?.cta?.fields?.ctaText}</span>
                   </Link>
                   <Link
                     href="/contact"
                     className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
                     onClick={handleMobileMenuCloseClick}
                   >
-                    <span>Free Consultation</span>
+                    <span>{menus?.cta?.fields?.ctaText}</span>
                   </Link>
+                  </>
+                  )}
+                  
                 </ul>
               </div>
             </div>
