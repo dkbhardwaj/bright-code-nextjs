@@ -16,19 +16,16 @@ interface ColFourCardData {
           heading:string;
         }
       }[];
-      sectionPadding:{
-        fields:{
-          padding:"string"
-        }
-      }
+      sectionPadding:any;
   };
 }
 
 const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
 
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
   
   return (
-    <section className="colFourCards overflow-hidden md:pb-14">
+    <section className={`colFourCards ${padding} overflow-hidden md:pb-14`}>
       <div className="container">
         <div className="w-mainRow -ml-2.5 flex flex-wrap items-center z-1 relative md:w-full md:ml-0">
           {data?.iconWithTextBlock.map((item,index) => (
