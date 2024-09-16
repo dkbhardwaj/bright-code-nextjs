@@ -53,8 +53,9 @@ const Navigation: React.FC<NavigationProps> = () => {
       try {
         const response = await client.getEntries({
           content_type: 'navigation',
+          'fields.navName': "Main Nav"
         });
-
+        
        const navItem = response.items[0]?.fields as unknown as NavigationItem;
         setMenus(navItem || null);
       } catch (err) {
