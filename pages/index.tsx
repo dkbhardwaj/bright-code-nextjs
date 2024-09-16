@@ -16,7 +16,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({entry}) => {
 
   let seoData = entry?.fields?.seoData?.fields
-
+ 
   return(
     <>
      <NextSeo

@@ -11,18 +11,12 @@ import {
 interface ListWithSocialIconData {
   data: {
     markdown: string;
+    sectionPadding:any;
   };
 }
 
 const ListWithSocialicon: React.FC<ListWithSocialIconData> = ({ data }) => {
-  const { markdown } = data;
-
-  // const router = useRouter();
-  // const baseUrl = typeof window !== "undefined" ? window.location.href : "";
-  // console.log(baseUrl);
-
-  // const link = encodeURI(`${baseUrl}${router.asPath}`);
-  // console.log(link);
+  const { markdown, sectionPadding } = data;
 
   const router = useRouter();
   const baseUrl =
@@ -31,9 +25,10 @@ const ListWithSocialicon: React.FC<ListWithSocialIconData> = ({ data }) => {
       : process.env.NEXT_PUBLIC_BASE_URL;
 
   const link = `${baseUrl}${router.asPath}`;
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
 
   return (
-    <section className="list-with-social-icon relative w-full py-[106px] lg:py-20 md:!py-12 ">
+    <section className={`list-with-social-icon relative w-full ${padding} `}>
       <div className="container">
         <div className="list-with-icon-content relative w-full flex flex-wrap md:block ">
           {markdown && (

@@ -20,7 +20,7 @@ interface ContentWithImageProps {
     paddinglargebottom: boolean;
     paddingmedium: boolean;
     markdown: string;
-    sectionPadding: string;
+    sectionPadding: any;
     bgPink: Boolean;
   };
 }
@@ -38,10 +38,11 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     bgPink
   } = data;
 
-  
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
+
   return (
     <section
-      className={`${sectionPadding} contentWithImage overflow-hidden`}
+      className={`${padding} contentWithImage overflow-hidden`}
     >
       <div className="container">
         <div

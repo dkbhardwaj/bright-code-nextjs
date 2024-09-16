@@ -17,7 +17,7 @@ interface IntroductionProps {
     description: string[];
     cta: JSON;
     leftAlign: Boolean;
-    sectionPadding: string;
+    sectionPadding: any;
     bgColor: string;
   };
  
@@ -42,9 +42,8 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     sectionPadding
   } = data;
 
-
-
-
+   
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
   const twConfig: Record<TwConfigKeys, string> = {
     white: 'bg-white',
     gray: 'bg-extraLightGray',
@@ -54,7 +53,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   
   return (
     <section
-      className={`intro  ${sectionPadding}  text-center overflow-x-hidden ${bgColorClass}`}
+      className={`intro  ${padding}  text-center overflow-x-hidden ${bgColorClass}`}
       id="why-choose-us"
     >
       <div className="container">

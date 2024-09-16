@@ -26,7 +26,7 @@ interface Card {
 
 interface IntroWithCardsData {
   data: {
-    sectionPadding: string;
+    sectionPadding: any;
     heading: string;
     title: string;
     cards: Card[];
@@ -54,9 +54,10 @@ const IntroWithCards: React.FC<IntroWithCardsData> = ({ data }) => {
     }
   })
 
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
   
   return (
-    <section className={`introWithCards ${sectionPadding}`}>
+    <section className={`introWithCards ${padding}`}>
       <div className="container">
         <div className={`w-mainRow -ml-2.5 flex flex-wrap sm:w-full sm:ml-0 ${background && "featured pt-20 pb-14 lg:pt-16 md:!pt-14 md:pb-12"}`}>
           {title && 

@@ -4,9 +4,10 @@ import FooterMap from './FooterMap'
 
 export default function GroupContactInfo({data}) {
 
-    let sectionPadding = data.sectionPadding?.fields?.padding
+  const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
+
   return (
-    <div className={`section_bgImage bg-darkBlue ${sectionPadding}`}>
+    <div className={`section_bgImage bg-darkBlue ${padding}`}>
         {data?.title && (
             <div className="relative w-full mx-auto text-center z-[2] mb-[50px] md:mb-[20px]">
             <h2 className="large text-white mb-0 font-medium text-black ">{data?.title}</h2>
