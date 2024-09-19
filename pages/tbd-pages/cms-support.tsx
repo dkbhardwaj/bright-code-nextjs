@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Sticky from "../components/stickyNav";
+import Sticky from "../../components/stickyNav";
 // import ContactForm from "../components/contactForm";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ import {
   contentWithImage4,
   contentWithImage5,
   contactform,
-} from "../dataCmsSupport/data";
+} from "../../dataCmsSupport/data";
 
 export const metadata: Metadata = {
   title:
@@ -58,11 +58,11 @@ interface StickyItem {
   url: string;
 }
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
-const Overview = dynamic(() => import("../components/overview"));
-const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const ContactForm = dynamic(() => import("../../components/contactForm"));
+const Overview = dynamic(() => import("../../components/overview"));
+const BannerSecond = dynamic(() => import("../../components/BannerSecond"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../../components/ContentWithImageColTwo")
 );
 
 const CmsSupport: React.FC = () => {

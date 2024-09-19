@@ -2,9 +2,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button"
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 interface BannerSecondData {
   data: {
+    description:any;
+    eyebrowText:string;
     backgroundImage: {
       fields:{
         file:{
@@ -13,7 +16,7 @@ interface BannerSecondData {
         }
       }
     };
-    foregroundImage: {
+    foregroundImg: {
       fields:{
         file:{
           url: string;
@@ -34,14 +37,17 @@ interface BannerSecondData {
 const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
   const {
     backgroundImage,
-    foregroundImage,
+    foregroundImg,
     title,
     sectionPadding,
-    cta
+    cta,
+    description,
+    eyebrowText
   } = data;
 
-  const hasImages = foregroundImage ;
-  const hasnotImages = !foregroundImage ;
+  console.log(data)
+
+  const hasnotImages = !foregroundImg ;
   const padding = sectionPadding?.fields?.padding
   return (
     <section
@@ -54,38 +60,42 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
     >
       <div className="container">
      
-          <>
-            {foregroundImage && (
-              <div className="left_img absolute bottom-0 left-[calc(65%-204px)] w-full max-w-[390px] h-[362px] z-[2] md:w-[330px] md:max-w-full md:h-[304px] md:left-[calc(42%-212px)]">
-                <Image
-                  src={`https:${foregroundImage?.fields?.file?.url}`}
-                  width={400}
-                  height={400}
-                  loading="lazy"
-                  alt="left-img"
-                  className=" w-full h-full object-cover"
-                />
-              </div>
+            {foregroundImg?.fields?.file?.url ? (
+               <>
+                  <div className="right_img absolute bottom-0 left-[45%] w-full max-w-[655px] h-[413px] z-[1] xl:w-[490px] xl:max-w-full xl:h-[310px] md:left-[14%] xs:left-0 ">
+                    <Image
+                     src={`https:${foregroundImg?.fields?.file?.url}`}
+                      width={700}
+                      height={500}
+                      loading="lazy"
+                      alt="right-img"
+                      className=" w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="banner-content text-left">
+                  {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
+                  {title && <h1 className=" text-white ">{title}</h1>}
+                  {cta && (
+                        <Button ctaData={cta} classes={'mt-14 mx-auto md:mt-6'} />
+                      )}
+                  </div>
+                </>
+            ) : (
+                <>
+                  <div className="w-full text-center relative z-10">
+                  {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
+                  {title && <h1 className=" text-white ">{title}</h1>}
+                  {description && (
+                      <div  className="text-white mt-5 opacity-[0.6]">{documentToReactComponents(description)}</div>
+                    )}
+
+                      {cta && (
+                        <Button ctaData={cta} classes={'mt-14 mx-auto md:mt-6'} />
+                      )}
+                    </div>
+                </>
+
             )}
-            {/* {bannerRightImg && (
-              <div className="right_img absolute bottom-0 left-[65.58%] w-full max-w-[350px] h-[350px] z-[1]  md:w-[304px] md:max-w-full md:h-[304px] md:left-[42%] ">
-                <Image
-                  src={bannerRightImg}
-                  width={400}
-                  height={400}
-                  loading="lazy"
-                  alt="right-img"
-                  className=" w-full h-full object-cover"
-                />
-              </div>
-            )} */}
-            <div className="relative banner-content text-left z-[2]">
-              {title && <h1 className=" text-white ">{title}</h1>}
-              {cta && (
-                <Button ctaData={cta} classes={'mt-14 mx-auto md:mt-6'} />
-               )}
-            </div>
-          </>
         
       </div>
     </section>

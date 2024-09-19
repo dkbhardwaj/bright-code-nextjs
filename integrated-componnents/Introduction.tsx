@@ -58,46 +58,58 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     >
       <div className="container">
         <div className={`w-full mx-auto ${leftAlign && 'text-left' }`}>
-          {eyebrowText && (
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
-              {eyebrowText}
-            </h6>
-          )}
-          {gradientText ? (
-            <h2
-              className={`${titleLarge ? "large" : ""} ${
-                titleWhite ? "text-white" : ""
-              } ${
-                description ? "mb-0" : "mb-[38px] md:mb-[20px]"
-              } font-medium text-black `}
+          <div  data-aos="fade-right"
+              data-aos-delay="400"
+              data-aos-duration="600"
             >
-              <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
-                {gradientText}
-              </span>
-              {title}
-            </h2>
-          ) : (
-            title && (
-              <h2
-                className={`${titleLarge ? "large" : ""} ${
-                  titleWhite ? "text-white" : ""
-                } ${
-                  description ? "mb-0" : "mb-[38px] md:mb-[20px]"
-                } font-medium text-black `}
-              >
-                {title}
-              </h2>
-            )
-          )}
-          {description &&
+                {eyebrowText && (
+                  <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                    {eyebrowText}
+                  </h6>
+                )}
+                {gradientText ? (
+                  <h2
+                    className={`${titleLarge ? "large" : ""} ${
+                      titleWhite ? "text-white" : ""
+                    } ${
+                      description ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                    } font-medium text-black `}
+                  >
+                    <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
+                      {gradientText}
+                    </span>
+                    {title}
+                  </h2>
+                ) : (
+                  title && (
+                    <h2
+                      className={`${titleLarge ? "large" : ""} ${
+                        titleWhite ? "text-white" : ""
+                      } ${
+                        description ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                      } font-medium text-black `}
+                    >
+                      {title}
+                    </h2>
+                  )
+                )}
+
+          </div>
+          <div  data-aos="fade-left"
+              data-aos-delay="400"
+              data-aos-duration="600"
+            >
+            {description &&
               <div
                 className={`!text-black w-full max-w-[960px] !text-black mt-5 ${!leftAlign && 'mx-auto'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             }
-          {cta && (
-            <Button ctaData={cta} classes={'cursor-pointer mt-7 mx-auto'} />
-          )}
+              {cta && (
+                <Button ctaData={cta} classes={'cursor-pointer mt-7 mx-auto'} />
+              )}
+            </div>
+          
         </div>
       </div>
     </section>

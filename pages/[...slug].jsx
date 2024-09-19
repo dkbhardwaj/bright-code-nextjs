@@ -1,8 +1,8 @@
 import React from 'react'
-import {fetchEntryBySlug} from "../../lib/contentful/pageData"
+import {fetchEntryBySlug} from "../lib/contentful/pageData"
 import { NextSeo } from 'next-seo';
 
-import PageBuilder from '../../integrated-componnents/PageBuilder'
+import PageBuilder from '../integrated-componnents/PageBuilder'
 // import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 

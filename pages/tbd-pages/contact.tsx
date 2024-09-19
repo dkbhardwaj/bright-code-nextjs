@@ -5,7 +5,7 @@ import { NextSeo } from "next-seo";
 // import ContactFormSecond from "../components/ContactFormSecond";
 // import FooterMap from "../components/FooterMap";
 import dynamic from "next/dynamic";
-import { bannersecond, contactForm, footerMap } from "../dataContact/data";
+import { bannersecond, contactForm, footerMap } from "../../dataContact/data";
 
 export const metadata: Metadata = {
   title:
@@ -44,11 +44,11 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const BannerSecond = dynamic(() => import("../../components/BannerSecond"));
 const ContactFormSecond = dynamic(
-  () => import("../components/ContactFormSecond")
+  () => import("../../components/ContactFormSecond")
 );
-const FooterMap = dynamic(() => import("../components/FooterMap"));
+const FooterMap = dynamic(() => import("../../components/FooterMap"));
 
 const Contact: React.FC = () => {
   useEffect(() => {

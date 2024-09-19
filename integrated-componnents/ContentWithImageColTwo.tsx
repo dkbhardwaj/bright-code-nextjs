@@ -94,16 +94,20 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               data-aos-delay="400"
               data-aos-duration="500"
             >
-              <Image
-                src={`https:${foregroundImage?.fields?.file?.url}`}
-                alt="img"
-                // width={600}
-                // height={500}
-                priority
-                fill
-                style={{ objectFit: "cover" }}
-                className=" w-full h-full object-cover"
-              />
+              {
+                foregroundImage?.fields?.file?.url && 
+                <Image
+                  src={`https:${foregroundImage?.fields?.file?.url}`}
+                  alt="img"
+                  // width={600}
+                  // height={500}
+                  priority
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className=" w-full h-full object-cover"
+                />
+              }
+              
             </div>
           </div>
         </div>

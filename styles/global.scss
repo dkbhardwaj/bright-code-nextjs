@@ -546,15 +546,29 @@ span.title {
  }
 }
 
-.footer-text h4{
-  color: white;
-  margin-bottom: 20px;
-  &:last-child{
-    margin-bottom: 0;
+.footer-text{ 
+   li{
+
+   }
+  h4,h5,li{
+    color: white;
+    margin-bottom: 20px;
+    &:last-child{
+      margin-bottom: 0;
+    }
   }
 }
 .form-content{
   h4{
     color: white;
+  }
+}
+
+.banner-second{
+  p{
+    margin-bottom: 20px;
+    &:last-child{
+      margin-bottom: 0;
+    }
   }
 }

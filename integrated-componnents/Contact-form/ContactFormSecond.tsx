@@ -4,22 +4,6 @@ import Link from "next/link";
 import { useForm, ValidationError } from "@formspree/react";
 import dynamic from "next/dynamic";
 
-// interface ContactFormSecondProps {
-//   data: {
-//     paddingmediumtop: boolean;
-//     subtitle: string;
-//     title: string;
-//     paragraphBold: string;
-//     paragraph: string;
-//     paragraph2: string;
-//     paragraphBold2: string;
-//     introImageUrl: string;
-//     listItems: {
-//       id: number;
-//       listContent: string;
-//     }[];
-//   };
-// }
 interface ContactFormSecondProps {
   data: {
     fullWidth: boolean;
@@ -27,6 +11,13 @@ interface ContactFormSecondProps {
     subtitle: string;
     eyebrowText: string;
     introImageUrl: any;
+    ConsultantImg:{
+      fields:{
+        file:{
+          url:string;
+        }
+      }
+    },
     sectionPadding:{
       fields:{
         padding:string;
@@ -36,19 +27,9 @@ interface ContactFormSecondProps {
 }
 
 const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
-  // const {
-  //   paddingmediumtop,
-  //   subtitle,
-  //   title,
-  //   paragraphBold,
-  //   paragraph,
-  //   paragraph2,
-  //   paragraphBold2,
-  //   introImageUrl,
-  //   listItems,
-  // } = data;
 
-  const {fullWidth, title, subtitle, eyebrowText , introImageUrl, sectionPadding } = data;
+  const {fullWidth, title, subtitle, eyebrowText , introImageUrl, sectionPadding, ConsultantImg } = data;
+
 
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
@@ -92,10 +73,8 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
         id="get-in-touch"
       >
         <div className="container px-5 mx-auto">
-          <div
-            className={`relative w-full py-[68px] bgPurpleGradient md:py-12`}
-          >
-            {/* {introImageUrl && (
+        <div className=" py-[68px] bgPurpleGradient md:py-12">
+        {ConsultantImg?.fields?.file?.url && (
               <div
                 className={`
                 } intro_with_image relative flex flex-wrap items-center mb-16 md:block  `}
@@ -103,18 +82,18 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                 <div
                   className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6`}
                 >
-                  {subtitle && (
+                  {eyebrowText && (
                     <h6 className="text-white title mb-8 md:mb-2">
-                      {subtitle}
+                      {eyebrowText}
                     </h6>
                   )}
-
-                  {title && <h2 className="text-white mb-5">{title}</h2>}
+                  {title && (<h2 className="text-white mb-5">{title}</h2>)}
                 </div>
-                {introImageUrl && (
+                {ConsultantImg?.fields?.file?.url && (
                   <div className="image_wrap relative w-full max-w-[200px] h-[200px] rounded-[50%] overflow-hidden border-[1px] border-white border-solid md:mx-auto ">
+                   
                     <Image
-                      src={introImageUrl}
+                      src={`https:${ConsultantImg?.fields?.file?.url}`}
                       width={220}
                       height={220}
                       alt="img"
@@ -124,34 +103,25 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                   </div>
                 )}
               </div>
-            )} */}
-            {/* ) : (
-              subtitle && (
-                <div className=" introText relative w-full mb-16 text-center  md:mb-8">
-                  {subtitle && (
-                    <h6 className="text-white title mb-8 md:mb-2">
-                      {subtitle}
-                    </h6>
-                  )}
-                  {title && <h2 className="text-white mb-5">{title}</h2>}
-                </div>
-              )
-            )} */}
-
+            )}
+        
+          <div
+            className={`relative w-full`}
+          >
             <div className="w-mainRow -ml-2.5 flex md:flex-wrap md:w-full md:ml-0">
               <div className="w-halfWidth mx-2.5 md:w-full md:mx-0 md:mb-10">
-                <div
-                  className={`introText relative w-full  ${
-                    introImageUrl ? "hidden" : "block"
-                  }`}
-                >
-                  {eyebrowText && (
+                {!(ConsultantImg?.fields?.file?.url) && (
+                  <>
+                   {eyebrowText && (
                     <h6 className="text-white title mb-8 md:mb-2">
                       {eyebrowText}
                     </h6>
                   )}
                   {title && (<h2 className="text-white mb-5">{title}</h2>)}
-                </div>
+                  </>
+                 )
+                }
+                
                 {subtitle && 
                   <div className="footer-text"  dangerouslySetInnerHTML={{ __html: subtitle }}/>
                 }
@@ -274,6 +244,8 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
             </div>
           </div>
         </div>
+        </div>
+       
       </section>
       {formsuccess === true && cross == false ? (
         <section className="thank_you_overlay fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#000000b5] flex justify-center items-center z-[60] ">

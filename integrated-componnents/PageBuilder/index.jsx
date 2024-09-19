@@ -38,10 +38,10 @@ function pageBuilder(data) {
 	data.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);
-
+			
 		} else if (blade.sys?.contentType?.sys?.id === "bannerSecond") {
 			blades.push(<BannerSecond  data={blade?.fields} />);
-
+		
 		} else if (blade.sys?.contentType?.sys?.id === "bannerThirdLevel") {
 			blades.push(<Banner  data={blade?.fields} />);
 

@@ -24,11 +24,9 @@ export default function Button({classes, ctaData }) {
       };
 
   return (
-    <div
-              className={`${classes} ${twConfig[classifyStr(ctaData?.fields?.ctaClass)]}`}
-              onClick={handleScroll}
+    <div    onClick={handleScroll}
             >
-              <Link href={ctaData?.fields?.ctaLink}><span>{ctaData?.fields?.ctaText}</span></Link>
+              <Link  className={`${classes} ${twConfig[classifyStr(ctaData?.fields?.ctaClass)]}`} href={ctaData?.fields?.ctaLink}><span>{ctaData?.fields?.ctaText}</span></Link>
             </div>
   )
 }

@@ -23,20 +23,20 @@ import {
   overview4,
   colThreeCards,
   contactform,
-} from "../dataCaseStudy/data";
+} from "../../dataCaseStudy/data";
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
-const Banner = dynamic(() => import("../components/Banner"));
+const ContactForm = dynamic(() => import("../../components/contactForm"));
+const Banner = dynamic(() => import("../../components/Banner"));
 const ListWithSocialicon = dynamic(
-  () => import("../components/ListWithSocialicon")
+  () => import("../../components/ListWithSocialicon")
 );
-const ImageWithList = dynamic(() => import("../components/ImageWithList"));
-const Overview = dynamic(() => import("../components/overview"));
+const ImageWithList = dynamic(() => import("../../components/ImageWithList"));
+const Overview = dynamic(() => import("../../components/overview"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../../components/ContentWithImageColTwo")
 );
-const IntroWithCards = dynamic(() => import("../components/IntroWithCards"));
-const ColThreeCards = dynamic(() => import("../components/ColThreeCards"));
+const IntroWithCards = dynamic(() => import("../../components/IntroWithCards"));
+const ColThreeCards = dynamic(() => import("../../components/ColThreeCards"));
 
 const CaseStudy: React.FC = () => {
   return (

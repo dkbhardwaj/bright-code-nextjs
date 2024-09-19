@@ -14,7 +14,7 @@ import {
   contentWithImage4,
   contentWithImage5,
   contactform,
-} from "../dataWhychooseus/data";
+} from "../../dataWhychooseus/data";
 
 export const metadata: Metadata = {
   title: " Why Choose Bright Code IO for Your Drupal Development Needs",
@@ -47,12 +47,12 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const BannerSecond = dynamic(() => import("../components/BannerSecond"));
+const BannerSecond = dynamic(() => import("../../components/BannerSecond"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../../components/ContentWithImageColTwo")
 );
-const Overview = dynamic(() => import("../components/overview"));
-const ContactForm = dynamic(() => import("../components/contactForm"));
+const Overview = dynamic(() => import("../../components/overview"));
+const ContactForm = dynamic(() => import("../../components/contactForm"));
 
 const WhyChooseUs: React.FC = () => {
   return (

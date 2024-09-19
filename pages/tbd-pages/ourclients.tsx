@@ -14,7 +14,7 @@ import {
   contentWithImage3,
   contentWithImage4,
   contactform,
-} from "../dataOurclients/data";
+} from "../../dataOurclients/data";
 
 export const metadata: Metadata = {
   title: "Collaborative Excellence: Bright Code Agency-to-Agency Approach",
@@ -47,12 +47,12 @@ interface Metadata {
   openGraph?: OpenGraph;
 }
 
-const ContactForm = dynamic(() => import("../components/contactForm"));
-const BannerSecond = dynamic(() => import("../components/BannerSecond"));
-const Introduction = dynamic(() => import("../components/Introduction"));
-const Overview = dynamic(() => import("../components/overview"));
+const ContactForm = dynamic(() => import("../../components/contactForm"));
+const BannerSecond = dynamic(() => import("../../components/BannerSecond"));
+const Introduction = dynamic(() => import("../../components/Introduction"));
+const Overview = dynamic(() => import("../../components/overview"));
 const ContentWithImageColTwo = dynamic(
-  () => import("../components/ContentWithImageColTwo")
+  () => import("../../components/ContentWithImageColTwo")
 );
 
 const Ourclient: React.FC = () => {
