@@ -16,7 +16,7 @@ interface ContactFormProps {
 
 const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
   const { formintrowithImage, fullWidth, title, subtitle, eyebrowText } = data;
-    console.log(fullWidth)
+    // console.log(fullWidth)
   const [state, handleSubmit] = useForm("maygryee");
   const [formsuccess, setFormsuccess] = useState(false);
 

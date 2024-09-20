@@ -5,20 +5,30 @@ import Link from "next/link";
 
 import { useRouter } from "next/router";
 
+// interface StickyItem {
+// 	id: string;
+// 	title: string;
+// 	url: string;
+//   }
+// const [clickedId, setClickedId] = useState<string | null>(null);
+
 interface StickyProps {
   ribbonVisible?: boolean;
-  data?: { id: string; title: string; url: string }[];
-  clickedId: string | null;
-  setClickedId: React.Dispatch<React.SetStateAction<string | null>>;
+  data?: { fields :{id: any; label: string; path: string}  }[];
+  // clickedId: string | null;
+  // setClickedId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const Sticky: React.FC<StickyProps> = ({
   ribbonVisible,
   data = [],
-  clickedId,
-  setClickedId,
+  // clickedId,
+  // setClickedId,
 }) => {
+
+
   const [isArrowDownClicked, setIsArrowDownClicked] = useState(false);
+  const [clickedId, setClickedId] = useState()
   const handleArrowClick = () => {
     setIsArrowDownClicked(!isArrowDownClicked);
   };
@@ -26,11 +36,12 @@ const Sticky: React.FC<StickyProps> = ({
   const router = useRouter();
 
   useEffect(() => {
+   
     const currentUrlData = data.find(
-      (item) => router.asPath === `/${item.url}`
+      (item) => router.asPath === `${item?.fields?.path}`
     );
     if (currentUrlData) {
-      setClickedId(currentUrlData.id);
+      setClickedId(currentUrlData?.fields?.id);
     }
   }, [router.asPath, data, setClickedId]);
 
@@ -125,21 +136,21 @@ const Sticky: React.FC<StickyProps> = ({
         >
           <div className="container">
             <ul className="flex relative w-fit mx-auto sm:justify-between">
-              {data.map((dataItem, index) => {
+              {data?.map((dataItem, index) => {
                 return (
                   <li
-                    key={dataItem.id}
+                    key={dataItem?.fields?.id}
                     className={`px-5 py-[27px] sm:px-1 relative tablet-mid:px-[6px] bg-transparent transition-colors duration-500 hover:bg-[#00000042] ${
-                      clickedId === dataItem.id ? "activated" : ""
+                      clickedId === dataItem?.fields?.id ? "activated" : ""
                     }`}
-                    onClick={() => setClickedId(dataItem.id)}
+                    onClick={() => setClickedId(dataItem?.fields?.id)}
                   >
                     <Link
-                      href={`/${dataItem.url}`}
-                      aria-label={`Navigate to ${dataItem.title}`}
+                      href={`${dataItem?.fields?.path}`}
+                      aria-label={`Navigate to ${dataItem?.fields?.label}`}
                       className={`text-[19px] font-[600] transition-all text-white hover:text-white duration-300 ease-in-out xl:text-[16px]`}
                     >
-                      {dataItem.title}
+                      {dataItem?.fields?.label}
                     </Link>
                   </li>
                 );
@@ -180,21 +191,21 @@ const Sticky: React.FC<StickyProps> = ({
                 onClick={handleArrowClick}
               ></div>
               <ul className={` relative w-full block pr-5 `}>
-                {data.map((dataItem, index) => {
+                {data?.map((dataItem, index) => {
                   return (
                     <li
                       key={index}
-                      datatype={dataItem.id}
+                      datatype={dataItem?.fields?.id}
                       className={` py-[25px] relative w-full bg-transparent sm:py-[20px] ${
-                        visibleSections[0] === dataItem.url ? "activated" : ""
+                        visibleSections[0] === dataItem?.fields?.path ? "activated" : ""
                       }`}
                     >
                       <Link
-                        href={`/${dataItem.url}`}
-                        aria-label={`Navigate to ${dataItem.title}`}
+                        href={`${dataItem?.fields?.path}`}
+                        aria-label={`Navigate to ${dataItem?.fields?.label}`}
                         className={` text-[19px] font-[600] text-white transition duration-500 ease-in-out sm:text-[16px]`}
                       >
-                        {dataItem.title}
+                        {dataItem?.fields?.label}
                       </Link>
                     </li>
                   );

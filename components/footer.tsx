@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
         content_type: 'navigation',
         'fields.navName': "Footer Menu"
       });
-      console.log(response)
+     
      const navItem = response.items[0]?.fields as unknown as NavigationItem;
       setMenus(navItem || null);
     } catch (err) {

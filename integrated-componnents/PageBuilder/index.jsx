@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 //sections
 import HeroBanner from "../Herobanner"
 import Banner from "../Banner"
@@ -11,8 +11,7 @@ import ContactForm from "../Contact-form"
 import IntroWithCards from "../IntroWithCards"
 import GroupContactInfo from "../GroupContactInfo"
 import ColFourCards from "../ColFourCards"
-
-
+import StickyNav from '../stickyNav'
 
 
 export default function PageBuilder({pageComponents}) {
@@ -34,7 +33,7 @@ export default function PageBuilder({pageComponents}) {
 
 function pageBuilder(data) {
 	let blades = [];
-   
+	
 	data.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);
@@ -44,6 +43,9 @@ function pageBuilder(data) {
 		
 		} else if (blade.sys?.contentType?.sys?.id === "bannerThirdLevel") {
 			blades.push(<Banner  data={blade?.fields} />);
+
+		}else if (blade.sys?.contentType?.sys?.id === "navigation") {
+			blades.push( <StickyNav ribbonVisible={true} data={blade?.fields?.menuLink} />);
 
 		} else if (blade.sys?.contentType?.sys?.id === "intro") {
 			blades.push(<Introduction data={blade?.fields} />);
