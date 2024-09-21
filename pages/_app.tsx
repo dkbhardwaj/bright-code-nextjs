@@ -13,6 +13,9 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Poppins } from "next/font/google";
+import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
+
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -73,12 +76,18 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         description={String(metadata.description)}
         canonical={currentUrl}
       />
-      <Layout>
-        <main className={poppins.className}>
-          <Component {...pageProps} />
-        </main>
-        <ScrollToTopButton />
-      </Layout>
+      <ContentfulLivePreviewProvider 
+        locale="en-US"
+        enableInspectorMode={pageProps.preview}
+        enableLiveUpdates={pageProps.preview}
+      >
+        <Layout>
+          <main className={poppins.className}>
+            <Component {...pageProps} />
+          </main>
+          <ScrollToTopButton />
+        </Layout>
+      </ContentfulLivePreviewProvider>
     </>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import {fetchEntryBySlug} from "../../lib/contentful/pageData"
 import { NextSeo } from 'next-seo';
 
+
 import PageBuilder from '../../integrated-componnents/PageBuilder'
-// import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 
 export default function CaseStudies({entry,slug}) {
@@ -46,8 +46,9 @@ export default function CaseStudies({entry,slug}) {
 export async function getServerSideProps(context) {
  
   let slug = `${context.query.slug}`
-  // // Fetch data from external API
-  const entry = await fetchEntryBySlug(slug, "caseStudies");
+  let preview = context.query?.secret == "preview" ? true : false
+ 
+  const entry = await fetchEntryBySlug(slug, "caseStudies", preview);
  
   return { props: { entry,slug } };
 }
