@@ -11,28 +11,29 @@ export default function CaseStudies({entry,slug}) {
   
   return (
     <>
-    <NextSeo
+     <NextSeo
         title={seoData?.SEOTitle}
         description={seoData?.SEODescription}
-        openGraph={{ type: 'case study detail',title: `${seoData?.SEOTitle}`,
-          description: `${seoData?.SEODescription}`,
-          images: [ 
-          {
-          url: `${(seoData?.ogImage?.fields?.file?.url) ? `https:${seoData?.ogImage?.fields?.file?.url}`: `/banner-bg-img.png`}`,
-          width: 1200, height: 600, alt: "case studies",
-          }
+        canonical={fullUrl}
+        openGraph={{
+          type: 'case-studies',
+          siteName: 'Bright-code',
+          url: `${fullUrl}`,
+          title: seoData?.SEOTitle,
+          description: seoData?.SEODescription,
+          images: [
+            {
+              url: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+              width: 800,
+              height: 600,
+              alt: 'case studies',
+            }
           ],
-          twitter: {
-            cardType: 'summary_large_image',
-            site: '@brightcode',
-            },
         }}
         twitter={{
+          site: '@GetSift',
           cardType: 'summary_large_image',
-          title: `${seoData?.SEOTitle}`,
-          description: `${seoData?.SEODescription}`,
-          handle: '@brightcode',
-          site: '@brightcode',
+          image: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
         }}
       />
 
