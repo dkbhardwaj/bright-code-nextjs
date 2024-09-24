@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo';
 import PageBuilder from '../../integrated-componnents/PageBuilder'
 
 
-export default function CaseStudies({entry,slug}) {
+export default function CaseStudies({entry,fullUrl}) {
   let seoData = entry?.fields?.seoData?.fields
   
   return (
@@ -48,8 +48,10 @@ export async function getServerSideProps(context) {
  
   let slug = `${context.query.slug}`
   let preview = context.query?.secret == "preview" ? true : false
- 
+  const { req } = context;
+      const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
+      const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
   const entry = await fetchEntryBySlug(slug, "caseStudies", preview);
  
-  return { props: { entry,slug } };
+  return { props: { entry,fullUrl } };
 }
