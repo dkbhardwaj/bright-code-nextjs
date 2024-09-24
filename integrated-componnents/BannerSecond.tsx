@@ -45,7 +45,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
     eyebrowText
   } = data;
 
-  console.log(data)
+ 
 
   const hasnotImages = !foregroundImg ;
   const padding = sectionPadding?.fields?.padding
