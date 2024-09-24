@@ -6,7 +6,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link
+          {/* <link
             rel="stylesheet"
             href="https://unpkg.com/aos@next/dist/aos.css"
           />
@@ -43,10 +43,10 @@ class MyDocument extends Document {
           } )( window, document, 'script', 'dataLayer', 'GTM-KVK3JT9' );
           `,
             }}
-          />
+          /> */}
 
           {/* <!-- Google tag (gtag.js) --> */}
-          <script
+          {/* <script
             defer
             src="https://www.googletagmanager.com/gtag/js?id=AW-16650844425"
           ></script>
@@ -58,14 +58,14 @@ class MyDocument extends Document {
           gtag('config', 'AW-16650844425');
           `,
             }}
-          />
+          /> */}
 
           {/* <!-- Event snippet for Contact us page conversion page --> */}
-          <script
+          {/* <script
             dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});`,
             }}
-          />
+          /> */}
         </Head>
         <body>
           <Main />

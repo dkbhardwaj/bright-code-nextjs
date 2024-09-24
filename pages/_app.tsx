@@ -13,7 +13,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Poppins } from "next/font/google";
-import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
+// import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
 
 
@@ -23,10 +23,6 @@ const poppins = Poppins({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Bright Code",
-  description: "Drupal CMS Agency",
-};
 
 declare global {
   interface Window {
@@ -66,28 +62,21 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     initAOS();
   }, []);
 
-  const router = useRouter();
-  let currentUrl = "https://www.bright-code.io" + router.asPath;
 
   return (
     <>
-      <NextSeo
-        title={String(metadata.title)}
-        description={String(metadata.description)}
-        canonical={currentUrl}
-      />
-      <ContentfulLivePreviewProvider 
+      {/* <ContentfulLivePreviewProvider 
         locale="en-US"
         enableInspectorMode={pageProps.preview}
         enableLiveUpdates={pageProps.preview}
-      >
+      > */}
         <Layout>
           <main className={poppins.className}>
             <Component {...pageProps} />
           </main>
           <ScrollToTopButton />
         </Layout>
-      </ContentfulLivePreviewProvider>
+      {/* </ContentfulLivePreviewProvider> */}
     </>
   );
 }

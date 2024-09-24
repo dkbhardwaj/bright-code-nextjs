@@ -49,12 +49,6 @@ const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
                 </div>
               )}
               {item.fields?.heading && <h5 className="text-white">{item.fields?.heading}</h5>}
-              {/* {item.paragraph && (
-                <p
-                  className="mt-4 text-[15px] text-lightGray leading-[26px] "
-                  dangerouslySetInnerHTML={{ __html: item.paragraph }}
-                />
-              )} */}
             </div>
           ))}
         </div>

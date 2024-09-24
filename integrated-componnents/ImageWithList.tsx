@@ -26,15 +26,6 @@ const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
             )}
             {markdown && (
               <div className="relative pl-[25px]" dangerouslySetInnerHTML={{ __html: markdown }}/>
-              // <ul> className=" list-none relative w-full block  ">
-              //   {listItem.map((item, index) => (
-              //     <li
-              //       className=" font-light leading-[28px] "
-              //       key={index}
-              //       dangerouslySetInnerHTML={{ __html: item.listContent }}
-              //     />
-              //   ))}
-              // </ul>
             )}
           </div>
         </div>
