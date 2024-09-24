@@ -18,7 +18,7 @@ export default function CaseStudies({entry,slug}) {
           description: `${seoData?.SEODescription}`,
           images: [ 
           {
-          url: `${(seoData?.ogImage?.fields?.file?.url) ? ``: `https:${seoData?.ogImage?.fields?.file?.url}`}`,
+          url: `${(seoData?.ogImage?.fields?.file?.url) ? `https:${seoData?.ogImage?.fields?.file?.url}`: `/banner-bg-img.png`}`,
           width: 1200, height: 600, alt: "case studies",
           }
           ],
