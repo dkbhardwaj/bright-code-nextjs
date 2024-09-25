@@ -10,14 +10,15 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://unpkg.com/aos@next/dist/aos.css"
           />
-          <script
+          <Script
             type="text/javascript"
             src="https://www.googletagmanager.com/gtag/js?id=UA-254354410-1"
             id="google_gtagjs-js"
             defer
-          ></script>
-          <script
+          ></Script>
+          <Script
             type="text/javascript"
+            strategy="afterInteractive"
             id="google_gtagjs-js-after"
             dangerouslySetInnerHTML={{
               __html: `  window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
@@ -29,8 +30,9 @@ class MyDocument extends Document {
           `,
             }}
           />
-          <script
+          <Script
             type="text/javascript"
+              strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: ` ( function( w, d, s, l, i ) {
             w[l] = w[l] || [];
@@ -46,11 +48,13 @@ class MyDocument extends Document {
           />
 
           {/* <!-- Google tag (gtag.js) --> */}
-          <script
+          <Script
             defer
+            strategy="afterInteractive"
             src="https://www.googletagmanager.com/gtag/js?id=AW-16650844425"
-          ></script>
-          <script
+          ></Script>
+          <Script
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -61,7 +65,7 @@ class MyDocument extends Document {
           />
 
           {/* <!-- Event snippet for Contact us page conversion page --> */}
-          <script
+          <Script
             dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});`,
             }}
