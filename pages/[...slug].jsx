@@ -10,7 +10,7 @@ import PageBuilder from '../integrated-componnents/PageBuilder'
 export default function BasicPages({entry, fullUrl}) {
   let seoData = entry?.fields?.seoData?.fields
 
-  console.log(fullUrl)
+
   return (
     <>
      <NextSeo
@@ -50,6 +50,7 @@ export default function BasicPages({entry, fullUrl}) {
 export async function getServerSideProps(context) {
  
      let slug = `${context.query.slug}`
+     console.log(slug)
      const { req } = context;
       const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
       const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
