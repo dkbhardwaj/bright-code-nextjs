@@ -414,8 +414,8 @@ span.title {
       content: " ";
       position: absolute;
       top: 0;
-      left: -72px;
-      width: calc(100% + 144px);
+      left: 0;
+      width: 100%;
       height: 100%;
       // background-image: linear-gradient(to right, #8000ff, #fff 50%);
       background-image: linear-gradient(
@@ -434,8 +434,6 @@ span.title {
         );
       }
     }
-    &::after {
-      content: " ";
       position: absolute;
       top: 0;
       left: -72px;
@@ -446,7 +444,8 @@ span.title {
       background-size: cover;
       border-radius: 55px;
       z-index: -1;
-    }
+      overflow: hidden;
+    
   }
   ul {
     li {
@@ -569,6 +568,101 @@ span.title {
     margin-bottom: 20px;
     &:last-child{
       margin-bottom: 0;
+    }
+  }
+}
+
+.case-study
+{
+  .introduction{
+    .eyebrow{
+      display: inline-block;
+      padding: 5px 20px;
+      border-radius: 30px;
+      border-width: 1px;
+      border-style: solid;
+      // border-color:black;
+      background: linear-gradient(90deg, rgba(0, 117, 255, 0.07) 0%, rgba(128, 0, 255, 0.07) 100%);
+    }
+    h2 span{
+      font-size: inherit;
+    }
+    &.purple{
+      h2 span, .eyebrow{
+        color: #8000FF;
+      }
+      .eyebrow{
+        border-color:rgba(128, 0, 255, 0.15) ;
+        
+      }
+    }
+    &.blue{
+      h2 span, .eyebrow {
+        color: #0075FF;
+      }
+      .eyebrow{
+        border-color: rgba(0, 117, 255, 0.15) ;
+      }
+    }
+
+    
+
+  }
+}
+
+
+.purple-tick{
+  ul{
+    padding-left: 26px !important; 
+  }
+  li{
+    list-style: none;
+    position: relative;
+    &::before {
+      content: " ";
+      position: absolute;
+      top: 8px;
+      left: -26px;
+      width: 20px;
+      height: 20px;
+      background-image: url("/case-study/purple-tick.svg") ;
+      background-repeat: no-repeat;
+      z-index: 1;
+      @include tablet-down {
+        background-image: linear-gradient(
+          to right,
+          rgba(183, 117, 249, 0.902),
+          rgba(246, 239, 252, 0.902) 70%
+        );
+      }
+    }
+  }
+}
+
+.blue-tick{
+  ul{
+    padding-left: 26px !important; 
+  }
+  li{
+    list-style: none;
+    position: relative;
+    &::before {
+      content: " ";
+      position: absolute;
+      top: 8px;
+      left: -26px;
+      width: 20px;
+      height: 20px;
+      background-image: url("/case-study/blue-tick.svg") ;
+      background-repeat: no-repeat;
+      z-index: 1;
+      @include tablet-down {
+        background-image: linear-gradient(
+          to right,
+          rgba(183, 117, 249, 0.902),
+          rgba(246, 239, 252, 0.902) 70%
+        );
+      }
     }
   }
 }

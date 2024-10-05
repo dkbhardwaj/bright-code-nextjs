@@ -19,6 +19,7 @@ interface IntroductionProps {
     leftAlign: Boolean;
     sectionPadding: any;
     bgColor: string;
+    colorStyling: string;
   };
  
 
@@ -39,7 +40,8 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
     description,
     cta,
     leftAlign,
-    sectionPadding
+    sectionPadding,
+    colorStyling
   } = data;
 
    
@@ -53,7 +55,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   
   return (
     <section
-      className={`intro  ${padding}  text-center overflow-x-hidden ${bgColorClass}`}
+      className={`introduction ${padding}  text-center overflow-x-hidden ${bgColorClass} ${colorStyling && colorStyling.toLowerCase()}`}
       id="why-choose-us"
     >
       <div className="container">
@@ -63,36 +65,29 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               data-aos-duration="600"
             >
                 {eyebrowText && (
-                  <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                  <h6 className="eyebrow text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
                     {eyebrowText}
                   </h6>
                 )}
-                {gradientText ? (
-                  <h2
-                    className={`${titleLarge ? "large" : ""} ${
-                      titleWhite ? "text-white" : ""
-                    } ${
-                      description ? "mb-0" : "mb-[38px] md:mb-[20px]"
-                    } font-medium text-black `}
-                  >
+                {gradientText && (
+                  
                     <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
                       {gradientText}
                     </span>
-                    {title}
-                  </h2>
-                ) : (
-                  title && (
+                )}
+                
+                {title && (
                     <h2
                       className={`${titleLarge ? "large" : ""} ${
                         titleWhite ? "text-white" : ""
                       } ${
                         description ? "mb-0" : "mb-[38px] md:mb-[20px]"
                       } font-medium text-black `}
-                    >
-                      {title}
-                    </h2>
+
+                      dangerouslySetInnerHTML={{ __html: title }}
+                     />
                   )
-                )}
+                }
 
           </div>
           <div  data-aos="fade-left"

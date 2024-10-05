@@ -22,6 +22,7 @@ interface ContentWithImageProps {
     markdown: string;
     sectionPadding: any;
     bgPink: Boolean;
+    listStyling: string;
   };
 }
 
@@ -35,14 +36,17 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     foregroundImage,
     imageOnLeft,
     sectionPadding,
-    bgPink
+    bgPink,
+    listStyling
   } = data;
 
   const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
 
+
+
   return (
     <section
-      className={`${padding} contentWithImage overflow-hidden`}
+      className={`${padding && padding} contentWithImage overflow-hidden`}
     >
       <div className="container">
         <div
@@ -79,7 +83,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             )}
             {markdown && (
               <div
-              className="leading-[28px] !text-black "
+              className={`leading-[28px] !text-black ${listStyling == "Purple" ? "purple-tick" : listStyling == "Blue" ?"blue-tick" : ""}`}
               dangerouslySetInnerHTML={{ __html: markdown }}
               />
             )}

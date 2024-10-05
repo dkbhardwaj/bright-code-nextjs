@@ -4,6 +4,8 @@ import { NextSeo } from 'next-seo';
 
 
 import PageBuilder from '../../integrated-componnents/PageBuilder'
+import CaseStudyLayout from './caseStudyLayout';
+
 
 
 export default function CaseStudies({entry,fullUrl}) {
@@ -11,6 +13,7 @@ export default function CaseStudies({entry,fullUrl}) {
   
   return (
     <>
+    <CaseStudyLayout>
      <NextSeo
         title={seoData?.SEOTitle}
         description={seoData?.SEODescription}
@@ -38,7 +41,8 @@ export default function CaseStudies({entry,fullUrl}) {
       />
 
      
-      <PageBuilder pageComponents={entry?.fields?.section} />
+      <PageBuilder pageComponents={entry?.fields?.section} caseStudy={true} />
+      </CaseStudyLayout>
     </>
   )
 }

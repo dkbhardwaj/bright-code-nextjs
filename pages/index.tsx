@@ -45,7 +45,7 @@ const Home: React.FC<HomeProps> = ({entry,fullUrl}) => {
           // image: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
         }}
       />
-     <PageBuilder pageComponents={entry?.fields?.section} />
+     <PageBuilder pageComponents={entry?.fields?.section} caseStudy={false}/>
     </>
   )
 };
