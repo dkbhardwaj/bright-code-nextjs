@@ -14,9 +14,9 @@ import ColFourCards from "../ColFourCards"
 import StickyNav from '../stickyNav'
 
 
-export default function PageBuilder({pageComponents}) {
+export default function PageBuilder({pageComponents , caseStudy}) {
 
-    let bladeList = pageBuilder(pageComponents);
+    let bladeList = pageBuilder(pageComponents , caseStudy);
    
     return (
 			<>
@@ -31,9 +31,9 @@ export default function PageBuilder({pageComponents}) {
 	);
 }
 
-function pageBuilder(data) {
+function pageBuilder(data, caseStudy) {
 	let blades = [];
-	
+	let isCaseStudy = caseStudy ? true : fasle
 	data.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);

@@ -14,7 +14,7 @@ export default function GroupContactInfo({data}) {
         </div>
         )}
         
-        <PageBuilder pageComponents={data?.sections} />
+        <PageBuilder pageComponents={data?.sections} caseStudy={false} />
         {data.imageWithMap &&
            ( <FooterMap />)
         }

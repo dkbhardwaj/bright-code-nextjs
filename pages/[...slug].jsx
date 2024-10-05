@@ -40,7 +40,7 @@ export default function BasicPages({entry, fullUrl}) {
       />
 
      
-      <PageBuilder pageComponents={entry?.fields?.section} />
+      <PageBuilder pageComponents={entry?.fields?.section} caseStudy={false}/>
     </>
   )
 }
