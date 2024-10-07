@@ -23,6 +23,14 @@ interface ContentWithImageProps {
     sectionPadding: any;
     bgPink: Boolean;
     listStyling: string;
+    sideText: string;
+    sideImage: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
   };
 }
 
@@ -37,11 +45,12 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
     imageOnLeft,
     sectionPadding,
     bgPink,
-    listStyling
+    listStyling,
+    sideImage,
+    sideText,
   } = data;
 
   const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
-
 
 
   return (
@@ -92,14 +101,14 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               )}
           </div>
           <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
-            <div
-              className="imageWrap w-full h-[400px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
-              data-aos={imageOnLeft ? "fade-right" : "fade-left"}
-              data-aos-delay="400"
-              data-aos-duration="500"
-            >
-              {
-                foregroundImage?.fields?.file?.url && 
+            
+              {foregroundImage?.fields?.file?.url && 
+                <div
+                className="imageWrap w-full h-[400px] tablet:h-[280px] sm:h-[260px] relative overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient2 before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]"
+                data-aos={imageOnLeft ? "fade-right" : "fade-left"}
+                data-aos-delay="400"
+                data-aos-duration="500"
+              >
                 <Image
                   src={`https:${foregroundImage?.fields?.file?.url}`}
                   alt="img"
@@ -110,9 +119,33 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                   style={{ objectFit: "cover" }}
                   className=" w-full h-full object-cover"
                 />
+                 </div>
               }
-              
-            </div>
+              {
+                (sideText || sideImage) && (
+                  <div className={`${listStyling == "Blue" ? "bg-[#0075FF12]" : "bg-[#8000FF12]"} 
+                    p-[50px] rounded-[55px]
+
+                  `}>
+                    {sideImage && (
+                      <>
+                       <Image
+                       src={`https:${sideImage?.fields?.file?.url}`}
+                       alt="img"
+                       width={183}
+                       height={43}
+                       priority
+                      //  fill
+                       style={{ objectFit: "contain" }}
+                       className=" w-[183px] h-[43px] object-contain mb-[20px]"
+                     />
+                     <h4 className="text-[25px] font-[600]">{sideText}</h4>
+                     </>
+                    )}
+                  </div>
+                )
+              }
+           
           </div>
         </div>
       </div>

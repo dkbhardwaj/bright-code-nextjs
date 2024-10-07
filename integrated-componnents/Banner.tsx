@@ -43,18 +43,18 @@ const Banner: React.FC<BannerData> = ({ data }) => {
       </div>
       <div className="container">
         <div
-          className={`relative z-[10] w-full relative z-[5] ${alignTextCenter ? "text-center" : "text-left"}`}
+          className={`content relative z-[10] w-full relative z-[5] ${alignTextCenter ? "text-center" : "text-left"}`}
           data-aos="fade-left"
           data-aos-delay="200"
           data-aos-duration="400"
         >
-          {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
+          {eyebrowText && <h6 className="eyebrow text-white mb-2 ">{eyebrowText}</h6>}
           {title && (
             <>
             <h1 className="relative z-[2] header-h1 lg-up:text-[45px] lg-up:leading-[60px] text-white ">
               {title}
             </h1>
-             <span className="h3 text-white inline-block mb-[30px] mt-[10px] ">{subTitle}</span>
+             <span className="sub-title h3 text-white inline-block mb-[30px] mt-[16px] ">{subTitle}</span>
             </>
           )}
           {description && (

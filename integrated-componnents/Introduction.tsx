@@ -82,7 +82,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                         titleWhite ? "text-white" : ""
                       } ${
                         description ? "mb-0" : "mb-[38px] md:mb-[20px]"
-                      } font-medium text-black `}
+                      } text-black font-[600]`}
 
                       dangerouslySetInnerHTML={{ __html: title }}
                      />

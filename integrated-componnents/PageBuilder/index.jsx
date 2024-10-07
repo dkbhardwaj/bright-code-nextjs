@@ -12,6 +12,7 @@ import IntroWithCards from "../IntroWithCards"
 import GroupContactInfo from "../GroupContactInfo"
 import ColFourCards from "../ColFourCards"
 import StickyNav from '../stickyNav'
+import CardsWithSocialIcons from "../CardsWithSocialIcons"
 
 
 export default function PageBuilder({pageComponents , caseStudy}) {
@@ -70,6 +71,9 @@ function pageBuilder(data, caseStudy) {
 
 		} else if (blade.sys?.contentType?.sys?.id === "iconWithText") {
 			blades.push(<ColFourCards data={blade?.fields} />);
+
+		} else if (blade.sys?.contentType?.sys?.id === "cardsWithSocialIcons") {
+			blades.push(<CardsWithSocialIcons data={blade?.fields} />);
 
 		}
 	});
