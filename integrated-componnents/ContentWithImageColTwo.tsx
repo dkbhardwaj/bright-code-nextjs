@@ -124,21 +124,24 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               {
                 (sideText || sideImage) && (
                   <div className={`${listStyling == "Blue" ? "bg-[#0075FF12]" : "bg-[#8000FF12]"} 
-                    p-[50px] rounded-[55px]
+                    px-[50px] py-[47px] rounded-[55px]
 
                   `}>
                     {sideImage && (
                       <>
-                       <Image
-                       src={`https:${sideImage?.fields?.file?.url}`}
-                       alt="img"
-                       width={183}
-                       height={43}
-                       priority
-                      //  fill
-                       style={{ objectFit: "contain" }}
-                       className=" w-[183px] h-[43px] object-contain mb-[20px]"
-                     />
+                      <div className="mb-[28px]">
+                        <Image
+                          src={`https:${sideImage?.fields?.file?.url}`}
+                          alt="img"
+                          width={183}
+                          height={43}
+                          priority
+                          //  fill
+                          style={{ objectFit: "contain" }}
+                          className=" w-[183px] h-[43px] object-contain "
+                        />
+                      </div>
+                       
                      <h4 className="text-[25px] font-[600]">{sideText}</h4>
                      </>
                     )}
