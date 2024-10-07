@@ -612,7 +612,10 @@ span.title {
       }
     }
     h2{
-      font-size: 45px !important;
+      @include container-up{
+        font-size: 45px !important;
+      }
+      
     }
     .eyebrow{
       font-size: 13px !important;
@@ -666,15 +669,7 @@ span.title {
         font-weight: 600; 
         left: 10px;
     }
-      // li{
-      //   padding-left: 10px;
-      //   margin-bottom: 10px;
-      // }
-      // li::marker{
-      //   position: absolute !important;
-      //   color: #8000ff;
-      //   font-weight: 600;
-      // }
+     
     }
     .content{
       h4{
@@ -687,6 +682,9 @@ span.title {
     .w-mainRow {
       .content {
         padding-right: 20px;
+        @include tablet-down{
+          padding-right: 0;
+        }
       }
     }
 

@@ -124,7 +124,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               {
                 (sideText || sideImage) && (
                   <div className={`${listStyling == "Blue" ? "bg-[#0075FF12]" : "bg-[#8000FF12]"} 
-                    px-[50px] py-[47px] rounded-[55px]
+                    px-[50px] py-[47px] md:p-[30px] rounded-[55px]
 
                   `}>
                     {sideImage && (
@@ -138,11 +138,11 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                           priority
                           //  fill
                           style={{ objectFit: "contain" }}
-                          className=" w-[183px] h-[43px] object-contain "
+                          className=" w-[183px] h-[43px] md:w-[150px] md:h-[35px] object-contain "
                         />
                       </div>
                        
-                     <h4 className="text-[25px] font-[600]">{sideText}</h4>
+                     <h4 className="lg-up:text-[25px] font-[600]">{sideText}</h4>
                      </>
                     )}
                   </div>
