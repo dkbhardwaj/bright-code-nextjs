@@ -100,7 +100,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                 <Button ctaData={cta} classes={'mt-5 mx-auto'} />
               )}
           </div>
-          <div className="content imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
+          <div className=" imageWrap-outer w-halfWidth mx-2.5 md:w-full md:mx-0">
             
               {foregroundImage?.fields?.file?.url && 
                 <div
@@ -124,7 +124,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
               {
                 (sideText || sideImage) && (
                   <div className={`${listStyling == "Blue" ? "bg-[#0075FF12]" : "bg-[#8000FF12]"} 
-                    px-[50px] py-[47px] md:p-[30px] rounded-[55px]
+                   side-text px-[50px] py-[47px] md:p-[30px] rounded-[55px]
 
                   `}>
                     {sideImage && (

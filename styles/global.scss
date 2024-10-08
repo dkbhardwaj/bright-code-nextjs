@@ -576,6 +576,17 @@ span.title {
 
 .case-study
 {
+  .padding-large-top {
+    @include container-up{
+      padding-top: 105px;
+    }
+  }
+  .padding-large-bottom{
+    @include container-up{
+      padding-bottom: 105px;
+    }
+  }
+  //banner
   .banner{
     .content{
       max-width: 1095px;
@@ -583,7 +594,7 @@ span.title {
     }
     .eyebrow{
       display: inline-block;
-      padding: 4px 26px;
+      padding: 3px 26px 2px;
       margin-bottom: 20px;
       border-radius: 30px;
       border-width: 1px;
@@ -597,10 +608,11 @@ span.title {
     }
 
   }
+  //intro
   .introduction{
     .eyebrow{
       display: inline-block;
-      padding: 4px 26px;
+      padding: 3px 26px 2px;
       border-radius: 30px;
       border-width: 1px;
       border-style: solid;
@@ -616,6 +628,9 @@ span.title {
         font-size: 45px !important;
       }
       
+    }
+    p{
+      color: black;
     }
     .eyebrow{
       font-size: 13px !important;
@@ -671,10 +686,10 @@ span.title {
     }
      
     }
-    .content{
+    .side-text{
       h4{
         @include desktop-up{
-          line-height: 1.6;
+          line-height: 1.68;
         }
        
       }
@@ -696,6 +711,14 @@ span.title {
       }
       b{
         font-weight: 600;
+      }
+    }
+    .flex-row-reverse{
+      .imageWrap{
+        height: 419px;
+      }
+      .content{
+        padding-left: 28px;
       }
     }
   }
