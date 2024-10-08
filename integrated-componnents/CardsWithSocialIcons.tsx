@@ -52,7 +52,7 @@ const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
                     </div>
                     <div className={`${viewSocialIcons ? "w-[calc(100%-33px)]": "w-[calc(100%-35px)]"} mt-[-5px]`}>
                       <h5 className="font-[600] pr-[12px]">{card?.fields?.heading}</h5>
-                     {card?.fields?.description && ( <p className="text-black text-[14px]">{card?.fields?.description}</p>) } 
+                     {card?.fields?.description && ( <p className={`${viewSocialIcons ? "": "mt-[16px]"} text-black text-[14px] leading-[1.5]`}>{card?.fields?.description}</p>) } 
                     </div>
                 </div>
                 )

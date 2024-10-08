@@ -676,14 +676,15 @@ span.title {
         padding-left: 35px;
         counter-increment: custom-counter;
         margin-bottom: 10px;
+        font-weight: 300;
       }
 
-    li::before {
-        position: absolute;
-        content: counter(custom-counter, decimal-leading-zero) " "; /* Add custom counter */
-        font-weight: 600; 
-        left: 10px;
-    }
+      li::before {
+          position: absolute;
+          content: counter(custom-counter, decimal-leading-zero) " "; /* Add custom counter */
+          font-weight: 600; 
+          left: 10px;
+      }
      
     }
     .side-text{
@@ -706,6 +707,7 @@ span.title {
     li{
       margin-bottom: 23px;
       line-height: 1.7;
+      font-weight: 300;
       &:last-of-type {
         margin-bottom: 0;
       }
