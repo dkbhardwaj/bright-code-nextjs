@@ -39,7 +39,7 @@ const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
             <div className="flex flex-wrap w-[calc(100%+20px)] ml-[-10px] justify-center">
               {cards.map((card: { fields: { cardImage: { fields: { file: { url: any; }; }; }; description: string, heading: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; }, index: any)=>{
                 return(
-                  <div className={`${viewSocialIcons ?"w-[calc(33.33%-20px)] mx-[10px]" : "w-[calc(30%-38px)] mx-[19px]" } tablet:w-[calc(100%-20px)] tablet:mx-[20px] tablet:mb-[20px] md:w-full md:mb-[20px] flex flex-wrap   border-[1px] border-brightGray rounded-[20px] px-[20px] pt-[20px] pb-[16px]`}>
+                  <div className={`${viewSocialIcons ?"w-[calc(33.33%-20px)] mx-[10px]" : "w-[calc(30%-38px)] mx-[19px]" } tablet:w-[calc(100%-20px)] tablet:mx-[20px] tablet:mb-[20px] tablet:last:mb-0 md:last:mb-0 md:w-full md:mb-[20px] flex flex-wrap   border-[1px] border-brightGray rounded-[20px] px-[20px] pt-[20px] pb-[16px]`}>
                     <div className={`${viewSocialIcons ? "w-[20px]": "w-[22px]"} mr-[13px] block`}>
                       <Image
                         src={`https:${card?.fields?.cardImage?.fields?.file?.url}`}
