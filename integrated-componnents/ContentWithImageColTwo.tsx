@@ -55,7 +55,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
 
   return (
     <section
-      className={`${padding && padding} contentWithImage overflow-hidden`}
+      className={`contentWithImage ${padding ? padding : ""} overflow-hidden`}
     >
       <div className="container">
         <div

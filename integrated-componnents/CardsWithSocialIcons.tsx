@@ -20,7 +20,7 @@ interface CardsWithSocialIcons {
 
 const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
   const { markdown, sectionPadding, card, viewSocialIcons} = data;
-  console.log(data)
+  
   const router = useRouter();
   const baseUrl =
     typeof window !== "undefined"

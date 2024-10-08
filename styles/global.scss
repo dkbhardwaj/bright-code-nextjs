@@ -361,9 +361,9 @@ span.title {
         }
       }
     }
-    @include tablet-down {
-      padding: 48px 0;
-    }
+    // @include tablet-down {
+    //   padding: 48px 0;
+    // }
     .content {
       padding-right: 57px;
       padding-left: 0;
@@ -715,10 +715,18 @@ span.title {
     }
     .flex-row-reverse{
       .imageWrap{
-        height: 419px;
+        @include container-up{
+          height: 419px;
+        }
+        
       }
       .content{
-        padding-left: 28px;
+        @include container-up{
+          padding-left: 28px;
+        }
+        @include tablet{
+          padding: 0;
+        }
       }
     }
   }
@@ -746,13 +754,6 @@ span.title {
         background-image: url("/case-study/purple-tick.svg") ;
         background-repeat: no-repeat;
         z-index: 1;
-        @include tablet-down {
-          background-image: linear-gradient(
-            to right,
-            rgba(183, 117, 249, 0.902),
-            rgba(246, 239, 252, 0.902) 70%
-          );
-        }
       }
     }
   }
@@ -780,13 +781,7 @@ span.title {
         background-image: url("/case-study/blue-tick.svg") ;
         background-repeat: no-repeat;
         z-index: 1;
-        @include tablet-down {
-          background-image: linear-gradient(
-            to right,
-            rgba(183, 117, 249, 0.902),
-            rgba(246, 239, 252, 0.902) 70%
-          );
-        }
+        
       }
     }
   }
