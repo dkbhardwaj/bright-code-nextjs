@@ -42,7 +42,7 @@ class MyDocument extends Document {
             j.async = true;
             j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore( j, f );
-          } )( window, document, 'script', 'dataLayer', 'GTM-KVK3JT9' );
+          } )( window, document, 'script', 'dataLayer', 'GTM-MB63HJ5D' );
           `,
             }}
           />
