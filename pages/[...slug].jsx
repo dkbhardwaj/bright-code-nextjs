@@ -50,12 +50,12 @@ export default function BasicPages({entry, fullUrl}) {
 export async function getServerSideProps(context) {
  
      let slug = `${context.query.slug}`
-     console.log(slug)
+     let preview = context.query?.secret == "preview" ? true : false
      const { req } = context;
       const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
       const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
 
-    const entry = await fetchEntryBySlug(slug, "basicPage");
+    const entry = await fetchEntryBySlug(slug, "basicPage", preview);
    
     return { props: { entry, fullUrl } };
   }
