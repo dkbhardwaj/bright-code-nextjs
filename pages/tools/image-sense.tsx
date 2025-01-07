@@ -1,27 +1,26 @@
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
-  const [fetched, setFetched] = useState(false); // Tracks if a fetch has occurred
+  const [fetched, setFetched] = useState(false); // Track if the fetch button was clicked
+  const [fetchType, setFetchType] = useState<"site" | "page" | null>(null); // Track which fetch type (site/page)
 
-  const fetchImages = async (): Promise<void> => {
+  // Function to fetch images based on the type (site or page)
+  const fetchImages = async (type: "site" | "page"): Promise<void> => {
     setError("");
     setImages([]);
     setLoading(true);
-    setFetched(true); // Set to true when fetch is initiated
-
-    if (!url || !/^https?:\/\/[^\s/$.?#].[^\s]*$/.test(url)) {
-      setError("Please enter a valid website URL (starting with http or https).");
-      setLoading(false);
-      return;
-    }
+    setFetchType(type); // Set the fetch type (either site or page)
 
     try {
+      const endpoint =
+        type === "site" ? "/api/fetch-all-images" : "/api/fetch-page-images"; // Ensure these API routes exist
       const response = await fetch(
-        `/api/fetch-all-images?url=${encodeURIComponent(url)}`
+        `${endpoint}?url=${encodeURIComponent(url)}`
       );
       const data: { images?: string[]; error?: string } = await response.json();
 
@@ -41,51 +40,108 @@ export default function Home() {
     }
   };
 
+  // Handle the fetch action when the "Fetch Images" button is clicked
+  const handleFetchClick = async (): Promise<void> => {
+    if (!url) {
+      setError("Please enter a valid URL.");
+      return;
+    }
+    setFetched(true); // Set fetched to true when the user clicks fetch
+    await fetchImages("page"); // Default to fetching from the page URL when the button is first clicked
+  };
+
   return (
-    <section className={`min-h-[100vh] flex flex-col items-center justify-center bg-purple ${fetched&&images.length != 0 ? "pt-[200px]" : ""}`}>
+    <section
+      className={`min-h-[100vh] flex flex-col items-center justify-center bg-purple ${
+        fetched ? "pt-[200px]" : ""
+      }`}
+    >
       <div className="container">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-6 text-purple-700">
             Image Fetcher Tool
           </h1>
-          <div className="flex flex-wrap justify-center mb-6">
-            <input
-              className="h-[50px] w-[300px] py-[10px] px-[15px] rounded-lg border border-gray-400 focus:outline-purple-500"
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="Enter website URL"
-              aria-label="Website URL Input"
-            />
-            <button
-              className={`ml-[20px] submit-btn ${
-                loading
-                  ? "bg-purple-400 cursor-not-allowed"
-                  : "bg-purple-600 hover:bg-purple-700"
-              }`}
-              onClick={fetchImages}
-              disabled={loading}
-              aria-label="Fetch Images Button"
-            >
-              {loading ? (
-                <div className="flex items-center">
-                  <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
-                  Fetching...
-                </div>
-              ) : (
-                "Fetch Images"
-              )}
-            </button>
-          </div>
-          {error && (
-            <p className="text-red-600 mt-4 font-semibold">{error}</p>
+
+          {/* Show input and button only when not fetched */}
+          {!fetched && (
+            <div className="flex flex-wrap justify-center mb-6">
+              <input
+                className="h-[50px] w-[300px] py-[10px] px-[15px] rounded-lg border border-gray-400 focus:outline-purple-500"
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="Enter website URL"
+                aria-label="Website URL Input"
+              />
+              <button
+                className={`ml-[20px] submit-btn ${
+                  loading
+                    ? "bg-purple-400 cursor-not-allowed"
+                    : "bg-purple-600 hover:bg-purple-700"
+                }`}
+                onClick={handleFetchClick}
+                disabled={loading}
+                aria-label="Fetch Images Button"
+              >
+                {loading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                    Fetching...
+                  </div>
+                ) : (
+                  "Fetch Images"
+                )}
+              </button>
+            </div>
           )}
+
+          {/* Show the fetch buttons (All Website / Page) once fetched */}
+          {fetched && (
+            <div className="mt-6">
+              <div className="flex justify-center">
+                <button className="" onClick={() => fetchImages("site")}>
+                  <div className="fetch-btn">
+                    <div className="icon max-w-[72px] mx-auto mb-[30px]">
+                      <Image
+                        src={`/multiple_pages.svg`}
+                        width={700}
+                        height={500}
+                        loading="lazy"
+                        alt="right-img"
+                        className=" w-full h-full object-cover"
+                      />
+                    </div>
+                    <span>Fetch All Website Images</span>
+                  </div>
+                </button>
+                <button
+                  className="fetch-btn ml-4"
+                  onClick={() => fetchImages("page")}
+                >
+                  <div className="icon max-w-[72px] mx-auto mb-[30px]">
+                    <Image
+                      src={`/page.svg`}
+                      width={700}
+                      height={500}
+                      loading="lazy"
+                      alt="right-img"
+                      className=" w-full h-full object-cover"
+                    />
+                  </div>
+                  <span>Fetch Images from Page URL</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Show error if any */}
+          {error && <p className="text-red-600 mt-4 font-semibold">{error}</p>}
         </div>
 
         {/* Show "No images found" only if fetching has occurred */}
         {fetched && images.length === 0 && !loading && !error && (
           <div className="text-center text-gray-500 mt-6">
-            <p>No images found. Enter a website URL to get started.</p>
+            <p>No images found. Try a different URL.</p>
           </div>
         )}
 

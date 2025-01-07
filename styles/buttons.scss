@@ -290,3 +290,77 @@
     background-image: linear-gradient(to right, #0263d3, #6704cb);
   }
 }
+.fetch-btn {
+  position: relative;
+  height: fit-content;
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px 60px 20px 28px;
+  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  border-radius: 9px;
+  text-align: left;
+  transition: all 0.5s ease-in-out;
+  // &::after {
+  //   content: " ";
+  //   position: absolute;
+  //   top: calc(50% - 11px);
+  //   right: 26px;
+  //   width: 22px;
+  //   height: 22px;
+  //   background-image: url("/arrow-right-white.svg");
+  //   background-repeat: no-repeat;
+  //   background-size: 100%;
+  //   transition: right 0.5s ease-in-out;
+  //   @include desktop {
+  //     right: 25px;
+  //   }
+  //   @include tablet {
+  //     right: 20px;
+  //   }
+  //   @include tablet-down {
+  //     right: 16px;
+  //   }
+  // }
+  &:hover {
+    background-image: linear-gradient(to right, #0263d3, #6704cb);
+    &::after {
+      right: 35px;
+      @include desktop {
+        right: 30px;
+      }
+      @include tablet {
+        right: 25px;
+      }
+      @include tablet-down {
+        right: 20px;
+      }
+    }
+  }
+  @include desktop {
+    padding: 18px 50px 18px 25px;
+    max-width: 240px;
+  }
+  @include tablet {
+    padding: 15px 40px 15px 20px;
+    max-width: 200px;
+  }
+  @include tablet-down {
+    padding: 11px 32px 11px 16px;
+    max-width: 200px;
+  }
+  span {
+    position: relative;
+    font-size: 19px;
+    font-weight: 600;
+    color: #fff;
+    @include desktop {
+      font-size: 18px;
+    }
+    @include tablet {
+      font-size: 16px;
+    }
+    @include tablet-down {
+      font-size: 15px;
+    }
+  }
+}
