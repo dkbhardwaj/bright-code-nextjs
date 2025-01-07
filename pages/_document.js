@@ -22,11 +22,11 @@ class MyDocument extends Document {
             id="google_gtagjs-js-after"
             dangerouslySetInnerHTML={{
               __html: `  window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-          gtag('set', 'linker', {“domains”:[“www.bright-code.io”]} );
-          gtag(“js”, new Date());
-          gtag(“set”, “developer_id.dZTNiMT”, true);
-          gtag(“config”, “UA-254354410-1”, {“anonymize_ip”:true});
-          gtag(“config”, “G-P1LQ3NF157");
+          gtag('set', 'linker', {"domains":["www.bright-code.io"]} );
+          gtag("js", new Date());
+          gtag("set", "developer_id.dZTNiMT", true);
+          gtag("config", "UA-254354410-1", {"anonymize_ip":true});
+          gtag("config", "G-P1LQ3NF157");
           `,
             }}
           />
