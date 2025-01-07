@@ -1,212 +1,254 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router"; // Import useRouter hook for query handling
+import { Bar } from "react-chartjs-2";
 import Image from "next/image";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
+  const [scope, setScope] = useState<"page" | "site">("page");
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
-  const [fetched, setFetched] = useState(false); // Track if the fetch button was clicked
-  const [fetchType, setFetchType] = useState<"site" | "page" | null>(null); // Track which fetch type (site/page)
+  const [fetched, setFetched] = useState(false);
+  const [report, setReport] = useState<{
+    totalLinks: number;
+    totalLinksWithIssues: number;
+    hosts: string[];
+    issueTypes: { [key: string]: number };
+    linkTypes: { [key: string]: number };
+    startUrl: string;
+  } | null>(null);
+  
+  const router = useRouter(); // Access router for query parameter updates
 
-  // Function to fetch images based on the type (site or page)
-  const fetchImages = async (type: "site" | "page"): Promise<void> => {
+  useEffect(() => {
+    if (url) {
+      router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
+    }
+  }, [url, router]);
+
+  const fetchWebsiteData = async (): Promise<void> => {
+    setLoading(true);
     setError("");
     setImages([]);
-    setLoading(true);
-    setFetchType(type); // Set the fetch type (either site or page)
+    setReport(null);
 
     try {
-      const endpoint =
-        type === "site" ? "/api/fetch-all-images" : "/api/fetch-page-images"; // Ensure these API routes exist
       const response = await fetch(
-        `${endpoint}?url=${encodeURIComponent(url)}`
+        scope == 'page'
+          ? `/api/analyze-site?url=${encodeURIComponent(url)}&scope=${scope}`
+          : `/api/crawl-site?url=${encodeURIComponent(url)}&scope=${scope}`
       );
-      const data: { images?: string[]; error?: string } = await response.json();
+      const data = await response.json();
 
-      if (response.ok && data.images) {
-        setImages(data.images);
+      if (response.ok) {
+        setImages(data.images || []);
+        setReport({
+          totalLinks: data.totalLinks || 0,
+          totalLinksWithIssues: data.totalLinksWithIssues || 0,
+          hosts: data.hosts || [],
+          issueTypes: data.issueTypes || {},
+          linkTypes: data.linkTypes || {},
+          startUrl: data.startUrl || url,
+        });
       } else {
-        setError(data.error || "Failed to fetch images.");
+        setError(data.error || "Failed to analyze the site.");
       }
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || "An error occurred while scanning the URL.");
-      } else {
-        setError("An unknown error occurred.");
-      }
+      setError("An error occurred while analyzing the site.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Handle the fetch action when the "Fetch Images" button is clicked
-  const handleFetchClick = async (): Promise<void> => {
+  const handleAnalyzeClick = (): void => {
     if (!url) {
       setError("Please enter a valid URL.");
       return;
     }
-    setFetched(true); // Set fetched to true when the user clicks fetch
-    // await fetchImages("page"); // Default to fetching from the page URL when the button is first clicked
+    setFetched(true);
+    fetchWebsiteData();
+  };
+
+  const handleClearInput = (): void => {
+    setUrl(""); // Clear the URL input
+    router.push("/", undefined, { shallow: true }); // Remove URL from query
   };
 
   return (
-    <section
-      className={`min-h-[100vh] flex flex-col items-center justify-center bg-purple ${
-        fetched ? "pt-[200px]" : ""
-      }`}
-    >
-      <div className="container">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-[80px] text-purple-700">
-            Image Fetcher Tool
-          </h1>
+    <section className="min-h-screen bg-gray-100 flex flex-col items-center justify-center bg-[#2f313a] ">
+      <div className="w-full max-w-4xl p-8 bg-white shadow-lg rounded-lg">
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          Website Analyzer
+        </h1>
 
-          {/* Show input and button only when not fetched */}
-          {!fetched && (
-            <div className="flex flex-wrap justify-center mb-6">
+        {!fetched && (
+          <div className="space-y-4">
+            {/* URL Input with Clear Icon */}
+            <div className="relative">
               <input
-                className="h-[50px] w-[300px] py-[10px] px-[15px] rounded-lg border border-gray-400 focus:outline-purple-500"
+                className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Enter website URL"
-                aria-label="Website URL Input"
               />
-              <button
-                className={`ml-[20px] submit-btn ${
-                  loading
-                    ? "bg-purple-400 cursor-not-allowed"
-                    : "bg-purple-600 hover:bg-purple-700"
-                }`}
-                onClick={handleFetchClick}
-                disabled={loading}
-                aria-label="Fetch Images Button"
-              >
-                {loading ? (
-                  <div className="flex items-center">
-                    <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
-                    Fetching...
-                  </div>
-                ) : (
-                  "Fetch Images"
-                )}
-              </button>
+              {url && (
+                <button
+                  type="button"
+                  onClick={handleClearInput}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
-          )}
 
-          {/* Show the fetch buttons (All Website / Page) once fetched */}
-          {fetched && (
-            <div className="mt-6">
-              <div className="flex justify-center">
-                <button
-                  className="fetch-btn"
-                  onClick={async () => {
-                    setLoading(true); // Set the general loading state
-                    await fetchImages("site"); // Fetch images for the entire site
-                    setLoading(false); // Reset loading state after fetch
-                  }}
-                  disabled={loading} // Disable button while loading
-                >
-                  <div className="icon max-w-[72px] mx-auto mb-[30px]">
-                    <Image
-                      src={`/multiple_pages.svg`}
-                      width={700}
-                      height={500}
-                      loading="lazy"
-                      alt="right-img"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {loading && fetchType === "site" ? ( // Check if "site" is being fetched
-                    <div className="flex items-center">
-                      <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
-                      Fetching...
-                    </div>
-                  ) : (
-                    <div>
-                      <span>Fetch All Website Images</span>
-                    </div>
-                  )}
-                </button>
+            {/* Scope Selection */}
+            <div className="flex justify-around items-center">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="scope"
+                  value="page"
+                  checked={scope === "page"}
+                  onChange={() => setScope("page")}
+                  className="form-radio text-indigo-600"
+                />
+                <span>Analyze Single Page</span>
+              </label>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="scope"
+                  value="site"
+                  checked={scope === "site"}
+                  onChange={() => setScope("site")}
+                  className="form-radio text-indigo-600"
+                />
+                <span>Analyze Entire Site</span>
+              </label>
+            </div>
 
-                <button
-                  className="fetch-btn ml-4"
-                  onClick={async () => {
-                    setLoading(true); // Set the general loading state
-                    await fetchImages("page"); // Fetch images for the specific page
-                    setLoading(false); // Reset loading state after fetch
+            {/* Analyze Button */}
+            <button
+              className={`w-full py-3 text-white rounded-lg font-semibold ${loading
+                ? "bg-indigo-300 cursor-not-allowed"
+                : "bg-indigo-500 hover:bg-indigo-600"
+              }`}
+              onClick={handleAnalyzeClick}
+              disabled={loading}
+            >
+              {loading ? "Analyzing..." : "Analyze"}
+            </button>
+          </div>
+        )}
+
+        {fetched && loading && (
+          <p className="mt-6 text-center text-gray-500 font-semibold">
+            Analyzing {scope === "page" ? "page" : "entire site"}, please wait...
+          </p>
+        )}
+
+        {error && (
+          <p className="mt-4 text-red-500 text-center font-medium">{error}</p>
+        )}
+
+        {!loading && report && (
+          <div className="mt-8">
+            <h2 className="text-xl font-semibold text-gray-800 text-center mb-6">
+              Analysis Report ({scope === "page" ? "Page" : "Entire Site"})
+            </h2>
+
+            {/* General Report */}
+            <ul className="mb-6">
+              <li className="text-gray-700 text-black">
+                <strong>Project:</strong> {report.startUrl}
+              </li>
+              <li className="text-gray-700 text-black">
+                <strong>Total Links:</strong> {report.totalLinks}
+              </li>
+              <li className="text-gray-700 text-black">
+                <strong>Total Links with Issues:</strong> {report.totalLinksWithIssues}
+              </li>
+              {/* <li className="text-gray-700 text-black">
+                <strong>Hosts:</strong> {report.hosts.join(", ")}
+              </li> */}
+            </ul>
+
+            {/* Issue Types */}
+            {Object.entries(report.issueTypes).length > 0 && 
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Issue Types:
+              </h3>
+              <ul className="list-disc list-inside">
+                {Object.entries(report.issueTypes).map(([type, count]) => (
+                  <li key={type} className="text-gray-700 text-black">
+                    <strong>{type}:</strong> {count}
+                  </li>
+                ))}
+              </ul>
+            </div>}
+
+            {/* Link Types */}
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Link Types:
+              </h3>
+              <ul className="list-disc list-inside">
+                {Object.entries(report.linkTypes).map(([type, count]) => (
+                  <li key={type} className="text-gray-700 text-black">
+                    <strong>{type}:</strong> {count}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Images Breakdown by Host */}
+            <div className="mt-8">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+                Image Breakdown by Host
+              </h3>
+              <div className="relative h-[300px]">
+                <Bar
+                  data={{
+                    labels: report.hosts,
+                    datasets: [
+                      {
+                        label: "Images by Host",
+                        data: report.hosts.map((host) =>
+                          images.filter((img) => {
+                            try {
+                              const imgUrl = new URL(img);
+                              return imgUrl.hostname === host;
+                            } catch (e) {
+                              return false; // Ignore invalid URLs
+                            }
+                          }).length
+                        ),
+                        backgroundColor: "#6366F1",
+                      },
+                    ],
                   }}
-                  disabled={loading} // Disable button while loading
-                >
-                  <div className="icon max-w-[72px] mx-auto mb-[30px]">
-                    <Image
-                      src={`/page.svg`}
-                      width={700}
-                      height={500}
-                      loading="lazy"
-                      alt="right-img"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {loading && fetchType === "page" ? ( // Check if "page" is being fetched
-                    <div className="flex items-center">
-                      <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
-                      Fetching...
-                    </div>
-                  ) : (
-                    <div>
-                      <span>Fetch Images from Page URL</span>
-                    </div>
-                  )}
-                </button>
+                />
               </div>
             </div>
-          )}
 
-          {/* Show error if any */}
-          {error && <p className="text-red-600 mt-4 font-semibold">{error}</p>}
-        </div>
-
-        {/* Show "No images found" only if fetching has occurred */}
-        {fetched &&
-          images.length === 0 &&
-          !loading &&
-          !error &&
-          fetchType != null && (
-            <div className="text-center text-gray-500 mt-6">
-              <p>No images found. Try a different URL.</p>
-            </div>
-          )}
-
-        {/* Show images if found */}
-        {images.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xl font-semibold mb-4 text-purple-700 text-center">
-              Found {images.length} images:
-            </h2>
-            <div className="w-mainRow flex flex-wrap">
-              {images.map((image, index) => (
-                <div
-                  key={index}
-                  className="w-colFour mx-[10px] mb-[20px] border rounded-lg overflow-hidden shadow-lg bg-white"
-                >
-                  <img
-                    src={image}
-                    alt={`Fetched Image ${index + 1}`}
-                    className="w-full h-[150px] object-cover"
-                  />
-                  <a
-                    href={image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center text-blue-600 hover:underline py-2"
-                  >
-                    View Image
-                  </a>
-                </div>
-              ))}
-            </div>
           </div>
         )}
       </div>
