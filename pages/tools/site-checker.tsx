@@ -30,7 +30,7 @@ export default function Home() {
     linkTypes: { [key: string]: number };
     startUrl: string;
   } | null>(null);
-  
+
   const router = useRouter(); // Access router for query parameter updates
 
   useEffect(() => {
@@ -88,19 +88,19 @@ export default function Home() {
   };
 
   return (
-     <div className="section_bgImage bg-darkBlue">
-      <section className="min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
-        <div className="w-full max-w-4xl p-8 shadow-lg rounded-lg bg-white">
-          <h1 className="text-2xl font-bold text_gradient text-center mb-6 text-white ">
+    <div className="section_bgImage bg-darkBlue">
+      <section className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-700 flex flex-col items-center justify-center">
+        <div className="w-full max-w-4xl p-8 shadow-2xl rounded-lg bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg">
+          <h1 className="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600 mb-8">
             Website Analyzer
           </h1>
 
           {!fetched && (
-            <div className="">
+            <div className="space-y-6">
               {/* URL Input with Clear Icon */}
               <div className="relative">
                 <input
-                  className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-5 py-3 border rounded-lg shadow-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   type="text"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
@@ -110,18 +110,29 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={handleClearInput}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 )}
               </div>
 
               {/* Scope Selection */}
-              <div className="flex justify-around items-center my-[20px]">
-                <label className="flex items-center space-x-2 cursor-pointer ">
+              <div className="flex justify-around items-center">
+                <label className="flex items-center space-x-2 cursor-pointer">
                   <input
                     type="radio"
                     name="scope"
@@ -130,7 +141,7 @@ export default function Home() {
                     onChange={() => setScope("page")}
                     className="form-radio text-indigo-600"
                   />
-                  <span className=" text-black">Analyze Single Page</span>
+                  <span className="text-gray-800 font-medium">Analyze Single Page</span>
                 </label>
                 <label className="flex items-center space-x-2 cursor-pointer">
                   <input
@@ -141,13 +152,16 @@ export default function Home() {
                     onChange={() => setScope("site")}
                     className="form-radio text-indigo-600"
                   />
-                  <span className=" text-black">Analyze Entire Site</span>
+                  <span className="text-gray-800 font-medium">Analyze Entire Site</span>
                 </label>
               </div>
 
               {/* Analyze Button */}
               <button
-                className={`gradient-btn mx-auto max-w-full text-white `}
+                className={`w-full py-3 text-white font-bold rounded-lg shadow-md transition ${loading
+                    ? "bg-indigo-300 cursor-not-allowed"
+                    : "bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
+                  }`}
                 onClick={handleAnalyzeClick}
                 disabled={loading}
               >
@@ -157,60 +171,54 @@ export default function Home() {
           )}
 
           {fetched && loading && (
-            <p className="mt-6 text-center text-gray-500 font-semibold">
+            <p className="mt-6 text-center text-gray-200 font-medium animate-pulse">
               Analyzing {scope === "page" ? "page" : "entire site"}, please wait...
             </p>
           )}
 
           {error && (
-            <p className="mt-4 text-red-500 text-center font-medium">{error}</p>
+            <p className="mt-4 text-red-500 text-center font-semibold">{error}</p>
           )}
 
           {!loading && report && (
             <div className="mt-8">
-              <h2 className="text-xl font-semibold text_gradient text-center mb-6">
+              <h2 className="text-2xl font-bold text-center text-gradient mb-6">
                 Analysis Report ({scope === "page" ? "Page" : "Entire Site"})
               </h2>
 
               {/* General Report */}
-              <ul className="mb-6">
-                <li className="text-gray-700 text-black">
+              <ul className="space-y-2">
+                <li className="text-gray-800">
                   <strong>Project:</strong> {report.startUrl}
                 </li>
-                <li className="text-gray-700 text-black">
+                <li className="text-gray-800">
                   <strong>Total Links:</strong> {report.totalLinks}
                 </li>
-                <li className="text-gray-700 text-black">
+                <li className="text-gray-800">
                   <strong>Total Links with Issues:</strong> {report.totalLinksWithIssues}
                 </li>
-                {/* <li className="text-gray-700 text-black">
-                  <strong>Hosts:</strong> {report.hosts.join(", ")}
-                </li> */}
               </ul>
 
               {/* Issue Types */}
-              {Object.entries(report.issueTypes).length > 0 && 
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text_gradient mb-2">
-                  Issue Types:
-                </h3>
-                <ul className="list-inside">
-                  {Object.entries(report.issueTypes).map(([type, count]) => (
-                    <li key={type} className="text-gray-700 text-black">
-                      <strong>{type}:</strong> {count}
-                    </li>
-                  ))}
-                </ul>
-              </div>}
+              {Object.entries(report.issueTypes).length > 0 && (
+                <div className="mt-6">
+                  <h3 className="text-lg font-bold text-gradient mb-2">Issue Types:</h3>
+                  <ul className="list-disc list-inside text-gray-800">
+                    {Object.entries(report.issueTypes).map(([type, count]) => (
+                      <li key={type}>
+                        <strong>{type}:</strong> {count}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Link Types */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text_gradient mb-2">
-                  Link Types:
-                </h3>
-                <ul className="list-disc list-inside">
+              <div className="mt-6">
+                <h3 className="text-lg font-bold text-gradient mb-2">Link Types:</h3>
+                <ul className="list-disc list-inside text-gray-800">
                   {Object.entries(report.linkTypes).map(([type, count]) => (
-                    <li key={type} className="text-gray-700 text-black">
+                    <li key={type}>
                       <strong>{type}:</strong> {count}
                     </li>
                   ))}
@@ -219,7 +227,7 @@ export default function Home() {
 
               {/* Images Breakdown by Host */}
               <div className="mt-8">
-                <h3 className="text-lg font-semibold text_gradient mb-4 text-center">
+                <h3 className="text-lg font-bold text-gradient text-center mb-4">
                   Image Breakdown by Host
                 </h3>
                 <div className="relative h-[300px]">
@@ -246,11 +254,11 @@ export default function Home() {
                   />
                 </div>
               </div>
-
             </div>
           )}
         </div>
       </section>
-     </div>
+
+    </div>
   );
 }
