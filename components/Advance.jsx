@@ -57,13 +57,13 @@ export default function Advance({headers}) {
     <span className="text-gray-600">
       {text}
     </span>
-    <a
+    {/* <a
       href={`https://probely.com/sh?utm_campaign=Security%20Headers&utm_source=Security%20Headers&utm_medium=Display&utm_content=${grade}`}
       target="_blank"
       className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
     >
       Try Now
-    </a>
+    </a> */}
   </div>
   )
 }
