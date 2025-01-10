@@ -1,6 +1,5 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import Summary from "../../components/Summary";
 
 export default function Home() {
@@ -12,6 +11,7 @@ export default function Home() {
     const inputRef = useRef(null);
   
     useEffect(() => {
+      console.log(inputRef)
       inputRef.current?.focus();  // Focus input when component mounts
     }, []);
 
@@ -44,20 +44,24 @@ export default function Home() {
   };
 
   return (
-    <section className="relative ">
-      <div className="mx-auto banner_DarkOverlay px-6 text-center pt-[140px] pb-[60px] bg-darkBlue ">
-        <div className="relative container z-[4]">
-          <h1 className="text-4xl font-semibold text-white mb-4">
-            Test Your Security Headers
-          </h1>
-          <p className=" mb-8">
+    <>
+    <section
+      className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
+      data-aos="fade-in"
+      data-aos-delay="500"
+      data-aos-duration="1000"
+    >
+      <div className="container">
+      <div className="w-full text-center relative z-10">
+            <h1 className="text-white">Test Your Security Headers</h1>
+            <p className=" mb-8">
             Enter a URL to see if your site is secure with the correct HTTP
             headers.
           </p>
           <div className="max-w-md mx-auto">
             <form onSubmit={handleSubmit}>
               <input
-                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
+                className="text-black w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base !text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
@@ -75,9 +79,10 @@ export default function Home() {
               </button>
             </form>
           </div>
-        </div>
+          </div>
       </div>
-
+    </section>
+    <section className="relative ">
       <div className="mt-[20px">
         <div className="container">
           {error && <p>{error}</p>}
@@ -89,5 +94,7 @@ export default function Home() {
         </div>
       </div>
     </section>
+    </>
+  
   );
 }
