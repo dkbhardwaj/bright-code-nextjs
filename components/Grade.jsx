@@ -15,7 +15,11 @@ export default function Grade({headers}) {
             count +=1
         }
     })}
-    if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
+
+    if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count == headerslength){
+        grade = "A+"
+        colour = "bg-[#2b9100]"
+    }if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
         grade = "A"
         colour = "bg-[#2b9100]"
     }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
@@ -41,7 +45,7 @@ export default function Grade({headers}) {
         colour = "bg-[#db1e1e]"
         
     }else {
-        grade = "D"
+        grade = "E"
            colour = "bg-[#db1e1e]"
            
        }
