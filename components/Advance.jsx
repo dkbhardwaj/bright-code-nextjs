@@ -15,11 +15,8 @@ export default function Advance({headers}) {
             count +=1
         }
     })}
-    if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count == headerslength){
-      grade = "A+"
-      colour = "bg-[#2b9100]"
-      text = "Awesome grade! 👍 Perform a deeper security analysis of your website and APIs:"
-    }else if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-2)){
+    
+     if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-2)){
         grade = "A"
         colour = "bg-[#2b9100]"
         text = "Great grade! Perform a deeper security analysis of your website and APIs:"
