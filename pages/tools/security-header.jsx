@@ -82,7 +82,7 @@ export default function Home() {
           </div>
       </div>
     </section>
-    <section className="relative ">
+    <section className="relative pt-[40px] pb-[60px]">
       <div className="mt-[20px">
         <div className="container">
           {error && <p>{error}</p>}
