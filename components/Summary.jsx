@@ -10,8 +10,8 @@ export default function Summary({site, headers}) {
 
   return (
     <div className="push-top mt-[50px] border-1 border-black">
-      <div className="text-3xl p-[20px] border text-left font-semibold text-gray-800 ">
-        Security Report Summary
+      <div className="p-[20px] text-left font-semibold  relative imageWrap group overflow-hidden rounded-[30px]  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[7px] before:z-10 before:border-solid before:rounded-[30px]">
+        <h2 className="text_gradient">Security Report Summary</h2>
       </div>
       <div className=" pt-[10px]">
         <div className="flex flex-wrap">

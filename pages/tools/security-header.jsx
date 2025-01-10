@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Summary from "../../components/Summary";
 
@@ -8,6 +8,12 @@ export default function Home() {
   const [headers, setHeaders] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+    const inputRef = useRef(null);
+  
+    useEffect(() => {
+      inputRef.current?.focus();  // Focus input when component mounts
+    }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,19 +50,20 @@ export default function Home() {
           <h1 className="text-4xl font-semibold text-white mb-4">
             Test Your Security Headers
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className=" mb-8">
             Enter a URL to see if your site is secure with the correct HTTP
             headers.
           </p>
           <div className="max-w-md mx-auto">
             <form onSubmit={handleSubmit}>
               <input
-                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Enter website URL"
                 required
+                ref={inputRef}
               />
 
               <button

@@ -47,9 +47,9 @@ export default function Grade({headers}) {
        }
    
   return (
-    <div className={`${colour} h-[130px] rounded-s p-4 flex justify-center items-center`}>
+    <div className={`${colour} h-[150px] w-[160px] rounded p-4 flex justify-center items-center`}>
       
-    <span className="text-xl font-bold uppercase text-[40px] text-white">{grade}</span>
+    <span className="text-xl font-bold uppercase !text-[60px] text-white">{grade}</span>
   </div>
   )
 }
