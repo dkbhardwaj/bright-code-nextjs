@@ -85,7 +85,7 @@ export default function Home() {
     
           {headers && (
             <>
-              <Summary site={url} headers={headers} />
+              <Summary site={url} headers={headers} error= {error} />
             </>
           )}
       
