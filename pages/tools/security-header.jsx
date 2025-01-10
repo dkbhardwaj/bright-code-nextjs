@@ -47,9 +47,7 @@ export default function Home() {
     <>
     <section
       className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
-      data-aos="fade-in"
-      data-aos-delay="500"
-      data-aos-duration="1000"
+      
     >
       <div className="container">
       <div className="w-full text-center relative z-10">
