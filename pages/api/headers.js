@@ -1,14 +1,11 @@
-// Use Edge runtime
 export const runtime = 'edge';
-
-import axios from 'axios';
 
 const evaluateHeaders = (headers) => {
   const results = {};
 
   // Example checks for common security headers
   results['Strict-Transport-Security'] = headers['strict-transport-security'] ? (headers['strict-transport-security'].includes('max-age=31536000') ? 'Present' : 'low') : 'Missing';
-  results['X-Content-Type-Options'] = headers['x-content-type-options'].includes('nosniff') ? 'Present' : 'Missing';
+  results['X-Content-Type-Options'] = headers['x-content-type-options']?.includes('nosniff') ? 'Present' : 'Missing';
   results['X-Frame-Options'] = headers['x-frame-options'] ? 'Present' : 'Missing';
   results['Content-Security-Policy'] = headers['content-security-policy'] ? 'Present' : 'Missing';
   results['X-XSS-Protection'] = headers['x-xss-protection'] === '1; mode=block' ? 'Present' : 'Missing';
@@ -30,8 +27,17 @@ const handler = async (req) => {
   const ip = req.headers.get('x-forwarded-for') || req.connection.remoteAddress;
 
   try {
-    const response = await axios.get(url, { timeout: 5000 });
-    const headers = response.headers;
+    // Fetch the URL using fetch API (instead of axios)
+    const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch URL: ${response.status}`);
+    }
+
+    // Fetch headers
+    const headers = Object.fromEntries(response.headers.entries());
+
+    // Evaluate the headers
     const evaluation = evaluateHeaders(headers);
 
     // Return the headers, evaluation, and the client IP address
