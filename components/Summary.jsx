@@ -2,13 +2,17 @@ import React from "react";
 import Grade from "./Grade";
 import Advance from "./Advance";
 
-export default function Summary({site, headers}) {
+export default function Summary({site, headers, error}) {
   let headersData = headers
     
 
   if (!headersData) return <div>Loading...</div>;
 
   return (
+    <section className="relative pt-[40px] pb-[60px]">
+      <div className="mt-[20px">
+        <div className="container">
+          {error && <p>{error}</p>}
     <div className="push-top mt-[50px] border-1 border-black">
       <div className="p-[20px] text-left font-semibold rounded-[5px] relative imageWrap group overflow-hidden  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[4px] before:z-10 before:border-solid before:rounded-[5px]">
         <h2 className="text_gradient ">Security Report Summary</h2>
@@ -89,5 +93,8 @@ export default function Summary({site, headers}) {
         </div>
       </div>
     </div>
+    </div>
+      </div>
+    </section>
   );
 }
