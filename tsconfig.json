@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "pages/_app.tsx",
     "components/navigation.jsx"
-  ],
+, "pages/api/headers.js"  ],
   "exclude": ["node_modules"]
 }
