@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Summary from "../../components/Summary";
+import { NextSeo } from "next-seo";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -45,6 +46,10 @@ export default function Home() {
 
   return (
     <>
+     <NextSeo
+        title={`Security Header Analyzer - Check Your Website’s Security Headers`}
+        description={`Analyze your website’s security headers with our easy-to-use tool. Check for HTTP security headers like HSTS, CSP, and more to ensure your site is protected against common web vulnerabilities.`}
+      />
     <section
       className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
       
