@@ -19,7 +19,7 @@ export default function Grade({headers}) {
     if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count == headerslength){
         grade = "A+"
         colour = "bg-[#2b9100]"
-    }if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
+    }else if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
         grade = "A"
         colour = "bg-[#2b9100]"
     }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
@@ -46,9 +46,9 @@ export default function Grade({headers}) {
         
     }else {
         grade = "E"
-           colour = "bg-[#db1e1e]"
+        colour = "bg-[#db1e1e]"
            
-       }
+    }
    
   return (
     <div className={`${colour} h-[150px] w-[160px] rounded p-4 flex justify-center items-center`}>
