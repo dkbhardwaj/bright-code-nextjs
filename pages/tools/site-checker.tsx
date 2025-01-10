@@ -16,10 +16,18 @@ import {
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+interface Image {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  fileSize?: number;
+}
+
 export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [fetched, setFetched] = useState(false);
@@ -36,10 +44,12 @@ export default function Home() {
   const router = useRouter(); // Access router for query parameter updates
 
   useEffect(() => {
-    if (url) {
+    if (url && router.query.url !== url) {
+      console.log('Updating URL in the query');
       router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
     }
   }, [url, router]);
+  
 
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
@@ -91,6 +101,8 @@ export default function Home() {
     router.push("/", undefined, { shallow: true }); // Remove URL from query
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
+
+  console.log(images);
 
   return (
     <>
@@ -233,9 +245,9 @@ export default function Home() {
       <section className="section_bgImage  bg-darkBlue pt-[170px] pb-[100px]">
         <div className="relative border-t">
           {!loading && report && (
-            <div className="flex h-screen border-r">
+            <div className="flex border-r h-screen">
               {/* Vertical Tab Menu */}
-              <div className={`sidebarWrap max-w-[230px] w-full p-[20px] bg-bgBluePurple h-[100vh] rounded-r-[20px] transition-all ease-in-out duration-700 relative md:max-w-full md:absolute md:z-[99]`}>
+              <div className={`sidebarWrap max-w-[230px] w-full p-[20px] bg-bgBluePurple rounded-r-[20px] transition-all ease-in-out duration-700 relative md:max-w-full md:absolute md:z-[99]`}>
                 <div className="sidebarMain">
                   <ul>
                     <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab1" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab1")}>
@@ -366,7 +378,8 @@ export default function Home() {
                                   data: report.hosts.map((host) =>
                                     images.filter((img) => {
                                       try {
-                                        const imgUrl = new URL(img);
+                                        // Use img.src instead of img
+                                        const imgUrl = new URL(img.src);
                                         return imgUrl.hostname === host;
                                       } catch (e) {
                                         return false; // Ignore invalid URLs
@@ -378,6 +391,7 @@ export default function Home() {
                               ],
                             }}
                           />
+
                         </div>
                       </div>
 
@@ -385,9 +399,101 @@ export default function Home() {
                   </div>
                 )}
                 {activeTab === "tab2" && (
-                  <div>
-                    <h1 className="text-white">User Analytics</h1>
-                    <p className="text-white">Here are the detailed analytics for your users.</p>
+                  <div className="">
+                    <h1 className="text-white text-center">Image Details</h1>
+                    {images.length > 0 && (
+                      <div className="mt-8 w-full ">
+                        <h4 className="text-white mb-4">
+                          Found {images.length} images:
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll bg-white">
+                          {/* {images.map((image, index) => (
+                            <div
+                              key={index}
+                              className="border rounded-md overflow-hidden shadow-md"
+                            >
+                              <img
+                                src={image}
+                                alt={`Fetched Image ${index + 1}`}
+                                className="w-full h-[150px] object-cover"
+                              />
+                              <a
+                                href={image}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-center text-blue-600 hover:underline py-2"
+                              >
+                                View Image
+                              </a>
+                            </div>
+                          ))} */}
+
+                          <table className="table-auto w-full border-collapse border border-gray-300 shadow-md rounded-md">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">Sr</th>
+                                <th className="border border-gray-300 px-4 py-2">Image</th>
+                                <th className="border border-gray-300 px-4 py-2">Size (px)</th>
+                                <th className="border border-gray-300 px-4 py-2">File Size</th>
+                                <th className="border border-gray-300 px-4 py-2">Alt Text</th>
+                                <th className="border border-gray-300 px-4 py-2">View</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {images.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    <img
+                                      src={image.src}
+                                      alt={image.alt || `Image ${index + 1}`}
+                                      className="w-20 h-20 object-contain"
+                                    />
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height} px`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(2)} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+
+
+                            </tbody>
+                          </table>
+
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
                 {activeTab === "tab3" && (

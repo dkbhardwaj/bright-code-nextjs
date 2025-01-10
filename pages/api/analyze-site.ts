@@ -2,6 +2,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
 
+// Function to fetch the file size of an image
+async function getFileSize(url: string): Promise<number | null> {
+  try {
+    const response = await fetch(url, { method: "HEAD" });
+    const contentLength = response.headers.get("Content-Length");
+    return contentLength ? parseInt(contentLength, 10) : null;
+  } catch (error) {
+    console.error(`Error fetching file size for ${url}:`, error);
+    return null;
+  }
+}
+
 // Function to analyze a single page
 async function analyzeSinglePage(url: string) {
   try {
@@ -10,7 +22,13 @@ async function analyzeSinglePage(url: string) {
     const dom = new JSDOM(html);
     const document = dom.window.document;
 
-    const images: string[] = [];
+    const images: {
+      src: string;
+      alt: string;
+      width: number | null;
+      height: number | null;
+      fileSize: number | null;
+    }[] = [];
     const links: string[] = [];
     const issueTypes: { [key: string]: number } = {
       "404 Not Found": 0,
@@ -27,18 +45,27 @@ async function analyzeSinglePage(url: string) {
     };
     const hosts = new Set<string>();
 
-    // Extract images and links (similar to your existing code)
+    // Extract images and their properties
     const imgElements = document.querySelectorAll("img");
-    imgElements.forEach((img) => {
+    for (const img of imgElements) {
       const src = img.getAttribute("src");
+      const alt = img.getAttribute("alt") || "No alt attribute";
+      const width = img.getAttribute("width") ? parseInt(img.getAttribute("width") as string, 10) : null;
+      const height = img.getAttribute("height") ? parseInt(img.getAttribute("height") as string, 10) : null;
+
       if (src) {
         const absoluteUrl = new URL(src, url).href;
-        images.push(absoluteUrl);
+
+        // Fetch the file size
+        const fileSize = await getFileSize(absoluteUrl);
+
+        images.push({ src: absoluteUrl, alt, width, height, fileSize });
         linkTypes["<img src>"]++;
         hosts.add(new URL(absoluteUrl).hostname);
       }
-    });
+    }
 
+    // Extract links
     const anchorElements = document.querySelectorAll("a");
     anchorElements.forEach((a) => {
       const href = a.getAttribute("href");
@@ -67,7 +94,6 @@ async function analyzeSinglePage(url: string) {
 // Function to crawl and analyze the entire site
 async function crawlAndAnalyzeSite(url: string) {
   // Placeholder for site crawling logic
-  // You would need to implement logic to recursively fetch and analyze all pages of the site.
   return {
     message: "Entire site analysis is not implemented yet.",
     startUrl: url,
