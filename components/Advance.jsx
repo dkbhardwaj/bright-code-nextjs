@@ -55,7 +55,7 @@ export default function Advance({headers}) {
    
   return (
     <div className="flex items-center space-x-4">
-    <span className="text-gray-600">
+    <span className="text-black">
       {text}
     </span>
     {/* <a

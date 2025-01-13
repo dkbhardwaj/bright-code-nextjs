@@ -15,45 +15,45 @@ export default function Summary({site, headers, error}) {
           {error && <p>{error}</p>}
     <div className="push-top mt-[50px] border-1 border-black">
       <div className="p-[20px] text-left font-semibold rounded-[5px] relative imageWrap group overflow-hidden  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[4px] before:z-10 before:border-solid before:rounded-[5px]">
-        <h2 className="text_gradient ">Security Report Summary</h2>
+        <h3 className="text_gradient ">Security Report Summary</h3>
       </div>
       <div className=" pt-[10px]">
         <div className="flex flex-wrap">
       
-          <div className="w-[20%] sm:w-1/4 p-4">
+          <div className="w-[17%] lg:w-full sm:w-1/4 p-4">
             <div className="score">
                 <Grade headers={headersData?.evaluation}/>
             </div>
           </div>
 
         
-          <div className="w-[80%] sm:w-3/4 p-4">
-            <table className="table-auto w-full border-separate border-spacing-4">
+          <div className="w-[83%] lg:w-full py-4">
+            <table className="table-auto w-full border-separate ">
               <tbody>
-                <tr>
-                  <th className="text-left text-lg font-medium text-gray-700">Site:</th>
-                  <td>
+                <tr className="odd:bg-[#8000ff1a]">
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700">Site:</th>
+                  <td className="text-gray-600 pl-[10px]">
                     <a
                       href={site}
                       target="_blank"
                       rel="nofollow noreferrer noopener"
-                      className="text-blue-600 hover:underline"
+                      className="text-[#8000FF] hover:underline "
                     >
                       {site}
                     </a>
                   </td>
                 </tr>
-                <tr>
-                  <th className="text-left text-lg font-medium text-gray-700">IP Address:</th>
-                  <td className="text-gray-600">{headersData?.ip}</td>
+                <tr className="odd:bg-[#8000ff1a]">
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black" >IP Address:</p></th>
+                  <td className="text-gray-600 pl-[10px]">{headersData?.ip}</td>
                 </tr>
-                <tr>
-                  <th className="text-left text-lg font-medium text-gray-700">Report Time:</th>
-                  <td className="text-gray-600">{headersData?.headers?.date}</td>
+                <tr className="odd:bg-[#8000ff1a]">
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Report Time:</p></th>
+                  <td className="text-gray-600 pl-[10px]">{headersData?.headers?.date}</td>
                 </tr>
-                <tr>
-                  <th className="text-left text-lg font-medium text-gray-700">Headers:</th>
-                  <td>
+                <tr className="odd:bg-[#8000ff1a]">
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Headers:</p></th>
+                  <td className="pl-[10px]">
                     <ul className="space-y-2">
                       {Object.entries(headersData?.evaluation)?.map(([header, status]) => (
                         <li
@@ -81,9 +81,9 @@ export default function Summary({site, headers, error}) {
                     </ul>
                   </td>
                 </tr>
-                <tr>
-                  <th className="text-left text-lg font-medium text-gray-700">Advanced:</th>
-                  <td>
+                <tr className="odd:bg-[#8000ff1a]">
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Advanced:</p></th>
+                  <td className="pl-[10px]">
                     <Advance headers={headersData?.evaluation}/>
                   </td>
                 </tr>

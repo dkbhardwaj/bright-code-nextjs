@@ -12,7 +12,6 @@ export default function Home() {
     const inputRef = useRef(null);
   
     useEffect(() => {
-      console.log(inputRef)
       inputRef.current?.focus();  // Focus input when component mounts
     }, []);
 
