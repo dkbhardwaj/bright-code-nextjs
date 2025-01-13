@@ -254,7 +254,7 @@ export default function Home() {
                       Overview
                     </li>
                     <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab2" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab2")}>
-                      All Links
+                      Images detail
                     </li>
                     {/* <li className='p-[10px]' >
                       <p className='text-white border-b-[2px] border-black'>Issues</p>
@@ -304,7 +304,7 @@ export default function Home() {
               </div>
 
               {/* Main Content */}
-              <div className="w-[calc(100%-360px)] ml-[50px] desktop:w-[calc(100%-300px)] tablet:w-[calc(100%-300px)] md:w-full md:mx-[20px]">
+              <div className="w-[calc(100%-360px)] ml-[50px] desktop:w-[calc(100%-300px)] tablet:w-[calc(100%-300px)] md:w-full md:px-[10px] md:mx-0">
                 {activeTab === "tab1" && (
                   <div>
                     <div className="">
@@ -312,7 +312,7 @@ export default function Home() {
                       <div className="text-white mb-[20px]">
                         <p className='font-bold text-white'>Project:- </p> <Link className="underline hover:text-purple transition-colors" href={report.startUrl}>{report.startUrl}</Link>
                       </div>
-                      <div className={`cardWrap flex w-[calc(100%+20px)] ml-[-10px] flex-wrap`}>
+                      <div className={`cardWrap flex w-[calc(100%+20px)] md:w-full md:ml-0 ml-[-10px] flex-wrap`}>
                         {/* Total Links */}
                         <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
                           <div className="content">
@@ -399,14 +399,14 @@ export default function Home() {
                   </div>
                 )}
                 {activeTab === "tab2" && (
-                  <div className="">
+                  <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Image Details</h1>
                     {images.length > 0 && (
                       <div className="mt-8 w-full ">
                         <h4 className="text-white mb-4">
                           Found {images.length} images:
                         </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll bg-white">
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
                           {/* {images.map((image, index) => (
                             <div
                               key={index}
@@ -428,7 +428,7 @@ export default function Home() {
                             </div>
                           ))} */}
 
-                          <table className="table-auto w-full border-collapse border border-gray-300 shadow-md rounded-md">
+                          <table className="table-auto w-full  border-collapse border border-gray-300 shadow-md rounded-md">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">Sr</th>
@@ -446,12 +446,13 @@ export default function Home() {
                                   <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
 
                                   {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    <img
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
+                                   {image.src}
+                                    {/* <img
                                       src={image.src}
                                       alt={image.alt || `Image ${index + 1}`}
                                       className="w-20 h-20 object-contain"
-                                    />
+                                    /> */}
                                   </td>
 
                                   {/* Size (px) */}
