@@ -29,7 +29,7 @@ async function analyzeSinglePage(url: string) {
       height: number | null;
       fileSize: number | null;
     }[] = [];
-    const links: string[] = [];
+    const links: { url: string; status: number }[] = [];
     const issueTypes: { [key: string]: number } = {
       "404 Not Found": 0,
       "400 Bad Request": 0,
@@ -44,6 +44,16 @@ async function analyzeSinglePage(url: string) {
       "<link rel=stylesheet>": 0,
     };
     const hosts = new Set<string>();
+
+    // Helper function to check link status
+    async function checkLinkStatus(link: string): Promise<number> {
+      try {
+        const response = await fetch(link, { method: "HEAD" });
+        return response.status;
+      } catch {
+        return 400; // Assume bad request if fetch fails
+      }
+    }
 
     // Extract images and their properties
     const imgElements = document.querySelectorAll("img");
@@ -65,20 +75,31 @@ async function analyzeSinglePage(url: string) {
       }
     }
 
-    // Extract links
+    // Extract links and check their statuses
     const anchorElements = document.querySelectorAll("a");
-    anchorElements.forEach((a) => {
+    for (const a of anchorElements) {
       const href = a.getAttribute("href");
       if (href) {
         const absoluteUrl = new URL(href, url).href;
-        links.push(absoluteUrl);
+
+        // Check link status
+        const status = await checkLinkStatus(absoluteUrl);
+
+        if (status === 404) {
+          issueTypes["404 Not Found"]++;
+        } else if (status === 400) {
+          issueTypes["400 Bad Request"]++;
+        }
+
+        links.push({ url: absoluteUrl, status });
         linkTypes["<a href>"]++;
         hosts.add(new URL(absoluteUrl).hostname);
       }
-    });
+    }
 
     return {
       images,
+      links, // Includes URLs and their statuses
       totalLinks: links.length,
       hosts: Array.from(hosts),
       issueTypes,

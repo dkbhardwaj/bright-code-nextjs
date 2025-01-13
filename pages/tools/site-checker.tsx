@@ -23,11 +23,17 @@ interface Image {
   height?: number;
   fileSize?: number;
 }
+interface Link {
+  url: string;
+  status: number;
+}
+
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
   const [images, setImages] = useState<Image[]>([]);
+  const [links, setLinks] = useState<Link[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [fetched, setFetched] = useState(false);
@@ -42,33 +48,38 @@ export default function Home() {
   } | null>(null);
 
   const router = useRouter(); // Access router for query parameter updates
+  console.log(router.query.url);
 
   useEffect(() => {
-    if (url && router.query.url !== url) {
-      console.log('Updating URL in the query');
-      router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
+    if (url) {
+      if (router.query.url !== url) {
+        console.log('Updating URL in the query');
+        router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
+      }
+    } else {
+      console.log('Clearing URL from query');
+      router.push(router.pathname, undefined, { shallow: true });
     }
   }, [url, router]);
-  
+
+
 
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
     setImages([]);
+    setLinks([]); // Clear existing links
     setReport(null);
 
     try {
       const response = await fetch(`/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`);
 
-      // const response = await fetch(
-      //   scope == 'page'
-      //     ? `/api/analyze-site?url=${encodeURIComponent(url)}&scope=${scope}`
-      //     : `/api/crawl-site?url=${encodeURIComponent(url)}&scope=${scope}`
-      // );
       const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         setImages(data.images || []);
+        setLinks(data.links || []); // Use `links` from the API response
         setReport({
           totalLinks: data.totalLinks || 0,
           totalLinksWithIssues: data.totalLinksWithIssues || 0,
@@ -87,6 +98,7 @@ export default function Home() {
     }
   };
 
+
   const handleAnalyzeClick = (): void => {
     if (!url) {
       setError("Please enter a valid URL.");
@@ -102,13 +114,14 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-  console.log(images);
+  console.log(links);
+
 
   return (
     <>
       {!loading && !report && (
         <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
-          <div className="w-full max-w-4xl p-8 bg-white shadow-lg rounded-lg">
+          <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px]">
             <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
               Website Analyzer
             </h1>
@@ -129,6 +142,8 @@ export default function Home() {
                       type="button"
                       onClick={handleClearInput}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      title="Clear input"
+                      aria-label="Clear input field"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -136,7 +151,6 @@ export default function Home() {
                     </button>
                   )}
                 </div>
-
                 {/* Scope Selection */}
                 {/* <div className="flex justify-around items-center">
                   <label className="flex items-center space-x-2">
@@ -256,6 +270,10 @@ export default function Home() {
                     <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab2" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab2")}>
                       Images detail
                     </li>
+
+                    <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab3" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab3")}>
+                      Links detail
+                    </li>
                     {/* <li className='p-[10px]' >
                       <p className='text-white border-b-[2px] border-black'>Issues</p>
                       <ul className='pl-[10px] mt-[10px]'>
@@ -352,12 +370,33 @@ export default function Home() {
                           {Object.entries(report.issueTypes).length > 0 &&
                             <div className="mb-6">
                               <p className='text-white mb-[10px]'>Link Types</p>
+
                               {Object.entries(report.linkTypes).map(([type, count]) => (
-                                <div key={type} className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]">
-                                  <p className='text-white'>{type}:</p>
+                                <div
+                                  key={type}
+                                  className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
+                                  onClick={() => {
+                                    if (type === "<a href>") {
+                                      setActiveTab("tab3");
+                                    } else {
+                                      setActiveTab("tab2");
+                                    }
+                                  }}
+                                >
+                                  <p
+                                    className={`
+                                      text-white
+                                      ${type === "<a href>" && 'cursor-pointer hover:underline transition-all ease-in-out delay-300 '}
+                                      ${type === "<img src>" && 'cursor-pointer hover:underline transition-all ease-in-out delay-300 '}
+                                    `}
+                                  >
+                                    {type}:
+                                  </p>
+
                                   <p className='text-white'>{count}</p>
                                 </div>
                               ))}
+
                             </div>}
                         </div>
                       </div>
@@ -428,7 +467,7 @@ export default function Home() {
                             </div>
                           ))} */}
 
-                          <table className="table-auto w-full  border-collapse border border-gray-300 shadow-md rounded-md">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">Sr</th>
@@ -447,7 +486,7 @@ export default function Home() {
 
                                   {/* Image */}
                                   <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
-                                   {image.src}
+                                    {image.src}
                                     {/* <img
                                       src={image.src}
                                       alt={image.alt || `Image ${index + 1}`}
@@ -497,7 +536,65 @@ export default function Home() {
                     )}
                   </div>
                 )}
+
                 {activeTab === "tab3" && (
+                  <div className="max-w-[1600px] mx-auto">
+                    <h1 className="text-white text-center">Links detail</h1>
+                    {links.length > 0 && (
+                      <div className="mt-8 w-full ">
+                        <h4 className="text-white mb-4">
+                          Found {links.length} links:
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">Sr</th>
+                                <th className="border border-gray-300 px-4 py-2">Links</th>
+                                <th className="border border-gray-300 px-4 py-2">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {links.map((link, index) => {
+                                // Determine if the status is 404
+                                const is404 = link.status === 404;
+                                return (
+                                  <tr
+                                    key={index}
+                                    className={`hover:bg-gray-100 ${is404 ? 'bg-red-100' : ''}`} // Light red for 404 status
+                                  >
+                                    {/* Sr */}
+                                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+
+                                    {/* Link */}
+                                    <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                      <a
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:underline"
+                                      >
+                                        {link.url}
+                                      </a>
+                                    </td>
+
+                                    {/* Status */}
+                                    <td className="border border-gray-300 px-4 py-2">
+                                      {link.status ? `${link.status}` : "N/A"}
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                            ¯
+                          </table>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === "tab4" && (
                   <div>
                     <h1 className="text-xl font-bold">Settings</h1>
                     <p className="mt-2">Adjust your application settings here.</p>
