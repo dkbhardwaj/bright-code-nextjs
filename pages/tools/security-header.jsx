@@ -50,7 +50,7 @@ export default function Home() {
         description={`Analyze your website’s security headers with our easy-to-use tool. Check for HTTP security headers like HSTS, CSP, and more to ensure your site is protected against common web vulnerabilities.`}
       />
     <section
-      className={` banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
+      className={` md:!pb-[40px] banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
       
     >
       <div className="container">
