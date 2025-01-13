@@ -16,24 +16,24 @@ export default function Advance({headers}) {
         }
     })}
     
-     if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-2)){
+    if((headers["Strict-Transport-Security"] == "Present" && headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
         grade = "A"
         colour = "bg-[#2b9100]"
         text = "Great grade! Perform a deeper security analysis of your website and APIs:"
-    }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && count >= (headerslength-2)){
+      }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && count >= (headerslength-3)){
         grade = "B"
         colour = "bg-[#acec91]"
         text = "Good grade! Perform a deeper security analysis of your website and APIs:"
-    }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && (count <= (headerslength-2) && count > (headerslength-4))){
+      }else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present") && (count <= (headerslength-2) && count > (headerslength-4))){
         grade = "C"
         colour = "bg-[#ffa500]"
         text = "Not bad… Maybe you should perform a deeper security analysis of your website and APIs:"
-    }
-    else if((headers["Strict-Transport-Security"] == "low" || headers["Content-Security-Policy"] == "Present") && (count <= (headerslength-2) && count >= (headerslength-4))){
+      }
+      else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present" )&& (count <= (headerslength-2) && count >= (headerslength-4))){
         grade = "C"
         colour = "bg-[#ffa500]"
         text = "Not bad… Maybe you should perform a deeper security analysis of your website and APIs:"
-    } else if((headers["Strict-Transport-Security"] == "Present" || headers["Content-Security-Policy"] == "Present" )&& (count <= (headerslength-2) && count > (headerslength-4))){
+      }else if((headers["Strict-Transport-Security"] == "low" || headers["Content-Security-Policy"] == "Present") && (count <= (headerslength-2) && count > (headerslength-4))){
       grade = "C"
         colour = "bg-[#ffa500]"
         text = "Not bad… Maybe you should perform a deeper security analysis of your website and APIs:"

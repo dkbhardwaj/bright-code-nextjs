@@ -11,7 +11,7 @@ const evaluateHeaders = (headers) => {
       if (maxAge >= 2592000) {
        return "Present"
       } else {
-        return "Missing";
+        return "Less Value";
       }
     } else {
       return "Missing"
