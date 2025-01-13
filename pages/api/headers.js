@@ -52,7 +52,7 @@ const handler = async (req) => {
     return new Response(JSON.stringify({ headers, evaluation, ip }), { status: 200 });
   } catch (error) {
     return new Response(
-      JSON.stringify({ error: 'Unable to fetch headers', details: error.message }),
+      JSON.stringify({ error: 'Sorry about that...The target site took too long to respond and the connection timed out. Try again later.', details: error.message }),
       { status: 500 }
     );
   }

@@ -34,7 +34,7 @@ export default function Home() {
         setError(data.error);
       } else {
         setHeaders(data);
-        console.log(data);
+        // console.log(data);
       }
     } catch (err) {
       setError("Error fetching headers");
@@ -84,7 +84,9 @@ export default function Home() {
           </div>
       </div>
     </section>
-    
+          {
+             error && <section><div className="container"><p>{error}</p></div></section>
+          }
           {headers && (
             <>
               <Summary site={url} headers={headers} error= {error} />

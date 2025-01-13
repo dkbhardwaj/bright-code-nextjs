@@ -7,7 +7,7 @@ export default function Summary({site, headers, error}) {
     
 
   if (!headersData) return <div>Loading...</div>;
-
+ 
   return (
     <section className="relative pt-[40px] pb-[60px]">
       <div className="mt-[20px">
