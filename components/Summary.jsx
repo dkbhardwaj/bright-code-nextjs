@@ -33,23 +33,24 @@ export default function Summary({site, headers, error}) {
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700">Site:</th>
                   <td className="text-gray-600 pl-[10px]">
-                    <a
+                  <p><a
                       href={site}
                       target="_blank"
                       rel="nofollow noreferrer noopener"
                       className="text-[#8000FF] hover:underline "
                     >
                       {site}
-                    </a>
+                      
+                    </a></p>
                   </td>
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black" >IP Address:</p></th>
-                  <td className="text-gray-600 pl-[10px]">{headersData?.ip}</td>
+                  <td className="text-gray-600 pl-[10px]"><p className="text-black">{headersData?.ip}</p></td>
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Report Time:</p></th>
-                  <td className="text-gray-600 pl-[10px]">{headersData?.headers?.date}</td>
+                  <td className="text-gray-600 pl-[10px]"><p className="text-black">{headersData?.headers?.date}</p></td>
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Headers:</p></th>

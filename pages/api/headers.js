@@ -31,31 +31,24 @@ const evaluateHeaders = (headers) => {
 };
 
 const handler = async (req) => {
-  // Parse the query parameters from the URL
   const url = new URL(req.url, `http://${req.headers.get('host')}`).searchParams.get('url');
   
   if (!url) {
     return new Response(JSON.stringify({ error: 'URL is required' }), { status: 400 });
   }
 
-  // Extract the IP address from the request headers or connection
   const ip = req.headers.get('x-forwarded-for') || req.connection.remoteAddress;
 
   try {
-    // Fetch the URL using fetch API (instead of axios)
     const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch URL: ${response.status}`);
     }
-
-    // Fetch headers
     const headers = Object.fromEntries(response.headers.entries());
 
-    // Evaluate the headers
     const evaluation = evaluateHeaders(headers);
 
-    // Return the headers, evaluation, and the client IP address
     return new Response(JSON.stringify({ headers, evaluation, ip }), { status: 200 });
   } catch (error) {
     return new Response(
