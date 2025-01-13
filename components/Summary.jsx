@@ -31,7 +31,7 @@ export default function Summary({site, headers, error}) {
             <table className="table-auto w-full border-separate ">
               <tbody>
                 <tr className="odd:bg-[#8000ff1a]">
-                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p>Site:</p></th>
+                  <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Site:</p></th>
                   <td className="text-gray-600 pl-[10px]">
                   <p><a
                       href={site}
