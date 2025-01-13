@@ -2,8 +2,12 @@
 import { useState, useRef, useEffect } from "react";
 import Summary from "../../components/Summary";
 import { NextSeo } from "next-seo";
+import {fetchEntryBySlug} from "../../lib/contentful/pageData"
 
-export default function Home() {
+export default function Home({entry, fullUrl}) {
+  console.log(entry)
+  let seoData = entry?.fields?.seoData?.fields
+
   const [url, setUrl] = useState("");
   const [headers, setHeaders] = useState(null);
   const [error, setError] = useState(null);
@@ -45,10 +49,32 @@ export default function Home() {
 
   return (
     <>
-     <NextSeo
-        title={`Security Header Analyzer - Check Your Website’s Security Headers`}
-        description={`Analyze your website’s security headers with our easy-to-use tool. Check for HTTP security headers like HSTS, CSP, and more to ensure your site is protected against common web vulnerabilities.`}
+      <NextSeo
+        title={seoData?.SEOTitle}
+        description={seoData?.SEODescription}
+        canonical={fullUrl}
+        openGraph={{
+          type: 'website',
+          siteName: 'Bright-code',
+          url: `${fullUrl}`,
+          title: seoData?.SEOTitle,
+          description: seoData?.SEODescription,
+          images: [
+            {
+              url: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+              width: 800,
+              height: 600,
+              alt: 'case studies',
+            }
+          ],
+        }}
+        twitter={{
+          site: '@GetSift',
+          cardType: 'summary_large_image',
+          image: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+        }}
       />
+
     <section
       className={` md:!pb-[40px] banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
       
@@ -96,4 +122,17 @@ export default function Home() {
     </>
   
   );
+}
+
+
+export async function getServerSideProps(context) {
+  let preview = false;
+  const { req } = context;
+  const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
+      const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
+  let slug = (req.url.split('?')[0]).replace("/","")
+
+  const entry = await fetchEntryBySlug(slug, "basicPage", preview);
+  console.log(entry)
+  return { props: { entry, fullUrl} };
 }

@@ -35,7 +35,7 @@ export default function PageBuilder({pageComponents , caseStudy}) {
 function pageBuilder(data, caseStudy) {
 	let blades = [];
 	let isCaseStudy = caseStudy ? true : "false"
-	data.map((blade, index) => {
+	data?.map((blade, index) => {
 		if (blade.sys?.contentType?.sys?.id === "heroBanner") {
 			blades.push(<HeroBanner  data={blade?.fields} />);
 			
