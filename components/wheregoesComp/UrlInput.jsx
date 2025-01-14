@@ -1,4 +1,4 @@
-import { useState,useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 const URLInput = ({ setResults }) => {
@@ -7,13 +7,23 @@ const URLInput = ({ setResults }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current?.focus(); 
+    inputRef.current?.focus();
   }, []);
+
+  const normalizeUrl = (inputUrl) => {
+    if (!/^https?:\/\//i.test(inputUrl)) {
+      return `http://${inputUrl}`;
+    }
+    return inputUrl;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const normalizedUrl = normalizeUrl(url);
+
     try {
-      const response = await axios.post('/api/track', { url });
+      const response = await axios.post('/api/track', { url: normalizedUrl });
       setResults(response.data);
     } catch (error) {
       console.error('Error tracking URL:', error);
@@ -23,7 +33,7 @@ const URLInput = ({ setResults }) => {
 
   return (
     <div className="w-full text-center relative z-10">
-      <form className='max-w-md mx-auto' onSubmit={handleSubmit}>
+      <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <input
           ref={inputRef}
           className="text-black w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base !text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
@@ -33,9 +43,11 @@ const URLInput = ({ setResults }) => {
           onChange={(e) => setUrl(e.target.value)}
           required
         />
-        <button type="submit" disabled={loading}
-            className="w-full cursor-pointer gradient-btn py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
-            >
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full cursor-pointer gradient-btn py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+        >
           {loading ? 'Tracking...' : 'Track URL'}
         </button>
       </form>

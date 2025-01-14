@@ -18,7 +18,8 @@ interface NavigationItem {
 const Footer: React.FC = () => {
 
   const [menus, setMenus] = useState<NavigationItem | null>(null);
-
+  const year = new Date().getFullYear()
+ 
   useEffect(() => {
   const getNav = async () => {
     try {
@@ -191,7 +192,7 @@ const Footer: React.FC = () => {
         </div>
         <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
           <div className="copyright w-full flex justify-center sm:block sm:text-center ">
-            <p className="text-white">© 2024 Bright Code Technologies LLC</p>
+            <p className="text-white">© {year} Bright Code Technologies LLC</p>
             <ul className=" relative w-fit flex sm:w-full sm:justify-center ">
               <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] sm:before:hidden sm:!ml-0 sm:!pl-0 ">
                 <Link

@@ -4,6 +4,7 @@ import Result from '../../components/wheregoesComp/Result';
 
 export default function Home() {
   const [results, setResults] = useState(null);
+  
 //https://ydnt.com/
   return (
     <>
@@ -16,7 +17,9 @@ export default function Home() {
       <h1 className="text-white mb-[20px]" >Track URL Redirects</h1>
         <URLInput setResults={setResults} />
           </div>
+         
       </div>
+     
     </section>
     {
         results && (

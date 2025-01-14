@@ -12,12 +12,19 @@ export default async function handler(req, res) {
       maxRedirects: 5, 
       validateStatus: (status) => status < 400, 
     });
-    const currentDate = new Date().toUTCString(); 
+    console.log(response.request)
+
+    const originalStatus = response.status;  
+    const finalUrl = response.request.res.responseUrl;  
+    const finalStatus = response.status; 
+
     res.status(200).json({
       originalUrl: url,
-      finalUrl: response.request.res.responseUrl,
-      type: response.statusText,
-      date: currentDate,
+      originalStatus: originalStatus,  
+      finalUrl: finalUrl,  
+      finalStatus: finalStatus,  
+      type: response.statusText,  
+      date: response.headers.date,
     });
   } catch (error) {
     console.error('Error tracking URL:', error);

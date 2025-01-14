@@ -11,10 +11,12 @@ const Result = ({ data }) => {
             <tbody> 
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Report Time:</p></th>
+                  <td className="p-3 w-[60px] text-left text-lg font-medium text-gray-700"></td>
                   <td className="text-gray-600 pl-[10px]"><p className="text-black">{data?.date}</p></td>
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">URL:</p></th>
+                  <td className="p-3 w-[60px] text-left text-lg font-medium text-gray-700"></td>
                   <td className="text-gray-600 pl-[10px]">
                   <p><a
                       href={data.originalUrl}
@@ -28,6 +30,7 @@ const Result = ({ data }) => {
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Redirecting to:</p></th>
+                  <td className="p-3 w-[60px] text-left text-lg font-medium text-gray-700"><p className="text-black"><span className="p-[10px] bg-green-600 text-white rounded-[5px]">{data?.finalStatus}</span></p></td>
                   <td className="text-gray-600 pl-[10px]">
                   <p><a
                       href={data.finalUrl}
@@ -41,6 +44,7 @@ const Result = ({ data }) => {
                 </tr>
                 <tr className="odd:bg-[#8000ff1a]">
                   <th className="p-3 min-w-[130px] text-left text-lg font-medium text-gray-700"><p className="text-black">Redirect Type:</p></th>
+                  <td className="p-3 w-[60px] text-left text-lg font-medium text-gray-700"></td>
                   <td className="text-gray-600 pl-[10px]"><p className="text-green-600">{data?.type}</p></td>
                 </tr>
             </tbody>   
