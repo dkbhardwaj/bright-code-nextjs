@@ -8,11 +8,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    // console.log(url)
+    // const x = await fetch(url)
+    // console.log(x)
     const response = await axios.get(url, {
       maxRedirects: 5, 
       validateStatus: (status) => status < 400, 
     });
-    console.log(response.request)
+    
+    
 
     const originalStatus = response.status;  
     const finalUrl = response.request.res.responseUrl;  

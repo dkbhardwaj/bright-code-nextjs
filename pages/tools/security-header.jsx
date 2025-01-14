@@ -5,7 +5,7 @@ import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
 
 export default function Home({ entry, fullUrl }) {
-  console.log(entry);
+  
   let seoData = entry?.fields?.seoData?.fields;
 
   const [url, setUrl] = useState("");
