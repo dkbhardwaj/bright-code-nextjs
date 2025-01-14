@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState,useRef, useEffect } from 'react';
 import axios from 'axios';
 
 const URLInput = ({ setResults }) => {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
 
+  useEffect(() => {
+    inputRef.current?.focus(); 
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -21,6 +25,7 @@ const URLInput = ({ setResults }) => {
     <div className="w-full text-center relative z-10">
       <form className='max-w-md mx-auto' onSubmit={handleSubmit}>
         <input
+          ref={inputRef}
           className="text-black w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base !text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
           type="text"
           placeholder="Enter URL"

@@ -16,7 +16,7 @@ export default function Home({entry, fullUrl}) {
     const inputRef = useRef(null);
   
     useEffect(() => {
-      inputRef.current?.focus();  // Focus input when component mounts
+      inputRef.current?.focus();
     }, []);
 
   const handleSubmit = async (e) => {

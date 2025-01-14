@@ -18,11 +18,16 @@ export default function Home() {
           </div>
       </div>
     </section>
-    <section className='py-[60px]'>
-        <div className="container">
-        <Result data={results} />
-        </div>
-    </section>
+    {
+        results && (
+            <section className='py-[60px]'>
+            <div className="container">
+            <Result data={results} />
+            </div>
+        </section>
+        )
+    }
+   
     </>
   );
 }

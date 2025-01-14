@@ -1,6 +1,6 @@
 const Result = ({ data }) => {
     if (!data) return null;
-    console.log(data)
+    
     return (
       <div className="result-container">
         <div className="p-[20px] text-left font-semibold rounded-[5px] relative imageWrap group overflow-hidden  before:content-[''] before:absolute before:left-0 before:top-0 before:w-full before:h-full before:bg-transparent before:border-bordergradient before:border-[4px] before:z-10 before:border-solid before:rounded-[5px]">
