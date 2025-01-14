@@ -29,6 +29,7 @@ interface Link {
 }
 
 
+
 export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
@@ -115,6 +116,56 @@ export default function Home() {
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
   console.log(links);
+
+  type LinksTableProps = {
+    links: Link[];
+  };
+  
+  const LinksTable: React.FC<LinksTableProps> = ({ links }) => (
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll bg-white">
+      <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+        <thead>
+          <tr className="bg-gray-200 text-left">
+            <th className="border border-gray-300 px-4 py-2">Sr</th>
+            <th className="border border-gray-300 px-4 py-2">Links</th>
+            <th className="border border-gray-300 px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {links.map((link, index) => {
+            const is404 = link.status === 404;
+            return (
+              <tr
+                key={index}
+                className={`hover:bg-gray-100 ${is404 ? "bg-red-100" : ""}`}
+              >
+                {/* Sr */}
+                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+  
+                {/* Link */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {link.url}
+                  </a>
+                </td>
+  
+                {/* Status */}
+                <td className="border border-gray-300 px-4 py-2">
+                  {link.status || "N/A"}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+  
 
 
   return (
@@ -273,6 +324,9 @@ export default function Home() {
 
                     <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab3" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab3")}>
                       Links detail
+                    </li>
+                    <li className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab4" ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}` : ''}`} onClick={() => setActiveTab("tab4")}>
+                      Bad Requests 
                     </li>
                     {/* <li className='p-[10px]' >
                       <p className='text-white border-b-[2px] border-black'>Issues</p>
@@ -539,62 +593,49 @@ export default function Home() {
 
                 {activeTab === "tab3" && (
                   <div className="max-w-[1600px] mx-auto">
-                    <h1 className="text-white text-center">Links detail</h1>
+                    <h1 className="text-white text-center">Links Detail</h1>
                     {links.length > 0 && (
-                      <div className="mt-8 w-full ">
-                        <h4 className="text-white mb-4">
-                          Found {links.length} links:
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
-                            <thead>
-                              <tr className="bg-gray-200 text-left">
-                                <th className="border border-gray-300 px-4 py-2">Sr</th>
-                                <th className="border border-gray-300 px-4 py-2">Links</th>
-                                <th className="border border-gray-300 px-4 py-2">Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {links.map((link, index) => {
-                                // Determine if the status is 404
-                                const is404 = link.status === 404;
-                                return (
-                                  <tr
-                                    key={index}
-                                    className={`hover:bg-gray-100 ${is404 ? 'bg-red-100' : ''}`} // Light red for 404 status
-                                  >
-                                    {/* Sr */}
-                                    <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-
-                                    {/* Link */}
-                                    <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
-                                      <a
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-600 hover:underline"
-                                      >
-                                        {link.url}
-                                      </a>
-                                    </td>
-
-                                    {/* Status */}
-                                    <td className="border border-gray-300 px-4 py-2">
-                                      {link.status ? `${link.status}` : "N/A"}
-                                    </td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                            ¯
-                          </table>
-                        </div>
+                      <div className="mt-8 w-full">
+                        <h4 className="text-white mb-4">Found {links.length} links:</h4>
+                        <LinksTable links={links} />
                       </div>
                     )}
                   </div>
                 )}
 
-                {activeTab === "tab4" && (
+{activeTab === "tab4" && (
+  <div className="max-w-[1600px] mx-auto">
+    <h1 className="text-white text-center">Bad Requests</h1>
+    {links.length > 0 ? (
+      (() => {
+        
+        const badRequests = links.filter((link) => String(link.status) === "400");
+
+        console.log("Filtered Bad Requests:", badRequests); // Debugging
+
+        return badRequests.length > 0 ? (
+          <div className="mt-8 w-full">
+            <h4 className="text-white mb-4">
+              Found {badRequests.length} Bad Requests:
+            </h4>
+            <LinksTable links={badRequests} />
+          </div>
+        ) : (
+          <h4 className="text-white mb-4">No Bad Requests Found</h4>
+        );
+      })()
+    ) : (
+      <h4 className="text-white mb-4">No Links Available</h4>
+    )}
+  </div>
+)}
+
+
+
+
+
+
+                {activeTab === "tab5" && (
                   <div>
                     <h1 className="text-xl font-bold">Settings</h1>
                     <p className="mt-2">Adjust your application settings here.</p>
