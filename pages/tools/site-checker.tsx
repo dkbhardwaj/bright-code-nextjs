@@ -49,16 +49,16 @@ export default function Home() {
   } | null>(null);
 
   const router = useRouter(); // Access router for query parameter updates
-  console.log(router.query.url);
+  // console.log(router.query.url);
 
   useEffect(() => {
     if (url) {
       if (router.query.url !== url) {
-        console.log('Updating URL in the query');
+        // console.log('Updating URL in the query');
         router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
       }
     } else {
-      console.log('Clearing URL from query');
+      // console.log('Clearing URL from query');
       router.push(router.pathname, undefined, { shallow: true });
     }
   }, [url, router]);
@@ -76,7 +76,7 @@ export default function Home() {
       const response = await fetch(`/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`);
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (response.ok) {
         setImages(data.images || []);
@@ -115,7 +115,7 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-  console.log(links);
+  // console.log(links);
 
   type LinksTableProps = {
     links: Link[];
@@ -603,32 +603,32 @@ export default function Home() {
                   </div>
                 )}
 
-{activeTab === "tab4" && (
-  <div className="max-w-[1600px] mx-auto">
-    <h1 className="text-white text-center">Bad Requests</h1>
-    {links.length > 0 ? (
-      (() => {
-        
-        const badRequests = links.filter((link) => String(link.status) === "400");
+                {activeTab === "tab4" && (
+                  <div className="max-w-[1600px] mx-auto">
+                    <h1 className="text-white text-center">Bad Requests</h1>
+                    {links.length > 0 ? (
+                      (() => {
+                        
+                        const badRequests = links.filter((link) => String(link.status) === "400");
 
-        console.log("Filtered Bad Requests:", badRequests); // Debugging
+                        // console.log("Filtered Bad Requests:", badRequests); // Debugging
 
-        return badRequests.length > 0 ? (
-          <div className="mt-8 w-full">
-            <h4 className="text-white mb-4">
-              Found {badRequests.length} Bad Requests:
-            </h4>
-            <LinksTable links={badRequests} />
-          </div>
-        ) : (
-          <h4 className="text-white mb-4">No Bad Requests Found</h4>
-        );
-      })()
-    ) : (
-      <h4 className="text-white mb-4">No Links Available</h4>
-    )}
-  </div>
-)}
+                        return badRequests.length > 0 ? (
+                          <div className="mt-8 w-full">
+                            <h4 className="text-white mb-4">
+                              Found {badRequests.length} Bad Requests:
+                            </h4>
+                            <LinksTable links={badRequests} />
+                          </div>
+                        ) : (
+                          <h4 className="text-white mb-4">No Bad Requests Found</h4>
+                        );
+                      })()
+                    ) : (
+                      <h4 className="text-white mb-4">No Links Available</h4>
+                    )}
+                  </div>
+                )}
 
 
 
