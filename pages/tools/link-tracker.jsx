@@ -2,17 +2,40 @@ import { useState } from "react";
 import URLInput from "../../components/wheregoesComp/UrlInput";
 import Result from "../../components/wheregoesComp/Result";
 import { NextSeo } from "next-seo";
+import { fetchEntryBySlug } from "../../lib/contentful/pageData";
 
-export default function Home() {
+export default function Home({ entry, fullUrl }) {
+
+  let seoData = entry?.fields?.seoData?.fields;
+
   const [results, setResults] = useState(null);
 
-  //https://ydnt.com/
   return (
     <>
-    <NextSeo
-        title={`Link Tracker - Secure Link Tracing | Bright Code`}
-        description={`Navigate your digital journey with Bright Code’s Link Tracker. Trace link redirections, ensure URL safety, and discover the final destination of any link with ease. Uncover the path your URLs take before you click.`}
-        
+     <NextSeo
+        title={seoData?.SEOTitle}
+        description={seoData?.SEODescription}
+        canonical={fullUrl}
+        openGraph={{
+          type: "website",
+          siteName: "Bright-code",
+          url: `${fullUrl}`,
+          title: seoData?.SEOTitle,
+          description: seoData?.SEODescription,
+          images: [
+            {
+              url: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+              width: 800,
+              height: 600,
+              alt: "case studies",
+            },
+          ],
+        }}
+        twitter={{
+          site: "@GetSift",
+          cardType: "summary_large_image",
+          image: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+        }}
       />
       <section
         className={` md:!pb-[40px] banner-second banner_DarkOverlay banner_bg_img banner-with-img bg-darkBlue text-white md:items-baseline`}
@@ -34,4 +57,18 @@ export default function Home() {
       )}
     </>
   );
+}
+
+
+
+export async function getServerSideProps(context) {
+  let preview = false;
+  const { req } = context;
+  const protocol = req.headers.referer ? req.headers.referer.split(":")[0] : "http";
+  const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
+  let slug = req.url.split("?")[0].replace("/", "");
+
+  const entry = await fetchEntryBySlug(slug, "basicPage", preview);
+  console.log(entry);
+  return { props: { entry, fullUrl } };
 }
