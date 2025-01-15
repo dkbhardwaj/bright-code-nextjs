@@ -840,14 +840,14 @@ export default function Home() {
                                   </td>
 
                                   {/* Size (px) */}
-                                  <td className="border border-gray-300 px-4 py-2">
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.width && image.height
-                                      ? `${image.width} x ${image.height} px`
+                                      ? `${image.width} x ${image.height}`
                                       : "N/A"}
                                   </td>
 
                                   {/* File Size */}
-                                  <td className="border border-gray-300 px-4 py-2">
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.fileSize
                                       ? `${(image.fileSize / 1024).toFixed(
                                           2
@@ -856,12 +856,12 @@ export default function Home() {
                                   </td>
 
                                   {/* Alt Text */}
-                                  <td className="border border-gray-300 px-4 py-2">
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.alt || "No Alt Text"}
                                   </td>
 
                                   {/* View */}
-                                  <td className="border border-gray-300 px-4 py-2">
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
                                     <a
                                       href={image.src}
                                       target="_blank"
