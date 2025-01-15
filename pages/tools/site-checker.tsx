@@ -630,11 +630,6 @@ export default function Home() {
                   </div>
                 )}
 
-
-
-
-
-
                 {activeTab === "tab5" && (
                   <div>
                     <h1 className="text-xl font-bold">Settings</h1>
