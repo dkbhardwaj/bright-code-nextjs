@@ -883,22 +883,27 @@ export default function Home() {
                     <h1 className="text-white text-center">404 Links</h1>
                     {links.length > 0 ? (
                       (() => {
+                        // Filter links with status 404
                         const badRequests = links.filter(
                           (link) => String(link.status) === "404"
                         );
 
-                        // console.log("Filtered Bad Requests:", badRequests); // Debugging
+                        // Remove duplicate links based on their URL
+                        const uniqueBadRequests = badRequests.filter(
+                          (link, index, self) =>
+                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                        );
 
-                        return badRequests.length > 0 ? (
+                        return uniqueBadRequests.length > 0 ? (
                           <div className="mt-8 w-full">
                             <h4 className="text-white mb-4">
-                              Found {badRequests.length} Bad Requests:
+                              Found {uniqueBadRequests.length} 404 Links:
                             </h4>
-                            <LinksTable links={badRequests} />
+                            <LinksTable links={uniqueBadRequests} />
                           </div>
                         ) : (
                           <h4 className="text-white mb-4">
-                            No Bad Requests Found
+                            No 404 Links Found
                           </h4>
                         );
                       })()
