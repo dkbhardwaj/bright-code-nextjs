@@ -833,17 +833,32 @@ export default function Home() {
                     )}
                   </div>
                 )}
-
                 {activeTab === "tab3" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Links Detail</h1>
-                    {links.length > 0 && (
-                      <div className="mt-8 w-full">
-                        <h4 className="text-white mb-4">
-                          Found {links.length} links:
-                        </h4>
-                        <LinksTable links={links} />
-                      </div>
+                    {links.length > 0 ? (
+                      (() => {
+                        // Remove duplicate links based on their URL
+                        const uniqueLinks = links.filter(
+                          (link, index, self) =>
+                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                        );
+
+                        return uniqueLinks.length > 0 ? (
+                          <div className="mt-8 w-full">
+                            <h4 className="text-white mb-4">
+                              Found {uniqueLinks.length} Unique Links:
+                            </h4>
+                            <LinksTable links={uniqueLinks} />
+                          </div>
+                        ) : (
+                          <h4 className="text-white mb-4">
+                            No Unique Links Found
+                          </h4>
+                        );
+                      })()
+                    ) : (
+                      <h4 className="text-white mb-4">No Links Available</h4>
                     )}
                   </div>
                 )}
@@ -853,18 +868,23 @@ export default function Home() {
                     <h1 className="text-white text-center">Bad Requests</h1>
                     {links.length > 0 ? (
                       (() => {
+                        // Filter links with status 400
                         const badRequests = links.filter(
                           (link) => String(link.status) === "400"
                         );
 
-                        // console.log("Filtered Bad Requests:", badRequests); // Debugging
+                        // Remove duplicate links based on their URL
+                        const uniqueBadRequests = badRequests.filter(
+                          (link, index, self) =>
+                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                        );
 
-                        return badRequests.length > 0 ? (
+                        return uniqueBadRequests.length > 0 ? (
                           <div className="mt-8 w-full">
                             <h4 className="text-white mb-4">
-                              Found {badRequests.length} Bad Requests:
+                              Found {uniqueBadRequests.length} Bad Requests:
                             </h4>
-                            <LinksTable links={badRequests} />
+                            <LinksTable links={uniqueBadRequests} />
                           </div>
                         ) : (
                           <h4 className="text-white mb-4">
