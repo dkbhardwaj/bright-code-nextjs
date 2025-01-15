@@ -1,16 +1,39 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
+import pLimit from "p-limit";
+
+const limit = pLimit(5); // Limit concurrent requests to avoid overloading servers
 
 // Function to fetch the file size of an image
 async function getFileSize(url: string): Promise<number | null> {
   try {
-    const response = await fetch(url, { method: "HEAD" });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+
+    const response = await fetch(url, { method: "HEAD", signal: controller.signal });
+    clearTimeout(timeout);
+
     const contentLength = response.headers.get("Content-Length");
     return contentLength ? parseInt(contentLength, 10) : null;
   } catch (error) {
     console.error(`Error fetching file size for ${url}:`, error);
     return null;
+  }
+}
+
+// Function to check the status of a link
+async function checkLinkStatus(link: string): Promise<number> {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+
+    const response = await fetch(link, { method: "HEAD", signal: controller.signal });
+    clearTimeout(timeout);
+
+    return response.status;
+  } catch {
+    return 400; // Assume Bad Request if fetch fails
   }
 }
 
@@ -37,27 +60,14 @@ async function analyzeSinglePage(url: string) {
     const linkTypes: { [key: string]: number } = {
       "<img src>": 0,
       "<a href>": 0,
-      "CSS URL()": 0,
-      "Social meta tag": 0,
-      "<script src>": 0,
-      "<frame src>": 0,
-      "<link rel=stylesheet>": 0,
     };
     const hosts = new Set<string>();
 
-    // Helper function to check link status
-    async function checkLinkStatus(link: string): Promise<number> {
-      try {
-        const response = await fetch(link, { method: "HEAD" });
-        return response.status;
-      } catch {
-        return 400; // Assume bad request if fetch fails
-      }
-    }
+    const imgElements = Array.from(document.querySelectorAll("img"));
+    const anchorElements = Array.from(document.querySelectorAll("a"));
 
-    // Extract images and their properties
-    const imgElements = document.querySelectorAll("img");
-    for (const img of imgElements) {
+    // Helper function to process images
+    const processImage = async (img: HTMLImageElement) => {
       const src = img.getAttribute("src");
       const alt = img.getAttribute("alt") || "No alt attribute";
       const width = img.getAttribute("width") ? parseInt(img.getAttribute("width") as string, 10) : null;
@@ -65,24 +75,18 @@ async function analyzeSinglePage(url: string) {
 
       if (src) {
         const absoluteUrl = new URL(src, url).href;
-
-        // Fetch the file size
         const fileSize = await getFileSize(absoluteUrl);
-
         images.push({ src: absoluteUrl, alt, width, height, fileSize });
         linkTypes["<img src>"]++;
         hosts.add(new URL(absoluteUrl).hostname);
       }
-    }
+    };
 
-    // Extract links and check their statuses
-    const anchorElements = document.querySelectorAll("a");
-    for (const a of anchorElements) {
+    // Helper function to process links
+    const processLink = async (a: HTMLAnchorElement) => {
       const href = a.getAttribute("href");
       if (href) {
         const absoluteUrl = new URL(href, url).href;
-
-        // Check link status
         const status = await checkLinkStatus(absoluteUrl);
 
         if (status === 404) {
@@ -95,11 +99,17 @@ async function analyzeSinglePage(url: string) {
         linkTypes["<a href>"]++;
         hosts.add(new URL(absoluteUrl).hostname);
       }
-    }
+    };
+
+    // Process images and links concurrently with limited concurrency
+    await Promise.all([
+      ...imgElements.map((img) => limit(() => processImage(img))),
+      ...anchorElements.map((a) => limit(() => processLink(a))),
+    ]);
 
     return {
       images,
-      links, // Includes URLs and their statuses
+      links,
       totalLinks: links.length,
       hosts: Array.from(hosts),
       issueTypes,
@@ -112,35 +122,19 @@ async function analyzeSinglePage(url: string) {
   }
 }
 
-// Function to crawl and analyze the entire site
-async function crawlAndAnalyzeSite(url: string) {
-  // Placeholder for site crawling logic
-  return {
-    message: "Entire site analysis is not implemented yet.",
-    startUrl: url,
-  };
-}
-
-// Main API handler
+// API Handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { url, entireSite } = req.query;
+  const { url } = req.query;
 
   if (!url || typeof url !== "string") {
     return res.status(400).json({ error: "Invalid URL provided." });
   }
 
   try {
-    if (entireSite === "true") {
-      // Crawl and analyze the entire site
-      const siteData = await crawlAndAnalyzeSite(url);
-      return res.status(200).json(siteData);
-    } else {
-      // Analyze a single page
-      const pageData = await analyzeSinglePage(url);
-      return res.status(200).json(pageData);
-    }
+    const pageData = await analyzeSinglePage(url);
+    return res.status(200).json(pageData);
   } catch (err) {
     console.error("API handler error:", err);
-    res.status(500).json({ error: "Failed to analyze the site." });
+    return res.status(500).json({ error: "Failed to analyze the site." });
   }
 }
