@@ -125,7 +125,7 @@ export default function Home() {
     links: Link[];
   };
 
-  console.log(report);
+  console.log(report?.issueTypes);
 
   const LinksTable: React.FC<LinksTableProps> = ({ links }) => (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
@@ -596,14 +596,23 @@ export default function Home() {
                         className={`cardWrap flex w-[calc(100%+20px)] md:w-full md:ml-0 ml-[-10px] flex-wrap`}
                       >
                         {/* Total Links */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
+                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           <div className="content">
                             <p className="text-white">Total Links</p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {report.totalLinks}
+                              {(() => {
+                                // Filter unique links by URL
+                                const uniqueLinks = links.filter(
+                                  (link, index, self) =>
+                                    index ===
+                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                                );
+                                return uniqueLinks.length;
+                              })()}
                             </h3>
                           </div>
                         </div>
+
                         {/* Total Links with Issues */}
                         <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
                           <div className="content">
@@ -629,17 +638,54 @@ export default function Home() {
                               <p className="text-white mb-[10px]">
                                 Issue Types
                               </p>
-                              {Object.entries(report.issueTypes).map(
-                                ([type, count]) => (
-                                  <div
-                                    key={type}
-                                    className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
-                                  >
-                                    <p className="text-white">{type}:</p>
-                                    <p className="text-white">{count}</p>
-                                  </div>
-                                )
-                              )}
+                              {(() => {
+                                // Filter unique links
+                                const uniqueLinks = links.filter(
+                                  (link, index, self) =>
+                                    index ===
+                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                                );
+
+                                // Define a type for the issueTypes object
+                                type IssueTypes = Record<string, number>;
+
+                                // Recalculate issue types based on unique links
+                                const uniqueIssueTypes =
+                                  uniqueLinks.reduce<IssueTypes>(
+                                    (acc, link) => {
+                                      if (link.status === 404) {
+                                        acc["404 Not Found"] =
+                                          (acc["404 Not Found"] || 0) + 1;
+                                      } else if (link.status === 400) {
+                                        acc["400 Bad Request"] =
+                                          (acc["400 Bad Request"] || 0) + 1;
+                                      }
+                                      return acc;
+                                    },
+                                    {} as IssueTypes
+                                  );
+
+                                return Object.entries(uniqueIssueTypes).map(
+                                  ([type, count]) => (
+                                    <div
+                                      key={type}
+                                      className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
+                                      onClick={() => {
+                                        if (type === "400 Bad Request") {
+                                          setActiveTab("tab4");
+                                        } else {
+                                          setActiveTab("tab5");
+                                        }
+                                      }}
+                                    >
+                                      <p className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300">
+                                        {type}:
+                                      </p>
+                                      <p className="text-white">{count}</p>
+                                    </div>
+                                  )
+                                );
+                              })()}
                             </div>
                           )}
                         </div>
@@ -667,11 +713,11 @@ export default function Home() {
                                       text-white
                                       ${
                                         type === "<a href>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300 "
+                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
                                       }
                                       ${
                                         type === "<img src>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300 "
+                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
                                       }
                                     `}
                                     >
@@ -721,6 +767,7 @@ export default function Home() {
                     </div>
                   </div>
                 )}
+
                 {activeTab === "tab2" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Image Details</h1>
@@ -833,6 +880,7 @@ export default function Home() {
                     )}
                   </div>
                 )}
+
                 {activeTab === "tab3" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Links Detail</h1>
