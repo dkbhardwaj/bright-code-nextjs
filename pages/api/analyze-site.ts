@@ -4,17 +4,20 @@ import { JSDOM } from "jsdom";
 import pLimit from "p-limit";
 import pRetry from "p-retry";
 
-// Limit for concurrent requests to avoid overloading servers
-const limit = pLimit(3); // Set concurrency limit to 3
+// Limit for concurrent requests
+const limit = pLimit(3); // Limit concurrency to 3
 const cache = new Map<string, any>(); // In-memory cache for results
 
-// Function to fetch the file size of an image with retry logic
+// Global timeout for the entire analysis process (in milliseconds)
+const ANALYSIS_TIMEOUT = 60000; // 60 seconds
+
+// Function to fetch the file size of an image
 async function getFileSize(url: string): Promise<number | null> {
   try {
     const response = await pRetry(
       async () => {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000); // 5-second timeout
+        const timeout = setTimeout(() => controller.abort(), 10000); // 10-second timeout
         try {
           const res = await fetch(url, {
             method: "HEAD",
@@ -38,13 +41,13 @@ async function getFileSize(url: string): Promise<number | null> {
   }
 }
 
-// Function to check the status of a link with retry logic
+// Function to check the status of a link
 async function checkLinkStatus(link: string): Promise<number> {
   try {
     const response = await pRetry(
       async () => {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000); // 5-second timeout
+        const timeout = setTimeout(() => controller.abort(), 10000); // 10-second timeout
         try {
           const res = await fetch(link, {
             method: "HEAD",
@@ -177,10 +180,16 @@ export default async function handler(
     return res.status(400).json({ error: "Invalid URL provided." });
   }
 
+  // Global timeout for the analysis process
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), ANALYSIS_TIMEOUT);
+
   try {
     const pageData = await analyzeSinglePage(url);
+    clearTimeout(timeout);
     return res.status(200).json(pageData);
   } catch (err) {
+    clearTimeout(timeout);
     console.error("API handler error:", err);
     return res.status(504).json({
       error: "The target website took too long to respond or failed.",

@@ -70,39 +70,55 @@ export default function Home() {
     }
   }, [url, router]);
 
-  const fetchWebsiteData = async (): Promise<void> => {
-    setLoading(true);
-    setError("");
-    setImages([]);
-    setLinks([]);
-    setReport(null);
+const fetchWebsiteData = async (): Promise<void> => {
+  setLoading(true);
+  setError("");
+  setImages([]);
+  setLinks([]);
+  setReport(null);
 
+  const retryFetch = async (retries: number): Promise<Response> => {
     try {
       const response = await fetch(
         `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`
       );
-      const data = await response.json();
-
-      if (response.ok) {
-        setImages(data.images || []);
-        setLinks(data.links || []);
-        setReport({
-          totalLinks: data.totalLinks || 0,
-          totalLinksWithIssues: data.totalLinksWithIssues || 0,
-          hosts: data.hosts || [],
-          issueTypes: data.issueTypes || {},
-          linkTypes: data.linkTypes || {},
-          startUrl: data.startUrl || url,
-        });
-      } else {
-        setError(data.error || "Failed to analyze the site.");
+      if (!response.ok && retries > 0) {
+        throw new Error("Retrying...");
       }
-    } catch (err: unknown) {
-      setError("An error occurred while analyzing the site.");
-    } finally {
-      setLoading(false);
+      return response;
+    } catch (err) {
+      if (retries > 0) {
+        return await retryFetch(retries - 1);
+      }
+      throw err;
     }
   };
+
+  try {
+    const response = await retryFetch(3); // Retry up to 3 times
+    const data = await response.json();
+
+    if (response.ok) {
+      setImages(data.images || []);
+      setLinks(data.links || []);
+      setReport({
+        totalLinks: data.totalLinks || 0,
+        totalLinksWithIssues: data.totalLinksWithIssues || 0,
+        hosts: data.hosts || [],
+        issueTypes: data.issueTypes || {},
+        linkTypes: data.linkTypes || {},
+        startUrl: data.startUrl || url,
+      });
+    } else {
+      setError(data.error || "Failed to analyze the site.");
+    }
+  } catch (err: unknown) {
+    setError("An error occurred while analyzing the site.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const handleAnalyzeClick = (): void => {
     if (!url) {
