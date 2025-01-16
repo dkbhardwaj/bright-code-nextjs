@@ -140,8 +140,6 @@ export default function Home() {
     links: Link[];
   };
 
-  console.log(report?.issueTypes);
-
   const LinksTable: React.FC<LinksTableProps> = ({ links }) => (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
       <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
