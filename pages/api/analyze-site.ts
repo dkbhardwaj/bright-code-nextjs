@@ -2,17 +2,33 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
 import pLimit from "p-limit";
+import pRetry from "p-retry";
 
-const limit = pLimit(5); // Limit concurrent requests to avoid overloading servers
+// Limit for concurrent requests to avoid overloading servers
+const limit = pLimit(3); // Set concurrency limit to 3
+const cache = new Map<string, any>(); // In-memory cache for results
 
-// Function to fetch the file size of an image
+// Function to fetch the file size of an image with retry logic
 async function getFileSize(url: string): Promise<number | null> {
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
-
-    const response = await fetch(url, { method: "HEAD", signal: controller.signal });
-    clearTimeout(timeout);
+    const response = await pRetry(
+      async () => {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+        try {
+          const res = await fetch(url, {
+            method: "HEAD",
+            signal: controller.signal,
+          });
+          clearTimeout(timeout);
+          return res;
+        } catch (error) {
+          clearTimeout(timeout);
+          throw error;
+        }
+      },
+      { retries: 3 }
+    );
 
     const contentLength = response.headers.get("Content-Length");
     return contentLength ? parseInt(contentLength, 10) : null;
@@ -22,23 +38,42 @@ async function getFileSize(url: string): Promise<number | null> {
   }
 }
 
-// Function to check the status of a link
+// Function to check the status of a link with retry logic
 async function checkLinkStatus(link: string): Promise<number> {
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
-
-    const response = await fetch(link, { method: "HEAD", signal: controller.signal });
-    clearTimeout(timeout);
+    const response = await pRetry(
+      async () => {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+        try {
+          const res = await fetch(link, {
+            method: "HEAD",
+            signal: controller.signal,
+          });
+          clearTimeout(timeout);
+          return res;
+        } catch (error) {
+          clearTimeout(timeout);
+          throw error;
+        }
+      },
+      { retries: 3 }
+    );
 
     return response.status;
-  } catch {
+  } catch (error) {
+    console.error(`Error checking status for ${link}:`, error);
     return 400; // Assume Bad Request if fetch fails
   }
 }
 
 // Function to analyze a single page
 async function analyzeSinglePage(url: string) {
+  // Check cache first
+  if (cache.has(url)) {
+    return cache.get(url);
+  }
+
   try {
     const response = await fetch(url);
     const html = await response.text();
@@ -70,8 +105,12 @@ async function analyzeSinglePage(url: string) {
     const processImage = async (img: HTMLImageElement) => {
       const src = img.getAttribute("src");
       const alt = img.getAttribute("alt") || "No alt attribute";
-      const width = img.getAttribute("width") ? parseInt(img.getAttribute("width") as string, 10) : null;
-      const height = img.getAttribute("height") ? parseInt(img.getAttribute("height") as string, 10) : null;
+      const width = img.getAttribute("width")
+        ? parseInt(img.getAttribute("width") as string, 10)
+        : null;
+      const height = img.getAttribute("height")
+        ? parseInt(img.getAttribute("height") as string, 10)
+        : null;
 
       if (src) {
         const absoluteUrl = new URL(src, url).href;
@@ -107,7 +146,7 @@ async function analyzeSinglePage(url: string) {
       ...anchorElements.map((a) => limit(() => processLink(a))),
     ]);
 
-    return {
+    const result = {
       images,
       links,
       totalLinks: links.length,
@@ -116,6 +155,11 @@ async function analyzeSinglePage(url: string) {
       linkTypes,
       startUrl: url,
     };
+
+    // Store result in cache
+    cache.set(url, result);
+
+    return result;
   } catch (err) {
     console.error("Error analyzing single page:", err);
     throw new Error("Failed to analyze the page.");
@@ -123,7 +167,10 @@ async function analyzeSinglePage(url: string) {
 }
 
 // API Handler
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { url } = req.query;
 
   if (!url || typeof url !== "string") {
@@ -135,6 +182,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json(pageData);
   } catch (err) {
     console.error("API handler error:", err);
-    return res.status(500).json({ error: "Failed to analyze the site." });
+    return res.status(504).json({
+      error: "The target website took too long to respond or failed.",
+    });
   }
 }
