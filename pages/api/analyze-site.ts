@@ -14,7 +14,7 @@ async function getFileSize(url: string): Promise<number | null> {
     const response = await pRetry(
       async () => {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+        const timeout = setTimeout(() => controller.abort(), 10000); // 5-second timeout
         try {
           const res = await fetch(url, {
             method: "HEAD",
@@ -44,7 +44,7 @@ async function checkLinkStatus(link: string): Promise<number> {
     const response = await pRetry(
       async () => {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 5000); // 5-second timeout
+        const timeout = setTimeout(() => controller.abort(), 10000); // 5-second timeout
         try {
           const res = await fetch(link, {
             method: "HEAD",
