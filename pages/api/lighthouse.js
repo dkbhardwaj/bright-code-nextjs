@@ -1,22 +1,16 @@
 import lighthouse from 'lighthouse';
 
-
 // Import puppeteer for local development
+let puppeteer;
 
+if (process.env.NODE_ENV === 'development') {
+  puppeteer = require('puppeteer');
+}
 
+//if (!url.includes("localhost")) {
 
-
-async function launchChrome(url) {
-   
-    console.log("11",url)
-    let puppeteer;
-
-    // if (process.env.NODE_ENV === 'development') {
-    if (!url.includes("localhost")) {
-    puppeteer = require('puppeteer');
-    }
-//   if (process.env.NODE_ENV === 'development') {
-  if (!url.includes("localhost")) {
+async function launchChrome() {
+  if (process.env.NODE_ENV === 'development') {
     
     const browser = await puppeteer.launch({
       headless: true,
@@ -38,13 +32,13 @@ async function launchChrome(url) {
 
 export default async function handler(req, res) {
   const { url } = req.query;
-    console.log(url)
+
   if (!url) {
     return res.status(400).json({ error: 'URL is required' });
   }
 
   try {
-    const chrome = await launchChrome(url);
+    const chrome = await launchChrome();
 
     // Run Lighthouse audit
     const { lhr } = await lighthouse(url, {
@@ -58,8 +52,7 @@ export default async function handler(req, res) {
     const seoScore = lhr.categories.seo.score * 100;
 
     // Close Chrome after the audit (if using Puppeteer)
-    // if (process.env.NODE_ENV === 'development') {
-    if (!url.includes("localhost")) {
+    if (process.env.NODE_ENV === 'development') {
       await chrome.browser.close();
     } else {
       await chrome.kill();
