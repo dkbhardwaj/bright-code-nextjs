@@ -70,54 +70,54 @@ export default function Home() {
     }
   }, [url, router]);
 
-const fetchWebsiteData = async (): Promise<void> => {
-  setLoading(true);
-  setError("");
-  setImages([]);
-  setLinks([]);
-  setReport(null);
+  const fetchWebsiteData = async (): Promise<void> => {
+    setLoading(true);
+    setError("");
+    setImages([]);
+    setLinks([]);
+    setReport(null);
 
-  const retryFetch = async (retries: number): Promise<Response> => {
+    const retryFetch = async (retries: number): Promise<Response> => {
+      try {
+        const response = await fetch(
+          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`
+        );
+        if (!response.ok && retries > 0) {
+          throw new Error("Retrying...");
+        }
+        return response;
+      } catch (err) {
+        if (retries > 0) {
+          return await retryFetch(retries - 1);
+        }
+        throw err;
+      }
+    };
+
     try {
-      const response = await fetch(
-        `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`
-      );
-      if (!response.ok && retries > 0) {
-        throw new Error("Retrying...");
+      const response = await retryFetch(3); // Retry up to 3 times
+      const data = await response.json();
+
+      if (response.ok) {
+        setImages(data.images || []);
+        setLinks(data.links || []);
+        setReport({
+          totalLinks: data.totalLinks || 0,
+          totalLinksWithIssues: data.totalLinksWithIssues || 0,
+          hosts: data.hosts || [],
+          issueTypes: data.issueTypes || {},
+          linkTypes: data.linkTypes || {},
+          startUrl: data.startUrl || url,
+        });
+      } else {
+        setError(data.error || "Failed to analyze the site.");
       }
-      return response;
-    } catch (err) {
-      if (retries > 0) {
-        return await retryFetch(retries - 1);
-      }
-      throw err;
+    } catch (err: unknown) {
+      setError("An error occurred while analyzing the site.");
+    } finally {
+      setLoading(false);
     }
   };
-
-  try {
-    const response = await retryFetch(3); // Retry up to 3 times
-    const data = await response.json();
-
-    if (response.ok) {
-      setImages(data.images || []);
-      setLinks(data.links || []);
-      setReport({
-        totalLinks: data.totalLinks || 0,
-        totalLinksWithIssues: data.totalLinksWithIssues || 0,
-        hosts: data.hosts || [],
-        issueTypes: data.issueTypes || {},
-        linkTypes: data.linkTypes || {},
-        startUrl: data.startUrl || url,
-      });
-    } else {
-      setError(data.error || "Failed to analyze the site.");
-    }
-  } catch (err: unknown) {
-    setError("An error occurred while analyzing the site.");
-  } finally {
-    setLoading(false);
-  }
-};
 
 
   const handleAnalyzeClick = (): void => {
@@ -208,6 +208,11 @@ const fetchWebsiteData = async (): Promise<void> => {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleAnalyzeClick();
+                      }
+                    }}
                     placeholder="Enter website URL"
                   />
                   {url && (
@@ -263,16 +268,18 @@ const fetchWebsiteData = async (): Promise<void> => {
 
                 {/* Analyze Button */}
                 <button
-                  className={`relative w-full py-3 text-white rounded-lg font-semibold ${
-                    loading
+                  className={`relative w-full py-3 text-white rounded-lg font-semibold ${loading
                       ? "bg-indigo-300 cursor-not-allowed"
                       : "bg-indigo-500 hover:bg-indigo-600"
-                  }`}
+                    }`}
                   onClick={handleAnalyzeClick}
+                
                   disabled={loading}
+                  aria-busy={loading}
                 >
                   {loading ? "Analyzing..." : "Analyze"}
                 </button>
+
               </div>
             )}
 
@@ -496,52 +503,47 @@ const fetchWebsiteData = async (): Promise<void> => {
                 <div className="sidebarMain">
                   <ul>
                     <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab1"
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab1"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
-                      }`}
+                        }`}
                       onClick={() => setActiveTab("tab1")}
                     >
                       Overview
                     </li>
                     <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab2"
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab2"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
-                      }`}
+                        }`}
                       onClick={() => setActiveTab("tab2")}
                     >
                       Images detail
                     </li>
 
                     <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab3"
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab3"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
-                      }`}
+                        }`}
                       onClick={() => setActiveTab("tab3")}
                     >
                       Links detail
                     </li>
                     <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab4"
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab4"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
-                      }`}
+                        }`}
                       onClick={() => setActiveTab("tab4")}
                     >
                       Bad Requests
                     </li>
                     <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab5"
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${activeTab === "tab5"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
-                      }`}
+                        }`}
                       onClick={() => setActiveTab("tab5")}
                     >
                       404 Links
@@ -727,14 +729,12 @@ const fetchWebsiteData = async (): Promise<void> => {
                                     <p
                                       className={`
                                       text-white
-                                      ${
-                                        type === "<a href>" &&
+                                      ${type === "<a href>" &&
                                         "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
-                                      ${
-                                        type === "<img src>" &&
+                                        }
+                                      ${type === "<img src>" &&
                                         "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
+                                        }
                                     `}
                                     >
                                       {type}:
@@ -866,8 +866,8 @@ const fetchWebsiteData = async (): Promise<void> => {
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.fileSize
                                       ? `${(image.fileSize / 1024).toFixed(
-                                          2
-                                        )} KB`
+                                        2
+                                      )} KB`
                                       : "N/A"}
                                   </td>
 
