@@ -16,7 +16,7 @@ async function launchChrome(url) {
     puppeteer = require('puppeteer');
     }
 //   if (process.env.NODE_ENV === 'development') {
-  if (!url1.includes("localhost")) {
+  if (!url.includes("localhost")) {
     
     const browser = await puppeteer.launch({
       headless: true,
