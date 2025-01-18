@@ -11,36 +11,6 @@ const cache = new Map<string, any>(); // In-memory cache for results
 // Global timeout for the entire analysis process (in milliseconds)
 const ANALYSIS_TIMEOUT = 60000; // 60 seconds
 
-// Function to fetch the file size of an image
-async function getFileSize(url: string): Promise<number | null> {
-  try {
-    const response = await pRetry(
-      async () => {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000); // 10-second timeout
-        try {
-          const res = await fetch(url, {
-            method: "HEAD",
-            signal: controller.signal,
-          });
-          clearTimeout(timeout);
-          return res;
-        } catch (error) {
-          clearTimeout(timeout);
-          throw error;
-        }
-      },
-      { retries: 3 }
-    );
-
-    const contentLength = response.headers.get("Content-Length");
-    return contentLength ? parseInt(contentLength, 10) : null;
-  } catch (error) {
-    console.error(`Error fetching file size for ${url}:`, error);
-    return null;
-  }
-}
-
 // Function to check the status of a link
 async function checkLinkStatus(link: string): Promise<number> {
   try {
@@ -70,7 +40,7 @@ async function checkLinkStatus(link: string): Promise<number> {
   }
 }
 
-// Function to analyze a single page
+// Function to analyze a single page (only links)
 async function analyzeSinglePage(url: string) {
   // Check cache first
   if (cache.has(url)) {
@@ -83,46 +53,17 @@ async function analyzeSinglePage(url: string) {
     const dom = new JSDOM(html);
     const document = dom.window.document;
 
-    const images: {
-      src: string;
-      alt: string;
-      width: number | null;
-      height: number | null;
-      fileSize: number | null;
-    }[] = [];
     const links: { url: string; status: number }[] = [];
     const issueTypes: { [key: string]: number } = {
       "404 Not Found": 0,
       "400 Bad Request": 0,
     };
     const linkTypes: { [key: string]: number } = {
-      "<img src>": 0,
       "<a href>": 0,
     };
     const hosts = new Set<string>();
 
-    const imgElements = Array.from(document.querySelectorAll("img"));
     const anchorElements = Array.from(document.querySelectorAll("a"));
-
-    // Helper function to process images
-    const processImage = async (img: HTMLImageElement) => {
-      const src = img.getAttribute("src");
-      const alt = img.getAttribute("alt") || "No alt attribute";
-      const width = img.getAttribute("width")
-        ? parseInt(img.getAttribute("width") as string, 10)
-        : null;
-      const height = img.getAttribute("height")
-        ? parseInt(img.getAttribute("height") as string, 10)
-        : null;
-
-      if (src) {
-        const absoluteUrl = new URL(src, url).href;
-        const fileSize = await getFileSize(absoluteUrl);
-        images.push({ src: absoluteUrl, alt, width, height, fileSize });
-        linkTypes["<img src>"]++;
-        hosts.add(new URL(absoluteUrl).hostname);
-      }
-    };
 
     // Helper function to process links
     const processLink = async (a: HTMLAnchorElement) => {
@@ -143,14 +84,10 @@ async function analyzeSinglePage(url: string) {
       }
     };
 
-    // Process images and links concurrently with limited concurrency
-    await Promise.all([
-      ...imgElements.map((img) => limit(() => processImage(img))),
-      ...anchorElements.map((a) => limit(() => processLink(a))),
-    ]);
+    // Process links concurrently with limited concurrency
+    await Promise.all(anchorElements.map((a) => limit(() => processLink(a))));
 
     const result = {
-      images,
       links,
       totalLinks: links.length,
       hosts: Array.from(hosts),
