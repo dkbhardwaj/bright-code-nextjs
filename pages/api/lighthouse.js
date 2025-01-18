@@ -1,6 +1,7 @@
 // pages/api/audit.js
 import lighthouse from 'lighthouse';
-import puppeteer from 'puppeteer'; // Use puppeteer to handle Chromium launch
+// import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 
 export default async function handler(req, res) {
   const { url } = req.query;
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
 
   try {
     // Launch Puppeteer (it will automatically use the bundled Chromium)
-    const browser = await puppeteer.launch({
+    const browser = await playwright.chromium.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
