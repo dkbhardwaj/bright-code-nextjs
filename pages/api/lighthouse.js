@@ -1,17 +1,19 @@
+import { chromium } from 'playwright';
 import lighthouse from 'lighthouse';
-import puppeteer from 'puppeteer';
+import { URL } from 'url';
 
-async function launchChrome() {
-  // Launch Puppeteer (Chromium)
-  const browser = await puppeteer.launch({
-    headless: true,  // Run in headless mode
-    args: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222'],  // Disable sandboxing for serverless environments
+async function launchBrowser() {
+  // Launch the browser in headless mode with the remote debugging port
+  const browser = await chromium.launch({
+    headless: true, // Launch in headless mode
+    args: [
+      '--no-sandbox',
+      '--disable-gpu',
+      '--remote-debugging-port=9222', // Enable remote debugging on port 9222
+    ],
   });
 
-  // Use Puppeteer to create a new page and get the WebSocket URL
-  const page = await browser.newPage();
-  const wsEndpoint = browser.wsEndpoint();
-  return { browser, wsEndpoint };
+  return browser;
 }
 
 export default async function handler(req, res) {
@@ -22,11 +24,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { browser, wsEndpoint } = await launchChrome();
+    // Launch the browser
+    const browser = await launchBrowser();
+
+    // Get the remote debugging port (9222 by default) to pass to Lighthouse
+    const remoteDebuggingPort = 9222;
 
     // Run Lighthouse audit
     const { lhr } = await lighthouse(url, {
-      port: new URL(wsEndpoint).port,  // Pass WebSocket endpoint to Lighthouse
+      port: remoteDebuggingPort, // Pass the port for remote debugging
       output: 'json',
       onlyCategories: ['performance', 'accessibility', 'seo'], // Only audit these categories
     });
@@ -36,7 +42,7 @@ export default async function handler(req, res) {
     const accessibilityScore = lhr.categories.accessibility.score * 100;
     const seoScore = lhr.categories.seo.score * 100;
 
-    // Close the Puppeteer browser
+    // Close the browser after Lighthouse finishes
     await browser.close();
 
     // Send the results back to the client
