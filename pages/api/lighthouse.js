@@ -18,10 +18,10 @@ export default async function handler(req, res) {
 
   try {
     const browser = await launchBrowser();
-    const remoteDebuggingPort = 9222;
+    const remoteDebuggingPort = 3002;
 
     const { lhr } = await lighthouse(url, {
-      port: remoteDebuggingPort,
+      port: remoteDebuggingPort, // Pass the port for remote debugging
       output: 'json',
       onlyCategories: ['performance', 'accessibility', 'seo'],
     });
