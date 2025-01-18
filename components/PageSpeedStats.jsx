@@ -28,7 +28,7 @@ export default function PageSpeed({result}) {
                 <div className="w-full max-w-[100px] mx-auto">
                     <CircularProgressbar
                     value={result.performance}
-                    text={`${result.performance}%`}
+                    text={`${parseInt(result.performance)}%`}
                     styles={buildStyles({
                         pathColor: barColor(result.performance),
                         textColor: barColor(result.performance),
@@ -41,7 +41,7 @@ export default function PageSpeed({result}) {
                 <h5>Accessibility</h5>
                 <div className="w-full max-w-[100px] mx-auto">
                     <CircularProgressbar
-                    value={result.accessibility}
+                    value={parseInt(result.accessibility)}
                     text={`${result.accessibility}%`}
                     styles={buildStyles({
                         pathColor: barColor(result.accessibility),
@@ -55,9 +55,8 @@ export default function PageSpeed({result}) {
               <div className="score-card text-center w-full max-w-[200px]">
                 <h5>SEO</h5>
                 <div className="w-full max-w-[100px] mx-auto">
-                    {console.log(result.seo)}
                 <CircularProgressbar
-                  value={result.seo}
+                  value={parseInt(result.seo)}
                   text={`${result.seo}%`}
                   styles={buildStyles({
                     pathColor: barColor(result.seo),
