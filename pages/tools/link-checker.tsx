@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router"; // Import useRouter hook for query handling
 import { Bar } from "react-chartjs-2";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Chart as ChartJS,
@@ -23,14 +22,7 @@ ChartJS.register(
   Legend
 );
 
-interface Image {
-  src: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-  fileSize?: number;
-}
-interface Link {
+interface LinkData {
   url: string;
   status: number;
 }
@@ -38,8 +30,7 @@ interface Link {
 export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
-  const [images, setImages] = useState<Image[]>([]);
-  const [links, setLinks] = useState<Link[]>([]);
+  const [links, setLinks] = useState<LinkData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [fetched, setFetched] = useState(false);
@@ -73,7 +64,6 @@ export default function Home() {
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
-    setImages([]);
     setLinks([]);
     setReport(null);
 
@@ -99,7 +89,6 @@ export default function Home() {
       const data = await response.json();
 
       if (response.ok) {
-        setImages(data.images || []);
         setLinks(data.links || []);
         setReport({
           totalLinks: data.totalLinks || 0,
@@ -136,11 +125,14 @@ export default function Home() {
 
   // console.log(links);
 
-  type LinksTableProps = {
-    links: Link[];
+  type LinkData = {
+    url: string;
+    status: number;
   };
 
-  console.log(report?.issueTypes);
+  type LinksTableProps = {
+    links: LinkData[]; // Use LinkData here
+  };
 
   const LinksTable: React.FC<LinksTableProps> = ({ links }) => (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
@@ -504,16 +496,6 @@ export default function Home() {
                     >
                       Overview
                     </li>
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab2"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab2")}
-                    >
-                      Images detail
-                    </li>
 
                     <li
                       className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
@@ -545,51 +527,8 @@ export default function Home() {
                     >
                       404 Links
                     </li>
-                    {/* <li className='p-[10px]' >
-                      <p className='text-white border-b-[2px] border-black'>Issues</p>
-                      <ul className='pl-[10px] mt-[10px]'>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab3" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab3")}>
-                          <p className='text-white '>All Issues</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab4" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab4")}>
-                          <p className='text-white '>Broken</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab5" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab5")}>
-                          <p className='text-white '>Blacklisted</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab6" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab6")}>
-                          <p className='text-white '>Soft errors</p>
-                        </li>
-                      </ul>
-                    </li> */}
                   </ul>
                 </div>
-                {/* <div className="w-1/4 border-l">
-                  <button
-                
-                    className={`w-full mb-[10px] ${activeTab === "tab1"? "active": ""}`}
-                  >
-                    Dashboard
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("tab2")}
-                    className={`w-full mb-[10px] ${activeTab === "tab2"
-                      ? "active"
-                      : ""
-                      }`}
-                  >
-                    Analytics
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("tab3")}
-                    className={`w-full mb-[10px]  ${activeTab === "tab3"
-                      ? "active"
-                      : ""
-                      }`}
-                  >
-                    Settings
-                  </button>
-                </div> */}
               </div>
 
               {/* Main Content */}
@@ -639,14 +578,6 @@ export default function Home() {
                             </h3>
                           </div>
                         </div>
-                        {/* New Links */}
-                        {/* <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
-                          <div className="content">
-                            <p className='text-white'>New Links</p>
-                            <h3 className='text-center text-white mt-[10px]'>N/A</h3>
-                          </div>
-                        </div> */}
-                        {/* Issue Types */}
                         <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           {Object.entries(report.issueTypes).length > 0 && (
                             <div className="mb-6">
@@ -747,152 +678,7 @@ export default function Home() {
                           )}
                         </div>
                       </div>
-
-                      {/* Images Breakdown by Host */}
-                      <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
-                          Image Breakdown by Host
-                        </h3>
-                        <div className="relative h-[300px] bg-white rounded-lg overflow-hidden">
-                          <Bar
-                            data={{
-                              labels: report.hosts,
-                              datasets: [
-                                {
-                                  label: "Images by Host",
-                                  data: report.hosts.map(
-                                    (host) =>
-                                      images.filter((img) => {
-                                        try {
-                                          // Use img.src instead of img
-                                          const imgUrl = new URL(img.src);
-                                          return imgUrl.hostname === host;
-                                        } catch (e) {
-                                          return false; // Ignore invalid URLs
-                                        }
-                                      }).length
-                                  ),
-                                  backgroundColor: "#6366F1",
-                                },
-                              ],
-                            }}
-                          />
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                )}
-
-                {activeTab === "tab2" && (
-                  <div className="max-w-[1600px] mx-auto">
-                    <h1 className="text-white text-center">Image Details</h1>
-                    {images.length > 0 && (
-                      <div className="mt-8 w-full ">
-                        <h4 className="text-white mb-4">
-                          Found {images.length} images:
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          {/* {images.map((image, index) => (
-                            <div
-                              key={index}
-                              className="border rounded-md overflow-hidden shadow-md"
-                            >
-                              <img
-                                src={image}
-                                alt={`Fetched Image ${index + 1}`}
-                                className="w-full h-[150px] object-cover"
-                              />
-                              <a
-                                href={image}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block text-center text-blue-600 hover:underline py-2"
-                              >
-                                View Image
-                              </a>
-                            </div>
-                          ))} */}
-
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
-                            <thead>
-                              <tr className="bg-gray-200 text-left">
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Sr
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Image
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Size (px)
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  File Size
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Alt Text
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  View
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {images.map((image, index) => (
-                                <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    {index + 1}
-                                  </td>
-
-                                  {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
-                                    {image.src}
-                                    {/* <img
-                                      src={image.src}
-                                      alt={image.alt || `Image ${index + 1}`}
-                                      className="w-20 h-20 object-contain"
-                                    /> */}
-                                  </td>
-
-                                  {/* Size (px) */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.width && image.height
-                                      ? `${image.width} x ${image.height}`
-                                      : "N/A"}
-                                  </td>
-
-                                  {/* File Size */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.fileSize
-                                      ? `${(image.fileSize / 1024).toFixed(
-                                          2
-                                        )} KB`
-                                      : "N/A"}
-                                  </td>
-
-                                  {/* Alt Text */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.alt || "No Alt Text"}
-                                  </td>
-
-                                  {/* View */}
-                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
-                                    <a
-                                      href={image.src}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-blue-600 hover:underline"
-                                    >
-                                      View Image
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 )}
 
