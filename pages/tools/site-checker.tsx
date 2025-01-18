@@ -205,6 +205,11 @@ export default function Home() {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleAnalyzeClick();
+                      }
+                    }}
                     placeholder="Enter website URL"
                   />
                   {url && (
