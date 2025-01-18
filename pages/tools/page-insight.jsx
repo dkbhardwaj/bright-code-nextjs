@@ -59,6 +59,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {console.log(parseInt(result?.performance))}
       {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
       {result && (<PageSpeed result={result}/>)}
