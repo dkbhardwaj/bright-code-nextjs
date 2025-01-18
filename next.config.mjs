@@ -17,6 +17,13 @@ const nextConfig = {
       },
     ];
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Allow usage of chrome-aws-lambda in the server-side bundle
+      config.externals = [...config.externals, 'chrome-aws-lambda'];
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
