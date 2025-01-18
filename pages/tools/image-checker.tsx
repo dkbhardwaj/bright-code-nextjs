@@ -80,7 +80,7 @@ export default function Home() {
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetch(
-          `/api/analyze-page?url=${encodeURIComponent(url)}&scope=page`
+          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -205,7 +205,7 @@ export default function Home() {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    onKeyDown={(e) => {
+                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         handleAnalyzeClick();
                       }
@@ -517,82 +517,9 @@ export default function Home() {
                     >
                       Images detail
                     </li>
-
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab3"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab3")}
-                    >
-                      Links detail
-                    </li>
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab4"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab4")}
-                    >
-                      Bad Requests
-                    </li>
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab5"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab5")}
-                    >
-                      404 Links
-                    </li>
-                    {/* <li className='p-[10px]' >
-                      <p className='text-white border-b-[2px] border-black'>Issues</p>
-                      <ul className='pl-[10px] mt-[10px]'>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab3" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab3")}>
-                          <p className='text-white '>All Issues</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab4" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab4")}>
-                          <p className='text-white '>Broken</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab5" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab5")}>
-                          <p className='text-white '>Blacklisted</p>
-                        </li>
-                        <li className={`p-[10px]  w-full ${activeTab === "tab6" ? 'bg-black' : ''}`} onClick={() => setActiveTab("tab6")}>
-                          <p className='text-white '>Soft errors</p>
-                        </li>
-                      </ul>
-                    </li> */}
                   </ul>
                 </div>
-                {/* <div className="w-1/4 border-l">
-                  <button
-                
-                    className={`w-full mb-[10px] ${activeTab === "tab1"? "active": ""}`}
-                  >
-                    Dashboard
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("tab2")}
-                    className={`w-full mb-[10px] ${activeTab === "tab2"
-                      ? "active"
-                      : ""
-                      }`}
-                  >
-                    Analytics
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("tab3")}
-                    className={`w-full mb-[10px]  ${activeTab === "tab3"
-                      ? "active"
-                      : ""
-                      }`}
-                  >
-                    Settings
-                  </button>
-                </div> */}
+              
               </div>
 
               {/* Main Content */}
@@ -707,48 +634,6 @@ export default function Home() {
                             </div>
                           )}
                         </div>
-                        {/* Link Types */}
-                        {/* <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {Object.entries(report.issueTypes).length > 0 && (
-                            <div className="mb-6">
-                              <p className="text-white mb-[10px]">Link Types</p>
-
-                              {Object.entries(report.linkTypes).map(
-                                ([type, count]) => (
-                                  <div
-                                    key={type}
-                                    className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
-                                    onClick={() => {
-                                      if (type === "<a href>") {
-                                        setActiveTab("tab3");
-                                      } else {
-                                        setActiveTab("tab2");
-                                      }
-                                    }}
-                                  >
-                                    <p
-                                      className={`
-                                      text-white
-                                      ${
-                                        type === "<a href>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
-                                      ${
-                                        type === "<img src>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
-                                    `}
-                                    >
-                                      {type}:
-                                    </p>
-
-                                    <p className="text-white">{count}</p>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          )}
-                        </div> */}
                       </div>
 
                       {/* Images Breakdown by Host */}
@@ -911,105 +796,6 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab3" && (
-                  <div className="max-w-[1600px] mx-auto">
-                    <h1 className="text-white text-center">Links Detail</h1>
-                    {links.length > 0 ? (
-                      (() => {
-                        // Remove duplicate links based on their URL
-                        const uniqueLinks = links.filter(
-                          (link, index, self) =>
-                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                        );
-
-                        return uniqueLinks.length > 0 ? (
-                          <div className="mt-8 w-full">
-                            <h4 className="text-white mb-4">
-                              Found {uniqueLinks.length} Unique Links:
-                            </h4>
-                            <LinksTable links={uniqueLinks} />
-                          </div>
-                        ) : (
-                          <h4 className="text-white mb-4">
-                            No Unique Links Found
-                          </h4>
-                        );
-                      })()
-                    ) : (
-                      <h4 className="text-white mb-4">No Links Available</h4>
-                    )}
-                  </div>
-                )}
-
-                {activeTab === "tab4" && (
-                  <div className="max-w-[1600px] mx-auto">
-                    <h1 className="text-white text-center">Bad Requests</h1>
-                    {links.length > 0 ? (
-                      (() => {
-                        // Filter links with status 400
-                        const badRequests = links.filter(
-                          (link) => String(link.status) === "400"
-                        );
-
-                        // Remove duplicate links based on their URL
-                        const uniqueBadRequests = badRequests.filter(
-                          (link, index, self) =>
-                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                        );
-
-                        return uniqueBadRequests.length > 0 ? (
-                          <div className="mt-8 w-full">
-                            <h4 className="text-white mb-4">
-                              Found {uniqueBadRequests.length} Bad Requests:
-                            </h4>
-                            <LinksTable links={uniqueBadRequests} />
-                          </div>
-                        ) : (
-                          <h4 className="text-white mb-4">
-                            No Bad Requests Found
-                          </h4>
-                        );
-                      })()
-                    ) : (
-                      <h4 className="text-white mb-4">No Links Available</h4>
-                    )}
-                  </div>
-                )}
-
-                {activeTab === "tab5" && (
-                  <div className="max-w-[1600px] mx-auto">
-                    <h1 className="text-white text-center">404 Links</h1>
-                    {links.length > 0 ? (
-                      (() => {
-                        // Filter links with status 404
-                        const badRequests = links.filter(
-                          (link) => String(link.status) === "404"
-                        );
-
-                        // Remove duplicate links based on their URL
-                        const uniqueBadRequests = badRequests.filter(
-                          (link, index, self) =>
-                            index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                        );
-
-                        return uniqueBadRequests.length > 0 ? (
-                          <div className="mt-8 w-full">
-                            <h4 className="text-white mb-4">
-                              Found {uniqueBadRequests.length} 404 Links:
-                            </h4>
-                            <LinksTable links={uniqueBadRequests} />
-                          </div>
-                        ) : (
-                          <h4 className="text-white mb-4">
-                            No 404 Links Found
-                          </h4>
-                        );
-                      })()
-                    ) : (
-                      <h4 className="text-white mb-4">No Links Available</h4>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
           )}
