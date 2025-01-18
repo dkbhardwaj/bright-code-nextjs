@@ -1,19 +1,20 @@
 import lighthouse from 'lighthouse';
- const currentUrl = `${window.location.origin}`
 
 
 // Import puppeteer for local development
 
-let puppeteer;
-
-// if (process.env.NODE_ENV === 'development') {
-if (!currentUrl.includes("localhost")) {
-  puppeteer = require('puppeteer');
-}
 
 
-async function launchChrome() {
-    let { url1 } = req.query;
+
+async function launchChrome(url) {
+   
+    console.log("11",url)
+    let puppeteer;
+
+    // if (process.env.NODE_ENV === 'development') {
+    if (!url.includes("localhost")) {
+    puppeteer = require('puppeteer');
+    }
 //   if (process.env.NODE_ENV === 'development') {
   if (!url1.includes("localhost")) {
     
@@ -43,7 +44,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const chrome = await launchChrome();
+    const chrome = await launchChrome(url);
 
     // Run Lighthouse audit
     const { lhr } = await lighthouse(url, {
