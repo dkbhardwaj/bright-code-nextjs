@@ -61,16 +61,36 @@ export default function Home() {
     }
   }, [url, router]);
 
+  const fetchWithTimeout = (url: string, options: RequestInit, timeout: number): Promise<Response> => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error("Request timed out"));
+      }, timeout);
+  
+      fetch(url, options)
+        .then((response) => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+  };
+  
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
     setLinks([]);
     setReport(null);
-
+  
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
-        const response = await fetch(
-          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`
+        const response = await fetchWithTimeout(
+          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`,
+          { method: "GET" },
+          10000 // Timeout after 10 seconds
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -83,11 +103,11 @@ export default function Home() {
         throw err;
       }
     };
-
+  
     try {
       const response = await retryFetch(3); // Retry up to 3 times
       const data = await response.json();
-
+  
       if (response.ok) {
         setLinks(data.links || []);
         setReport({
@@ -102,11 +122,16 @@ export default function Home() {
         setError(data.error || "Failed to analyze the site.");
       }
     } catch (err: unknown) {
-      setError("An error occurred while analyzing the site.");
+      setError(
+        err instanceof Error && err.message === "Request timed out"
+          ? "The request timed out. Please try again later."
+          : "An error occurred while analyzing the site."
+      );
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleAnalyzeClick = (): void => {
     if (!url) {
