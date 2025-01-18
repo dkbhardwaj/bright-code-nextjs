@@ -80,7 +80,7 @@ export default function Home() {
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetch(
-          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`
+          `/api/analyze-page?url=${encodeURIComponent(url)}&scope=page`
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -611,29 +611,35 @@ export default function Home() {
                         {/* Total Links */}
                         <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           <div className="content">
-                            <p className="text-white">Total Links</p>
+                            <p className="text-white">Total Images</p>
                             <h3 className="text-center text-white mt-[10px]">
                               {(() => {
-                                // Filter unique links by URL
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
+                                // Filter unique images by src attribute
+                                const uniqueImages = images.filter(
+                                  (image, index, self) =>
                                     index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                                    self.findIndex((t) => t.src === image.src) // Compare src to filter duplicates
                                 );
-                                return uniqueLinks.length;
+                                return uniqueImages.length;
                               })()}
                             </h3>
                           </div>
                         </div>
-
                         {/* Total Links with Issues */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
+                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           <div className="content">
                             <p className="text-white">
-                              Total Links with Issues
+                              Total images with issues
                             </p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {report.totalLinksWithIssues}
+                              {(() => {
+                                // Filter images with issues (e.g., missing alt or null file size)
+                                const imagesWithIssues = images.filter(
+                                  (image) =>
+                                    !image.alt || image.fileSize === null
+                                );
+                                return imagesWithIssues.length;
+                              })()}
                             </h3>
                           </div>
                         </div>
@@ -646,50 +652,44 @@ export default function Home() {
                         </div> */}
                         {/* Issue Types */}
                         <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {Object.entries(report.issueTypes).length > 0 && (
+                          {images.length > 0 && (
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
-                                Issue Types
+                                Image Issues
                               </p>
                               {(() => {
-                                // Filter unique links
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+                                // Filter images with specific issues
+                                const imagesWithIssues = images.filter(
+                                  (image) =>
+                                    !image.alt || image.fileSize === null
                                 );
 
                                 // Define a type for the issueTypes object
-                                type IssueTypes = Record<string, number>;
+                                type ImageIssueTypes = Record<string, number>;
 
-                                // Recalculate issue types based on unique links
-                                const uniqueIssueTypes =
-                                  uniqueLinks.reduce<IssueTypes>(
-                                    (acc, link) => {
-                                      if (link.status === 404) {
-                                        acc["404 Not Found"] =
-                                          (acc["404 Not Found"] || 0) + 1;
-                                      } else if (link.status === 400) {
-                                        acc["400 Bad Request"] =
-                                          (acc["400 Bad Request"] || 0) + 1;
+                                // Group image issues into types
+                                const issueTypes =
+                                  imagesWithIssues.reduce<ImageIssueTypes>(
+                                    (acc, image) => {
+                                      if (!image.alt) {
+                                        acc["Missing Alt Attribute"] =
+                                          (acc["Missing Alt Attribute"] || 0) +
+                                          1;
+                                      }
+                                      if (image.fileSize === null) {
+                                        acc["Null File Size"] =
+                                          (acc["Null File Size"] || 0) + 1;
                                       }
                                       return acc;
                                     },
-                                    {} as IssueTypes
+                                    {} as ImageIssueTypes
                                   );
 
-                                return Object.entries(uniqueIssueTypes).map(
+                                return Object.entries(issueTypes).map(
                                   ([type, count]) => (
                                     <div
                                       key={type}
                                       className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
-                                      onClick={() => {
-                                        if (type === "400 Bad Request") {
-                                          setActiveTab("tab4");
-                                        } else {
-                                          setActiveTab("tab5");
-                                        }
-                                      }}
                                     >
                                       <p className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300">
                                         {type}:
@@ -703,7 +703,7 @@ export default function Home() {
                           )}
                         </div>
                         {/* Link Types */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
+                        {/* <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           {Object.entries(report.issueTypes).length > 0 && (
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">Link Types</p>
@@ -743,7 +743,7 @@ export default function Home() {
                               )}
                             </div>
                           )}
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* Images Breakdown by Host */}
@@ -758,21 +758,33 @@ export default function Home() {
                               datasets: [
                                 {
                                   label: "Images by Host",
-                                  data: report.hosts.map(
-                                    (host) =>
-                                      images.filter((img) => {
-                                        try {
-                                          // Use img.src instead of img
-                                          const imgUrl = new URL(img.src);
-                                          return imgUrl.hostname === host;
-                                        } catch (e) {
-                                          return false; // Ignore invalid URLs
-                                        }
-                                      }).length
-                                  ),
+                                  data: report.hosts.map((host) => {
+                                    let count = 0;
+                                    images.forEach((img) => {
+                                      try {
+                                        const imgUrl = new URL(img.src);
+                                        if (imgUrl.hostname === host) count++;
+                                      } catch (e) {
+                                        // Ignore invalid URLs
+                                      }
+                                    });
+                                    return count;
+                                  }),
                                   backgroundColor: "#6366F1",
                                 },
                               ],
+                            }}
+                            options={{
+                              responsive: true,
+                              plugins: {
+                                legend: {
+                                  display: true,
+                                  position: "top",
+                                },
+                                tooltip: {
+                                  enabled: true,
+                                },
+                              },
                             }}
                           />
                         </div>
