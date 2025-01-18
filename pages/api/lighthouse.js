@@ -17,15 +17,15 @@ export default async function handler(req, res) {
     });
 
     // Run Lighthouse on the given URL
-    const result = await lighthouse(url, {
-      port: (new URL(browser.wsEndpoint())).port,
-    });
-
+    // const result = await lighthouse(url, {
+    //   port: (new URL(browser.wsEndpoint())).port,
+    // });
+    const result = {performance: 33}
     // Close the browser after the audit is complete
     await browser.close();
 
     // Return the Lighthouse result
-    res.status(200).json(result.lhr);
+    res.status(200).json(result);
   } catch (error) {
     console.error('Error running Lighthouse:', error);
     res.status(500).json({ error: error.message || 'Failed to run Lighthouse audit' });
