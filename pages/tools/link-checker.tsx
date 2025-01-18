@@ -90,7 +90,7 @@ export default function Home() {
         const response = await fetchWithTimeout(
           `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`,
           { method: "GET" },
-          10000 // Timeout after 10 seconds
+          30000 // Timeout after 30 seconds
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
