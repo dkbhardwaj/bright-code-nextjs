@@ -5,8 +5,8 @@ import pLimit from "p-limit";
 import pRetry from "p-retry";
 
 // Limit for concurrent requests
-const limit = pLimit(3); // Limit concurrency to 3
-const cache = new Map<string, any>(); // In-memory cache for results
+const limit = pLimit(10); // Increase concurrency to 10
+const cache = new Map<string, any>(); // In-memory cache
 
 // Global timeout for the entire analysis process (in milliseconds)
 const ANALYSIS_TIMEOUT = 60000; // 60 seconds
@@ -40,12 +40,11 @@ async function checkLinkStatus(link: string): Promise<number> {
   }
 }
 
-// Function to analyze a single page (only links)
+
+
+// Function to analyze a single page
 async function analyzeSinglePage(url: string) {
-  // Check cache first
-  if (cache.has(url)) {
-    return cache.get(url);
-  }
+  if (cache.has(url)) return cache.get(url);
 
   try {
     const response = await fetch(url);
@@ -54,57 +53,33 @@ async function analyzeSinglePage(url: string) {
     const document = dom.window.document;
 
     const links: { url: string; status: number }[] = [];
-    const issueTypes: { [key: string]: number } = {
-      "404 Not Found": 0,
-      "400 Bad Request": 0,
-    };
-    const linkTypes: { [key: string]: number } = {
-      "<a href>": 0,
-    };
-    const hosts = new Set<string>();
+    const anchorElements = Array.from(document.querySelectorAll("a")).slice(0, 100); // Limit to 100 links
 
-    const anchorElements = Array.from(document.querySelectorAll("a"));
-
-    // Helper function to process links
     const processLink = async (a: HTMLAnchorElement) => {
       const href = a.getAttribute("href");
       if (href) {
         const absoluteUrl = new URL(href, url).href;
         const status = await checkLinkStatus(absoluteUrl);
-
-        if (status === 404) {
-          issueTypes["404 Not Found"]++;
-        } else if (status === 400) {
-          issueTypes["400 Bad Request"]++;
-        }
-
         links.push({ url: absoluteUrl, status });
-        linkTypes["<a href>"]++;
-        hosts.add(new URL(absoluteUrl).hostname);
       }
     };
 
-    // Process links concurrently with limited concurrency
-    await Promise.all(anchorElements.map((a) => limit(() => processLink(a))));
+    // Process in batches
+    const BATCH_SIZE = 20;
+    for (let i = 0; i < anchorElements.length; i += BATCH_SIZE) {
+      const batch = anchorElements.slice(i, i + BATCH_SIZE);
+      await Promise.all(batch.map((a) => limit(() => processLink(a))));
+    }
 
-    const result = {
-      links,
-      totalLinks: links.length,
-      hosts: Array.from(hosts),
-      issueTypes,
-      linkTypes,
-      startUrl: url,
-    };
-
-    // Store result in cache
-    cache.set(url, result);
-
+    const result = { links, totalLinks: links.length, startUrl: url };
+    cache.set(url, result); // Cache the result
     return result;
   } catch (err) {
     console.error("Error analyzing single page:", err);
     throw new Error("Failed to analyze the page.");
   }
 }
+
 
 // API Handler
 export default async function handler(
