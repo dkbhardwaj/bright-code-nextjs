@@ -1,45 +1,69 @@
 import lighthouse from 'lighthouse';
-import puppeteer from 'puppeteer';
+ const currentUrl = `${window.location.origin}`
+
+
+// Import puppeteer for local development
+
+let puppeteer;
+
+// if (process.env.NODE_ENV === 'development') {
+if (!currentUrl.includes("localhost")) {
+  puppeteer = require('puppeteer');
+}
+
 
 async function launchChrome() {
-  // Launch Puppeteer (Chromium)
-  const browser = await puppeteer.launch({
-    headless: true,  // Run in headless mode
-    args: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222'],  // Disable sandboxing for serverless environments
-  });
-
-  // Use Puppeteer to create a new page and get the WebSocket URL
-  const page = await browser.newPage();
-  const wsEndpoint = browser.wsEndpoint();
-  return { browser, wsEndpoint };
+    let { url1 } = req.query;
+//   if (process.env.NODE_ENV === 'development') {
+  if (!url1.includes("localhost")) {
+    
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--headless', '--disable-gpu'],
+    });
+    const page = await browser.newPage();
+    const port = page.browser().wsEndpoint().split(':')[2]; 
+    return { browser, port };
+  } else {
+    const { default: chromeLauncher } = await import('chrome-aws-lambda');
+    const chrome = await chromeLauncher.launch({
+      headless: true,
+      executablePath: await chromeLauncher.executablePath,
+      args: chromeLauncher.args,
+    });
+    return chrome;
+  }
 }
 
 export default async function handler(req, res) {
   const { url } = req.query;
-
+    console.log(url)
   if (!url) {
     return res.status(400).json({ error: 'URL is required' });
   }
 
   try {
-    const { browser, wsEndpoint } = await launchChrome();
+    const chrome = await launchChrome();
 
     // Run Lighthouse audit
     const { lhr } = await lighthouse(url, {
-      port: new URL(wsEndpoint).port,  // Pass WebSocket endpoint to Lighthouse
+      port: chrome.port, 
       output: 'json',
-      onlyCategories: ['performance', 'accessibility', 'seo'], // Only audit these categories
+      onlyCategories: ['performance', 'accessibility', 'seo'], // Only run these categories
     });
 
-    // Extract scores from Lighthouse results
     const performanceScore = lhr.categories.performance.score * 100;
     const accessibilityScore = lhr.categories.accessibility.score * 100;
     const seoScore = lhr.categories.seo.score * 100;
 
-    // Close the Puppeteer browser
-    await browser.close();
+    // Close Chrome after the audit (if using Puppeteer)
+    // if (process.env.NODE_ENV === 'development') {
+    if (!url.includes("localhost")) {
+      await chrome.browser.close();
+    } else {
+      await chrome.kill();
+    }
 
-    // Send the results back to the client
     res.status(200).json({
       performance: performanceScore,
       accessibility: accessibilityScore,

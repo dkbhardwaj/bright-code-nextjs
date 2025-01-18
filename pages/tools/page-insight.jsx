@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PageSpeed from '../../components/PageSpeedStats';
 
 
+
 export default function Home() {
     const [url, setUrl] = useState('');
     const [result, setResult] = useState(null);
@@ -59,7 +60,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {console.log(parseInt(result?.performance))}
+      {console.log(parseInt(process.env.NODE_ENV))}
       {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
       {result && (<PageSpeed result={result}/>)}
