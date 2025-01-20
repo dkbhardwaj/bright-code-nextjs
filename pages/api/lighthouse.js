@@ -24,8 +24,7 @@ export default async function handler(req, res) {
 
     const { lhr } = await lighthouse(url, {
       port: new URL(wsEndpoint).port, 
-      output: 'json',
-      onlyCategories: ['performance', 'accessibility', 'seo'], 
+      output: 'json', 
     });
 
     const performanceScore = lhr.categories.performance.score * 100;
