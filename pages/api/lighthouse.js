@@ -1,34 +1,46 @@
-// pages/api/audit.js
 import lighthouse from 'lighthouse';
-// import puppeteer from 'puppeteer';
-import playwright from 'playwright';
+import puppeteer from 'puppeteer';
+
+async function launchChrome() {
+  const browser = await puppeteer.launch({
+    headless: true,  
+    args: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222'],  // Disable sandboxing for serverless environments
+  });
+
+  const page = await browser.newPage();
+  const wsEndpoint = browser.wsEndpoint();
+  return { browser, wsEndpoint };
+}
 
 export default async function handler(req, res) {
   const { url } = req.query;
-  
+
   if (!url) {
-    return res.status(400).json({ error: 'URL parameter is required' });
+    return res.status(400).json({ error: 'URL is required' });
   }
 
   try {
-    // Launch Puppeteer (it will automatically use the bundled Chromium)
-    const browser = await playwright.chromium.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    const { browser, wsEndpoint } = await launchChrome();
+
+    const { lhr } = await lighthouse(url, {
+      port: new URL(wsEndpoint).port, 
+      output: 'json',
+      onlyCategories: ['performance', 'accessibility', 'seo'], 
     });
 
-    // Run Lighthouse on the given URL
-    // const result = await lighthouse(url, {
-    //   port: (new URL(browser.wsEndpoint())).port,
-    // });
-    const result = {performance: 33}
-    // Close the browser after the audit is complete
+    const performanceScore = lhr.categories.performance.score * 100;
+    const accessibilityScore = lhr.categories.accessibility.score * 100;
+    const seoScore = lhr.categories.seo.score * 100;
+
     await browser.close();
 
-    // Return the Lighthouse result
-    res.status(200).json(result);
+    res.status(200).json({
+      performance: performanceScore,
+      accessibility: accessibilityScore,
+      seo: seoScore,
+    });
   } catch (error) {
     console.error('Error running Lighthouse:', error);
-    res.status(500).json({ error: error.message || 'Failed to run Lighthouse audit' });
+    res.status(500).json({ error: 'Failed to run Lighthouse audit', details: error.message });
   }
 }
