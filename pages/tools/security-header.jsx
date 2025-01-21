@@ -3,11 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import Summary from "../../components/Summary";
 import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
+import PageBuilder from '../../integrated-componnents/PageBuilder'
 
-export default function Home({ entry, fullUrl }) {
+
+export default function Home({ entry, fullUrl, section }) {
   
   let seoData = entry?.fields?.seoData?.fields;
-
   const [url, setUrl] = useState("");
   const [headers, setHeaders] = useState(null);
   const [error, setError] = useState(null);
@@ -129,11 +130,13 @@ export default function Home({ entry, fullUrl }) {
         </section>
       )}
 
-      {headers && (
+      
+
+      {headers ? (
         <>
           <Summary site={originalUrl} headers={headers} error={error} />
         </>
-      )}
+      ): (<PageBuilder pageComponents={section} caseStudy={false}/>)}
     </>
   );
 }
@@ -146,6 +149,8 @@ export async function getServerSideProps(context) {
   let slug = req.url.split("?")[0].replace("/", "");
 
   const entry = await fetchEntryBySlug(slug, "basicPage", preview);
-  console.log(entry);
-  return { props: { entry, fullUrl } };
+  
+  const section = entry.fields?.section
+  console.log(section);
+  return { props: { entry, fullUrl, section} };
 }

@@ -3,8 +3,9 @@ import URLInput from "../../components/wheregoesComp/UrlInput";
 import Result from "../../components/wheregoesComp/Result";
 import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
+import PageBuilder from '../../integrated-componnents/PageBuilder'
 
-export default function Home({ entry, fullUrl }) {
+export default function Home({ entry, fullUrl, section }) {
 
   let seoData = entry?.fields?.seoData?.fields;
 
@@ -48,13 +49,13 @@ export default function Home({ entry, fullUrl }) {
         </div>
         {console.log(results)}
       </section>
-      {results && (
+      {results ? (
         <section className="py-[60px]">
           <div className="container">
             <Result data={results} />
           </div>
         </section>
-      )}
+      ): (<PageBuilder pageComponents={section} caseStudy={false}/>)}
     </>
   );
 }
@@ -69,6 +70,6 @@ export async function getServerSideProps(context) {
   let slug = req.url.split("?")[0].replace("/", "");
 
   const entry = await fetchEntryBySlug(slug, "basicPage", preview);
-  console.log(entry);
-  return { props: { entry, fullUrl } };
+  const section = entry.fields?.section
+  return { props: { entry, fullUrl, section } };
 }
