@@ -602,16 +602,10 @@ export default function Home() {
                             </h3>
                           </div>
                         </div>
-                        {/* New Links */}
-                        {/* <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
-                          <div className="content">
-                            <p className='text-white'>New Links</p>
-                            <h3 className='text-center text-white mt-[10px]'>N/A</h3>
-                          </div>
-                        </div> */}
+
                         {/* Issue Types */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {images.length > 0 && (
+                        {images.length > 0 && (
+                          <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Image Issues
@@ -650,7 +644,10 @@ export default function Home() {
                                       key={type}
                                       className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                     >
-                                      <p className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300">
+                                      <p
+                                        className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300"
+                                        onClick={() => setActiveTab("tab2")}
+                                      >
                                         {type}:
                                       </p>
                                       <p className="text-white">{count}</p>
@@ -659,8 +656,8 @@ export default function Home() {
                                 );
                               })()}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Images Breakdown by Host */}
