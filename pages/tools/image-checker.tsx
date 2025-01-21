@@ -659,7 +659,10 @@ export default function Home() {
                                       key={type}
                                       className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                     >
-                                      <p className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300">
+                                      <p
+                                        className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300"
+                                        onClick={() => setActiveTab("tab2")}
+                                      >
                                         {type}:
                                       </p>
                                       <p className="text-white">{count}</p>
