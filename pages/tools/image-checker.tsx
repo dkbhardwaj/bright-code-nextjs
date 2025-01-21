@@ -140,52 +140,89 @@ export default function Home() {
     links: Link[];
   };
 
-  const LinksTable: React.FC<LinksTableProps> = ({ links }) => (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
-      <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
-        <thead>
-          <tr className="bg-gray-200 text-left">
-            <th className="border border-gray-300 px-4 py-2">Sr</th>
-            <th className="border border-gray-300 px-4 py-2">Links</th>
-            <th className="border border-gray-300 px-4 py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {links.map((link, index) => {
-            const is404 = link.status === 404;
-            return (
-              <tr
-                key={index}
-                className={`hover:bg-gray-100 ${is404 ? "bg-red-100" : ""}`}
-              >
+  interface ImagesTableProps {
+    images: {
+      src: string;
+      width?: number;
+      height?: number;
+      fileSize?: number;
+      alt?: string;
+    }[];
+  }
+
+  const ImagesTable: React.FC<ImagesTableProps> = ({ images }) => {
+    // Create a variable to store the processed images data
+    const imageRows = images.map((image, index) => ({
+      sr: index + 1,
+      src: image.src,
+      size:
+        image.width && image.height
+          ? `${image.width} x ${image.height}`
+          : "N/A",
+      fileSize: image.fileSize
+        ? `${(image.fileSize / 1024).toFixed(2)} KB`
+        : "N/A",
+      altText: image.alt || "No Alt Text",
+    }));
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
+        <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+          <thead>
+            <tr className="bg-gray-200 text-left">
+              <th className="border border-gray-300 px-4 py-2">Sr</th>
+              <th className="border border-gray-300 px-4 py-2">Image</th>
+              <th className="border border-gray-300 px-4 py-2">Size (px)</th>
+              <th className="border border-gray-300 px-4 py-2">File Size</th>
+              <th className="border border-gray-300 px-4 py-2">Alt Text</th>
+              <th className="border border-gray-300 px-4 py-2">View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {imageRows.map((row) => (
+              <tr key={row.sr} className="hover:bg-gray-100">
                 {/* Sr */}
-                <td className="border border-gray-300 px-4 py-2">
-                  {index + 1}
+                <td className="border border-gray-300 px-4 py-2">{row.sr}</td>
+
+                {/* Image */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                  {row.src}
                 </td>
 
-                {/* Link */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                {/* Size */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px]">
+                  {row.size}
+                </td>
+
+                {/* File Size */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px]">
+                  {row.fileSize}
+                </td>
+
+                {/* Alt Text */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px]">
+                  {row.altText}
+                </td>
+
+                {/* View */}
+                <td className="border border-gray-300 px-4 py-2 text-[14px]">
                   <a
-                    href={link.url}
+                    href={row.src}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline"
                   >
-                    {link.url}
+                    View Image
                   </a>
                 </td>
-
-                {/* Status */}
-                <td className="border border-gray-300 px-4 py-2">
-                  {link.status || "N/A"}
-                </td>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
 
   return (
     <>
@@ -205,7 +242,7 @@ export default function Home() {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                     onKeyDown={(e) => {
+                    onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         handleAnalyzeClick();
                       }
@@ -519,7 +556,6 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-              
               </div>
 
               {/* Main Content */}
@@ -692,110 +728,12 @@ export default function Home() {
                           Found {images.length} images:
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          {/* {images.map((image, index) => (
-                            <div
-                              key={index}
-                              className="border rounded-md overflow-hidden shadow-md"
-                            >
-                              <img
-                                src={image}
-                                alt={`Fetched Image ${index + 1}`}
-                                className="w-full h-[150px] object-cover"
-                              />
-                              <a
-                                href={image}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block text-center text-blue-600 hover:underline py-2"
-                              >
-                                View Image
-                              </a>
-                            </div>
-                          ))} */}
-
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
-                            <thead>
-                              <tr className="bg-gray-200 text-left">
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Sr
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Image
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Size (px)
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  File Size
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  Alt Text
-                                </th>
-                                <th className="border border-gray-300 px-4 py-2">
-                                  View
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {images.map((image, index) => (
-                                <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    {index + 1}
-                                  </td>
-
-                                  {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
-                                    {image.src}
-                                    {/* <img
-                                      src={image.src}
-                                      alt={image.alt || `Image ${index + 1}`}
-                                      className="w-20 h-20 object-contain"
-                                    /> */}
-                                  </td>
-
-                                  {/* Size (px) */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.width && image.height
-                                      ? `${image.width} x ${image.height}`
-                                      : "N/A"}
-                                  </td>
-
-                                  {/* File Size */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.fileSize
-                                      ? `${(image.fileSize / 1024).toFixed(
-                                          2
-                                        )} KB`
-                                      : "N/A"}
-                                  </td>
-
-                                  {/* Alt Text */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.alt || "No Alt Text"}
-                                  </td>
-
-                                  {/* View */}
-                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
-                                    <a
-                                      href={image.src}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-blue-600 hover:underline"
-                                    >
-                                      View Image
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
+                          <ImagesTable images={images} />;
                         </div>
                       </div>
                     )}
                   </div>
                 )}
-
               </div>
             </div>
           )}
