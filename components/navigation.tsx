@@ -179,12 +179,12 @@ const Navigation: React.FC<NavigationProps> = () => {
                       menus?.menuLink.map((menuItem: { fields: { path: string | UrlObject; label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; })=>
                         (
                           <li
-                    className={`${Style.menu} relative  mx-[22px] transition-color duration-300 desktop:mx-3 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    className={`${Style.menu} relative  mx-[22px] transition-color duration-300 desktop:mx-3 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 ${menuItem.fields?.label === "What We Do" ? ' arrow' : ''} ${linkValue === 'What We Do' ? 'rotate' : ''}`}
                     onClick={handleMobileMenuCloseClick}    
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <Link className={`inline-block w-full lg:w-auto text-[14px] py-[10px]  ${menuItem.fields?.label === "What We Do" ? 'arrow pr-[23px] w-auto inline-block' : ''} ${linkValue === 'What We Do' ? 'rotate' : ''}`} href= {menuItem.fields?.path}>
+                    <Link className={`inline-block w-full lg:w-auto text-[14px] py-[10px]  ${menuItem.fields?.label === "What We Do" ? ' pr-[23px] w-auto inline-block' : ''} `} href= {menuItem.fields?.path}>
                       {menuItem.fields?.label}
                     </Link>
                     {
