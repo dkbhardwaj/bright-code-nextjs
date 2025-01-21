@@ -88,7 +88,7 @@ export default function Home() {
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetchWithTimeout(
-          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`,
+          `/api/analyze-site-links?url=${encodeURIComponent(url)}&scope=page`,
           { method: "GET" },
           30000 // Timeout after 30 seconds
         );
@@ -148,7 +148,9 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-  // console.log(links);
+const uniqueLinks = links.filter(
+  (link, index, self) => index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+);
 
   type LinkData = {
     url: string;
@@ -524,13 +526,23 @@ export default function Home() {
 
                     <li
                       className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
+                        activeTab === "tab2"
+                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
+                          : ""
+                      }`}
+                      onClick={() => setActiveTab("tab2")}
+                    >
+                      Links detail
+                    </li>
+                    <li
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
                         activeTab === "tab3"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
                       }`}
                       onClick={() => setActiveTab("tab3")}
                     >
-                      Links detail
+                      Bad Requests
                     </li>
                     <li
                       className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
@@ -539,16 +551,6 @@ export default function Home() {
                           : ""
                       }`}
                       onClick={() => setActiveTab("tab4")}
-                    >
-                      Bad Requests
-                    </li>
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab5"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab5")}
                     >
                       404 Links
                     </li>
@@ -579,15 +581,7 @@ export default function Home() {
                           <div className="content">
                             <p className="text-white">Total Links</p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {(() => {
-                                // Filter unique links by URL
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                                );
-                                return uniqueLinks.length;
-                              })()}
+                              {uniqueLinks.length}
                             </h3>
                           </div>
                         </div>
@@ -603,19 +597,14 @@ export default function Home() {
                             </h3>
                           </div>
                         </div>
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           {Object.entries(report.issueTypes).length > 0 && (
+                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Issue Types
                               </p>
                               {(() => {
                                 // Filter unique links
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                                );
 
                                 // Define a type for the issueTypes object
                                 type IssueTypes = Record<string, number>;
@@ -643,9 +632,9 @@ export default function Home() {
                                       className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                       onClick={() => {
                                         if (type === "400 Bad Request") {
-                                          setActiveTab("tab4");
+                                          setActiveTab("tab3");
                                         } else {
-                                          setActiveTab("tab5");
+                                          setActiveTab("tab4");
                                         }
                                       }}
                                     >
@@ -658,11 +647,11 @@ export default function Home() {
                                 );
                               })()}
                             </div>
-                          )}
                         </div>
+                          )}
                         {/* Link Types */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                           {Object.entries(report.issueTypes).length > 0 && (
+                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">Link Types</p>
 
@@ -673,9 +662,9 @@ export default function Home() {
                                     className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                     onClick={() => {
                                       if (type === "<a href>") {
-                                        setActiveTab("tab3");
-                                      } else {
                                         setActiveTab("tab2");
+                                      } else {
+                                        setActiveTab("tab1");
                                       }
                                     }}
                                   >
@@ -700,14 +689,14 @@ export default function Home() {
                                 )
                               )}
                             </div>
-                          )}
                         </div>
+                          )}
                       </div>
                     </div>
                   </div>
                 )}
 
-                {activeTab === "tab3" && (
+                {activeTab === "tab2" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Links Detail</h1>
                     {links.length > 0 ? (
@@ -737,7 +726,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab4" && (
+                {activeTab === "tab3" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Bad Requests</h1>
                     {links.length > 0 ? (
@@ -772,7 +761,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab5" && (
+                {activeTab === "tab4" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">404 Links</h1>
                     {links.length > 0 ? (
