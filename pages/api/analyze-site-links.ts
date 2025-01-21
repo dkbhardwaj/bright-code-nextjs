@@ -40,8 +40,6 @@ async function checkLinkStatus(link: string): Promise<number> {
   }
 }
 
-
-
 // Function to analyze a single page
 async function analyzeSinglePage(url: string) {
   if (cache.has(url)) return cache.get(url);

@@ -61,12 +61,16 @@ export default function Home() {
     }
   }, [url, router]);
 
-  const fetchWithTimeout = (url: string, options: RequestInit, timeout: number): Promise<Response> => {
+  const fetchWithTimeout = (
+    url: string,
+    options: RequestInit,
+    timeout: number
+  ): Promise<Response> => {
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
         reject(new Error("Request timed out"));
       }, timeout);
-  
+
       fetch(url, options)
         .then((response) => {
           clearTimeout(timer);
@@ -78,13 +82,13 @@ export default function Home() {
         });
     });
   };
-  
+
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
     setLinks([]);
     setReport(null);
-  
+
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetchWithTimeout(
@@ -103,11 +107,11 @@ export default function Home() {
         throw err;
       }
     };
-  
+
     try {
       const response = await retryFetch(3); // Retry up to 3 times
       const data = await response.json();
-  
+
       if (response.ok) {
         setLinks(data.links || []);
         setReport({
@@ -131,7 +135,6 @@ export default function Home() {
       setLoading(false);
     }
   };
-  
 
   const handleAnalyzeClick = (): void => {
     if (!url) {
@@ -603,8 +606,9 @@ export default function Home() {
                             </h3>
                           </div>
                         </div>
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {Object.entries(report.issueTypes).length > 0 && (
+
+                        {Object.entries(report.issueTypes).length > 0 && (
+                          <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Issue Types
@@ -658,14 +662,14 @@ export default function Home() {
                                 );
                               })()}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
+
                         {/* Link Types */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {Object.entries(report.issueTypes).length > 0 && (
+                        {Object.entries(report.issueTypes).length > 0 && (
+                          <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">Link Types</p>
-
                               {Object.entries(report.linkTypes).map(
                                 ([type, count]) => (
                                   <div
@@ -681,27 +685,26 @@ export default function Home() {
                                   >
                                     <p
                                       className={`
-                                      text-white
-                                      ${
-                                        type === "<a href>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
-                                      ${
-                                        type === "<img src>" &&
-                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                      }
-                                    `}
+              text-white
+              ${
+                type === "<a href>" &&
+                "cursor-pointer hover:underline transition-all ease-in-out delay-300"
+              }
+              ${
+                type === "<img src>" &&
+                "cursor-pointer hover:underline transition-all ease-in-out delay-300"
+              }
+            `}
                                     >
                                       {type}:
                                     </p>
-
                                     <p className="text-white">{count}</p>
                                   </div>
                                 )
                               )}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
