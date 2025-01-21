@@ -304,12 +304,12 @@ span.title {
           width: 14px;
           height: 14px;
           background: url('/down-arow-black.svg') no-repeat;
-          transform: rotate(90deg) translateX(-50%);
+          transform: rotate(90deg) translateX(-50%) scale(1.6);
       }
   }
   &.rotate {
       &::before {
-          transform: rotate(270deg);
+          transform: rotate(270deg) scale(1.6);
           @include desktop-down {
             top: 32px;
             right: 5px;
