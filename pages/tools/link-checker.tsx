@@ -151,7 +151,12 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-  // console.log(links);
+  const uniqueLinks = links.filter(
+    (link, index, self) => index === self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
+  );
+  const totalLinksWithIssues = uniqueLinks.filter(
+    (link) => link.status === 404 || link.status === 400
+  ).length;
 
   type LinkData = {
     url: string;
@@ -582,15 +587,7 @@ export default function Home() {
                           <div className="content">
                             <p className="text-white">Total Links</p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {(() => {
-                                // Filter unique links by URL
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                                );
-                                return uniqueLinks.length;
-                              })()}
+                              {uniqueLinks.length}
                             </h3>
                           </div>
                         </div>
@@ -602,26 +599,18 @@ export default function Home() {
                               Total Links with Issues
                             </p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {report.totalLinksWithIssues}
+                              {totalLinksWithIssues}
                             </h3>
                           </div>
                         </div>
 
-                        {/* Issue Types */}
-                        {Object.entries(report.issueTypes).length > 0 && (
+                        {totalLinksWithIssues > 0 && (
                           <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Issue Types
                               </p>
                               {(() => {
-                                // Filter unique links
-                                const uniqueLinks = links.filter(
-                                  (link, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.url === link.url) // Compare URLs to filter duplicates
-                                );
-
                                 // Define a type for the issueTypes object
                                 type IssueTypes = Record<string, number>;
 
@@ -667,10 +656,11 @@ export default function Home() {
                         )}
 
                         {/* Link Types */}
-                        {Object.entries(report.issueTypes).length > 0 && (
+                        {/* {Object.entries(report.issueTypes).length > 0 && (
                           <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">Link Types</p>
+
                               {Object.entries(report.linkTypes).map(
                                 ([type, count]) => (
                                   <div
@@ -680,29 +670,83 @@ export default function Home() {
                                       if (type === "<a href>") {
                                         setActiveTab("tab2");
                                       } else {
-                                        setActiveTab("tab2");
+                                        setActiveTab("tab1");
                                       }
                                     }}
                                   >
                                     <p
                                       className={`
-              text-white
-              ${
-                type === "<a href>" &&
-                "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-              }
-              ${
-                type === "<img src>" &&
-                "cursor-pointer hover:underline transition-all ease-in-out delay-300"
-              }
-            `}
+                                      text-white
+                                      ${
+                                        type === "<a href>" &&
+                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
+                                      }
+                                      ${
+                                        type === "<img src>" &&
+                                        "cursor-pointer hover:underline transition-all ease-in-out delay-300"
+                                      }
+                                    `}
                                     >
                                       {type}:
                                     </p>
+
                                     <p className="text-white">{count}</p>
                                   </div>
                                 )
                               )}
+                            </div>
+                          </div>
+                        )} */}
+                        {uniqueLinks.length > 0 && (
+                          <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
+                            <div className="mb-6">
+                              <p className="text-white mb-[10px]">Link Types</p>
+                              {(() => {
+                                // Define a type for the linkTypes object
+                                type LinkTypes = Record<string, number>;
+
+                                // Use report.startUrl as the base URL
+                                const baseURL = report.startUrl;
+
+                                // Recalculate link types based on unique links
+                                const uniqueLinkTypes =
+                                  uniqueLinks.reduce<LinkTypes>((acc, link) => {
+                                    const isExternal =
+                                      link.url.startsWith("http") &&
+                                      !link.url.startsWith(baseURL);
+
+                                    if (isExternal) {
+                                      acc["External Links"] =
+                                        (acc["External Links"] || 0) + 1;
+                                    } else {
+                                      acc["Internal Links"] =
+                                        (acc["Internal Links"] || 0) + 1;
+                                    }
+
+                                    return acc;
+                                  }, {} as LinkTypes);
+
+                                return Object.entries(uniqueLinkTypes).map(
+                                  ([type, count]) => (
+                                    <div
+                                      key={type}
+                                      className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
+                                      onClick={() => {
+                                        if (type === "External Links") {
+                                          setActiveTab("tab2");
+                                        } else {
+                                          setActiveTab("tab1");
+                                        }
+                                      }}
+                                    >
+                                      <p className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300">
+                                        {type}:
+                                      </p>
+                                      <p className="text-white">{count}</p>
+                                    </div>
+                                  )
+                                );
+                              })()}
                             </div>
                           </div>
                         )}
