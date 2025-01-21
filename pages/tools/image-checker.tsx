@@ -70,6 +70,28 @@ export default function Home() {
     }
   }, [url, router]);
 
+  const fetchWithTimeout = (
+    url: string,
+    options: RequestInit,
+    timeout: number
+  ): Promise<Response> => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error("Request timed out"));
+      }, timeout);
+
+      fetch(url, options)
+        .then((response) => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+  };
+
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
@@ -79,8 +101,10 @@ export default function Home() {
 
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
-        const response = await fetch(
-          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`
+        const response = await fetchWithTimeout(
+          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`,
+          { method: "GET" },
+          30000 // Timeout after 30 seconds
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -113,7 +137,11 @@ export default function Home() {
         setError(data.error || "Failed to analyze the site.");
       }
     } catch (err: unknown) {
-      setError("An error occurred while analyzing the site.");
+      setError(
+        err instanceof Error && err.message === "Request timed out"
+          ? "The request timed out. Please try again later."
+          : "An error occurred while analyzing the site."
+      );
     } finally {
       setLoading(false);
     }
@@ -205,7 +233,7 @@ export default function Home() {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                     onKeyDown={(e) => {
+                    onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
                         handleAnalyzeClick();
                       }
@@ -519,7 +547,6 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-              
               </div>
 
               {/* Main Content */}
@@ -795,7 +822,6 @@ export default function Home() {
                     )}
                   </div>
                 )}
-
               </div>
             </div>
           )}

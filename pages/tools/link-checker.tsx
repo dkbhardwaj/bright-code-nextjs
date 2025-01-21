@@ -88,7 +88,7 @@ export default function Home() {
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetchWithTimeout(
-          `/api/analyze-site?url=${encodeURIComponent(url)}&scope=page`,
+          `/api/analyze-site-links?url=${encodeURIComponent(url)}&scope=page`,
           { method: "GET" },
           30000 // Timeout after 30 seconds
         );
