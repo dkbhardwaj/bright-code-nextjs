@@ -309,10 +309,11 @@ span.title {
   }
   &.rotate {
       &::before {
-          transform: rotate(270deg) scale(1.6);
+          transform: rotate(270deg);
           @include desktop-down {
             top: 32px;
             right: 5px;
+            transform: rotate(270deg) scale(1.6)
           }
       }
   }

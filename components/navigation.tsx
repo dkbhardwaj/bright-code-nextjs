@@ -73,6 +73,7 @@ const Navigation: React.FC<NavigationProps> = () => {
     setShowDropdown(false);
     if (window.innerWidth >= 991) {
       setShowMobileMenu(false);
+      setLinkValue("");
     }
   };
 
@@ -193,10 +194,10 @@ const Navigation: React.FC<NavigationProps> = () => {
                            <div className="menuWrap">
                               <ul className="!block list-none">
                                 <li className="list-none"> 
-                                  <Link href="/tools/security-header" className="text-[#8000FF] block font-[500] hover:underline" >Security Header</Link>
+                                  <Link href="/tools/security-header" className="text-[#8000FF] block font-[500] " >Security Header</Link>
                                 </li>
                                 <li className="list-none">
-                                  <Link href="/tools/link-tracker" className="text-[#8000FF] block font-[500] hover:underline" >Link Tracker</Link>
+                                  <Link href="/tools/link-tracker" className="text-[#8000FF] block font-[500] hoover:text_gradient" >Link Tracker</Link>
                                 </li>
                               </ul>
                            </div>
