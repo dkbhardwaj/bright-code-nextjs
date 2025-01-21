@@ -28,13 +28,43 @@ const Navigation: React.FC<NavigationProps> = () => {
   const [menus, setMenus] = useState<NavigationItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [linkValue, setLinkValue] = useState('');
+
 
   const handleMobileMenuClick = () => {
     setShowMobileMenu(!showMobileMenu);
   };
-  const handleMobileMenuCloseClick = () => {
-    setShowMobileMenu(false);
+  const handleMobileMenuCloseClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // setShowMobileMenu(false);
+    let targetVal = (event.target) as HTMLElement
+    let targetLink = targetVal.querySelector(".subMenu")
+    const winWidth = window.innerWidth;
+    if(winWidth <= 991 && targetLink) {
+      let linkText = targetVal.querySelector("a")?.innerText
+      console.log(linkText)
+      linkValue == linkText ? setLinkValue('') : setLinkValue(linkText);
+    }else{
+      setShowMobileMenu(false);
+    }
+    
   };
+
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const windowWidth = window.innerWidth;
+    if(windowWidth > 991) {
+      const eventText = event.target.text;
+      setLinkValue(eventText);
+    }
+  }
+
+  const handleMouseLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const windowWidth = window.innerWidth;
+    if(windowWidth > 991) {
+      const eventText = event.target.text;
+      setLinkValue('');
+    }
+  }
 
   const handleResize = () => {
     setShowDropdown(false);
@@ -117,7 +147,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   className={`${Style.logo_wrapper}  hidden relative w-full py-5 px-3 mb-7 lg:!flex bg-bgBluePurple flex-wrap items-center justify-between `}
                 >
                   <div
-                    className={`${Style.logo} relative max-w-[200px] max-h-[45px]`}
+                    className={`${Style.logo} relative max-w-[200px] max-h-[55px]`}
                   >
                     <Link href="/" className="redirect">
                       .
@@ -146,12 +176,30 @@ const Navigation: React.FC<NavigationProps> = () => {
                       menus?.menuLink.map((menuItem: { fields: { path: string | UrlObject; label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; })=>
                         (
                           <li
-                    className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
+                    className={`${Style.menu} relative  mx-[22px] transition-color duration-300 desktop:mx-3 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                    onClick={handleMobileMenuCloseClick}    
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    <Link className="inline-block w-full text-[14px] " href= {menuItem.fields?.path}>
+                    <Link className={`inline-block w-full lg:w-auto text-[14px] py-[10px]  ${menuItem.fields?.label === "What We Do" ? 'arrow pr-[23px] w-auto inline-block' : ''} ${linkValue === 'What We Do' ? 'rotate' : ''}`} href= {menuItem.fields?.path}>
                       {menuItem.fields?.label}
                     </Link>
+                    {
+                      menuItem?.fields?.label == "What We Do" && (
+                        <div className={`subMenu  absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 p-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${linkValue === 'What We Do' ? 'lg-up:opacity-1 lg-up:visible lg:max-h-[500px] lg:py-[10px]' : 'lg-up:opacity-0 lg-up:hidden lg:max-h-0 '}`}>
+                           <div className="menuWrap">
+                              <ul className="!block list-none">
+                                <li className="list-none"> 
+                                  <Link href="/tools/security-header" className="text_gradient" >Security Header</Link>
+                                </li>
+                                <li className="list-none">
+                                  <Link href="/tools/link-tracker" className="text_gradient block" >Link Tracker</Link>
+                                </li>
+                              </ul>
+                           </div>
+                      </div>
+                      )
+                    }
                   </li>
                         )
                       )
@@ -162,7 +210,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                     <>
                     <Link
                     href={menus?.cta?.fields?.ctaLink}
-                    className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
+                    className={`${Style.btn} ml-[30px] desktop:ml-[15px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
                     onClick={handleMobileMenuCloseClick}
                   >
                     <span>{menus?.cta?.fields?.ctaText}</span>
