@@ -527,13 +527,23 @@ export default function Home() {
 
                     <li
                       className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
+                        activeTab === "tab2"
+                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
+                          : ""
+                      }`}
+                      onClick={() => setActiveTab("tab2")}
+                    >
+                      Links detail
+                    </li>
+                    <li
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
                         activeTab === "tab3"
                           ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
                           : ""
                       }`}
                       onClick={() => setActiveTab("tab3")}
                     >
-                      Links detail
+                      Bad Requests
                     </li>
                     <li
                       className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
@@ -542,16 +552,6 @@ export default function Home() {
                           : ""
                       }`}
                       onClick={() => setActiveTab("tab4")}
-                    >
-                      Bad Requests
-                    </li>
-                    <li
-                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
-                        activeTab === "tab5"
-                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
-                          : ""
-                      }`}
-                      onClick={() => setActiveTab("tab5")}
                     >
                       404 Links
                     </li>
@@ -607,6 +607,7 @@ export default function Home() {
                           </div>
                         </div>
 
+                        {/* Issue Types */}
                         {Object.entries(report.issueTypes).length > 0 && (
                           <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
@@ -647,9 +648,9 @@ export default function Home() {
                                       className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                       onClick={() => {
                                         if (type === "400 Bad Request") {
-                                          setActiveTab("tab4");
+                                          setActiveTab("tab3");
                                         } else {
-                                          setActiveTab("tab5");
+                                          setActiveTab("tab4");
                                         }
                                       }}
                                     >
@@ -677,7 +678,7 @@ export default function Home() {
                                     className="w-full flex justify-between border-b-[1px] pb-[5px] border-black mt-[10px]"
                                     onClick={() => {
                                       if (type === "<a href>") {
-                                        setActiveTab("tab3");
+                                        setActiveTab("tab2");
                                       } else {
                                         setActiveTab("tab2");
                                       }
@@ -710,7 +711,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab3" && (
+                {activeTab === "tab2" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Links Detail</h1>
                     {links.length > 0 ? (
@@ -740,7 +741,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab4" && (
+                {activeTab === "tab3" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Bad Requests</h1>
                     {links.length > 0 ? (
@@ -775,7 +776,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeTab === "tab5" && (
+                {activeTab === "tab4" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">404 Links</h1>
                     {links.length > 0 ? (
