@@ -34,34 +34,37 @@ const Navigation: React.FC<NavigationProps> = () => {
   const handleMobileMenuClick = () => {
     setShowMobileMenu(!showMobileMenu);
   };
-  const handleMobileMenuCloseClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMobileMenuCloseClick = (event: React.MouseEvent<HTMLElement>) => {
     // setShowMobileMenu(false);
-    let targetVal = (event.target) as HTMLElement
-    let targetLink = targetVal.querySelector(".subMenu")
+    let targetVal = (event.target) as HTMLElement;
+    let targetLink = targetVal.querySelector(".subMenu");
     const winWidth = window.innerWidth;
-    if(winWidth <= 991 && targetLink) {
-      let linkText = targetVal.querySelector("a")?.innerText
-      console.log(linkText)
-      linkValue == linkText ? setLinkValue('') : setLinkValue(linkText);
-    }else{
-      setShowMobileMenu(false);
+
+    if (winWidth <= 991 && targetLink) {
+        let linkText = targetVal.querySelector("a")?.innerText || '';
+        linkValue === linkText ? setLinkValue('') : setLinkValue(linkText);
+    } else {
+        setShowMobileMenu(false);
     }
-    
   };
 
 
-  const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const windowWidth = window.innerWidth;
-    if(windowWidth > 991) {
-      const eventText = event.target.text;
-      setLinkValue(eventText);
-    }
-  }
 
-  const handleMouseLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseEnter = (event: React.MouseEvent<HTMLLIElement>) => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 991) {
+        const targetButton = event.target as HTMLLIElement;
+        const eventText = targetButton.innerText;
+        
+        setLinkValue(eventText);
+    }
+};
+
+
+  const handleMouseLeave = (event: React.MouseEvent<HTMLLIElement>) => {
     const windowWidth = window.innerWidth;
     if(windowWidth > 991) {
-      const eventText = event.target.text;
+      const eventText = (event.target as HTMLLIElement ).innerText;
       setLinkValue('');
     }
   }
@@ -190,10 +193,10 @@ const Navigation: React.FC<NavigationProps> = () => {
                            <div className="menuWrap">
                               <ul className="!block list-none">
                                 <li className="list-none"> 
-                                  <Link href="/tools/security-header" className="text_gradient" >Security Header</Link>
+                                  <Link href="/tools/security-header" className="text-[#8000FF] block font-[500] hover:underline" >Security Header</Link>
                                 </li>
                                 <li className="list-none">
-                                  <Link href="/tools/link-tracker" className="text_gradient block" >Link Tracker</Link>
+                                  <Link href="/tools/link-tracker" className="text-[#8000FF] block font-[500] hover:underline" >Link Tracker</Link>
                                 </li>
                               </ul>
                            </div>
