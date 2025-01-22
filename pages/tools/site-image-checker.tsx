@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router"; // Import useRouter hook for query handling
+import { useRouter } from "next/router";
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +23,6 @@ ChartJS.register(
   Legend
 );
 
-
 interface Image {
   src: string;
   alt?: string;
@@ -31,6 +30,7 @@ interface Image {
   height?: number;
   fileSize?: number;
 }
+
 interface Link {
   url: string;
   status: number;
@@ -38,7 +38,7 @@ interface Link {
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
-  const [scope, setScope] = useState<"page" | "site">("page");
+ const [scope, setScope] = useState<"page" | "site">("page");
   const [images, setImages] = useState<Image[]>([]);
   const [links, setLinks] = useState<Link[]>([]);
   const [loading, setLoading] = useState(false);
@@ -54,19 +54,19 @@ export default function Home() {
     startUrl: string;
   } | null>(null);
 
-  const router = useRouter(); // Access router for query parameter updates
-  // console.log(router.query.url);
-
+  const router = useRouter();
+ useEffect(() => {
+   // This ensures that the selected scope is properly set and reflected in the UI
+   console.log("Current scope:", scope);
+ }, [scope]);
   useEffect(() => {
     if (url) {
       if (router.query.url !== url) {
-        // console.log('Updating URL in the query');
         router.push(`?url=${encodeURIComponent(url)}`, undefined, {
           shallow: true,
         });
       }
     } else {
-      // console.log('Clearing URL from query');
       router.push(router.pathname, undefined, { shallow: true });
     }
   }, [url, router]);
@@ -81,7 +81,9 @@ export default function Home() {
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
         const response = await fetch(
-          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`
+          `/api/analyze-whole-site-images?url=${encodeURIComponent(
+            url
+          )}&scope=${scope}`
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -96,7 +98,7 @@ export default function Home() {
     };
 
     try {
-      const response = await retryFetch(3); // Retry up to 3 times
+      const response = await retryFetch(3);
       const data = await response.json();
 
       if (response.ok) {
@@ -113,7 +115,7 @@ export default function Home() {
       } else {
         setError(data.error || "Failed to analyze the site.");
       }
-    } catch (err: unknown) {
+    } catch (err) {
       setError("An error occurred while analyzing the site.");
     } finally {
       setLoading(false);
@@ -130,16 +132,11 @@ export default function Home() {
   };
 
   const handleClearInput = (): void => {
-    setUrl(""); // Clear the URL input
-    router.push("/", undefined, { shallow: true }); // Remove URL from query
+    setUrl("");
+    router.push("/", undefined, { shallow: true });
   };
+
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
-
-  // console.log(links);
-
-  type LinksTableProps = {
-    links: Link[];
-  };
 
   interface ImagesTableProps {
     images: {
@@ -227,7 +224,7 @@ export default function Home() {
   return (
     <>
       {!loading && !report && (
-        <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
+        <section className="site_image_checker_tool section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px]">
             <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
               Website Analyzer
@@ -275,7 +272,7 @@ export default function Home() {
                   )}
                 </div>
                 {/* Scope Selection */}
-                {/* <div className="flex justify-around items-center">
+                <div className="flex justify-around items-center">
                   <label className="flex items-center space-x-2">
                     <input
                       type="radio"
@@ -298,7 +295,7 @@ export default function Home() {
                     />
                     <span>Analyze Entire Site</span>
                   </label>
-                </div> */}
+                </div>
 
                 {/* Analyze Button */}
                 <button

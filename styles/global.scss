@@ -789,3 +789,9 @@ span.title {
   }
   
 }
+section.site_image_checker_tool{
+  &::before{
+    z-index: -1;
+  }
+
+}
