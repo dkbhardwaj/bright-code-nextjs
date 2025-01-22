@@ -138,6 +138,10 @@ export default function Home() {
 
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
+  const uniqueImages = images.filter(
+    (image, index, self) => index === self.findIndex((t) => t.src === image.src) // Compare src to filter duplicates
+  );
+
   interface ImagesTableProps {
     images: {
       src: string;
@@ -578,15 +582,7 @@ export default function Home() {
                           <div className="content">
                             <p className="text-white">Total Images</p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {(() => {
-                                // Filter unique images by src attribute
-                                const uniqueImages = images.filter(
-                                  (image, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.src === image.src) // Compare src to filter duplicates
-                                );
-                                return uniqueImages.length;
-                              })()}
+                              {uniqueImages.length}
                             </h3>
                           </div>
                         </div>
@@ -725,10 +721,10 @@ export default function Home() {
                     {images.length > 0 && (
                       <div className="mt-8 w-full ">
                         <h4 className="text-white mb-4">
-                          Found {images.length} images:
+                          Found {uniqueImages.length} images:
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          <ImagesTable images={images} />;
+                          <ImagesTable images={uniqueImages} />;
                         </div>
                       </div>
                     )}
