@@ -190,14 +190,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                     </Link>
                     {
                       menuItem?.fields?.label == "What We Do" && (
-                        <div className={`subMenu  absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 p-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${linkValue === 'What We Do' ? 'lg-up:opacity-1 lg-up:visible lg:max-h-[500px] lg:py-[10px]' : 'lg-up:opacity-0 lg-up:hidden lg:max-h-0 '}`}>
+                        <div className={`subMenu  absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 px-[20px] py-[15px] lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${linkValue === 'What We Do' ? 'lg-up:opacity-1 lg-up:visible lg:max-h-[500px] lg:py-[10px]' : 'lg-up:opacity-0 lg-up:hidden lg:max-h-0 '}`}>
                            <div className="menuWrap">
                               <ul className="!block list-none">
                                 <li className="list-none"> 
-                                  <Link href="/tools/security-header" className="text-[#8000FF] block font-[500] " >Security Header</Link>
+                                  <Link href="/tools/security-header" className="text-darkGray hover:text-[#8000FF] block font-[500] " >Security Header</Link>
                                 </li>
                                 <li className="list-none">
-                                  <Link href="/tools/link-tracker" className="text-[#8000FF] block font-[500] hoover:text_gradient" >Link Tracker</Link>
+                                  <Link href="/tools/link-tracker" className="text-darkGray hover:text-[#8000FF] block font-[500] hoover:text_gradient" >Link Tracker</Link>
                                 </li>
                               </ul>
                            </div>

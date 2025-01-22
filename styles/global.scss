@@ -298,22 +298,22 @@ span.title {
       transform: rotate(90deg);
       transition: all 0.3s ease-in-out;
       @include desktop-down {
-          right: 0;
-          top: 38px;
+          right: 2px;
+          top: 32px;
           cursor: pointer;
-          width: 14px;
-          height: 14px;
-          background: url('/down-arow-black.svg') no-repeat;
-          transform: rotate(90deg) translateX(-50%) scale(1.6);
+          width: 10px;
+          height: 26px;
+          background: url('/down-arow-black.svg') no-repeat center;
+          transform: rotate(90deg) translateX(-50%);
       }
   }
   &.rotate {
       &::before {
           transform: rotate(270deg);
           @include desktop-down {
-            top: 32px;
-            right: 5px;
-            transform: rotate(270deg) scale(1.6)
+            top: 25px;
+            // right: 5px;
+            transform: rotate(270deg);
           }
       }
   }
