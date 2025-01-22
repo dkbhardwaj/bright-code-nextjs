@@ -194,10 +194,10 @@ const Navigation: React.FC<NavigationProps> = () => {
                            <div className="menuWrap">
                               <ul className="!block list-none">
                                 <li className="list-none"> 
-                                  <Link href="/tools/security-header" className="text-darkGray hover:text-[#8000FF] block font-[500] " >Security Header</Link>
+                                  <Link href="/tools/security-header" className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500] " >Security Header</Link>
                                 </li>
                                 <li className="list-none">
-                                  <Link href="/tools/link-tracker" className="text-darkGray hover:text-[#8000FF] block font-[500] hoover:text_gradient" >Link Tracker</Link>
+                                  <Link href="/tools/link-tracker" className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500] hoover:text_gradient" >Link Tracker</Link>
                                 </li>
                               </ul>
                            </div>
