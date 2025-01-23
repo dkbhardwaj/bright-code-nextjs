@@ -5,7 +5,7 @@ import pLimit from "p-limit";
 import { URL } from "url";
 
 // Concurrency limit for page processing
-const limit = pLimit(10);
+// const limit = pLimit(10);
 const visited = new Set<string>(); // To track visited pages
 
 // Fetch images from a single page
@@ -92,14 +92,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { url, depth = "3", limit: concurrencyLimit = "10" } = req.query;
+  const { url, depth = "3", limit: concurrencyLimit = "20" } = req.query;
 
   if (!url || typeof url !== "string") {
     return res.status(400).json({ error: "Invalid URL provided." });
   }
 
-  const maxDepth = parseInt(depth as string, 10) || 3;
-  const concurrency = parseInt(concurrencyLimit as string, 10) || 10;
+  const maxDepth = parseInt(depth as string, 20) || 3;
+  const concurrency = parseInt(concurrencyLimit as string, 20) || 20;
   const limiter = pLimit(concurrency);
 
   try {

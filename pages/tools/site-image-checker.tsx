@@ -697,7 +697,7 @@ export default function Home() {
                                   label: "Images by Host",
                                   data: report.hosts.map((host) => {
                                     let count = 0;
-                                    images.forEach((img) => {
+                                    uniqueImages.forEach((img) => {
                                       try {
                                         const imgUrl = new URL(img.src);
                                         if (imgUrl.hostname === host) count++;
