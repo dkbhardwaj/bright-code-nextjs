@@ -55,10 +55,7 @@ export default function Home() {
   } | null>(null);
 
   const router = useRouter();
-  useEffect(() => {
-    // This ensures that the selected scope is properly set and reflected in the UI
-    console.log("Current scope:", scope);
-  }, [scope]);
+
   useEffect(() => {
     if (url) {
       if (router.query.url !== url) {
@@ -78,18 +75,38 @@ export default function Home() {
     setLinks([]);
     setReport(null);
 
+    // Retry function
+    const retryFetch = async (
+      url: string,
+      retries: number
+    ): Promise<Response> => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok && retries > 0) {
+          throw new Error("Retrying...");
+        }
+        return response;
+      } catch (err) {
+        if (retries > 0) {
+          return await retryFetch(url, retries - 1);
+        }
+        throw err;
+      }
+    };
+
     try {
+      // Determine endpoint dynamically based on scope
       const endpoint =
         scope === "site"
           ? `/api/analyze-whole-site-images`
           : `/api/analyze-page-images`;
-      console.log(endpoint);
-      
-      const response = await fetch(
-        `${endpoint}?url=${encodeURIComponent(url)}`
-      );
 
+      const apiUrl = `${endpoint}?url=${encodeURIComponent(url)}`;
+
+      // Retry fetch logic (up to 3 retries)
+      const response = await retryFetch(apiUrl, 3);
       const data = await response.json();
+
       if (response.ok) {
         setImages(data.images || []);
         setLinks(data.links || []);
@@ -104,7 +121,7 @@ export default function Home() {
       } else {
         setError(data.error || "Failed to analyze the site.");
       }
-    } catch (err) {
+    } catch (err: unknown) {
       setError("An error occurred while analyzing the site.");
     } finally {
       setLoading(false);
@@ -721,7 +738,7 @@ export default function Home() {
                         <h4 className="text-white mb-4">
                           Found {uniqueImages.length} images:
                         </h4>
-                          <ImagesTable images={uniqueImages} />
+                        <ImagesTable images={uniqueImages} />
                       </div>
                     )}
                   </div>
