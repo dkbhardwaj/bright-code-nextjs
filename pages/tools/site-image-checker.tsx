@@ -721,9 +721,7 @@ export default function Home() {
                         <h4 className="text-white mb-4">
                           Found {uniqueImages.length} images:
                         </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          <ImagesTable images={uniqueImages} />;
-                        </div>
+                          <ImagesTable images={uniqueImages} />
                       </div>
                     )}
                   </div>
