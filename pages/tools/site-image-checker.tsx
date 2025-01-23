@@ -38,7 +38,7 @@ interface Link {
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
- const [scope, setScope] = useState<"page" | "site">("page");
+  const [scope, setScope] = useState<"site" | "page">("site");
   const [images, setImages] = useState<Image[]>([]);
   const [links, setLinks] = useState<Link[]>([]);
   const [loading, setLoading] = useState(false);
@@ -55,10 +55,10 @@ export default function Home() {
   } | null>(null);
 
   const router = useRouter();
- useEffect(() => {
-   // This ensures that the selected scope is properly set and reflected in the UI
-   console.log("Current scope:", scope);
- }, [scope]);
+  useEffect(() => {
+    // This ensures that the selected scope is properly set and reflected in the UI
+    console.log("Current scope:", scope);
+  }, [scope]);
   useEffect(() => {
     if (url) {
       if (router.query.url !== url) {
@@ -78,29 +78,18 @@ export default function Home() {
     setLinks([]);
     setReport(null);
 
-    const retryFetch = async (retries: number): Promise<Response> => {
-      try {
-        const response = await fetch(
-          `/api/analyze-whole-site-images?url=${encodeURIComponent(
-            url
-          )}&scope=${scope}`
-        );
-        if (!response.ok && retries > 0) {
-          throw new Error("Retrying...");
-        }
-        return response;
-      } catch (err) {
-        if (retries > 0) {
-          return await retryFetch(retries - 1);
-        }
-        throw err;
-      }
-    };
-
     try {
-      const response = await retryFetch(3);
-      const data = await response.json();
+      const endpoint =
+        scope === "site"
+          ? `/api/analyze-whole-site-images`
+          : `/api/analyze-page-images`;
+      console.log(endpoint);
+      
+      const response = await fetch(
+        `${endpoint}?url=${encodeURIComponent(url)}`
+      );
 
+      const data = await response.json();
       if (response.ok) {
         setImages(data.images || []);
         setLinks(data.links || []);
@@ -122,8 +111,17 @@ export default function Home() {
     }
   };
 
+  const isValidUrl = (url: string): boolean => {
+    try {
+      new URL(url); // Throws an error if invalid
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const handleAnalyzeClick = (): void => {
-    if (!url) {
+    if (!url || !isValidUrl(url)) {
       setError("Please enter a valid URL.");
       return;
     }
