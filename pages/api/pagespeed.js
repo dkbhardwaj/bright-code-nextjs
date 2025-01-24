@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const { url } = req.query;
-  const apiKey = process.env.GOOGLE_PAGESPEED_API_KEY; // Store the API key in an environment variable
+  const apiKey = process.env.PAGESPEED_API_KEY; // Store the API key in an environment variable
 
   if (!url) {
     return res.status(400).json({ error: "URL query parameter is required." });
@@ -12,7 +12,10 @@ export default async function handler(req, res) {
   try {
     // Make a request to Google's PageSpeed Insights API
     const response = await axios.get(
-      `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&key=${apiKey}&category=performance&category=accessibility&category=best-practices&category=seo`
+      `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&key=${apiKey}&category=performance&category=accessibility&category=best-practices&category=seo`,
+      {
+        timeout: 60000, // Timeout set to 60 seconds
+      }
     );
     const performanceScore = response.data.lighthouseResult.categories.performance.score * 100;
     const accessibilityScore = response.data.lighthouseResult.categories.accessibility.score * 100;
