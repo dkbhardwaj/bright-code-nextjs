@@ -63,7 +63,7 @@ export default function Home() {
       
       {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
-      {!loading && result && (<PageSpeed result={result}/>)}
+      {(!loading &&  !error && result) && (<PageSpeed result={result}/>)}
     </>
   );
 }
