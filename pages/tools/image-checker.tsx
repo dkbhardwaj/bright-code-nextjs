@@ -162,23 +162,32 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-const uniqueImages = images.filter(
-  (image, index, self) => index === self.findIndex((t) => t.src === image.src) // Remove duplicates by src
-);
+  const uniqueImages = images.filter(
+    (image, index, self) => index === self.findIndex((t) => t.src === image.src) // Remove duplicates by src
+  );
 
-const sortedUniqueImages = uniqueImages.sort(
-  (a, b) => (a.fileSize || 0) - (b.fileSize || 0) // Default to 0 if fileSize is undefined
-);
+  const sortedUniqueImages = uniqueImages.sort(
+    (a, b) => (a.fileSize || 0) - (b.fileSize || 0) // Default to 0 if fileSize is undefined
+  );
 
-console.log(sortedUniqueImages);
+  // Filter images with fileSize greater than 100 KB (100 * 1024 bytes)
+  const largeImages = sortedUniqueImages.filter(
+    (image) => (image.fileSize || 0) > 100 * 1024
+  );
 
+  // Filter images with null or undefined fileSize
+  const nullFileSizeImages = sortedUniqueImages.filter(
+    (image) => image.fileSize == null
+  );
+
+  console.log(sortedUniqueImages);
 
   return (
     <>
       {!loading && !report && (
         <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px]">
-            <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            <h1 className="text-2xl font-bold text-white text-center mb-6">
               Website Analyzer
             </h1>
 
@@ -474,7 +483,7 @@ console.log(sortedUniqueImages);
       )}
 
       <section className="section_bgImage  bg-darkBlue pt-[170px] pb-[100px]">
-        <div className="relative border-t">
+        <div className="relative">
           {!loading && report && (
             <div className="flex border-r h-screen">
               {/* Vertical Tab Menu */}
@@ -502,6 +511,16 @@ console.log(sortedUniqueImages);
                       onClick={() => setActiveTab("tab2")}
                     >
                       Images detail
+                    </li>
+                    <li
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
+                        activeTab === "tab3"
+                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
+                          : ""
+                      }`}
+                      onClick={() => setActiveTab("tab3")}
+                    >
+                      Image issues
                     </li>
                   </ul>
                 </div>
@@ -612,7 +631,7 @@ console.log(sortedUniqueImages);
 
                       {/* Images Breakdown by Host */}
                       <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+                        <h3 className="text-lg font-semibold text-white mb-4 text-center">
                           Image Breakdown by Host
                         </h3>
                         <div className="relative h-[300px] bg-white rounded-lg overflow-hidden">
@@ -745,6 +764,182 @@ console.log(sortedUniqueImages);
                           </table>
                         </div>
                       </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Table for Large Images */}
+                {activeTab === "tab3" && (
+                  <div>
+                    {largeImages.length > 0 ? (
+                      <>
+                        <h2 className="text-lg text-white font-bold my-4">
+                          Large Images (File Size 100 KB)
+                        </h2>
+                        <div className="mb-[50px] pb-[50px] border-white border-b">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Sr
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Image
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Size (px)
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  File Size
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Alt Text
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  View
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {largeImages.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {index + 1}
+                                  </td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                    {image.src}
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height}`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(
+                                          2
+                                        )} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    ) : (
+                      <h3 className="text-md text-gray-600 italic">
+                        No large images found.
+                      </h3>
+                    )}
+
+                    {/* Null File Size Images Table */}
+                    {nullFileSizeImages.length > 0 ? (
+                      <>
+                        <h2 className="text-lg text-white font-bold my-4">
+                          Images with Null or Undefined File Size
+                        </h2>
+                        <div className="mb-[50px] pb-[50px] border-white border-b">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Sr
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Image
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Size (px)
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  File Size
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Alt Text
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  View
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {nullFileSizeImages.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {index + 1}
+                                  </td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                    {image.src}
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height}`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(
+                                          2
+                                        )} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    ) : (
+                      ""
                     )}
                   </div>
                 )}
