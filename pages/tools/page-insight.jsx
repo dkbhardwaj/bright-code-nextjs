@@ -15,7 +15,7 @@ export default function Home() {
       setError('');
       
       try {
-        const res = await fetch(`/api/lighthouse?url=${encodeURIComponent(url)}`);
+        const res = await fetch(`/api/pagespeed?url=${encodeURIComponent(url)}`);
         const data = await res.json();
         
         if (res.ok) {
@@ -23,6 +23,7 @@ export default function Home() {
             performance: data.performance || 0,
             accessibility: data.accessibility || 0,
             seo: data.seo || 0,
+            bestPractice: data.bestPractice || 0,
           });
         } else {
           setError(data.error || 'Something went wrong');
@@ -59,10 +60,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {console.log(parseInt(result?.performance))}
+      
       {loading && <p>Loading...</p>}
         {error && <p className="error">{error}</p>}
-      {result && (<PageSpeed result={result}/>)}
+      {!loading && result && (<PageSpeed result={result}/>)}
     </>
   );
 }

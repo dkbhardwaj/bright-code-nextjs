@@ -6,9 +6,9 @@ export default function PageSpeed({result}) {
 
 
     function barColor(value){
-        if(value > 79){
+        if(value > 89){
             return '#4caf50'
-        }else if( value <= 79 && value > 50  ){
+        }else if( value <= 89 && value > 50  ){
             return '#ffaa33'
         }else{
             return '#f44336'
@@ -52,7 +52,7 @@ export default function PageSpeed({result}) {
                 </div>
                 
               </div>
-              <div className="score-card text-center w-full max-w-[200px]">
+              <div className="score-card text-center w-full max-w-[200px] mr-[20px]">
                 <h5>SEO</h5>
                 <div className="w-full max-w-[100px] mx-auto">
                 <CircularProgressbar
@@ -61,6 +61,21 @@ export default function PageSpeed({result}) {
                   styles={buildStyles({
                     pathColor: barColor(result.seo),
                     textColor: barColor(result.seo),
+                    trailColor: "#d6d6d6",
+                  })}
+                />
+                </div>
+                
+              </div>
+              <div className="score-card text-center w-full max-w-[200px]">
+                <h5>Best Practice</h5>
+                <div className="w-full max-w-[100px] mx-auto">
+                <CircularProgressbar
+                  value={parseInt(result.bestPractice)}
+                  text={`${result.bestPractice}%`}
+                  styles={buildStyles({
+                    pathColor: barColor(result.bestPractice),
+                    textColor: barColor(result.bestPractice),
                     trailColor: "#d6d6d6",
                   })}
                 />
