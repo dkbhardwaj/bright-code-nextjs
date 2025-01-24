@@ -15,7 +15,7 @@ export default function Home() {
       setError('');
       
       try {
-        const res = await fetch(`/api/pagespeed?url=${encodeURIComponent(url)}`);
+        const res = await fetch(`/api/pagespeed?url=${(url)}`);
         const data = await res.json();
         
         if (res.ok) {
