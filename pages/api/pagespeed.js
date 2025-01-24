@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const { url } = req.query;
-  const apiKey = process.env.PAGESPEED_API_KEY; // Store the API key in an environment variable
+  const apiKey = process.env.GOOGLE_PAGESPEED_API_KEY; // Store the API key in an environment variable
 
   if (!url) {
     return res.status(400).json({ error: "URL query parameter is required." });
