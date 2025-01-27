@@ -604,7 +604,7 @@ export default function Home() {
                                     >
                                       <p
                                         className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                        onClick={() => setActiveTab("tab2")}
+                                        onClick={() => setActiveTab("tab3")}
                                       >
                                         {type}:
                                       </p>
