@@ -97,60 +97,74 @@ export default function Home() {
     });
   };
 
-  const fetchWebsiteData = async (): Promise<void> => {
-    setLoading(true);
-    setError("");
-    setImages([]);
-    setLinks([]);
-    setReport(null);
+const fetchWebsiteData = async (): Promise<void> => {
+  setLoading(true);
+  setError("");
+  setImages([]);
+  setLinks([]);
+  setReport(null);
 
-    const retryFetch = async (retries: number): Promise<Response> => {
-      try {
-        const response = await fetchWithTimeout(
-          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`,
-          { method: "GET" },
-          30000 // Timeout after 30 seconds
-        );
-        if (!response.ok && retries > 0) {
-          throw new Error("Retrying...");
-        }
-        return response;
-      } catch (err) {
-        if (retries > 0) {
-          return await retryFetch(retries - 1);
-        }
-        throw err;
-      }
-    };
+  // Ensure URL starts with http:// or https://
+  const formattedUrl = formatUrl(url);
 
+  const retryFetch = async (retries: number): Promise<Response> => {
     try {
-      const response = await retryFetch(3); // Retry up to 3 times
-      const data = await response.json();
-
-      if (response.ok) {
-        setImages(data.images || []);
-        setLinks(data.links || []);
-        setReport({
-          totalLinks: data.totalLinks || 0,
-          totalLinksWithIssues: data.totalLinksWithIssues || 0,
-          hosts: data.hosts || [],
-          issueTypes: data.issueTypes || {},
-          linkTypes: data.linkTypes || {},
-          startUrl: data.startUrl || url,
-        });
-      } else {
-        setError(data.error || "Failed to analyze the site.");
-      }
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error && err.message === "Request timed out"
-          ? "The request timed out. Please try again later."
-          : "An error occurred while analyzing the site."
+      const response = await fetchWithTimeout(
+        `/api/analyze-images?url=${encodeURIComponent(
+          formattedUrl
+        )}&scope=page`,
+        { method: "GET" },
+        30000 // Timeout after 30 seconds
       );
-    } finally {
-      setLoading(false);
+      if (!response.ok && retries > 0) {
+        throw new Error("Retrying...");
+      }
+      return response;
+    } catch (err) {
+      if (retries > 0) {
+        return await retryFetch(retries - 1);
+      }
+      throw err;
     }
   };
+
+  try {
+    const response = await retryFetch(3); // Retry up to 3 times
+    const data = await response.json();
+
+    if (response.ok) {
+      setImages(data.images || []);
+      setLinks(data.links || []);
+      setReport({
+        totalLinks: data.totalLinks || 0,
+        totalLinksWithIssues: data.totalLinksWithIssues || 0,
+        hosts: data.hosts || [],
+        issueTypes: data.issueTypes || {},
+        linkTypes: data.linkTypes || {},
+        startUrl: data.startUrl || formattedUrl,
+      });
+    } else {
+      setError(data.error || "Failed to analyze the site.");
+    }
+  } catch (err: unknown) {
+    setError(
+      err instanceof Error && err.message === "Request timed out"
+        ? "The request timed out. Please try again later."
+        : "An error occurred while analyzing the site."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
+// Function to ensure the URL starts with http:// or https://
+const formatUrl = (url: string): string => {
+  let formattedUrl = url.trim();
+  if (!/^https?:\/\//i.test(formattedUrl)) {
+    formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
+  }
+  return formattedUrl;
+};
 
   const handleAnalyzeClick = (): void => {
     if (!url) {
@@ -160,6 +174,7 @@ export default function Home() {
     setFetched(true);
     fetchWebsiteData();
   };
+
 
   const handleClearInput = (): void => {
     setUrl(""); // Clear the URL input
@@ -191,8 +206,8 @@ export default function Home() {
     <>
       {!loading && !report && (
         <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
-          <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px]">
-            <h1 className="text-2xl font-bold text-white text-center mb-6">
+          <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
+            <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
               Website Analyzer
             </h1>
 
@@ -201,7 +216,7 @@ export default function Home() {
                 {/* URL Input with Clear Icon */}
                 <div className="relative">
                   <input
-                    ref={inputRef} // Attach the ref to the input field
+                    ref={inputRef}
                     className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="text"
                     value={url}
