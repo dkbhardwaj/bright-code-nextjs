@@ -194,32 +194,71 @@ export default function Home() {
     (a, b) => (a.fileSize || 0) - (b.fileSize || 0)
   );
 
-  // States for table data and sort direction
-  const [tableData, setTableData] = useState(DescSortedUniqueImages);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
-
-  const toggleSort = () => {
-    if (sortDirection === "desc") {
-      setTableData([...AscSortedUniqueImages]); // Use a fresh copy
-      setSortDirection("asc");
-    } else {
-      setTableData([...DescSortedUniqueImages]); // Use a fresh copy
-      setSortDirection("desc");
-    }
-  };
-  useEffect(() => {
-    toggleSort();
-  }, [activeTab]);
-
-  // Filter images with fileSize greater than 100 KB (100 * 1024 bytes)
-  const largeImages = DescSortedUniqueImages.filter(
+  // Filter images with fileSize greater than 100 KB
+  const largeImages = uniqueImages.filter(
     (image) => (image.fileSize || 0) > 100 * 1024
+  );
+
+  const DescSortedLargeImages = [...largeImages].sort(
+    (a, b) => (b.fileSize || 0) - (a.fileSize || 0)
+  );
+  const AscSortedLargeImages = [...largeImages].sort(
+    (a, b) => (a.fileSize || 0) - (b.fileSize || 0)
+  );
+
+  // Centralized state for sort direction and table data
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [tableData, setTableData] = useState(DescSortedUniqueImages);
+  const [largeImageTableData, setLargeImageTableData] = useState(
+    DescSortedLargeImages
   );
 
   // Filter images with null or undefined fileSize
   const nullFileSizeImages = DescSortedUniqueImages.filter(
     (image) => image.fileSize == null
   );
+
+  // Sorted data for null file size images
+  const DescSortedNullFileSizeImages = [...nullFileSizeImages].sort(
+    (a, b) => (b.width || 0) - (a.width || 0) // Example: Sorting by width (you can change this criteria)
+  );
+  const AscSortedNullFileSizeImages = [...nullFileSizeImages].sort(
+    (a, b) => (a.width || 0) - (b.width || 0)
+  );
+
+  // State for null file size images table data
+  const [nullFileSizeImagesTableData, setNullFileSizeImagesTableData] =
+    useState(DescSortedNullFileSizeImages);
+
+  // Update sorting for null file size images
+  const toggleSort = () => {
+    const newDirection = sortDirection === "desc" ? "asc" : "desc";
+    setSortDirection(newDirection);
+
+    // Update all tables
+    if (newDirection === "asc") {
+      setTableData([...AscSortedUniqueImages]);
+      setLargeImageTableData([...AscSortedLargeImages]);
+      setNullFileSizeImagesTableData([...AscSortedNullFileSizeImages]); // Null file size table
+    } else {
+      setTableData([...DescSortedUniqueImages]);
+      setLargeImageTableData([...DescSortedLargeImages]);
+      setNullFileSizeImagesTableData([...DescSortedNullFileSizeImages]); // Null file size table
+    }
+  };
+
+  // Automatically update null file size table on tab change
+  useEffect(() => {
+    if (sortDirection === "asc") {
+      setTableData([...AscSortedUniqueImages]);
+      setLargeImageTableData([...AscSortedLargeImages]);
+      setNullFileSizeImagesTableData([...AscSortedNullFileSizeImages]); // Null file size table
+    } else {
+      setTableData([...DescSortedUniqueImages]);
+      setLargeImageTableData([...DescSortedLargeImages]);
+      setNullFileSizeImagesTableData([...DescSortedNullFileSizeImages]); // Null file size table
+    }
+  }, [activeTab, sortDirection]);
 
   return (
     <>
@@ -728,7 +767,7 @@ export default function Home() {
                                     </span>
                                     <div className="relative inline-block group">
                                       <img
-                                        onClick={toggleSort} // Toggle sort on click
+                                        onClick={toggleSort}
                                         className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
                                           sortDirection === "asc"
                                             ? "rotate-180"
@@ -744,8 +783,8 @@ export default function Home() {
                                       <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
                                         <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
                                           {sortDirection === "asc"
-                                            ? "Change Order Descending"
-                                            : "Change Order Ascending"}
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
                                         </span>
                                       </div>
                                     </div>
@@ -827,7 +866,34 @@ export default function Home() {
                                   Size (px)
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
-                                  File Size
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-base font-bold text-black">
+                                      File Size
+                                    </span>
+                                    <div className="relative inline-block group">
+                                      <img
+                                        onClick={toggleSort}
+                                        className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                          sortDirection === "asc"
+                                            ? "rotate-180"
+                                            : ""
+                                        }`}
+                                        src={"/sort-descending.png"}
+                                        alt={
+                                          sortDirection === "desc"
+                                            ? "Sort Descending"
+                                            : "Sort Ascending"
+                                        }
+                                      />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
                                   Alt Text
@@ -838,26 +904,19 @@ export default function Home() {
                               </tr>
                             </thead>
                             <tbody>
-                              {largeImages.map((image, index) => (
+                              {largeImageTableData.map((image, index) => (
                                 <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
                                   <td className="border border-gray-300 px-4 py-2">
                                     {index + 1}
                                   </td>
-
-                                  {/* Image */}
                                   <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
                                     {image.src}
                                   </td>
-
-                                  {/* Size (px) */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.width && image.height
                                       ? `${image.width} x ${image.height}`
                                       : "N/A"}
                                   </td>
-
-                                  {/* File Size */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.fileSize
                                       ? `${(image.fileSize / 1024).toFixed(
@@ -865,13 +924,9 @@ export default function Home() {
                                         )} KB`
                                       : "N/A"}
                                   </td>
-
-                                  {/* Alt Text */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.alt || "No Alt Text"}
                                   </td>
-
-                                  {/* View */}
                                   <td className="border border-gray-300 px-4 text-[14px] py-2">
                                     <a
                                       href={image.src}
@@ -914,7 +969,34 @@ export default function Home() {
                                   Size (px)
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
-                                  File Size
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-base font-bold text-black">
+                                      File Size
+                                    </span>
+                                    <div className="relative inline-block group">
+                                      <img
+                                        onClick={toggleSort} // Toggle sort on click
+                                        className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                          sortDirection === "asc"
+                                            ? "rotate-180"
+                                            : ""
+                                        }`}
+                                        src={"/sort-descending.png"}
+                                        alt={
+                                          sortDirection === "desc"
+                                            ? "Sort Descending"
+                                            : "Sort Ascending"
+                                        }
+                                      />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
                                   Alt Text
@@ -925,52 +1007,54 @@ export default function Home() {
                               </tr>
                             </thead>
                             <tbody>
-                              {nullFileSizeImages.map((image, index) => (
-                                <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    {index + 1}
-                                  </td>
+                              {nullFileSizeImagesTableData.map(
+                                (image, index) => (
+                                  <tr key={index} className="hover:bg-gray-100">
+                                    {/* Sr */}
+                                    <td className="border border-gray-300 px-4 py-2">
+                                      {index + 1}
+                                    </td>
 
-                                  {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
-                                    {image.src}
-                                  </td>
+                                    {/* Image */}
+                                    <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                      {image.src}
+                                    </td>
 
-                                  {/* Size (px) */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.width && image.height
-                                      ? `${image.width} x ${image.height}`
-                                      : "N/A"}
-                                  </td>
+                                    {/* Size (px) */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.width && image.height
+                                        ? `${image.width} x ${image.height}`
+                                        : "N/A"}
+                                    </td>
 
-                                  {/* File Size */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.fileSize
-                                      ? `${(image.fileSize / 1024).toFixed(
-                                          2
-                                        )} KB`
-                                      : "N/A"}
-                                  </td>
+                                    {/* File Size */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.fileSize
+                                        ? `${(image.fileSize / 1024).toFixed(
+                                            2
+                                          )} KB`
+                                        : "N/A"}
+                                    </td>
 
-                                  {/* Alt Text */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.alt || "No Alt Text"}
-                                  </td>
+                                    {/* Alt Text */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.alt || "No Alt Text"}
+                                    </td>
 
-                                  {/* View */}
-                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
-                                    <a
-                                      href={image.src}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-blue-600 hover:underline"
-                                    >
-                                      View Image
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
+                                    {/* View */}
+                                    <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                      <a
+                                        href={image.src}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:underline"
+                                      >
+                                        View Image
+                                      </a>
+                                    </td>
+                                  </tr>
+                                )
+                              )}
                             </tbody>
                           </table>
                         </div>
