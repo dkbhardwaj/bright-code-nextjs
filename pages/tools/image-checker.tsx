@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"; // Import useRouter hook for query handling
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
@@ -53,10 +53,15 @@ export default function Home() {
     startUrl: string;
   } | null>(null);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const router = useRouter(); // Access router for query parameter updates
   // console.log(router.query.url);
 
   useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus(); // Automatically focus the input on page load
+    }
     if (url) {
       if (router.query.url !== url) {
         // console.log('Updating URL in the query');
@@ -196,6 +201,7 @@ export default function Home() {
                 {/* URL Input with Clear Icon */}
                 <div className="relative">
                   <input
+                    ref={inputRef} // Attach the ref to the input field
                     className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="text"
                     value={url}
@@ -232,31 +238,6 @@ export default function Home() {
                     </button>
                   )}
                 </div>
-                {/* Scope Selection */}
-                {/* <div className="flex justify-around items-center">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="scope"
-                      value="page"
-                      checked={scope === "page"}
-                      onChange={() => setScope("page")}
-                      className="form-radio text-indigo-600"
-                    />
-                    <span>Analyze Single Page</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="scope"
-                      value="site"
-                      checked={scope === "site"}
-                      onChange={() => setScope("site")}
-                      className="form-radio text-indigo-600"
-                    />
-                    <span>Analyze Entire Site</span>
-                  </label>
-                </div> */}
 
                 {/* Analyze Button */}
                 <button
