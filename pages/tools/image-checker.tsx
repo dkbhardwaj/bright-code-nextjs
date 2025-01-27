@@ -562,9 +562,11 @@ export default function Home() {
                             <h3 className="text-center text-white mt-[10px]">
                               {(() => {
                                 // Filter images with issues (e.g., missing alt or null file size)
-                                const imagesWithIssues = images.filter(
+                                const imagesWithIssues = uniqueImages.filter(
                                   (image) =>
-                                    !image.alt || image.fileSize === null
+                                    !image.alt ||
+                                    image.fileSize === null ||
+                                    (image.fileSize || 0) > 100 * 1024
                                 );
                                 return imagesWithIssues.length;
                               })()}
@@ -573,17 +575,19 @@ export default function Home() {
                         </div>
 
                         {/* Issue Types */}
-                        {images.length > 0 && (
+                        {uniqueImages.length > 0 && (
                           <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Image Issues
                               </p>
                               {(() => {
-                                // Filter images with specific issues
-                                const imagesWithIssues = images.filter(
+                                // Filter uniqueImages with specific issues
+                                const imagesWithIssues = uniqueImages.filter(
                                   (image) =>
-                                    !image.alt || image.fileSize === null
+                                    !image.alt ||
+                                    image.fileSize === null ||
+                                    (image.fileSize || 0) > 100 * 1024
                                 );
 
                                 // Define a type for the issueTypes object
@@ -601,6 +605,10 @@ export default function Home() {
                                       if (image.fileSize === null) {
                                         acc["Null File Size"] =
                                           (acc["Null File Size"] || 0) + 1;
+                                      }
+                                      if ((image.fileSize || 0) > 100 * 1024) {
+                                        acc["Large Images"] =
+                                          (acc["Large Images"] || 0) + 1;
                                       }
                                       return acc;
                                     },
@@ -774,7 +782,9 @@ export default function Home() {
                     {largeImages.length > 0 ? (
                       <>
                         <h2 className="text-lg text-white font-bold my-4">
-                          Large Images (File Size 100 KB)
+                          Large Images (File Size{" "}
+                          <span className="text-lg text-white">&#62;</span> 100
+                          KB)
                         </h2>
                         <div className="mb-[50px] pb-[50px] border-white border-b">
                           <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
