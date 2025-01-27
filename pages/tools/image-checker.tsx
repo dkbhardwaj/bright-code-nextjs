@@ -97,74 +97,74 @@ export default function Home() {
     });
   };
 
-const fetchWebsiteData = async (): Promise<void> => {
-  setLoading(true);
-  setError("");
-  setImages([]);
-  setLinks([]);
-  setReport(null);
+  const fetchWebsiteData = async (): Promise<void> => {
+    setLoading(true);
+    setError("");
+    setImages([]);
+    setLinks([]);
+    setReport(null);
 
-  // Ensure URL starts with http:// or https://
-  const formattedUrl = formatUrl(url);
+    // Ensure URL starts with http:// or https://
+    const formattedUrl = formatUrl(url);
 
-  const retryFetch = async (retries: number): Promise<Response> => {
+    const retryFetch = async (retries: number): Promise<Response> => {
+      try {
+        const response = await fetchWithTimeout(
+          `/api/analyze-images?url=${encodeURIComponent(
+            formattedUrl
+          )}&scope=page`,
+          { method: "GET" },
+          30000 // Timeout after 30 seconds
+        );
+        if (!response.ok && retries > 0) {
+          throw new Error("Retrying...");
+        }
+        return response;
+      } catch (err) {
+        if (retries > 0) {
+          return await retryFetch(retries - 1);
+        }
+        throw err;
+      }
+    };
+
     try {
-      const response = await fetchWithTimeout(
-        `/api/analyze-images?url=${encodeURIComponent(
-          formattedUrl
-        )}&scope=page`,
-        { method: "GET" },
-        30000 // Timeout after 30 seconds
+      const response = await retryFetch(3); // Retry up to 3 times
+      const data = await response.json();
+
+      if (response.ok) {
+        setImages(data.images || []);
+        setLinks(data.links || []);
+        setReport({
+          totalLinks: data.totalLinks || 0,
+          totalLinksWithIssues: data.totalLinksWithIssues || 0,
+          hosts: data.hosts || [],
+          issueTypes: data.issueTypes || {},
+          linkTypes: data.linkTypes || {},
+          startUrl: data.startUrl || formattedUrl,
+        });
+      } else {
+        setError(data.error || "Failed to analyze the site.");
+      }
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error && err.message === "Request timed out"
+          ? "The request timed out. Please try again later."
+          : "An error occurred while analyzing the site."
       );
-      if (!response.ok && retries > 0) {
-        throw new Error("Retrying...");
-      }
-      return response;
-    } catch (err) {
-      if (retries > 0) {
-        return await retryFetch(retries - 1);
-      }
-      throw err;
+    } finally {
+      setLoading(false);
     }
   };
 
-  try {
-    const response = await retryFetch(3); // Retry up to 3 times
-    const data = await response.json();
-
-    if (response.ok) {
-      setImages(data.images || []);
-      setLinks(data.links || []);
-      setReport({
-        totalLinks: data.totalLinks || 0,
-        totalLinksWithIssues: data.totalLinksWithIssues || 0,
-        hosts: data.hosts || [],
-        issueTypes: data.issueTypes || {},
-        linkTypes: data.linkTypes || {},
-        startUrl: data.startUrl || formattedUrl,
-      });
-    } else {
-      setError(data.error || "Failed to analyze the site.");
+  // Function to ensure the URL starts with http:// or https://
+  const formatUrl = (url: string): string => {
+    let formattedUrl = url.trim();
+    if (!/^https?:\/\//i.test(formattedUrl)) {
+      formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
     }
-  } catch (err: unknown) {
-    setError(
-      err instanceof Error && err.message === "Request timed out"
-        ? "The request timed out. Please try again later."
-        : "An error occurred while analyzing the site."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
-
-// Function to ensure the URL starts with http:// or https://
-const formatUrl = (url: string): string => {
-  let formattedUrl = url.trim();
-  if (!/^https?:\/\//i.test(formattedUrl)) {
-    formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
-  }
-  return formattedUrl;
-};
+    return formattedUrl;
+  };
 
   const handleAnalyzeClick = (): void => {
     if (!url) {
@@ -174,7 +174,6 @@ const formatUrl = (url: string): string => {
     setFetched(true);
     fetchWebsiteData();
   };
-
 
   const handleClearInput = (): void => {
     setUrl(""); // Clear the URL input
@@ -199,8 +198,6 @@ const formatUrl = (url: string): string => {
   const nullFileSizeImages = sortedUniqueImages.filter(
     (image) => image.fileSize == null
   );
-
-  console.log(sortedUniqueImages);
 
   return (
     <>
