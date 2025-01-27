@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"; // Import useRouter hook for query handling
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
@@ -53,10 +53,15 @@ export default function Home() {
     startUrl: string;
   } | null>(null);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const router = useRouter(); // Access router for query parameter updates
   // console.log(router.query.url);
 
   useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus(); // Automatically focus the input on page load
+    }
     if (url) {
       if (router.query.url !== url) {
         // console.log('Updating URL in the query');
@@ -70,6 +75,28 @@ export default function Home() {
     }
   }, [url, router]);
 
+  const fetchWithTimeout = (
+    url: string,
+    options: RequestInit,
+    timeout: number
+  ): Promise<Response> => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        reject(new Error("Request timed out"));
+      }, timeout);
+
+      fetch(url, options)
+        .then((response) => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+  };
+
   const fetchWebsiteData = async (): Promise<void> => {
     setLoading(true);
     setError("");
@@ -77,10 +104,17 @@ export default function Home() {
     setLinks([]);
     setReport(null);
 
+    // Ensure URL starts with http:// or https://
+    const formattedUrl = formatUrl(url);
+
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
-        const response = await fetch(
-          `/api/analyze-images?url=${encodeURIComponent(url)}&scope=page`
+        const response = await fetchWithTimeout(
+          `/api/analyze-images?url=${encodeURIComponent(
+            formattedUrl
+          )}&scope=page`,
+          { method: "GET" },
+          30000 // Timeout after 30 seconds
         );
         if (!response.ok && retries > 0) {
           throw new Error("Retrying...");
@@ -107,16 +141,29 @@ export default function Home() {
           hosts: data.hosts || [],
           issueTypes: data.issueTypes || {},
           linkTypes: data.linkTypes || {},
-          startUrl: data.startUrl || url,
+          startUrl: data.startUrl || formattedUrl,
         });
       } else {
         setError(data.error || "Failed to analyze the site.");
       }
     } catch (err: unknown) {
-      setError("An error occurred while analyzing the site.");
+      setError(
+        err instanceof Error && err.message === "Request timed out"
+          ? "The request timed out. Please try again later."
+          : "An error occurred while analyzing the site."
+      );
     } finally {
       setLoading(false);
     }
+  };
+
+  // Function to ensure the URL starts with http:// or https://
+  const formatUrl = (url: string): string => {
+    let formattedUrl = url.trim();
+    if (!/^https?:\/\//i.test(formattedUrl)) {
+      formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
+    }
+    return formattedUrl;
   };
 
   const handleAnalyzeClick = (): void => {
@@ -134,102 +181,30 @@ export default function Home() {
   };
   const liBefore = `before:content['] before:absolute before:top-0 before:-left-1/2 before:w-full before:h-full before:bg-black before:z-[-1]`;
 
-  // console.log(links);
+  const uniqueImages = images.filter(
+    (image, index, self) => index === self.findIndex((t) => t.src === image.src) // Remove duplicates by src
+  );
 
-  type LinksTableProps = {
-    links: Link[];
-  };
+  const sortedUniqueImages = uniqueImages.sort(
+    (a, b) => (a.fileSize || 0) - (b.fileSize || 0) // Default to 0 if fileSize is undefined
+  );
 
-  interface ImagesTableProps {
-    images: {
-      src: string;
-      width?: number;
-      height?: number;
-      fileSize?: number;
-      alt?: string;
-    }[];
-  }
+  // Filter images with fileSize greater than 100 KB (100 * 1024 bytes)
+  const largeImages = sortedUniqueImages.filter(
+    (image) => (image.fileSize || 0) > 100 * 1024
+  );
 
-  const ImagesTable: React.FC<ImagesTableProps> = ({ images }) => {
-    // Create a variable to store the processed images data
-    const imageRows = images.map((image, index) => ({
-      sr: index + 1,
-      src: image.src,
-      size:
-        image.width && image.height
-          ? `${image.width} x ${image.height}`
-          : "N/A",
-      fileSize: image.fileSize
-        ? `${(image.fileSize / 1024).toFixed(2)} KB`
-        : "N/A",
-      altText: image.alt || "No Alt Text",
-    }));
-
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll bg-white">
-        <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
-          <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="border border-gray-300 px-4 py-2">Sr</th>
-              <th className="border border-gray-300 px-4 py-2">Image</th>
-              <th className="border border-gray-300 px-4 py-2">Size (px)</th>
-              <th className="border border-gray-300 px-4 py-2">File Size</th>
-              <th className="border border-gray-300 px-4 py-2">Alt Text</th>
-              <th className="border border-gray-300 px-4 py-2">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {imageRows.map((row) => (
-              <tr key={row.sr} className="hover:bg-gray-100">
-                {/* Sr */}
-                <td className="border border-gray-300 px-4 py-2">{row.sr}</td>
-
-                {/* Image */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
-                  {row.src}
-                </td>
-
-                {/* Size */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px]">
-                  {row.size}
-                </td>
-
-                {/* File Size */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px]">
-                  {row.fileSize}
-                </td>
-
-                {/* Alt Text */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px]">
-                  {row.altText}
-                </td>
-
-                {/* View */}
-                <td className="border border-gray-300 px-4 py-2 text-[14px]">
-                  <a
-                    href={row.src}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    View Image
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-
+  // Filter images with null or undefined fileSize
+  const nullFileSizeImages = sortedUniqueImages.filter(
+    (image) => image.fileSize == null
+  );
 
   return (
     <>
       {!loading && !report && (
         <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
-          <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px]">
-            <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
+          <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
+            <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
               Website Analyzer
             </h1>
 
@@ -238,6 +213,7 @@ export default function Home() {
                 {/* URL Input with Clear Icon */}
                 <div className="relative">
                   <input
+                    ref={inputRef}
                     className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="text"
                     value={url}
@@ -274,31 +250,6 @@ export default function Home() {
                     </button>
                   )}
                 </div>
-                {/* Scope Selection */}
-                {/* <div className="flex justify-around items-center">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="scope"
-                      value="page"
-                      checked={scope === "page"}
-                      onChange={() => setScope("page")}
-                      className="form-radio text-indigo-600"
-                    />
-                    <span>Analyze Single Page</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="scope"
-                      value="site"
-                      checked={scope === "site"}
-                      onChange={() => setScope("site")}
-                      className="form-radio text-indigo-600"
-                    />
-                    <span>Analyze Entire Site</span>
-                  </label>
-                </div> */}
 
                 {/* Analyze Button */}
                 <button
@@ -525,7 +476,7 @@ export default function Home() {
       )}
 
       <section className="section_bgImage  bg-darkBlue pt-[170px] pb-[100px]">
-        <div className="relative border-t">
+        <div className="relative">
           {!loading && report && (
             <div className="flex border-r h-screen">
               {/* Vertical Tab Menu */}
@@ -554,6 +505,16 @@ export default function Home() {
                     >
                       Images detail
                     </li>
+                    <li
+                      className={`relative mb-[10px] z-0 p-[10px] text-white w-full cursor-pointer ${
+                        activeTab === "tab3"
+                          ? `bg-black rounded-tr-lg rounded-br-lg ${liBefore}`
+                          : ""
+                      }`}
+                      onClick={() => setActiveTab("tab3")}
+                    >
+                      Image issues
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -581,15 +542,7 @@ export default function Home() {
                           <div className="content">
                             <p className="text-white">Total Images</p>
                             <h3 className="text-center text-white mt-[10px]">
-                              {(() => {
-                                // Filter unique images by src attribute
-                                const uniqueImages = images.filter(
-                                  (image, index, self) =>
-                                    index ===
-                                    self.findIndex((t) => t.src === image.src) // Compare src to filter duplicates
-                                );
-                                return uniqueImages.length;
-                              })()}
+                              {uniqueImages.length}
                             </h3>
                           </div>
                         </div>
@@ -602,34 +555,32 @@ export default function Home() {
                             <h3 className="text-center text-white mt-[10px]">
                               {(() => {
                                 // Filter images with issues (e.g., missing alt or null file size)
-                                const imagesWithIssues = images.filter(
+                                const imagesWithIssues = uniqueImages.filter(
                                   (image) =>
-                                    !image.alt || image.fileSize === null
+                                    !image.alt ||
+                                    image.fileSize === null ||
+                                    (image.fileSize || 0) > 100 * 1024
                                 );
                                 return imagesWithIssues.length;
                               })()}
                             </h3>
                           </div>
                         </div>
-                        {/* New Links */}
-                        {/* <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] tablet:w-[calc(50%-20px)] md:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px] ">
-                          <div className="content">
-                            <p className='text-white'>New Links</p>
-                            <h3 className='text-center text-white mt-[10px]'>N/A</h3>
-                          </div>
-                        </div> */}
+
                         {/* Issue Types */}
-                        <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
-                          {images.length > 0 && (
+                        {uniqueImages.length > 0 && (
+                          <div className="card w-[calc(50%-20px)] mx-[10px] desktop:w-[calc(50%-20px)] lg:w-[calc(100%-20px)] bg-bgBluePurple rounded-[8px] relative mb-[20px] p-[10px]">
                             <div className="mb-6">
                               <p className="text-white mb-[10px]">
                                 Image Issues
                               </p>
                               {(() => {
-                                // Filter images with specific issues
-                                const imagesWithIssues = images.filter(
+                                // Filter uniqueImages with specific issues
+                                const imagesWithIssues = uniqueImages.filter(
                                   (image) =>
-                                    !image.alt || image.fileSize === null
+                                    !image.alt ||
+                                    image.fileSize === null ||
+                                    (image.fileSize || 0) > 100 * 1024
                                 );
 
                                 // Define a type for the issueTypes object
@@ -648,6 +599,10 @@ export default function Home() {
                                         acc["Null File Size"] =
                                           (acc["Null File Size"] || 0) + 1;
                                       }
+                                      if ((image.fileSize || 0) > 100 * 1024) {
+                                        acc["Large Images"] =
+                                          (acc["Large Images"] || 0) + 1;
+                                      }
                                       return acc;
                                     },
                                     {} as ImageIssueTypes
@@ -661,7 +616,7 @@ export default function Home() {
                                     >
                                       <p
                                         className="text-white cursor-pointer hover:underline transition-all ease-in-out delay-300"
-                                        onClick={() => setActiveTab("tab2")}
+                                        onClick={() => setActiveTab("tab3")}
                                       >
                                         {type}:
                                       </p>
@@ -671,13 +626,13 @@ export default function Home() {
                                 );
                               })()}
                             </div>
-                          )}
-                        </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Images Breakdown by Host */}
                       <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+                        <h3 className="text-lg font-semibold text-white mb-4 text-center">
                           Image Breakdown by Host
                         </h3>
                         <div className="relative h-[300px] bg-white rounded-lg overflow-hidden">
@@ -728,12 +683,266 @@ export default function Home() {
                     {images.length > 0 && (
                       <div className="mt-8 w-full ">
                         <h4 className="text-white mb-4">
-                          Found {images.length} images:
+                          Found {uniqueImages.length} images:
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          <ImagesTable images={images} />;
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Sr
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Image
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Size (px)
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  File Size
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Alt Text
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  View
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {uniqueImages.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {index + 1}
+                                  </td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
+                                    {image.src}
+                                    {/* <img
+                                      src={image.src}
+                                      alt={image.alt || `Image ${index + 1}`}
+                                      className="w-20 h-20 object-contain"
+                                    /> */}
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height}`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(
+                                          2
+                                        )} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
                         </div>
                       </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Table for Large Images */}
+                {activeTab === "tab3" && (
+                  <div>
+                    {largeImages.length > 0 ? (
+                      <>
+                        <h2 className="text-lg text-white font-bold my-4">
+                          Large Images (File Size{" "}
+                          <span className="text-lg text-white">&#62;</span> 100
+                          KB)
+                        </h2>
+                        <div className="mb-[50px] pb-[50px] border-white border-b">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Sr
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Image
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Size (px)
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  File Size
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Alt Text
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  View
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {largeImages.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {index + 1}
+                                  </td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                    {image.src}
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height}`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(
+                                          2
+                                        )} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    ) : (
+                      <h3 className="text-md text-gray-600 italic">
+                        No large images found.
+                      </h3>
+                    )}
+
+                    {/* Null File Size Images Table */}
+                    {nullFileSizeImages.length > 0 ? (
+                      <>
+                        <h2 className="text-lg text-white font-bold my-4">
+                          Images with Null or Undefined File Size
+                        </h2>
+                        <div className="mb-[50px] pb-[50px] border-white border-b">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                            <thead>
+                              <tr className="bg-gray-200 text-left">
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Sr
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Image
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Size (px)
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  File Size
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  Alt Text
+                                </th>
+                                <th className="border border-gray-300 px-4 py-2">
+                                  View
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {nullFileSizeImages.map((image, index) => (
+                                <tr key={index} className="hover:bg-gray-100">
+                                  {/* Sr */}
+                                  <td className="border border-gray-300 px-4 py-2">
+                                    {index + 1}
+                                  </td>
+
+                                  {/* Image */}
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                    {image.src}
+                                  </td>
+
+                                  {/* Size (px) */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.width && image.height
+                                      ? `${image.width} x ${image.height}`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* File Size */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.fileSize
+                                      ? `${(image.fileSize / 1024).toFixed(
+                                          2
+                                        )} KB`
+                                      : "N/A"}
+                                  </td>
+
+                                  {/* Alt Text */}
+                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                    {image.alt || "No Alt Text"}
+                                  </td>
+
+                                  {/* View */}
+                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                    <a
+                                      href={image.src}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-blue-600 hover:underline"
+                                    >
+                                      View Image
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </>
+                    ) : (
+                      ""
                     )}
                   </div>
                 )}

@@ -4,8 +4,10 @@ import { JSDOM } from "jsdom";
 import pLimit from "p-limit";
 import pRetry from "p-retry";
 
+
+
 // Limit for concurrent requests
-const limit = pLimit(3); // Limit concurrency to 3
+const limit = pLimit(10); // Limit concurrency to 3
 const cache = new Map<string, any>(); // In-memory cache for results
 
 // Global timeout for the entire analysis process (in milliseconds)
