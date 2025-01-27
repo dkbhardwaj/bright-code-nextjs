@@ -709,7 +709,7 @@ export default function Home() {
                           Found {uniqueImages.length} images:
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll overflow-visible bg-white">
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">
@@ -741,11 +741,13 @@ export default function Home() {
                                             : "Sort Ascending"
                                         }
                                       />
-                                      <span className="absolute top-[-70px] left-1/2 w-max h-max inline-block -translate-x-1/2 bottom-[120%] bg-white text-black text-sm font-medium px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {sortDirection === "asc"
-                                          ? "Change Order Descending"
-                                          : "Change Order Ascending"}
-                                      </span>
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change Order Descending"
+                                            : "Change Order Ascending"}
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
                                 </th>
@@ -803,7 +805,7 @@ export default function Home() {
 
                 {/* Table for Large Images */}
                 {activeTab === "tab3" && (
-                  <div>
+                  <div className="max-w-[1600px] mx-auto">
                     {largeImages.length > 0 ? (
                       <>
                         <h2 className="text-lg text-white font-bold my-4">
@@ -812,7 +814,7 @@ export default function Home() {
                           KB)
                         </h2>
                         <div className="mb-[50px] pb-[50px] border-white border-b">
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md bg-white">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">
