@@ -175,6 +175,7 @@ export default function Home() {
     fetchWebsiteData();
   };
 
+
   const handleClearInput = (): void => {
     setUrl(""); // Clear the URL input
     router.push("/", undefined, { shallow: true }); // Remove URL from query
@@ -186,7 +187,7 @@ export default function Home() {
   );
 
   const sortedUniqueImages = uniqueImages.sort(
-    (a, b) => (a.fileSize || 0) - (b.fileSize || 0) // Default to 0 if fileSize is undefined
+    (a, b) => (b.fileSize || 0) - (a.fileSize || 0) // Default to 0 if fileSize is undefined
   );
 
   // Filter images with fileSize greater than 100 KB (100 * 1024 bytes)
