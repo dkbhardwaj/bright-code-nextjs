@@ -3,6 +3,14 @@ import { useRouter } from "next/router"; // Import useRouter hook for query hand
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
+// import { saveToFirebase, fetchFromFirebase } from "../../utils/firebaseHelpers";
+import { saveToFirestore, fetchFromFirestore } from "../../utils/firebaseHelpers";
+// import { analytics } from "../../firebase";
+// import { logEvent } from "firebase/analytics";
+import { trackEvent } from "../../utils/firebaseAnalytics";
+
+
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,6 +30,11 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+interface WebsiteData {
+  images: Image[];
+  links: Link[];  // Added links property
+  report: Report | null;
+}
 
 interface Image {
   src: string;
@@ -30,10 +43,24 @@ interface Image {
   height?: number;
   fileSize?: number;
 }
+
 interface Link {
   url: string;
   status: number;
 }
+
+interface Report {
+  totalLinks: number;
+  totalLinksWithIssues: number;
+  hosts: string[];
+  issueTypes: { [key: string]: number };
+  linkTypes: { [key: string]: number };
+  startUrl: string;
+}
+
+
+
+
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
@@ -44,6 +71,9 @@ export default function Home() {
   const [error, setError] = useState<string>("");
   const [fetched, setFetched] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
+
+  
+
   const [report, setReport] = useState<{
     totalLinks: number;
     totalLinksWithIssues: number;
@@ -97,65 +127,7 @@ export default function Home() {
     });
   };
 
-  const fetchWebsiteData = async (): Promise<void> => {
-    setLoading(true);
-    setError("");
-    setImages([]);
-    setLinks([]);
-    setReport(null);
 
-    // Ensure URL starts with http:// or https://
-    const formattedUrl = formatUrl(url);
-
-    const retryFetch = async (retries: number): Promise<Response> => {
-      try {
-        const response = await fetchWithTimeout(
-          `/api/analyze-images?url=${encodeURIComponent(
-            formattedUrl
-          )}&scope=page`,
-          { method: "GET" },
-          30000 // Timeout after 30 seconds
-        );
-        if (!response.ok && retries > 0) {
-          throw new Error("Retrying...");
-        }
-        return response;
-      } catch (err) {
-        if (retries > 0) {
-          return await retryFetch(retries - 1);
-        }
-        throw err;
-      }
-    };
-
-    try {
-      const response = await retryFetch(3); // Retry up to 3 times
-      const data = await response.json();
-
-      if (response.ok) {
-        setImages(data.images || []);
-        setLinks(data.links || []);
-        setReport({
-          totalLinks: data.totalLinks || 0,
-          totalLinksWithIssues: data.totalLinksWithIssues || 0,
-          hosts: data.hosts || [],
-          issueTypes: data.issueTypes || {},
-          linkTypes: data.linkTypes || {},
-          startUrl: data.startUrl || formattedUrl,
-        });
-      } else {
-        setError(data.error || "Failed to analyze the site.");
-      }
-    } catch (err: unknown) {
-      setError(
-        err instanceof Error && err.message === "Request timed out"
-          ? "The request timed out. Please try again later."
-          : "An error occurred while analyzing the site."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
 
   // Function to ensure the URL starts with http:// or https://
   const formatUrl = (url: string): string => {
@@ -166,14 +138,158 @@ export default function Home() {
     return formattedUrl;
   };
 
-  const handleAnalyzeClick = (): void => {
-    if (!url) {
-      setError("Please enter a valid URL.");
-      return;
-    }
-    setFetched(true);
-    fetchWebsiteData();
-  };
+    // On initial load, fetch data from Firestore if URL is present in query
+    useEffect(() => {
+      const queryUrl = router.query.url as string;
+      if (queryUrl) {
+        setUrl(queryUrl);
+        loadFromFirestore(queryUrl); // Load data from Firestore if the URL is present in the query
+      }
+    }, [router.query.url]);
+    
+  
+    const loadFromFirestore = async (queryUrl: string) => {
+      setLoading(true);
+      try {
+        const data = await fetchFromFirestore(queryUrl); // Fetch from Firebase
+        if (data) {
+          setImages(data.images || []);
+          setReport(data.report || null);
+          setFetched(true); // Set fetched flag to true to indicate data is loaded
+        } else {
+          console.log("No data found for the URL. Please run the analysis.");
+          setFetched(false); // If no data is found, ensure the fetched flag is false
+        }
+      } catch (error) {
+        console.error("Error loading data from Firestore:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    
+
+    const handleAnalyzeClick = async () => {
+      if (!url) {
+        setError("Please enter a valid URL.");
+        return;
+      }
+    
+      setLoading(true);
+      setError("");
+      try {
+        const data: WebsiteData = await fetchWebsiteData(url);
+    
+        // Save the fetched data to Firestore
+        await saveToFirestore(url, data);
+    
+        // Update the state with fetched data
+        setImages(data.images);
+        setLinks(data.links);
+        setReport(data.report);
+    
+        // Update the query parameter with the URL
+        router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
+      } catch (error) {
+        console.error("Error analyzing the site:", error);
+        setError("An error occurred while analyzing the site.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    const loadDataFromFirestore = async (url: string) => {
+      setLoading(true);
+      try {
+        const data = await fetchFromFirestore(url);
+        if (data) {
+          setImages(data.images);
+          setLinks(data.links);
+          setReport(data.report);
+        } else {
+          console.log("No data found in Firestore for this URL.");
+        }
+      } catch (error) {
+        console.error("Error loading data from Firestore:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    useEffect(() => {
+      const queryUrl = router.query.url as string;
+      if (queryUrl) {
+        setUrl(queryUrl);
+        loadDataFromFirestore(queryUrl);  // Load data from Firestore if URL is present
+      }
+    }, [router.query.url]);
+    
+    
+    
+    
+    
+    const fetchWebsiteData = async (url: string): Promise<WebsiteData> => {
+      setLoading(true);
+      setError("");
+      setImages([]);
+      setLinks([]);
+      setReport(null);
+    
+      const formattedUrl = formatUrl(url);
+    
+      const retryFetch = async (retries: number): Promise<Response> => {
+        try {
+          const response = await fetchWithTimeout(
+            `/api/analyze-images?url=${encodeURIComponent(formattedUrl)}&scope=page`,
+            { method: "GET" },
+            30000 // Timeout after 30 seconds
+          );
+          if (!response.ok && retries > 0) {
+            throw new Error("Retrying...");
+          }
+          return response;
+        } catch (err) {
+          if (retries > 0) {
+            return await retryFetch(retries - 1);
+          }
+          throw err;
+        }
+      };
+    
+      try {
+        const response = await retryFetch(3); // Retry up to 3 times
+        const data = await response.json();
+    
+        if (response.ok) {
+          // Return the WebsiteData object with images, links, and report
+          return {
+            images: data.images || [],
+            links: data.links || [],  // Now links is properly included
+            report: {
+              totalLinks: data.totalLinks || 0,
+              totalLinksWithIssues: data.totalLinksWithIssues || 0,
+              hosts: data.hosts || [],
+              issueTypes: data.issueTypes || {},
+              linkTypes: data.linkTypes || {},
+              startUrl: data.startUrl || formattedUrl,
+            },
+          };
+        } else {
+          throw new Error(data.error || "Failed to analyze the site.");
+        }
+      } catch (err: unknown) {
+        throw new Error(
+          err instanceof Error && err.message === "Request timed out"
+            ? "The request timed out. Please try again later."
+            : "An error occurred while analyzing the site."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+
+  
 
   const handleClearInput = (): void => {
     setUrl(""); // Clear the URL input
@@ -199,6 +315,8 @@ export default function Home() {
     (image) => image.fileSize == null
   );
 
+  
+
   return (
     <>
       {!loading && !report && (
@@ -206,65 +324,67 @@ export default function Home() {
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
             <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
               Website Analyzer
+             
             </h1>
+          
 
             {!fetched && (
-              <div className="space-y-4">
-                {/* URL Input with Clear Icon */}
-                <div className="relative">
-                  <input
-                    ref={inputRef}
-                    className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    type="text"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        handleAnalyzeClick();
-                      }
-                    }}
-                    placeholder="Enter website URL"
-                  />
-                  {url && (
-                    <button
-                      type="button"
-                      onClick={handleClearInput}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                      title="Clear input"
-                      aria-label="Clear input field"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-
-                {/* Analyze Button */}
-                <button
-                  className={`relative w-full py-3 text-white rounded-lg font-semibold ${
-                    loading
-                      ? "bg-indigo-300 cursor-not-allowed"
-                      : "bg-indigo-500 hover:bg-indigo-600"
-                  }`}
-                  onClick={handleAnalyzeClick}
-                  disabled={loading}
+        <div className="space-y-4">
+          {/* URL Input with Clear Icon */}
+          <div className="relative">
+            <input
+              ref={inputRef}
+              className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handleAnalyzeClick();
+                }
+              }}
+              placeholder="Enter website URL"
+            />
+            {url && (
+              <button
+                type="button"
+                onClick={handleClearInput}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                title="Clear input"
+                aria-label="Clear input field"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-5 h-5"
                 >
-                  {loading ? "Analyzing..." : "Analyze"}
-                </button>
-              </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             )}
+          </div>
+
+          {/* Analyze Button */}
+          <button
+            className={`relative w-full py-3 text-white rounded-lg font-semibold ${
+              loading
+                ? "bg-indigo-300 cursor-not-allowed"
+                : "bg-indigo-500 hover:bg-indigo-600"
+            }`}
+            onClick={handleAnalyzeClick}
+            disabled={loading}
+          >
+            {loading ? "Analyzing..." : "Analyze"}
+          </button>
+        </div>
+      )}
 
             {fetched && loading && (
               <p className="mt-6 text-center text-gray-500 font-semibold">
