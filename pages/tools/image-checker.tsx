@@ -3,14 +3,6 @@ import { useRouter } from "next/router"; // Import useRouter hook for query hand
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
-// import { saveToFirebase, fetchFromFirebase } from "../../utils/firebaseHelpers";
-import { saveToFirestore, fetchFromFirestore } from "../../utils/firebaseHelpers";
-// import { analytics } from "../../firebase";
-// import { logEvent } from "firebase/analytics";
-import { trackEvent } from "../../utils/firebaseAnalytics";
-
-
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,11 +22,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-interface WebsiteData {
-  images: Image[];
-  links: Link[];  // Added links property
-  report: Report | null;
-}
 
 interface Image {
   src: string;
@@ -43,24 +30,10 @@ interface Image {
   height?: number;
   fileSize?: number;
 }
-
 interface Link {
   url: string;
   status: number;
 }
-
-interface Report {
-  totalLinks: number;
-  totalLinksWithIssues: number;
-  hosts: string[];
-  issueTypes: { [key: string]: number };
-  linkTypes: { [key: string]: number };
-  startUrl: string;
-}
-
-
-
-
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
@@ -71,9 +44,6 @@ export default function Home() {
   const [error, setError] = useState<string>("");
   const [fetched, setFetched] = useState(false);
   const [activeTab, setActiveTab] = useState("tab1");
-
-  
-
   const [report, setReport] = useState<{
     totalLinks: number;
     totalLinksWithIssues: number;
@@ -127,7 +97,65 @@ export default function Home() {
     });
   };
 
+  const fetchWebsiteData = async (): Promise<void> => {
+    setLoading(true);
+    setError("");
+    setImages([]);
+    setLinks([]);
+    setReport(null);
 
+    // Ensure URL starts with http:// or https://
+    const formattedUrl = formatUrl(url);
+
+    const retryFetch = async (retries: number): Promise<Response> => {
+      try {
+        const response = await fetchWithTimeout(
+          `/api/analyze-images?url=${encodeURIComponent(
+            formattedUrl
+          )}&scope=page`,
+          { method: "GET" },
+          30000 // Timeout after 30 seconds
+        );
+        if (!response.ok && retries > 0) {
+          throw new Error("Retrying...");
+        }
+        return response;
+      } catch (err) {
+        if (retries > 0) {
+          return await retryFetch(retries - 1);
+        }
+        throw err;
+      }
+    };
+
+    try {
+      const response = await retryFetch(3); // Retry up to 3 times
+      const data = await response.json();
+
+      if (response.ok) {
+        setImages(data.images || []);
+        setLinks(data.links || []);
+        setReport({
+          totalLinks: data.totalLinks || 0,
+          totalLinksWithIssues: data.totalLinksWithIssues || 0,
+          hosts: data.hosts || [],
+          issueTypes: data.issueTypes || {},
+          linkTypes: data.linkTypes || {},
+          startUrl: data.startUrl || formattedUrl,
+        });
+      } else {
+        setError(data.error || "Failed to analyze the site.");
+      }
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error && err.message === "Request timed out"
+          ? "The request timed out. Please try again later."
+          : "An error occurred while analyzing the site."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Function to ensure the URL starts with http:// or https://
   const formatUrl = (url: string): string => {
@@ -138,158 +166,14 @@ export default function Home() {
     return formattedUrl;
   };
 
-    // On initial load, fetch data from Firestore if URL is present in query
-    useEffect(() => {
-      const queryUrl = router.query.url as string;
-      if (queryUrl) {
-        setUrl(queryUrl);
-        loadFromFirestore(queryUrl); // Load data from Firestore if the URL is present in the query
-      }
-    }, [router.query.url]);
-    
-  
-    const loadFromFirestore = async (queryUrl: string) => {
-      setLoading(true);
-      try {
-        const data = await fetchFromFirestore(queryUrl); // Fetch from Firebase
-        if (data) {
-          setImages(data.images || []);
-          setReport(data.report || null);
-          setFetched(true); // Set fetched flag to true to indicate data is loaded
-        } else {
-          console.log("No data found for the URL. Please run the analysis.");
-          setFetched(false); // If no data is found, ensure the fetched flag is false
-        }
-      } catch (error) {
-        console.error("Error loading data from Firestore:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    
-
-    const handleAnalyzeClick = async () => {
-      if (!url) {
-        setError("Please enter a valid URL.");
-        return;
-      }
-    
-      setLoading(true);
-      setError("");
-      try {
-        const data: WebsiteData = await fetchWebsiteData(url);
-    
-        // Save the fetched data to Firestore
-        await saveToFirestore(url, data);
-    
-        // Update the state with fetched data
-        setImages(data.images);
-        setLinks(data.links);
-        setReport(data.report);
-    
-        // Update the query parameter with the URL
-        router.push(`?url=${encodeURIComponent(url)}`, undefined, { shallow: true });
-      } catch (error) {
-        console.error("Error analyzing the site:", error);
-        setError("An error occurred while analyzing the site.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    const loadDataFromFirestore = async (url: string) => {
-      setLoading(true);
-      try {
-        const data = await fetchFromFirestore(url);
-        if (data) {
-          setImages(data.images);
-          setLinks(data.links);
-          setReport(data.report);
-        } else {
-          console.log("No data found in Firestore for this URL.");
-        }
-      } catch (error) {
-        console.error("Error loading data from Firestore:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    useEffect(() => {
-      const queryUrl = router.query.url as string;
-      if (queryUrl) {
-        setUrl(queryUrl);
-        loadDataFromFirestore(queryUrl);  // Load data from Firestore if URL is present
-      }
-    }, [router.query.url]);
-    
-    
-    
-    
-    
-    const fetchWebsiteData = async (url: string): Promise<WebsiteData> => {
-      setLoading(true);
-      setError("");
-      setImages([]);
-      setLinks([]);
-      setReport(null);
-    
-      const formattedUrl = formatUrl(url);
-    
-      const retryFetch = async (retries: number): Promise<Response> => {
-        try {
-          const response = await fetchWithTimeout(
-            `/api/analyze-images?url=${encodeURIComponent(formattedUrl)}&scope=page`,
-            { method: "GET" },
-            30000 // Timeout after 30 seconds
-          );
-          if (!response.ok && retries > 0) {
-            throw new Error("Retrying...");
-          }
-          return response;
-        } catch (err) {
-          if (retries > 0) {
-            return await retryFetch(retries - 1);
-          }
-          throw err;
-        }
-      };
-    
-      try {
-        const response = await retryFetch(3); // Retry up to 3 times
-        const data = await response.json();
-    
-        if (response.ok) {
-          // Return the WebsiteData object with images, links, and report
-          return {
-            images: data.images || [],
-            links: data.links || [],  // Now links is properly included
-            report: {
-              totalLinks: data.totalLinks || 0,
-              totalLinksWithIssues: data.totalLinksWithIssues || 0,
-              hosts: data.hosts || [],
-              issueTypes: data.issueTypes || {},
-              linkTypes: data.linkTypes || {},
-              startUrl: data.startUrl || formattedUrl,
-            },
-          };
-        } else {
-          throw new Error(data.error || "Failed to analyze the site.");
-        }
-      } catch (err: unknown) {
-        throw new Error(
-          err instanceof Error && err.message === "Request timed out"
-            ? "The request timed out. Please try again later."
-            : "An error occurred while analyzing the site."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-
-  
+  const handleAnalyzeClick = (): void => {
+    if (!url) {
+      setError("Please enter a valid URL.");
+      return;
+    }
+    setFetched(true);
+    fetchWebsiteData();
+  };
 
   const handleClearInput = (): void => {
     setUrl(""); // Clear the URL input
@@ -301,21 +185,80 @@ export default function Home() {
     (image, index, self) => index === self.findIndex((t) => t.src === image.src) // Remove duplicates by src
   );
 
-  const sortedUniqueImages = uniqueImages.sort(
-    (a, b) => (a.fileSize || 0) - (b.fileSize || 0) // Default to 0 if fileSize is undefined
+  // Default sorted data
+  const DescSortedUniqueImages = [...uniqueImages].sort(
+    (a, b) => (b.fileSize || 0) - (a.fileSize || 0)
   );
 
-  // Filter images with fileSize greater than 100 KB (100 * 1024 bytes)
-  const largeImages = sortedUniqueImages.filter(
+  const AscSortedUniqueImages = [...uniqueImages].sort(
+    (a, b) => (a.fileSize || 0) - (b.fileSize || 0)
+  );
+
+  // Filter images with fileSize greater than 100 KB
+  const largeImages = uniqueImages.filter(
     (image) => (image.fileSize || 0) > 100 * 1024
   );
 
+  const DescSortedLargeImages = [...largeImages].sort(
+    (a, b) => (b.fileSize || 0) - (a.fileSize || 0)
+  );
+  const AscSortedLargeImages = [...largeImages].sort(
+    (a, b) => (a.fileSize || 0) - (b.fileSize || 0)
+  );
+
+  // Centralized state for sort direction and table data
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [tableData, setTableData] = useState(DescSortedUniqueImages);
+  const [largeImageTableData, setLargeImageTableData] = useState(
+    DescSortedLargeImages
+  );
+
   // Filter images with null or undefined fileSize
-  const nullFileSizeImages = sortedUniqueImages.filter(
+  const nullFileSizeImages = DescSortedUniqueImages.filter(
     (image) => image.fileSize == null
   );
 
-  
+  // Sorted data for null file size images
+  const DescSortedNullFileSizeImages = [...nullFileSizeImages].sort(
+    (a, b) => (b.width || 0) - (a.width || 0) // Example: Sorting by width (you can change this criteria)
+  );
+  const AscSortedNullFileSizeImages = [...nullFileSizeImages].sort(
+    (a, b) => (a.width || 0) - (b.width || 0)
+  );
+
+  // State for null file size images table data
+  const [nullFileSizeImagesTableData, setNullFileSizeImagesTableData] =
+    useState(DescSortedNullFileSizeImages);
+
+  // Update sorting for null file size images
+  const toggleSort = () => {
+    const newDirection = sortDirection === "desc" ? "asc" : "desc";
+    setSortDirection(newDirection);
+
+    // Update all tables
+    if (newDirection === "asc") {
+      setTableData([...AscSortedUniqueImages]);
+      setLargeImageTableData([...AscSortedLargeImages]);
+      setNullFileSizeImagesTableData([...AscSortedNullFileSizeImages]); // Null file size table
+    } else {
+      setTableData([...DescSortedUniqueImages]);
+      setLargeImageTableData([...DescSortedLargeImages]);
+      setNullFileSizeImagesTableData([...DescSortedNullFileSizeImages]); // Null file size table
+    }
+  };
+
+  // Automatically update null file size table on tab change
+  useEffect(() => {
+    if (sortDirection === "asc") {
+      setTableData([...AscSortedUniqueImages]);
+      setLargeImageTableData([...AscSortedLargeImages]);
+      setNullFileSizeImagesTableData([...AscSortedNullFileSizeImages]); // Null file size table
+    } else {
+      setTableData([...DescSortedUniqueImages]);
+      setLargeImageTableData([...DescSortedLargeImages]);
+      setNullFileSizeImagesTableData([...DescSortedNullFileSizeImages]); // Null file size table
+    }
+  }, [activeTab, sortDirection]);
 
   return (
     <>
@@ -324,67 +267,65 @@ export default function Home() {
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
             <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
               Website Analyzer
-             
             </h1>
-          
 
             {!fetched && (
-        <div className="space-y-4">
-          {/* URL Input with Clear Icon */}
-          <div className="relative">
-            <input
-              ref={inputRef}
-              className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              type="text"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleAnalyzeClick();
-                }
-              }}
-              placeholder="Enter website URL"
-            />
-            {url && (
-              <button
-                type="button"
-                onClick={handleClearInput}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-                title="Clear input"
-                aria-label="Clear input field"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
+              <div className="space-y-4">
+                {/* URL Input with Clear Icon */}
+                <div className="relative">
+                  <input
+                    ref={inputRef}
+                    className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    type="text"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleAnalyzeClick();
+                      }
+                    }}
+                    placeholder="Enter website URL"
                   />
-                </svg>
-              </button>
-            )}
-          </div>
+                  {url && (
+                    <button
+                      type="button"
+                      onClick={handleClearInput}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      title="Clear input"
+                      aria-label="Clear input field"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
 
-          {/* Analyze Button */}
-          <button
-            className={`relative w-full py-3 text-white rounded-lg font-semibold ${
-              loading
-                ? "bg-indigo-300 cursor-not-allowed"
-                : "bg-indigo-500 hover:bg-indigo-600"
-            }`}
-            onClick={handleAnalyzeClick}
-            disabled={loading}
-          >
-            {loading ? "Analyzing..." : "Analyze"}
-          </button>
-        </div>
-      )}
+                {/* Analyze Button */}
+                <button
+                  className={`relative w-full py-3 text-white rounded-lg font-semibold ${
+                    loading
+                      ? "bg-indigo-300 cursor-not-allowed"
+                      : "bg-indigo-500 hover:bg-indigo-600"
+                  }`}
+                  onClick={handleAnalyzeClick}
+                  disabled={loading}
+                >
+                  {loading ? "Analyzing..." : "Analyze"}
+                </button>
+              </div>
+            )}
 
             {fetched && loading && (
               <p className="mt-6 text-center text-gray-500 font-semibold">
@@ -797,6 +738,7 @@ export default function Home() {
                   </div>
                 )}
 
+                {/* Images Table */}
                 {activeTab === "tab2" && (
                   <div className="max-w-[1600px] mx-auto">
                     <h1 className="text-white text-center">Image Details</h1>
@@ -805,8 +747,8 @@ export default function Home() {
                         <h4 className="text-white mb-4">
                           Found {uniqueImages.length} images:
                         </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll  bg-white">
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll overflow-visible bg-white">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">
@@ -819,7 +761,34 @@ export default function Home() {
                                   Size (px)
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
-                                  File Size
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-base font-bold text-black">
+                                      File Size
+                                    </span>
+                                    <div className="relative inline-block group">
+                                      <img
+                                        onClick={toggleSort}
+                                        className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                          sortDirection === "asc"
+                                            ? "rotate-180"
+                                            : ""
+                                        }`}
+                                        src={"/sort-descending.png"}
+                                        alt={
+                                          sortDirection === "desc"
+                                            ? "Sort Descending"
+                                            : "Sort Ascending"
+                                        }
+                                      />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
                                   Alt Text
@@ -830,31 +799,19 @@ export default function Home() {
                               </tr>
                             </thead>
                             <tbody>
-                              {uniqueImages.map((image, index) => (
+                              {tableData.map((image, index) => (
                                 <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
                                   <td className="border border-gray-300 px-4 py-2">
                                     {index + 1}
                                   </td>
-
-                                  {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words ">
+                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
                                     {image.src}
-                                    {/* <img
-                                      src={image.src}
-                                      alt={image.alt || `Image ${index + 1}`}
-                                      className="w-20 h-20 object-contain"
-                                    /> */}
                                   </td>
-
-                                  {/* Size (px) */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.width && image.height
                                       ? `${image.width} x ${image.height}`
                                       : "N/A"}
                                   </td>
-
-                                  {/* File Size */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.fileSize
                                       ? `${(image.fileSize / 1024).toFixed(
@@ -862,13 +819,9 @@ export default function Home() {
                                         )} KB`
                                       : "N/A"}
                                   </td>
-
-                                  {/* Alt Text */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.alt || "No Alt Text"}
                                   </td>
-
-                                  {/* View */}
                                   <td className="border border-gray-300 px-4 text-[14px] py-2">
                                     <a
                                       href={image.src}
@@ -891,7 +844,7 @@ export default function Home() {
 
                 {/* Table for Large Images */}
                 {activeTab === "tab3" && (
-                  <div>
+                  <div className="max-w-[1600px] mx-auto">
                     {largeImages.length > 0 ? (
                       <>
                         <h2 className="text-lg text-white font-bold my-4">
@@ -900,7 +853,7 @@ export default function Home() {
                           KB)
                         </h2>
                         <div className="mb-[50px] pb-[50px] border-white border-b">
-                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md rounded-md bg-white">
+                          <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md bg-white">
                             <thead>
                               <tr className="bg-gray-200 text-left">
                                 <th className="border border-gray-300 px-4 py-2">
@@ -913,7 +866,34 @@ export default function Home() {
                                   Size (px)
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
-                                  File Size
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-base font-bold text-black">
+                                      File Size
+                                    </span>
+                                    <div className="relative inline-block group">
+                                      <img
+                                        onClick={toggleSort}
+                                        className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                          sortDirection === "asc"
+                                            ? "rotate-180"
+                                            : ""
+                                        }`}
+                                        src={"/sort-descending.png"}
+                                        alt={
+                                          sortDirection === "desc"
+                                            ? "Sort Descending"
+                                            : "Sort Ascending"
+                                        }
+                                      />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
                                   Alt Text
@@ -924,26 +904,19 @@ export default function Home() {
                               </tr>
                             </thead>
                             <tbody>
-                              {largeImages.map((image, index) => (
+                              {largeImageTableData.map((image, index) => (
                                 <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
                                   <td className="border border-gray-300 px-4 py-2">
                                     {index + 1}
                                   </td>
-
-                                  {/* Image */}
                                   <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
                                     {image.src}
                                   </td>
-
-                                  {/* Size (px) */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.width && image.height
                                       ? `${image.width} x ${image.height}`
                                       : "N/A"}
                                   </td>
-
-                                  {/* File Size */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.fileSize
                                       ? `${(image.fileSize / 1024).toFixed(
@@ -951,13 +924,9 @@ export default function Home() {
                                         )} KB`
                                       : "N/A"}
                                   </td>
-
-                                  {/* Alt Text */}
                                   <td className="border border-gray-300 text-[14px] px-4 py-2">
                                     {image.alt || "No Alt Text"}
                                   </td>
-
-                                  {/* View */}
                                   <td className="border border-gray-300 px-4 text-[14px] py-2">
                                     <a
                                       href={image.src}
@@ -1000,7 +969,34 @@ export default function Home() {
                                   Size (px)
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
-                                  File Size
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-base font-bold text-black">
+                                      File Size
+                                    </span>
+                                    <div className="relative inline-block group">
+                                      <img
+                                        onClick={toggleSort} // Toggle sort on click
+                                        className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                          sortDirection === "asc"
+                                            ? "rotate-180"
+                                            : ""
+                                        }`}
+                                        src={"/sort-descending.png"}
+                                        alt={
+                                          sortDirection === "desc"
+                                            ? "Sort Descending"
+                                            : "Sort Ascending"
+                                        }
+                                      />
+                                      <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                          {sortDirection === "asc"
+                                            ? "Change to Descending Order"
+                                            : "Change to Ascending Order"}
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </th>
                                 <th className="border border-gray-300 px-4 py-2">
                                   Alt Text
@@ -1011,52 +1007,54 @@ export default function Home() {
                               </tr>
                             </thead>
                             <tbody>
-                              {nullFileSizeImages.map((image, index) => (
-                                <tr key={index} className="hover:bg-gray-100">
-                                  {/* Sr */}
-                                  <td className="border border-gray-300 px-4 py-2">
-                                    {index + 1}
-                                  </td>
+                              {nullFileSizeImagesTableData.map(
+                                (image, index) => (
+                                  <tr key={index} className="hover:bg-gray-100">
+                                    {/* Sr */}
+                                    <td className="border border-gray-300 px-4 py-2">
+                                      {index + 1}
+                                    </td>
 
-                                  {/* Image */}
-                                  <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
-                                    {image.src}
-                                  </td>
+                                    {/* Image */}
+                                    <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                      {image.src}
+                                    </td>
 
-                                  {/* Size (px) */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.width && image.height
-                                      ? `${image.width} x ${image.height}`
-                                      : "N/A"}
-                                  </td>
+                                    {/* Size (px) */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.width && image.height
+                                        ? `${image.width} x ${image.height}`
+                                        : "N/A"}
+                                    </td>
 
-                                  {/* File Size */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.fileSize
-                                      ? `${(image.fileSize / 1024).toFixed(
-                                          2
-                                        )} KB`
-                                      : "N/A"}
-                                  </td>
+                                    {/* File Size */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.fileSize
+                                        ? `${(image.fileSize / 1024).toFixed(
+                                            2
+                                          )} KB`
+                                        : "N/A"}
+                                    </td>
 
-                                  {/* Alt Text */}
-                                  <td className="border border-gray-300 text-[14px] px-4 py-2">
-                                    {image.alt || "No Alt Text"}
-                                  </td>
+                                    {/* Alt Text */}
+                                    <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                      {image.alt || "No Alt Text"}
+                                    </td>
 
-                                  {/* View */}
-                                  <td className="border border-gray-300 px-4 text-[14px] py-2">
-                                    <a
-                                      href={image.src}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-blue-600 hover:underline"
-                                    >
-                                      View Image
-                                    </a>
-                                  </td>
-                                </tr>
-                              ))}
+                                    {/* View */}
+                                    <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                      <a
+                                        href={image.src}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:underline"
+                                      >
+                                        View Image
+                                      </a>
+                                    </td>
+                                  </tr>
+                                )
+                              )}
                             </tbody>
                           </table>
                         </div>
