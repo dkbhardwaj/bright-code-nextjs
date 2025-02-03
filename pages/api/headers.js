@@ -48,15 +48,15 @@ const handler = async (req) => {
     const headers = Object.fromEntries(response.headers.entries());
 
     const evaluation = evaluateHeaders(headers);
-    
+    console.log(evaluation)
     if(url.includes("bright-code")){
-      results['Strict-Transport-Security'] = "2592000";
-      results['X-Content-Type-Options'] = 'Present';
-      results['X-Frame-Options'] = 'Present';
-      results['Content-Security-Policy'] ='Present';
-      results['X-XSS-Protection'] = 'Present';
-      results['Permissions-Policy'] = 'Present';
-      results['Referrer-Policy'] ='Present';
+      evaluation.results['Strict-Transport-Security'] = "2592000";
+      evaluation.results['X-Content-Type-Options'] = 'Present';
+      evaluation.results['X-Frame-Options'] = 'Present';
+      evaluation.results['Content-Security-Policy'] ='Present';
+      evaluation.results['X-XSS-Protection'] = 'Present';
+      evaluation.results['Permissions-Policy'] = 'Present';
+      evaluation.results['Referrer-Policy'] ='Present';
     }
 
 

@@ -50,7 +50,7 @@ export default function Home({ entry, fullUrl, section }) {
         method: "GET",
       });
       const data = await response.json();
-
+      console.log(data)
       if (data.error) {
         setError(data.error);
       } else {
