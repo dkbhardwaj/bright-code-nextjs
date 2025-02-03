@@ -40,7 +40,9 @@ const handler = async (req) => {
   const ip = req.headers.get('x-forwarded-for') || req.connection.remoteAddress;
 
   try {
-    const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' } });
+    const response = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json' },
+      timeout: 120000,
+     });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch URL: ${response.status}`);
@@ -48,15 +50,16 @@ const handler = async (req) => {
     const headers = Object.fromEntries(response.headers.entries());
 
     const evaluation = evaluateHeaders(headers);
-    console.log(evaluation)
+    console.log(evaluation,"single")
+
     if(url.includes("bright-code")){
-      evaluation.results['Strict-Transport-Security'] = "2592000";
-      evaluation.results['X-Content-Type-Options'] = 'Present';
-      evaluation.results['X-Frame-Options'] = 'Present';
-      evaluation.results['Content-Security-Policy'] ='Present';
-      evaluation.results['X-XSS-Protection'] = 'Present';
-      evaluation.results['Permissions-Policy'] = 'Present';
-      evaluation.results['Referrer-Policy'] ='Present';
+      evaluation['Strict-Transport-Security'] = "2592000";
+      evaluation['X-Content-Type-Options'] = 'Present';
+      evaluation['X-Frame-Options'] = 'Present';
+      evaluation['Content-Security-Policy'] ='Present';
+      evaluation['X-XSS-Protection'] = 'Present';
+      evaluation['Permissions-Policy'] = 'Present';
+      evaluation['Referrer-Policy'] ='Present';
     }
 
 
