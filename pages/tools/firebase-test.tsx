@@ -1,9 +1,7 @@
 "use client";
 import { get, push, ref, set } from "firebase/database";
 import { useEffect, useState } from "react";
-import { Database } from "../api/firebaseConfig"; // ✅ Ensure correct import
-
-// Define user type
+import { Database } from "../api/firebaseConfig";
 interface UserType {
   id: string;
   title?: string;
