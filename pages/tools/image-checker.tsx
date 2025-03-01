@@ -1,8 +1,11 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"; // Import useRouter hook for query handling
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
+import { get, push, ref, set } from "firebase/database";
+import { Database } from "../api/firebaseConfig";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -259,6 +262,68 @@ export default function Home() {
       setNullFileSizeImagesTableData([...DescSortedNullFileSizeImages]); // Null file size table
     }
   }, [activeTab, sortDirection]);
+
+  // firestore variables
+  const saveCrawlOverview = async (
+    report: any,
+    uniqueImages: any[],
+    images: any[]
+  ) => {
+    try {
+      const overviewData = {
+        overview: {
+          url: report.startUrl,
+          totalImages: uniqueImages.length,
+          totalImagesWithIssues: uniqueImages.filter(
+            (image) =>
+              !image.alt ||
+              image.fileSize === null ||
+              (image.fileSize || 0) > 100 * 1024
+          ).length,
+
+          issueTypes: uniqueImages.reduce((acc, image) => {
+            if (!image.alt)
+              acc["Missing Alt Attribute"] =
+                (acc["Missing Alt Attribute"] || 0) + 1;
+            if (image.fileSize === null)
+              acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
+            if ((image.fileSize || 0) > 100 * 1024)
+              acc["Large Images"] = (acc["Large Images"] || 0) + 1;
+            return acc;
+          }, {} as Record<string, number>),
+
+          imageBreakdownByHost: report.hosts.map((host: string) => ({
+            host,
+            count: images.reduce((count, img) => {
+              try {
+                const imgUrl = new URL(img.src);
+                if (imgUrl.hostname === host) count++;
+              } catch (e) {}
+              return count;
+            }, 0),
+          })),
+
+          timestamp: Date.now(),
+        },
+      };
+
+      // ✅ Push to Realtime Database under "overview"
+      const newRef = push(ref(Database, "crawled_sites")); // Creates a unique entry
+      await set(newRef, overviewData);
+
+      console.log("Overview data saved successfully under 'overview' key!");
+    } catch (error) {
+      console.error("Error saving overview data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!loading && report && uniqueImages.length > 0 && images.length > 0) {
+      saveCrawlOverview(report, uniqueImages, images)
+        .then(() => alert("Crawl data saved successfully!"))
+        .catch((error) => console.error("Error saving crawl data:", error));
+    }
+  }, [loading, report, uniqueImages, images]);
 
   return (
     <>
