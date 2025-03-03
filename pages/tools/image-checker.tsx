@@ -273,72 +273,114 @@ export default function Home() {
   }, [activeTab, sortDirection]);
 
   // firestore variables
-  const saveCrawlOverview = async (
-    report: any,
-    uniqueImages: any[],
-    images: any[]
-  ) => {
+const saveCrawlOverview = async (
+  report: any,
+  uniqueImages: any[],
+  images: any[]
+): Promise<string | null> => {
+  console.log("saveCrawlOverview started");
+  try {
+    const db = getDatabase();
+    const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
+    const crawlId = `${sanitizedUrl}-${Date.now()}`;
+
+    const overviewData = {
+      overview: {
+        url: report.startUrl,
+        totalImages: uniqueImages.length,
+        totalImagesWithIssues: uniqueImages.filter(
+          (image) =>
+            !image.alt ||
+            image.fileSize === null ||
+            (image.fileSize || 0) > 100 * 1024
+        ).length,
+        issueTypes: uniqueImages.reduce((acc, image) => {
+          if (!image.alt)
+            acc["Missing Alt Attribute"] =
+              (acc["Missing Alt Attribute"] || 0) + 1;
+          if (image.fileSize === null)
+            acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
+          if ((image.fileSize || 0) > 100 * 1024)
+            acc["Large Images"] = (acc["Large Images"] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>),
+        imageBreakdownByHost: report.hosts.map((host: string) => ({
+          host,
+          count: images.reduce((count, img) => {
+            try {
+              const imgUrl = new URL(img.src);
+              if (imgUrl.hostname === host) count++;
+            } catch (e) {}
+            return count;
+          }, 0),
+        })),
+        timestamp: Date.now(),
+        crawlId,
+      },
+    };
+
+    console.log("Data being stored in Firebase:", overviewData);
+
+    const dbRef = ref(db, `crawled_sites/${crawlId}`);
+    console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
+    await set(dbRef, overviewData);
+
+    console.log("Overview data saved successfully:", crawlId);
+    return crawlId;
+  } catch (error) {
+    console.error("Error saving overview data:", error);
+    return null;
+  }
+};
+
+const [crawlId, setCrawlId] = useState<string | null>(null);
+
+useEffect(() => {
+  console.log("useEffect triggered:", {
+    loading,
+    report: !!report,
+    uniqueImagesLength: uniqueImages.length,
+    imagesLength: images.length,
+  });
+
+  if (!loading && report && uniqueImages.length > 0 && images.length > 0) {
+    console.log("Conditions met, calling saveCrawlOverview");
+    saveCrawlOverview(report, uniqueImages, images)
+      .then((id) => {
+        console.log("saveCrawlOverview resolved with id:", id);
+        setCrawlId(id);
+        if (id) {
+          alert("Crawl data saved successfully!");
+        }
+      })
+      .catch((error) => console.error("Error saving crawl data:", error));
+  } else {
+    console.log("Conditions not met:", {
+      loading,
+      report: !!report,
+      uniqueImagesLength: uniqueImages.length,
+      imagesLength: images.length,
+    });
+  }
+}, [loading, report, uniqueImages, images]);
+
+  const handleShareReport = async () => {
+    if (!crawlId) {
+      setError("No report available to share.");
+      return;
+    }
+
+    const shareUrl = `${window.location.origin}/report?crawlId=${crawlId}`;
     try {
-      const db = getDatabase();
-      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_"); // Safe key
-      const crawlId = `${sanitizedUrl}-${Date.now()}`; // Unique identifier
-
-      const overviewData = {
-        overview: {
-          url: report.startUrl,
-          totalImages: uniqueImages.length,
-          totalImagesWithIssues: uniqueImages.filter(
-            (image) =>
-              !image.alt ||
-              image.fileSize === null ||
-              (image.fileSize || 0) > 100 * 1024
-          ).length,
-
-          issueTypes: uniqueImages.reduce((acc, image) => {
-            if (!image.alt)
-              acc["Missing Alt Attribute"] =
-                (acc["Missing Alt Attribute"] || 0) + 1;
-            if (image.fileSize === null)
-              acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
-            if ((image.fileSize || 0) > 100 * 1024)
-              acc["Large Images"] = (acc["Large Images"] || 0) + 1;
-            return acc;
-          }, {} as Record<string, number>),
-
-          imageBreakdownByHost: report.hosts.map((host: string) => ({
-            host,
-            count: images.reduce((count, img) => {
-              try {
-                const imgUrl = new URL(img.src);
-                if (imgUrl.hostname === host) count++;
-              } catch (e) {}
-              return count;
-            }, 0),
-          })),
-
-          timestamp: Date.now(),
-          crawlId, // Store the crawl ID
-        },
-      };
-
-      // ✅ Store in Firebase using unique ID
-      const dbRef = ref(db, `crawled_sites/${crawlId}`);
-      await set(dbRef, overviewData);
-
-      console.log("Overview data saved successfully:", crawlId);
-      return crawlId; // Return the ID so we can update the URL
-    } catch (error) {
-      console.error("Error saving overview data:", error);
+      await navigator.clipboard.writeText(shareUrl);
+      // Optional: Show temporary feedback
+      setError(""); // Clear any existing error
+      alert("Report URL copied to clipboard!"); // Replace with better UI feedback later
+    } catch (err) {
+      setError("Failed to copy URL.");
+      console.error("Clipboard error:", err);
     }
   };
-
-  useEffect(() => {
-    if (!loading && report && uniqueImages.length > 0 && images.length > 0) {
-      saveCrawlOverview(report, uniqueImages, images)
-        .then(() => alert("Crawl data saved successfully!"))
-        .catch((error) => console.error("Error saving crawl data:", error));
-    }
-  }, [loading, report, uniqueImages, images]);
 
   return (
     <>
@@ -675,6 +717,15 @@ export default function Home() {
                         >
                           {report.startUrl}
                         </Link>
+                        {/* Share Report Button */}
+                        <button
+                          onClick={handleShareReport}
+                          className="ml-4 relative py-2 px-4 text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg font-semibold disabled:bg-indigo-300 disabled:cursor-not-allowed"
+                          disabled={!crawlId} // Disable if no crawlId
+                          title="Share this report"
+                        >
+                          Share Report
+                        </button>
                       </div>
                       <div
                         className={`cardWrap flex w-[calc(100%+20px)] md:w-full md:ml-0 ml-[-10px] flex-wrap`}
