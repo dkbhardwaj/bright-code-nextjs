@@ -4,7 +4,7 @@ import { useRouter } from "next/router"; // Import useRouter hook for query hand
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
-import { get, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { Database } from "../api/firebaseConfig";
 import {
   Chart as ChartJS,
@@ -59,7 +59,6 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter(); // Access router for query parameter updates
-  // console.log(router.query.url);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -78,26 +77,28 @@ export default function Home() {
     }
   }, [url, router]);
 
-  const fetchWithTimeout = (
+  const fetchWithTimeout = async (
     url: string,
     options: RequestInit,
     timeout: number
   ): Promise<Response> => {
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error("Request timed out"));
-      }, timeout);
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
 
-      fetch(url, options)
-        .then((response) => {
-          clearTimeout(timer);
-          resolve(response);
-        })
-        .catch((err) => {
-          clearTimeout(timer);
-          reject(err);
-        });
-    });
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      return response;
+    } catch (err) {
+      clearTimeout(timer);
+      if (err instanceof DOMException && err.name === "AbortError") {
+        throw new Error("Request timed out");
+      }
+      throw err;
+    }
   };
 
   const fetchWebsiteData = async (): Promise<void> => {
@@ -112,21 +113,28 @@ export default function Home() {
 
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
+        console.log(`Fetching data... Attempts left: ${retries}`);
         const response = await fetchWithTimeout(
           `/api/analyze-images?url=${encodeURIComponent(
-            formattedUrl
+            formatUrl(url)
           )}&scope=page`,
           { method: "GET" },
           30000 // Timeout after 30 seconds
         );
-        if (!response.ok && retries > 0) {
-          throw new Error("Retrying...");
+
+        if (!response.ok) {
+          if (retries > 0) {
+            console.warn(`Retrying due to error: ${response.statusText}`);
+            throw new Error(response.statusText);
+          }
         }
+
         return response;
       } catch (err) {
         if (retries > 0) {
           return await retryFetch(retries - 1);
         }
+        console.error("Final error after retries:", err);
         throw err;
       }
     };
@@ -162,15 +170,16 @@ export default function Home() {
 
   // Function to ensure the URL starts with http:// or https://
   const formatUrl = (url: string): string => {
-    let formattedUrl = url.trim();
-    if (!/^https?:\/\//i.test(formattedUrl)) {
-      formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
+    try {
+      const formattedUrl = new URL(url);
+      return formattedUrl.href; // Return the properly formatted URL
+    } catch {
+      return `http://${url.trim()}`; // If invalid, prepend http://
     }
-    return formattedUrl;
   };
 
   const handleAnalyzeClick = (): void => {
-    if (!url) {
+    if (!url.trim()) {
       setError("Please enter a valid URL.");
       return;
     }
@@ -270,6 +279,10 @@ export default function Home() {
     images: any[]
   ) => {
     try {
+      const db = getDatabase();
+      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_"); // Safe key
+      const crawlId = `${sanitizedUrl}-${Date.now()}`; // Unique identifier
+
       const overviewData = {
         overview: {
           url: report.startUrl,
@@ -304,14 +317,16 @@ export default function Home() {
           })),
 
           timestamp: Date.now(),
+          crawlId, // Store the crawl ID
         },
       };
 
-      // ✅ Push to Realtime Database under "overview"
-      const newRef = push(ref(Database, "crawled_sites")); // Creates a unique entry
-      await set(newRef, overviewData);
+      // ✅ Store in Firebase using unique ID
+      const dbRef = ref(db, `crawled_sites/${crawlId}`);
+      await set(dbRef, overviewData);
 
-      console.log("Overview data saved successfully under 'overview' key!");
+      console.log("Overview data saved successfully:", crawlId);
+      return crawlId; // Return the ID so we can update the URL
     } catch (error) {
       console.error("Error saving overview data:", error);
     }
@@ -340,6 +355,7 @@ export default function Home() {
                 <div className="relative">
                   <input
                     ref={inputRef}
+                    aria-label="Enter website URL"
                     className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="text"
                     value={url}
