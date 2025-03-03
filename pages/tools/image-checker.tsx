@@ -107,6 +107,8 @@ export default function Home() {
     setImages([]);
     setLinks([]);
     setReport(null);
+    setHasSaved(false);
+    setCrawlId(null);
 
     // Ensure URL starts with http:// or https://
     const formattedUrl = formatUrl(url);
@@ -273,114 +275,121 @@ export default function Home() {
   }, [activeTab, sortDirection]);
 
   // firestore variables
-const saveCrawlOverview = async (
-  report: any,
-  uniqueImages: any[],
-  images: any[]
-): Promise<string | null> => {
-  console.log("saveCrawlOverview started");
-  try {
-    const db = getDatabase();
-    const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
-    const crawlId = `${sanitizedUrl}-${Date.now()}`;
+  const saveCrawlOverview = async (
+    report: any,
+    uniqueImages: any[],
+    images: any[]
+  ): Promise<string | null> => {
+    console.log("saveCrawlOverview started");
+    try {
+      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
+      const crawlId = `${sanitizedUrl}-${Date.now()}`;
 
-    const overviewData = {
-      overview: {
-        url: report.startUrl,
-        totalImages: uniqueImages.length,
-        totalImagesWithIssues: uniqueImages.filter(
-          (image) =>
-            !image.alt ||
-            image.fileSize === null ||
-            (image.fileSize || 0) > 100 * 1024
-        ).length,
-        issueTypes: uniqueImages.reduce((acc, image) => {
-          if (!image.alt)
-            acc["Missing Alt Attribute"] =
-              (acc["Missing Alt Attribute"] || 0) + 1;
-          if (image.fileSize === null)
-            acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
-          if ((image.fileSize || 0) > 100 * 1024)
-            acc["Large Images"] = (acc["Large Images"] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>),
-        imageBreakdownByHost: report.hosts.map((host: string) => ({
-          host,
-          count: images.reduce((count, img) => {
-            try {
-              const imgUrl = new URL(img.src);
-              if (imgUrl.hostname === host) count++;
-            } catch (e) {}
-            return count;
-          }, 0),
-        })),
-        timestamp: Date.now(),
-        crawlId,
-      },
-    };
+      const overviewData = {
+        overview: {
+          url: report.startUrl,
+          totalImages: uniqueImages.length,
+          totalImagesWithIssues: uniqueImages.filter(
+            (image) =>
+              !image.alt ||
+              image.fileSize === null ||
+              (image.fileSize || 0) > 100 * 1024
+          ).length,
+          issueTypes: uniqueImages.reduce((acc, image) => {
+            if (!image.alt)
+              acc["Missing Alt Attribute"] =
+                (acc["Missing Alt Attribute"] || 0) + 1;
+            if (image.fileSize === null)
+              acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
+            if ((image.fileSize || 0) > 100 * 1024)
+              acc["Large Images"] = (acc["Large Images"] || 0) + 1;
+            return acc;
+          }, {} as Record<string, number>),
+          imageBreakdownByHost: report.hosts.map((host: string) => ({
+            host,
+            count: images.reduce((count, img) => {
+              try {
+                const imgUrl = new URL(img.src);
+                if (imgUrl.hostname === host) count++;
+              } catch (e) {}
+              return count;
+            }, 0),
+          })),
+          timestamp: Date.now(),
+          crawlId,
+        },
+      };
 
-    console.log("Data being stored in Firebase:", overviewData);
+      console.log("Data being stored in Firebase:", overviewData);
 
-    const dbRef = ref(db, `crawled_sites/${crawlId}`);
-    console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
-    await set(dbRef, overviewData);
+      const dbRef = ref(Database, `crawled_sites/${crawlId}`); // Use imported Database
+      console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
+      await set(dbRef, overviewData);
 
-    console.log("Overview data saved successfully:", crawlId);
-    return crawlId;
-  } catch (error) {
-    console.error("Error saving overview data:", error);
-    return null;
-  }
-};
+      console.log("Overview data saved successfully:", crawlId);
+      return crawlId;
+    } catch (error) {
+      console.error("Error saving overview data:", error);
+      return null;
+    }
+  };
+  const [crawlId, setCrawlId] = useState<string | null>(null);
+  const [hasSaved, setHasSaved] = useState(false); // New flag
 
-const [crawlId, setCrawlId] = useState<string | null>(null);
-
-useEffect(() => {
-  console.log("useEffect triggered:", {
-    loading,
-    report: !!report,
-    uniqueImagesLength: uniqueImages.length,
-    imagesLength: images.length,
-  });
-
-  if (!loading && report && uniqueImages.length > 0 && images.length > 0) {
-    console.log("Conditions met, calling saveCrawlOverview");
-    saveCrawlOverview(report, uniqueImages, images)
-      .then((id) => {
-        console.log("saveCrawlOverview resolved with id:", id);
-        setCrawlId(id);
-        if (id) {
-          alert("Crawl data saved successfully!");
-        }
-      })
-      .catch((error) => console.error("Error saving crawl data:", error));
-  } else {
-    console.log("Conditions not met:", {
+  useEffect(() => {
+    console.log("useEffect triggered:", {
       loading,
       report: !!report,
       uniqueImagesLength: uniqueImages.length,
       imagesLength: images.length,
     });
+
+    if (
+      !loading &&
+      report &&
+      uniqueImages.length > 0 &&
+      images.length > 0 &&
+      !hasSaved
+    ) {
+      console.log("Saving to Firebase...");
+      saveCrawlOverview(report, uniqueImages, images)
+        .then((id) => {
+          setCrawlId(id);
+          if (id) {
+            alert("Crawl data saved successfully!");
+            setHasSaved(true); // Mark as saved
+          }
+        })
+        .catch((error) => console.error("Error saving crawl data:", error));
+    } else {
+      console.log("Conditions not met:", {
+        loading,
+        report: !!report,
+        uniqueImagesLength: uniqueImages.length,
+        imagesLength: images.length,
+      });
+    }
+  }, [loading, report, uniqueImages, images, hasSaved]);
+
+const [shareFeedback, setShareFeedback] = useState<string | null>(null);
+
+const handleShareReport = async () => {
+  if (!crawlId) {
+    setError("No report available to share.");
+    return;
   }
-}, [loading, report, uniqueImages, images]);
 
-  const handleShareReport = async () => {
-    if (!crawlId) {
-      setError("No report available to share.");
-      return;
-    }
-
-    const shareUrl = `${window.location.origin}/report?crawlId=${crawlId}`;
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      // Optional: Show temporary feedback
-      setError(""); // Clear any existing error
-      alert("Report URL copied to clipboard!"); // Replace with better UI feedback later
-    } catch (err) {
-      setError("Failed to copy URL.");
-      console.error("Clipboard error:", err);
-    }
-  };
+  const shareUrl = `${window.location.origin}/tools/report?crawlId=${crawlId}`;
+  try {
+    await navigator.clipboard.writeText(shareUrl);
+    setError("");
+    setShareFeedback("Copied!");
+    setTimeout(() => setShareFeedback(null), 2000); // Reset after 2 seconds
+  } catch (err) {
+    setError("Failed to copy URL.");
+    console.error("Clipboard error:", err);
+  }
+};
 
   return (
     <>
@@ -721,10 +730,10 @@ useEffect(() => {
                         <button
                           onClick={handleShareReport}
                           className="ml-4 relative py-2 px-4 text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg font-semibold disabled:bg-indigo-300 disabled:cursor-not-allowed"
-                          disabled={!crawlId} // Disable if no crawlId
+                          disabled={!crawlId}
                           title="Share this report"
                         >
-                          Share Report
+                          {shareFeedback || "Share Report"}
                         </button>
                       </div>
                       <div
