@@ -58,7 +58,7 @@ const ReportPage = () => {
   }
 
   return (
-    <div className="section_bgImage bg-darkBlue min-h-screen p-8">
+    <div className="section_bgImage bg-darkBlue min-h-screen p-[200px]">
       <h1 className="text-2xl font-bold text-white text-center mb-6">
         Report for {reportData.url}
       </h1>
