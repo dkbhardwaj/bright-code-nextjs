@@ -42,10 +42,10 @@ const getGrade = (score: number): string => {
 const ReportPage = () => {
   const router = useRouter();
   const { crawlId } = router.query;
-  const [reportData, setReportData] = useState<ReportData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [shareFeedback, setShareFeedback] = useState<string | null>(null);
+  const [reportData, setReportData] = useState<ReportData | null>(null);
+  const [imageDetails, setImageDetails] = useState<any[]>([]);
 
   useEffect(() => {
     if (!crawlId) return;
@@ -54,8 +54,16 @@ const ReportPage = () => {
       try {
         const dbRef = ref(Database, `crawled_sites/${crawlId}`);
         const snapshot = await get(dbRef);
+
         if (snapshot.exists()) {
-          setReportData(snapshot.val().overview);
+          const data = snapshot.val();
+          console.log("Full fetched report data:", data); // Log full data
+
+          setReportData({
+            ...data.overview,
+          });
+
+          setImageDetails(data.imageDetails || []); // Store image details separately
         } else {
           setError("No report found for this ID.");
         }
@@ -69,23 +77,6 @@ const ReportPage = () => {
 
     fetchReportData();
   }, [crawlId]);
-
-  const handleShareReport = async () => {
-    if (!crawlId) {
-      setError("No report available to share.");
-      return;
-    }
-    const shareUrl = `${window.location.origin}/report?crawlId=${crawlId}`;
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setError("");
-      setShareFeedback("Copied!");
-      setTimeout(() => setShareFeedback(null), 2000);
-    } catch (err) {
-      setError("Failed to copy URL.");
-      console.error("Clipboard error:", err);
-    }
-  };
 
   if (loading)
     return <div className="text-white text-center">Loading report...</div>;
@@ -102,6 +93,7 @@ const ReportPage = () => {
         100
     ) ||
     0;
+
 
   // Define categories and rules based on your data
   const categories: Category[] = [
@@ -160,6 +152,8 @@ const ReportPage = () => {
     },
   ];
 
+  console.log(imageDetails);
+
   return (
     <section className="image-checker-report min-h-screen pt-[200px] pb-[150px] bg-purple">
       <div className="container">
@@ -198,14 +192,6 @@ const ReportPage = () => {
                   {reportData.url}
                 </Link>
               </p>
-              {/* <button
-                onClick={handleShareReport}
-                className="mt-2 py-2 px-4 text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg font-semibold disabled:bg-indigo-300 disabled:cursor-not-allowed"
-                disabled={!crawlId}
-                title="Share this report"
-              >
-                {shareFeedback || "Share Report"}
-              </button> */}
             </div>
             {/* Optional: Add screenshot if available in Firebase */}
             <div className="screenshotWrapper w-[40%]">
@@ -335,6 +321,100 @@ const ReportPage = () => {
             <p>Timestamp: {new Date(reportData.timestamp).toLocaleString()}</p> */}
           </div>
         </div>
+
+        <div className="max-w-[1600px] mx-auto">
+          <h1 className="text-white text-center">Image Details</h1>
+          {imageDetails.length > 0 && (
+            <div className="mt-8 w-full ">
+              <h4 className="text-white mb-4">
+                Found {imageDetails.length} images:
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll overflow-visible bg-white">
+                <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
+                  <thead>
+                    <tr className="bg-gray-200 text-left">
+                      <th className="border border-gray-300 px-4 py-2">Sr</th>
+                      <th className="border border-gray-300 px-4 py-2">
+                        Image
+                      </th>
+                      <th className="border border-gray-300 px-4 py-2">
+                        Size (px)
+                      </th>
+                      <th className="border border-gray-300 px-4 py-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-base font-bold text-black">
+                            File Size
+                          </span>
+                          <div className="relative inline-block group">
+                            {/* <img
+                              onClick={toggleSort}
+                              className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
+                                sortDirection === "asc" ? "rotate-180" : ""
+                              }`}
+                              src={"/sort-descending.png"}
+                              alt={
+                                sortDirection === "desc"
+                                  ? "Sort Descending"
+                                  : "Sort Ascending"
+                              }
+                            /> */}
+                            {/* <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
+                                {sortDirection === "asc"
+                                  ? "Change to Descending Order"
+                                  : "Change to Ascending Order"}
+                              </span>
+                            </div> */}
+                          </div>
+                        </div>
+                      </th>
+                      <th className="border border-gray-300 px-4 py-2">
+                        Alt Text
+                      </th>
+                      <th className="border border-gray-300 px-4 py-2">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {imageDetails.map((image, index) => (
+                      <tr key={index} className="hover:bg-gray-100">
+                        <td className="border border-gray-300 px-4 py-2">
+                          {index + 1}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                          {image.src}
+                        </td>
+                        <td className="border border-gray-300 text-[14px] px-4 py-2">
+                          {image.width && image.height
+                            ? `${image.width} x ${image.height}`
+                            : "N/A"}
+                        </td>
+                        <td className="border border-gray-300 text-[14px] px-4 py-2">
+                          {image.fileSize
+                            ? `${(image.fileSize / 1024).toFixed(2)} KB`
+                            : "N/A"}
+                        </td>
+                        <td className="border border-gray-300 text-[14px] px-4 py-2">
+                          {image.alt || "No Alt Text"}
+                        </td>
+                        <td className="border border-gray-300 px-4 text-[14px] py-2">
+                          <a
+                            href={image.src}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"
+                          >
+                            View Image
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="w-full text-center py-[40px]">
           <p className="!text-white underline">
             {" "}

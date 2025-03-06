@@ -275,64 +275,78 @@ export default function Home() {
   }, [activeTab, sortDirection]);
 
   // firestore variables
-  const saveCrawlOverview = async (
-    report: any,
-    uniqueImages: any[],
-    images: any[]
-  ): Promise<string | null> => {
-    console.log("saveCrawlOverview started");
-    try {
-      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
-      const crawlId = `${sanitizedUrl}-${Date.now()}`;
+const saveCrawlOverview = async (
+  report: any,
+  uniqueImages: any[],
+  images: any[]
+): Promise<string | null> => {
+  console.log("saveCrawlOverview started");
+  try {
+    const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
+    const crawlId = `${sanitizedUrl}-${Date.now()}`;
 
-      const overviewData = {
-        overview: {
-          url: report.startUrl,
-          totalImages: uniqueImages.length,
-          totalImagesWithIssues: uniqueImages.filter(
-            (image) =>
-              !image.alt ||
-              image.fileSize === null ||
-              (image.fileSize || 0) > 100 * 1024
-          ).length,
-          issueTypes: uniqueImages.reduce((acc, image) => {
-            if (!image.alt)
-              acc["Missing Alt Attribute"] =
-                (acc["Missing Alt Attribute"] || 0) + 1;
-            if (image.fileSize === null)
-              acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
-            if ((image.fileSize || 0) > 100 * 1024)
-              acc["Large Images"] = (acc["Large Images"] || 0) + 1;
-            return acc;
-          }, {} as Record<string, number>),
-          imageBreakdownByHost: report.hosts.map((host: string) => ({
-            host,
-            count: images.reduce((count, img) => {
-              try {
-                const imgUrl = new URL(img.src);
-                if (imgUrl.hostname === host) count++;
-              } catch (e) {}
-              return count;
-            }, 0),
-          })),
-          timestamp: Date.now(),
-          crawlId,
-        },
-      };
+    const imageDetailsFormatted = uniqueImages.map((image) => ({
+      src: image.src,
+      width: image.width || "N/A",
+      height: image.height || "N/A",
+      fileSize: image.fileSize
+        ? `${(image.fileSize / 1024).toFixed(2)} KB`
+        : "N/A",
+      alt: image.alt || "No Alt Text",
+    }));
 
-      console.log("Data being stored in Firebase:", overviewData);
+    const dataToSave = {
+      overview: {
+        url: report.startUrl,
+        totalImages: uniqueImages.length,
+        totalImagesWithIssues: uniqueImages.filter(
+          (image) =>
+            !image.alt ||
+            image.fileSize === null ||
+            (image.fileSize || 0) > 100 * 1024
+        ).length,
+        issueTypes: uniqueImages.reduce((acc, image) => {
+          if (!image.alt)
+            acc["Missing Alt Attribute"] =
+              (acc["Missing Alt Attribute"] || 0) + 1;
+          if (image.fileSize === null)
+            acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
+          if ((image.fileSize || 0) > 100 * 1024)
+            acc["Large Images"] = (acc["Large Images"] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>),
+        imageBreakdownByHost: report.hosts.map((host: string) => ({
+          host,
+          count: images.reduce((count, img) => {
+            try {
+              const imgUrl = new URL(img.src);
+              if (imgUrl.hostname === host) count++;
+            } catch (e) {}
+            return count;
+          }, 0),
+        })),
+        timestamp: Date.now(),
+        crawlId,
+      },
+      imageDetails: imageDetailsFormatted,
+    };
 
-      const dbRef = ref(Database, `crawled_sites/${crawlId}`); // Use imported Database
-      console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
-      await set(dbRef, overviewData);
+    console.log("Data being stored in Firebase:", dataToSave);
 
-      console.log("Overview data saved successfully:", crawlId);
-      return crawlId;
-    } catch (error) {
-      console.error("Error saving overview data:", error);
-      return null;
-    }
-  };
+    const dbRef = ref(Database, `crawled_sites/${crawlId}`);
+    console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
+    await set(dbRef, dataToSave);
+
+    console.log("Data saved successfully:", dataToSave);
+    return crawlId;
+  } catch (error) {
+    console.error("Error saving data:", error);
+    return null;
+  }
+};
+
+
+  // Existing useEffect (unchanged)
   const [crawlId, setCrawlId] = useState<string | null>(null);
   const [hasSaved, setHasSaved] = useState(false); // New flag
 
@@ -371,25 +385,25 @@ export default function Home() {
     }
   }, [loading, report, uniqueImages, images, hasSaved]);
 
-const [shareFeedback, setShareFeedback] = useState<string | null>(null);
+  const [shareFeedback, setShareFeedback] = useState<string | null>(null);
 
-const handleShareReport = async () => {
-  if (!crawlId) {
-    setError("No report available to share.");
-    return;
-  }
+  const handleShareReport = async () => {
+    if (!crawlId) {
+      setError("No report available to share.");
+      return;
+    }
 
-  const shareUrl = `${window.location.origin}/tools/report?crawlId=${crawlId}`;
-  try {
-    await navigator.clipboard.writeText(shareUrl);
-    setError("");
-    setShareFeedback("Copied!");
-    setTimeout(() => setShareFeedback(null), 2000); // Reset after 2 seconds
-  } catch (err) {
-    setError("Failed to copy URL.");
-    console.error("Clipboard error:", err);
-  }
-};
+    const shareUrl = `${window.location.origin}/tools/report?crawlId=${crawlId}`;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setError("");
+      setShareFeedback("Copied!");
+      setTimeout(() => setShareFeedback(null), 2000); // Reset after 2 seconds
+    } catch (err) {
+      setError("Failed to copy URL.");
+      console.error("Clipboard error:", err);
+    }
+  };
 
   return (
     <>
