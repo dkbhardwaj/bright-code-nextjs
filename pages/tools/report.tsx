@@ -48,7 +48,7 @@ const ReportPage = () => {
   const [imageDetails, setImageDetails] = useState<any[]>([]);
   const [largeImages, setLargeImages] = useState<any[]>([]);
   const [nullImages, setNullImages] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTab, setActiveTab] = useState<string | null>("tab1");
 
   useEffect(() => {
     if (!crawlId) return;
@@ -211,7 +211,7 @@ const ReportPage = () => {
 
               <div
                 className={`relative border-solid border-4 border-white rounded-lg max-w-[30%] min-w-[160px] min-h-[160px] flex justify-center items-center flex-col cursor-pointer hover:border-orange transition-[border] ${
-                  activeTab === "tab1" ? "border-orange" : ""
+                  activeTab === "tab1" ? "!border-orange" : ""
                 }`}
                 onClick={() => setActiveTab("tab1")}
               >
