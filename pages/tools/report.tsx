@@ -46,6 +46,7 @@ const ReportPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [reportData, setReportData] = useState<ReportData | null>(null);
   const [imageDetails, setImageDetails] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
     if (!crawlId) return;
@@ -57,7 +58,7 @@ const ReportPage = () => {
 
         if (snapshot.exists()) {
           const data = snapshot.val();
-          // console.log("Full fetched report data:", data); // Log full data
+          console.log("Full fetched report data:", data); // Log full data
 
           setReportData({
             ...data.overview,
@@ -151,12 +152,84 @@ const ReportPage = () => {
     },
   ];
 
-
   return (
     <section className="image-checker-report min-h-screen pt-[200px] pb-[150px] bg-purple">
       <div className="container">
+        <div className="headerPart text-center">
+          <div className="flex gap-5 justify-center items-baseline">
+          <h3>Report</h3><span className="!text-white">by Bright Code Tools</span>
+          </div>
+          <div>
+            <div className="resultsMenu gap-[50px] flex justify-center my-[50px]">
+              <div className="relative border-solid border-4 border-white rounded-lg max-w-[30%] min-w-[160px] min-h-[160px] flex justify-center items-center hover:border-orange transition-[border] flex-col">
+                <Link
+                  className="menuItem back redirect"
+                  href="/tools/image-checker"
+                >
+                  .
+                </Link>
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="#fff"
+                    d="M256 0a256 256 0 110 512 256 256 0 010-512zm0 464a208 208 0 100-416 208 208 0 000 416zM105 233l128-128a32 32 0 1146 46l-74 73h179a32 32 0 010 64H205l74 73a32 32 0 01-46 46L105 279a32 32 0 010-46z"
+                  ></path>
+                </svg>
+                <span className="!text-white mt-[30px]">New test</span>
+              </div>
+
+              {/* <div className="relative border-solid border-4 border-white rounded-lg max-w-[30%] min-w-[160px] min-h-[160px] flex justify-center items-center hover:border-orange transition-[border] flex-col">
+                <Link
+                  className="menuItem restart redirect"
+                  href=""
+                  ng-click="testAgain()"
+                >
+                  .{" "}
+                </Link>
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="#fff"
+                    d="M437 75a255 255 0 00-421 91l60 23a192 192 0 01316-69l-72 72h192V0l-75 75zM256 448c-53 0-101-21-136-56l72-72H0v192l75-75a255 255 0 00421-91l-60-23c-27 73-98 125-180 125z"
+                  ></path>
+                </svg>
+                <span className="!text-white mt-[30px]">Test again</span>
+              </div> */}
+
+              <div
+                className={`relative border-solid border-4 border-white rounded-lg max-w-[30%] min-w-[160px] min-h-[160px] flex justify-center items-center flex-col cursor-pointer hover:border-orange transition-[border] ${
+                  activeTab === "tab1" ? "border-orange" : ""
+                }`}
+                onClick={() => setActiveTab("tab1")}
+              >
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="#fff"
+                    d="M0 0h128v128H0zm192 32h320v64H192zM0 192h128v128H0zm192 32h320v64H192zM0 384h128v128H0zm192 32h320v64H192z"
+                  ></path>
+                </svg>
+                <span className="!text-white mt-[30px] inline-block">
+                  Dashboard
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="bg-white p-[40px] rounded-lg">
-          {/* Global Score */}
           <div className="globalScore mb-8 flex items-center justify-center gap-6">
             <div className="w-[50%]">
               <h2 className="text-2xl font-bold text-gray-800">Global Score</h2>
@@ -196,110 +269,210 @@ const ReportPage = () => {
               <ScreenshotPreview url={reportData?.url} />
             </div>
           </div>
-          {/* Score Details */}
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Score Details
-          </h2>
-          <div className="notations space-y-6">
-            {categories.map((category, index) => (
-              <div key={index} className="flex flex-col md:flex-row gap-4">
-                <div
-                  className={`categoryScore text-2xl font-bold w-12 h-12 flex items-center justify-center rounded-full ${
-                    getGrade(category.categoryScore) === "A"
-                      ? "bg-green-500 text-white"
-                      : getGrade(category.categoryScore) === "B"
-                      ? "bg-lime-500 text-white"
-                      : getGrade(category.categoryScore) === "C"
-                      ? "bg-yellow-500 text-white"
-                      : getGrade(category.categoryScore) === "D"
-                      ? "bg-orange text-white"
-                      : "bg-red-500 text-white"
-                  }`}
-                >
-                  {getGrade(category.categoryScore)}
-                </div>
-                <div className="flex-1">
-                  <div className="category text-xl font-semibold text-gray-800 mb-2">
-                    {category.category}
-                  </div>
-                  <div className="criteria">
-                    <div className="table w-full border-collapse">
-                      {category.rules.map((rule, ruleIndex) => (
-                        <a
-                          key={ruleIndex}
-                          href={`#${rule.label
-                            .replace(/\s+/g, "-")
-                            .toLowerCase()}`} // Placeholder link
-                          className={`flex items-center justify-between py-2 px-4 border-b border-gray-200 hover:bg-gray-50 ${
-                            rule.abnormal ? "warning bg-yellow-50" : ""
-                          }`}
-                        >
-                          <div className="grade">
-                            <div
-                              className={`text-lg font-bold w-8 h-8 flex items-center justify-center rounded-full ${
-                                getGrade(rule.score) === "A"
-                                  ? "bg-green-500 text-white"
-                                  : getGrade(rule.score) === "B"
-                                  ? "bg-lime-500 text-white"
-                                  : getGrade(rule.score) === "C"
-                                  ? "bg-yellow-500 text-white"
-                                  : getGrade(rule.score) === "D"
-                                  ? "bg-orange text-white"
-                                  : "bg-red-500 text-white"
-                              }`}
-                            >
-                              {getGrade(rule.score)}
-                            </div>
-                          </div>
-                          <div className="label flex-1 ml-4 text-gray-700">
-                            {rule.label}
-                          </div>
-                          <div className="result flex items-center gap-2 text-gray-700">
-                            <span>
-                              {rule.result}
-                              {rule.unit ? ` ${rule.unit}` : ""}
-                            </span>
-                            {rule.abnormal && (
-                              <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 512 512"
-                                className="text-red-500"
-                                xmlns="http://www.w3.org/2000/svg"
+          {activeTab === "tab1" && (
+            <>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                Score Details
+              </h2>
+              <div className="notations space-y-6">
+                {categories.map((category, index) => {
+                  // console.log("Category:", category); // Logs each category object
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-col md:flex-row gap-4"
+                    >
+                      <div
+                        className={`categoryScore text-2xl font-bold w-12 h-12 flex items-center justify-center rounded-full ${
+                          getGrade(category.categoryScore) === "A"
+                            ? "bg-green-500 text-white"
+                            : getGrade(category.categoryScore) === "B"
+                            ? "bg-lime-500 text-white"
+                            : getGrade(category.categoryScore) === "C"
+                            ? "bg-yellow-500 text-white"
+                            : getGrade(category.categoryScore) === "D"
+                            ? "bg-orange text-white"
+                            : "bg-red-500 text-white"
+                        }`}
+                      >
+                        {getGrade(category.categoryScore)}
+                      </div>
+                      <div className="flex-1">
+                        <div className="category text-xl font-semibold text-gray-800 mb-2">
+                          {category.category}
+                        </div>
+                        <div className="criteria">
+                          <div className="table w-full border-collapse">
+                            {category.rules.map((rule, ruleIndex) => (
+                              <div
+                                key={ruleIndex}
+                                className={`flex items-center justify-between py-2 px-4 border-b border-gray-200 hover:bg-gray-50 ${
+                                  rule.abnormal ? "warning bg-yellow-50" : ""
+                                }`}
                               >
-                                <path
-                                  fill="red"
-                                  d="M256 79L84 448h344L256 79zm0-79c11 0 22 7 30 22l219 436c17 30 2 54-32 54H39c-34 0-49-24-32-54L226 22c8-15 19-22 30-22zm0 192c18 0 32 14 32 32l-10 96h-44l-10-96c0-18 14-32 32-32z"
-                                />
-                                <circle
-                                  cx="256"
-                                  cy="384"
-                                  r="31"
-                                  stroke="#FF0000"
-                                />
-                              </svg>
-                            )}
+                                <div className="grade">
+                                  <div
+                                    className={`text-lg font-bold w-8 h-8 flex items-center justify-center rounded-full ${
+                                      getGrade(rule.score) === "A"
+                                        ? "bg-green-500 text-white"
+                                        : getGrade(rule.score) === "B"
+                                        ? "bg-lime-500 text-white"
+                                        : getGrade(rule.score) === "C"
+                                        ? "bg-yellow-500 text-white"
+                                        : getGrade(rule.score) === "D"
+                                        ? "bg-orange text-white"
+                                        : "bg-red-500 text-white"
+                                    }`}
+                                  >
+                                    {getGrade(rule.score)}
+                                  </div>
+                                </div>
+
+                                {/* Add onClick handler if rule.label is "Total Images" */}
+                                <div
+                                  className={`label flex-1 ml-4 text-gray-700 ${
+                                    rule.label === "Total Images"
+                                      ? "cursor-pointer text-blue-500 hover:underline"
+                                      : ""
+                                  }`}
+                                  onClick={
+                                    rule.label === "Total Images"
+                                      ? () => setActiveTab("tab2")
+                                      : undefined
+                                  }
+                                >
+                                  {rule.label}
+                                </div>
+
+                                <div className="result flex items-center gap-2 text-gray-700">
+                                  <span>
+                                    {rule.result}
+                                    {rule.unit ? ` ${rule.unit}` : ""}
+                                  </span>
+                                  {rule.abnormal && (
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 512 512"
+                                      className="text-red-500"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        fill="red"
+                                        d="M256 79L84 448h344L256 79zm0-79c11 0 22 7 30 22l219 436c17 30 2 54-32 54H39c-34 0-49-24-32-54L226 22c8-15 19-22 30-22zm0 192c18 0 32 14 32 32l-10 96h-44l-10-96c0-18 14-32 32-32z"
+                                      />
+                                      <circle
+                                        cx="256"
+                                        cy="384"
+                                        r="31"
+                                        stroke="#FF0000"
+                                      />
+                                    </svg>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                          {/* <div className="info ml-4">
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 512 512"
-                              className="text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M224 352h64v64h-64zm128-224c18 0 32 14 32 32v96l-96 64h-64v-32l96-64v-32H160v-64h192zm-96-80A207 207 0 0048 256a207 207 0 00208 208 207 207 0 00208-208A207 207 0 00256 48zm0-48a256 256 0 110 512 256 256 0 010-512z" />
-                            </svg>
-                          </div> */}
-                        </a>
-                      ))}
+                        </div>
+                      </div>
                     </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+          {activeTab === "tab2" && (
+            <div className="max-w-[1600px] mx-auto">
+              <h2 className="text-2xl !text-black font-bold text-gray-800 mb-6">
+                Image Details
+              </h2>
+              {imageDetails.length > 0 && (
+                <div className="mt-8 w-full ">
+                  <h4 className="text-white mb-4">
+                    Found {imageDetails.length} images:
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll overflow-visible bg-white">
+                    <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
+                      <thead>
+                        <tr className="bg-gray-200 text-left">
+                          <th className="border border-gray-300 px-4 py-2">
+                            Sr
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Image
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Size (px)
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-bold text-black">
+                                File Size
+                              </span>
+                              <div className="relative inline-block group"></div>
+                            </div>
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Alt Text
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            View
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {imageDetails.map((image, index) => {
+                          // console.log("Image Details:", image); // Logs each image object
+
+                          return (
+                            <tr key={index} className="hover:bg-gray-100">
+                              <td className="border border-gray-300 px-4 py-2">
+                                {index + 1}
+                              </td>
+                              <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                <a
+                                  href={image.src}
+                                  target="__blank"
+                                  className="hover:text-purple transition-colors"
+                                >
+                                  {image.src}
+                                </a>
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.width === "N/A" || image.height === "N/A"
+                                  ? "N/A"
+                                  : `${image.width} x ${image.height}`}
+                              </td>
+
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.fileSize
+                                  ? `${image.fileSize} KB`
+                                  : "N/A"}
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.alt || "No Alt Text"}
+                              </td>
+                              <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                <a
+                                  href={image.src}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline"
+                                >
+                                  View Image
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          {/* Footer Info */}
+              )}
+            </div>
+          )}
           <div className="mt-8 text-gray-600 text-center">
             <p>
               Need help accelerating your website?{" "}
@@ -314,99 +487,6 @@ const ReportPage = () => {
             {/* <p>Crawl ID: {reportData.crawlId}</p>
             <p>Timestamp: {new Date(reportData.timestamp).toLocaleString()}</p> */}
           </div>
-        </div>
-
-        <div className="max-w-[1600px] mx-auto">
-          <h1 className="text-white text-center">Image Details</h1>
-          {imageDetails.length > 0 && (
-            <div className="mt-8 w-full ">
-              <h4 className="text-white mb-4">
-                Found {imageDetails.length} images:
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 h-[87vh] overflow-y-scroll overflow-visible bg-white">
-                <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
-                  <thead>
-                    <tr className="bg-gray-200 text-left">
-                      <th className="border border-gray-300 px-4 py-2">Sr</th>
-                      <th className="border border-gray-300 px-4 py-2">
-                        Image
-                      </th>
-                      <th className="border border-gray-300 px-4 py-2">
-                        Size (px)
-                      </th>
-                      <th className="border border-gray-300 px-4 py-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-base font-bold text-black">
-                            File Size
-                          </span>
-                          <div className="relative inline-block group">
-                            {/* <img
-                              onClick={toggleSort}
-                              className={`relative max-w-[20px] max-h-[20px] ml-[10px] cursor-pointer ${
-                                sortDirection === "asc" ? "rotate-180" : ""
-                              }`}
-                              src={"/sort-descending.png"}
-                              alt={
-                                sortDirection === "desc"
-                                  ? "Sort Descending"
-                                  : "Sort Ascending"
-                              }
-                            /> */}
-                            {/* <div className="absolute top-1/2 -translate-y-1/2 left-[50px] w-max h-max bottom-[120%] opacity-0 group-hover:opacity-100 transition-opacity">
-                              <span className="inline-block relative bg-black text-white text-sm font-medium px-2 py-1 rounded-lg before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:top-1/2 before:left-[-8px] before:-translate-y-1/2 before:rotate-45 before:z-[-1] before:bg-black">
-                                {sortDirection === "asc"
-                                  ? "Change to Descending Order"
-                                  : "Change to Ascending Order"}
-                              </span>
-                            </div> */}
-                          </div>
-                        </div>
-                      </th>
-                      <th className="border border-gray-300 px-4 py-2">
-                        Alt Text
-                      </th>
-                      <th className="border border-gray-300 px-4 py-2">View</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {imageDetails.map((image, index) => (
-                      <tr key={index} className="hover:bg-gray-100">
-                        <td className="border border-gray-300 px-4 py-2">
-                          {index + 1}
-                        </td>
-                        <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
-                          {image.src}
-                        </td>
-                        <td className="border border-gray-300 text-[14px] px-4 py-2">
-                          {image.width && image.height
-                            ? `${image.width} x ${image.height}`
-                            : "N/A"}
-                        </td>
-                        <td className="border border-gray-300 text-[14px] px-4 py-2">
-                          {image.fileSize
-                            ? `${(image.fileSize / 1024).toFixed(2)} KB`
-                            : "N/A"}
-                        </td>
-                        <td className="border border-gray-300 text-[14px] px-4 py-2">
-                          {image.alt || "No Alt Text"}
-                        </td>
-                        <td className="border border-gray-300 px-4 text-[14px] py-2">
-                          <a
-                            href={image.src}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
-                          >
-                            View Image
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="w-full text-center py-[40px]">
