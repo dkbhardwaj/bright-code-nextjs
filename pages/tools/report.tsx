@@ -46,6 +46,8 @@ const ReportPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [reportData, setReportData] = useState<ReportData | null>(null);
   const [imageDetails, setImageDetails] = useState<any[]>([]);
+  const [largeImages, setLargeImages] = useState<any[]>([]);
+  const [nullImages, setNullImages] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
@@ -65,6 +67,8 @@ const ReportPage = () => {
           });
 
           setImageDetails(data.imageDetails || []); // Store image details separately
+          setLargeImages(data.largeImages || []); // Store image details separately
+          setNullImages(data.nullFileSizeImages || []); // Store image details separately
         } else {
           setError("No report found for this ID.");
         }
@@ -157,7 +161,8 @@ const ReportPage = () => {
       <div className="container">
         <div className="headerPart text-center">
           <div className="flex gap-5 justify-center items-baseline">
-          <h3>Report</h3><span className="!text-white">by Bright Code Tools</span>
+            <h3>Report</h3>
+            <span className="!text-white">by Bright Code Tools</span>
           </div>
           <div>
             <div className="resultsMenu gap-[50px] flex justify-center my-[50px]">
@@ -276,7 +281,7 @@ const ReportPage = () => {
               </h2>
               <div className="notations space-y-6">
                 {categories.map((category, index) => {
-                  // console.log("Category:", category); // Logs each category object
+                  console.log("Category:", category); // Logs each category object
 
                   return (
                     <div
@@ -332,13 +337,22 @@ const ReportPage = () => {
                                 {/* Add onClick handler if rule.label is "Total Images" */}
                                 <div
                                   className={`label flex-1 ml-4 text-gray-700 ${
-                                    rule.label === "Total Images"
+                                    rule.label === "Total Images" ||
+                                    rule.label === "Images with Issues" ||
+                                    rule.label === "Large Images" ||
+                                    rule.label === "Null File Size"
                                       ? "cursor-pointer text-blue-500 hover:underline"
                                       : ""
                                   }`}
                                   onClick={
                                     rule.label === "Total Images"
                                       ? () => setActiveTab("tab2")
+                                      : rule.label === "Images with Issues"
+                                      ? () => setActiveTab("tab3")
+                                      : rule.label === "Large Images"
+                                      ? () => setActiveTab("tab3")
+                                      : rule.label === "Null File Size"
+                                      ? () => setActiveTab("tab3")
                                       : undefined
                                   }
                                 >
@@ -470,6 +484,187 @@ const ReportPage = () => {
                     </table>
                   </div>
                 </div>
+              )}
+            </div>
+          )}
+          {activeTab === "tab3" && (
+            <div className="max-w-[1600px] mx-auto">
+              {largeImages.length > 0 ? (
+                <>
+                  <h2 className="text-lg text-white font-bold my-4">
+                    Large Images (File Size{" "}
+                    <span className="text-lg text-white">&#62;</span> 100 KB)
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll overflow-visible bg-white">
+                    <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
+                      <thead>
+                        <tr className="bg-gray-200 text-left">
+                          <th className="border border-gray-300 px-4 py-2">
+                            Sr
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Image
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Size (px)
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-bold text-black">
+                                File Size
+                              </span>
+                              <div className="relative inline-block group"></div>
+                            </div>
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Alt Text
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            View
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {largeImages.map((image, index) => {
+                          // console.log("Image Details:", image); // Logs each image object
+
+                          return (
+                            <tr key={index} className="hover:bg-gray-100">
+                              <td className="border border-gray-300 px-4 py-2">
+                                {index + 1}
+                              </td>
+                              <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                <a
+                                  href={image.src}
+                                  target="__blank"
+                                  className="hover:text-purple transition-colors"
+                                >
+                                  {image.src}
+                                </a>
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.width === "N/A" || image.height === "N/A"
+                                  ? "N/A"
+                                  : `${image.width} x ${image.height}`}
+                              </td>
+
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.fileSize
+                                  ? `${image.fileSize} KB`
+                                  : "N/A"}
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.alt || "No Alt Text"}
+                              </td>
+                              <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                <a
+                                  href={image.src}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline"
+                                >
+                                  View Image
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              ) : (
+                <h3 className="text-md text-gray-600 italic">
+                  No large images found.
+                </h3>
+              )}
+              {nullImages.length > 0 ? (
+                <>
+                  <h2 className="text-lg text-white font-bold my-4">
+                    Null File Size Images
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[87vh] overflow-y-scroll overflow-visible bg-white">
+                    <table className="table-auto w-full min-w-[1250px] border-collapse border border-gray-300 shadow-md">
+                      <thead>
+                        <tr className="bg-gray-200 text-left">
+                          <th className="border border-gray-300 px-4 py-2">
+                            Sr
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Image
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Size (px)
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-base font-bold text-black">
+                                File Size
+                              </span>
+                              <div className="relative inline-block group"></div>
+                            </div>
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            Alt Text
+                          </th>
+                          <th className="border border-gray-300 px-4 py-2">
+                            View
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {nullImages.map((image, index) => {
+                          // console.log("Image Details:", image); // Logs each image object
+
+                          return (
+                            <tr key={index} className="hover:bg-gray-100">
+                              <td className="border border-gray-300 px-4 py-2">
+                                {index + 1}
+                              </td>
+                              <td className="border border-gray-300 px-4 py-2 text-[14px] max-w-[500px] break-words">
+                                <a
+                                  href={image.src}
+                                  target="__blank"
+                                  className="hover:text-purple transition-colors"
+                                >
+                                  {image.src}
+                                </a>
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.width === "N/A" || image.height === "N/A"
+                                  ? "N/A"
+                                  : `${image.width} x ${image.height}`}
+                              </td>
+
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.fileSize
+                                  ? `${image.fileSize} KB`
+                                  : "N/A"}
+                              </td>
+                              <td className="border border-gray-300 text-[14px] px-4 py-2">
+                                {image.alt || "No Alt Text"}
+                              </td>
+                              <td className="border border-gray-300 px-4 text-[14px] py-2">
+                                <a
+                                  href={image.src}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline"
+                                >
+                                  View Image
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              ) : (
+                <h3 className="text-md text-gray-600 italic">
+                  No large images found.
+                </h3>
               )}
             </div>
           )}

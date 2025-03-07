@@ -275,76 +275,97 @@ export default function Home() {
   }, [activeTab, sortDirection]);
 
   // firestore variables
-const saveCrawlOverview = async (
-  report: any,
-  uniqueImages: any[],
-  images: any[]
-): Promise<string | null> => {
-  console.log("saveCrawlOverview started");
-  try {
-    const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
-    const crawlId = `${sanitizedUrl}-${Date.now()}`;
+  const saveCrawlOverview = async (
+    report: any,
+    uniqueImages: any[],
+    images: any[]
+  ): Promise<string | null> => {
+    console.log("saveCrawlOverview started");
+    try {
+      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
+      const crawlId = `${sanitizedUrl}-${Date.now()}`;
 
-    const imageDetailsFormatted = uniqueImages.map((image) => ({
-      src: image.src,
-      width: image.width || "N/A",
-      height: image.height || "N/A",
-      fileSize: image.fileSize
-        ? `${(image.fileSize / 1024).toFixed(2)} KB`
-        : "N/A",
-      alt: image.alt || "No Alt Text",
-    }));
+      // Filtering images with large file size and null file size
+      const largeImages = uniqueImages.filter(
+        (image) => (image.fileSize || 0) > 100 * 1024
+      );
+      const nullFileSizeImages = uniqueImages.filter(
+        (image) => image.fileSize === null
+      );
 
-    const dataToSave = {
-      overview: {
-        url: report.startUrl,
-        totalImages: uniqueImages.length,
-        totalImagesWithIssues: uniqueImages.filter(
-          (image) =>
-            !image.alt ||
-            image.fileSize === null ||
-            (image.fileSize || 0) > 100 * 1024
-        ).length,
-        issueTypes: uniqueImages.reduce((acc, image) => {
-          if (!image.alt)
-            acc["Missing Alt Attribute"] =
-              (acc["Missing Alt Attribute"] || 0) + 1;
-          if (image.fileSize === null)
-            acc["Null File Size"] = (acc["Null File Size"] || 0) + 1;
-          if ((image.fileSize || 0) > 100 * 1024)
-            acc["Large Images"] = (acc["Large Images"] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>),
-        imageBreakdownByHost: report.hosts.map((host: string) => ({
-          host,
-          count: images.reduce((count, img) => {
-            try {
-              const imgUrl = new URL(img.src);
-              if (imgUrl.hostname === host) count++;
-            } catch (e) {}
-            return count;
-          }, 0),
-        })),
-        timestamp: Date.now(),
-        crawlId,
-      },
-      imageDetails: imageDetailsFormatted,
-    };
+      const imageDetailsFormatted = uniqueImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: image.fileSize
+          ? `${(image.fileSize / 1024).toFixed(2)} KB`
+          : "N/A",
+        alt: image.alt || "No Alt Text",
+      }));
 
-    console.log("Data being stored in Firebase:", dataToSave);
+      const largeImagesFormatted = largeImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: image.fileSize
+          ? `${(image.fileSize / 1024).toFixed(2)} KB`
+          : "N/A",
+        alt: image.alt || "No Alt Text",
+      }));
 
-    const dbRef = ref(Database, `crawled_sites/${crawlId}`);
-    console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
-    await set(dbRef, dataToSave);
+      const nullFileSizeImagesFormatted = nullFileSizeImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: "N/A", // Since these images have null file size
+        alt: image.alt || "No Alt Text",
+      }));
 
-    console.log("Data saved successfully:", dataToSave);
-    return crawlId;
-  } catch (error) {
-    console.error("Error saving data:", error);
-    return null;
-  }
-};
+      const dataToSave = {
+        overview: {
+          url: report.startUrl,
+          totalImages: uniqueImages.length,
+          totalImagesWithIssues:
+            largeImages.length +
+            nullFileSizeImages.length +
+            uniqueImages.filter((image) => !image.alt).length,
+          issueTypes: {
+            "Missing Alt Attribute": uniqueImages.filter((image) => !image.alt)
+              .length,
+            "Null File Size": nullFileSizeImages.length,
+            "Large Images": largeImages.length,
+          },
+          imageBreakdownByHost: report.hosts.map((host: string) => ({
+            host,
+            count: images.reduce((count, img) => {
+              try {
+                const imgUrl = new URL(img.src);
+                if (imgUrl.hostname === host) count++;
+              } catch (e) {}
+              return count;
+            }, 0),
+          })),
+          timestamp: Date.now(),
+          crawlId,
+        },
+        imageDetails: imageDetailsFormatted,
+        largeImages: largeImagesFormatted,
+        nullFileSizeImages: nullFileSizeImagesFormatted,
+      };
 
+      console.log("Data being stored in Firebase:", dataToSave);
+
+      const dbRef = ref(Database, `crawled_sites/${crawlId}`);
+      console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
+      await set(dbRef, dataToSave);
+
+      console.log("Data saved successfully:", dataToSave);
+      return crawlId;
+    } catch (error) {
+      console.error("Error saving data:", error);
+      return null;
+    }
+  };
 
   // Existing useEffect (unchanged)
   const [crawlId, setCrawlId] = useState<string | null>(null);
