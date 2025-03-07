@@ -453,7 +453,7 @@ const ScreenshotPreview = ({ url }: { url: string }) => {
           <span className="text-[0] w-[30px] h-[30px] border-2 border-gray rounded-full inline-block absolute -translate-y-1/2 top-1/2 left-[90%] z-[1]">
             .
           </span>
-          <span className="text-[0] w-[30px] h-[30px] border-2 border-l-gray rounded-sm inline-block absolute -translate-y-1/2 top-1/2 left-[3%] z-[1]">
+          <span className="text-[0] w-[30px] h-[30px] border-l-2 border-l-gray rounded-sm inline-block absolute -translate-y-1/2 top-1/2 left-[3%] z-[1]">
             .
           </span>
         </div>
