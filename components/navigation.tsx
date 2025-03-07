@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Style from "../styles/navigation.module.scss";
 import Link from "next/link";
-import {client} from "../lib/contentful/client" 
+import { client } from "../lib/contentful/client";
 import { UrlObject } from "url";
 
 interface NavigationProps {}
@@ -10,7 +10,7 @@ interface NavigationProps {}
 // interface DropdownItem {
 //   title: string;
 //   link: string;
-  
+
 // }
 interface NavigationItem {
   menuLink: any;
@@ -52,14 +52,14 @@ const Navigation: React.FC<NavigationProps> = () => {
     const getNav = async () => {
       try {
         const response = await client.getEntries({
-          content_type: 'navigation',
-          'fields.navName': "Main Nav"
+          content_type: "navigation",
+          "fields.navName": "Main Nav",
         });
-        
-       const navItem = response.items[0]?.fields as unknown as NavigationItem;
+
+        const navItem = response.items[0]?.fields as unknown as NavigationItem;
         setMenus(navItem || null);
       } catch (err) {
-        setError('Failed to fetch data');
+        setError("Failed to fetch data");
         console.error(err);
       } finally {
         setLoading(false);
@@ -70,7 +70,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   }, []);
   if (loading) return <div></div>;
   if (error) return <div>{error}</div>;
- 
+
   return (
     <header
       className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}
@@ -139,44 +139,61 @@ const Navigation: React.FC<NavigationProps> = () => {
                   </div>
                 </div>
                 <ul
-                  className={`flex items-center text-white   lg:mx-0 lg:flex-wrap lg:text-spaceBlack  lg:!justify-start lg:px-3 `}
+                  className={`flex items-center text-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:!justify-start lg:px-3`}
                 >
-                  {
-                    menus?.menuLink && (
-                      menus?.menuLink.map((menuItem: { fields: { path: string | UrlObject; label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; })=>
-                        (
-                          <li
-                    className={`${Style.menu}  mx-[22px]  transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <Link className="inline-block w-full text-[14px] " href= {menuItem.fields?.path}>
-                      {menuItem.fields?.label}
-                    </Link>
-                  </li>
-                        )
+                  {menus?.menuLink &&
+                    menus?.menuLink.map(
+                      (
+                        menuItem: {
+                          fields: {
+                            path: string | UrlObject;
+                            label:
+                              | string
+                              | number
+                              | boolean
+                              | React.ReactElement
+                              | Iterable<React.ReactNode>
+                              | React.ReactPortal
+                              | React.PromiseLikeOfReactNode
+                              | null
+                              | undefined;
+                          };
+                        },
+                        index: number // Add index parameter
+                      ) => (
+                        <li
+                          key={menuItem.fields.path?.toString() || index} // Ensure a unique key
+                          className={`${Style.menu} mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                          onClick={handleMobileMenuCloseClick}
+                        >
+                          <Link
+                            className="inline-block w-full text-[14px]"
+                            href={menuItem.fields?.path}
+                          >
+                            {menuItem.fields?.label}
+                          </Link>
+                        </li>
                       )
-                    )
-                  }
-              
+                    )}
+
                   {menus?.cta && (
                     <>
-                    <Link
-                    href={menus?.cta?.fields?.ctaLink}
-                    className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8 `}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <span>{menus?.cta?.fields?.ctaText}</span>
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    <span>{menus?.cta?.fields?.ctaText}</span>
-                  </Link>
-                  </>
+                      <Link
+                        href={menus?.cta?.fields?.ctaLink}
+                        className={`${Style.btn} ml-[30px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8`}
+                        onClick={handleMobileMenuCloseClick}
+                      >
+                        <span>{menus?.cta?.fields?.ctaText}</span>
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
+                        onClick={handleMobileMenuCloseClick}
+                      >
+                        <span>{menus?.cta?.fields?.ctaText}</span>
+                      </Link>
+                    </>
                   )}
-                  
                 </ul>
               </div>
             </div>

@@ -57,7 +57,7 @@ const ReportPage = () => {
 
         if (snapshot.exists()) {
           const data = snapshot.val();
-          console.log("Full fetched report data:", data); // Log full data
+          // console.log("Full fetched report data:", data); // Log full data
 
           setReportData({
             ...data.overview,
@@ -93,7 +93,6 @@ const ReportPage = () => {
         100
     ) ||
     0;
-
 
   // Define categories and rules based on your data
   const categories: Category[] = [
@@ -152,7 +151,6 @@ const ReportPage = () => {
     },
   ];
 
-  console.log(imageDetails);
 
   return (
     <section className="image-checker-report min-h-screen pt-[200px] pb-[150px] bg-purple">
@@ -160,7 +158,7 @@ const ReportPage = () => {
         <div className="bg-white p-[40px] rounded-lg">
           {/* Global Score */}
           <div className="globalScore mb-8 flex items-center justify-center gap-6">
-            <div className="w-[60%]">
+            <div className="w-[50%]">
               <h2 className="text-2xl font-bold text-gray-800">Global Score</h2>
               <div className="globalScoreDisplay flex items-center gap-4 mt-2">
                 <div
@@ -194,12 +192,8 @@ const ReportPage = () => {
               </p>
             </div>
             {/* Optional: Add screenshot if available in Firebase */}
-            <div className="screenshotWrapper w-[40%]">
-              <img
-                src="/placeholder-screenshot.jpg"
-                alt="Screenshot"
-                className="screenshotImage rounded-lg max-w-xs"
-              />
+            <div className="screenshotWrapper w-[40%] mx-[20px]">
+              <ScreenshotPreview url={reportData?.url} />
             </div>
           </div>
           {/* Score Details */}
@@ -427,3 +421,47 @@ const ReportPage = () => {
 };
 
 export default ReportPage;
+
+const ScreenshotPreview = ({ url }: { url: string }) => {
+  const [screenshot, setScreenshot] = useState("");
+
+  useEffect(() => {
+    if (!url) return;
+
+    const fetchScreenshot = async () => {
+      try {
+        const response = await fetch(
+          `/api/screenshot?url=${encodeURIComponent(url)}`
+        );
+        if (response.ok) {
+          const blob = await response.blob();
+          setScreenshot(URL.createObjectURL(blob));
+        }
+      } catch (error) {
+        console.error("Error fetching screenshot:", error);
+      }
+    };
+
+    fetchScreenshot();
+  }, [url]);
+
+  return (
+    <div className="w-full">
+      {screenshot ? (
+        <div className="relative py-[10px] pl-[30px] pr-[50px] shadow-lg bg-black rounded-lg">
+          <img src={screenshot} alt="Website Screenshot" className="w-full" />
+          <span className="text-[0] w-[30px] h-[30px] border-2 border-gray rounded-full inline-block absolute -translate-y-1/2 top-1/2 left-[90%] z-[1]">
+            .
+          </span>
+          <span className="text-[0] w-[30px] h-[30px] border-2 border-l-gray rounded-sm inline-block absolute -translate-y-1/2 top-1/2 left-[3%] z-[1]">
+            .
+          </span>
+        </div>
+      ) : (
+        <div className="w-full h-full flex items-center justify-center">
+          <p className="text-gray-500">Loading preview...</p>
+        </div>
+      )}
+    </div>
+  );
+};

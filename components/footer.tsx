@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {client} from "../lib/contentful/client" 
+import { client } from "../lib/contentful/client";
 import { UrlObject } from "url";
-
 
 interface NavigationItem {
   menuLink: any;
@@ -16,29 +15,28 @@ interface NavigationItem {
 }
 
 const Footer: React.FC = () => {
-
   const [menus, setMenus] = useState<NavigationItem | null>(null);
-  const year = new Date().getFullYear()
- 
+  const year = new Date().getFullYear();
+
   useEffect(() => {
-  const getNav = async () => {
-    try {
-      const response = await client.getEntries({
-        content_type: 'navigation',
-        'fields.navName': "Footer Menu"
-      });
-     
-     const navItem = response.items[0]?.fields as unknown as NavigationItem;
-      setMenus(navItem || null);
-    } catch (err) {
-      console.log(err)
+    const getNav = async () => {
+      try {
+        const response = await client.getEntries({
+          content_type: "navigation",
+          "fields.navName": "Footer Menu",
+        });
+
+        const navItem = response.items[0]?.fields as unknown as NavigationItem;
+        setMenus(navItem || null);
+      } catch (err) {
+        console.log(err);
         console.error(err);
-      } 
+      }
     };
 
     getNav();
   }, []);
-  
+
   return (
     <footer className="footer py-[90px] bg-darkBlue bg-[url('/footer-bg-image.png')] bg-no-repeat bg-cover md:py-16 ">
       <div className="container">
@@ -65,23 +63,36 @@ const Footer: React.FC = () => {
           <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
             <h6 className=" font-medium mb-4">About</h6>
             <ul>
-            {
-                    menus?.menuLink && (
-                      menus?.menuLink.map((menuItem: { fields: { path: string | UrlObject; label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; })=>
-                        (
-                          <li className=" relative mb-2 ">
-                          <Link
-                            href={menuItem.fields?.path}
-                            className=" text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out "
-                          >
-                             {menuItem.fields?.label}
-                          </Link>
-                        </li>
-                        )
-                      )
-                    )
-                  }
-             
+              {menus?.menuLink &&
+                menus?.menuLink.map(
+                  (
+                    menuItem: {
+                      fields: {
+                        path: string | UrlObject;
+                        label:
+                          | string
+                          | number
+                          | boolean
+                          | React.ReactElement
+                          | Iterable<React.ReactNode>
+                          | React.ReactPortal
+                          | React.PromiseLikeOfReactNode
+                          | null
+                          | undefined;
+                      };
+                    },
+                    index: number
+                  ) => (
+                    <li key={index} className="relative mb-2">
+                      <Link
+                        href={menuItem.fields?.path}
+                        className="text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out"
+                      >
+                        {menuItem.fields?.label}
+                      </Link>
+                    </li>
+                  )
+                )}
             </ul>
           </div>
           <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
@@ -219,4 +230,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
