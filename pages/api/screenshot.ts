@@ -11,17 +11,7 @@ export default async function handler(
   }
 
   try {
-const chromium = await import("@sparticuz/chromium");
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  executablePath:
-    process.env.NODE_ENV === "production"
-      ? await chromium.default.executablePath() // Await here
-      : undefined,
-});
-
-
+    const browser = await puppeteer.launch({ headless: true });
 
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
