@@ -237,8 +237,8 @@ const ReportPage = () => {
         <div className="bg-white p-[40px] rounded-lg">
           <div className="globalScore mb-8 flex items-center justify-center gap-6">
             <div className="w-[100%]">
-              <h2 className="text-2xl font-bold text-center text-gray-800">Global Score</h2>
-              <div className="globalScoreDisplay flex justify-center items-center gap-4 mt-2">
+              <h2 className="text-2xl font-bold  text-gray-800">Global Score</h2>
+              <div className="globalScoreDisplay flex  items-center gap-4 mt-2">
                 <div
                   className={`globalGrade text-4xl font-bold w-16 h-16 flex items-center justify-center rounded-full text-white ${
                     getGrade(globalScore) === "A"
