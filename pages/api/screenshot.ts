@@ -1,33 +1,33 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
+import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Buffer | { error: string }>
+  res: NextApiResponse
 ) {
   const { url } = req.query;
-
   if (!url || typeof url !== "string") {
-    return res.status(400).json({ error: "Please provide a valid URL" });
+    return res.status(400).json({ error: "Missing or invalid URL" });
   }
 
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: process.env.CHROME_EXECUTABLE_PATH || "/usr/bin/chromium",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
-    const page = await browser.newPage();
+    const browser = await puppeteer.launch({ headless: true });
 
+    const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
-    const screenshot = await page.screenshot({ type: "png" });
+
+    // Capture Screenshot
+    const screenshot = await page.screenshot({
+      encoding: "base64",
+      fullPage: false,
+    });
 
     await browser.close();
 
     res.setHeader("Content-Type", "image/png");
-    res.send(Buffer.from(screenshot as Uint8Array)); // Convert Uint8Array to Buffer
+    res.send(Buffer.from(screenshot, "base64"));
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to take screenshot" });
+    console.error("Screenshot Error:", error);
+    res.status(500).json({ error: "Failed to capture screenshot" });
   }
 }
