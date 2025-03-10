@@ -7,7 +7,8 @@
     "build": "next build && next-sitemap",
     "generate-sitemap": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@analytics/google-tag-manager": "^0.5.5",
