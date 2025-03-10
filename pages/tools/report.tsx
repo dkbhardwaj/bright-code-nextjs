@@ -724,7 +724,7 @@ const ScreenshotPreview = ({ url }: { url: string }) => {
     <div className="w-full">
       {screenshot ? (
         <div className="relative py-[10px] pl-[30px] pr-[50px] shadow-lg bg-black rounded-lg">
-          <img src={screenshot} alt="Website Screenshot" className="w-full" />
+          <img src={screenshot} alt="Website Screenshot" className="w-full max-h-[200px] object-cover object-top" />
           <span className="text-[0] w-[30px] h-[30px] border-2 border-gray rounded-full inline-block absolute -translate-y-1/2 top-1/2 left-[90%] z-[1]">
             .
           </span>

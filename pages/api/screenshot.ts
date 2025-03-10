@@ -11,31 +11,20 @@ export default async function handler(
   }
 
   try {
-    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+    const API_KEY = "_YI7HtJB-i58Lw"; // Replace with your API Key
+    const apiUrl = `https://api.screenshotone.com/take?access_key=${API_KEY}&url=${encodeURIComponent(
       url
-    )}&screenshot=true`;
+    )}&format=png&full_page=true`;
 
     const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (
-      !data.lighthouseResult ||
-      !data.lighthouseResult.audits["final-screenshot"]
-    ) {
-      throw new Error("No screenshot found in response");
+    if (!response.ok) {
+      throw new Error(`Screenshot API failed: ${response.statusText}`);
     }
 
-    const screenshotBase64 =
-      data.lighthouseResult.audits["final-screenshot"].details.data;
+    const imageBuffer = await response.arrayBuffer();
 
-    // Convert Base64 to an image
-    const imageBuffer = Buffer.from(
-      screenshotBase64.replace(/^data:image\/jpeg;base64,/, ""),
-      "base64"
-    );
-
-    res.setHeader("Content-Type", "image/jpeg");
-    res.end(imageBuffer);
+    res.setHeader("Content-Type", "image/png");
+    res.end(Buffer.from(imageBuffer));
   } catch (error) {
     console.error("Screenshot Error:", error);
     res
