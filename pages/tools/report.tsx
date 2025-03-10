@@ -236,7 +236,7 @@ const ReportPage = () => {
 
         <div className="bg-white p-[40px] rounded-lg">
           <div className="globalScore mb-8 flex items-center justify-center gap-6">
-            <div className="w-[100%]">
+            <div className="w-[60%]">
               <h2 className="text-2xl font-bold  text-gray-800">Global Score</h2>
               <div className="globalScoreDisplay flex  items-center gap-4 mt-2">
                 <div
@@ -270,9 +270,9 @@ const ReportPage = () => {
               </p>
             </div>
             {/* Optional: Add screenshot if available in Firebase */}
-            {/* <div className="screenshotWrapper w-[40%] mx-[20px]">
+            <div className="screenshotWrapper w-[40%] mx-[20px]">
               <ScreenshotPreview url={reportData?.url} />
-            </div> */}
+            </div>
           </div>
           {activeTab === "tab1" && (
             <>
