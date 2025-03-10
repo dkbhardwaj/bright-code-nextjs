@@ -1,4 +1,3 @@
-import puppeteer from "puppeteer";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -6,28 +5,45 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { url } = req.query;
+
   if (!url || typeof url !== "string") {
     return res.status(400).json({ error: "Missing or invalid URL" });
   }
 
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+      url
+    )}&screenshot=true`;
 
-    const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle2" });
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-    // Capture Screenshot
-    const screenshot = await page.screenshot({
-      encoding: "base64",
-      fullPage: false,
-    });
+    if (
+      !data.lighthouseResult ||
+      !data.lighthouseResult.audits["final-screenshot"]
+    ) {
+      throw new Error("No screenshot found in response");
+    }
 
-    await browser.close();
+    const screenshotBase64 =
+      data.lighthouseResult.audits["final-screenshot"].details.data;
 
-    res.setHeader("Content-Type", "image/png");
-    res.send(Buffer.from(screenshot, "base64"));
+    // Convert Base64 to an image
+    const imageBuffer = Buffer.from(
+      screenshotBase64.replace(/^data:image\/jpeg;base64,/, ""),
+      "base64"
+    );
+
+    res.setHeader("Content-Type", "image/jpeg");
+    res.end(imageBuffer);
   } catch (error) {
     console.error("Screenshot Error:", error);
-    res.status(500).json({ error: "Failed to capture screenshot" });
+    res
+      .status(500)
+      .json({
+        error: `Failed to capture screenshot: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`,
+      });
   }
 }
