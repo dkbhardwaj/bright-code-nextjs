@@ -115,7 +115,7 @@ export default function Home() {
 
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
-        console.log(`Fetching data... Attempts left: ${retries}`);
+        // console.log(`Fetching data... Attempts left: ${retries}`);
         const response = await fetchWithTimeout(
           `/api/analyze-images?url=${encodeURIComponent(
             formatUrl(url)
@@ -280,7 +280,7 @@ export default function Home() {
     uniqueImages: any[],
     images: any[]
   ): Promise<string | null> => {
-    console.log("saveCrawlOverview started");
+    // console.log("saveCrawlOverview started");
     try {
       const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
       const crawlId = `${sanitizedUrl}-${Date.now()}`;
@@ -353,13 +353,16 @@ export default function Home() {
         nullFileSizeImages: nullFileSizeImagesFormatted,
       };
 
-      console.log("Data being stored in Firebase:", dataToSave);
+      // console.log("Data being stored in Firebase:", dataToSave);
 
-      const dbRef = ref(Database, `crawled_sites/${crawlId}`);
-      console.log("Saving to Firebase at:", `crawled_sites/${crawlId}`);
+      const dbRef = ref(Database, `image_checker_crawled_sites/${crawlId}`);
+      // console.log(
+      //   "Saving to Firebase at:",
+      //   `image_checker_crawled_sites/${crawlId}`
+      // );
       await set(dbRef, dataToSave);
 
-      console.log("Data saved successfully:", dataToSave);
+      // console.log("Data saved successfully:", dataToSave);
       return crawlId;
     } catch (error) {
       console.error("Error saving data:", error);
@@ -372,12 +375,12 @@ export default function Home() {
   const [hasSaved, setHasSaved] = useState(false); // New flag
 
   useEffect(() => {
-    console.log("useEffect triggered:", {
-      loading,
-      report: !!report,
-      uniqueImagesLength: uniqueImages.length,
-      imagesLength: images.length,
-    });
+    // console.log("useEffect triggered:", {
+    //   loading,
+    //   report: !!report,
+    //   uniqueImagesLength: uniqueImages.length,
+    //   imagesLength: images.length,
+    // });
 
     if (
       !loading &&
@@ -386,23 +389,25 @@ export default function Home() {
       images.length > 0 &&
       !hasSaved
     ) {
-      console.log("Saving to Firebase...");
+      // console.log("Saving to Firebase...");
       saveCrawlOverview(report, uniqueImages, images)
         .then((id) => {
           setCrawlId(id);
           if (id) {
-            alert("Crawl data saved successfully!");
+            // alert("Crawl data saved successfully!");
+            // console.log("Crawl data saved successfully");
+
             setHasSaved(true); // Mark as saved
           }
         })
         .catch((error) => console.error("Error saving crawl data:", error));
     } else {
-      console.log("Conditions not met:", {
-        loading,
-        report: !!report,
-        uniqueImagesLength: uniqueImages.length,
-        imagesLength: images.length,
-      });
+      // console.log("Conditions not met:", {
+      //   loading,
+      //   report: !!report,
+      //   uniqueImagesLength: uniqueImages.length,
+      //   imagesLength: images.length,
+      // });
     }
   }, [loading, report, uniqueImages, images, hasSaved]);
 

@@ -55,7 +55,7 @@ const ReportPage = () => {
 
     const fetchReportData = async () => {
       try {
-        const dbRef = ref(Database, `crawled_sites/${crawlId}`);
+        const dbRef = ref(Database, `image_checker_crawled_sites/${crawlId}`);
         const snapshot = await get(dbRef);
 
         if (snapshot.exists()) {

@@ -11,7 +11,7 @@ export default async function handler(
   }
 
   try {
-    const API_KEY = "_YI7HtJB-i58Lw"; // Replace with your API Key
+    const API_KEY = "7U60j2GJ_i0oHQ"; // Replace with your API Key
     const apiUrl = `https://api.screenshotone.com/take?access_key=${API_KEY}&url=${encodeURIComponent(
       url
     )}&format=png&full_page=true`;
