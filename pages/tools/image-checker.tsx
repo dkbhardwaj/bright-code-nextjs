@@ -1,8 +1,11 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"; // Import useRouter hook for query handling
 import { Bar } from "react-chartjs-2";
 import Image from "next/image";
 import Link from "next/link";
+import { getDatabase, push, ref, set } from "firebase/database";
+import { Database } from "../api/firebaseConfig.js";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -56,7 +59,6 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter(); // Access router for query parameter updates
-  // console.log(router.query.url);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -75,26 +77,28 @@ export default function Home() {
     }
   }, [url, router]);
 
-  const fetchWithTimeout = (
+  const fetchWithTimeout = async (
     url: string,
     options: RequestInit,
     timeout: number
   ): Promise<Response> => {
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error("Request timed out"));
-      }, timeout);
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
 
-      fetch(url, options)
-        .then((response) => {
-          clearTimeout(timer);
-          resolve(response);
-        })
-        .catch((err) => {
-          clearTimeout(timer);
-          reject(err);
-        });
-    });
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      return response;
+    } catch (err) {
+      clearTimeout(timer);
+      if (err instanceof DOMException && err.name === "AbortError") {
+        throw new Error("Request timed out");
+      }
+      throw err;
+    }
   };
 
   const fetchWebsiteData = async (): Promise<void> => {
@@ -103,27 +107,36 @@ export default function Home() {
     setImages([]);
     setLinks([]);
     setReport(null);
+    setHasSaved(false);
+    setCrawlId(null);
 
     // Ensure URL starts with http:// or https://
     const formattedUrl = formatUrl(url);
 
     const retryFetch = async (retries: number): Promise<Response> => {
       try {
+        // console.log(`Fetching data... Attempts left: ${retries}`);
         const response = await fetchWithTimeout(
           `/api/analyze-images?url=${encodeURIComponent(
-            formattedUrl
+            formatUrl(url)
           )}&scope=page`,
           { method: "GET" },
           30000 // Timeout after 30 seconds
         );
-        if (!response.ok && retries > 0) {
-          throw new Error("Retrying...");
+
+        if (!response.ok) {
+          if (retries > 0) {
+            console.warn(`Retrying due to error: ${response.statusText}`);
+            throw new Error(response.statusText);
+          }
         }
+
         return response;
       } catch (err) {
         if (retries > 0) {
           return await retryFetch(retries - 1);
         }
+        console.error("Final error after retries:", err);
         throw err;
       }
     };
@@ -159,15 +172,16 @@ export default function Home() {
 
   // Function to ensure the URL starts with http:// or https://
   const formatUrl = (url: string): string => {
-    let formattedUrl = url.trim();
-    if (!/^https?:\/\//i.test(formattedUrl)) {
-      formattedUrl = `http://${formattedUrl}`; // Prepend http:// if not present
+    try {
+      const formattedUrl = new URL(url);
+      return formattedUrl.href; // Return the properly formatted URL
+    } catch {
+      return `http://${url.trim()}`; // If invalid, prepend http://
     }
-    return formattedUrl;
   };
 
   const handleAnalyzeClick = (): void => {
-    if (!url) {
+    if (!url.trim()) {
       setError("Please enter a valid URL.");
       return;
     }
@@ -260,6 +274,163 @@ export default function Home() {
     }
   }, [activeTab, sortDirection]);
 
+  // firestore variables
+  const saveCrawlOverview = async (
+    report: any,
+    uniqueImages: any[],
+    images: any[]
+  ): Promise<string | null> => {
+    // console.log("saveCrawlOverview started");
+    try {
+      const sanitizedUrl = report.startUrl.replace(/[^a-zA-Z0-9]/g, "_");
+      const crawlId = `${sanitizedUrl}-${Date.now()}`;
+
+      // Filtering images with large file size and null file size
+      const largeImages = uniqueImages.filter(
+        (image) => (image.fileSize || 0) > 100 * 1024
+      );
+      const nullFileSizeImages = uniqueImages.filter(
+        (image) => image.fileSize === null
+      );
+
+      const imageDetailsFormatted = uniqueImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: image.fileSize
+          ? `${(image.fileSize / 1024).toFixed(2)} KB`
+          : "N/A",
+        alt: image.alt || "No Alt Text",
+      }));
+
+      const largeImagesFormatted = largeImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: image.fileSize
+          ? `${(image.fileSize / 1024).toFixed(2)} KB`
+          : "N/A",
+        alt: image.alt || "No Alt Text",
+      }));
+
+      const nullFileSizeImagesFormatted = nullFileSizeImages.map((image) => ({
+        src: image.src,
+        width: image.width || "N/A",
+        height: image.height || "N/A",
+        fileSize: "N/A", // Since these images have null file size
+        alt: image.alt || "No Alt Text",
+      }));
+
+      const dataToSave = {
+        overview: {
+          url: report.startUrl,
+          totalImages: uniqueImages.length,
+          totalImagesWithIssues:
+            largeImages.length +
+            nullFileSizeImages.length +
+            uniqueImages.filter((image) => !image.alt).length,
+          issueTypes: {
+            "Missing Alt Attribute": uniqueImages.filter((image) => !image.alt)
+              .length,
+            "Null File Size": nullFileSizeImages.length,
+            "Large Images": largeImages.length,
+          },
+          imageBreakdownByHost: report.hosts.map((host: string) => ({
+            host,
+            count: images.reduce((count, img) => {
+              try {
+                const imgUrl = new URL(img.src);
+                if (imgUrl.hostname === host) count++;
+              } catch (e) {}
+              return count;
+            }, 0),
+          })),
+          timestamp: Date.now(),
+          crawlId,
+        },
+        imageDetails: imageDetailsFormatted,
+        largeImages: largeImagesFormatted,
+        nullFileSizeImages: nullFileSizeImagesFormatted,
+      };
+
+      // console.log("Data being stored in Firebase:", dataToSave);
+
+      const dbRef = ref(Database, `image_checker_crawled_sites/${crawlId}`);
+      // console.log(
+      //   "Saving to Firebase at:",
+      //   `image_checker_crawled_sites/${crawlId}`
+      // );
+      await set(dbRef, dataToSave);
+
+      // console.log("Data saved successfully:", dataToSave);
+      return crawlId;
+    } catch (error) {
+      console.error("Error saving data:", error);
+      return null;
+    }
+  };
+
+  // Existing useEffect (unchanged)
+  const [crawlId, setCrawlId] = useState<string | null>(null);
+  const [hasSaved, setHasSaved] = useState(false); // New flag
+
+  useEffect(() => {
+    // console.log("useEffect triggered:", {
+    //   loading,
+    //   report: !!report,
+    //   uniqueImagesLength: uniqueImages.length,
+    //   imagesLength: images.length,
+    // });
+
+    if (
+      !loading &&
+      report &&
+      uniqueImages.length > 0 &&
+      images.length > 0 &&
+      !hasSaved
+    ) {
+      // console.log("Saving to Firebase...");
+      saveCrawlOverview(report, uniqueImages, images)
+        .then((id) => {
+          setCrawlId(id);
+          if (id) {
+            // alert("Crawl data saved successfully!");
+            // console.log("Crawl data saved successfully");
+
+            setHasSaved(true); // Mark as saved
+          }
+        })
+        .catch((error) => console.error("Error saving crawl data:", error));
+    } else {
+      // console.log("Conditions not met:", {
+      //   loading,
+      //   report: !!report,
+      //   uniqueImagesLength: uniqueImages.length,
+      //   imagesLength: images.length,
+      // });
+    }
+  }, [loading, report, uniqueImages, images, hasSaved]);
+
+  const [shareFeedback, setShareFeedback] = useState<string | null>(null);
+
+  const handleShareReport = async () => {
+    if (!crawlId) {
+      setError("No report available to share.");
+      return;
+    }
+
+    const shareUrl = `${window.location.origin}/tools/report?crawlId=${crawlId}`;
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setError("");
+      setShareFeedback("Copied!");
+      setTimeout(() => setShareFeedback(null), 2000); // Reset after 2 seconds
+    } catch (err) {
+      setError("Failed to copy URL.");
+      console.error("Clipboard error:", err);
+    }
+  };
+
   return (
     <>
       {!loading && !report && (
@@ -275,6 +446,7 @@ export default function Home() {
                 <div className="relative">
                   <input
                     ref={inputRef}
+                    aria-label="Enter website URL"
                     className="w-full px-4 py-3 border rounded-lg shadow-sm text-gray-700 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     type="text"
                     value={url}
@@ -594,6 +766,15 @@ export default function Home() {
                         >
                           {report.startUrl}
                         </Link>
+                        {/* Share Report Button */}
+                        <button
+                          onClick={handleShareReport}
+                          className="ml-4 relative py-2 px-4 text-white bg-indigo-500 hover:bg-indigo-600 rounded-lg font-semibold disabled:bg-indigo-300 disabled:cursor-not-allowed"
+                          disabled={!crawlId}
+                          title="Share this report"
+                        >
+                          {shareFeedback || "Share Report"}
+                        </button>
                       </div>
                       <div
                         className={`cardWrap flex w-[calc(100%+20px)] md:w-full md:ml-0 ml-[-10px] flex-wrap`}
