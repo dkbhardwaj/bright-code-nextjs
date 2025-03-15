@@ -243,6 +243,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                                       Link Tracker
                                     </Link>
                                   </li>
+                                  <li className="list-none">
+                                    <Link
+                                      href="/tools/image-checker"
+                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500] hoover:text_gradient"
+                                    >
+                                      Image Checker
+                                    </Link>
+                                  </li>
                                 </ul>
                               </div>
                             </div>
