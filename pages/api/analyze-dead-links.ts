@@ -42,12 +42,17 @@ export default async function handler(
     const brokenLinks: string[] = [];
     const linkChecks = links.map(async (link) => {
       try {
-        const linkResponse = await fetch(link, { method: "HEAD" });
+        const linkResponse = await fetch(link, {
+          method: "GET",
+          redirect: "manual",
+        });
         if (linkResponse.status === 404) {
           brokenLinks.push(link);
+        } else if (linkResponse.redirected) {
+          console.log(`Redirect detected: ${link} → ${linkResponse.url}`);
         }
       } catch (err) {
-        // If fetch fails (e.g., network error), assume it's broken
+        console.error(`Error fetching ${link}:`, err);
         brokenLinks.push(link);
       }
     });

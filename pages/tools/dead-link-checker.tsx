@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function DeadLinkChecker() {
   const [url, setUrl] = useState<string>("");
@@ -130,7 +131,7 @@ export default function DeadLinkChecker() {
                 <ul className="mt-2 space-y-2">
                   {brokenLinks.map((link, index) => (
                     <li key={index} className="text-red-500 break-all">
-                      {link}
+                      <Link href={link} target="__blank"> {link}</Link>
                     </li>
                   ))}
                 </ul>
