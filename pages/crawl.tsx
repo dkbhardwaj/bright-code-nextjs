@@ -52,7 +52,7 @@ export default function Home() {
 
           {error && <p className="text-red-500 mt-4">{error}</p>}
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <h2 className="text-xl font-semibold">Working Links:</h2>
             <ul className="list-disc pl-5">
               {workingLinks.map((link, index) => (
@@ -61,7 +61,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <div className="mt-6">
             <h2 className="text-xl font-semibold text-red-500">
