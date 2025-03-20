@@ -11,32 +11,53 @@ async function fetchPages(url: string, baseUrl: string) {
 
   try {
     const { data } = await axios.get(url, {
-      headers: { "User-Agent": "Mozilla/5.0" }, // Helps avoid bot detection
+      headers: { "User-Agent": "Mozilla/5.0" },
     });
 
     const dom = new JSDOM(data);
     const document = dom.window.document;
 
-    // Extract and resolve links
     const links = Array.from(document.querySelectorAll("a"))
       .map((a) => a.getAttribute("href"))
-      .filter((href): href is string => !!href) // Remove null/undefined hrefs
-      .map((href) => new URL(href, baseUrl).href); // Resolve relative links
+      .filter((href): href is string => !!href)
+      .map((href) => new URL(href, baseUrl).href);
 
     for (const link of links) {
       if (link.startsWith(baseUrl)) {
-        await fetchPages(link, baseUrl); // Internal link → Crawl further
+        await fetchPages(link, baseUrl);
       } else {
-        externalLinks.add(link); // External link → Store but don't crawl
+        externalLinks.add(link);
       }
     }
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(`Error fetching ${url}:`, error.message);
-    } else {
-      console.error(`Error fetching ${url}:`, error);
-    }
+    console.error(`Error fetching ${url}:`, error);
   }
+}
+
+async function checkBrokenLinks(links: string[]) {
+  const brokenLinks: string[] = [];
+  const workingLinks: string[] = [];
+
+  await Promise.all(
+    links.map(async (link) => {
+      try {
+        const response = await axios.get(link, {
+          headers: { "User-Agent": "Mozilla/5.0" },
+          validateStatus: () => true, // Capture all responses
+        });
+
+        if (response.status === 404) {
+          brokenLinks.push(link);
+        } else {
+          workingLinks.push(link);
+        }
+      } catch (error) {
+        brokenLinks.push(link); // Assume broken if request fails
+      }
+    })
+  );
+
+  return { brokenLinks, workingLinks };
 }
 
 export default async function handler(
@@ -59,10 +80,10 @@ export default async function handler(
 
   try {
     await fetchPages(url, url);
-    res.status(200).json({
-      internalLinks: Array.from(visited),
-      externalLinks: Array.from(externalLinks),
-    });
+    const allLinks = [...visited, ...externalLinks];
+    const { brokenLinks, workingLinks } = await checkBrokenLinks(allLinks);
+
+    res.status(200).json({ workingLinks, brokenLinks });
   } catch (error) {
     res.status(500).json({ error: "Failed to crawl site" });
   }
