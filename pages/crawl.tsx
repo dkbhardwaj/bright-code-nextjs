@@ -1,21 +1,32 @@
+import { log } from "console";
 import { useState } from "react";
 
 export default function Home() {
   const [url, setUrl] = useState("");
-  const [pages, setPages] = useState<string[]>([]);
+  const [internalLinks, setInternalLinks] = useState<string[]>([]);
+  const [externalLinks, setExternalLinks] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleCrawl = async () => {
     if (!url) return;
     setLoading(true);
+    setError("");
 
     try {
       const response = await fetch(`/api/crawl?url=${encodeURIComponent(url)}`);
       const data = await response.json();
-      setPages(data.pages || []);
+
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setInternalLinks(data.internalLinks || []);
+        setExternalLinks(data.externalLinks || []);
+      }
       console.log(data);
       
     } catch (error) {
+      setError("Crawling failed");
       console.error("Crawling failed", error);
     } finally {
       setLoading(false);
@@ -36,18 +47,33 @@ export default function Home() {
           />
           <button
             onClick={handleCrawl}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded submit-btn"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
             disabled={loading}
           >
             {loading ? "Crawling..." : "Fetch Pages"}
           </button>
 
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+
           <div className="mt-6">
-            <h2 className="text-xl font-semibold">Crawled Pages:</h2>
+            <h2 className="text-xl font-semibold">Internal Links:</h2>
             <ul className="list-disc pl-5">
-              {pages.map((page, index) => (
+              {internalLinks.map((link, index) => (
                 <li key={index} className="break-all">
-                  {page}
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold">External Links:</h2>
+            <ul className="list-disc pl-5 text-blue-500">
+              {externalLinks.map((link, index) => (
+                <li key={index} className="break-all">
+                  <a href={link} target="_blank" rel="noopener noreferrer">
+                    {link}
+                  </a>
                 </li>
               ))}
             </ul>
