@@ -2,29 +2,29 @@ import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import { JSDOM } from "jsdom";
 
-// In-memory storage for job states (use a DB in production)
-const jobState: {
-  [jobId: string]: {
+// In-memory storage for job states
+const crawlState: Record<
+  string,
+  {
     baseUrl: string;
     visited: Set<string>;
     externalLinks: Set<string>;
     allLinks?: string[];
     brokenLinks?: string[];
     workingLinks?: string[];
-    status: "pending" | "crawling" | "checking" | "done";
-  };
-} = {};
+    status: "crawling" | "checking" | "done";
+  }
+> = {};
 
-// Function to crawl pages asynchronously
 async function fetchPages(url: string, baseUrl: string, jobId: string) {
-  const state = jobState[jobId];
+  const state = crawlState[jobId];
   if (state.visited.has(url)) return;
   state.visited.add(url);
 
   try {
     const { data } = await axios.get(url, {
       headers: { "User-Agent": "Mozilla/5.0" },
-      timeout: 5000,
+      timeout: 7000, // Avoid long response delays
     });
 
     const dom = new JSDOM(data);
@@ -43,12 +43,15 @@ async function fetchPages(url: string, baseUrl: string, jobId: string) {
       }
     }
   } catch (error) {
-    console.error(`Error fetching ${url}:`, error);
+    if (error instanceof Error) {
+      console.error(`Error fetching ${url}:`, error.message);
+    } else {
+      console.error(`Error fetching ${url}:`, error);
+    }
   }
 }
 
-// Function to check for broken links
-async function checkBrokenLinks(links: string[], batchSize: number = 5) {
+async function checkBrokenLinks(links: string[], batchSize: number = 10) {
   const brokenLinks: string[] = [];
   const workingLinks: string[] = [];
 
@@ -78,61 +81,74 @@ async function checkBrokenLinks(links: string[], batchSize: number = 5) {
   return { brokenLinks, workingLinks };
 }
 
-// API handler
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
-    // Start a new crawl job
-    const { url } = req.body;
-    if (!url || typeof url !== "string" || !/^https?:\/\//.test(url)) {
-      return res.status(400).json({ error: "Invalid URL" });
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
+  const { url, jobId: jobIdParam } = req.query;
+  const jobId = Array.isArray(jobIdParam) ? jobIdParam[0] : jobIdParam;
+
+  if (url && typeof url === "string" && /^https?:\/\//.test(url)) {
+    const newJobId = jobId ?? Date.now().toString();
+
+    if (!crawlState[newJobId]) {
+      crawlState[newJobId] = {
+        baseUrl: url,
+        visited: new Set(),
+        externalLinks: new Set(),
+        status: "crawling",
+      };
     }
 
-    const jobId = Date.now().toString(); // Generate unique job ID
-    jobState[jobId] = {
-      baseUrl: url,
-      visited: new Set<string>(),
-      externalLinks: new Set<string>(),
-      status: "crawling",
-    };
+    const state = crawlState[newJobId];
 
-    // Start crawling in the background
-    setTimeout(async () => {
-      await fetchPages(url, url, jobId);
-      jobState[jobId].allLinks = [
-        ...jobState[jobId].visited,
-        ...jobState[jobId].externalLinks,
-      ];
-      jobState[jobId].status = "checking";
+    if (state.status === "crawling") {
+      await fetchPages(url, url, newJobId);
+      state.allLinks = [...state.visited, ...state.externalLinks];
+      state.status = "checking";
+      return res.status(200).json({
+        jobId: newJobId,
+        status: "crawling",
+        message: "Crawling complete, checking links next",
+      });
+    }
+  }
 
+  if (jobId && typeof jobId === "string" && crawlState[jobId]) {
+    const state = crawlState[jobId];
+
+    if (state.status === "checking" && state.allLinks) {
       const { brokenLinks, workingLinks } = await checkBrokenLinks(
-        jobState[jobId].allLinks!,
-        5
+        state.allLinks,
+        10
       );
-      jobState[jobId].brokenLinks = brokenLinks;
-      jobState[jobId].workingLinks = workingLinks;
-      jobState[jobId].status = "done";
-    }, 0);
+      state.brokenLinks = brokenLinks;
+      state.workingLinks = workingLinks;
+      state.status = "done";
 
-    return res.status(202).json({ jobId, status: "processing" });
-  }
-
-  if (req.method === "GET") {
-    // Get job status
-    const { jobId } = req.query;
-    if (!jobId || typeof jobId !== "string" || !jobState[jobId]) {
-      return res.status(404).json({ error: "Job not found" });
+      const result = {
+        jobId,
+        status: "done",
+        workingLinks: state.workingLinks,
+        brokenLinks: state.brokenLinks,
+      };
+      delete crawlState[jobId];
+      return res.status(200).json(result);
     }
 
-    return res.status(200).json({
-      jobId,
-      status: jobState[jobId].status,
-      brokenLinks: jobState[jobId].brokenLinks || [],
-      workingLinks: jobState[jobId].workingLinks || [],
-    });
+    if (state.status === "done") {
+      return res.status(200).json({
+        jobId,
+        status: "done",
+        workingLinks: state.workingLinks,
+        brokenLinks: state.brokenLinks,
+      });
+    }
   }
 
-  return res.status(405).json({ error: "Method Not Allowed" });
+  return res.status(400).json({ error: "Invalid request or job ID" });
 }
