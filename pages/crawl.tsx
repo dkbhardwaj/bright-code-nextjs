@@ -30,6 +30,7 @@ export default function Home() {
     }
   };
 
+  
   return (
     <section className="py-[200px] bg-purple min-h-screen">
       <div className="conatiner">
