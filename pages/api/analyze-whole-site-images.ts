@@ -71,7 +71,10 @@ async function crawlSite(baseUrl: string, maxDepth: number): Promise<string[]> {
               !href.startsWith("mailto:") &&
               !/\.(pdf|jpg|png|zip)$/i.test(href) // Exclude non-HTML links
           )
-          .map((href) => new URL(href, pageUrl).href);
+          .map((href) => {
+            const absoluteUrl = href.startsWith("http") ? href : new URL(href, pageUrl).href;
+            return absoluteUrl;
+          });
 
         // Add newly discovered links to the queue
         pagesToVisit.push(...links.filter((link) => !visited.has(link)));

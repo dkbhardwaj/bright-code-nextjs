@@ -55,6 +55,7 @@ export default function Home() {
   } | null>(null);
 
   const router = useRouter();
+  console.log("Extracted Links:", links);
 
   useEffect(() => {
     if (url) {

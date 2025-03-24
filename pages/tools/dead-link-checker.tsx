@@ -23,9 +23,11 @@ export default function DeadLinkChecker() {
     setFetched(true);
     setError(null);
     setBrokenLinks([]);
-
+    const apiBase =
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://bright-code-nextjs-git-application-bright-code.vercel.app";
     try {
-      const response = await fetch("/api/analyze-dead-links", {
+      const response = await fetch(`${apiBase}/api/analyze-dead-links`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
