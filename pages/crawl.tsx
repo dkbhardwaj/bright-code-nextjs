@@ -36,26 +36,30 @@ export default function BrokenLinkChecker() {
   };
 
   const pollStatus = async (jobId: string) => {
+    console.log("Checking status for Job ID:", jobId); // Debug log
     const interval = setInterval(async () => {
       try {
         const response = await fetch(`/api/crawl?jobId=${jobId}`);
-        if (!response.ok) throw new Error("Failed to fetch status.");
-
+        if (!response.ok) throw new Error(`Status check failed: ${response.status}`);
+  
         const data = await response.json();
+        console.log("Received status:", data); // Debug log
+  
         setStatus(data.status);
-
         if (data.status === "done") {
           setBrokenLinks(data.brokenLinks);
           setWorkingLinks(data.workingLinks);
           clearInterval(interval);
         }
       } catch (err) {
+        console.error("Error checking status:", err); // Debug log
         setStatus("Error");
         setError("Failed to check status.");
         clearInterval(interval);
       }
-    }, 3000); // Reduced polling interval for faster results
+    }, 3000);
   };
+  
 
   return (
     <section className="bg-purple pt-[200px]">
