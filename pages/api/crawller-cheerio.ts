@@ -16,13 +16,16 @@ async function collectPages(
       headers: { "User-Agent": "Mozilla/5.0 (compatible; LinkFetcher/1.0)" },
       signal: AbortSignal.timeout(5000),
     });
-    if (!response.ok) return;
+    if (!response.ok) {
+      console.log(`Skipped ${url} - Status: ${response.status}`);
+      return;
+    }
     pages.add(url);
 
     const html = await response.text();
     const $ = load(html);
 
-    $("a").each((i, element) => {
+    $("a[href]").each((i, element) => {
       const href = $(element).attr("href");
       if (!href) return;
       const absoluteUrl = href.startsWith("http")
@@ -46,24 +49,27 @@ async function extractLinksFromPage(
       headers: { "User-Agent": "Mozilla/5.0 (compatible; LinkFetcher/1.0)" },
       signal: AbortSignal.timeout(5000),
     });
-    if (!response.ok) return { internal: [], external: [] };
+    if (!response.ok) {
+      console.log(`Failed to fetch ${url} - Status: ${response.status}`);
+      return { internal: [], external: [] };
+    }
 
     const html = await response.text();
     const $ = load(html);
     const internalLinks: string[] = [];
     const externalLinks: string[] = [];
 
-    $("a").each((i, element) => {
+    // Only extract from <a> tags
+    $("a[href]").each((i, element) => {
       const href = $(element).attr("href");
-      if (href) {
-        const absoluteUrl = href.startsWith("http")
-          ? href
-          : new URL(href, baseUrl).href;
-        if (absoluteUrl.startsWith(baseUrl)) {
-          internalLinks.push(absoluteUrl);
-        } else {
-          externalLinks.push(absoluteUrl);
-        }
+      if (!href) return;
+      const absoluteUrl = href.startsWith("http")
+        ? href
+        : new URL(href, baseUrl).href;
+      if (absoluteUrl.startsWith(baseUrl)) {
+        internalLinks.push(absoluteUrl);
+      } else {
+        externalLinks.push(absoluteUrl);
       }
     });
 
@@ -91,8 +97,10 @@ export default async function handler(
   const visited = new Set<string>();
   const pages = new Set<string>();
 
-  await collectPages(url, baseUrl, visited, pages, 10);
+  console.log(`Starting crawl for ${url}`);
+  await collectPages(url, baseUrl, visited, pages, 20); // 20-page limit
   const totalPages = pages.size;
+  console.log(`Collected ${totalPages} pages:`, [...pages]);
 
   const allLinks: { internal: string[]; external: string[] } = {
     internal: [],
@@ -107,5 +115,10 @@ export default async function handler(
   allLinks.internal = [...new Set(allLinks.internal)];
   allLinks.external = [...new Set(allLinks.external)];
 
+  console.log(
+    `Total internal links: ${allLinks.internal.length}, Total external links: ${allLinks.external.length}`
+  );
+  console.log("Internal links:", allLinks.internal);
+  console.log("External links:", allLinks.external);
   res.status(200).json({ links: allLinks, totalPages });
 }
