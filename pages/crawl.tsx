@@ -6,32 +6,55 @@ export default function BrokenLinkChecker() {
   const [status, setStatus] = useState<string | null>(null);
   const [brokenLinks, setBrokenLinks] = useState<string[]>([]);
   const [workingLinks, setWorkingLinks] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const startCrawl = async () => {
     setStatus("Starting...");
-    const response = await fetch("/api/crawl", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
-    const data = await response.json();
-    setJobId(data.jobId);
-    setStatus("Crawling started...");
-    pollStatus(data.jobId);
+    setError(null);
+    setBrokenLinks([]);
+    setWorkingLinks([]);
+
+    try {
+      const response = await fetch("/api/crawl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to start crawl.");
+      }
+
+      const data = await response.json();
+      setJobId(data.jobId);
+      setStatus("Crawling started...");
+      pollStatus(data.jobId);
+    } catch (err) {
+      setStatus("Error");
+      setError("Failed to start crawl.");
+    }
   };
 
   const pollStatus = async (jobId: string) => {
     const interval = setInterval(async () => {
-      const response = await fetch(`/api/crawl?jobId=${jobId}`);
-      const data = await response.json();
+      try {
+        const response = await fetch(`/api/crawl?jobId=${jobId}`);
+        if (!response.ok) throw new Error("Failed to fetch status.");
 
-      setStatus(data.status);
-      if (data.status === "done") {
-        setBrokenLinks(data.brokenLinks);
-        setWorkingLinks(data.workingLinks);
+        const data = await response.json();
+        setStatus(data.status);
+
+        if (data.status === "done") {
+          setBrokenLinks(data.brokenLinks);
+          setWorkingLinks(data.workingLinks);
+          clearInterval(interval);
+        }
+      } catch (err) {
+        setStatus("Error");
+        setError("Failed to check status.");
         clearInterval(interval);
       }
-    }, 5000); // Poll every 5 seconds
+    }, 3000); // Reduced polling interval for faster results
   };
 
   return (
@@ -50,13 +73,16 @@ export default function BrokenLinkChecker() {
             Start Crawl
           </button>
           {status && <p>Status: {status}</p>}
+          {error && <p className="text-red-500">{error}</p>}
           {status === "done" && (
             <div>
               <h2>Broken Links:</h2>
               <ul>
-                {brokenLinks.map((link) => (
-                  <li key={link}>{link}</li>
-                ))}
+                {brokenLinks.length > 0 ? (
+                  brokenLinks.map((link) => <li key={link}>{link}</li>)
+                ) : (
+                  <p>No broken links found.</p>
+                )}
               </ul>
             </div>
           )}
