@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 async function crawlSite(url: string, jobId: string) {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
