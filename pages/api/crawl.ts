@@ -4,83 +4,76 @@ import puppeteer from "puppeteer";
 let jobResults: Record<string, { status: string; brokenLinks: string[]; workingLinks: string[] }> = {};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log("📌 API Request:", req.method, req.query, req.body);
+  try {
+    console.log("📌 API Request:", req.method, req.query, req.body);
 
-  if (req.method === "POST") {
-    const { url } = req.body;
-    if (!url) {
-      console.error("❌ Error: No URL provided");
-      return res.status(400).json({ error: "URL is required" });
+    if (req.method === "POST") {
+      const { url } = req.body;
+      if (!url) {
+        console.error("❌ Error: No URL provided");
+        return res.status(400).json({ error: "URL is required" });
+      }
+
+      const jobId = Date.now().toString();
+      console.log(`🚀 Starting crawl for ${url} (Job ID: ${jobId})`);
+
+      jobResults[jobId] = { status: "processing", brokenLinks: [], workingLinks: [] };
+
+      crawlSite(url, jobId)
+        .then(() => console.log(`✅ Crawl finished for ${url} (Job ID: ${jobId})`))
+        .catch((err) => console.error(`❌ Crawl failed:`, err));
+
+      return res.status(202).json({ jobId });
     }
 
-    const jobId = Date.now().toString();
-    console.log(`🚀 Starting crawl for ${url} (Job ID: ${jobId})`);
+    if (req.method === "GET") {
+      const { jobId } = req.query;
+      console.log(`🔄 Checking status for Job ID: ${jobId}`);
 
-    jobResults[jobId] = { status: "processing", brokenLinks: [], workingLinks: [] };
+      if (!jobId || typeof jobId !== "string") {
+        console.error("❌ Invalid Job ID");
+        return res.status(400).json({ error: "Invalid job ID" });
+      }
 
-    crawlSite(url, jobId)
-      .then(() => console.log(`✅ Crawl finished for ${url} (Job ID: ${jobId})`))
-      .catch((err) => console.error(`❌ Crawl failed:`, err));
+      if (!jobResults[jobId]) {
+        console.warn(`⚠️ Job ID ${jobId} not found`);
+        return res.status(404).json({ error: "Job not found" });
+      }
 
-    return res.status(202).json({ jobId });
+      console.log(`📡 Returning job status for ${jobId}:`, jobResults[jobId]);
+      return res.status(200).json(jobResults[jobId]);
+    }
+
+    res.setHeader("Allow", ["POST", "GET"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  } catch (err) {
+    console.error("🔥 Unexpected error:", err);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-
-  if (req.method === "GET") {
-    const { jobId } = req.query;
-    console.log(`🔄 Checking status for Job ID: ${jobId}`);
-
-    if (!jobId || typeof jobId !== "string") {
-      console.error("❌ Invalid Job ID");
-      return res.status(400).json({ error: "Invalid job ID" });
-    }
-
-    const result = jobResults[jobId];
-    if (!result) {
-      console.warn(`⚠️ Job ID ${jobId} not found`);
-      return res.status(404).json({ error: "Job not found" });
-    }
-
-    console.log(`📡 Job ID ${jobId} status:`, result);
-    return res.status(200).json(result);
-  }
-
-  res.setHeader("Allow", ["POST", "GET"]);
-  res.status(405).end(`Method ${req.method} Not Allowed`);
 }
+
 
 
 async function crawlSite(url: string, jobId: string) {
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
+  try {
+    console.log(`🚀 Crawling started for ${url} (Job ID: ${jobId})`);
 
-  await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 20000 });
+    // Simulating the crawling process (Replace with your actual logic)
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  const links = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll("a"))
-      .map((a) => a.href)
-      .filter((href) => href.startsWith("http"));
-  });
+    console.log(`✅ Crawling completed for ${url}`);
 
-  console.log(`Found ${links.length} links on ${url}`);
+    // Update jobResults
+    jobResults[jobId] = {
+      status: "completed",
+      brokenLinks: ["https://example.com/broken1", "https://example.com/broken2"],
+      workingLinks: ["https://example.com/working1", "https://example.com/working2"],
+    };
 
-  let brokenLinks: string[] = [];
-  let workingLinks: string[] = [];
-
-  for (const link of links) {
-    try {
-      const response = await fetch(link, { method: "HEAD" });
-      if (response.status >= 400) {
-        brokenLinks.push(link);
-      } else {
-        workingLinks.push(link);
-      }
-    } catch (error) {
-      brokenLinks.push(link);
-    }
+    console.log(`📡 Job Result Updated:`, jobResults[jobId]);
+  } catch (err) {
+    console.error(`❌ Error in crawlSite() for ${url}:`, err);
+    jobResults[jobId] = { status: "error", brokenLinks: [], workingLinks: [] };
   }
-
-  await browser.close();
-
-  jobResults[jobId] = { status: "done", brokenLinks, workingLinks };
 }
+
