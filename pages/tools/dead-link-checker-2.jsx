@@ -12,15 +12,13 @@ export default function DeadLinkChecker() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
-
-  console.log(results);
-  
+  const [error, setError] = useState();
 
   const handleCheckLinks = async (url, options) => {
     setIsLoading(true);
     setProgress(0);
     setResults([]);
+    setError(null);
   
     try {
       const response = await fetch('/api/check-links', {
@@ -34,34 +32,48 @@ export default function DeadLinkChecker() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-     
   
-      // Handle the stream
+      // Improved streaming reader with proper chunk handling
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
+      let buffer = '';
   
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
   
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n').filter(line => line.startsWith('data:'));
+        buffer += decoder.decode(value, { stream: true });
         
+        // Process complete lines only
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || ''; // Save incomplete line for next chunk
+  
         for (const line of lines) {
+          if (!line.startsWith('data:')) continue;
+  
           try {
-            const data = JSON.parse(line.substring(5).trim());
-            if (data.progress) {
+            const dataStr = line.substring(5).trim();
+            if (!dataStr) continue;
+  
+            const data = JSON.parse(dataStr);
+            
+            if (data.progress !== undefined) {
               setProgress(data.progress);
-            } else if (data.result) {
-
-               
+            }
+            
+            if (data.result) {
               setResults(prev => [...prev, data.result]);
-            } else if (data.error) {
+            }
+            
+            if (data.error) {
               throw new Error(data.error);
             }
+            
+            if (data.complete) {
+              setProgress(100);
+            }
           } catch (e) {
-            console.error('Error parsing JSON:', e);
+            console.error('Error parsing JSON chunk:', e, 'Line:', line);
           }
         }
       }
@@ -72,7 +84,6 @@ export default function DeadLinkChecker() {
       setIsLoading(false);
     }
   };
-
   return (
     <div className={styles.container}>
       <Head>
@@ -87,7 +98,7 @@ export default function DeadLinkChecker() {
         </p>
 
         <LinkCheckerForm onSubmit={handleCheckLinks} isLoading={isLoading} progress={progress} />
-        
+       {console.log(results.length)}
         {results.length > 0 && (
           <ResultsTable results={results} isLoading={isLoading} />
         )}

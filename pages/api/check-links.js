@@ -8,17 +8,30 @@ export default async function handler(req, res) {
   try {
     const { url, options = {} } = req.body;
     
-    // Set headers for streaming response
-    res.setHeader('Content-Type', 'text/plain');
+    // Set proper SSE headers
+    res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
+    res.setHeader('Content-Encoding', 'none');
     
-    // Create a simple stream controller
-    const streamData = (data) => {
-      res.write(`data: ${JSON.stringify(data)}\n\n`);
+    // Flush headers immediately
+    res.flushHeaders();
+
+    // Handle client disconnect
+    req.on('close', () => {
+      console.log('Client disconnected');
+      res.end();
+    });
+
+    // Ensure proper SSE format
+    const sendEvent = (data) => {
+      const payload = JSON.stringify(data);
+      res.write(`data: ${payload}\n\n`);
+      // Force flush the response
+      res.flush();
     };
 
-    await checkLinksOnPage(url, options, streamData);
+    await checkLinksOnPage(url, options, sendEvent);
     
     res.end();
   } catch (error) {
