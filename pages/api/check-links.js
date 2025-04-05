@@ -14,24 +14,24 @@ export default async function handler(req, res) {
     res.setHeader('Connection', 'keep-alive');
     res.setHeader('Content-Encoding', 'none');
     
-    // Flush headers immediately
-    res.flushHeaders();
-
-    // Handle client disconnect
-    req.on('close', () => {
-      console.log('Client disconnected');
-      res.end();
-    });
-
-    // Ensure proper SSE format
+    // Vercel-compatible streaming approach
     const sendEvent = (data) => {
       const payload = JSON.stringify(data);
       res.write(`data: ${payload}\n\n`);
-      // Force flush the response
-      res.flush();
+      // Remove res.flush() as it's not supported on Vercel
     };
 
-    await checkLinksOnPage(url, options, sendEvent);
+    // Handle client disconnect
+    let isConnectionAlive = true;
+    req.on('close', () => {
+      isConnectionAlive = false;
+    });
+
+    await checkLinksOnPage(url, options, (data) => {
+      if (isConnectionAlive) {
+        sendEvent(data);
+      }
+    });
     
     res.end();
   } catch (error) {

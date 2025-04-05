@@ -168,37 +168,55 @@ function isHtmlPage(url) {
   return !url.match(/\.(pdf|jpg|jpeg|png|gif|svg|css|js|zip|rar|exe|dmg|mp3|mp4|avi|mov|webp|ico|woff|woff2|ttf|eot|json|xml|csv|txt)$/i);
 }
 
+// In your checkLinkStatuses function, modify the streaming calls:
 async function checkLinkStatuses(links, streamData) {
-    const batchSize = 5; // Reduced batch size for smoother progress
-    let processed = 0;
-    const total = links.length;
-  
-    for (let i = 0; i < links.length; i += batchSize) {
-      const batch = links.slice(i, i + batchSize);
-      const results = await Promise.all(batch.map(link => checkSingleLink(link)));
-      
-      // Update state and send progress
-      results.forEach(result => {
+  const batchSize = 5;
+  let processed = 0;
+  const total = links.length;
+
+  for (let i = 0; i < links.length; i += batchSize) {
+    const batch = links.slice(i, i + batchSize);
+    const results = await Promise.all(batch.map(link => checkSingleLink(link)));
+    
+    // Update state and send progress
+    results.forEach(result => {
+      const normalizedUrl = normalizeUrl(result.url);
+      if (!state.allLinks.has(normalizedUrl)) {
         state.stats.linksChecked++;
         if (result.isBroken) state.stats.brokenLinks++;
-        state.allLinks.set(result.url, result);
-        streamData({ result });
-      });
-  
-      processed += batch.length;
-      const currentProgress = Math.min(98, Math.round((processed / total) * 100));
+        state.allLinks.set(normalizedUrl, result);
+        try {
+          streamData({ result });
+        } catch (e) {
+          console.error('Streaming error, client may have disconnected:', e);
+          throw e; // This will be caught by the outer try-catch
+        }
+      }
+    });
+
+    processed += batch.length;
+    const currentProgress = Math.min(98, Math.round((processed / total) * 100));
+    try {
       streamData({
         progress: currentProgress,
         stats: state.stats
       });
+    } catch (e) {
+      console.error('Progress streaming error:', e);
+      throw e;
     }
-  
-    // Ensure we reach 100% at the end
+  }
+
+  // Final completion message
+  try {
     streamData({
       progress: 100,
       stats: state.stats,
       complete: true
     });
+  } catch (e) {
+    console.error('Completion message streaming error:', e);
+  }
 }
 
 async function processBatch(batch, streamData) {

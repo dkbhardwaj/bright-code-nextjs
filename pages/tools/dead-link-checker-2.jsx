@@ -8,7 +8,7 @@ import styles from './styles/Home.module.css';
 
 export default function DeadLinkChecker() {
 
-    
+    console.log("dlc 2.0")
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -33,7 +33,6 @@ export default function DeadLinkChecker() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
   
-      // Improved streaming reader with proper chunk handling
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
@@ -44,9 +43,8 @@ export default function DeadLinkChecker() {
   
         buffer += decoder.decode(value, { stream: true });
         
-        // Process complete lines only
         const lines = buffer.split('\n');
-        buffer = lines.pop() || ''; // Save incomplete line for next chunk
+        buffer = lines.pop() || '';
   
         for (const line of lines) {
           if (!line.startsWith('data:')) continue;
@@ -74,6 +72,7 @@ export default function DeadLinkChecker() {
             }
           } catch (e) {
             console.error('Error parsing JSON chunk:', e, 'Line:', line);
+            // Continue processing even if one message fails
           }
         }
       }
