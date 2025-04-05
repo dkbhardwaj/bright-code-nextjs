@@ -15,7 +15,7 @@ export default function ResultsTable({ results, isLoading }) {
         </TableHead>
         <TableBody>
           {results?.map((result, index) => (
-            <TableRow key={index}>
+            result?.status == 404 && (<TableRow key={index}>
               <TableCell>
                 {result.isBroken ? (
                   <Chip icon={<Error />} label={result.status || 'Error'} color="error" />
@@ -34,7 +34,7 @@ export default function ResultsTable({ results, isLoading }) {
                   {result.sourceUrl}
                 </a>
               </TableCell>
-            </TableRow>
+            </TableRow>)
           ))}
         </TableBody>
       </Table>

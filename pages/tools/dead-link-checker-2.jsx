@@ -53,7 +53,7 @@ export default function DeadLinkChecker() {
   
         for (const line of lines) {
           if (!line.startsWith('data:')) continue;
-  
+          
           try {
             const dataStr = line.substring(5).trim();
             if (!dataStr) continue;
@@ -69,6 +69,8 @@ export default function DeadLinkChecker() {
             }
             
             if (data.result) {
+              // let deadData = data.result.filter((obj)=> obj.status == 404)
+              console.log(data.result)
               setResults(prev => [...prev, data.result]);
             }
             
@@ -105,7 +107,7 @@ export default function DeadLinkChecker() {
         </p>
 
         <LinkCheckerForm onSubmit={handleCheckLinks} isLoading={isLoading} progress={progress} />
-       {console.log(results.length)}
+       {console.log(results)}
         {results.length > 0 && (
           <ResultsTable results={results} isLoading={isLoading} />
         )}
