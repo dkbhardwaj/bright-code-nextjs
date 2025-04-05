@@ -71,7 +71,9 @@ export default function DeadLinkChecker() {
             if (data.result) {
               // let deadData = data.result.filter((obj)=> obj.status == 404)
               console.log(data.result)
-              setResults(prev => [...prev, data.result]);
+              if(data?.result?.status != 200){
+                setResults(prev => [...prev, data.result]);
+              }
             }
             
             if (data.complete) {
@@ -107,10 +109,10 @@ export default function DeadLinkChecker() {
         </p>
 
         <LinkCheckerForm onSubmit={handleCheckLinks} isLoading={isLoading} progress={progress} />
-       {console.log(results)}
-        {results.length > 0 && (
+     
+        {results.length > 0 ? (
           <ResultsTable results={results} isLoading={isLoading} />
-        )}
+        ): (<h3>No broken link found</h3>)}
       </main>
     </div>
   );
