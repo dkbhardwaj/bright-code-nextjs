@@ -78,16 +78,11 @@ export async function checkLinksOnPage(baseUrl, options, streamData) {
     // Extract ALL types of links
     const selectors = [
       'a[href]',          // Standard links
-      'link[href]',       // CSS, favicons
-      'img[src]',         // Images
       'script[src]',      // JavaScript
       'iframe[src]',      // Iframes
-      'source[src]',      // Media sources
-      'video[src]',       // Videos
       'audio[src]',       // Audio
       'embed[src]',       // Embeds
       'object[data]',     // Objects
-      'form[action]'      // Form actions
     ];
 
     // Process all selectors
@@ -168,72 +163,39 @@ function isHtmlPage(url) {
   return !url.match(/\.(pdf|jpg|jpeg|png|gif|svg|css|js|zip|rar|exe|dmg|mp3|mp4|avi|mov|webp|ico|woff|woff2|ttf|eot|json|xml|csv|txt)$/i);
 }
 
-// In your checkLinkStatuses function, modify the streaming calls:
 async function checkLinkStatuses(links, streamData) {
-  const batchSize = 5;
-  let processed = 0;
-  const total = links.length;
-
-  for (let i = 0; i < links.length; i += batchSize) {
-    const batch = links.slice(i, i + batchSize);
-    const results = await Promise.all(batch.map(link => checkSingleLink(link)));
-    
-    // Update state and send progress
-    results.forEach(result => {
-      const normalizedUrl = normalizeUrl(result.url);
-      if (!state.allLinks.has(normalizedUrl)) {
+    const batchSize = 5; // Reduced batch size for smoother progress
+    let processed = 0;
+    const total = links.length;
+  
+    for (let i = 0; i < links.length; i += batchSize) {
+      const batch = links.slice(i, i + batchSize);
+      const results = await Promise.all(batch.map(link => checkSingleLink(link)));
+      
+      // Update state and send progress
+      results.forEach(result => {
         state.stats.linksChecked++;
         if (result.isBroken) state.stats.brokenLinks++;
-        state.allLinks.set(normalizedUrl, result);
-        try {
-          streamData({ result });
-        } catch (e) {
-          console.error('Streaming error, client may have disconnected:', e);
-          throw e; // This will be caught by the outer try-catch
-        }
-      }
-    });
-
-    processed += batch.length;
-    const currentProgress = Math.min(98, Math.round((processed / total) * 100));
-    try {
+        state.allLinks.set(result.url, result);
+        streamData({ result });
+      });
+  
+      processed += batch.length;
+      const currentProgress = Math.min(98, Math.round((processed / total) * 100));
       streamData({
         progress: currentProgress,
         stats: state.stats
       });
-    } catch (e) {
-      console.error('Progress streaming error:', e);
-      throw e;
     }
-  }
-
-  // Final completion message
-  try {
+  
+    // Ensure we reach 100% at the end
     streamData({
       progress: 100,
       stats: state.stats,
       complete: true
     });
-  } catch (e) {
-    console.error('Completion message streaming error:', e);
-  }
 }
 
-async function processBatch(batch, streamData) {
-  const promises = batch.map(link => checkSingleLink(link));
-  const results = await Promise.all(promises);
-  
-  results.forEach(result => {
-    state.stats.linksChecked++;
-    if (result.isBroken) state.stats.brokenLinks++;
-    
-    streamData({
-      result,
-      stats: state.stats,
-      progress: Math.round((state.stats.linksChecked / state.allLinks.size) * 100)
-    });
-  });
-}
 
 async function checkSingleLink(link) {
   try {
