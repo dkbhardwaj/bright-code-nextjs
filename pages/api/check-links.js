@@ -38,7 +38,7 @@ export default async function handler(req, res) {
         stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 }
       });
       res.end();
-    }, 8000); // Slightly under Vercel's timeout
+    }, 100000); // Slightly under Vercel's timeout
 
     await checkLinksOnPage(url, options, sendEvent);
     
