@@ -21,19 +21,23 @@ export default function DeadLinkChecker() {
     setError(null);
   
     try {
+      // Add timeout for the fetch request
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 9000); // 9 seconds timeout
+  
       const response = await fetch('/api/check-links', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url, options }),
+        signal: controller.signal
       });
   
+      clearTimeout(timeout);
+  
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Server error: ${response.status}`);
       }
   
-      // Improved streaming reader with proper chunk handling
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
@@ -44,9 +48,8 @@ export default function DeadLinkChecker() {
   
         buffer += decoder.decode(value, { stream: true });
         
-        // Process complete lines only
         const lines = buffer.split('\n');
-        buffer = lines.pop() || ''; // Save incomplete line for next chunk
+        buffer = lines.pop() || '';
   
         for (const line of lines) {
           if (!line.startsWith('data:')) continue;
@@ -57,6 +60,10 @@ export default function DeadLinkChecker() {
   
             const data = JSON.parse(dataStr);
             
+            if (data.error) {
+              throw new Error(data.error);
+            }
+            
             if (data.progress !== undefined) {
               setProgress(data.progress);
             }
@@ -65,25 +72,25 @@ export default function DeadLinkChecker() {
               setResults(prev => [...prev, data.result]);
             }
             
-            if (data.error) {
-              throw new Error(data.error);
-            }
-            
             if (data.complete) {
               setProgress(100);
             }
           } catch (e) {
             console.error('Error parsing JSON chunk:', e, 'Line:', line);
+            setError('Error processing server response');
           }
         }
       }
     } catch (error) {
       console.error('Error checking links:', error);
-      setError(error.message);
+      setError(error.name === 'AbortError' 
+        ? 'Request timed out. Try a smaller website or fewer pages.' 
+        : error.message);
     } finally {
       setIsLoading(false);
     }
   };
+  
   return (
     <div className={styles.container}>
       <Head>

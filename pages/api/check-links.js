@@ -2,40 +2,63 @@ import { checkLinksOnPage } from '../../utils/linkChecker';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
+    return res.setHeader('Allow', ['POST']).status(405).json({ 
+      message: 'Method not allowed' 
+    });
   }
 
   try {
     const { url, options = {} } = req.body;
     
-    // Set proper SSE headers
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
-    res.setHeader('Content-Encoding', 'none');
-    
-    // Flush headers immediately
-    res.flushHeaders();
+    // Validate URL
+    if (!url || !isValidUrl(url)) {
+      return res.status(400).json({ message: 'Invalid URL provided' });
+    }
 
-    // Handle client disconnect
-    req.on('close', () => {
-      console.log('Client disconnected');
-      res.end();
+    // Set SSE headers
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
     });
 
-    // Ensure proper SSE format
+    // Modified sendEvent without flush
     const sendEvent = (data) => {
-      const payload = JSON.stringify(data);
-      res.write(`data: ${payload}\n\n`);
-      // Force flush the response
-      res.flush();
+      try {
+        res.write(`data: ${JSON.stringify(data)}\n\n`);
+      } catch (e) {
+        console.error('Error writing to stream:', e);
+      }
     };
+
+    // Add timeout handling
+    const timeout = setTimeout(() => {
+      sendEvent({ 
+        error: 'Processing timed out',
+        stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 }
+      });
+      res.end();
+    }, 8000); // Slightly under Vercel's timeout
 
     await checkLinksOnPage(url, options, sendEvent);
     
+    clearTimeout(timeout);
     res.end();
   } catch (error) {
     console.error('Error in API route:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.write(`data: ${JSON.stringify({
+      error: error.message,
+      stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 }
+    })}\n\n`);
+    res.end();
+  }
+}
+
+function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
   }
 }
