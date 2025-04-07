@@ -29,7 +29,7 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
         sx={{ mb: 2 }}
       />
 
-      <Box sx={{ mb: 2 }}>
+      {/* <Box sx={{ mb: 2 }}>
         <Typography variant="subtitle1" gutterBottom>
           Options
         </Typography>
@@ -44,7 +44,7 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
             inputProps={{ min: 1, max: 5 }}
           />
         </Box>
-      </Box>
+      </Box> */}
 
       {isLoading && (
         <Box sx={{ width: '100%', mb: 2 }}>

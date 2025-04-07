@@ -110,9 +110,9 @@ export default function DeadLinkChecker() {
 
         <LinkCheckerForm onSubmit={handleCheckLinks} isLoading={isLoading} progress={progress} />
      
-        {results.length > 0 ? (
-          <ResultsTable results={results} isLoading={isLoading} />
-        ): (<h3>No broken link found</h3>)}
+        {(results.length == 0 && progress == 100) ? (
+          <h3>No broken link found</h3> 
+        ): (<ResultsTable results={results} isLoading={isLoading} />)}
       </main>
     </div>
   );
