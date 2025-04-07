@@ -71,7 +71,7 @@ export default function DeadLinkChecker() {
             if (data.result) {
               // let deadData = data.result.filter((obj)=> obj.status == 404)
               console.log(data.result)
-              if(data?.result?.status != 200){
+              if(data?.result?.status == 404 ){
                 setResults(prev => [...prev, data.result]);
               }
             }
