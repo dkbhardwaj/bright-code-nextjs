@@ -16,7 +16,7 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: '100%', maxWidth: '800px' }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: '100%'}}>
       <TextField
         fullWidth
         label="Website URL"
