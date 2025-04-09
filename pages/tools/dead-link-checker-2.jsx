@@ -121,7 +121,9 @@ export default function DeadLinkChecker() {
         {results.length == 0 && progress == 100 ? (
           <h3>No broken link found</h3>
         ) : (
-          <ResultsTable results={results} isLoading={isLoading} />
+          results.length > 0 && (
+            <ResultsTable results={results} isLoading={isLoading} />
+          )
         )}
       </div>
     </section>
