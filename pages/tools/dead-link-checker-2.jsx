@@ -131,6 +131,7 @@ export default function DeadLinkChecker() {
             <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
               404 Link Checker
             </h1>
+            <p className="text-darkBlue">Found {results.length} broken links</p>
             <ResultsTable results={results} isLoading={isLoading} />
           </div>
         </section>

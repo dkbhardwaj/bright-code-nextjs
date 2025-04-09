@@ -3,7 +3,7 @@ import { CheckCircle, Error } from '@mui/icons-material';
 
 export default function ResultsTable({ results, isLoading }) {
   return (
-    <TableContainer component={Paper} sx={{ mt: 4, width: '100%', maxWidth: '1200px' }}>
+    <TableContainer component={Paper} sx={{ mt: 4, width: '100%'}}>
       <Table>
         <TableHead>
           <TableRow>
