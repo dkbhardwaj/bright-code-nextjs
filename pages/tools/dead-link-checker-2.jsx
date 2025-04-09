@@ -102,7 +102,9 @@ export default function DeadLinkChecker() {
       {progress != 100 && (
         <section className="section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center">
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
-            <h1 className={styles.title}>404 Link Checker</h1>
+            <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
+              404 Link Checker
+            </h1>
             <p className={styles.description}>
               Find broken links on your website
             </p>
