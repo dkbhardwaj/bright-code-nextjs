@@ -163,7 +163,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                       ) => (
                         <li
                           key={menuItem.fields.path?.toString() || index} // Ensure a unique key
-                          className={`${Style.menu} mx-[22px] transition-color duration-300 desktop:mx-4 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
+                          className={`${Style.menu} mx-[22px] transition-color duration-300 desktop:mx-[0.75rem] lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2`}
                           onClick={handleMobileMenuCloseClick}
                         >
                           <Link

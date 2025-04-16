@@ -98,33 +98,35 @@ export default function DeadLinkChecker() {
   console.log(isLoading);
 
   return (
-    <section className="section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
-        <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
-          404 Link Checker
-        </h1>
+    <section className="section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center py-[200px]">
+      <div className="container">
+        <div className="relative w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
+          <h1 className="text-2xl font-bold text-darkBlue text-center mb-6">
+            404 Link Checker
+          </h1>
 
-        <p className={styles.description}>
-          {progress != 100
-            ? "Find broken links on your website"
-            : `Found ${results.length} broken links`}
-        </p>
+          <p className={styles.description}>
+            {progress != 100
+              ? "Find broken links on your website"
+              : `Found ${results.length} broken links`}
+          </p>
 
-        {progress != 100 && (
-          <LinkCheckerForm
-            onSubmit={handleCheckLinks}
-            isLoading={isLoading}
-            progress={progress}
-          />
-        )}
+          {progress != 100 && (
+            <LinkCheckerForm
+              onSubmit={handleCheckLinks}
+              isLoading={isLoading}
+              progress={progress}
+            />
+          )}
 
-        {results.length == 0 && progress == 100 ? (
-          <h3>No broken link found</h3>
-        ) : (
-          results.length > 0 && (
-            <ResultsTable results={results} isLoading={isLoading} />
-          )
-        )}
+          {results.length == 0 && progress == 100 ? (
+            <h3>No broken link found</h3>
+          ) : (
+            results.length > 0 && (
+              <ResultsTable results={results} isLoading={isLoading} />
+            )
+          )}
+        </div>
       </div>
     </section>
   );
