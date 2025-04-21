@@ -91,15 +91,15 @@ const DeadLinkReport = () => {
               <h2 className="text-2xl font-bold text-gray-800">Analyzed URL</h2>
               <p className="mt-2 font-bold">
                 <Link
-                  href={reportData.url}
+                  href={reportData?.url}
                   className="underline text-blue-600 font-normal hover:text-purple transition-colors"
                 >
-                  {reportData.url}
+                  {reportData?.url}
                 </Link>
               </p>
             </div>
             <div className="screenshotWrapper w-[40%] mx-[20px]">
-              <ScreenshotPreview url={reportData.url} />
+              <ScreenshotPreview url={reportData?.url} />
             </div>
           </div>
 
