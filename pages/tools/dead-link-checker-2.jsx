@@ -106,8 +106,8 @@ export default function DeadLinkChecker() {
 
           // Sanitize the URL to create a valid Firebase key, keeping https://
           const sanitizedUrl = (checkedUrl || "unknown")
-            .replace(/[:/]/g, "_") // Replace : and / with _
-            .replace(/\./g, "_"); // Replace . with _
+            .replace(/[:/]/g, "_")
+            .replace(/\./g, "_");
           const timestamp = Date.now();
           const firebaseKey = `${sanitizedUrl}_${timestamp}`;
 
@@ -123,11 +123,16 @@ export default function DeadLinkChecker() {
 
           console.log("Results saved to Firebase successfully");
           setError("Results saved successfully!");
+          setTimeout(() => setError(null), 3000); // Clear success message
 
-          // Generate shareable URL for dead-link-report
+          // Generate shareable URL with query parameter
           const baseUrl =
             typeof window !== "undefined" ? window.location.origin : "";
-          setShareableUrl(`${baseUrl}/tools/dead-link-report/${firebaseKey}`);
+          setShareableUrl(
+            `${baseUrl}/tools/dead-link-report?crawlId=${encodeURIComponent(
+              firebaseKey
+            )}`
+          );
         } catch (error) {
           console.error("Error saving results to Firebase:", error);
           setError("Failed to save results to Firebase: " + error.message);

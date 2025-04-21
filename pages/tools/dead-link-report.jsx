@@ -1,29 +1,39 @@
-"use client";
-import { useState, useEffect } from "react";
+// pages/report.tsx
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { get, ref } from "firebase/database";
+import { Database } from "../api/firebaseConfig";
 import Link from "next/link";
 import ResultsTable from "./components/ResultsTable";
 import styles from "./styles/Home.module.css";
-import { Database } from "../api/firebaseConfig";
 
 const DeadLinkReport = () => {
   const router = useRouter();
-  const { savedId } = router.query;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [reportData, setReportData] = useState(null);
 
-    console.log(savedId);
-    
   useEffect(() => {
-    if (!savedId) return;
+    if (!router.isReady) return;
+
+    const crawlId = router.query.crawlId;
+    const decodedCrawlId = crawlId ? decodeURIComponent(crawlId) : null;
+    console.log("router.query:", router.query); // Debug
+    console.log("crawlId:", crawlId); // Debug
+    console.log("decodedCrawlId:", decodedCrawlId); // Debug
+
+    if (!decodedCrawlId) {
+      setError("No crawl ID provided.");
+      setLoading(false);
+      return;
+    }
 
     const fetchReportData = async () => {
       try {
+        console.log("Fetching with crawlId:", decodedCrawlId); // Debug
         const dbRef = ref(
           Database,
-          `dead_link_checker_crawled_sites/${savedId}`
+          `dead_link_checker_crawled_sites/${decodedCrawlId}`
         );
         const snapshot = await get(dbRef);
 
@@ -33,9 +43,13 @@ const DeadLinkReport = () => {
           setReportData(data);
         } else {
           setError("No results found for this ID.");
+          console.log(
+            "No data at path:",
+            `dead_link_checker_crawled_sites/${decodedCrawlId}`
+          ); // Debug
         }
       } catch (err) {
-        setError("Failed to fetch results.");
+        setError("Failed to fetch results: " + err.message);
         console.error("Fetch error:", err);
       } finally {
         setLoading(false);
@@ -43,13 +57,15 @@ const DeadLinkReport = () => {
     };
 
     fetchReportData();
-  }, [savedId]);
+  }, [router.isReady, router.query]);
 
   if (loading)
     return <div className="text-white text-center">Loading results...</div>;
   if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!reportData)
     return <div className="text-white text-center">No data available.</div>;
+
+  console.log("Rendering brokenLinks:", reportData.brokenLinks); // Debug
 
   return (
     <section className="min-h-screen pt-[200px] pb-[150px] bg-purple">
@@ -64,7 +80,7 @@ const DeadLinkReport = () => {
               <div className="relative border-solid border-4 border-white rounded-lg max-w-[30%] min-w-[160px] min-h-[160px] flex justify-center items-center hover:border-orange transition-[border] flex-col">
                 <Link
                   className="menuItem back redirect"
-                  href="/tools/dead-link-checker"
+                  href="/tools/dead-link-checker-2"
                 >
                   .
                 </Link>
@@ -86,30 +102,27 @@ const DeadLinkReport = () => {
         </div>
 
         <div className="bg-white p-[40px] rounded-lg">
-          <div className="mb-8 flex items-center justify-center gap-6">
-            <div className="w-[60%]">
-              <h2 className="text-2xl font-bold text-gray-800">Analyzed URL</h2>
+          <div className="mb-8 flex items-center gap-6 lg:flex-wrap">
+            <div className="w-[60%] lg:w-full">
+              <h2 className="text-2xl font-bold !text-black">Analyzed URL</h2>
               <p className="mt-2 font-bold">
                 <Link
-                  href={reportData?.url}
-                  className="underline text-blue-600 font-normal hover:text-purple transition-colors"
+                  href={reportData.url}
+                  className="underline !text-black font-normal hover:!text-purple transition-colors"
                 >
-                  {reportData?.url}
+                  {reportData.url}
                 </Link>
               </p>
             </div>
-            <div className="screenshotWrapper w-[40%] mx-[20px]">
-              <ScreenshotPreview url={reportData?.url} />
+            <div className="screenshotWrapper w-[40%] lg-up:mx-[20px] lg:w-[350px]">
+              <ScreenshotPreview url={reportData.url} />
             </div>
           </div>
 
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              Broken Links (404 Errors)
-            </h2>
-            {reportData.brokenLinks.length > 0 ? (
+          <div className="mt-[80px]">
+            {reportData.brokenLinks && reportData.brokenLinks.length > 0 ? (
               <>
-                <p className={styles.description}>
+                <p className={`!text-black ${styles.description} underline`}>
                   Found {reportData.brokenLinks.length} broken links
                 </p>
                 <ResultsTable
@@ -163,6 +176,8 @@ const ScreenshotPreview = ({ url }) => {
         if (response.ok) {
           const blob = await response.blob();
           setScreenshot(URL.createObjectURL(blob));
+        } else {
+          console.error("Screenshot API failed:", response.status);
         }
       } catch (error) {
         console.error("Error fetching screenshot:", error);
@@ -181,7 +196,7 @@ const ScreenshotPreview = ({ url }) => {
             alt="Website Screenshot"
             className="w-full max-h-[200px] object-cover object-top"
           />
-          <span className="text-[0] w-[30px] h-[30px] border-2 border-gray rounded-full inline-block absolute -translate-y-1/2 top-1/2 left-[90%] z-[1]">
+          <span className="text-[0] w-[30px] h-[30px] border-2 border-gray rounded-full inline-block absolute -translate-y-1/2 top-1/2 right-[10px] z-[1] xs:w-[20px] xs:h-[20px]">
             .
           </span>
           <span className="text-[0] w-[30px] h-[30px] border-l-2 border-l-gray rounded-sm inline-block absolute -translate-y-1/2 top-1/2 left-[3%] z-[1]">
@@ -190,7 +205,7 @@ const ScreenshotPreview = ({ url }) => {
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
-          <p className="text-gray-500">Loading preview...</p>
+          <p className="text-gray">Loading preview...</p>
         </div>
       )}
     </div>
