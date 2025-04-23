@@ -9,14 +9,20 @@ import { Database } from "../api/firebaseConfig";
 export default function DeadLinkChecker() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [overallProgress, setOverallProgress] = useState(0);
+  const [currentPage, setCurrentPage] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const [pagesCrawled, setPagesCrawled] = useState(0);
   const [error, setError] = useState(null);
   const [checkedUrl, setCheckedUrl] = useState(null);
   const [shareableUrl, setShareableUrl] = useState(null);
 
   const handleCheckLinks = async (url, options) => {
     setIsLoading(true);
-    setProgress(0);
+    setOverallProgress(0);
+    setCurrentPage(null);
+    setTotalPages(1);
+    setPagesCrawled(0);
     setResults([]);
     setError(null);
     setCheckedUrl(url);
@@ -65,18 +71,29 @@ export default function DeadLinkChecker() {
               throw new Error(data.error);
             }
 
-            if (data.progress !== undefined) {
-              setProgress(data.progress);
+            if (data.totalPages !== undefined) {
+              setTotalPages(data.totalPages);
             }
 
-            if (data.result) {
-              if (data?.result?.status == 404) {
-                setResults((prev) => [...prev, data.result]);
-              }
+            if (data.pagesCrawled !== undefined) {
+              setPagesCrawled(data.pagesCrawled);
+            }
+
+            if (data.overallProgress !== undefined) {
+              setOverallProgress(data.overallProgress);
+            }
+
+            if (data.currentPage) {
+              setCurrentPage(data.currentPage);
+            }
+
+            if (data.result && data.result.status === 404) {
+              setResults((prev) => [...prev, data.result]);
             }
 
             if (data.complete) {
-              setProgress(100);
+              setOverallProgress(100);
+              setCurrentPage(null);
             }
           } catch (e) {
             console.error("Error parsing JSON chunk:", e, "Line:", line);
@@ -97,14 +114,11 @@ export default function DeadLinkChecker() {
   };
 
   useEffect(() => {
-    if (progress === 100 && results.length > 0) {
+    if (overallProgress === 100 && results.length > 0) {
       const saveToFirebase = async () => {
         setError(null);
         try {
-          console.log("Database instance:", Database); // Debug
           const db = Database;
-
-          // Sanitize the URL to create a valid Firebase key, keeping https://
           const sanitizedUrl = (checkedUrl || "unknown")
             .replace(/[:/]/g, "_")
             .replace(/\./g, "_");
@@ -123,9 +137,8 @@ export default function DeadLinkChecker() {
 
           console.log("Results saved to Firebase successfully");
           setError("Results saved successfully!");
-          setTimeout(() => setError(null), 3000); // Clear success message
+          setTimeout(() => setError(null), 3000);
 
-          // Generate shareable URL with query parameter
           const baseUrl =
             typeof window !== "undefined" ? window.location.origin : "";
           setShareableUrl(
@@ -141,7 +154,7 @@ export default function DeadLinkChecker() {
 
       saveToFirebase();
     }
-  }, [progress, results, checkedUrl]);
+  }, [overallProgress, results, checkedUrl]);
 
   return (
     <section className="section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center py-[200px]">
@@ -180,21 +193,54 @@ export default function DeadLinkChecker() {
           )}
 
           <p className={styles.description}>
-            {progress != 100
-              ? "Find broken links on your website"
+            {overallProgress !== 100
+              ? `Crawling ${pagesCrawled} out of ${totalPages} pages...`
               : `Found ${results.length} broken links`}
           </p>
 
-          {progress != 100 && (
+          {isLoading && (
+            <div className="mb-4">
+              <p>Overall Progress: {Math.round(overallProgress)}%</p>
+              <div className="w-full bg-gray-200 rounded-full h-4">
+                <div
+                  className="bg-blue-500 h-4 rounded-full"
+                  style={{ width: `${overallProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {currentPage && (
+            <div className="mb-4">
+              <p className="truncate">
+                Current Page: {currentPage.pageUrl} - {currentPage.pageStatus} (
+                {Math.round(currentPage.pageProgress)}%)
+              </p>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className={`h-2 rounded-full ${
+                    currentPage.pageStatus === "Completed"
+                      ? "bg-green-500"
+                      : currentPage.pageStatus === "Failed"
+                      ? "bg-red-500"
+                      : "bg-blue-500"
+                  }`}
+                  style={{ width: `${currentPage.pageProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {overallProgress !== 100 && (
             <LinkCheckerForm
               onSubmit={handleCheckLinks}
               isLoading={isLoading}
-              progress={progress}
+              progress={overallProgress}
             />
           )}
 
-          {results.length == 0 && progress == 100 ? (
-            <h3>No broken link found</h3>
+          {results.length === 0 && overallProgress === 100 ? (
+            <h3>No broken links found</h3>
           ) : (
             results.length > 0 && (
               <ResultsTable results={results} isLoading={isLoading} />
