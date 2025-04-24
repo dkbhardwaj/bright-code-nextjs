@@ -30,7 +30,7 @@ const ColFourCards: React.FC<ColFourCardData> = ({ data }) => {
         <div className="w-mainRow -ml-2.5 flex flex-wrap items-center z-1 relative md:w-full md:ml-0">
           {data?.iconWithTextBlock.map((item,index) => (
             <div
-              className="col_four w-colFour mx-2.5 mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
+              className="col_four w-colFour mx-[0.5rem] mb-10 text-spaceBlack xl:w-halfWidth md:!w-full md:mx-0 md:px-0 text-center"
               data-aos="fade-up"
               data-aos-delay={400}
               data-aos-duration={500}
