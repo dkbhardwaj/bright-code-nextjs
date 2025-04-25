@@ -16,6 +16,7 @@ export default function DeadLinkChecker() {
   const [error, setError] = useState(null);
   const [checkedUrl, setCheckedUrl] = useState(null);
   const [shareableUrl, setShareableUrl] = useState(null);
+  const [firebaseKey, setFirebaseKey] = useState(null);
 
   const handleCheckLinks = async (url, options) => {
     setIsLoading(true);
@@ -27,6 +28,11 @@ export default function DeadLinkChecker() {
     setError(null);
     setCheckedUrl(url);
     setShareableUrl(null);
+    
+    const sanitizedUrl = url.replace(/[:/]/g, "_").replace(/\./g, "_");
+    const timestamp = Date.now();
+    const newKey = `${sanitizedUrl}_${timestamp}`;
+    setFirebaseKey(newKey);
 
     try {
       const controller = new AbortController();
