@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
   console.log(url, "LinkCheckerForm");
   
   const [options, setOptions] = useState({
@@ -19,13 +19,12 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
     maxDepth: 1,
   });
 
+  // Optional: Reset URL and options when not loading
   useEffect(() => {
-  
-    if (progress === 100) {
-      setUrl("");
+    if (!isLoading && progress === 100) {
+      setUrl(''); // Clear after success
     }
-  }, [progress]);
-
+  }, [isLoading, progress]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

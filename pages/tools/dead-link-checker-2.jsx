@@ -16,7 +16,6 @@ export default function DeadLinkChecker() {
   const [error, setError] = useState(null);
   const [checkedUrl, setCheckedUrl] = useState(null);
   const [shareableUrl, setShareableUrl] = useState(null);
-  const [firebaseKey, setFirebaseKey] = useState(null);
 
   const handleCheckLinks = async (url, options) => {
     setIsLoading(true);
@@ -28,11 +27,6 @@ export default function DeadLinkChecker() {
     setError(null);
     setCheckedUrl(url);
     setShareableUrl(null);
-  
-    const sanitizedUrl = url.replace(/[:/]/g, "_").replace(/\./g, "_");
-    const timestamp = Date.now();
-    const newKey = `${sanitizedUrl}_${timestamp}`;
-    setFirebaseKey(newKey);
 
     try {
       const controller = new AbortController();
@@ -96,10 +90,9 @@ export default function DeadLinkChecker() {
               setCurrentPage(data.currentPage);
             }
 
-            if (data.result && data.result.status === 404 && checkedUrl) {
+            if (data.result && data.result.status === 404) {
               setResults((prev) => [...prev, data.result]);
             }
-            
 
             if (data.complete) {
               setOverallProgress(100);
@@ -138,7 +131,7 @@ export default function DeadLinkChecker() {
           const resultsRef = ref(
             db,
             `dead_link_checker_crawled_sites/${firebaseKey}`
-          );          
+          );
           await set(resultsRef, {
             url: checkedUrl || "unknown",
             brokenLinks: results,
