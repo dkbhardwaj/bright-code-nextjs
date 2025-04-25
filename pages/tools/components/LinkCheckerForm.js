@@ -1,22 +1,41 @@
-'use client'
+'use client';
 
-import { useState } from 'react';
-import { Button, TextField, Box, Typography, CircularProgress, LinearProgress } from '@mui/material';
+import { useState, useEffect } from 'react';
+import {
+  Button,
+  TextField,
+  Box,
+  Typography,
+  CircularProgress,
+  LinearProgress,
+} from '@mui/material';
 
 export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
   const [url, setUrl] = useState('');
+  console.log(url, "LinkCheckerForm");
+  
   const [options, setOptions] = useState({
     checkExternal: false,
     maxDepth: 1,
   });
 
+  // Optional: Reset URL and options when not loading
+  useEffect(() => {
+    if (!isLoading && progress === 100) {
+      setUrl(''); // Clear after success
+    }
+  }, [isLoading, progress]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(url, options);
+    if (!url) return;
+
+    // Reset progress on new submission if needed
+    onSubmit(url.trim(), options);
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: '100%'}}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3, width: '100%' }}>
       <TextField
         fullWidth
         label="Website URL"
@@ -28,23 +47,6 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
         disabled={isLoading}
         sx={{ mb: 2 }}
       />
-
-      {/* <Box sx={{ mb: 2 }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Options
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <TextField
-            label="Max Depth"
-            type="number"
-            value={options.maxDepth}
-            onChange={(e) => setOptions({ ...options, maxDepth: parseInt(e.target.value) || 1 })}
-            disabled={isLoading}
-            sx={{ width: '120px' }}
-            inputProps={{ min: 1, max: 5 }}
-          />
-        </Box>
-      </Box> */}
 
       {isLoading && (
         <Box sx={{ width: '100%', mb: 2 }}>
@@ -59,7 +61,7 @@ export default function LinkCheckerForm({ onSubmit, isLoading, progress }) {
         type="submit"
         variant="contained"
         color="primary"
-        disabled={isLoading}
+        disabled={isLoading || !url}
         startIcon={isLoading ? <CircularProgress size={20} /> : null}
         fullWidth
         size="large"

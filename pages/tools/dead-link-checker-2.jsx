@@ -34,7 +34,10 @@ export default function DeadLinkChecker() {
 
       const response = await fetch("/api/check-links", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
+        },
         body: JSON.stringify({ url, options }),
         signal: controller.signal,
       });
@@ -120,8 +123,8 @@ export default function DeadLinkChecker() {
         try {
           const db = Database;
           const sanitizedUrl = (checkedUrl || "unknown")
-            .replace(/[:/]/g, "_")
-            .replace(/\./g, "_");
+          .replace(/[:/]/g, "_")
+          .replace(/\./g, "_");
           const timestamp = Date.now();
           const firebaseKey = `${sanitizedUrl}_${timestamp}`;
 
@@ -232,11 +235,13 @@ export default function DeadLinkChecker() {
           )}
 
           {overallProgress !== 100 && (
-            <LinkCheckerForm
+           <LinkCheckerForm
+              key={checkedUrl} 
               onSubmit={handleCheckLinks}
               isLoading={isLoading}
               progress={overallProgress}
             />
+         
           )}
 
           {results.length === 0 && overallProgress === 100 ? (

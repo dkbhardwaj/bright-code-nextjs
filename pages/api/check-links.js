@@ -9,6 +9,7 @@ export default async function handler(req, res) {
 
   try {
     const { url, options = {} } = req.body;
+    console.log(url);
 
     if (!url || !isValidUrl(url)) {
       return res.status(400).json({ message: "Invalid URL provided" });
