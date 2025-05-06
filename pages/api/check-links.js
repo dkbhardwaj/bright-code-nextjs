@@ -9,27 +9,29 @@ export default async function handler(req, res) {
 
   try {
     const { url, options = {} } = req.body;
-    console.log(url);
 
+    // Validate URL
     if (!url || !isValidUrl(url)) {
       return res.status(400).json({ message: "Invalid URL provided" });
     }
 
+    // Set SSE headers
     res.writeHead(200, {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
       Connection: "keep-alive",
     });
 
+    // Modified sendEvent without flush
     const sendEvent = (data) => {
       try {
-        console.log("Sending event:", data); // Debug log
         res.write(`data: ${JSON.stringify(data)}\n\n`);
       } catch (e) {
         console.error("Error writing to stream:", e);
       }
     };
 
+    // Add timeout handling
     const timeout = setTimeout(() => {
       sendEvent({
         error: "Processing timed out",
