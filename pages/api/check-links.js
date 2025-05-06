@@ -22,7 +22,6 @@ export default async function handler(req, res) {
       Connection: "keep-alive",
     });
 
-    // Modified sendEvent without flush
     const sendEvent = (data) => {
       try {
         res.write(`data: ${JSON.stringify(data)}\n\n`);
@@ -31,19 +30,30 @@ export default async function handler(req, res) {
       }
     };
 
-    // Add timeout handling
+    // Detect client disconnection
+    let isClientConnected = true;
+    res.on("close", () => {
+      isClientConnected = false;
+      console.log("Client disconnected, stopping crawl");
+    });
+
     const timeout = setTimeout(() => {
-      sendEvent({
-        error: "Processing timed out",
-        stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
-      });
-      res.end();
+      if (isClientConnected) {
+        sendEvent({
+          error: "Processing timed out",
+          stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
+        });
+        res.end();
+      }
     }, 300000);
 
-    await checkLinksOnPage(url, options, sendEvent);
+    // Pass cancellation check to checkLinksOnPage
+    await checkLinksOnPage(url, options, sendEvent, () => isClientConnected);
 
     clearTimeout(timeout);
-    res.end();
+    if (isClientConnected) {
+      res.end();
+    }
   } catch (error) {
     console.error("Error in API route:", error);
     res.write(
