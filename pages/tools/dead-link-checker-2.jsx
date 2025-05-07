@@ -13,9 +13,8 @@ export default function DeadLinkChecker() {
   const [error, setError] = useState(null);
   const [checkedUrl, setCheckedUrl] = useState(null);
   const [shareableUrl, setShareableUrl] = useState(null);
-  const controllerRef = useRef(null); // Store AbortController
+  const controllerRef = useRef(null);
 
-  // Reset state on mount
   useEffect(() => {
     setResults([]);
     setProgress(0);
@@ -25,19 +24,19 @@ export default function DeadLinkChecker() {
     setIsLoading(false);
   }, []);
 
-  // Cleanup on unmount (e.g., refresh)
   useEffect(() => {
     return () => {
       if (controllerRef.current) {
-        controllerRef.current.abort(); // Abort ongoing fetch on unmount
+        controllerRef.current.abort("Component unmounted");
+        controllerRef.current = null;
       }
     };
   }, []);
 
   const handleCheckLinks = async (url, options) => {
-    // Abort any existing request
     if (controllerRef.current) {
-      controllerRef.current.abort();
+      controllerRef.current.abort("New crawl started");
+      controllerRef.current = null;
     }
 
     setIsLoading(true);
@@ -49,8 +48,13 @@ export default function DeadLinkChecker() {
 
     try {
       controllerRef.current = new AbortController();
-      const timeout = setTimeout(() => controllerRef.current?.abort(), 30000); // Increase to 30s
+      const timeout = setTimeout(() => {
+        if (controllerRef.current) {
+          controllerRef.current.abort("Request timed out");
+        }
+      }, 30000);
 
+      console.log("Starting crawl for:", url); // Debug
       const response = await fetch("/api/check-links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -113,12 +117,12 @@ export default function DeadLinkChecker() {
       console.error("Error checking links:", error);
       setError(
         error.name === "AbortError"
-          ? "Request timed out. Try a smaller website or fewer pages."
+          ? `Request aborted: ${error.message}`
           : error.message
       );
     } finally {
       setIsLoading(false);
-      controllerRef.current = null; // Clear controller
+      controllerRef.current = null;
     }
   };
 
@@ -127,10 +131,11 @@ export default function DeadLinkChecker() {
       const saveToFirebase = async () => {
         setError(null);
         try {
-          console.log("Database instance:", Database); // Debug
+          console.log("Saving to Firebase:", {
+            url: checkedUrl,
+            brokenLinks: results,
+          });
           const db = Database;
-
-          // Sanitize the URL to create a valid Firebase key, keeping https://
           const sanitizedUrl = (checkedUrl || "unknown")
             .replace(/[:/]/g, "_")
             .replace(/\./g, "_");
@@ -149,9 +154,8 @@ export default function DeadLinkChecker() {
 
           console.log("Results saved to Firebase successfully");
           setError("Results saved successfully!");
-          setTimeout(() => setError(null), 3000); // Clear success message
+          setTimeout(() => setError(null), 3000);
 
-          // Generate shareable URL with query parameter
           const baseUrl =
             typeof window !== "undefined" ? window.location.origin : "";
           setShareableUrl(

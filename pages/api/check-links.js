@@ -10,12 +10,10 @@ export default async function handler(req, res) {
   try {
     const { url, options = {} } = req.body;
 
-    // Validate URL
     if (!url || !isValidUrl(url)) {
       return res.status(400).json({ message: "Invalid URL provided" });
     }
 
-    // Set SSE headers
     res.writeHead(200, {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
@@ -24,17 +22,18 @@ export default async function handler(req, res) {
 
     const sendEvent = (data) => {
       try {
-        res.write(`data: ${JSON.stringify(data)}\n\n`);
+        if (!res.writableEnded) {
+          res.write(`data: ${JSON.stringify(data)}\n\n`);
+        }
       } catch (e) {
         console.error("Error writing to stream:", e);
       }
     };
 
-    // Detect client disconnection
     let isClientConnected = true;
     res.on("close", () => {
       isClientConnected = false;
-      console.log("Client disconnected, stopping crawl");
+      console.log("Client disconnected, stopping crawl for:", url);
     });
 
     const timeout = setTimeout(() => {
@@ -47,22 +46,24 @@ export default async function handler(req, res) {
       }
     }, 300000);
 
-    // Pass cancellation check to checkLinksOnPage
+    console.log("Starting crawl for:", url);
     await checkLinksOnPage(url, options, sendEvent, () => isClientConnected);
 
-    clearTimeout(timeout);
-    if (isClientConnected) {
+    if (isClientConnected && !res.writableEnded) {
       res.end();
     }
+    clearTimeout(timeout);
   } catch (error) {
     console.error("Error in API route:", error);
-    res.write(
-      `data: ${JSON.stringify({
-        error: error.message,
-        stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
-      })}\n\n`
-    );
-    res.end();
+    if (!res.writableEnded) {
+      res.write(
+        `data: ${JSON.stringify({
+          error: error.message,
+          stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
+        })}\n\n`
+      );
+      res.end();
+    }
   }
 }
 

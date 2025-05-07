@@ -20,19 +20,6 @@ const config = {
   includeResources: true,
 };
 
-const state = {
-  visitedUrls: new Set(),
-  allLinks: new Map(),
-  pagesToCrawl: [],
-  crawlInProgress: false,
-  stats: {
-    pagesVisited: 0,
-    linksChecked: 0,
-    brokenLinks: 0,
-  },
-  totalPages: 1, // Track total pages (initially 1 for the base URL)
-};
-
 function normalizeUrl(url) {
   try {
     const urlObj = new URL(url);
@@ -45,18 +32,28 @@ function normalizeUrl(url) {
   }
 }
 
-export async function checkLinksOnPage(baseUrl, options, streamData) {
+export async function checkLinksOnPage(
+  baseUrl,
+  options,
+  streamData,
+  shouldContinue
+) {
+  // Initialize state for this crawl
+  const state = {
+    visitedUrls: new Set(),
+    allLinks: new Map(),
+    pagesToCrawl: [],
+    stats: {
+      pagesVisited: 0,
+      linksChecked: 0,
+      brokenLinks: 0,
+    },
+    totalPages: 1,
+  };
+
   try {
-    if (!state.crawlInProgress) {
-      state.visitedUrls.clear();
-      state.allLinks.clear();
-      state.pagesToCrawl = [];
-      state.crawlInProgress = true;
-      state.stats = { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 };
-      state.totalPages = 1;
-      Object.assign(config, options);
-      streamData({ totalPages: state.totalPages }); // Initial totalPages
-    }
+    Object.assign(config, options);
+    streamData({ totalPages: state.totalPages });
 
     const baseUrlObj = new URL(baseUrl);
     baseUrl = baseUrlObj.href;
@@ -66,7 +63,6 @@ export async function checkLinksOnPage(baseUrl, options, streamData) {
     state.visitedUrls.add(baseUrl);
     state.stats.pagesVisited++;
 
-    // Stream initial page update
     streamData({
       pageUpdate: { pageUrl: baseUrl, pageProgress: 0, pageStatus: "Crawling" },
       overallProgress: Math.min(
@@ -141,20 +137,21 @@ export async function checkLinksOnPage(baseUrl, options, streamData) {
                 state.totalPages,
                 state.visitedUrls.size + state.pagesToCrawl.length
               );
-              streamData({ totalPages: state.totalPages }); // Update totalPages
+              streamData({ totalPages: state.totalPages });
             }
           }
         } catch (e) {}
       });
     });
 
-    await checkLinkStatuses(pageLinks, baseUrl, streamData);
+    await checkLinkStatuses(pageLinks, baseUrl, streamData, shouldContinue);
 
-    if (state.pagesToCrawl.length > 0) {
+    while (state.pagesToCrawl.length > 0 && shouldContinue()) {
       const nextUrl = state.pagesToCrawl.shift();
-      await checkLinksOnPage(nextUrl, options, streamData);
-    } else {
-      state.crawlInProgress = false;
+      await checkLinksOnPage(nextUrl, options, streamData, shouldContinue);
+    }
+
+    if (shouldContinue()) {
       streamData({
         complete: true,
         stats: state.stats,
@@ -163,16 +160,17 @@ export async function checkLinksOnPage(baseUrl, options, streamData) {
     }
   } catch (error) {
     console.error(`Error processing ${baseUrl}:`, error.message);
-    streamData({
-      pageUpdate: { pageUrl: baseUrl, pageProgress: 0, pageStatus: "Failed" },
-      error: `Failed to process ${baseUrl}: ${error.message}`,
-      stats: state.stats,
-      overallProgress: Math.min(
-        100,
-        (state.stats.pagesVisited / state.totalPages) * 100
-      ),
-    });
-    state.crawlInProgress = false;
+    if (shouldContinue()) {
+      streamData({
+        pageUpdate: { pageUrl: baseUrl, pageProgress: 0, pageStatus: "Failed" },
+        error: `Failed to process ${baseUrl}: ${error.message}`,
+        stats: state.stats,
+        overallProgress: Math.min(
+          100,
+          (state.stats.pagesVisited / state.totalPages) * 100
+        ),
+      });
+    }
   }
 }
 
@@ -182,18 +180,19 @@ function isHtmlPage(url) {
   );
 }
 
-async function checkLinkStatuses(links, pageUrl, streamData) {
+async function checkLinkStatuses(links, pageUrl, streamData, shouldContinue) {
   const batchSize = 5;
   let processed = 0;
   const total = links.length;
 
-  for (let i = 0; i < links.length; i += batchSize) {
+  for (let i = 0; i < links.length && shouldContinue(); i += batchSize) {
     const batch = links.slice(i, i + batchSize);
     const results = await Promise.all(
       batch.map((link) => checkSingleLink(link))
     );
 
     results.forEach((result) => {
+      if (!shouldContinue()) return;
       state.stats.linksChecked++;
       if (result.isBroken) state.stats.brokenLinks++;
       state.allLinks.set(result.url, result);
@@ -202,17 +201,19 @@ async function checkLinkStatuses(links, pageUrl, streamData) {
 
     processed += batch.length;
     const pageProgress = Math.min(100, Math.round((processed / total) * 100));
-    streamData({
-      pageUpdate: {
-        pageUrl,
-        pageProgress,
-        pageStatus: pageProgress === 100 ? "Completed" : "Crawling",
-      },
-      overallProgress: Math.min(
-        100,
-        (state.stats.pagesVisited / state.totalPages) * 100
-      ),
-    });
+    if (shouldContinue()) {
+      streamData({
+        pageUpdate: {
+          pageUrl,
+          pageProgress,
+          pageStatus: pageProgress === 100 ? "Completed" : "Crawling",
+        },
+        overallProgress: Math.min(
+          100,
+          (state.stats.pagesVisited / state.totalPages) * 100
+        ),
+      });
+    }
   }
 }
 
