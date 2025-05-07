@@ -9,6 +9,7 @@ export default async function handler(req, res) {
 
   try {
     const { url, options = {} } = req.body;
+    console.log(url);
 
     if (!url || !isValidUrl(url)) {
       return res.status(400).json({ message: "Invalid URL provided" });
@@ -22,49 +23,34 @@ export default async function handler(req, res) {
 
     const sendEvent = (data) => {
       try {
-        if (!res.writableEnded) {
-          res.write(`data: ${JSON.stringify(data)}\n\n`);
-        }
+        console.log("Sending event:", data); // Debug log
+        res.write(`data: ${JSON.stringify(data)}\n\n`);
       } catch (e) {
         console.error("Error writing to stream:", e);
       }
     };
 
-    let isClientConnected = true;
-    res.on("close", () => {
-      isClientConnected = false;
-      console.log("Client disconnected, stopping crawl for:", url);
-    });
-
     const timeout = setTimeout(() => {
-      if (isClientConnected) {
-        sendEvent({
-          error:
-            "Processing timed out. Try a smaller site or increase max pages.",
-          stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
-        });
-        res.end();
-      }
-    }, 60000); // Reduced to 1 minute
-
-    console.log("Starting crawl for:", url);
-    await checkLinksOnPage(url, options, sendEvent, () => isClientConnected);
-
-    if (isClientConnected && !res.writableEnded) {
+      sendEvent({
+        error: "Processing timed out",
+        stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
+      });
       res.end();
-    }
+    }, 300000);
+
+    await checkLinksOnPage(url, options, sendEvent);
+
     clearTimeout(timeout);
+    res.end();
   } catch (error) {
     console.error("Error in API route:", error);
-    if (!res.writableEnded) {
-      res.write(
-        `data: ${JSON.stringify({
-          error: error.message,
-          stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
-        })}\n\n`
-      );
-      res.end();
-    }
+    res.write(
+      `data: ${JSON.stringify({
+        error: error.message,
+        stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
+      })}\n\n`
+    );
+    res.end();
   }
 }
 

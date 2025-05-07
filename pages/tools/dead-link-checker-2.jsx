@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import LinkCheckerForm from "./components/LinkCheckerForm";
 import ResultsTable from "./components/ResultsTable";
 import styles from "./styles/Home.module.css";
@@ -9,57 +9,43 @@ import { Database } from "../api/firebaseConfig";
 export default function DeadLinkChecker() {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [overallProgress, setOverallProgress] = useState(0);
+  const [currentPage, setCurrentPage] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const [pagesCrawled, setPagesCrawled] = useState(0);
   const [error, setError] = useState(null);
   const [checkedUrl, setCheckedUrl] = useState(null);
   const [shareableUrl, setShareableUrl] = useState(null);
-  const controllerRef = useRef(null);
-
-  useEffect(() => {
-    setResults([]);
-    setProgress(0);
-    setError(null);
-    setCheckedUrl(null);
-    setShareableUrl(null);
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (controllerRef.current) {
-        controllerRef.current.abort("Component unmounted");
-        controllerRef.current = null;
-      }
-    };
-  }, []);
+  const [firebaseKey, setFirebaseKey] = useState(null);
 
   const handleCheckLinks = async (url, options) => {
-    if (controllerRef.current) {
-      controllerRef.current.abort("New crawl started");
-      controllerRef.current = null;
-    }
-
     setIsLoading(true);
-    setProgress(0);
+    setOverallProgress(0);
+    setCurrentPage(null);
+    setTotalPages(1);
+    setPagesCrawled(0);
     setResults([]);
     setError(null);
     setCheckedUrl(url);
     setShareableUrl(null);
 
-    try {
-      controllerRef.current = new AbortController();
-      const timeout = setTimeout(() => {
-        if (controllerRef.current) {
-          controllerRef.current.abort("Request timed out");
-        }
-      }, 60000); // Increased to 1 minute
+    const sanitizedUrl = url.replace(/[:/]/g, "_").replace(/\./g, "_");
+    const timestamp = Date.now();
+    const newKey = `${sanitizedUrl}_${timestamp}`;
+    setFirebaseKey(newKey);
 
-      console.log("Starting crawl for:", url);
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 9000);
+
       const response = await fetch("/api/check-links", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
+        },
         body: JSON.stringify({ url, options }),
-        signal: controllerRef.current.signal,
+        signal: controller.signal,
       });
 
       clearTimeout(timeout);
@@ -91,30 +77,36 @@ export default function DeadLinkChecker() {
             const data = JSON.parse(dataStr);
 
             if (data.error) {
-              throw new Error(data.error); // Use server error directly
+              throw new Error(data.error);
             }
 
-            if (data.progress !== undefined) {
-              setProgress(data.progress);
+            if (data.totalPages !== undefined) {
+              setTotalPages(data.totalPages);
             }
 
-            if (data.result) {
-              if (data?.result?.status == 404) {
-                setResults((prev) => [...prev, data.result]);
-              }
+            if (data.pagesCrawled !== undefined) {
+              setPagesCrawled(data.pagesCrawled);
+            }
+
+            if (data.overallProgress !== undefined) {
+              setOverallProgress(data.overallProgress);
+            }
+
+            if (data.currentPage) {
+              setCurrentPage(data.currentPage);
+            }
+
+            if (data.result && data.result.status === 404) {
+              setResults((prev) => [...prev, data.result]);
             }
 
             if (data.complete) {
-              setProgress(100);
+              setOverallProgress(100);
+              setCurrentPage(null);
             }
           } catch (e) {
-            console.error(
-              "Error processing SSE data:",
-              e.message,
-              "Line:",
-              line
-            );
-            setError(e.message); // Display server error
+            console.error("Error parsing JSON chunk:", e, "Line:", line);
+            setError("Error processing server response");
           }
         }
       }
@@ -122,24 +114,19 @@ export default function DeadLinkChecker() {
       console.error("Error checking links:", error);
       setError(
         error.name === "AbortError"
-          ? `Request aborted: ${error.message}`
+          ? "Request timed out. Try a smaller website or fewer pages."
           : error.message
       );
     } finally {
       setIsLoading(false);
-      controllerRef.current = null;
     }
   };
 
   useEffect(() => {
-    if (progress === 100 && results.length > 0) {
+    if (overallProgress === 100 && results.length > 0) {
       const saveToFirebase = async () => {
         setError(null);
         try {
-          console.log("Saving to Firebase:", {
-            url: checkedUrl,
-            brokenLinks: results,
-          });
           const db = Database;
           const sanitizedUrl = (checkedUrl || "unknown")
             .replace(/[:/]/g, "_")
@@ -176,7 +163,7 @@ export default function DeadLinkChecker() {
 
       saveToFirebase();
     }
-  }, [progress, results, checkedUrl]);
+  }, [overallProgress, results, checkedUrl]);
 
   return (
     <section className="section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center py-[200px]">
@@ -215,21 +202,55 @@ export default function DeadLinkChecker() {
           )}
 
           <p className={styles.description}>
-            {progress != 100
-              ? "Find broken links on your website"
+            {overallProgress !== 100
+              ? `Crawling ${pagesCrawled} out of ${totalPages} pages...`
               : `Found ${results.length} broken links`}
           </p>
 
-          {progress != 100 && (
+          {isLoading && (
+            <div className="mb-4">
+              <p>Overall Progress: {Math.round(overallProgress)}%</p>
+              <div className="w-full bg-gray-200 rounded-full h-4">
+                <div
+                  className="bg-blue-500 h-4 rounded-full"
+                  style={{ width: `${overallProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {currentPage && (
+            <div className="mb-4">
+              <p className="truncate">
+                Current Page: {currentPage.pageUrl} - {currentPage.pageStatus} (
+                {Math.round(currentPage.pageProgress)}%)
+              </p>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className={`h-2 rounded-full ${
+                    currentPage.pageStatus === "Completed"
+                      ? "bg-green-500"
+                      : currentPage.pageStatus === "Failed"
+                      ? "bg-red-500"
+                      : "bg-blue-500"
+                  }`}
+                  style={{ width: `${currentPage.pageProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {overallProgress !== 100 && (
             <LinkCheckerForm
+              key={checkedUrl}
               onSubmit={handleCheckLinks}
               isLoading={isLoading}
-              progress={progress}
+              progress={overallProgress}
             />
           )}
 
-          {results.length == 0 && progress == 100 ? (
-            <h3>No broken link found</h3>
+          {results.length === 0 && overallProgress === 100 ? (
+            <h3>No broken links found</h3>
           ) : (
             results.length > 0 && (
               <ResultsTable results={results} isLoading={isLoading} />
