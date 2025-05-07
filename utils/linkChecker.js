@@ -38,7 +38,6 @@ export async function checkLinksOnPage(
   streamData,
   shouldContinue
 ) {
-  // Initialize state for this crawl
   const state = {
     visitedUrls: new Set(),
     allLinks: new Map(),
@@ -144,7 +143,13 @@ export async function checkLinksOnPage(
       });
     });
 
-    await checkLinkStatuses(pageLinks, baseUrl, streamData, shouldContinue);
+    await checkLinkStatuses(
+      pageLinks,
+      baseUrl,
+      streamData,
+      shouldContinue,
+      state
+    );
 
     while (state.pagesToCrawl.length > 0 && shouldContinue()) {
       const nextUrl = state.pagesToCrawl.shift();
@@ -180,7 +185,13 @@ function isHtmlPage(url) {
   );
 }
 
-async function checkLinkStatuses(links, pageUrl, streamData, shouldContinue) {
+async function checkLinkStatuses(
+  links,
+  pageUrl,
+  streamData,
+  shouldContinue,
+  state
+) {
   const batchSize = 5;
   let processed = 0;
   const total = links.length;

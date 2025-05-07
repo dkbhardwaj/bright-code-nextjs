@@ -39,12 +39,13 @@ export default async function handler(req, res) {
     const timeout = setTimeout(() => {
       if (isClientConnected) {
         sendEvent({
-          error: "Processing timed out",
+          error:
+            "Processing timed out. Try a smaller site or increase max pages.",
           stats: { pagesVisited: 0, linksChecked: 0, brokenLinks: 0 },
         });
         res.end();
       }
-    }, 300000);
+    }, 60000); // Reduced to 1 minute
 
     console.log("Starting crawl for:", url);
     await checkLinksOnPage(url, options, sendEvent, () => isClientConnected);

@@ -52,9 +52,9 @@ export default function DeadLinkChecker() {
         if (controllerRef.current) {
           controllerRef.current.abort("Request timed out");
         }
-      }, 30000);
+      }, 60000); // Increased to 1 minute
 
-      console.log("Starting crawl for:", url); // Debug
+      console.log("Starting crawl for:", url);
       const response = await fetch("/api/check-links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,7 +91,7 @@ export default function DeadLinkChecker() {
             const data = JSON.parse(dataStr);
 
             if (data.error) {
-              throw new Error(data.error);
+              throw new Error(data.error); // Use server error directly
             }
 
             if (data.progress !== undefined) {
@@ -108,8 +108,13 @@ export default function DeadLinkChecker() {
               setProgress(100);
             }
           } catch (e) {
-            console.error("Error parsing JSON chunk:", e, "Line:", line);
-            setError("Error processing server response");
+            console.error(
+              "Error processing SSE data:",
+              e.message,
+              "Line:",
+              line
+            );
+            setError(e.message); // Display server error
           }
         }
       }
