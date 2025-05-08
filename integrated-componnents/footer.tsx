@@ -109,6 +109,7 @@ const Footer: React.FC = () => {
                   href={"https://twitter.com/brightcodeio"}
                   className="redirect"
                   target="_blank"
+                  rel="nofollow noreferrer noopener"
                 >
                   .
                 </Link>
@@ -126,6 +127,7 @@ const Footer: React.FC = () => {
                   href={"https://www.linkedin.com/company/bright-codeio/"}
                   className="redirect"
                   target="_blank"
+                   rel="nofollow noreferrer noopener"
                 >
                   .
                 </Link>
@@ -146,6 +148,7 @@ const Footer: React.FC = () => {
                 href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                 className="redirect"
                 target="_blank"
+                 rel="nofollow noreferrer noopener"
               >
                 .
               </Link>
@@ -163,6 +166,7 @@ const Footer: React.FC = () => {
                 href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                 className="redirect"
                 target="_blank"
+                 rel="nofollow noreferrer noopener"
               >
                 .
               </Link>

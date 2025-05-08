@@ -11,12 +11,22 @@ export default async function sitemap() {
             priority: 0.80
         },
         {
+            url: 'https://www.bright-code.io/why-choose-us',
+            lastModified: new Date('2024-04-14T05:35:02+00:00'),
+            priority: 0.80
+        },
+        {
             url: 'https://www.bright-code.io/white-label-development',
             lastModified: new Date('2024-04-14T05:35:02+00:00'),
             priority: 0.80
         },
         {
             url: 'https://www.bright-code.io/ourclients',
+            lastModified: new Date('2024-04-14T05:35:02+00:00'),
+            priority: 0.80
+        },
+        {
+            url: 'https://www.bright-code.io/our-clients',
             lastModified: new Date('2024-04-14T05:35:02+00:00'),
             priority: 0.80
         },

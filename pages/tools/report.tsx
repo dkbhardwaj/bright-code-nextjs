@@ -448,6 +448,7 @@ const ReportPage = () => {
                                 <a
                                   href={image.src}
                                   target="__blank"
+                                   rel="nofollow noreferrer noopener"
                                   className="hover:text-purple transition-colors"
                                 >
                                   {image.src}
@@ -537,6 +538,7 @@ const ReportPage = () => {
                                 <a
                                   href={image.src}
                                   target="__blank"
+                                   rel="nofollow noreferrer noopener"
                                   className="hover:text-purple transition-colors"
                                 >
                                   {image.src}
@@ -625,6 +627,7 @@ const ReportPage = () => {
                                 <a
                                   href={image.src}
                                   target="__blank"
+                                   rel="nofollow noreferrer noopener"
                                   className="hover:text-purple transition-colors"
                                 >
                                   {image.src}

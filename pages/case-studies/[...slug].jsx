@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
   let slug = `${context.query.slug}`
   let preview = context.query?.secret == "preview" ? true : false
   const { req } = context;
-      const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
+      const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'https';
       const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
   const entry = await fetchEntryBySlug(slug, "caseStudies", preview);
  

@@ -57,7 +57,8 @@ export async function getServerSideProps(context: { req: any; }) {
  
   let slug = `homepage`
   const { req } = context;
-  const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'http';
+  console.log("hi",req.headers.referer)
+  const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'https';
   const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
   const entry = await fetchEntryBySlug(slug, "basicPage");
  
