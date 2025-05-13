@@ -41,7 +41,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
   const { backgroundImage, foregroundImage, foregroundVideo, title, ctaLink } = data;
   return (
     <section
-      className={`banner-with-img banner_overlay relative  overflow-x-hidden bg-darkBlue flex items-end text-white z-[1] pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
+      className={`${!foregroundVideo && 'banner-with-img'} banner_overlay relative  overflow-x-hidden bg-darkBlue flex items-end text-white z-[1] pt-28 pb-24 min-h-[752px] desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 tablet:pb-14 md:min-h-[552px]  md:pt-24 md:pb-12 md:items-center `}
     >
       {backgroundImage && (
         <div className="bg_image absolute top-0 left-0 w-full h-full ">

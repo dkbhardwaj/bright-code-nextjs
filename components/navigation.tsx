@@ -199,17 +199,17 @@ const Navigation: React.FC<NavigationProps> = () => {
                           className={`${
                             Style.menu
                           } relative mx-[22px] transition-color duration-300 desktop:mx-3 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 ${
-                            menuItem.fields?.label === "What We Do"
+                            menuItem.fields?.label === "Try Our Tools"
                               ? " arrow"
                               : ""
-                          } ${linkValue === "What We Do" ? "rotate" : ""}`}
+                          } ${linkValue === "Try Our Tools" ? "rotate" : ""}`}
                           onClick={handleMobileMenuCloseClick}
                           onMouseEnter={handleMouseEnter}
                           onMouseLeave={handleMouseLeave}
                         >
                           <Link
                             className={`inline-block w-full lg:w-auto text-[14px] py-[10px] ${
-                              menuItem.fields?.label === "What We Do"
+                              menuItem.fields?.label === "Try Our Tools"
                                 ? " pr-[23px] w-auto inline-block"
                                 : ""
                             }`}
@@ -217,10 +217,10 @@ const Navigation: React.FC<NavigationProps> = () => {
                           >
                             {menuItem.fields?.label}
                           </Link>
-                          {menuItem?.fields?.label === "What We Do" && (
+                          {menuItem?.fields?.label === "Try Our Tools" && (
                             <div
                               className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 px-[20px] py-[15px] lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${
-                                linkValue === "What We Do"
+                                linkValue === "Try Our Tools"
                                   ? "lg-up:opacity-1 lg-up:visible lg:max-h-[500px] lg:py-[10px]"
                                   : "lg-up:opacity-0 lg-up:hidden lg:max-h-0 "
                               }`}
