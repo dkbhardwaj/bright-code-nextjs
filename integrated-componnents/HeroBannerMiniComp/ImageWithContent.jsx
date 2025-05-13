@@ -20,11 +20,11 @@ export default function ImageWithContent({imgUrl,title,cta}) {
           </div>
         )}
         
-        <div className={`w-full max-w-[750px] ${imgUrl ? "ml-auto tablet:w-[calc(100%-400px)]" : "mr-auto" }  relative z-[2] text-left xl:max-w-full desktop:w-[calc(100%-450px)]  md:text-center md:mx-auto `}>
+        <div className={`w-full max-w-[750px] ${imgUrl ? "ml-auto tablet:w-[calc(100%-400px)]" : "mr-auto" }  relative z-[2] text-left xl:max-w-full desktop:w-[calc(100%-300px)]  md:text-center md:mx-auto `}>
           {title && <h1 className="header-h1 text-white ">{title}</h1>}
 
           {cta && (
-            <Button ctaData={cta} classes={'mt-14 mx-auto md:mt-6'} />
+            <Button ctaData={cta} classes={'mt-14 mx-auto md:mt-6 '} />
           )}
         </div>
     </>
