@@ -7,7 +7,7 @@ export default function ImageWithContent({imgUrl,title,cta}) {
   return (
     <>
       {imgUrl && (
-          <div className="left_img absolute bottom-0 right-[60%] w-full max-w-[526px] h-[506px] z-[1] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:right-auto tablet:left-0 md:h-[310px] md:max-w-[325px]  md:left-[50%] md:translate-x-[-50%] ">
+          <div className="left_img absolute bottom-0 right-[60%] w-full max-w-[526px] h-[506px] z-[3] desktop:max-w-[450px] desktop:h-[450px]  tablet:max-w-[400px] tablet:h-[400px] xl:right-auto tablet:left-0 md:h-[310px] md:max-w-[325px]  md:left-[50%] md:translate-x-[-50%] ">
             <Image
               src={`https:${imgUrl}`}
               alt="left-img"

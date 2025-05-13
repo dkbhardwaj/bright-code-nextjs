@@ -55,8 +55,26 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
           />
         </div>
       )}
+      {foregroundVideo && ( <div className="absolute left-0 right-0 bottom-0 h-full bg-black opacity-[0.5] z-[2]"></div>)}
+      {foregroundVideo && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="banner-video object-cover absolute left-0 top-0 w-full h-full "
+          width={1000}
+          height={964}
+        >
+          <source
+            src={`https:${foregroundVideo?.fields?.file?.url}`}
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      )}
       <div className="container">
-      {foregroundVideo?.fields?.file?.url ? (<VideoWithContent videoUrl={foregroundVideo?.fields?.file?.url} title={title} cta={ctaLink} />) : (<ImageWithContent imgUrl={foregroundImage?.fields?.file?.url} title={title} cta={ctaLink} />)}
+      <ImageWithContent imgUrl={foregroundImage?.fields?.file?.url} title={title} cta={ctaLink} />
 
   
       </div>
