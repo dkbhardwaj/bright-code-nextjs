@@ -56,8 +56,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className=" text-[14px] text-white mt-2 md:text-center">
-              2450 Colorado Ave, Suite 100E, Santa Monica, CA 90404, United
-              States
+              2450 Colorado Ave, Suite 100E, Santa Monica, CA 90404
             </p>
           </div>
           <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
@@ -131,7 +130,7 @@ const Footer: React.FC = () => {
               </li>
             </ul>
             <div className="socialWrap relative w-full flex justify-end mt-12 md:justify-center md:hidden">
-              <div className="icon relative max-w-[33px] h-[33px] ">
+              {/* <div className="icon relative max-w-[33px] h-[33px] ">
                 <Link
                   href={"https://twitter.com/brightcodeio"}
                   className="redirect"
@@ -147,7 +146,7 @@ const Footer: React.FC = () => {
                   alt="icon"
                   className=" w-full h-full object-contain"
                 />
-              </div>
+              </div> */}
               <div className="icon relative ml-3  max-w-[33px] h-[33px]">
                 <Link
                   href={"https://www.linkedin.com/company/bright-codeio/"}
