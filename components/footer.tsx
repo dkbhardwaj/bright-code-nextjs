@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
           <div className="footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
-            <h6 className=" font-medium mb-4">About</h6>
+            {/* <h6 className=" font-medium mb-4">About</h6> */}
             <ul>
               {menus?.menuLink &&
                 menus?.menuLink.map(
