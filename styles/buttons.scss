@@ -138,10 +138,10 @@
       right: 22px;
     }
     @include tablet {
-      right: 20px;
+      right: 12px;
     }
     @include tablet-down {
-      right: 16px;
+      right: 12px;
     }
   }
   &:hover {
@@ -153,10 +153,10 @@
         right: 27px;
       }
       @include tablet {
-        right: 25px;
+        right: 18px;
       }
       @include tablet-down {
-        right: 20px;
+        right: 18px;
       }
     }
   }
@@ -165,12 +165,12 @@
     max-width: 240px;
   }
   @include tablet {
-    padding: 15px 40px 15px 20px;
-    max-width: 200px;
+    padding: 15px 50px 15px 20px;
+    // max-width: 200px;
   }
   @include tablet-down {
-    padding: 11px 32px 11px 16px;
-    max-width: 200px;
+    padding: 11px 50px 11px 16px;
+    // max-width: 200px;
   }
   span {
     position: relative;
