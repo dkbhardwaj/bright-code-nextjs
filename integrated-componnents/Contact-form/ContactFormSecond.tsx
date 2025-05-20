@@ -73,7 +73,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
         id="get-in-touch"
       >
         <div className="container px-5 mx-auto">
-        <div className=" py-[68px] bgPurpleGradient md:py-12">
+        <div className=" py-[68px] max-w-[1100px] mx-auto bgPurpleGradient md:py-12">
         {ConsultantImg?.fields?.file?.url && (
               <div
                 className={`
