@@ -99,11 +99,11 @@ const Footer: React.FC = () => {
           </div>
           <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
             <ul className=" relative flex flex-wrap  justify-end sm:block">
-              <li className=" relative w-full justify-end flex items-center   rounded-[9px]  mb-5 sm:mb-3 md:mx-auto ">
+              <li className=" relative w-full justify-end md:justify-center flex items-center   rounded-[9px]  mb-5 sm:mb-3 md:mx-auto ">
                 <Link href="mailto:contact@bright-code.io" className="redirect">
                   .
                 </Link>
-                <div className="icon-img max-w-[21px] h-[21px] mr-5">
+                <div className="icon-img hidden max-w-[21px] h-[21px] mr-5">
                   {/* <Image
                     src="/mail-icon-white.svg"
                     width={25}
@@ -115,8 +115,8 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="font-semibold">contact@bright-code.io</span>
               </li>
-              <li className=" relative w-full justify-end flex items-center  rounded-[9px] ml-4  mb-5 sm:mb-3 md:mx-auto ">
-                <div className="icon-img max-w-[21px] h-[21px] mr-5">
+              <li className=" relative w-full justify-end md:justify-center flex items-center  rounded-[9px] ml-4  mb-5 sm:mb-3 md:mx-auto ">
+                <div className="icon-img hidden max-w-[21px] h-[21px] mr-5">
                   {/* <Image
                     src="/phone-icon-white.svg"
                     width={25}
@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
           <div className="hidden socialWrap mt-8 md:flex md:justify-center">
-            <div className="icon relative max-w-[33px] h-[33px]">
+            {/* <div className="icon relative max-w-[33px] h-[33px]">
               <Link
                 href={"https://www.linkedin.com/in/bright-code-71120724a/"}
                 className="redirect"
@@ -183,7 +183,7 @@ const Footer: React.FC = () => {
                 alt="icon"
                 className=" w-full h-full object-contain"
               />
-            </div>
+            </div> */}
             <div className="icon relative ml-2  max-w-[33px] h-[33px]">
               <Link
                 href={"https://www.linkedin.com/in/bright-code-71120724a/"}
@@ -204,7 +204,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
-          <div className="copyright w-full flex justify-end sm:block sm:text-center ">
+          <div className="copyright w-full flex justify-end md:justify-center sm:block sm:text-center ">
             <p className="text-white">© {year} Bright Code Technologies Inc</p>
             <ul className=" relative w-fit flex sm:w-full sm:justify-center ">
               <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] sm:before:hidden sm:!ml-0 sm:!pl-0 ">
