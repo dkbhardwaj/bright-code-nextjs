@@ -20,7 +20,7 @@ export default function ImageWithContent({imgUrl,title,cta}) {
           </div>
         )}
         
-        <div className={`w-full ${imgUrl ? "ml-auto max-w-[750px] tablet:w-[calc(100%-400px)] xl:max-w-full  desktop:w-[calc(100%-450px)]" : "mr-auto max-w-[870px] xl:max-w-[700px]  desktop:w-[calc(100%-300px)]" }  relative z-[2] text-left   md:text-center md:mx-auto `}>
+        <div className={`w-full ${imgUrl ? "ml-auto max-w-[750px] tablet:w-[calc(100%-400px)] xl:max-w-full  desktop:w-[calc(100%-450px)]" : "mr-auto max-w-[870px] xl:max-w-800px]  desktop:w-[calc(100%-100px)]" }  relative z-[2] text-left   md:text-center md:mx-auto `}>
           {title && <h1 className="header-h1 text-white ">{title}</h1>}
 
           {cta && (
