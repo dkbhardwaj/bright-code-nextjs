@@ -71,7 +71,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 )}
                 {gradientText && (
                   
-                    <span className="text_gradient block text-[50px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
+                    <span className="text_gradient block text-[42px] leading-[65px] desktop:text-[36px] desktop:leading-[60px] tablet:text-[33px] tablet:leading-[55px] md:text-[30px] md:leading-[50px] ">
                       {gradientText}
                     </span>
                 )}

@@ -113,12 +113,12 @@
 // }
 .gradient-btn {
   position: relative;
-  width: 100%;
-  max-width: 270px;
+  width: fit-content;
+//   max-width: 250px;
   height: fit-content;
   text-decoration: none;
   display: inline-block;
-  padding: 20px 60px 20px 28px;
+  padding: 16px 60px 16px 22px;
   background-image: linear-gradient(to right, #0075ff, #8000ff);
   border-radius: 9px;
   text-align: left;
@@ -127,7 +127,7 @@
     content: " ";
     position: absolute;
     top: calc(50% - 11px);
-    right: 26px;
+    right: 18px;
     width: 22px;
     height: 22px;
     background-image: url("/arrow-right-white.svg");
@@ -135,7 +135,7 @@
     background-size: 100%;
     transition: right 0.5s ease-in-out;
     @include desktop {
-      right: 25px;
+      right: 22px;
     }
     @include tablet {
       right: 20px;
@@ -148,9 +148,9 @@
     background-image: linear-gradient(to right, #0263d3, #6704cb);
     &::after {
       // animation: animat 1.5s alternate infinite;
-      right: 35px;
+      right: 27px;
       @include desktop {
-        right: 30px;
+        right: 27px;
       }
       @include tablet {
         right: 25px;
