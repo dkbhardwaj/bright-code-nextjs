@@ -12,6 +12,9 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        "tablet-desktop": { min: "768px", max: "1366px" },
+        // => @media (max-width: 1279px) { ... }
+
         xl: { max: "1279px" },
         // => @media (max-width: 1279px) { ... }
 

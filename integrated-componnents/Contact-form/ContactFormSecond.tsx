@@ -73,7 +73,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
         id="get-in-touch"
       >
         <div className="container px-5 mx-auto">
-        <div className=" py-[68px] max-w-[1100px] mx-auto bgPurpleGradient md:py-12">
+        <div className=" py-[68px] mx-auto bgPurpleGradient before:tablet-desktop:!w-full before:tablet-desktop:!left-0 md:py-12 tablet:py-[40px] tablet-desktop:px-[30px]">
         {ConsultantImg?.fields?.file?.url && (
               <div
                 className={`
@@ -145,7 +145,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                       id="fullName"
                       name="fullName"
                       required={true}
-                      className={`w-full relative mt-2 py-[13px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
+                      className={`w-full h-[50px] md:h-[40px] relative mt-2 py-[13px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
                     />
                   </div>
                   <div className="relative mb-5">
@@ -160,7 +160,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                       id="email"
                       name="email"
                       required={true}
-                      className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full h-[50px] md:h-[40px] relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                   <div className="relative mb-5">
@@ -175,7 +175,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
                       id="subject"
                       name="subject"
                       required={true}
-                      className="w-full relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full h-[50px] md:h-[40px] relative mt-2 py-[13px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                   <ValidationError

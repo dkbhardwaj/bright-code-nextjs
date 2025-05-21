@@ -52,7 +52,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   };
   
   const bgColorClass = bgColor ? twConfig[classifyStr(bgColor) as TwConfigKeys] : '';
-  
+  console.log(bgColor)
   return (
     <section
       className={`introduction ${padding}  text-center overflow-x-hidden ${bgColorClass} ${colorStyling && colorStyling.toLowerCase()}`}
@@ -96,7 +96,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             >
             {description &&
               <div
-                className={`!text-black w-full max-w-[960px] !text-black mt-5 ${!leftAlign && 'mx-auto'}`}
+                className={`${bgColor == "Transparent" ? "!text-white" : "!text-black" } w-full max-w-[960px] !text-black mt-5 ${!leftAlign && 'mx-auto'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             }

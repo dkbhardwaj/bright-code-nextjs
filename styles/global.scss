@@ -821,3 +821,16 @@ section.image-checker-report {
     color: #000;
   }
 }
+
+.section_overlay_dark {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 26, 53, 0.333);
+  }
+}
