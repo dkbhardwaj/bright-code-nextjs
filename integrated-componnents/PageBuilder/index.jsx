@@ -13,6 +13,7 @@ import GroupContactInfo from "../GroupContactInfo"
 import ColFourCards from "../ColFourCards"
 import StickyNav from '../stickyNav'
 import CardsWithSocialIcons from "../CardsWithSocialIcons"
+import TeamGrid from '../TeamGrid'
 
 
 export default function PageBuilder({pageComponents , caseStudy}) {
@@ -74,6 +75,9 @@ function pageBuilder(data, caseStudy) {
 
 		} else if (blade.sys?.contentType?.sys?.id === "cardsWithSocialIcons") {
 			blades.push(<CardsWithSocialIcons data={blade?.fields} />);
+
+		} else if (blade.sys?.contentType?.sys?.id === "teamGrid") {
+			blades.push(<TeamGrid data={blade?.fields} />);
 
 		}
 	});

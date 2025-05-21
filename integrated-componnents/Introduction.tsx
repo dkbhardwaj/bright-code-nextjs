@@ -79,7 +79,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 {title && (
                     <h2
                       className={`${titleLarge ? "large" : ""} ${
-                        titleWhite ? "text-white" : ""
+                        (titleWhite || bgColor == "Transparent") ? "text-white" : ""
                       } ${
                         description ? "mb-0" : "mb-[38px] md:mb-[20px]"
                       } text-black font-[600]`}
