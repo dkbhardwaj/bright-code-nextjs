@@ -10,7 +10,7 @@ export default function GroupContactInfo({data}) {
   let bgImg = data?.backgroundImage?.fields?.file?.url
 
   return (
-    <div className={`relative ${bgImg ? "section_overlay_dark" : "section_bgImage bg-darkBlue"} ${padding}`}>
+    <div className={`relative md:overflow-hidden ${bgImg ? "section_overlay_dark" : "section_bgImage bg-darkBlue"} ${padding}`}>
       {bgImg && (
               <div className="absolute top-0 left-0 w-full h-full ">
                 <Image
