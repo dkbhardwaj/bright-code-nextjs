@@ -62,10 +62,12 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
                                     alt={`${item.fields.memberImage.fields.title}'s portrait`}
                                 />
                             </div>
-                            <h4 className="text-purplePink text-black sm:text-center !font-bold">
+                            <div className="sm:flex sm:flex-wrap sm:justify-center">
+                            
+                            <h4 className="sm:w-full text-purplePink text-black sm:text-center !font-bold">
                                 {item.fields.title}
                             </h4>
-                            <p className="small text-black sm:text-center font-normals">
+                            <p className="sm:w-full small text-black sm:text-center font-normals">
                                 {item.fields.subTitle}
                             </p>
                             {item?.fields?.linkedinUrl && (
@@ -90,7 +92,7 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
 
                             </div>
                             )}
-                            
+                            </div>
                         </div>
                     ))}
                 </div>
