@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                 className=" w-full h-full object-contain"
               />
             </div>
-            <p className=" text-[14px] text-white mt-2 md:text-center">
+            <p className=" text-[14px] text-white md:text-center">
               2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
             </p>
           </div>
@@ -97,9 +97,9 @@ const Footer: React.FC = () => {
                 )}
             </ul> */}
           </div>
-          <div className="textWrap relative w-full max-w-[400px] md:mt-8   md:mx-auto">
+          <div className="textWrap relative w-full max-w-[400px] md:mt-4   md:mx-auto">
             <ul className=" relative flex flex-wrap  justify-end sm:block">
-              <li className=" relative w-full justify-end md:justify-center flex items-center   rounded-[9px]  mb-5 sm:mb-3 md:mx-auto ">
+              <li className=" relative w-full justify-end md:justify-center flex items-center   rounded-[9px]  mb-1 md:mx-auto ">
                 <Link href="mailto:contact@bright-code.io" className="redirect">
                   .
                 </Link>
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="font-semibold">contact@bright-code.io</span>
               </li>
-              <li className=" relative w-full justify-end md:justify-center flex items-center  rounded-[9px] ml-4  mb-5 sm:mb-3 md:mx-auto ">
+              <li className=" relative w-full justify-end md:justify-center flex items-center  rounded-[9px] ml-4  mb-1 md:mx-auto ">
                 <div className="icon-img hidden max-w-[21px] h-[21px] mr-5">
                   {/* <Image
                     src="/phone-icon-white.svg"
@@ -166,7 +166,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="hidden socialWrap mt-8 md:flex md:justify-center">
+          <div className="hidden socialWrap mt-4 md:flex md:justify-center">
             {/* <div className="icon relative max-w-[33px] h-[33px]">
               <Link
                 href={"https://www.linkedin.com/in/bright-code-71120724a/"}

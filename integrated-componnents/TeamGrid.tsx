@@ -47,20 +47,20 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
                             className="group sm:max-w-[33rem] w-[calc(33.33%-2rem)] sm:!w-full lg:w-[calc(50%-3rem)] mx-[1rem] mb-[2.5rem]"
                             key={index}
                         >
-                            <div className="img-wrap grayscale group-hover:grayscale-0 md:grayscale-0 duration-300 sm:max-w-[33rem] h-[25rem] mb-[1.5rem]">
+                            <div className="img-wrap grayscale sm:max-w-[400px] sm:mx-auto group-hover:grayscale-0 md:grayscale-0 duration-300 sm:max-w-[33rem] h-[350px] mb-[1.5rem]">
                                 <Image
                                     src={`https:${item.fields.memberImage.fields.file.url}`}
                                     width={1000}
                                     height={1000}
                                     quality={85}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover object-top"
                                     alt={`${item.fields.memberImage.fields.title}'s portrait`}
                                 />
                             </div>
-                            <h4 className="subtitle text-black !font-bold mb-[0.4rem]">
+                            <h4 className="text-purplePink text-black sm:text-center !font-bold">
                                 {item.fields.title}
                             </h4>
-                            <p className="small text-black font-normals">
+                            <p className="small text-black sm:text-center font-normals">
                                 {item.fields.subTitle}
                             </p>
                         </div>

@@ -834,3 +834,11 @@ section.image-checker-report {
     background-color: rgba(1, 26, 53, 0.333);
   }
 }
+.markdown{
+  a{
+    color: #0075ff;
+    &:hover{
+      color: #8000FF;
+    }
+  }
+}

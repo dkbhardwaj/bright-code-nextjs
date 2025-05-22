@@ -92,7 +92,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             )}
             {markdown && (
               <div
-              className={`leading-[28px] !text-black ${listStyling == "Purple" ? "purple-tick" : listStyling == "Blue" ?"blue-tick" : ""}`}
+              className={`markdown leading-[28px] !text-black ${listStyling == "Purple" ? "purple-tick" : listStyling == "Blue" ?"blue-tick" : ""}`}
               dangerouslySetInnerHTML={{ __html: markdown }}
               />
             )}
