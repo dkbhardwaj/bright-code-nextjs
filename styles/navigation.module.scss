@@ -13,6 +13,9 @@
   background-color: white;
   margin: 4px 0;
   transition: 0.4s;
+  // @include tablet-down{
+  //   margin: 0 0 4px;
+  // }
 }
 
 .mobileMenuIcon.active .bar:nth-child(1) {

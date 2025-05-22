@@ -39,7 +39,7 @@ const Navigation: React.FC<NavigationProps> = () => {
     >
       <div className="container">
         <div className={`${Style.mainRow} flex items-center justify-between`}>
-          <div className={`${Style.logo} max-w-[200px] max-h-[45px]`}>
+          <div className={`${Style.logo} max-w-[200px] md:max-w-[160px] max-h-[45px]`}>
             <Link href="/" className="redirect">
               .
             </Link>
