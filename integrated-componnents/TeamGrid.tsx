@@ -43,7 +43,9 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
 
     return (
         <section className={`team-grid relative ${padding} no-padding-bottom z-[1]`}>
-            <div className="container">
+            <div className="container"data-aos="fade-in"
+              data-aos-delay="400"
+              data-aos-duration="600">
                 <div className="wrapper flex w-[calc(100%+2rem)] justify-center flex-wrap ml-[-1rem]">
                     {card.map((item, index) => (
                         <div

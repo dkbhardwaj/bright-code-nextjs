@@ -141,13 +141,13 @@ const Navigation: React.FC<NavigationProps> = () => {
               } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}
             >
               <div
-                className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}
+                className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-full lg:!max-w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}
               >
                 <div
                   className={`${Style.logo_wrapper}  hidden relative w-full py-5 px-3 mb-7 lg:!flex bg-bgBluePurple flex-wrap items-center justify-between `}
                 >
                   <div
-                    className={`${Style.logo} relative max-w-[200px] max-h-[55px]`}
+                    className={`${Style.logo} relative max-w-[200px] sm:max-w-[150px] max-h-[55px]`}
                   >
                     <Link href="/" className="redirect">
                       .

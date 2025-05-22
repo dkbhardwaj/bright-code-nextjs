@@ -52,7 +52,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   };
   
   const bgColorClass = bgColor ? twConfig[classifyStr(bgColor) as TwConfigKeys] : '';
-  console.log(bgColor)
+ 
   return (
     <section
       className={`introduction ${padding}  text-center overflow-x-hidden ${bgColorClass} ${colorStyling && colorStyling.toLowerCase()}`}
