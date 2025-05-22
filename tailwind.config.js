@@ -56,6 +56,9 @@ module.exports = {
 
         xs: { max: "480px" },
         // => @media (max-width: 480px) { ... }
+
+        xxs: { max: "350px" },
+        // => @media (max-width: 480px) { ... }
       },
       width: {
         mainContent: "calc(100% + 550px)",

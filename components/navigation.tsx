@@ -138,7 +138,7 @@ const Navigation: React.FC<NavigationProps> = () => {
             <div
               className={`header-menu ${
                 showMobileMenu ? "lg:left-0" : "lg:!-left-[calc(100vw+500px)]"
-              } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}
+              } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] xxs:!w-full lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}
             >
               <div
                 className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-full lg:!max-w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}
