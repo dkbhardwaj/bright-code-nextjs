@@ -44,6 +44,9 @@ export default function Home({ entry, fullUrl, section }) {
         <div className="container">
           <div className="w-full text-center relative z-10">
             <h1 className="text-white mb-[20px]">Track URL Redirects</h1>
+            <p className="mb-8">
+            Enter a URL to see its redirect status and identify potential issues with site navigation. 
+            </p>
             <URLInput setResults={setResults} />
           </div>
         </div>

@@ -58,7 +58,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
             </>
           )}
           {description && (
-            <div  className=" lg-up:text-[18px] font-medium text-[#ababab] lg-up:leading-[30px] ">{documentToReactComponents(description)}</div>
+            <div  className="banner-desc lg-up:text-[18px] text-white font-medium text-[#ababab] lg-up:leading-[30px] ">{documentToReactComponents(description)}</div>
           )}
           
         </div>

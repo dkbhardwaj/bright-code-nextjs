@@ -847,3 +847,39 @@ section.image-checker-report {
       fill: #8000FF;
     }
 }
+.intro-description{
+  &.black-text{
+    p,li{
+      color: black;
+    }
+    
+  }
+  &.white-text{
+    p,li{
+      color: white;
+    }
+    
+  }
+  p{
+    margin-top: 20px;
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+  p,li{
+    font-size: 19px;
+    @include tablet-down {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+  ul{
+    margin-top: 10px;
+  }
+}
+
+.banner-desc{
+  h1,h2,h3,h4,h5,h6,p{
+    color: white;
+  }
+}
