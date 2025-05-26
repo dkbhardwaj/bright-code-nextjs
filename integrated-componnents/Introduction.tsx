@@ -60,7 +60,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
       id="why-choose-us"
     >
       <div className="container">
-        <div className={`w-full mx-auto ${leftAlign && 'text-left' }`}>
+        <div className={`w-full relative z-[1] mx-auto ${leftAlign && 'text-left' }`}>
           <div  data-aos="fade-right"
               data-aos-delay="400"
               data-aos-duration="600"
