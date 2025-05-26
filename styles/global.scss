@@ -326,14 +326,30 @@ span.title {
     content: " ";
     position: absolute;
     top: 0;
-    left: -74px;
-    width: calc(100% + 148px);
+    left: -54px;
+    width: calc(100% + 108px);
     height: 100%;
     background-color: rgba(128, 0, 255, 0.38);
-    border-radius: 55px;
+    border-radius: 25px;
     z-index: -1;
   }
 }
+.bgDarkPurpleGradient {
+  position: relative;
+  z-index: 1;
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: -54px;
+    width: calc(100% + 108px);
+    height: 100%;
+    background-color: rgba(50, 4, 131, 0.78);
+    border-radius: 25px;
+    z-index: -1;
+  }
+}
+
 .featured {
   position: relative;
   z-index: 1;
@@ -387,11 +403,7 @@ span.title {
         }
       }
       .imageWrap-outer {
-        padding-right: 28px;
         padding-left: 0;
-        @include tablet-down {
-          padding-right: 0;
-        }
       }
     }
     // @include tablet-down {

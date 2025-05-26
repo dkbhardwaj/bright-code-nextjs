@@ -97,7 +97,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                 <>
                   <div className="w-full text-center relative z-10">
                   {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
-                  {title && <h1 className={`text-white ${backgroundImg &&  "c-up:mt-[110px]"}`}>{title}</h1>}
+                  {title && <h1 className={`text-white ${backgroundImg &&  ""}`}>{title}</h1>}
                   {description && (
                       <div  className="text-white mt-5 opacity-[0.6]">{documentToReactComponents(description)}</div>
                     )}

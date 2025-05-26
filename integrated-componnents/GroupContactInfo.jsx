@@ -16,7 +16,7 @@ export default function GroupContactInfo({data}) {
                 <Image
                   src={`https:${bgImg}`}
                   alt="bg-img"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-right"
                   priority
                   layout="fill"
                   objectFit="cover"
