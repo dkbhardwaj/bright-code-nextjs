@@ -81,7 +81,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                       className={`${titleLarge ? "large" : ""} ${
                         (titleWhite || bgColor == "Transparent") ? "text-white" : ""
                       } ${
-                        description ? "mb-0" : "mb-[38px] md:mb-[20px]"
+                        description ? "mb-[38px] md:mb-[20px] " : "mb-0"
                       } text-black font-[600]`}
 
                       dangerouslySetInnerHTML={{ __html: title }}
