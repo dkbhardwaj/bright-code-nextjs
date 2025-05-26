@@ -70,7 +70,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
     <>
       <section
         className={`contactForm  ${sectionPadding?.fields.padding} text-gray-600 body-font relative`}
-        id="get-in-touch"
+        // id="get-in-touch"
       >
         <div className="container px-5 mx-auto">
         <div className=" py-[35px] mx-auto bgDarkPurpleGradient before:tablet-desktop:!w-full before:tablet-desktop:!left-0 md:py-12 tablet:py-[30px] tablet-desktop:px-[30px]">
