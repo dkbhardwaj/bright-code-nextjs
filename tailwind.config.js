@@ -21,10 +21,10 @@ module.exports = {
         "xl-up": { min: "1280px" },
         // => @media (min-width: 1280px) { ... }
 
-        "c-up": { min: "1205x" },
+        "c-up": { min: "1205px" },
         // => @media (min-width: 1280px) { ... }  container up
 
-        "c-down": { min: "1205x" },
+        "c-down": { min: "1205px" },
         // => @media (max-width: 1280px) { ... } container down
 
         desktop: { min: "992px", max: "1279px" },

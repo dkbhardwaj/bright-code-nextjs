@@ -58,12 +58,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                   className={` content relative w-[calc(100%-200px)] pr-24 md:pr-0 md:text-center md:w-full md:mb-6 `}
                 >
                    {eyebrowText && 
-                    (<h6 className="text-white uppercase title mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    (<h6 className="text-white uppercase title mb-[38px] tablet:mb-6 md:mb-[18px] ">
                     {eyebrowText}
                     </h6>)
                    }
                   {title && 
-                    (<h2 className="text-white mb-[38px] lg:mb-6 md:mb-[18px] ">
+                    (<h2 className="text-white mb-[38px] tablet:mb-6 md:mb-[18px] ">
                       {title}
                     </h2>)
                    }
@@ -85,7 +85,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
               <div
                 className={`${
                   subtitle ? "!block" : ""
-                } relative form-content w-full max-w-[960px] mx-auto mb-16 text-center hidden `}
+                } relative form-content w-full max-w-[960px] mx-auto mb-16 md:mb-[40px] text-center hidden `}
               >
                  {eyebrowText && 
                     (<h6 className="text-white uppercase title mb-[38px] lg:mb-6 md:mb-[18px] ">
@@ -109,7 +109,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                 >
                   <form
                     onSubmit={handleSubmit}
-                    className=" relative w-mainRow ml-[-10px] flex flex-wrap md:w-full md:ml-0"
+                    className=" relative w-mainRow ml-[-10px] flex flex-wrap items-center md:w-full md:ml-0"
                   >
                     <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
                       <label
@@ -123,7 +123,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                         id="fullName"
                         name="fullName"
                         required={true}
-                        className={`w-full relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
+                        className={`w-full h-[50px] md:h-[40px] relative mt-2 py-[14px] px-3 bg-white rounded-[9px] border border-white border-solid focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out`}
                       />
                     </div>
                     <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
@@ -138,7 +138,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                         id="email"
                         name="email"
                         required={true}
-                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        className="w-full h-[50px] md:h-[40px] relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
                     <div className="relative mb-[22px] w-threeCard mx-[10px] md:w-full md:mx-0">
@@ -153,7 +153,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
                         id="subject"
                         name="subject"
                         required={true}
-                        className="w-full relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                        className="w-full h-[50px] md:h-[40px] relative mt-2 py-[14px] bg-white rounded-[9px] border border-white border-solid border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
                     <ValidationError
@@ -213,7 +213,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ data }) => {
 
                     <button
                       type="submit"
-                      className="gradient-btn max-w-full  mx-[10px] mb-[22px] md:mx-0"
+                      className="gradient-btn max-w-full  mx-[10px] md:mx-0"
                       disabled={state.submitting}
                     >
                       <span>Submit</span>

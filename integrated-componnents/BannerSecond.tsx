@@ -8,7 +8,7 @@ interface BannerSecondData {
   data: {
     description:any;
     eyebrowText:string;
-    backgroundImage: {
+    backgroundImg: {
       fields:{
         file:{
           url: string;
@@ -36,7 +36,7 @@ interface BannerSecondData {
 
 const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
   const {
-    backgroundImage,
+    backgroundImg,
     foregroundImg,
     title,
     sectionPadding,
@@ -45,19 +45,32 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
     eyebrowText
   } = data;
 
- 
+ console.log(data)
 
   const hasnotImages = !foregroundImg ;
   const padding = sectionPadding?.fields?.padding
   return (
     <section
-      className={` banner-second banner_DarkOverlay banner_bg_img  bg-darkBlue text-white md:items-baseline ${padding} ${
+      className={`relative banner-second banner_DarkOverlay banner-second_bg_img text-white md:items-baseline ${padding} ${
         hasnotImages ? "" : "banner-with-img"
-      }`}
+      } ${!backgroundImg &&  "bg-darkBlue"}`}
       data-aos="fade-in"
       data-aos-delay="500"
       data-aos-duration="1000"
     >
+      <div className="bannerBgImage absolute top-0 left-0 w-full h-full z-[-1]  ">
+              {backgroundImg?.fields?.file?.url && 
+                  <Image
+                  src={`https:${backgroundImg?.fields?.file?.url}`}
+                  width={2500}
+                  height={1200}
+                  alt="bg-img"
+                  className=" w-full h-full object-cover object-top "
+                  loading="lazy"
+                />
+              }
+              
+        </div>
       <div className="container">
      
             {foregroundImg?.fields?.file?.url ? (
@@ -84,7 +97,7 @@ const BannerSecond: React.FC<BannerSecondData> = ({ data }) => {
                 <>
                   <div className="w-full text-center relative z-10">
                   {eyebrowText && <h6 className=" text-white mb-2 ">{eyebrowText}</h6>}
-                  {title && <h1 className=" text-white ">{title}</h1>}
+                  {title && <h1 className={`text-white ${backgroundImg &&  "c-up:mt-[110px]"}`}>{title}</h1>}
                   {description && (
                       <div  className="text-white mt-5 opacity-[0.6]">{documentToReactComponents(description)}</div>
                     )}
