@@ -25,7 +25,7 @@ interface IntroductionProps {
 
 }
 
-type TwConfigKeys = 'white' | 'gray';
+type TwConfigKeys = 'white' | 'gray' | 'blue' ;
 
 
 const Introduction: React.FC<IntroductionProps> = ({ data }) => {
@@ -49,6 +49,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
   const twConfig: Record<TwConfigKeys, string> = {
     white: 'bg-white',
     gray: 'bg-extraLightGray',
+    blue: 'bg-darkBlue section_bgImage',
   };
   
   const bgColorClass = bgColor ? twConfig[classifyStr(bgColor) as TwConfigKeys] : '';
@@ -79,7 +80,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
                 {title && (
                     <h2
                       className={`${titleLarge ? "large" : ""} ${
-                        (titleWhite || bgColor == "Transparent") ? "text-white" : ""
+                        (titleWhite || bgColor == "Transparent" || bgColor == "Blue") ? "text-white" : ""
                       } ${
                         description ? "mb-[38px] md:mb-[20px] " : "mb-0"
                       } text-black font-[600]`}
@@ -96,7 +97,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             >
             {description &&
               <div
-                className={`intro-description purple-tick ${bgColor == "Transparent" ? "!text-white white-text" : "black-text" } w-full !text-black mt-5 ${!leftAlign && 'mx-auto max-w-[960px]'}`}
+                className={`intro-description purple-tick ${bgColor == "Transparent" ||bgColor == "Blue" ? "!text-white white-text" : "black-text" } w-full !text-black mt-5 ${!leftAlign && 'mx-auto max-w-[960px]'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             }

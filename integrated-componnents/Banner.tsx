@@ -34,7 +34,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
     console.log(data)
   return (
     <section
-      className={`banner ${backgroundVideo?.fields?.file?.url ? "" : "banner_overlayImg"}  relative overflow-x-hidden bg-darkBlue flex items-center text-white pt-28 pb-10 min-h-[752px]  desktop:min-h-[630px]  tablet:min-h-[560px] tablet:pt-24 md:min-h-[552px]  md:pt-24  md:items-center `}
+      className={`banner ${backgroundVideo?.fields?.file?.url ? "" : "banner_overlayImg"}  relative overflow-x-hidden bg-darkBlue flex items-center text-white pt-28 pb-10 min-h-[535px] md:min-h-[440px]  md:pt-24  md:items-center `}
     >
      
         {backgroundImage?.fields?.file?.url && 
