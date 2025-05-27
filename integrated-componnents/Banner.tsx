@@ -60,6 +60,7 @@ const Banner: React.FC<BannerData> = ({ data }) => {
           className="banner-video object-cover absolute left-0 top-0 w-full h-full "
           width={1000}
           height={964}
+          poster="/home/video-poster.png"
         >
           <source
             src={`https:${backgroundVideo?.fields?.file?.url}`}

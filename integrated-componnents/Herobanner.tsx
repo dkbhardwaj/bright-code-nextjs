@@ -65,6 +65,7 @@ const Herobanner: React.FC<HeroBannerData> = ({ data }) => {
           className="banner-video object-cover absolute left-0 top-0 w-full h-full "
           width={1000}
           height={964}
+          poster="/home/video-poster-ice.png"
         >
           <source
             src={`https:${foregroundVideo?.fields?.file?.url}`}
