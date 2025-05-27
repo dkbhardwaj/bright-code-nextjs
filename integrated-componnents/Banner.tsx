@@ -30,8 +30,7 @@ interface BannerData {
 
 const Banner: React.FC<BannerData> = ({ data }) => {
   const { subTitle, title, backgroundImage, description,eyebrowText,alignTextCenter, backgroundVideo} = data;
-  //banner_overlayImg
-    console.log(data)
+  
   return (
     <section
       className={`banner ${backgroundVideo?.fields?.file?.url ? "" : "banner_overlayImg"}  relative overflow-x-hidden bg-darkBlue flex items-center text-white pt-28 pb-10 min-h-[535px] md:min-h-[440px]  md:pt-24  md:items-center `}

@@ -37,7 +37,6 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
         sectionPadding,
         card
     } = data;
-    console.log(data)
 
     const padding = sectionPadding?.fields?.padding?.join(" ") || "";
 
