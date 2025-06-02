@@ -226,8 +226,8 @@ const Navigation: React.FC<NavigationProps> = () => {
                               }`}
                             >
                               <div className="menuWrap">
-                                <ul className="!block list-none">
-                                  <li className="list-none">
+                                <ul className=" !justify-start">
+                                  <li className="flex justify-start">
                                     <Link
                                       href="/tools/security-header"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
@@ -235,18 +235,18 @@ const Navigation: React.FC<NavigationProps> = () => {
                                       Security Header
                                     </Link>
                                   </li>
-                                  <li className="list-none">
+                                  <li className="flex justify-start">
                                     <Link
                                       href="/tools/link-tracker"
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500] hoover:text_gradient"
+                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Link Tracker
                                     </Link>
                                   </li>
-                                  <li className="list-none">
+                                  <li className="flex justify-start">
                                     <Link
                                       href="/tools/image-checker"
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500] hoover:text_gradient"
+                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Image Checker
                                     </Link>
