@@ -228,12 +228,12 @@ const Navigation: React.FC<NavigationProps> = () => {
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
                                   <li className="flex justify-start">
-                                    <Link
+                                    <a
                                       href="/tools/security-header"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Security Header
-                                    </Link>
+                                    </a>
                                   </li>
                                   <li className="flex justify-start">
                                     <Link
