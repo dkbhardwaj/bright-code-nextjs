@@ -48,7 +48,7 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
                 <div className="wrapper flex w-[calc(100%+2rem)] justify-center flex-wrap ml-[-1rem]">
                     {card.map((item, index) => (
                         <div
-                            className="group sm:max-w-[33rem] w-[calc(33.33%-2rem)] sm:!w-full lg:w-[calc(50%-2rem)] mx-[1rem] mb-[2.5rem]"
+                            className="group sm:max-w-[33rem] w-[calc(25%-2rem)] sm:!w-full lg:w-[calc(50%-2rem)] mx-[1rem] mb-[2.5rem]"
                             key={index}
                         >
                             <div className="img-wrap grayscale sm:max-w-[400px] sm:mx-auto group-hover:grayscale-0 md:grayscale-0 duration-300 sm:max-w-[33rem] h-[350px] mb-[1.5rem]">
