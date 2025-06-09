@@ -47,10 +47,11 @@ const TeamGrid: React.FC<CardItem> = ({ data }) => {
               data-aos-duration="600">
                 <div className="wrapper flex w-[calc(100%+2rem)] justify-center flex-wrap ml-[-1rem]">
                     {card.map((item, index) => (
-                        <div
-                            className="group sm:max-w-[33rem] w-[calc(25%-1rem)] sm:!w-full lg:w-[calc(33.33%-1rem)] mx-[.5rem] mb-[2.5rem]"
-                            key={index}
-                        >
+                                <div
+                                className="group w-[calc(25%-1rem)] sm:!w-full lg:w-[calc(33.33%-1rem)] mx-[.5rem] mb-[2.5rem] w-50@sm-custom w-33@md-custom"
+                                key={index}
+                              >
+                              
                             <div className="img-wrap grayscale sm:max-w-[400px] sm:mx-auto group-hover:grayscale-0 md:grayscale-0 duration-300 sm:max-w-[33rem] h-[350px] mb-[1.5rem]">
                                 <Image
                                     src={`https:${item.fields.memberImage.fields.file.url}`}
