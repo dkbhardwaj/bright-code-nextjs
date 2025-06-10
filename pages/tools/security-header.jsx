@@ -3,18 +3,15 @@ import { useState, useRef, useEffect } from "react";
 import Summary from "../../components/Summary";
 import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
-import PageBuilder from '../../integrated-componnents/PageBuilder'
-
+import PageBuilder from "../../integrated-componnents/PageBuilder";
 
 export default function Home({ entry, fullUrl, section }) {
-  
   let seoData = entry?.fields?.seoData?.fields;
   const [url, setUrl] = useState("");
   const [headers, setHeaders] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [originalUrl, setOriginalUrl] = useState(false);
-
 
   const inputRef = useRef(null);
 
@@ -24,10 +21,10 @@ export default function Home({ entry, fullUrl, section }) {
 
   const normalizeUrl = (inputUrl) => {
     if (!/^https?:\/\//i.test(inputUrl)) {
-      setOriginalUrl(`https://www.${inputUrl}`)
+      setOriginalUrl(`https://www.${inputUrl}`);
       return `http://www.${inputUrl}`;
     }
-    setOriginalUrl(inputUrl)
+    setOriginalUrl(inputUrl);
     return inputUrl;
   };
 
@@ -43,14 +40,17 @@ export default function Home({ entry, fullUrl, section }) {
       return;
     }
 
-    const normalizedUrl = normalizeUrl(url); 
+    const normalizedUrl = normalizeUrl(url);
 
     try {
-      const response = await fetch(`/api/headers?url=${encodeURIComponent(normalizedUrl)}`, {
-        method: "GET",
-      });
+      const response = await fetch(
+        `/api/headers?url=${encodeURIComponent(normalizedUrl)}`,
+        {
+          method: "GET",
+        }
+      );
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (data.error) {
         setError(data.error);
       } else {
@@ -96,7 +96,8 @@ export default function Home({ entry, fullUrl, section }) {
           <div className="w-full text-center relative z-10">
             <h1 className="text-white">Test Your Security Headers</h1>
             <p className="mb-8">
-              Enter a URL to see if your site is secure with the correct HTTP headers.
+              Enter a URL to see if your site is secure with the correct HTTP
+              headers.
             </p>
             <div className="max-w-md mx-auto">
               <form onSubmit={handleSubmit}>
@@ -130,27 +131,37 @@ export default function Home({ entry, fullUrl, section }) {
         </section>
       )}
 
-      
-
       {headers ? (
         <>
           <Summary site={originalUrl} headers={headers} error={error} />
         </>
-      ): (<PageBuilder pageComponents={section} caseStudy={false}/>)}
+      ) : (
+        <PageBuilder pageComponents={section} caseStudy={false} />
+      )}
     </>
   );
 }
 
-export async function getServerSideProps(context) {
-  let preview = false;
-  const { req } = context;
-  const protocol = req.headers.referer ? req.headers.referer.split(":")[0] : "http";
-  const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
-  let slug = req.url.split("?")[0].replace("/", "");
+export async function getStaticProps() {
+  try {
+    const slug = "tools/security-header";
+    const entry = await fetchEntryBySlug(slug, "basicPage", false);
+    const section = entry.fields?.section;
 
-  const entry = await fetchEntryBySlug(slug, "basicPage", preview);
-  
-  const section = entry.fields?.section
-  console.log(section);
-  return { props: { entry, fullUrl, section} };
+    return {
+      props: {
+        entry,
+        fullUrl: `https://www.bright-code.io/tools/${slug}`,
+        section,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+
+    // fallback props in case entry not found
+    return {
+      notFound: true, // let Next.js serve a 404 page
+    };
+  }
 }

@@ -3,17 +3,16 @@ import URLInput from "../../components/wheregoesComp/UrlInput";
 import Result from "../../components/wheregoesComp/Result";
 import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
-import PageBuilder from '../../integrated-componnents/PageBuilder'
+import PageBuilder from "../../integrated-componnents/PageBuilder";
 
 export default function Home({ entry, fullUrl, section }) {
-
   let seoData = entry?.fields?.seoData?.fields;
 
   const [results, setResults] = useState(null);
 
   return (
     <>
-     <NextSeo
+      <NextSeo
         title={seoData?.SEOTitle}
         description={seoData?.SEODescription}
         canonical={fullUrl}
@@ -45,7 +44,8 @@ export default function Home({ entry, fullUrl, section }) {
           <div className="w-full text-center relative z-10">
             <h1 className="text-white mb-[20px]">Track URL Redirects</h1>
             <p className="mb-8">
-            Enter a URL to see its redirect status and identify potential issues with site navigation. 
+              Enter a URL to see its redirect status and identify potential
+              issues with site navigation.
             </p>
             <URLInput setResults={setResults} />
           </div>
@@ -58,31 +58,33 @@ export default function Home({ entry, fullUrl, section }) {
             <Result data={results} />
           </div>
         </section>
-      ): (<PageBuilder pageComponents={section} caseStudy={false}/>)}
+      ) : (
+        <PageBuilder pageComponents={section} caseStudy={false} />
+      )}
     </>
   );
 }
 
-
-
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   try {
-    let preview = false;
-    const { req } = context;
-    const protocol = req.headers.referer
-      ? req.headers.referer.split(":")[0]
-      : "http";
-    const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
-    let slug = req.url.split("?")[0].replace("/", "");
-
-    const entry = await fetchEntryBySlug(slug, "basicPage", preview);
+    const slug = "tools/link-tracker";
+    const entry = await fetchEntryBySlug(slug, "basicPage", false);
     const section = entry.fields?.section;
 
-    return { props: { entry, fullUrl, section } };
-  } catch (error) {
-    console.error("Error in getServerSideProps for link-tracker:", error);
     return {
-      notFound: true,
+      props: {
+        entry,
+        fullUrl: `https://www.bright-code.io/tools/${slug}`,
+        section,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+
+    // fallback props in case entry not found
+    return {
+      notFound: true, // let Next.js serve a 404 page
     };
   }
 }
