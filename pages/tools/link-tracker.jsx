@@ -66,13 +66,23 @@ export default function Home({ entry, fullUrl, section }) {
 
 
 export async function getServerSideProps(context) {
-  let preview = false;
-  const { req } = context;
-  const protocol = req.headers.referer ? req.headers.referer.split(":")[0] : "http";
-  const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
-  let slug = req.url.split("?")[0].replace("/", "");
+  try {
+    let preview = false;
+    const { req } = context;
+    const protocol = req.headers.referer
+      ? req.headers.referer.split(":")[0]
+      : "http";
+    const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
+    let slug = req.url.split("?")[0].replace("/", "");
 
-  const entry = await fetchEntryBySlug(slug, "basicPage", preview);
-  const section = entry.fields?.section
-  return { props: { entry, fullUrl, section } };
+    const entry = await fetchEntryBySlug(slug, "basicPage", preview);
+    const section = entry.fields?.section;
+
+    return { props: { entry, fullUrl, section } };
+  } catch (error) {
+    console.error("Error in getServerSideProps for link-tracker:", error);
+    return {
+      notFound: true,
+    };
+  }
 }

@@ -236,12 +236,12 @@ const Navigation: React.FC<NavigationProps> = () => {
                                     </a>
                                   </li>
                                   <li className="flex justify-start">
-                                    <Link
+                                    <a
                                       href="/tools/link-tracker"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Link Tracker
-                                    </Link>
+                                    </a>
                                   </li>
                                   <li className="flex justify-start">
                                     <Link
