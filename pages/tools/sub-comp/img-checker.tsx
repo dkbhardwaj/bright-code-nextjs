@@ -41,7 +41,7 @@ interface Link {
 }
 
 export default function ImgChecker() {
-  console.log("object")
+ 
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
   const [images, setImages] = useState<Image[]>([]);
