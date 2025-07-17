@@ -70,7 +70,7 @@ export default function Home({ entry, fullUrl }: { entry: any; fullUrl: any;}) {
     if (inputRef.current) {
       inputRef.current.focus(); // Automatically focus the input on page load
     }
-    if (url) {
+    if (url && router.isReady) {
       if (router.query.url !== url) {
         // console.log('Updating URL in the query');
         router.push(`?url=${encodeURIComponent(url)}`, undefined, {
