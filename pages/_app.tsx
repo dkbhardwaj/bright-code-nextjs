@@ -52,11 +52,11 @@ export async function GET() {
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   useEffect(() => {
     var anchors = document.querySelectorAll("a");
-    anchors.forEach((element) => {
-      if (!element.host.includes("bright-code.io")) {
-        element.setAttribute("target", "_blank");
-      }
-    });
+    // anchors.forEach((element) => {
+    //   if (!element.host.includes("bright-code.io")) {
+    //     element.setAttribute("target", "_blank");
+    //   }
+    // });
   });
   useEffect(() => {
     initAOS();
