@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDatabase, push, ref, set } from "firebase/database";
 import { Database } from "../api/firebaseConfig.js";
+import { NextSeo } from "next-seo";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,6 +16,10 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+
+import { fetchEntryBySlug } from "../../lib/contentful/pageData";
+import PageBuilder from "../../integrated-componnents/PageBuilder";
+
 
 // Register Chart.js components
 ChartJS.register(
@@ -38,7 +43,8 @@ interface Link {
   status: number;
 }
 
-export default function Home() {
+export default function Home({ entry, fullUrl }: { entry: any; fullUrl: any;}) {
+   let seoData = entry?.fields?.seoData?.fields;
   const [url, setUrl] = useState<string>("");
   const [scope, setScope] = useState<"page" | "site">("page");
   const [images, setImages] = useState<Image[]>([]);
@@ -433,6 +439,30 @@ export default function Home() {
 
   return (
     <>
+    <NextSeo
+            title={seoData?.SEOTitle}
+            description={seoData?.SEODescription}
+            canonical={fullUrl}
+            openGraph={{
+              type: "website",
+              siteName: "Bright-code",
+              url: `${fullUrl}`,
+              title: seoData?.SEOTitle,
+              description: seoData?.SEODescription,
+              images: [
+                {
+                  url: seoData?.ogImage?.fields?.file?.url || `/banner-bg-img.png`,
+                  width: 800,
+                  height: 600,
+                  alt: "case studies",
+                },
+              ],
+            }}
+            twitter={{
+              site: "@GetSift",
+              cardType: "summary_large_image",
+            }}
+          />
       {!loading && !report && (
         <section className=" section_bgImage bg-darkBlue min-h-screen bg-gray-100 flex flex-col items-center justify-center ">
           <div className="w-[calc(100%-40px)] max-w-4xl p-8 bg-white shadow-lg rounded-lg m-[20px] z-[1]">
@@ -1252,4 +1282,29 @@ export default function Home() {
       </section>
     </>
   );
+}
+
+
+export async function getStaticProps() {
+  try {
+    const slug = "tools/image-checker";
+    const entry = await fetchEntryBySlug(slug, "basicPage", false);
+    // const section = entry.fields?.section;
+
+    return {
+      props: {
+        entry,
+        fullUrl: `https://www.bright-code.io/tools/${slug}`,
+        // section,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+
+    // fallback props in case entry not found
+    return {
+      notFound: true, // let Next.js serve a 404 page
+    };
+  }
 }
