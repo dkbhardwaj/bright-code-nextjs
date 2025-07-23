@@ -228,20 +228,20 @@ const Navigation: React.FC<NavigationProps> = () => {
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
                                   <li className="flex justify-start">
-                                    <a
+                                    <Link
                                       href="/tools/security-header"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Security Header
-                                    </a>
+                                    </Link>
                                   </li>
                                   <li className="flex justify-start">
-                                    <a
+                                    <Link
                                       href="/tools/link-tracker"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Link Tracker
-                                    </a>
+                                    </Link>
                                   </li>
                                   <li className="flex justify-start">
                                     <Link
@@ -249,6 +249,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Image Checker
+                                    </Link>
+                                  </li>
+                                  <li className="flex justify-start">
+                                    <Link
+                                      href="/demo"
+                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
+                                    >
+                                      demo link
                                     </Link>
                                   </li>
                                 </ul>
