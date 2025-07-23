@@ -13,6 +13,8 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Poppins } from "next/font/google";
+import Head from "next/head";
+import Script from "next/script";
 // import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
 
@@ -65,6 +67,38 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+    <Head>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Bright Code",
+              "url": "https://www.bright-code.io/",
+              "logo": "https://www.bright-code.io/brightcode_logo.png",
+              "sameAs": [
+                "https://www.linkedin.com/company/bright-codeio/"
+              ],
+              "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+1-805-215-0549",
+                "contactType": "customer service",
+                "areaServed": "US",
+                "availableLanguage": "English"
+              }],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2450 Colorado Ave, Suite 100E",
+                "addressLocality": "Santa Monica",
+                "addressRegion": "CA",
+                "postalCode": "90404",
+                "addressCountry": "US"
+              }
+            })
+          }}
+        />
+    </Head>
       {/* <ContentfulLivePreviewProvider 
         locale="en-US"
         enableInspectorMode={pageProps.preview}

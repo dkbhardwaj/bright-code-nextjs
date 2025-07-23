@@ -64,6 +64,11 @@ export default async function sitemap() {
             url: 'https://www.bright-code.io/tools/link-tracker',
             lastModified: new Date('2024-04-14T05:35:02+00:00'),
             priority: 0.80
+        },
+        {
+            url: 'https://www.bright-code.io/tools/image-checker',
+            lastModified: new Date('2024-04-14T05:35:02+00:00'),
+            priority: 0.80
         }
     ]
 }

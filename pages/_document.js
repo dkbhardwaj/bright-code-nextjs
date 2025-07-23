@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html,Head, Main, NextScript } from "next/document";
 import Script from "next/script";
 
 class MyDocument extends Document {
@@ -70,37 +70,7 @@ class MyDocument extends Document {
               __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});`,
             }}
           />
-          <Script
-            type="application/ld+json"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Bright Code",
-                "url": "https://www.bright-code.io/",
-                "logo": "https://www.bright-code.io/brightcode_logo.png",
-                "sameAs": [
-                  "https://www.linkedin.com/company/bright-codeio/"
-                ],
-                "contactPoint": [{
-                  "@type": "ContactPoint",
-                  "telephone": "+1-805-215-0549",
-                  "contactType": "customer service",
-                  "areaServed": "US",
-                  "availableLanguage": "English"
-                }],
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "2450 Colorado Ave, Suite 100E",
-                  "addressLocality": "Santa Monica",
-                  "addressRegion": "CA",
-                  "postalCode": "90404",
-                  "addressCountry": "US"
-                }
-              })
-            }}
-          />
+        
         </Head>
         <body>
           <Main />
