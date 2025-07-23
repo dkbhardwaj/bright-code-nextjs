@@ -50,17 +50,6 @@ const handler = async (req) => {
     const headers = Object.fromEntries(response.headers.entries());
 
     const evaluation = evaluateHeaders(headers);
-    
-
-    if(url.includes("bright-code")){
-      evaluation['Strict-Transport-Security'] = "Present";
-      evaluation['X-Content-Type-Options'] = 'Present';
-      evaluation['X-Frame-Options'] = 'Present';
-      evaluation['Content-Security-Policy'] ='Present';
-      evaluation['X-XSS-Protection'] = 'Present';
-      evaluation['Permissions-Policy'] = 'Present';
-      evaluation['Referrer-Policy'] ='Present';
-    }
 
 
     return new Response(JSON.stringify({ headers, evaluation, ip }), { status: 200 });
