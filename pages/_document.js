@@ -22,12 +22,12 @@ class MyDocument extends Document {
             id="google_gtagjs-js-after"
             dangerouslySetInnerHTML={{
               __html: `  window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-          gtag('set', 'linker', {"domains":["www.bright-code.io"]} );
-          gtag("js", new Date());
-          gtag("set", "developer_id.dZTNiMT", true);
-          gtag("config", "UA-254354410-1", {"anonymize_ip":true});
-          gtag("config", "G-P1LQ3NF157");
-          `,
+                  gtag('set', 'linker', {"domains":["www.bright-code.io"]} );
+                  gtag("js", new Date());
+                  gtag("set", "developer_id.dZTNiMT", true);
+                  gtag("config", "UA-254354410-1", {"anonymize_ip":true});
+                  gtag("config", "G-P1LQ3NF157");
+                  `,
             }}
           />
           <Script
@@ -35,15 +35,15 @@ class MyDocument extends Document {
               strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: ` ( function( w, d, s, l, i ) {
-            w[l] = w[l] || [];
-            w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
-            var f = d.getElementsByTagName( s )[0],
-              j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore( j, f );
-          } )( window, document, 'script', 'dataLayer', 'GTM-MB63HJ5D' );
-          `,
+                w[l] = w[l] || [];
+                w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+                var f = d.getElementsByTagName( s )[0],
+                  j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore( j, f );
+              } )( window, document, 'script', 'dataLayer', 'GTM-MB63HJ5D' );
+              `,
             }}
           />
 
@@ -57,10 +57,10 @@ class MyDocument extends Document {
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-16650844425');
-          `,
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'AW-16650844425');
+                  `,
             }}
           />
 
@@ -68,6 +68,37 @@ class MyDocument extends Document {
           <Script
             dangerouslySetInnerHTML={{
               __html: `gtag('event', 'conversion', {'send_to': 'AW-11070673099/hO0bCPPQhpAZEMuh9J4p'});`,
+            }}
+          />
+          <Script
+            type="application/ld+json"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Bright Code",
+                "url": "https://www.bright-code.io/",
+                "logo": "https://www.bright-code.io/brightcode_logo.png",
+                "sameAs": [
+                  "https://www.linkedin.com/company/bright-codeio/"
+                ],
+                "contactPoint": [{
+                  "@type": "ContactPoint",
+                  "telephone": "+1-805-215-0549",
+                  "contactType": "customer service",
+                  "areaServed": "US",
+                  "availableLanguage": "English"
+                }],
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "2450 Colorado Ave, Suite 100E",
+                  "addressLocality": "Santa Monica",
+                  "addressRegion": "CA",
+                  "postalCode": "90404",
+                  "addressCountry": "US"
+                }
+              })
             }}
           />
         </Head>
