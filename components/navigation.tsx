@@ -251,14 +251,6 @@ const Navigation: React.FC<NavigationProps> = () => {
                                       Image Checker
                                     </Link>
                                   </li>
-                                  <li className="flex justify-start">
-                                    <Link
-                                      href="/demo"
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                    >
-                                      demo link
-                                    </Link>
-                                  </li>
                                 </ul>
                               </div>
                             </div>
