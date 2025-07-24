@@ -2,6 +2,7 @@
 import React from "react";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
+import {client} from "../lib/contentful/client"
 
 
 import {fetchEntryBySlug} from "../lib/contentful/pageData"
@@ -54,6 +55,12 @@ export default Home;
 
 
 export async function getServerSideProps(context: { req: any; }) {
+
+  const navRes = await client.getEntries({
+    content_type: "navigation",
+    "fields.navName": "Main Nav",
+  });
+  const navigationData = navRes.items[0]?.fields ?? null;
  
   let slug = `homepage`
   const { req } = context;
@@ -62,5 +69,5 @@ export async function getServerSideProps(context: { req: any; }) {
   const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
   const entry = await fetchEntryBySlug(slug, "basicPage");
  
-  return { props: { entry,fullUrl } };
+  return { props: { entry,fullUrl, navigationData } };
 }

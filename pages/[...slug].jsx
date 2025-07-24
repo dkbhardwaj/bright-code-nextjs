@@ -1,6 +1,7 @@
 import React from 'react'
 import {fetchEntryBySlug} from "../lib/contentful/pageData"
 import { NextSeo } from 'next-seo';
+import {client} from "../lib/contentful/client"
 
 
 import PageBuilder from '../integrated-componnents/PageBuilder'
@@ -48,6 +49,12 @@ export default function BasicPages({entry, fullUrl}) {
 
 
 export async function getServerSideProps(context) {
+
+    const navRes = await client.getEntries({
+      content_type: "navigation",
+      "fields.navName": "Main Nav",
+    });
+    const navigationData = navRes.items[0]?.fields ?? null;
  
      let slug = `${context.query.slug}`
      let preview = context.query?.secret == "preview" ? true : false
@@ -57,5 +64,5 @@ export async function getServerSideProps(context) {
     
     const entry = await fetchEntryBySlug(slug, "basicPage", preview);
    
-    return { props: { entry, fullUrl } };
+    return { props: { entry, fullUrl, navigationData } };
   }

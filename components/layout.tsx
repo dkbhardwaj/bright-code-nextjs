@@ -4,12 +4,13 @@ import Footer from "./footer";
 
 interface LayoutProps {
   children: ReactNode;
+  navigationData: any;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, navigationData }) => {
   return (
     <>
-      <Navigation />
+      <Navigation navigationData={navigationData} />
       {children}
       <Footer />
     </>

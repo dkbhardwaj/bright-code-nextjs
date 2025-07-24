@@ -1,6 +1,7 @@
 import React from 'react'
 import {fetchEntryBySlug} from "../../lib/contentful/pageData"
 import { NextSeo } from 'next-seo';
+import {client} from "../../lib/contentful/client"
 
 
 import PageBuilder from '../../integrated-componnents/PageBuilder'
@@ -56,6 +57,12 @@ export async function getServerSideProps(context) {
       const protocol = req.headers.referer ? req.headers.referer.split(':')[0] : 'https';
       const fullUrl = `${protocol}://${req.headers.host}${req.url}`;
   const entry = await fetchEntryBySlug(slug, "caseStudies", preview);
+
+   const navRes = await client.getEntries({
+        content_type: "navigation",
+        "fields.navName": "Main Nav",
+    });
+    const navigationData = navRes.items[0]?.fields ?? null;
  
-  return { props: { entry,fullUrl } };
+  return { props: { entry,fullUrl, navigationData } };
 }

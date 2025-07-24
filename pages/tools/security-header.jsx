@@ -4,6 +4,7 @@ import Summary from "../../components/Summary";
 import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
 import PageBuilder from "../../integrated-componnents/PageBuilder";
+import {client} from "../../lib/contentful/client"
 
 export default function Home({ entry, fullUrl, section }) {
   let seoData = entry?.fields?.seoData?.fields;
@@ -148,11 +149,18 @@ export async function getStaticProps() {
     const entry = await fetchEntryBySlug(slug, "basicPage", false);
     const section = entry.fields?.section;
 
+    const navRes = await client.getEntries({
+      content_type: "navigation",
+      "fields.navName": "Main Nav",
+    });
+    const navigationData = navRes.items[0]?.fields ?? null;
+
     return {
       props: {
         entry,
         fullUrl: `https://www.bright-code.io/tools/${slug}`,
         section,
+        navigationData,
       },
       revalidate: 60,
     };

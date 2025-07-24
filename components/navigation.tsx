@@ -5,7 +5,9 @@ import Link from "next/link";
 import { client } from "../lib/contentful/client";
 import { UrlObject } from "url";
 
-interface NavigationProps {}
+interface NavigationProps {
+   navigationData: any;
+}
 
 // interface DropdownItem {
 //   title: string;
@@ -22,7 +24,11 @@ interface NavigationItem {
   };
 }
 
-const Navigation: React.FC<NavigationProps> = () => {
+interface NavProps {
+  navigationData: any;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [menus, setMenus] = useState<NavigationItem | null>(null);
@@ -78,28 +84,28 @@ const Navigation: React.FC<NavigationProps> = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const getNav = async () => {
-      try {
-        const response = await client.getEntries({
-          content_type: "navigation",
-          "fields.navName": "Main Nav",
-        });
+  // useEffect(() => {
+  //   const getNav = async () => {
+  //     try {
+  //       const response = await client.getEntries({
+  //         content_type: "navigation",
+  //         "fields.navName": "Main Nav",
+  //       });
 
-        const navItem = response.items[0]?.fields as unknown as NavigationItem;
-        setMenus(navItem || null);
-      } catch (err) {
-        setError("Failed to fetch data");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       const navItem = response.items[0]?.fields as unknown as NavigationItem;
+  //       setMenus(navItem || null);
+  //     } catch (err) {
+  //       setError("Failed to fetch data");
+  //       console.error(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    getNav();
-  }, []);
-  if (loading) return <div></div>;
-  if (error) return <div>{error}</div>;
+  //   getNav();
+  // }, []);
+  // if (loading) return <div></div>;
+  // if (error) return <div>{error}</div>;
 
   return (
     <header
@@ -171,8 +177,8 @@ const Navigation: React.FC<NavigationProps> = () => {
                 <ul
                   className={`flex items-center text-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:!justify-start lg:px-3`}
                 >
-                  {menus?.menuLink &&
-                    menus?.menuLink.map(
+                  {navigationData?.menuLink &&
+                    navigationData?.menuLink.map(
                       (
                         menuItem: {
                           fields: {
@@ -258,22 +264,22 @@ const Navigation: React.FC<NavigationProps> = () => {
                         </li>
                       )
                     )}
-
-                  {menus?.cta && (
+                  
+                  {navigationData?.cta && (
                     <>
                       <Link
-                        href={menus?.cta?.fields?.ctaLink}
+                        href={navigationData?.cta?.fields?.ctaLink}
                         className={`${Style.btn} ml-[30px] desktop:ml-[15px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8`}
                         onClick={handleMobileMenuCloseClick}
                       >
-                        <span>{menus?.cta?.fields?.ctaText}</span>
+                        <span>{navigationData?.cta?.fields?.ctaText}</span>
                       </Link>
                       <Link
                         href="/contact"
                         className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
                         onClick={handleMobileMenuCloseClick}
                       >
-                        <span>{menus?.cta?.fields?.ctaText}</span>
+                        <span>{navigationData?.cta?.fields?.ctaText}</span>
                       </Link>
                     </>
                   )}

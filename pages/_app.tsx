@@ -104,7 +104,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         enableInspectorMode={pageProps.preview}
         enableLiveUpdates={pageProps.preview}
       > */}
-        <Layout>
+        <Layout navigationData={pageProps.navigationData}>
           <main className={poppins.className}>
             <Component {...pageProps} />
           </main>
@@ -114,3 +114,4 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     </>
   );
 }
+
