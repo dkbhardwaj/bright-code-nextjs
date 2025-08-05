@@ -236,6 +236,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                   <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/security-header"
+                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Security Header
@@ -244,6 +245,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                   <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/link-tracker"
+                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Link Tracker
@@ -252,6 +254,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                   <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/image-checker"
+                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                     >
                                       Image Checker
