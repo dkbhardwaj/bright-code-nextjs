@@ -29,7 +29,6 @@ interface NavProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => {
-  console.log(navigationData)
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [menus, setMenus] = useState<NavigationItem | null>(null);
