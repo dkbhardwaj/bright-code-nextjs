@@ -231,9 +231,8 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                               className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg-up:overflow-hidden lg:transition-all lg:duration-300 ${
                                 linkValue === "Try Our Tools"
                                   ? "lg-up:opacity-1 lg-up:max-h-[500px] lg-up:px-[20px] lg-up:py-[15px] lg:max-h-[500px] lg:py-[10px]"
-                                  : ""
+                                  : "lg-up:opacity-0 lg-up:max-h-0 lg-up:p-0 lg:max-h-0 "
                               }`}
-                              role="menu" aria-label="Try Our Tools Menu"
                             >
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
@@ -262,7 +261,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                        <li className="flex justify-start lg:w-full" key={sm?.sys?.id}>
                                         <Link
                                           href={sm.fields?.path}
-                                          tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
                                           className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
                                         >
                                           {sm.fields?.label}
@@ -270,33 +268,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                       </li>
                                   ))
                                   }
-                                  {/* <li className="flex justify-start lg:w-full">
-                                    <Link
-                                      href="/tools/security-header"
-                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                    >
-                                      Security Header
-                                    </Link>
-                                  </li>
-                                  <li className="flex justify-start lg:w-full">
-                                    <Link
-                                      href="/tools/link-tracker"
-                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                    >
-                                      Link Tracker
-                                    </Link>
-                                  </li>
-                                  <li className="flex justify-start lg:w-full">
-                                    <Link
-                                      href="/tools/image-checker"
-                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                    >
-                                      Image Checker
-                                    </Link>
-                                  </li> */}
                                 </ul>
                               </div>
                             </div>
