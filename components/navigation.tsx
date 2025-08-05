@@ -227,13 +227,13 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                             <div
                               className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 px-[20px] py-[15px] lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${
                                 linkValue === "Try Our Tools"
-                                  ? "lg-up:opacity-1 lg-up:visible lg:max-h-[500px] lg:py-[10px]"
-                                  : "lg-up:opacity-0 lg-up:hidden lg:max-h-0 "
+                                  ? "lg-up:opacity-1 lg-up:visible  lg:max-h-[500px] lg:py-[10px]"
+                                  : "lg-up:opacity-0 lg-up:invisible lg:max-h-0 "
                               }`}
                             >
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
-                                  <li className="flex justify-start">
+                                  <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/security-header"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
@@ -241,7 +241,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                       Security Header
                                     </Link>
                                   </li>
-                                  <li className="flex justify-start">
+                                  <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/link-tracker"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
@@ -249,7 +249,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                       Link Tracker
                                     </Link>
                                   </li>
-                                  <li className="flex justify-start">
+                                  <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/image-checker"
                                       className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"

@@ -15,6 +15,11 @@ const nextConfig = {
         destination: '/our-clients',
         permanent: true,
       },
+      {
+        source: '/homepage',
+        destination: '/',
+        permanent: true,
+      }
     ];
   },
   async headers() {
