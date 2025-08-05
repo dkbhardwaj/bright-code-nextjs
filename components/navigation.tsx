@@ -29,6 +29,7 @@ interface NavProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => {
+  console.log(navigationData)
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [menus, setMenus] = useState<NavigationItem | null>(null);
@@ -196,6 +197,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                               | React.PromiseLikeOfReactNode
                               | null
                               | undefined;
+                            subMenus : any;  
                           };
                         },
                         index: number
@@ -231,10 +233,44 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                   ? "lg-up:opacity-1 lg-up:max-h-[500px] lg-up:px-[20px] lg-up:py-[15px] lg:max-h-[500px] lg:py-[10px]"
                                   : "lg-up:opacity-0 lg-up:max-h-0 lg-up:p-0 lg:max-h-0 "
                               }`}
+                              role="menu" aria-label="Try Our Tools Menu"
                             >
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
-                                  <li className="flex justify-start lg:w-full">
+                                  {menuItem?.fields?.subMenus && 
+                                    menuItem?.fields?.subMenus.map((sm: {
+                                  fields: {
+                                    path: string | UrlObject;
+                                    label:
+                                      | string
+                                      | number
+                                      | boolean
+                                      | React.ReactElement<
+                                          any,
+                                          string | React.JSXElementConstructor<any>
+                                        >
+                                      | Iterable<React.ReactNode>
+                                      | React.ReactPortal
+                                      | React.PromiseLikeOfReactNode
+                                      | null
+                                      | undefined; 
+                                  },
+                                  sys:{
+                                    id : string;
+                                  }
+                                  })=>(
+                                       <li className="flex justify-start lg:w-full" key={sm?.sys?.id}>
+                                        <Link
+                                          href={sm.fields?.path}
+                                          tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
+                                          className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
+                                        >
+                                          {sm.fields?.label}
+                                        </Link>
+                                      </li>
+                                  ))
+                                  }
+                                  {/* <li className="flex justify-start lg:w-full">
                                     <Link
                                       href="/tools/security-header"
                                       tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
@@ -260,7 +296,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                     >
                                       Image Checker
                                     </Link>
-                                  </li>
+                                  </li> */}
                                 </ul>
                               </div>
                             </div>

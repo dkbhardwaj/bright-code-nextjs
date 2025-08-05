@@ -152,6 +152,7 @@ export async function getStaticProps() {
     const navRes = await client.getEntries({
       content_type: "navigation",
       "fields.navName": "Main Nav",
+      include: 3,
     });
     const navigationData = navRes.items[0]?.fields ?? null;
 
