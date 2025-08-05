@@ -177,15 +177,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                 <ul
                   className={`flex items-center text-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:!justify-start lg:px-3`}
                 >
-                  <li className="flex justify-start lg:w-full">
-                                    <Link
-                                      href="/tools/security-header"
-                                      tabIndex={linkValue === "Try Our Tools" ? 0 : -1}
-                                      className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                    >
-                                      Security Header
-                                    </Link>
-                                  </li>
                   {navigationData?.menuLink &&
                     navigationData?.menuLink.map(
                       (
@@ -240,7 +231,6 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                   ? "lg-up:opacity-1 lg-up:max-h-[500px] lg-up:px-[20px] lg-up:py-[15px] lg:max-h-[500px] lg:py-[10px]"
                                   : "lg-up:opacity-0 lg-up:max-h-0 lg-up:p-0 lg:max-h-0 "
                               }`}
-                              role="menu" aria-label="Try Our Tools Menu"
                             >
                               <div className="menuWrap">
                                 <ul className=" !justify-start">
