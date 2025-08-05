@@ -225,10 +225,10 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                           </Link>
                           {menuItem?.fields?.label === "Try Our Tools" && (
                             <div
-                              className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 px-[20px] py-[15px] lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg:transition-all lg:duration-300 ${
+                              className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg-up:overflow-hidden lg:transition-all lg:duration-300 ${
                                 linkValue === "Try Our Tools"
-                                  ? "lg-up:opacity-1 lg-up:visible  lg:max-h-[500px] lg:py-[10px]"
-                                  : "lg-up:opacity-0 lg-up:invisible lg:max-h-0 "
+                                  ? "lg-up:opacity-1 lg-up:max-h-[500px] lg-up:px-[20px] lg-up:py-[15px] lg:max-h-[500px] lg:py-[10px]"
+                                  : "lg-up:opacity-0 lg-up:max-h-0 lg-up:p-0 lg:max-h-0 "
                               }`}
                             >
                               <div className="menuWrap">
