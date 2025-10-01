@@ -717,6 +717,7 @@ span.title {
       counter-reset: custom-counter;
       padding-left: 0;
       li {
+        position: relative;
         padding-left: 35px;
         counter-increment: custom-counter;
         margin-bottom: 10px;
