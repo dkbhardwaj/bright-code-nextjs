@@ -14,7 +14,7 @@ const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
   const bgImage  = backgroundImage ? `https:${backgroundImage?.fields?.file?.url}` : "/case-study/man-img.png"
   
   return (
-    <section className=" image-with-list relative w-full overflow-hidden ">
+    <section className=" image-with-list relative w-full overflow-hidden padding-medium-bottom">
       <div className="container">
         <div
           className="relative flex justify-end pt-[82px] pb-[85px] md:featured md:justify-start lg:pt-14 lg:pb-20 md:!py-12 "

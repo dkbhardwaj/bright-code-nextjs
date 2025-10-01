@@ -13,7 +13,7 @@ interface ImageWithListData {
 const ImageWithList: React.FC<ImageWithListData> = ({ data }) => {
   const { title, listItem } = data;
   return (
-    <section className=" image-with-list relative w-full overflow-hidden ">
+    <section className=" image-with-list relative w-full overflow-hidden padding-medium-bottom ">
       <div className="container">
         <div
           className="image-with-list-content flex justify-end pt-[74px] pb-[100px] md:featured md:justify-start lg:pt-14 lg:pb-20 md:!py-12 "
