@@ -128,7 +128,6 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
 
                   `}>
                     {sideImage && (
-                      <>
                       <div className="mb-[28px]">
                         <Image
                           src={`https:${sideImage?.fields?.file?.url}`}
@@ -141,10 +140,8 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
                           className=" w-[183px] h-[43px] md:w-[150px] md:h-[35px] object-contain "
                         />
                       </div>
-                       
-                     <h4 className="lg-up:text-[25px] font-[600]">{sideText}</h4>
-                     </>
                     )}
+                     <h4 className="lg-up:text-[25px] font-[600]">{sideText}</h4>
                   </div>
                 )
               }
