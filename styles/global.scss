@@ -781,6 +781,18 @@ span.title {
     li:before {
       color: #8000ff;
     }
+    li{
+      ul{
+        margin-top: 10px;
+        li::before {
+          content: "-";
+          background-image: none;
+          top: 0;
+          font-weight: 800;
+          color:#8000ff;
+        }
+      }
+    }
   }
   ul {
     padding-left: 26px !important;
@@ -797,6 +809,16 @@ span.title {
         background-image: url("/case-study/purple-tick.svg");
         background-repeat: no-repeat;
         z-index: 1;
+      }
+      ul{
+        margin-top: 10px;
+        li::before {
+          content: "-";
+          background-image: none;
+          top: 0;
+          font-weight: 800;
+          color:#8000ff;
+        }
       }
     }
   }
@@ -904,6 +926,18 @@ section.image-checker-report {
     margin-top: 20px;
     li{
       margin-bottom: 6px;
+    }
+  }
+  blockquote{
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #8000FF12;
+    border-radius: 20px;
+    line-height: 1.8;
+  }
+  &.center-text{
+    ul li{
+      display: inline-block;
     }
   }
 }

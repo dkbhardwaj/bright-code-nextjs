@@ -97,7 +97,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
             >
             {description &&
               <div
-                className={`intro-description purple-tick ${bgColor == "Transparent" ||bgColor == "Blue" ? "!text-white white-text" : "black-text" } w-full !text-black mt-5 ${!leftAlign && 'mx-auto max-w-[960px]'}`}
+                className={`intro-description purple-tick ${bgColor == "Transparent" ||bgColor == "Blue" ? "!text-white white-text" : "black-text" } w-full !text-black mt-5 ${!leftAlign && 'mx-auto max-w-[960px] center-text'}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             }
