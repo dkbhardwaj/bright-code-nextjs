@@ -51,6 +51,7 @@ const nextConfig = {
                 https://www.google.co.in
                 https://www.googleadservices.com
                 https://googleads.g.doubleclick.net;
+              media-src 'self' https://videos.ctfassets.net;  
               connect-src 'self'
                 https://google.com
                 https://www.google.com
