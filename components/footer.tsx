@@ -59,9 +59,9 @@ const Footer: React.FC = () => {
               2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
             </p>
           </div>
-          <div className="hidden footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
+          <div className=" footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
             {/* <h6 className=" font-medium mb-4">About</h6> */}
-            {/* <ul>
+            <ul>
               {menus?.menuLink &&
                 menus?.menuLink.map(
                   (
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                     </li>
                   )
                 )}
-            </ul> */}
+            </ul>
           </div>
           <div className="textWrap relative w-full max-w-[400px] md:mt-4   md:mx-auto">
             <ul className=" relative flex flex-wrap  justify-end sm:block">
