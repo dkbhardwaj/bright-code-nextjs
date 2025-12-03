@@ -5,6 +5,7 @@ import { NextSeo } from "next-seo";
 import { fetchEntryBySlug } from "../../lib/contentful/pageData";
 import PageBuilder from "../../integrated-componnents/PageBuilder";
 import {client} from "../../lib/contentful/client"
+import { useRouter } from "next/router";
 
 export default function Home({ entry, fullUrl, section }) {
   let seoData = entry?.fields?.seoData?.fields;
@@ -13,39 +14,63 @@ export default function Home({ entry, fullUrl, section }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [originalUrl, setOriginalUrl] = useState(false);
+  const [autoChecked, setAutoChecked] = useState(false);
 
   const inputRef = useRef(null);
+  const router = useRouter(); 
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    if (!router.isReady) return;
+    if (autoChecked) return;
+
+    const q = router.query.q;
+
+    if (typeof q === "string" && q.trim()) {
+      setUrl(q);
+      handleSubmit(null, q);
+      setAutoChecked(true);
+    }
+  }, [router.isReady, router.query.q, autoChecked]);
+
   const normalizeUrl = (inputUrl) => {
     if (!/^https?:\/\//i.test(inputUrl)) {
-      setOriginalUrl(`https://www.${inputUrl}`);
-      return `http://www.${inputUrl}`;
+      return {
+        original: `https://www.${inputUrl}`,
+        normalized: `http://www.${inputUrl}`,
+      };
     }
-    setOriginalUrl(inputUrl);
-    return inputUrl;
+
+    return {
+      original: inputUrl,
+      normalized: inputUrl,
+    };
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e, incomingUrl) => {
+    if (e) e.preventDefault();
+
     setError(null);
     setHeaders(null);
     setLoading(true);
-    //https://www.amazon.in/
-    if (!url.trim()) {
+
+    const value = incomingUrl ?? url; // use passed URL or state
+
+    if (!value.trim()) {
       setError("Please enter a valid URL.");
       setLoading(false);
       return;
     }
 
-    const normalizedUrl = normalizeUrl(url);
+    const { original, normalized } = normalizeUrl(value);
+    setOriginalUrl(original);
 
     try {
       const response = await fetch(
-        `/api/headers?url=${encodeURIComponent(normalizedUrl)}`,
+        `/api/headers?url=${encodeURIComponent(normalized)}`,
         {
           method: "GET",
         }
@@ -56,6 +81,19 @@ export default function Home({ entry, fullUrl, section }) {
         setError(data.error);
       } else {
         setHeaders(data);
+
+        // update URL with ?q=<original>
+        router.push(
+          {
+            pathname: router.pathname,
+            query: {
+              ...router.query,
+              q: original,
+            },
+          },
+          undefined,
+          { shallow: true }
+        );
       }
     } catch (err) {
       setError("Error fetching headers");
@@ -63,6 +101,7 @@ export default function Home({ entry, fullUrl, section }) {
       setLoading(false);
     }
   };
+
 
   return (
     <>
@@ -101,7 +140,7 @@ export default function Home({ entry, fullUrl, section }) {
               headers.
             </p>
             <div className="max-w-md mx-auto">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                   className="text-black w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-indigo-500 text-base !text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
                   type="text"
