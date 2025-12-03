@@ -57,7 +57,7 @@ export default function Home({ entry, fullUrl, section }) {
     setHeaders(null);
     setLoading(true);
 
-    const value = incomingUrl ?? url; // use passed URL or state
+    const value = incomingUrl ?? url; 
 
     if (!value.trim()) {
       setError("Please enter a valid URL.");
@@ -76,13 +76,12 @@ export default function Home({ entry, fullUrl, section }) {
         }
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       if (data.error) {
         setError(data.error);
       } else {
         setHeaders(data);
 
-        // update URL with ?q=<original>
         router.push(
           {
             pathname: router.pathname,
@@ -207,9 +206,8 @@ export async function getStaticProps() {
   } catch (error) {
     console.error("Error in getStaticProps:", error);
 
-    // fallback props in case entry not found
     return {
-      notFound: true, // let Next.js serve a 404 page
+      notFound: true,
     };
   }
 }
