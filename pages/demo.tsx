@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import ColTwoCard from "../components/ColTwoCard";
 import TitleSection from "../components/TitleSection";
 import ThreeColumns from "../components/ThreeColumns";
 import { link } from "fs";
 
 const Demo: React.FC = () => {
-  const darkMode = false;
+  // const darkMode = false;
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev);
+  };
   const cardData = {
     reverse: false,
     imageSrc: "/what-we-do-blades/Illustration.png",
@@ -50,12 +55,16 @@ const colThreeCardsData = {
   featuredClass: false,
   title: "Our Services",
   bgTransparent: false,
+  darkMode,
   threeCards: [
     {
       id: 1,
       cardDelay: "0.1s",
       cardDuration: "0.6s",
-      imageUrl: "/what-we-do-blades/channels.png",
+      image: {
+        light: "/what-we-do-blades/channels.png",
+        dark: "/what-we-do-blades/channels-dark.png",
+      },
       imageAlt: "card_1",
       cardTitle: "Creative and Brand Agencies",
       cardDetail:
@@ -67,8 +76,11 @@ const colThreeCardsData = {
       id: 2,
       cardDelay: "0.1s",
       cardDuration: "0.6s",
-      imageUrl: "/what-we-do-blades/team.png",
-      imageAlt: "card_1",
+      image: {
+        light: "/what-we-do-blades/team.png",
+        dark: "/what-we-do-blades/team-dark.png",
+      },
+      imageAlt: "card_2",
       cardTitle: "Marketing and Digital Teams",
       cardDetail:
         "We have over a decade of experience using leading technologies to provide support.",
@@ -79,8 +91,11 @@ const colThreeCardsData = {
       id: 3,
       cardDelay: "0.1s",
       cardDuration: "0.6s",
-      imageUrl: "/what-we-do-blades/tools.png",
-      imageAlt: "card_1",
+      image: {
+        light: "/what-we-do-blades/tools.png",
+        dark: "/what-we-do-blades/tools-dark.png",
+      },
+      imageAlt: "card_3",
       cardTitle: "Teams with too much on their Plate",
       cardDetail:
         "We have over a decade of experience using leading technologies to provide support.",
@@ -93,18 +108,31 @@ const colThreeCardsData = {
 };
 
 
-  return (
-    <>
+return (
+  <>
+    {/* Theme Switch */}
+    <div className="fixed top-4 right-4 z-50">
+      <button
+        onClick={toggleTheme}
+        className="px-4 mt-[140px] py-2 rounded-full text-sm font-medium border transition
+                   bg-white text-black dark:bg-black dark:text-white"
+      >
+        {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+      </button>
+    </div>
+
+    <div className={darkMode ? "darkMode" : ""}>
       <div className="h-[400px] bg-purple"></div>
-      <div className={darkMode ? "darkMode" : ""}>
-        <ColTwoCard {...cardData} />
-        <ColTwoCard {...cardData2} />
-        <TitleSection {...titleSectionData} />
-        <TitleSection {...titleSectionData2} />
-        <ThreeColumns data={colThreeCardsData} />
-      </div>
-    </>
-  );
+
+      <ColTwoCard {...cardData} />
+      <ColTwoCard {...cardData2} />
+      <TitleSection {...titleSectionData} />
+      <TitleSection {...titleSectionData2} />
+      <ThreeColumns data={colThreeCardsData} />
+    </div>
+  </>
+);
+
 };
 
 export default Demo;

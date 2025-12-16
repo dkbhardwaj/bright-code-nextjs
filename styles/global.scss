@@ -1014,11 +1014,26 @@ section.image-checker-report {
     }
   }
 }
-
+.ThreeColumns{
+  .light-image {
+    display: block;
+  }
+  
+  .dark-image {
+    display: none;
+  }
+}
 .darkMode {
   .colTwoCard,
   .title-section,
   .ThreeColumns {
+    .light-image {
+      display: none;
+    }
+    
+     .dark-image {
+      display: block;
+    }
     background-color: #000d20;
     h3 {
       color: #ffffff;
@@ -1037,7 +1052,7 @@ section.image-checker-report {
   }
   .ThreeColumns {
     .card {
-      background-color: #222b59a1;
+      background-color: rgba(255, 255, 255, 0.05);
       border-color: #222b59a1;
       h4 {
         color: #f9fafb;
