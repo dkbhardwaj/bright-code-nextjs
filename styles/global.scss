@@ -982,7 +982,6 @@ section.image-checker-report {
 
   .colThree {
     .card{
-      // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       transition: box-shadow 0.3s ease-in-out;
     }
     &:hover{
@@ -998,7 +997,6 @@ section.image-checker-report {
    
     .link {
       position: relative;
-
       &::before {
         content: "";
         position: absolute;
