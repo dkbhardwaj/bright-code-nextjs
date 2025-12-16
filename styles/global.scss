@@ -589,8 +589,6 @@ span.title {
 }
 
 .footer-text {
-  li {
-  }
   h4,
   h5,
   li {
@@ -954,10 +952,14 @@ section.image-checker-report {
   padding: 8px 16px 8px 30px;
   font-size: 14px;
   font-weight: 500;
-  color: #0044FF;
+  color: #0044ff;
   border-radius: 9999px;
   margin-bottom: 16px;
-  background: linear-gradient(90deg, rgba(0, 68, 255, 0.1) 0%, rgba(27, 187, 255, 0.1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 68, 255, 0.1) 0%,
+    rgba(27, 187, 255, 0.1) 100%
+  );
   z-index: 1;
   overflow: hidden;
 
@@ -976,20 +978,81 @@ section.image-checker-report {
   }
 }
 
+.ThreeColumns {
 
+  .colThree {
+    .card{
+      // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    &:hover{
+      .card{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+      .link{
+        &::before {
+          right: -16px;
+        }
+      }
+    }
+   
+    .link {
+      position: relative;
 
-.darkMode{
-  .colTwoCard,.title-section{
-    background-color: #000D20;
-    h3{
-      color: #FFFFFF;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        width: 8px;
+        height: 8px;
+        transform: translateY(-50%);
+        background-image: url(/what-we-do-blades/blue_arrow.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: right 0.3s ease-in-out;
+      }
     }
   }
-  .announcemnet-badge{
-      color: #fff;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
-      &::before {
-        background-image: url(/what-we-do-blades/megaphone-white.svg);
+}
+
+.darkMode {
+  .colTwoCard,
+  .title-section,
+  .ThreeColumns {
+    background-color: #000d20;
+    h3 {
+      color: #ffffff;
+    }
+  }
+  .announcemnet-badge {
+    color: #fff;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    &::before {
+      background-image: url(/what-we-do-blades/megaphone-white.svg);
+    }
+  }
+  .ThreeColumns {
+    .card {
+      background-color: #222b59a1;
+      border-color: #222b59a1;
+      h4 {
+        color: #f9fafb;
       }
+      p {
+        color: #d1d1d6;
+      }
+      .link {
+        color: #f9fafb;
+        &::before {
+          background-image: url(/what-we-do-blades/white_arrow.svg);
+        }
+      }
+    }
   }
 }
