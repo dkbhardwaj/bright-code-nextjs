@@ -56,8 +56,8 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({ data }) => {
                 {card.linkText}
               </Link>
 
-              <div className="card flex flex-col justify-between bg-white text-center rounded-[24px] overflow-hidden py-[40px] px-[30px] border border-[#E5E5EA] h-full">
-                <div className="content">
+              <div className="card flex flex-col justify-between bg-white text-center rounded-[24px] overflow-hidden py-[40px] border border-[#E5E5EA] h-full">
+                <div className="wrapper">
                   {/* Images */}
                   {card.image && (
                     <div className="imageWrap max-w-[350px] h-[200px] mx-auto mb-[25px]">
@@ -80,8 +80,9 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({ data }) => {
                   )}
 
 
-                  {/* Title */}
-                  <h4 className="font-[600] text-[20px] md:text-[16px]">
+                 <div className="content px-[30px]">
+                   {/* Title */}
+                   <h4 className="font-[600] text-[20px] md:text-[16px]">
                     {card.cardTitle}
                   </h4>
 
@@ -89,6 +90,7 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({ data }) => {
                   <p className="text-[16px] md:text-[12px] mt-[5px] text-[#6b7280]">
                     {card.cardDetail}
                   </p>
+                 </div>
                 </div>
 
                 {/* CTA */}
