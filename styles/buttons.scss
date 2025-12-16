@@ -273,6 +273,38 @@
     }
   }
 }
+.gradient-btn-blue {
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	padding: 10px 60px 10px 22px;
+	background: linear-gradient(90deg, #0044FF 0%, #002999 100%);
+	border-radius: 9px;
+	color: #fff;
+	text-align: left;
+	transition: all 0.5s ease-in-out;
+	&::after {
+	  content: " ";
+	  position: absolute;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  right: 28px;
+	  width: 16px;
+	  height: 16px;
+	  background-image: url("/what-we-do-blades/white_arrow.svg");
+	  background-repeat: no-repeat;
+	  background-size: 100%;
+	  transition: right 0.5s ease-in-out;
+	}
+	&:hover {
+	  &::after {
+		right: 18px;
+	  }
+	}
+  }
 .submit-btn {
   position: relative;
   display: inline-block;

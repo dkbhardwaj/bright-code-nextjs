@@ -948,3 +948,48 @@ section.image-checker-report {
     color: white;
   }
 }
+.announcemnet-badge {
+  position: relative;
+  display: inline-block;
+  padding: 8px 16px 8px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0044FF;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, rgba(0, 68, 255, 0.1) 0%, rgba(27, 187, 255, 0.1) 100%);
+  z-index: 1;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+    background-image: url(/what-we-do-blades/megaphone.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+
+
+.darkMode{
+  .colTwoCard,.title-section{
+    background-color: #000D20;
+    h3{
+      color: #FFFFFF;
+    }
+  }
+  .announcemnet-badge{
+      color: #fff;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+      &::before {
+        background-image: url(/what-we-do-blades/megaphone-white.svg);
+      }
+  }
+}
