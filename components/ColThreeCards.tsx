@@ -22,6 +22,7 @@ interface ColThreeCardsProps {
   };
 }
 
+
 const ColThreeCards: React.FC<ColThreeCardsProps> = ({ data }) => {
   const { paddingLarge, featuredClass, title, bgTransparent, btntext, btnUrl } =
     data;
