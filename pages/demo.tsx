@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ColTwoCard from "../components/ColTwoCard";
 import TitleSection from "../components/TitleSection";
 import ThreeColumns from "../components/ThreeColumns";
+import GridCards from "@/components/GridCards";
 import { link } from "fs";
 
 const Demo: React.FC = () => {
@@ -38,6 +39,7 @@ const Demo: React.FC = () => {
     title: "We Build Digital Presence for Future of Businesses",
     description:
       "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or developing and QA-ing existing architecture, we create sophisticated websites and content management systems that meet the enterprise needs of large businesses and institutions.",
+    alignment : "center",
     buttonText: "Learn more",
     buttonLink: "/services",
   };
@@ -46,6 +48,7 @@ const Demo: React.FC = () => {
     title: "Who we are here to help",
     description:
       "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or developing and QA-ing existing architecture, we create sophisticated websites and content management systems.",
+    alignment : "center",
     buttonText: "",
     buttonLink: "",
   };
@@ -65,7 +68,7 @@ const colThreeCardsData = {
         light: "/what-we-do-blades/channels.png",
         dark: "/what-we-do-blades/channels-dark.png",
       },
-      imageAlt: "card_1",
+      imageAlt: "Channels",
       cardTitle: "Creative and Brand Agencies",
       cardDetail:
         "We have over a decade of experience using leading technologies to provide support.",
@@ -80,7 +83,7 @@ const colThreeCardsData = {
         light: "/what-we-do-blades/team.png",
         dark: "/what-we-do-blades/team-dark.png",
       },
-      imageAlt: "card_2",
+      imageAlt: "Team",
       cardTitle: "Marketing and Digital Teams",
       cardDetail:
         "We have over a decade of experience using leading technologies to provide support.",
@@ -95,7 +98,7 @@ const colThreeCardsData = {
         light: "/what-we-do-blades/tools.png",
         dark: "/what-we-do-blades/tools-dark.png",
       },
-      imageAlt: "card_3",
+      imageAlt: "Tools",
       cardTitle: "Teams with too much on their Plate",
       cardDetail:
         "We have over a decade of experience using leading technologies to provide support.",
@@ -106,6 +109,78 @@ const colThreeCardsData = {
   btntext: "Learn more",
   btnUrl: "#",
 };
+const titleSectionData3 = {
+  badgeText: "Bright Code Work",
+  title: "What we actually build",
+  description:
+    "Under the hood, we are a web development studio focused on CMS heavy, business critical sites.",
+  alignment : "left",  
+  buttonText: "",
+  buttonLink: "",
+};
+const gridCardsData = {
+  paddingLarge: true,
+  featuredClass: false,
+  title: "",
+  bgTransparent: false,
+  gridCards: [
+    {
+      id: 1,
+      image: {
+        light: "/what-we-do-blades/websites.png",
+        dark: "/what-we-do-blades/websites-dark.png",
+      },
+      imageAlt: "websites",
+      cardTitle: "White label Website Builds",
+      cardDetail:
+        "We have over a decade of experience using leading technologies to provide support.",
+      link: "#",
+      linkText: "Learn more",
+    },
+    {
+      id: 2,
+      image: {
+        light: "/what-we-do-blades/infrastructure.png",
+        dark: "/what-we-do-blades/infrastructure-dark.png",
+      },
+      imageAlt: "Infrastructure",
+      cardTitle: "Legacy Rescue and Refractor",
+      cardDetail:
+        "We have over a decade of experience using leading technologies to provide support.",
+      link: "#",
+      linkText: "Learn more",
+    },
+    {
+      id: 3,
+      image: {
+        light: "/what-we-do-blades/care-optimization.png",
+        dark: "/what-we-do-blades/care-optimization-dark.png",
+      },
+      imageAlt: "Care and Optimization",
+      cardTitle: "Care and Optimization Plans",
+      cardDetail:
+        "We have over a decade of experience using leading technologies to provide support.",
+      link: "#",
+      linkText: "Learn more",
+    },
+    {
+      id: 4,
+      image: {
+        light: "/what-we-do-blades/scalable-team.png",
+        dark: "/what-we-do-blades/scalable-team-dark.png",
+      },
+      imageAlt: "Scalable team",
+      cardTitle: "Embedded Dev Squads",
+      cardDetail:
+        "We have over a decade of experience using leading technologies to provide support.",
+      link: "#",
+      linkText: "Learn more",
+    },
+  ],
+  btntext: "Learn more",
+  btnUrl: "#",
+};
+
 
 
 return (
@@ -129,6 +204,8 @@ return (
       <TitleSection {...titleSectionData} />
       <TitleSection {...titleSectionData2} />
       <ThreeColumns data={colThreeCardsData} />
+      <TitleSection {...titleSectionData3} />
+      <GridCards data={gridCardsData} />
     </div>
   </>
 );

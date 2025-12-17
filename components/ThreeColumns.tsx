@@ -98,7 +98,7 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({ data }) => {
                   <div className="btn-wrap">
                     <Link
                       href={card.link}
-                      className="link inline-block text-[#0044FF] text-[12px] mt-[10px]"
+                      className="blue-link inline-block text-[#0044FF] text-[12px] mt-[10px]"
                     >
                       {card.linkText}
                     </Link>

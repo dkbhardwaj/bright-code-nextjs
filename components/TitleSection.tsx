@@ -7,6 +7,7 @@ import Link from "next/link";
 interface TitleSectionProps {
   badgeText?: string;
   title: string;
+  alignment : string;
   description?: string;
   buttonText?: string;
   buttonLink?: string;
@@ -16,24 +17,25 @@ const TitleSection: React.FC<TitleSectionProps> = ({
   badgeText,
   title,
   description,
+  alignment,
   buttonText,
   buttonLink = "#",
 }) => {
   return (
     <section className="title-section padding-large">
       <div className="container">
-        <div className="wrap max-w-[928px] mx-auto text-center">
+        <div className={`wrap mx-auto ${alignment == "left" ? "text-left max-w-[480px] ml-0 mr-auto" : "text-center max-w-[928px]"} `}>
           {/* Badge */}
           {badgeText && <span className="announcemnet-badge">{badgeText}</span>}
 
           {/* Title */}
-          <h3 className="lg-up:text-[40px] font-[600] max-w-[515px] mx-auto">
+          <h3 className={`lg-up:text-[40px] font-[600] ${alignment == "left" ? "" : "max-w-[515px] mx-auto"}`}>
             {title}
           </h3>
 
           {/* Description */}
           {description && (
-            <p className="md-up:text-[16px] text-[#8d97ad] mt-[20px]">
+            <p className={`md-up:text-[16px] text-[#8d97ad] mt-[20px] ${alignment == "left" ? "" : "max-w-[515px] mx-auto"}`}>
               {description}
             </p>
           )}

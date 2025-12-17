@@ -995,26 +995,29 @@ section.image-checker-report {
       }
     }
    
-    .link {
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        width: 8px;
-        height: 8px;
-        transform: translateY(-50%);
-        background-image: url(/what-we-do-blades/blue_arrow.svg);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        transition: right 0.3s ease-in-out;
-      }
+    
+  }
+}
+.btn-wrap{
+  .blue-link {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -10px;
+      width: 8px;
+      height: 8px;
+      transform: translateY(-50%);
+      background-image: url(/what-we-do-blades/blue_arrow.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: right 0.3s ease-in-out;
     }
   }
 }
-.ThreeColumns{
+.ThreeColumns , .GridCards{
   .light-image {
     display: block;
   }
@@ -1026,6 +1029,7 @@ section.image-checker-report {
 .darkMode {
   .colTwoCard,
   .title-section,
+  .GridCards,
   .ThreeColumns {
     .light-image {
       display: none;
@@ -1050,7 +1054,7 @@ section.image-checker-report {
       background-image: url(/what-we-do-blades/megaphone-white.svg);
     }
   }
-  .ThreeColumns {
+  .GridCards, .ThreeColumns {
     .card {
       background-color: rgba(255, 255, 255, 0.05);
       border-color: #222b59a1;
