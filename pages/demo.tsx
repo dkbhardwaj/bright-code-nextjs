@@ -136,6 +136,7 @@ const gridCardsData = {
         "We have over a decade of experience using leading technologies to provide support.",
       link: "#",
       linkText: "Learn more",
+      bigCard: false,
     },
     {
       id: 2,
@@ -149,6 +150,7 @@ const gridCardsData = {
         "We have over a decade of experience using leading technologies to provide support.",
       link: "#",
       linkText: "Learn more",
+      bigCard: false,
     },
     {
       id: 3,
@@ -162,6 +164,7 @@ const gridCardsData = {
         "We have over a decade of experience using leading technologies to provide support.",
       link: "#",
       linkText: "Learn more",
+      bigCard: false,
     },
     {
       id: 4,
@@ -175,11 +178,13 @@ const gridCardsData = {
         "We have over a decade of experience using leading technologies to provide support.",
       link: "#",
       linkText: "Learn more",
+      bigCard: false,
     },
   ],
   btntext: "Learn more",
   btnUrl: "#",
 };
+
 
 
 

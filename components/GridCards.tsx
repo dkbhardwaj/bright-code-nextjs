@@ -86,7 +86,13 @@ const GridCards: React.FC<GridCardsProps> = ({ data }) => {
                                     `}
                             >
 
-                                <div className="card h-full rounded-[24px] border border-[#E5E5EA] bg-white pb-[40px] flex flex-col justify-between overflow-hidden ">
+                                <div className="card h-full rounded-[24px] border border-[#E5E5EA] bg-white pb-[40px] flex flex-col justify-between overflow-hidden relative ">
+                                <Link
+                                    href={card.link}
+                                    className="redirect rounded-[24px] overflow-hidden"
+                                >
+                                    {card.linkText}
+                                </Link> 
                                     {/* Image */}
                                     <div className="imageWrap mb-[24px] h-[220px]">
                                         <Image

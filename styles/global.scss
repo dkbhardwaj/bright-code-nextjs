@@ -988,7 +988,7 @@ section.image-checker-report {
       .card{
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       }
-      .link{
+      .blue-link{
         &::before {
           right: -16px;
         }
@@ -1025,6 +1025,22 @@ section.image-checker-report {
   .dark-image {
     display: none;
   }
+}
+.GridCards {
+  .card{
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      .blue-link{
+        &::before {
+          right: -16px;
+        }
+      }
+    }
+  }
+
+
 }
 .darkMode {
   .colTwoCard,
