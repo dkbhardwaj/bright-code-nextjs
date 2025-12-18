@@ -78,7 +78,7 @@ const GridCards: React.FC<GridCardsProps> = ({ data }) => {
                             <div
                                 key={card.id}
                                 className={`
-                                            col-span-1
+                                            col-span-1 col-four
                                             ${isBig
                                         ? "tablet:col-span-6 lg-up:col-span-8"
                                         : "tablet:col-span-4 lg-up:col-span-4"
