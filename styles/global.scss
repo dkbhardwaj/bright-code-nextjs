@@ -1039,14 +1039,13 @@ section.image-checker-report {
       }
     }
   }
-
-
 }
 .darkMode {
   .colTwoCard,
   .title-section,
   .GridCards,
-  .ThreeColumns {
+  .ThreeColumns,
+  .banner-third {
     .light-image {
       display: none;
     }
@@ -1055,7 +1054,7 @@ section.image-checker-report {
       display: block;
     }
     background-color: #000d20;
-    h3 {
+    h1,h3 ,p{
       color: #ffffff;
     }
   }
