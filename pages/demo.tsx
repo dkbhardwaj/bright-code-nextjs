@@ -4,6 +4,7 @@ import TitleSection from "../components/TitleSection";
 import ThreeColumns from "../components/ThreeColumns";
 import GridCards from "@/components/GridCards";
 import BannerThird from "@/components/BannerThird";
+import Timeline from "@/components/Timeline";
 
 const Demo: React.FC = () => {
   // const darkMode = false;
@@ -229,6 +230,7 @@ const Demo: React.FC = () => {
 
       <div className={darkMode ? "darkMode" : ""}>
         <BannerThird data={bannerData} />
+        <Timeline/>
         <ColTwoCard {...cardData} />
         <ColTwoCard {...cardData2} />
         <TitleSection {...titleSectionData} />
