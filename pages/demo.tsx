@@ -5,6 +5,7 @@ import ThreeColumns from "../components/ThreeColumns";
 import GridCards from "@/components/GridCards";
 import BannerThird from "@/components/BannerThird";
 import Timeline from "@/components/Timeline";
+import Cta from "@/components/Cta";
 
 const Demo: React.FC = () => {
   // const darkMode = false;
@@ -214,6 +215,15 @@ const Demo: React.FC = () => {
     btntext: "Learn more",
     btnUrl: "#",
   };
+  const ctaData = {
+    bgImage: "/what-we-do-blades/cta_image.png",
+    title: "Sophisticated web solutions for smart agencies.",
+    description:
+      "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence.",
+    buttonText: "Contact us",
+    buttonUrl: "/contact-us",
+    buttonClass: "rounded-btn blue no-arrow", // You can change this to "rounded-btn gray" etc.
+  };
 
   return (
     <>
@@ -230,7 +240,7 @@ const Demo: React.FC = () => {
 
       <div className={darkMode ? "darkMode" : ""}>
         <BannerThird data={bannerData} />
-        <Timeline/>
+        <Timeline />
         <ColTwoCard {...cardData} />
         <ColTwoCard {...cardData2} />
         <TitleSection {...titleSectionData} />
@@ -238,6 +248,7 @@ const Demo: React.FC = () => {
         <ThreeColumns data={colThreeCardsData} />
         <TitleSection {...titleSectionData3} />
         <GridCards data={gridCardsData} />
+        <Cta data={ctaData} />
       </div>
     </>
   );

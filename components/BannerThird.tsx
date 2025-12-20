@@ -83,6 +83,7 @@ const BannerThird: React.FC<BannerThirdData> = ({ data }) => {
               ))}
             </div>
           )}
+          <span className="text-[12px] font-[400] text-[#333333] ">White-label web development for agencies and marketing teams who refuse “good enough.</span>
         </div>
       </div>
     </section>

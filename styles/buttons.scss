@@ -361,6 +361,19 @@
       display: none;
     }
   }
+  &.no-arrow {
+    padding: 15px 30px;
+    background: linear-gradient(180deg, #0044ff 0%, #0088ff 50%, #002db3 100%);
+    background-size: 100% 200%;
+    background-position: 0% 0%;
+    &:hover {
+      background-position: 0% 100%;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
 }
 .submit-btn {
   position: relative;
