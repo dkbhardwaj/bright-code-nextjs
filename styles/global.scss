@@ -1044,6 +1044,43 @@ section.image-checker-report {
     }
   }
 }
+
+section {
+  transition: background-color 0.3s ease-in-out;
+}
+.banner-third h1 span {
+  font-size: inherit;
+}
+
+.timeline {
+  .scroll_line_one {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 13, 32, 0.05) 0%,
+      rgba(0, 13, 32, 0.5) 100%
+    );
+  }
+  .left_content_wrap {
+    box-shadow: 0px 1px 3px -1px #0000004d;
+    transform: translate(50%, 150px);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+  }
+  .right_content_wrap {
+    transform: translate(-50%, 150px);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+  }
+  .row{
+    &.inview {
+      .left_content_wrap,
+      .right_content_wrap {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+    }
+  }
+}
 .darkMode {
   .colTwoCard,
   .title-section,
@@ -1094,39 +1131,29 @@ section.image-checker-report {
       }
     }
   }
-}
-section {
-  transition: background-color 0.3s ease-in-out;
-}
-.banner-third h1 span {
-  font-size: inherit;
-}
+  .timeline {
+    background-color: #000d20;
+    .scroll_line_one {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.4) 100%
+      );
+    }
 
-.timeline {
-  .scroll_line_one {
-    background: linear-gradient(
-      180deg,
-      rgba(0, 13, 32, 0.05) 0%,
-      rgba(0, 13, 32, 0.5) 100%
-    );
-  }
-  .left_content_wrap {
-    box-shadow: 0px 1px 3px -1px #0000004d;
-    transform: translate(50%, 150px);
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
-  }
-  .right_content_wrap {
-    transform: translate(-50%, 150px);
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
-  }
-  .row{
-    &.inview {
-      .left_content_wrap,
-      .right_content_wrap {
-        transform: translate(0, 0);
-        opacity: 1;
+    .left_content_wrap,
+    .right_content_wrap {
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.8);
+      border: 1px solid #222b59a1;
+
+      h3,
+      h4 {
+        color: #f9fafb;
+      }
+
+      p {
+        color: #d1d1d6;
       }
     }
   }
