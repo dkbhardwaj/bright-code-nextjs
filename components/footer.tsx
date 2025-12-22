@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                 />
               </Link>
 
-              <span className="footer-address-inline">
+              <span className="footer-address-inline inline-block ml-[20px] ">
                 2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
               </span>
             </div>
