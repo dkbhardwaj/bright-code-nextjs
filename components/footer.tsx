@@ -14,217 +14,144 @@ interface NavigationItem {
   };
 }
 
+
 const Footer: React.FC = () => {
-  const [menus, setMenus] = useState<NavigationItem | null>(null);
   const year = new Date().getFullYear();
 
-  useEffect(() => {
-    const getNav = async () => {
-      try {
-        const response = await client.getEntries({
-          content_type: "navigation",
-          "fields.navName": "Footer Menu",
-        });
-
-        const navItem = response.items[0]?.fields as unknown as NavigationItem;
-        setMenus(navItem || null);
-      } catch (err) {
-        console.log(err);
-        console.error(err);
-      }
-    };
-
-    getNav();
-  }, []);
-
   return (
-    <footer className="footer py-[90px] bg-darkBlue bg-[url('/footer-bg-image.png')] bg-no-repeat bg-cover md:py-16 ">
+    <footer className="footer new-footer">
       <div className="container">
-        <div className="w-full text-white flex justify-between md:flex-col md:items-center">
-          <div className=" relative w-full max-w-[250px] pr-4 md:max-w-full ">
-            <div className={`logo relative max-w-[207px] h-[57px] md:mx-auto `}>
-              <Link href="/" className="redirect">
-                .
+        <div className="inner-wrap">
+
+          {/* ================= TOP BAR ================= */}
+          <div className="footer-top">
+            <div className="footer-top-left">
+              <Link href="/" className="footer-logo-link">
+                <Image
+                  src="/brightcode_logo_light.png"
+                  width={180}
+                  height={48}
+                  alt="Bright Code"
+                  className="footer-logo footer-logo--light"
+                />
+                <Image
+                  src="/brightcode_logo.png"
+                  width={180}
+                  height={48}
+                  alt="Bright Code"
+                  className="footer-logo footer-logo--dark"
+                />
               </Link>
-              <Image
-                src="/brightcode_logo.png"
-                width={300}
-                height={100}
-                loading="lazy"
-                alt="logo"
-                className=" w-full h-full object-contain"
-              />
+
+              <span className="footer-address-inline">
+                2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
+              </span>
             </div>
-            <p className=" text-[14px] text-white md:text-center">
-              2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
-            </p>
+
+            <div className="footer-top-right">
+              Sophisticated web solutions for smart agencies
+            </div>
           </div>
-          <div className="hidden footer-link relative w-full max-w-[190px] pr-4  md:text-center  md:max-w-full md:mt-5 ">
-            {/* <h6 className=" font-medium mb-4">About</h6> */}
-            <ul>
-              {menus?.menuLink &&
-                menus?.menuLink.map(
-                  (
-                    menuItem: {
-                      fields: {
-                        path: string | UrlObject;
-                        label:
-                          | string
-                          | number
-                          | boolean
-                          | React.ReactElement<
-                              any,
-                              string | React.JSXElementConstructor<any>
-                            >
-                          | Iterable<React.ReactNode>
-                          | React.ReactPortal
-                          | React.PromiseLikeOfReactNode
-                          | null
-                          | undefined;
-                      };
-                    },
-                    index: number
-                  ) => (
-                    <li key={index} className="relative mb-2">
-                      <Link
-                        href={menuItem.fields?.path}
-                        className="text-[14px] text-white hover:text-mediumGray transition-colors duration-300 ease-in-out"
-                      >
-                        {menuItem.fields?.label}
-                      </Link>
-                    </li>
-                  )
-                )}
-            </ul>
-          </div>
-          <div className="textWrap relative w-full max-w-[400px] md:mt-4   md:mx-auto">
-            <ul className=" relative flex flex-wrap  justify-end sm:block">
-              <li className=" relative w-full justify-end md:justify-center flex items-center   rounded-[9px]  mb-1 md:mx-auto ">
-                <Link href="mailto:contact@bright-code.io" className="redirect">
-                  .
-                </Link>
-                <div className="icon-img hidden max-w-[21px] h-[21px] mr-5">
-                  {/* <Image
-                    src="/mail-icon-white.svg"
-                    width={25}
-                    height={25}
-                    loading="lazy"
-                    alt="img"
-                    className=" w-full h-full object-contain"
-                  /> */}
-                </div>
-                <span className="font-semibold">contact@bright-code.io</span>
-              </li>
-              <li className=" relative w-full justify-end md:justify-center flex items-center  rounded-[9px] ml-4  mb-1 md:mx-auto ">
-                <div className="icon-img hidden max-w-[21px] h-[21px] mr-5">
-                  {/* <Image
-                    src="/phone-icon-white.svg"
-                    width={25}
-                    height={25}
-                    loading="lazy"
-                    alt="img"
-                    className=" w-full h-full object-contain"
-                  /> */}
-                </div>
-                <span className="font-semibold">‪805-215-0549‬</span>
-              </li>
-            </ul>
-            <div className="socialWrap relative w-full flex justify-end  md:justify-center md:hidden">
-              {/* <div className="icon relative max-w-[33px] h-[33px] ">
-                <Link
-                  href={"https://twitter.com/brightcodeio"}
-                  className="redirect"
-                  target="_blank"
-                >
-                  .
-                </Link>
+
+          <div className="footer-divider" />
+
+          {/* ================= GRID ================= */}
+          <div className="footer-grid">
+
+            <div className="footer-col">
+              <h4>Platform</h4>
+              <ul>
+                <li><Link href="/white-label-website">White Label Website</Link></li>
+                <li><Link href="/legacy-refraction">Legacy Refraction</Link></li>
+                <li><Link href="/care-optimization">Care & Optimization</Link></li>
+                <li><Link href="/dev-squad-support">Dev Squad Support</Link></li>
+                <li><Link href="/image-checker">Image Checker</Link></li>
+                <li><Link href="/link-tracker">Link Tracker</Link></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4>Services</h4>
+              <ul>
+                <li><Link href="/white-label-website">White Label Website</Link></li>
+                <li><Link href="/legacy-refraction">Legacy Refraction</Link></li>
+                <li><Link href="/care-optimization">Care & Optimization</Link></li>
+                <li><Link href="/dev-squad-support">Dev Squad Support</Link></li>
+                <li><Link href="/image-checker">Image Checker</Link></li>
+                <li><Link href="/link-tracker">Link Tracker</Link></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4>Try Our Tools</h4>
+              <ul>
+                <li><Link href="/security-header">Security Header</Link></li>
+                <li><Link href="/link-tracker">Link Tracker</Link></li>
+                <li><Link href="/image-checker">Image Checker</Link></li>
+              </ul>
+            </div>
+
+            <div className="footer-col">
+              <h4>Case Studies</h4>
+              <ul>
+                <li><Link href="/case-studies/amazon">Amazon</Link></li>
+                <li><Link href="/case-studies/google">Google</Link></li>
+                <li><Link href="/case-studies/flipkart">Flipkart</Link></li>
+                <li><Link href="/case-studies/paypal">Paypal</Link></li>
+                <li><Link href="/case-studies/paytm">Paytm</Link></li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="footer-contact">
+              <Link href="mailto:contact@bright-code.io" className="mb-[40px] inline-block">
                 <Image
-                  src="/twitter-white.svg"
-                  width={40}
-                  height={40}
-                  loading="lazy"
-                  alt="icon"
-                  className=" w-full h-full object-contain"
+                  src="/footer-icon-light.svg"
+                  width={44}
+                  height={44}
+                  alt=""
+                  className="footer-icon footer-icon--light"
                 />
-              </div> */}
-              <div className="icon relative ml-3  max-w-[33px] h-[33px]">
-                <Link
-                  href={"https://www.linkedin.com/company/bright-codeio/"}
-                  className="redirect"
-                  target="_blank"
-                >
-                  .
-                </Link>
                 <Image
-                  src="/linkedin-white.svg"
-                  width={40}
-                  height={40}
-                  loading="lazy"
-                  alt="icon"
-                  className=" w-full h-full object-contain"
+                  src="/footer-icon-dark.svg"
+                  width={44}
+                  height={44}
+                  alt=""
+                  className="footer-icon footer-icon--dark"
                 />
+              </Link>
+
+              <div className="telAndEmailWrap mb-[40px] ">
+              <Link href="mailto:contact@bright-code.io" className="email">
+                contact@bright-code.io
+              </Link>
+
+              <Link href="tel:8052150549" className="tel">
+                805-215-0549
+              </Link>
+              </div>
+
+              <div className="footer-socials">
+                <Link href="#"><Image src="/linkedin-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
+                <Link href="#"><Image src="/linkedin-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+
+                <Link href="#"><Image src="/instagram-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
+                <Link href="#"><Image src="/instagram-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+
+                <Link href="#"><Image src="/x-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
+                <Link href="#"><Image src="/x-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+
+                <Link href="#"><Image src="/github-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
+                <Link href="#"><Image src="/github-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
               </div>
             </div>
           </div>
-          <div className="hidden socialWrap mt-4 md:flex md:justify-center">
-            {/* <div className="icon relative max-w-[33px] h-[33px]">
-              <Link
-                href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                className="redirect"
-                target="_blank"
-              >
-                .
-              </Link>
-              <Image
-                src="/twitter-white.svg"
-                width={40}
-                height={40}
-                loading="lazy"
-                alt="icon"
-                className=" w-full h-full object-contain"
-              />
-            </div> */}
-            <div className="icon relative ml-2  max-w-[33px] h-[33px]">
-              <Link
-                href={"https://www.linkedin.com/in/bright-code-71120724a/"}
-                className="redirect"
-                target="_blank"
-              >
-                .
-              </Link>
-              <Image
-                src="/linkedin-white.svg"
-                width={40}
-                height={40}
-                loading="lazy"
-                alt="icon"
-                className=" w-full h-full object-contain"
-              />
-            </div>
+
+          {/* ================= BOTTOM ================= */}
+          <div className="footer-bottom">
+            © {year} Bright Code Technologies Inc
           </div>
-        </div>
-        <div className=" relative w-full mt-16 flex justify-between items-center flex-wrap md:mt-10">
-          <div className="copyright w-full flex justify-center md:justify-center sm:block sm:text-center ">
-            <p className="text-white">© {year} Bright Code Technologies Inc</p>
-            <ul className=" relative w-fit flex sm:w-full sm:justify-center ">
-              <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] sm:before:hidden sm:!ml-0 sm:!pl-0 ">
-                <Link
-                  href="https://www.bright-code.io/privacy-policy"
-                  className="text-white hover:text-mediumGray transition-colors duration-300 ease-in-out md:text-[14px] md:leading-[24px] "
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li className=" ml-4 pl-4 relative before:content-[''] before:absolute before:top-[7px] before:left-0 before:w-[1px] before:h-[18px] before:bg-white md:ml-3 md:pl-3 md:before:top-[9px] md:before:h-[15px] ">
-                <Link
-                  href="https://www.bright-code.io/sitemap.xml"
-                  className="text-white hover:text-mediumGray transition-colors duration-300 ease-in-out md:text-[14px] md:leading-[24px] "
-                >
-                  Sitemap
-                </Link>
-              </li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </footer>
@@ -232,3 +159,5 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+

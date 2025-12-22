@@ -9,11 +9,11 @@ import Cta from "@/components/Cta";
 
 const Demo: React.FC = () => {
   // const darkMode = false;
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
 
-  const toggleTheme = () => {
-    setDarkMode((prev) => !prev);
-  };
+  // const toggleTheme = () => {
+  //   setDarkMode((prev) => !prev);
+  // };
   const bannerData = {
     bannerBgImg: "/what-we-do/banner_third.png",
     preTitle: "Protect your",
@@ -89,7 +89,6 @@ const Demo: React.FC = () => {
     featuredClass: false,
     title: "Our Services",
     bgTransparent: false,
-    darkMode,
     threeCards: [
       {
         id: 1,
@@ -228,7 +227,7 @@ const Demo: React.FC = () => {
   return (
     <>
       {/* Theme Switch */}
-      <div className="fixed top-4 right-4 z-50">
+      {/* <div className="fixed top-4 right-4 z-50">
         <button
           onClick={toggleTheme}
           className="px-4 mt-[140px] py-2 rounded-full text-sm font-medium border transition
@@ -236,9 +235,9 @@ const Demo: React.FC = () => {
         >
           {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
         </button>
-      </div>
+      </div> */}
 
-      <div className={darkMode ? "darkMode" : ""}>
+      <div >
         <BannerThird data={bannerData} />
         <Timeline />
         <ColTwoCard {...cardData} />
