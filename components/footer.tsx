@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
 
           {/* ================= TOP BAR ================= */}
           <div className="footer-top">
-            <div className="footer-top-left">
+            <div className="footer-top-left mr-[20px] ">
               <Link href="/" className="footer-logo-link">
                 <Image
                   src="/brightcode_logo_light.png"
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                 />
               </Link>
 
-              <span className="footer-address-inline inline-block ml-[20px] ">
+              <span className="footer-address-inline ">
                 2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
               </span>
             </div>
