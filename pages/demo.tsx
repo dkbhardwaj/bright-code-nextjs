@@ -15,7 +15,11 @@ const Demo: React.FC = () => {
   //   setDarkMode((prev) => !prev);
   // };
   const bannerData = {
-    bannerBgImg: "/what-we-do/banner_third.png",
+    theme: "dark" as "dark",
+    bannerBgImg: {
+      light: "/what-we-do/banner_third.png",
+      dark: "/what-we-do/banner_third_dark.png",
+    },
     preTitle: "Protect your",
     highlightedText: "Reputation",
     postTitle: "Not just your Website.",

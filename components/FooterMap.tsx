@@ -20,7 +20,7 @@ const FooterMap: React.FC<FooterMapData> = ({ data }) => {
               width="600"
               height="460"
               loading="lazy"
-              className="w-full h-full object-cover "
+              className="w-full h-full object-cover"
               title="FooterMap"
             ></iframe>
           </div>
