@@ -256,7 +256,7 @@ const Demo: React.FC = () => {
         <TitleSection {...titleSectionData2}  theme="light"/>
         <ThreeColumns data={colThreeCardsData} theme="light"  />
         <TitleSection {...titleSectionData3} theme="light"/>
-        <GridCards data={gridCardsData} />
+        <GridCards data={gridCardsData} theme="light"/>
         <Cta data={ctaData} />
       </div>
     </>

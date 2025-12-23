@@ -27,24 +27,34 @@ export interface GridCardsData {
     featuredClass?: boolean;
     title?: string;
     bgTransparent?: boolean;
-    gridCards: GridCard[];
+    gridCards: readonly GridCard[];
     btntext?: string;
     btnUrl?: string;
-}
+  }  
 
-export interface GridCardsProps {
+  export interface GridCardsProps {
     data: GridCardsData;
-}
+    theme?: "light" | "dark";
+  }
+  
 
 /* =========================
    Component
 ========================= */
 
-const GridCards: React.FC<GridCardsProps> = ({ data }) => {
+const GridCards: React.FC<GridCardsProps> = ({
+    data,
+    theme = "light",
+  }) => {
     const { title, gridCards, btntext, btnUrl } = data;
-
+  
     return (
-        <section className="GridCards padding-large-bottom">
+      <section
+        className={`GridCards padding-large-bottom ${
+          theme === "dark" ? "darkMode" : ""
+        }`}
+      >
+  
             <div className="container">
 
                 {/* Section Title */}
