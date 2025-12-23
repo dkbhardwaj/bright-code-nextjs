@@ -58,7 +58,9 @@ const Demo: React.FC = () => {
       "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or developing and QA-ing existing architecture, we create sophisticated websites and content management systems that meet the enterprise needs of large businesses and institutions.",
     buttonText: "Learn more",
     buttonLink: "/services",
+    theme: "light", // Blade-specific theme
   };
+  
   const cardData2 = {
     reverse: true,
     imageSrc: "/what-we-do-blades/Illustration.png",
@@ -69,7 +71,9 @@ const Demo: React.FC = () => {
       "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or developing and QA-ing existing architecture, we create sophisticated websites and content management systems that meet the enterprise needs of large businesses and institutions.",
     buttonText: "Learn more",
     buttonLink: "/services",
+    theme: "dark", // Blade-specific theme
   };
+  
   const titleSectionData = {
     badgeText: "Bright-Code does",
     title: "We Build Digital Presence for Future of Businesses",
