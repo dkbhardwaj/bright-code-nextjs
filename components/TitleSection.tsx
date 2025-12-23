@@ -7,10 +7,11 @@ import Link from "next/link";
 interface TitleSectionProps {
   badgeText?: string;
   title: string;
-  alignment : string;
+  alignment: "left" | "center";
   description?: string;
   buttonText?: string;
   buttonLink?: string;
+  theme?: "light" | "dark";
 }
 
 const TitleSection: React.FC<TitleSectionProps> = ({
@@ -20,9 +21,15 @@ const TitleSection: React.FC<TitleSectionProps> = ({
   alignment,
   buttonText,
   buttonLink = "#",
+  theme = "light",
 }) => {
   return (
-    <section className="title-section padding-large">
+    <section
+      className={`title-section padding-large ${
+        theme === "dark" ? "darkMode" : ""
+      }`}
+    >
+
       <div className="container">
         <div className={`wrap mx-auto ${alignment == "left" ? "text-left max-w-[480px] ml-0 mr-auto" : "text-center max-w-[928px]"} `}>
           {/* Badge */}

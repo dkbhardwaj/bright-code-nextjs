@@ -73,7 +73,6 @@ const Demo: React.FC = () => {
     buttonLink: "/services",
     theme: "dark", // Blade-specific theme
   };
-  
   const titleSectionData = {
     badgeText: "Bright-Code does",
     title: "We Build Digital Presence for Future of Businesses",
@@ -82,7 +81,8 @@ const Demo: React.FC = () => {
     alignment: "center",
     buttonText: "Learn more",
     buttonLink: "/services",
-  };
+  } as const;
+  
   const titleSectionData2 = {
     badgeText: "About Bright Code",
     title: "Who we are here to help",
@@ -91,7 +91,8 @@ const Demo: React.FC = () => {
     alignment: "center",
     buttonText: "",
     buttonLink: "",
-  };
+  } as const;
+  
   const colThreeCardsData = {
     paddingLarge: true,
     featuredClass: false,
@@ -155,7 +156,7 @@ const Demo: React.FC = () => {
     alignment: "left",
     buttonText: "",
     buttonLink: "",
-  };
+  } as const;
   const gridCardsData = {
     paddingLarge: true,
     featuredClass: false,
@@ -248,12 +249,12 @@ const Demo: React.FC = () => {
       <div >
         <BannerThird data={bannerData} />
         <Timeline />
-        <ColTwoCard {...cardData} />
-        <ColTwoCard {...cardData2} />
-        <TitleSection {...titleSectionData} />
-        <TitleSection {...titleSectionData2} />
+        <ColTwoCard {...cardData} theme="light" />
+        <ColTwoCard {...cardData2} theme="dark" />
+        <TitleSection {...titleSectionData} theme="light" />
+        <TitleSection {...titleSectionData2}  theme="light"/>
         <ThreeColumns data={colThreeCardsData} />
-        <TitleSection {...titleSectionData3} />
+        <TitleSection {...titleSectionData3} theme="light"/>
         <GridCards data={gridCardsData} />
         <Cta data={ctaData} />
       </div>
