@@ -147,7 +147,8 @@ const Demo: React.FC = () => {
     ],
     btntext: "Learn more",
     btnUrl: "#",
-  };
+  } as const;
+  
   const titleSectionData3 = {
     badgeText: "Bright Code Work",
     title: "What we actually build",
@@ -250,10 +251,10 @@ const Demo: React.FC = () => {
         <BannerThird data={bannerData} />
         <Timeline />
         <ColTwoCard {...cardData} theme="light" />
-        <ColTwoCard {...cardData2} theme="dark" />
+        <ColTwoCard {...cardData2} theme="light" />
         <TitleSection {...titleSectionData} theme="light" />
         <TitleSection {...titleSectionData2}  theme="light"/>
-        <ThreeColumns data={colThreeCardsData} />
+        <ThreeColumns data={colThreeCardsData} theme="light"  />
         <TitleSection {...titleSectionData3} theme="light"/>
         <GridCards data={gridCardsData} />
         <Cta data={ctaData} />

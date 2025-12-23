@@ -25,23 +25,32 @@ interface ThreeColumnsData {
   featuredClass?: boolean;
   title?: string;
   bgTransparent?: boolean;
-  threeCards: ThreeColumnCard[];
+  threeCards: readonly ThreeColumnCard[];
   btntext?: string;
   btnUrl?: string;
 }
 
 
+type BladeTheme = "light" | "dark";
+
 interface ThreeColumnsProps {
   data: ThreeColumnsData;
+  theme?: BladeTheme; 
 }
 
 
-
-const ThreeColumns: React.FC<ThreeColumnsProps> = ({ data }) => {
-  const { paddingLarge, title, threeCards, btntext, btnUrl } = data;
+const ThreeColumns: React.FC<ThreeColumnsProps> = ({
+  data,
+  theme = "light",
+}) => {
+  const { threeCards, btntext, btnUrl } = data;
 
   return (
-    <section className="ThreeColumns padding-large-bottom">
+    <section
+      className={`ThreeColumns padding-large-bottom ${
+        theme === "dark" ? "darkMode" : ""
+      }`}
+    >
       <div className="container">
         <div className="w-[calc(100%+24px)] ml-[-12px] flex flex-wrap justify-center">
           {threeCards.map((card) => (
