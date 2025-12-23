@@ -1432,7 +1432,7 @@ section {
 }
 
 .darkMode {
-  .new-footer {
+  &.new-footer {
     .footer-top-right{
       color: #fff;
     }
@@ -1467,10 +1467,10 @@ section {
     }
   }
 
-  .colTwoCard,
-  .title-section,
-  .GridCards,
-  .ThreeColumns {
+  &.colTwoCard,
+  &.title-section,
+  &.GridCards,
+  &.ThreeColumns {
     .light-image {
       display: none;
     }
@@ -1488,7 +1488,7 @@ section {
     }
   }
 
-  .banner-third {
+  &.banner-third {
     background-image: url("/what-we-do/banner_third_dark.png");
 
     h1 {
@@ -1504,7 +1504,7 @@ section {
     }
   }
 
-  .announcemnet-badge {
+  &.announcemnet-badge {
     color: #fff;
     background: linear-gradient(90deg,
         rgba(255, 255, 255, 0.1) 0%,
@@ -1515,8 +1515,8 @@ section {
     }
   }
 
-  .GridCards,
-  .ThreeColumns {
+  &.GridCards,
+  &.ThreeColumns {
     .card {
       background-color: rgba(255, 255, 255, 0.05);
       border-color: #222b59a1;
@@ -1539,7 +1539,7 @@ section {
     }
   }
 
-  .timeline {
+  &.timeline {
     background-color: #000d20;
 
     .scroll_line_one {

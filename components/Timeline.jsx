@@ -29,9 +29,10 @@ const data = [
       "You feel it as confidence in handoffs, easy onboarding, and no tech debt suprises",
   },
 ];
-
 gsap.registerPlugin(ScrollTrigger);
-export default function ScrollDownColTwo() {
+
+export default function ScrollDownColTwo({ theme = "dark" }) {
+
   const [leftPosition, setLeftPosition] = useState(0);
   const [animationsState, setAnimationsState] = useState(
     data.map(() => ({ isVisible: false })) // Initialize visibility state
@@ -264,7 +265,12 @@ export default function ScrollDownColTwo() {
   };
 
   return (
-    <section className={`timeline grid__parallax dark padding-medium`}>
+<section
+  className={`timeline grid__parallax padding-medium ${
+    theme === "dark" ? "darkMode" : ""
+  }`}
+>
+
       <div className={`container !max-w-[1340px]`}>
         <div className={`relative w-full lg:pl-[10rem] xs:pl-[5rem]  z-10 `}>
           <div
@@ -294,16 +300,20 @@ export default function ScrollDownColTwo() {
                 <div
                   className={`left_content_wrap relative w-full p-[24px] border-[1px] border-[#D1D1D6] rounded-[8px]`}
                 >
-                  <p className="text-[16px] text-black font-[500]">
+                  <p className={`text-[16px] text-black font-[500]`}>
                     {item.leftText}
                   </p>
                 </div>
+                {/* <div className={`left_content_wrap ${theme === "dark" ? "bg-[#000d20] border-[#222b59a1]" : "bg-white border-[#D1D1D6]"}`}>
+  <p className={`${theme === "dark" ? "text-white" : "text-black"}`}>{item.leftText}</p>
+</div> */}
+
               </div>
               <div className="w-1/2 lg:w-[75%] xs:w-[80%] relative pl-[100px]">
                 <div
                   className={`right_content_wrap relative w-full p-[24px] border-[1px] border-[#D1D1D6] rounded-[8px]`}
                 >
-                  <p className="text-[16px] text-black font-[400]">
+                  <p className="text-[16px] text-black font-[500]">
                     {item.rightText}
                   </p>
                 </div>
