@@ -95,18 +95,24 @@
 }
 
 /* ------------------ Mega Menu ------------------ */
+.menuItem,
+.menuLink {
+  pointer-events: auto; // must not be 'none'
+}
 
 .megaMenu {
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); // center below menu item
   min-width: 720px;
   padding: 32px;
-  border-radius: 16px;
-  z-index: 50;
-  animation: fadeIn 0.25s ease;
+  border-radius: 8px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  background: #F2F2F7;
+  z-index: 999;
 }
+
 
 .megaGrid {
   display: grid;

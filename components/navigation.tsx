@@ -13,15 +13,16 @@ const Navigation = () => {
 
   const handleMouseEnter = (label: string) => {
     if (window.innerWidth > 991) {
-      setActiveMenu(label);
+      setActiveMenu(label); 
     }
   };
-
+  
   const handleMouseLeave = () => {
     if (window.innerWidth > 991) {
       setActiveMenu(null);
     }
   };
+  
 
   useEffect(() => {
     const resize = () => {
@@ -63,21 +64,21 @@ const Navigation = () => {
 
           {/* NAV */}
           <ul className={Style.navList}>
+  {NAV_DATA.menus.map((item) => (
+    <li
+  key={item.label}
+  className={Style.menuItem}
+  onMouseEnter={() => handleMouseEnter(item.label)}
+  onMouseLeave={handleMouseLeave}
+>
 
-            {NAV_DATA.menus.map((item) => (
-              <li
-                key={item.label}
-                className={`${Style.menuItem} relative`}
-                onMouseEnter={() => handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <span className={Style.menuLink}>
-                  {item.label}
-                  {item.mega && <span className={Style.chevron} />}
-                </span>
+      <span className={Style.menuLink}>
+        {item.label}
+        {item.mega && <span className={Style.chevron} />}
+      </span>
 
-                {/* MEGA MENU */}
-                {item.mega && activeMenu === item.label && (
+       {/* MEGA MENU */}
+       {item.mega && activeMenu === item.label && (
                   <div className={Style.megaMenu}>
                     <div className={Style.megaGrid}>
 
@@ -85,7 +86,7 @@ const Navigation = () => {
                       {item.mega.columns.map((column, colIndex) => (
                         <ul key={colIndex} className={Style.megaColumn}>
                           {column.map((link) => (
-                            <li key={link.title}>
+                            <li key={link.title} className=" list-none ">
                               <Link href={link.link} className={Style.megaItem}>
                                 <span className={Style.iconBox}>
                                   {link.imageLight && link.imageDark && (
@@ -175,9 +176,10 @@ const Navigation = () => {
                     </div>
                   </div>
                 )}
-              </li>
-            ))}
-          </ul>
+    </li>
+  ))}
+</ul>
+
 
           {/* CTA */}
           <Link
