@@ -8,12 +8,6 @@ import Timeline from "@/components/Timeline";
 import Cta from "@/components/Cta";
 
 const Demo: React.FC = () => {
-  // const darkMode = false;
-  // const [darkMode, setDarkMode] = useState(false);
-
-  // const toggleTheme = () => {
-  //   setDarkMode((prev) => !prev);
-  // };
   const bannerData = {
     theme: "dark" as "dark",
     bannerBgImg: {
@@ -236,17 +230,6 @@ const Demo: React.FC = () => {
 
   return (
     <>
-      {/* Theme Switch */}
-      {/* <div className="fixed top-4 right-4 z-50">
-        <button
-          onClick={toggleTheme}
-          className="px-4 mt-[140px] py-2 rounded-full text-sm font-medium border transition
-                   bg-white text-black dark:bg-black dark:text-white"
-        >
-          {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
-        </button>
-      </div> */}
-
       <div >
         <BannerThird data={bannerData} />
         <Timeline />
