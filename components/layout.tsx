@@ -10,7 +10,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, navigationData }) => {
   return (
     <>
-      <Navigation navigationData={navigationData} />
+      <Navigation />
       {children}
       <Footer />
     </>
