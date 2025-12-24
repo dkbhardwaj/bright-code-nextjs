@@ -72,10 +72,12 @@ const Navigation = () => {
                 onMouseLeave={handleMouseLeave}
               >
 
+
                 <span className={Style.menuLink}>
                   {item.label}
                   {item.mega && <span className={Style.chevron} />}
                 </span>
+                
 
                 {/* MEGA MENU */}
                 {item.mega && activeMenu === item.label && (
