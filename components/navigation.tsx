@@ -13,16 +13,16 @@ const Navigation = () => {
 
   const handleMouseEnter = (label: string) => {
     if (window.innerWidth > 991) {
-      setActiveMenu(label); 
+      setActiveMenu(label);
     }
   };
-  
+
   const handleMouseLeave = () => {
     if (window.innerWidth > 991) {
       setActiveMenu(null);
     }
   };
-  
+
 
   useEffect(() => {
     const resize = () => {
@@ -38,8 +38,8 @@ const Navigation = () => {
 
   return (
     <header className={`${Style.header} ${Style[HEADER_THEME]} absolute w-full top-0 z-[99]`}>
-      <div className="container">
-        <div className="flex items-center justify-between py-6">
+      <div className="container relative">
+        <div className="flex items-center justify-between">
 
           {/* LOGO */}
           <Link href="/" className={Style.logoLink}>
@@ -64,21 +64,21 @@ const Navigation = () => {
 
           {/* NAV */}
           <ul className={Style.navList}>
-  {NAV_DATA.menus.map((item) => (
-    <li
-  key={item.label}
-  className={Style.menuItem}
-  onMouseEnter={() => handleMouseEnter(item.label)}
-  onMouseLeave={handleMouseLeave}
->
+            {NAV_DATA.menus.map((item) => (
+              <li
+                key={item.label}
+                className={Style.menuItem}
+                onMouseEnter={() => handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
+              >
 
-      <span className={Style.menuLink}>
-        {item.label}
-        {item.mega && <span className={Style.chevron} />}
-      </span>
+                <span className={Style.menuLink}>
+                  {item.label}
+                  {item.mega && <span className={Style.chevron} />}
+                </span>
 
-       {/* MEGA MENU */}
-       {item.mega && activeMenu === item.label && (
+                {/* MEGA MENU */}
+                {item.mega && activeMenu === item.label && (
                   <div className={Style.megaMenu}>
                     <div className={Style.megaGrid}>
 
@@ -86,44 +86,42 @@ const Navigation = () => {
                       {item.mega.columns.map((column, colIndex) => (
                         <ul key={colIndex} className={Style.megaColumn}>
                           {column.map((link) => (
-                            <li key={link.title} className=" list-none ">
-                              <Link href={link.link} className={Style.megaItem}>
-                                <span className={Style.iconBox}>
-                                  {link.imageLight && link.imageDark && (
-                                    <>
-                                      <Image
-                                        src={link.imageLight}
-                                        alt={link.alt || link.title}
-                                        width={24}
-                                        height={24}
-                                        className={`${Style.icon} ${Style.iconLight}`}
-                                      />
-                                      <Image
-                                        src={link.imageDark}
-                                        alt={link.alt || link.title}
-                                        width={24}
-                                        height={24}
-                                        className={`${Style.icon} ${Style.iconDark}`}
-                                      />
-                                    </>
-                                  )}
+                            <li key={link.title} className=" list-none flex align-top ">
+                              <div className={` ${Style.iconBox} icon-wrap w-[40px] h-[40px] mr-[10px]`}>
+                                {link.imageLight && link.imageDark && (
+                                  <>
+                                    <Image
+                                      src={link.imageLight}
+                                      alt={link.alt || link.title}
+                                      width={40}
+                                      height={40}
+                                      className={`${Style.icon} ${Style.iconLight}`}
+                                    />
+                                    <Image
+                                      src={link.imageDark}
+                                      alt={link.alt || link.title}
+                                      width={40}
+                                      height={40}
+                                      className={`${Style.icon} ${Style.iconDark}`}
+                                    />
+                                  </>
+                                )}
+                              </div>
+                              <div className={` ${Style.megaItem}`}>
+                                <Link href={link.link} className={`${Style.megaLink} block`}>
+                                  {link.title}
+                                </Link>
+                                <span className={Style.megaDesc}>
+                                  {link.desc}
                                 </span>
-                                <div>
-                                  <p className={Style.megaTitle}>
-                                    {link.title}
-                                  </p>
-                                  <span className={Style.megaDesc}>
-                                    {link.desc}
-                                  </span>
-                                </div>
-                              </Link>
+                              </div>
                             </li>
                           ))}
                         </ul>
                       ))}
 
                       {/* SOCIAL COLUMN */}
-                      <div className={Style.socialColumn}>
+                      <div className={` ${Style.socialColumn}  `} >
                         <Link
                           href="mailto:contact@bright-code.io"
                           className={Style.iconLink}
@@ -150,25 +148,25 @@ const Navigation = () => {
                           <span>Social Media</span>, to get Latest News and Updates
                         </p>
 
-                        <div className="footer-socials">
+                        <div className={` ${Style.socialLinks} footer-socials`}>
                           <Link href="#">
-                            <Image src="/linkedin-light.svg" width={18} height={18} alt="" className="social-light" />
-                            <Image src="/linkedin-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                            <Image src="/linkedin-light.svg" width={24} height={24} alt="linkedin" className={` ${Style.socialLight} `} />
+                            <Image src="/linkedin-dark.svg" width={24} height={24} alt="linkedin" className={` ${Style.socialDark} `} />
                           </Link>
 
                           <Link href="#">
-                            <Image src="/instagram-light.svg" width={18} height={18} alt="" className="social-light" />
-                            <Image src="/instagram-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                            <Image src="/instagram-light.svg" width={24} height={24} alt="instagram" className="social-light" />
+                            <Image src="/instagram-dark.svg" width={24} height={24} alt="instagram" className={` ${Style.socialDark} `} />
                           </Link>
 
                           <Link href="#">
-                            <Image src="/x-light.svg" width={18} height={18} alt="" className="social-light" />
-                            <Image src="/x-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                            <Image src="/x-light.svg" width={24} height={24} alt="x" className="social-light" />
+                            <Image src="/x-dark.svg" width={24} height={24} alt="x" className={` ${Style.socialDark} `} />
                           </Link>
 
                           <Link href="#">
-                            <Image src="/github-light.svg" width={18} height={18} alt="" className="social-light" />
-                            <Image src="/github-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                            <Image src="/github-light.svg" width={24} height={24} alt="github" className="social-light" />
+                            <Image src="/github-dark.svg" width={24} height={24} alt="github" className={` ${Style.socialDark} `} />
                           </Link>
                         </div>
                       </div>
@@ -176,18 +174,20 @@ const Navigation = () => {
                     </div>
                   </div>
                 )}
-    </li>
-  ))}
-</ul>
+              </li>
+            ))}
+          </ul>
 
 
           {/* CTA */}
-          <Link
-            href="/contact"
-            className={`mt-[20px] text-white no-arrow rounded-btn blue no-arrow`}
-          >
-            Contact us
-          </Link>
+          <div className="btn-wrap">
+            <Link
+              href="/contact"
+              className={`my-[10px] text-white no-arrow rounded-btn blue no-arrow `}
+            >
+              Contact us
+            </Link>
+          </div>
         </div>
       </div>
     </header>

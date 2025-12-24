@@ -132,17 +132,17 @@ const Footer: React.FC = () => {
               </div>
 
               <div className="footer-socials">
-                <Link href="#"><Image src="/linkedin-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
-                <Link href="#"><Image src="/linkedin-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+                <Link href="#"><Image src="/linkedin-light.svg" width={24} height={24} alt="linkedin" className="social-light" /></Link>
+                <Link href="#"><Image src="/linkedin-dark.svg" width={24} height={24} alt="linkedin" className="social-dark" /></Link>
 
-                <Link href="#"><Image src="/instagram-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
-                <Link href="#"><Image src="/instagram-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+                <Link href="#"><Image src="/instagram-light.svg" width={24} height={24} alt="instagram" className="social-light" /></Link>
+                <Link href="#"><Image src="/instagram-dark.svg" width={24} height={24} alt="instagram" className="social-dark" /></Link>
 
-                <Link href="#"><Image src="/x-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
-                <Link href="#"><Image src="/x-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+                <Link href="#"><Image src="/x-light.svg" width={24} height={24} alt="x" className="social-light" /></Link>
+                <Link href="#"><Image src="/x-dark.svg" width={24} height={24} alt="x" className="social-dark" /></Link>
 
-                <Link href="#"><Image src="/github-light.svg" width={18} height={18} alt="" className="social-light" /></Link>
-                <Link href="#"><Image src="/github-dark.svg" width={18} height={18} alt="" className="social-dark" /></Link>
+                <Link href="#"><Image src="/github-light.svg" width={24} height={24} alt="github" className="social-light" /></Link>
+                <Link href="#"><Image src="/github-dark.svg" width={24} height={24} alt="github" className="social-dark" /></Link>
               </div>
             </div>
           </div>
