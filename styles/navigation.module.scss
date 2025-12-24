@@ -254,6 +254,26 @@
     display: block;
   }
 }
+
+.icon {
+  display: none;
+}
+
+.light {
+  .iconLight {
+    display: block;
+  }
+}
+
+.dark {
+  .iconDark {
+    display: block;
+  }
+}
+.megaColumn{
+  list-style: none;
+}
+
 // .headerBtn{
 //   color: #F9FAFB;
 //   background: linear-gradient(180deg, #0044FF 0%, #0088FF 100%);

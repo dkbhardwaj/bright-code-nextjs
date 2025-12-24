@@ -87,7 +87,26 @@ const Navigation = () => {
                           {column.map((link) => (
                             <li key={link.title}>
                               <Link href={link.link} className={Style.megaItem}>
-                                <span className={Style.iconBox} />
+                                <span className={Style.iconBox}>
+                                  {link.imageLight && link.imageDark && (
+                                    <>
+                                      <Image
+                                        src={link.imageLight}
+                                        alt={link.alt || link.title}
+                                        width={24}
+                                        height={24}
+                                        className={`${Style.icon} ${Style.iconLight}`}
+                                      />
+                                      <Image
+                                        src={link.imageDark}
+                                        alt={link.alt || link.title}
+                                        width={24}
+                                        height={24}
+                                        className={`${Style.icon} ${Style.iconDark}`}
+                                      />
+                                    </>
+                                  )}
+                                </span>
                                 <div>
                                   <p className={Style.megaTitle}>
                                     {link.title}
