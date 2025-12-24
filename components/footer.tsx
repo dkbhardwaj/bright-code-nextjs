@@ -28,14 +28,14 @@ const Footer: React.FC = () => {
             <div className="footer-top-left mr-[20px] ">
               <Link href="/" className="footer-logo-link">
                 <Image
-                  src="/brightcode_logo_light.png"
+                  src="/brightcode_logo_light.svg"
                   width={180}
                   height={48}
                   alt="Bright Code"
                   className="footer-logo footer-logo--light"
                 />
                 <Image
-                  src="/brightcode_logo.png"
+                  src="/brightcode_logo.svg"
                   width={180}
                   height={48}
                   alt="Bright Code"

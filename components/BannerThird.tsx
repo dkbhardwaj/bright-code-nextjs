@@ -38,7 +38,7 @@ const BannerThird: React.FC<BannerThirdData> = ({ data }) => {
     buttons,
   } = data;
 
-  const isDark = theme === "dark";
+  const isDark = theme === "light";
 
   // ✅ resolve correct background image
   const bgImage =

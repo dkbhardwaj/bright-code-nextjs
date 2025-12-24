@@ -1,302 +1,172 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Style from "../styles/navigation.module.scss";
 import Link from "next/link";
-import { client } from "../lib/contentful/client";
-import { UrlObject } from "url";
+import Style from "../styles/navigation.module.scss";
+import { NAV_DATA } from "./navigation.data";
 
-interface NavigationProps {
-   navigationData: any;
-}
+const Navigation = () => {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-// interface DropdownItem {
-//   title: string;
-//   link: string;
+  /* =======================
+     HANDLERS
+  ======================= */
 
-// }
-interface NavigationItem {
-  menuLink: any;
-  cta?: {
-    fields: {
-      ctaLink: string;
-      ctaText: string;
-    };
-  };
-}
-
-interface NavProps {
-  navigationData: any;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [menus, setMenus] = useState<NavigationItem | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [linkValue, setLinkValue] = useState("");
-
-  const handleMobileMenuClick = () => {
-    setShowMobileMenu(!showMobileMenu);
-  };
-  const handleMobileMenuCloseClick = (event: React.MouseEvent<HTMLElement>) => {
-    // setShowMobileMenu(false);
-    let targetVal = event.target as HTMLElement;
-    let targetLink = targetVal.querySelector(".subMenu");
-    const winWidth = window.innerWidth;
-
-    if (winWidth <= 991 && targetLink) {
-      let linkText = targetVal.querySelector("a")?.innerText || "";
-      linkValue === linkText ? setLinkValue("") : setLinkValue(linkText);
-    } else {
-      setShowMobileMenu(false);
+  const handleMouseEnter = (label: string) => {
+    if (window.innerWidth > 991) {
+      setActiveMenu(label);
     }
   };
 
-  const handleMouseEnter = (event: React.MouseEvent<HTMLLIElement>) => {
-    const windowWidth = window.innerWidth;
-    if (windowWidth > 991) {
-      const targetButton = event.target as HTMLLIElement;
-      const eventText = targetButton.innerText;
-
-      setLinkValue(eventText);
-    }
-  };
-
-  const handleMouseLeave = (event: React.MouseEvent<HTMLLIElement>) => {
-    const windowWidth = window.innerWidth;
-    if (windowWidth > 991) {
-      const eventText = (event.target as HTMLLIElement).innerText;
-      setLinkValue("");
-    }
-  };
-
-  const handleResize = () => {
-    setShowDropdown(false);
-    if (window.innerWidth >= 991) {
-      setShowMobileMenu(false);
-      setLinkValue("");
+  const handleMouseLeave = () => {
+    if (window.innerWidth > 991) {
+      setActiveMenu(null);
     }
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const resize = () => {
+      if (window.innerWidth <= 991) {
+        setActiveMenu(null);
+      }
+    };
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
-  // useEffect(() => {
-  //   const getNav = async () => {
-  //     try {
-  //       const response = await client.getEntries({
-  //         content_type: "navigation",
-  //         "fields.navName": "Main Nav",
-  //       });
-
-  //       const navItem = response.items[0]?.fields as unknown as NavigationItem;
-  //       setMenus(navItem || null);
-  //     } catch (err) {
-  //       setError("Failed to fetch data");
-  //       console.error(err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   getNav();
-  // }, []);
-  // if (loading) return <div></div>;
-  // if (error) return <div>{error}</div>;
+  const HEADER_THEME: "light" | "dark" = "light";
 
   return (
-    <header
-      className={`${Style.header} py-[48px] absolute w-full top-0 left-0 z-[99] lg:py-5`}
-    >
+    <header className={`${Style.header} ${Style[HEADER_THEME]} absolute w-full top-0 z-[99]`}>
       <div className="container">
-        <div className={`${Style.mainRow} flex items-center justify-between`}>
-          <div className={`${Style.logo} max-w-[200px] sm:max-w-[150px] max-h-[45px]`}>
-            <Link href="/" className="redirect">
-              .
-            </Link>
+        <div className="flex items-center justify-between py-6">
+
+          {/* LOGO */}
+          <Link href="/" className={Style.logoLink}>
             <Image
-              src="/brightcode_logo.png"
-              alt="logo"
-              width={250}
+              src="/brightcode_logo_light.svg"
+              width={220}
               height={50}
-              className=" w-full h-full object-contain"
+              alt="Bright Code"
+              className={Style.logoLight}
               priority
             />
-          </div>
-          <div
-            className={`${Style.links} ${Style.mobileMenu} lg:flex lg:justify-end`}
-          >
-            {/* Hamburger menu icon for mobile */}
-            <div
-              className={`${Style.mobileMenuIcon} ${
-                showMobileMenu ? Style.active : ""
-              } hidden lg:flex`}
-              onClick={handleMobileMenuClick}
-            >
-              <span className={`${Style.bar}`}></span>
-              <span className={`${Style.bar}`}></span>
-              <span className={`${Style.bar}`}></span>
-            </div>
-            {/* Navigation links for desktop */}
-            <div
-              className={`header-menu ${
-                showMobileMenu ? "lg:left-0" : "lg:!-left-[calc(100vw+500px)]"
-              } relative lg:fixed border-none lg:left-0 lg:top-0 lg:!w-[calc(100vw+500px)] xxs:!w-full lg:h-[100vh] lg:bg-[#00000066] lg:transition-all lg:duration-1000`}
-            >
-              <div
-                className={`navbar-wrap relative lg:absolute lg:left-0 lg:top-0 lg:!w-full lg:!max-w-[350px] lg:h-[100vh] lg:overflow-y-scroll lg:scroll-smooth z-10 lg:bg-white  lg:py-5 `}
+            <Image
+              src="/brightcode_logo.svg"
+              width={220}
+              height={50}
+              alt="Bright Code"
+              className={Style.logoDark}
+              priority
+            />
+          </Link>
+
+
+          {/* NAV */}
+          <ul className={Style.navList}>
+
+            {NAV_DATA.menus.map((item) => (
+              <li
+                key={item.label}
+                className={`${Style.menuItem} relative`}
+                onMouseEnter={() => handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
               >
-                <div
-                  className={`${Style.logo_wrapper}  hidden relative w-full py-5 px-3 mb-7 lg:!flex bg-bgBluePurple flex-wrap items-center justify-between `}
-                >
-                  <div
-                    className={`${Style.logo} relative max-w-[200px] sm:max-w-[150px] max-h-[55px]`}
-                  >
-                    <Link href="/" className="redirect">
-                      .
-                    </Link>
-                    <Image
-                      src="/brightcode_logo.png"
-                      alt="logo"
-                      width={250}
-                      height={50}
-                      className=" w-full h-full object-contain"
-                      priority
-                    />
-                  </div>
-                  <div
-                    className={`${Style.close} hidden lg:!flex`}
-                    onClick={handleMobileMenuCloseClick}
-                  >
-                    X
-                  </div>
-                </div>
-                <ul
-                  className={`flex items-center text-white lg:mx-0 lg:flex-wrap lg:text-spaceBlack lg:!justify-start lg:px-3`}
-                >
-                  {navigationData?.menuLink &&
-                    navigationData?.menuLink.map(
-                      (
-                        menuItem: {
-                          fields: {
-                            path: string | UrlObject;
-                            label:
-                              | string
-                              | number
-                              | boolean
-                              | React.ReactElement<
-                                  any,
-                                  string | React.JSXElementConstructor<any>
-                                >
-                              | Iterable<React.ReactNode>
-                              | React.ReactPortal
-                              | React.PromiseLikeOfReactNode
-                              | null
-                              | undefined;
-                            subMenus : any;  
-                          };
-                        },
-                        index: number
-                      ) => (
-                        <li
-                          key={index} // Add a unique key here
-                          className={`${
-                            Style.menu
-                          } relative mx-[22px] transition-color duration-300 desktop:mx-3 lg:w-full lg:mx-0 lg:py-3 lg:text-spaceBlack lg:border-b-2 lg:border-extraLightGray lg:mb-2 ${
-                            menuItem.fields?.label === "Try Our Tools"
-                              ? " arrow"
-                              : ""
-                          } ${linkValue === "Try Our Tools" ? "rotate" : ""}`}
-                          role="menu" aria-label="Try Our Tools Menu"
-                          onClick={handleMobileMenuCloseClick}
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
+                <span className={Style.menuLink}>
+                  {item.label}
+                  {item.mega && <span className={Style.chevron} />}
+                </span>
+
+                {/* MEGA MENU */}
+                {item.mega && activeMenu === item.label && (
+                  <div className={Style.megaMenu}>
+                    <div className={Style.megaGrid}>
+
+                      {/* LEFT COLUMNS */}
+                      {item.mega.columns.map((column, colIndex) => (
+                        <ul key={colIndex} className={Style.megaColumn}>
+                          {column.map((link) => (
+                            <li key={link.title}>
+                              <Link href={link.link} className={Style.megaItem}>
+                                <span className={Style.iconBox} />
+                                <div>
+                                  <p className={Style.megaTitle}>
+                                    {link.title}
+                                  </p>
+                                  <span className={Style.megaDesc}>
+                                    {link.desc}
+                                  </span>
+                                </div>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ))}
+
+                      {/* SOCIAL COLUMN */}
+                      <div className={Style.socialColumn}>
+                        <Link
+                          href="mailto:contact@bright-code.io"
+                          className={Style.iconLink}
                         >
-                          <Link
-                            className={`inline-block w-full lg:w-auto text-[14px] py-[10px] ${
-                              menuItem.fields?.label === "Try Our Tools"
-                                ? " pr-[23px] w-auto inline-block"
-                                : ""
-                            }`}
-                            href={menuItem.fields?.path}
-                          >
-                            {menuItem.fields?.label}
+                          <Image
+                            src="/footer-icon-light.svg"
+                            width={44}
+                            height={44}
+                            alt="Contact"
+                            className={Style.iconLight}
+                          />
+                          <Image
+                            src="/footer-icon-dark.svg"
+                            width={44}
+                            height={44}
+                            alt="Contact"
+                            className={Style.iconDark}
+                          />
+                        </Link>
+
+
+                        <p>
+                          Follow us on our{" "}
+                          <span>Social Media</span>, to get Latest News and Updates
+                        </p>
+
+                        <div className="footer-socials">
+                          <Link href="#">
+                            <Image src="/linkedin-light.svg" width={18} height={18} alt="" className="social-light" />
+                            <Image src="/linkedin-dark.svg" width={18} height={18} alt="" className="social-dark" />
                           </Link>
-                          {menuItem?.fields?.label === "Try Our Tools" && (
-                            <div
-                              className={`subMenu absolute lg:relative min-w-[160px] w-fit top-[50px] lg:top-0 left-0 lg:px-[10px] lg:py-0 rounded-[2px] bg-white lg:overflow-hidden lg-up:overflow-hidden lg:transition-all lg:duration-300 ${
-                                linkValue === "Try Our Tools"
-                                  ? "lg-up:opacity-1 lg-up:max-h-[500px] lg-up:px-[20px] lg-up:py-[15px] lg:max-h-[500px] lg:py-[10px]"
-                                  : "lg-up:opacity-0 lg-up:max-h-0 lg-up:p-0 lg:max-h-0 "
-                              }`}
-                            >
-                              <div className="menuWrap">
-                                <ul className=" !justify-start">
-                                  {menuItem?.fields?.subMenus && 
-                                    menuItem?.fields?.subMenus.map((sm: {
-                                  fields: {
-                                    path: string | UrlObject;
-                                    label:
-                                      | string
-                                      | number
-                                      | boolean
-                                      | React.ReactElement<
-                                          any,
-                                          string | React.JSXElementConstructor<any>
-                                        >
-                                      | Iterable<React.ReactNode>
-                                      | React.ReactPortal
-                                      | React.PromiseLikeOfReactNode
-                                      | null
-                                      | undefined; 
-                                  },
-                                  sys:{
-                                    id : string;
-                                  }
-                                  })=>(
-                                       <li className="flex justify-start lg:w-full" key={sm?.sys?.id}>
-                                        <Link
-                                          href={sm.fields?.path}
-                                          className="text-darkGray transition-all duration-300 hover:text-[#8000FF] block font-[500]"
-                                        >
-                                          {sm.fields?.label}
-                                        </Link>
-                                      </li>
-                                  ))
-                                  }
-                                </ul>
-                              </div>
-                            </div>
-                          )}
-                        </li>
-                      )
-                    )}
-                  
-                  {navigationData?.cta && (
-                    <>
-                      <Link
-                        href={navigationData?.cta?.fields?.ctaLink}
-                        className={`${Style.btn} ml-[30px] desktop:ml-[15px] gradient-btn border-btn lg:!hidden lg:ml-0 lg:my-8`}
-                        onClick={handleMobileMenuCloseClick}
-                      >
-                        <span>{navigationData?.cta?.fields?.ctaText}</span>
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className={`${Style.btn} gradient-btn !max-w-[270px] !hidden lg:!inline-block my-8 !shadow-none`}
-                        onClick={handleMobileMenuCloseClick}
-                      >
-                        <span>{navigationData?.cta?.fields?.ctaText}</span>
-                      </Link>
-                    </>
-                  )}
-                </ul>
-              </div>
-            </div>
-          </div>
+
+                          <Link href="#">
+                            <Image src="/instagram-light.svg" width={18} height={18} alt="" className="social-light" />
+                            <Image src="/instagram-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                          </Link>
+
+                          <Link href="#">
+                            <Image src="/x-light.svg" width={18} height={18} alt="" className="social-light" />
+                            <Image src="/x-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                          </Link>
+
+                          <Link href="#">
+                            <Image src="/github-light.svg" width={18} height={18} alt="" className="social-light" />
+                            <Image src="/github-dark.svg" width={18} height={18} alt="" className="social-dark" />
+                          </Link>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA */}
+          <Link
+            href="/contact"
+            className={`mt-[20px] text-white no-arrow rounded-btn blue no-arrow`}
+          >
+            Contact us
+          </Link>
         </div>
       </div>
     </header>
