@@ -53,7 +53,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
       <div className="container">
         <div className="w-full mx-auto">
           {subtitle && (
-            <h6 className="text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+            <h6 className="text-purplePink uppercase font-normal mb-3 md:mb-1">
               {subtitle}
             </h6>
           )}

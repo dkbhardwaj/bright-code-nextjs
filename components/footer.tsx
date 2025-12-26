@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer new-footer">
+    <footer className="footer new-footer ">
       <div className="container">
         <div className="inner-wrap">
 

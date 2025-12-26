@@ -81,14 +81,14 @@ h2 {
 
 .text_gradient {
   font-weight: 500;
-  background: linear-gradient(to right, #0075ff, #8000ff);
+  background: linear-gradient(to right, $primaryBlue, $purplePink);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text_gradient2 {
   font-weight: 500;
-  background: linear-gradient(to right, #8000ff, #0075ff);
+  background: linear-gradient(to right, $purplePink, $primaryBlue);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -553,7 +553,7 @@ span.title {
       left: 0;
       width: 100%;
       height: 100%;
-      // background-image: linear-gradient(to right, #8000ff, #fff 50%);
+      // background-image: linear-gradient(to right, $purplePink, $white 50%);
       background-image: linear-gradient(to right,
           rgba(183, 117, 249, 0.671),
           rgba(250, 245, 254, 0.902) 70%);
@@ -802,7 +802,7 @@ span.title {
 
       h2 span,
       .eyebrow {
-        color: #8000ff;
+        color: $purplePink;
       }
 
       .eyebrow {
@@ -814,7 +814,7 @@ span.title {
 
       h2 span,
       .eyebrow {
-        color: #0075ff;
+        color: $primaryBlue;
       }
 
       .eyebrow {
@@ -907,7 +907,7 @@ span.title {
 .purple-tick {
   ol {
     li:before {
-      color: #8000ff;
+      color: $purplePink;
     }
 
     li {
@@ -919,7 +919,7 @@ span.title {
           background-image: none;
           top: 0;
           font-weight: 800;
-          color: #8000ff;
+          color: $purplePink;
         }
       }
     }
@@ -952,7 +952,7 @@ span.title {
           background-image: none;
           top: 0;
           font-weight: 800;
-          color: #8000ff;
+          color: $purplePink;
         }
       }
     }
@@ -962,7 +962,7 @@ span.title {
 .blue-tick {
   ol {
     li:before {
-      color: #0075ff;
+      color: $primaryBlue;
     }
   }
 
@@ -993,7 +993,7 @@ section.image-checker-report {
   h2,
   p,
   span {
-    color: #000;
+    color: $black;
   }
 }
 
@@ -1013,17 +1013,17 @@ section.image-checker-report {
 
 .markdown {
   a {
-    color: #0075ff;
+    color: $primaryBlue;
 
     &:hover {
-      color: #8000ff;
+      color: $purplePink;
     }
   }
 }
 
 .profile-icon:hover {
   svg path {
-    fill: #8000ff;
+    fill: $purplePink;
   }
 }
 
@@ -1121,7 +1121,7 @@ section.image-checker-report {
   padding: 8px 16px 8px 30px;
   font-size: 14px;
   font-weight: 500;
-  color: #0044ff;
+  color: $vividBlue;
   border-radius: 9999px;
   margin-bottom: 16px;
   background: linear-gradient(90deg,
@@ -1255,6 +1255,7 @@ section {
 }
 
 .new-footer {
+  margin-top: 40px;
   margin-bottom: 40px;
   .footer-top{
     display: flex;
@@ -1263,7 +1264,7 @@ section {
       margin-left: 20px;
       font-size: 16px;
       font-weight: 400;
-      color: #595959;
+      color: $ironGray;
     }
   }
   .inner-wrap {
@@ -1284,7 +1285,7 @@ section {
     font-weight: 600;
     margin-bottom: 18px;
     letter-spacing: 0.02em;
-    color: #000D20;
+    color: $carbonBlue;
   }
 
   ul li {
@@ -1328,7 +1329,7 @@ section {
     a.email{
       font-size: 16px;
       font-weight: 500;
-      color: #000D20;
+      color: $carbonBlue;
       display: block;
     }
     a.tel{
@@ -1434,23 +1435,23 @@ section {
 .darkMode {
   &.new-footer {
     .footer-top-right{
-      color: #fff;
+      color: $white;
     }
     h4{
-      color: #fff;
+      color: $white;
     }
     ul li {
       a {
-        color: #fff;
+        color: $white;
       }
     }
     .inner-wrap {
       background: radial-gradient(circle at top, #0f1c3a 0%, #050b1a 70%);
-      color: #ffffff;
+      color: $white;
     }
 
     .footer-divider {
-      background: #ffffff;
+      background: $white;
       opacity: 0.3;
     }
 
@@ -1479,12 +1480,12 @@ section {
       display: block;
     }
 
-    background-color: #000d20;
+    background-color: $carbonBlue;
 
     h1,
     h3,
     p {
-      color: #ffffff;
+      color: $white;
     }
   }
 
@@ -1492,20 +1493,20 @@ section {
     background-image: url("/what-we-do/banner_third_dark.png");
 
     h1 {
-      color: #F9FAFB;
+      color: $cloudWhite;
     }
 
     p {
-      color: #D1D1D6;
+      color: $borderLight;
     }
 
     span {
-      color: #D1D1D6;
+      color: $borderLight;
     }
   }
 
   &.announcemnet-badge {
-    color: #fff;
+    color: $white;
     background: linear-gradient(90deg,
         rgba(255, 255, 255, 0.1) 0%,
         rgba(255, 255, 255, 0.1) 100%);
@@ -1519,18 +1520,18 @@ section {
   &.ThreeColumns {
     .card {
       background-color: rgba(255, 255, 255, 0.05);
-      border-color: #222b59a1;
+      border-color: $indigoBlue;
 
       h4 {
-        color: #f9fafb;
+        color: $cloudWhite;
       }
 
       p {
-        color: #d1d1d6;
+        color: $borderLight;
       }
 
       .link {
-        color: #f9fafb;
+        color: $cloudWhite;
 
         &::before {
           background-image: url(/what-we-do-blades/white_arrow.svg);
@@ -1540,7 +1541,7 @@ section {
   }
 
   &.timeline {
-    background-color: #000d20;
+    background-color: $carbonBlue;
 
     .scroll_line_one {
       background: linear-gradient(180deg,
@@ -1552,15 +1553,15 @@ section {
     .right_content_wrap {
       background-color: rgba(255, 255, 255, 0.05);
       box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.8);
-      border: 1px solid #222b59a1;
+      border: 1px solid $indigoBlue;
 
       h3,
       h4 {
-        color: #f9fafb;
+        color: $cloudWhite;
       }
 
       p {
-        color: #d1d1d6;
+        color: $borderLight;
       }
     }
   }

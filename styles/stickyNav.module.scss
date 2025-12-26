@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   max-height: 80px;
-  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  background-image: linear-gradient(to right, $primaryBlue, #8000ff);
   padding: 0 20px;
   overflow: hidden;
   transition: max-height 0.9s ease-in-out;
@@ -27,8 +27,8 @@
     width: 14px;
     height: 14px;
     background-color: transparent;
-    border-right: solid 2px #fff;
-    border-bottom: solid 2px #fff;
+    border-right: solid 2px $white;
+    border-bottom: solid 2px $white;
     transform: rotate(45deg);
     cursor: pointer;
     transition: transform 0.9s ease-in-out;

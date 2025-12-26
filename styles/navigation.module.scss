@@ -13,7 +13,7 @@
   width: 30px;
   height: 3px;
   margin: 4px 0;
-  background-color: #fff;
+  background-color: $white;
   transition: 0.4s;
 }
 
@@ -87,6 +87,7 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  font-family: "Inter", sans-serif;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
@@ -104,7 +105,7 @@
   min-width: fit-content;
   padding: 32px;
   border-radius: 8px;
-  background: #F2F2F7;
+  background: $softGray;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
   z-index: 999;
 
@@ -160,7 +161,7 @@
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: #595959;
+    color: $ironGray;
   }
 }
 
@@ -176,7 +177,7 @@
 .close {
   width: 45px;
   height: 45px;
-  border: 1px solid #fff;
+  border: 1px solid $white;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -187,8 +188,8 @@
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    border-color: #0075ff;
-    background-color: #0075ff;
+    border-color: $primaryBlue;
+    background-color: $primaryBlue;
   }
 }
 
@@ -199,19 +200,19 @@
 }
 
 .light {
-  background: #ffffff;
+  background: $white;
   color: #0f172a;
 
   .menuLink {
     color: #0f172a;
 
     &:hover {
-      background: #f4f6f8;
+      background: $mistGray;
     }
   }
 
   .megaMenu {
-    background: #F2F2F7;
+    background: $softGray;
     box-shadow: 0px 4px 6px -1px #0000001A;
 
   }
@@ -223,10 +224,10 @@
 
 .dark {
   background: radial-gradient(ellipse at top, #0a1228, #020617);
-  color: #ffffff;
+  color: $white;
 
   .menuLink {
-    color: #ffffff;
+    color: $white;
 
     &:hover {
       background: rgba(255, 255, 255, 0.08);
@@ -317,7 +318,7 @@
     
   }
   p span{
-    color: #0044FF;
+    color: $vividBlue;
   }
 }
 .header.light{
@@ -348,8 +349,8 @@
   background-repeat: no-repeat;
 }
 // .headerBtn{
-//   color: #F9FAFB;
-//   background: linear-gradient(180deg, #0044FF 0%, #0088FF 100%);
+//   color: $cloudWhite;
+//   background: linear-gradient(180deg, $vividBlue 0%, #0088FF 100%);
 //   font-size: 16px;
 //   font-weight: 500;
 //     font-family: "Inter", sans-serif;

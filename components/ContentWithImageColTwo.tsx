@@ -63,7 +63,7 @@ const ContentWithImageColTwo: React.FC<ContentWithImageProps> = ({ data }) => {
             data-aos-duration="500"
           >
             {/* {subtitle && ( */}
-              <h6 className={` text-[#8000FF] uppercase font-normal`}>
+              <h6 className={` text-purplePink uppercase font-normal`}>
                 {subtitle}
               </h6>
             {/* )} */}

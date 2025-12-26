@@ -119,7 +119,7 @@
   text-decoration: none;
   display: inline-block;
   padding: 16px 60px 16px 22px;
-  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  background-image: linear-gradient(to right, $primaryBlue, $purplePink);
   border-radius: 9px;
   text-align: left;
   transition: all 0.5s ease-in-out;
@@ -176,7 +176,7 @@
     position: relative;
     font-size: 19px;
     font-weight: 600;
-    color: #fff;
+    color: $white;
     @include desktop {
       font-size: 18px;
     }
@@ -247,7 +247,7 @@
     // max-width: 172px;
     max-width: 200px;
     padding: 10px 50px 10px 16px;
-    border: solid 1px #fff;
+    border: solid 1px $white;
     &::after {
       top: calc(50% - 7px);
       right: 16px;
@@ -281,9 +281,9 @@
   display: inline-block;
   font-size: 14px;
   padding: 10px 60px 10px 22px;
-  background: linear-gradient(90deg, #0044ff 0%, #002999 100%);
+  background: linear-gradient(90deg, $vividBlue 0%, #002999 100%);
   border-radius: 9px;
-  color: #fff;
+  color: $white;
   text-align: left;
   transition: all 0.5s ease-in-out;
   &::after {
@@ -346,16 +346,16 @@
     }
   }
   &.blue {
-    background: linear-gradient(90deg, #0044ff 0%, #0088ff 100%);
-    color: #fff;
+    background: linear-gradient(90deg, $vividBlue 0%, #0088ff 100%);
+    color: $white;
   }
   &.gray {
-    background-color: #f2f2f7;
-    color: #000d20;
+    background-color: $softGray;
+    color: $carbonBlue;
     padding: 15px 30px;
     &:hover {
-      background-color: #000d20;
-      color: #f2f2f7;
+      background-color: $carbonBlue;
+      color: $softGray;
     }
     &::after {
       display: none;
@@ -363,7 +363,9 @@
   }
   &.no-arrow {
     padding: 10px 30px;
-    background: linear-gradient(180deg, #0044ff 0%, #0088ff 50%, #002db3 100%);
+    // background: linear-gradient(180deg, $vividBlue 0%, #0088ff 50%, #002db3 100%);
+    background: linear-gradient(180deg, $vividBlue 0%, $carbonBlue 100%);
+
     background-size: 100% 200%;
     background-position: 0% 0%;
     &:hover {
@@ -383,10 +385,10 @@
   text-align: center;
   border: none;
   outline: none;
-  color: #fff;
+  color: $white;
   border-radius: 0 9px 9px 0;
   padding: 11px 22px;
-  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  background-image: linear-gradient(to right, $primaryBlue, $purplePink);
   transition: background-image 0.5s ease-in-out;
   &:hover {
     background-image: linear-gradient(to right, #0263d3, #6704cb);
@@ -398,7 +400,7 @@
   text-decoration: none;
   display: inline-block;
   padding: 20px 60px 20px 28px;
-  background-image: linear-gradient(to right, #0075ff, #8000ff);
+  background-image: linear-gradient(to right, $primaryBlue, $purplePink);
   border-radius: 9px;
   text-align: left;
   transition: all 0.5s ease-in-out;
@@ -454,7 +456,7 @@
     position: relative;
     font-size: 19px;
     font-weight: 600;
-    color: #fff;
+    color: $white;
     @include desktop {
       font-size: 18px;
     }

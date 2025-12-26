@@ -37,7 +37,7 @@ export default function Summary({site, headers, error}) {
                       href={site}
                       target="_blank"
                       rel="nofollow noreferrer noopener"
-                      className="text-[#8000FF] hover:underline "
+                      className="text-purplePink hover:underline "
                     >
                       {site}
                       

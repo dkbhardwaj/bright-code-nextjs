@@ -22,7 +22,7 @@ const Result = ({ data }) => {
                       href={data.originalUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#8000FF] hover:underline "
+                      className="text-purplePink hover:underline "
                     >
                       {data.originalUrl}
                     </a></p>
@@ -36,7 +36,7 @@ const Result = ({ data }) => {
                       href={data.finalUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#8000FF] hover:underline "
+                      className="text-purplePink hover:underline "
                     >
                       {data.finalUrl}
                     </a></p>

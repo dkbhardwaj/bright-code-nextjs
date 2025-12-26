@@ -66,7 +66,7 @@ const Introduction: React.FC<IntroductionProps> = ({ data }) => {
               data-aos-duration="600"
             >
                 {eyebrowText && (
-                  <h6 className="eyebrow text-[#8000FF] uppercase font-normal mb-3 md:mb-1">
+                  <h6 className="eyebrow text-purplePink uppercase font-normal mb-3 md:mb-1">
                     {eyebrowText}
                   </h6>
                 )}

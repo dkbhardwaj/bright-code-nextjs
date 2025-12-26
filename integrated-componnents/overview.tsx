@@ -71,7 +71,7 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
           >
             {subtitle && (
               <h6
-                className={` title text-[#8000FF] uppercase font-normal mb-3 md:mb-1`}
+                className={` title text-purplePink uppercase font-normal mb-3 md:mb-1`}
               >
                 {subtitle}
               </h6>
