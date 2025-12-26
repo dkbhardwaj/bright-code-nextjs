@@ -16,20 +16,28 @@
   background-color: $white;
   transition: 0.4s;
 }
+.hamburger {
+  span {
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    transform-origin: center;
+  }
+}
 
-.mobileMenuIcon.active {
-  .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 5px);
+.hamburger.active {
+  span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
   }
 
-  .bar:nth-child(2) {
+  span:nth-child(2) {
     opacity: 0;
   }
 
-  .bar:nth-child(3) {
-    transform: rotate(45deg) translate(-10px, -11px);
+  span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 }
+
+
 
 /* ------------------ Layout ------------------ */
 
@@ -68,7 +76,7 @@
   align-items: center;
   gap: 32px;
 
-  .btnWrap{
+  .btnWrap {
     display: none;
   }
 }
@@ -108,36 +116,33 @@
   border-radius: 8px;
   background: $softGray;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
-  z-index: 999;
-
-  opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    visibility 0.25s ease;
+  z-index: 999;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  @media (min-width: 1025px) {
+    opacity: 0;
+  }
 }
 
 .menuItem:hover .megaMenu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translate(-50%, 0);
+  @media (min-width: 1025px) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
 }
-
-
 
 .megaGrid {
   display: flex;
-  .megaColumn{
+  .megaColumn {
     list-style: none;
     min-width: 240px;
     margin-right: 70px;
-    li{
-      &:not(:last-child){
-      margin-bottom: 50px;
+    li {
+      &:not(:last-child) {
+        margin-bottom: 50px;
       }
     }
   }
@@ -151,14 +156,13 @@
   line-height: normal;
   transition: text-decoration 0.3s ease-in-out;
 
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 }
 
-.megaItem{
- 
-  span{
+.megaItem {
+  span {
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -206,16 +210,18 @@
 
   .menuLink {
     color: #0f172a;
-
-    &:hover {
-      background: $mistGray;
+    @include desktop-mid-up { 
+      &:hover {
+        background: $mistGray;
+      }
     }
   }
 
   .megaMenu {
     background: $softGray;
-    box-shadow: 0px 4px 6px -1px #0000001A;
-
+    @media (min-width: 1025px) {
+      box-shadow: none;
+    }
   }
 
   .logoLight {
@@ -262,9 +268,6 @@
   }
 }
 
-
-
-
 .iconLight,
 .iconDark {
   display: none;
@@ -300,9 +303,8 @@
   }
 }
 
-
-.socialColumn{
-  border-left: 1px solid #E5E5EA;
+.socialColumn {
+  border-left: 1px solid #e5e5ea;
   padding-left: 70px;
   position: relative;
   min-width: 260px;
@@ -311,37 +313,37 @@
     align-items: center;
     margin-bottom: 60px;
   }
-  p, span{
+  p,
+  span {
     font-weight: 500;
     font-size: 16px;
     font-family: "Inter", sans-serif;
     line-height: normal;
-    
   }
-  p span{
+  p span {
     color: $vividBlue;
   }
 }
-.header.light{
-  .socialDark{
+.header.light {
+  .socialDark {
     display: none;
   }
 }
-.header.dark{
-  .socialLight{
+.header.dark {
+  .socialLight {
     display: none;
   }
 }
-.socialLinks{
+.socialLinks {
   position: absolute;
   bottom: 0;
   display: flex;
 
-  a{
+  a {
     margin-right: 5px;
   }
 }
-.chevron{
+.chevron {
   margin-top: 3px;
   background-image: url("/header/Vector.svg");
   width: 7px;
@@ -360,8 +362,8 @@
   cursor: pointer;
 
   position: relative;
-  z-index: 9999; 
-  pointer-events: auto; 
+  z-index: 9999;
+  pointer-events: auto;
 
   span {
     width: 26px;
@@ -370,7 +372,6 @@
     transition: all 0.3s ease;
   }
 }
-
 
 /* ---------- MOBILE ---------- */
 .hamburger {
@@ -391,41 +392,48 @@
   }
 }
 
-
-
-@media (max-width: 1024px) {
+@include desktop-mid-down {
   /* ---------------- HAMBURGER ---------------- */
   .hamburger {
     display: flex;
     padding: 20px 0;
     z-index: 1100;
   }
+  .chevron{
+    width: 14px;
+    height: 10.5px;
+  }
 
   /* ---------------- NAV WRAPPER ---------------- */
   .navList {
-    position: absolute;
-    top: 58px;
-    right: 0;
-    height: 100vh;
-    width: 100vw;
+    position: fixed;
+    inset: 0; /* full screen overlay */
     background: #f2f2f7;
+
     display: flex;
     flex-direction: column;
-    padding: 80px 20px 20px 30px;
-    overflow-y: auto;
-    transition: right 0.3s ease;
+    padding: 100px 24px 24px;
+
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
+
+    transition: transform 0.35s ease, opacity 0.25s ease;
     z-index: 1000;
   }
 
   .navOpen {
-    right: 100%;
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
   /* ---------------- MENU ITEMS ---------------- */
   .menuItem {
     width: 100%;
+    padding: 10px 0;
     border-bottom: 1px solid #e5e7eb;
   }
 
@@ -435,7 +443,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 16px 0;
     font-size: 18px;
     font-weight: 600;
@@ -452,22 +459,28 @@
 
   /* ---------------- MEGA MENU (ACCORDION MODE) ---------------- */
   .megaMenu {
-    position: static;
+    position: relative;
     inset: auto;
     transform: none;
-
     background: transparent;
     box-shadow: none;
     border-radius: 0;
-
-    padding: 0 0 12px;
+    padding: 0;
     margin: 0;
+    visibility: visible;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    &.megaOpen {
+      max-height: 1500px;
+    }
   }
 
   .megaGrid {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 20px;
   }
 
   .megaColumn {
@@ -510,10 +523,17 @@
   /* ---------------- SOCIAL BLOCK ---------------- */
   .socialColumn {
     margin-top: 16px;
-    padding: 16px;
     border-radius: 12px;
     background: #ffffff;
-    text-align: center;
+    padding: 20px 15px;
+    .iconLink {
+      display: block;
+      margin-bottom: 15px;
+    }
+    .socialLinks{
+      justify-content: left;
+      position: relative;
+    }
   }
 
   .socialLinks {
@@ -534,9 +554,6 @@
     display: none;
   }
 }
-
-
-
 
 // .headerBtn{
 //   color: $cloudWhite;

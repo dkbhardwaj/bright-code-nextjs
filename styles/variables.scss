@@ -95,6 +95,18 @@ $orientation: landscape;
     @content;
   }
 }
+/*  (max-width: 1024px) */
+@mixin desktop-mid-down {
+  @media (max-width: #{$desktop_mid_width}) {
+    @content;
+  }
+}
+/*  (min-width: 1024px) */
+@mixin desktop-mid-up {
+  @media (min-width: #{$desktop_mid_width}) {
+    @content;
+  }
+}
 
 /* (min-width:992px), (max-width: 1150px) */
 @mixin desktop {
