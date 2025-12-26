@@ -10,15 +10,31 @@ const Navigation = () => {
   /* =======================
      HANDLERS
   ======================= */
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const resize = () => {
+      if (window.innerWidth <= 1024) {
+        setActiveMenu(null);
+      } else {
+        setIsMobileMenuOpen(false);
+      }
+    };
+  
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+  
+  
+  
   const handleMouseEnter = (label: string) => {
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > 1024) {
       setActiveMenu(label);
     }
   };
 
   const handleMouseLeave = () => {
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > 1024) {
       setActiveMenu(null);
     }
   };
@@ -26,13 +42,16 @@ const Navigation = () => {
 
   useEffect(() => {
     const resize = () => {
-      if (window.innerWidth <= 991) {
+      if (window.innerWidth > 1024) {
+        setIsMobileMenuOpen(false);
         setActiveMenu(null);
       }
     };
+  
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
+  
 
   const HEADER_THEME: "light" | "dark" = "light";
 
@@ -63,16 +82,24 @@ const Navigation = () => {
 
 
           {/* NAV */}
-          <ul className={Style.navList}>
+          <ul
+              className={`${Style.navList} ${
+                isMobileMenuOpen ? Style.navOpen : ""
+              }`}
+            >
             {NAV_DATA.menus.map((item) => (
-              <li
-                key={item.label}
-                className={Style.menuItem}
-                onMouseEnter={() => handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
-
-
+             <li
+             key={item.label}
+             className={Style.menuItem}
+             onMouseEnter={() => handleMouseEnter(item.label)}
+             onMouseLeave={handleMouseLeave}
+             onClick={() => {
+               if (window.innerWidth <= 1024 && item.mega) {
+                 setActiveMenu(activeMenu === item.label ? null : item.label);
+               }
+             }}
+           >
+           
                 <span className={Style.menuLink}>
                   {item.label}
                   {item.mega && <span className={Style.chevron} />}
@@ -178,11 +205,29 @@ const Navigation = () => {
                 )}
               </li>
             ))}
+              {/* CTA */}
+          <div className={` ${Style.btnWrap} `}>
+            <Link
+              href="/contact"
+              className={`my-[10px] text-white no-arrow rounded-btn blue no-arrow `}
+            >
+              Contact us
+            </Link>
+          </div>
           </ul>
+          {/* HAMBURGER */}
+           <button className={Style.hamburger} onClick={() => { console.log("clicked"); setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+
 
 
           {/* CTA */}
-          <div className="btn-wrap">
+          <div className={` ${Style.btnWrap} `}>
             <Link
               href="/contact"
               className={`my-[10px] text-white no-arrow rounded-btn blue no-arrow `}

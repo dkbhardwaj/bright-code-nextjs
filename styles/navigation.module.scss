@@ -68,7 +68,7 @@
   align-items: center;
   gap: 32px;
 
-  @media (max-width: 991px) {
+  .btnWrap{
     display: none;
   }
 }
@@ -349,6 +349,195 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
+
+/* ---------- HAMBURGER ---------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  position: relative;
+  z-index: 9999; 
+  pointer-events: auto; 
+
+  span {
+    width: 26px;
+    height: 2px;
+    background: #000;
+    transition: all 0.3s ease;
+  }
+}
+
+
+/* ---------- MOBILE ---------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  position: relative;
+  z-index: 1001;
+
+  span {
+    width: 26px;
+    height: 2px;
+    background: #000;
+  }
+}
+
+
+
+@media (max-width: 1024px) {
+  /* ---------------- HAMBURGER ---------------- */
+  .hamburger {
+    display: flex;
+    padding: 20px 0;
+    z-index: 1100;
+  }
+
+  /* ---------------- NAV WRAPPER ---------------- */
+  .navList {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #f2f2f7;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 20px 30px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .navOpen {
+    right: 100%;
+    pointer-events: auto;
+  }
+
+  /* ---------------- MENU ITEMS ---------------- */
+  .menuItem {
+    width: 100%;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .menuLink {
+    all: unset;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .chevron {
+    transition: transform 0.25s ease;
+  }
+
+  .active .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ---------------- MEGA MENU (ACCORDION MODE) ---------------- */
+  .megaMenu {
+    position: static;
+    inset: auto;
+    transform: none;
+
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+
+    padding: 0 0 12px;
+    margin: 0;
+  }
+
+  .megaGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .megaColumn {
+    padding: 0;
+  }
+
+  .megaColumn li {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .megaColumn li:last-child {
+    border-bottom: none;
+  }
+
+  .iconBox {
+    flex-shrink: 0;
+  }
+
+  .megaItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .megaLink {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .megaDesc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  /* ---------------- SOCIAL BLOCK ---------------- */
+  .socialColumn {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    text-align: center;
+  }
+
+  .socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  /* ---------------- CTA ---------------- */
+  .btnWrap {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  /* Hide desktop CTA */
+  .btnWrap {
+    display: none;
+  }
+}
+
+
+
+
 // .headerBtn{
 //   color: $cloudWhite;
 //   background: linear-gradient(180deg, $vividBlue 0%, #0088FF 100%);
