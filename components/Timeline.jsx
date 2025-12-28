@@ -29,6 +29,7 @@ const data = [
       "You feel it as confidence in handoffs, easy onboarding, and no tech debt suprises",
   },
 ];
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollDownColTwo({ theme = "dark" }) {
