@@ -76,6 +76,7 @@ const Overview: React.FC<OverviewProps> = ({ data }) => {
                 {subtitle}
               </h6>
             )}
+            
             {title && (
               <h2 className={` font-medium text-black mb-[38px] md:mb-4`}>
                 {titleSpan && (
