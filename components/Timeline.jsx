@@ -30,6 +30,7 @@ const data = [
   },
 ];
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollDownColTwo({ theme = "dark" }) {

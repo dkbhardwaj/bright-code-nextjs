@@ -11,16 +11,16 @@ import {
 interface CardsWithSocialIcons {
   data: {
     markdown: string;
-    sectionPadding:any;
-    card:any;
-    viewSocialIcons:boolean;
+    sectionPadding: any;
+    card: any;
+    viewSocialIcons: boolean;
   };
 }
 
 
 const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
-  const { markdown, sectionPadding, card, viewSocialIcons} = data;
-  
+  const { markdown, sectionPadding, card, viewSocialIcons } = data;
+
   const router = useRouter();
   const baseUrl =
     typeof window !== "undefined"
@@ -29,37 +29,53 @@ const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
 
   const link = `${baseUrl}${router.asPath}`;
   const padding = (data?.sectionPadding?.fields?.padding)?.join(" ")
-  const cards =  data?.card
+  const cards = data?.card
 
   return (
     <section className={`cards-with-social-icon relative w-full ${padding} `}>
       <div className="container">
         <div className={`list-with-icon-content relative w-full ${viewSocialIcons ? "flex flex-wrap" : "block"}`}>
-          <div className={`${viewSocialIcons ?"w-[calc(100%-285px)] mr-[20px]" : "w-full max-w-[1050px] mx-auto justify-center" } md:w-full md:mr-0 flex flex-wrap items-center`}>
+          <div className={`${viewSocialIcons ? "w-[calc(100%-285px)] mr-[20px]" : "w-full max-w-[1050px] mx-auto justify-center"} md:w-full md:mr-0 flex flex-wrap items-center`}>
             <div className="flex flex-wrap w-[calc(100%+20px)] ml-[-10px] justify-center">
-              {cards.map((card: { fields: { cardImage: { fields: { file: { url: any; }; }; }; description: string, heading: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; }, index: any)=>{
-                return(
-                  <div className={`${viewSocialIcons ?"w-[calc(33.33%-20px)] mx-[10px]" : "w-[calc(30%-38px)] mx-[19px]" } tablet:w-[calc(100%-20px)] tablet:mx-[20px] tablet:mb-[20px] tablet:last:mb-0 md:last:mb-0 md:w-full md:mb-[20px] flex flex-wrap   border-[1px] border-brightGray rounded-[20px] px-[20px] pt-[20px] pb-[16px]`}>
-                    <div className={`${viewSocialIcons ? "w-[20px]": "w-[22px]"} mr-[13px] block`}>
-                      <Image
-                        src={`https:${card?.fields?.cardImage?.fields?.file?.url}`}
-                        alt="icon"
-                        width={22}
-                        height={22}
-                        objectPosition="contain"
-                        quality={100}
-                      />
+              {cards.map(
+                (
+                  card: {
+                    fields: {
+                      cardImage: {
+                        fields: {
+                          file: {
+                            url: string;
+                          };
+                        };
+                      };
+                      description: string;
+                      heading: React.ReactNode;
+                    };
+                  },
+                  index: number
+                ) => {
+                  return (
+                    <div className={`${viewSocialIcons ? "w-[calc(33.33%-20px)] mx-[10px]" : "w-[calc(30%-38px)] mx-[19px]"} tablet:w-[calc(100%-20px)] tablet:mx-[20px] tablet:mb-[20px] tablet:last:mb-0 md:last:mb-0 md:w-full md:mb-[20px] flex flex-wrap   border-[1px] border-brightGray rounded-[20px] px-[20px] pt-[20px] pb-[16px]`}>
+                      <div className={`${viewSocialIcons ? "w-[20px]" : "w-[22px]"} mr-[13px] block`}>
+                        <Image
+                          src={`https:${card?.fields?.cardImage?.fields?.file?.url}`}
+                          alt="icon"
+                          width={22}
+                          height={22}
+                          objectPosition="contain"
+                          quality={100}
+                        />
+                      </div>
+                      <div className={`${viewSocialIcons ? "w-[calc(100%-33px)]" : "w-[calc(100%-35px)]"} mt-[-5px]`}>
+                        <h5 className="font-[600] pr-[12px]">{card?.fields?.heading}</h5>
+                        {card?.fields?.description && (<p className={`${viewSocialIcons ? "" : "mt-[16px]"} text-black text-[14px] leading-[1.5]`}>{card?.fields?.description}</p>)}
+                      </div>
                     </div>
-                    <div className={`${viewSocialIcons ? "w-[calc(100%-33px)]": "w-[calc(100%-35px)]"} mt-[-5px]`}>
-                      <h5 className="font-[600] pr-[12px]">{card?.fields?.heading}</h5>
-                     {card?.fields?.description && ( <p className={`${viewSocialIcons ? "": "mt-[16px]"} text-black text-[14px] leading-[1.5]`}>{card?.fields?.description}</p>) } 
-                    </div>
-                </div>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
-          {viewSocialIcons && 
+          {viewSocialIcons &&
             (<div className={`social-icon-content relative w-full max-w-[265px] h-fit rounded-[20px] bg-[#f6eeff] py-[28px] px-[36px] flex items-center justify-between md:py-[22px] md:px-[30px] tablet:sticky tablet:top-0 `}>
               <span className=" text-[15px] font-normal leading-[21px] text-black ">
                 Share To:
@@ -104,7 +120,7 @@ const CardsWithSocialIcons: React.FC<CardsWithSocialIcons> = ({ data }) => {
               </div>
             </div>)
           }
-          
+
         </div>
       </div>
     </section>
