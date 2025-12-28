@@ -183,19 +183,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                         menuItem: {
                           fields: {
                             path: string | UrlObject;
-                            label:
-                              | string
-                              | number
-                              | boolean
-                              | React.ReactElement<
-                                  any,
-                                  string | React.JSXElementConstructor<any>
-                                >
-                              | Iterable<React.ReactNode>
-                              | React.ReactPortal
-                              | React.PromiseLikeOfReactNode
-                              | null
-                              | undefined;
+                            label: React.ReactNode;
                             subMenus : any;  
                           };
                         },
@@ -239,19 +227,8 @@ const Navigation: React.FC<NavigationProps> = ({ navigationData }: NavProps) => 
                                     menuItem?.fields?.subMenus.map((sm: {
                                   fields: {
                                     path: string | UrlObject;
-                                    label:
-                                      | string
-                                      | number
-                                      | boolean
-                                      | React.ReactElement<
-                                          any,
-                                          string | React.JSXElementConstructor<any>
-                                        >
-                                      | Iterable<React.ReactNode>
-                                      | React.ReactPortal
-                                      | React.PromiseLikeOfReactNode
-                                      | null
-                                      | undefined; 
+                                    label: React.ReactNode;
+
                                   },
                                   sys:{
                                     id : string;

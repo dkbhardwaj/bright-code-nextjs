@@ -68,19 +68,7 @@ const Footer: React.FC = () => {
                     menuItem: {
                       fields: {
                         path: string | UrlObject;
-                        label:
-                          | string
-                          | number
-                          | boolean
-                          | React.ReactElement<
-                              any,
-                              string | React.JSXElementConstructor<any>
-                            >
-                          | Iterable<React.ReactNode>
-                          | React.ReactPortal
-                          | React.PromiseLikeOfReactNode
-                          | null
-                          | undefined;
+                        label: React.ReactNode;
                       };
                     },
                     index: number
