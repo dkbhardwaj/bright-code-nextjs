@@ -45,6 +45,7 @@
   display: inline-flex;
   align-items: center;
   width: 143px;
+  z-index: 9991;
 }
 
 .logoLight,
@@ -418,7 +419,7 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
+    gap: 0;
     transition: transform 0.35s ease, opacity 0.25s ease;
     z-index: 1000;
   }
