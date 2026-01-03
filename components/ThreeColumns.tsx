@@ -47,7 +47,7 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({
 
   return (
     <section
-      className={`ThreeColumns padding-large-bottom ${
+      className={`ThreeColumns ${
         theme === "dark" ? "darkMode" : ""
       }`}
     >
