@@ -20,6 +20,16 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="footer new-footer ">
+      <div className="bgImg absolute w-full h-full top-0 z-[-1] ">
+      <Image
+                  src="/bg-gradient.png"
+                  width={100}
+                  height={100}
+                  alt="Bright Code"
+                  className="w-full h-full"
+                />
+    
+      </div>
       <div className="container">
         <div className="inner-wrap">
 
@@ -148,9 +158,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* ================= BOTTOM ================= */}
-          <div className="footer-bottom">
+          {/* <div className="footer-bottom">
             © {year} Bright Code Technologies Inc
-          </div>
+          </div> */}
 
         </div>
       </div>
