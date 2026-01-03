@@ -424,11 +424,17 @@
     z-index: 1000;
   }
 
+
   .navOpen {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    overflow: scroll;
+    .btnWrap {
+      display: block !important;
+      margin-right: auto;
+    }
   }
 
   /* ---------------- MENU ITEMS ---------------- */
@@ -549,6 +555,7 @@
     margin-top: 24px;
     text-align: center;
   }
+
 
   /* Hide desktop CTA */
   .btnWrap {
