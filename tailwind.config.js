@@ -30,6 +30,9 @@ module.exports = {
         desktop: { min: "992px", max: "1279px" },
         // => @media (min-width: 992px and max-width: 1279px) { ... }
 
+        "desktop-mid-down": { max: "1024px" },
+        // => @media (max-width: 991px) { ... }
+
         lg: { max: "991px" },
         // => @media (max-width: 991px) { ... }
 

@@ -16,3 +16,8 @@
 .circle.active {
 	background-color: #000;
 }
+@media (max-width: 1024px) {
+	.circle {
+		display: none;
+	}
+}

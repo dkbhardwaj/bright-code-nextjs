@@ -277,9 +277,9 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
 >
 
       <div className={`container !max-w-[1340px]`}>
-        <div className={`relative w-full lg:pl-[10rem] xs:pl-[5rem]  z-10 `}>
+        <div className={`relative w-full lg:pl-[10rem] z-10 desktop-mid-down:pl-[0]`}>
           <div
-            className={`absolute top-0 left-[50%] translate-x-[-50%] w-[10rem] h-full tablet:right-[0] phablet:right-0 xs:w-[7rem] lg:left-[0] tablet:left-[5rem] phablet:left-[5rem] xs:left-[1rem] sm:translate-x-unset`}
+            className={`absolute top-0 left-[50%] translate-x-[-50%] w-[10rem] h-full tablet:right-[0] phablet:right-0 xs:w-[7rem] lg:left-[0] tablet:left-[5rem] phablet:left-[5rem] xs:left-[1rem] sm:translate-x-unset desktop-mid-down:hidden `}
           >
             <div className="relative w-full h-full">
               <div className="scroll_line_one absolute top-0 left-[50%] translate-x-[-50%] w-[10px] rounded-[10px] h-[calc(100%+50px)] bg-gray-300 lg:left-auto tablet:right-[calc(6rem+3px)] phablet:right-[calc(6rem+3px)] phone:right-0 xs:right-[calc(3rem+3px)] lg:-translate-x-0"></div>
@@ -292,15 +292,15 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
           </div>
           {data.map((item, index) => (
             <div
-              className={`row relative w-full flex flex-wrap items-center mb-[50px] last:mb-0`}
+              className={`row relative w-full flex flex-wrap items-center mb-[50px] last:mb-0 border-b-[#F2F2F7] border-spacing-0 `}
               key={index}
             >
               <div
-                className={`${style.circle} circle circleOne absolute lg-up:!left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] h-[30px] rounded-[50%] lg:right-auto lg:translate-x-0`}
+                className={`${style.circle} circle circleOne absolute lg-up:!left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30px] h-[30px] rounded-[50%] lg:right-auto lg:translate-x-0 desktop-mid-down:hidden`}
                 style={leftOffest}
               />
               <div
-                className={`w-1/2 lg:w-[75%] xs:w-[80%] relative pr-[100px]`}
+                className={`w-1/2 lg:w-[75%] relative pr-[100px] desktop-mid-down:pr-[0] desktop-mid-down:mb-[20px]  desktop-mid-down:w-[100%]`}
               >
                 <div
                   className={`left_content_wrap relative w-full p-[24px] border-[1px] border-[#D1D1D6] rounded-[8px]`}
@@ -314,7 +314,7 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
 </div> */}
 
               </div>
-              <div className="w-1/2 lg:w-[75%] xs:w-[80%] relative pl-[100px]">
+              <div className="w-1/2 lg:w-[75%] relative pl-[100px] desktop-mid-down:pl-[0] desktop-mid-down:w-[100%]">
                 <div
                   className={`right_content_wrap relative w-full p-[24px] border-[1px] border-[#D1D1D6] rounded-[8px]`}
                 >
