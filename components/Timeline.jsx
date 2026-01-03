@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import Image from "next/image";
 import Link from "next/link";
-import style from "../styles/Timeline.module.css";
+import style from "../styles/timeline.module.css";
 // import Lottie from 'react-lottie';
 import dynamic from "next/dynamic";
 // import { getLottieUrl } from './services/LottieServiceV2';
