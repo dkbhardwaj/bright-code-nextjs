@@ -1,0 +1,56 @@
+.wrapper {
+    border-radius: 16px;
+    padding: 24px;
+  }
+  
+  .header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+  
+    h4 {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  
+    p {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+    .rdp-months{
+        margin: 0 auto;
+    }
+  }
+  
+  
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #cfcfcf;
+  }
+  
+  /* calendar base overrides */
+  .calendar {
+    --rdp-cell-size: 36px;
+    --rdp-accent-color: #1f6bff;
+    --rdp-background-color: transparent;
+  }
+  
+  /* LIGHT */
+  .light {
+    background: #f7f7f7;
+    color: #0b0b0b;
+  }
+  
+  /* DARK */
+  .dark {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+  
+    .calendar {
+      --rdp-accent-color: #4f8cff;
+    }
+  }
+  

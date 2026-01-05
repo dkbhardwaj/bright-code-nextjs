@@ -1625,3 +1625,69 @@ section {
     }
   }
 }
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  input,
+  textarea {
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    outline: none;
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    &::placeholder {
+      color: var(--input-placeholder);
+    }
+
+    &:focus {
+      border-color: #1f6bff;
+    }
+  }
+
+  textarea {
+    min-height: 96px;
+    resize: none;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  button {
+    margin-top: 8px;
+    align-self: flex-start;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: #1f6bff;
+    color: #ffffff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(31, 107, 255, 0.25);
+    }
+  }
+}
+@media (max-width: 767px) {
+  .contactForm {
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.rdp-months {
+  margin: 0 auto;
+}

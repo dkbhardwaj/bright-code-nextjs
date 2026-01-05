@@ -6,6 +6,8 @@ import GridCards from "@/components/GridCards";
 import BannerThird from "@/components/BannerThird";
 import Timeline from "@/components/Timeline";
 import Cta from "@/components/Cta";
+import ContactSection from "@/components/ContactSection";
+import CalendlyCalendar from "@/components/CalendlyCalendar";
 
 const Demo: React.FC = () => {
   const bannerData = {
@@ -227,7 +229,102 @@ const Demo: React.FC = () => {
     buttonUrl: "/contact-us",
     buttonClass: "rounded-btn blue no-arrow", // You can change this to "rounded-btn gray" etc.
   };
-
+  const contactForm = {
+    introWithPettern: {
+      darkThemePettern: "/squres-pettern-dark.svg",
+      lightThemePettern: "/squres-pettern.svg",
+      title: "Manage Customers across the Lifetime of the product cycle",
+      blurb:
+        "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or enhancing existing architecture, we create sophisticated websites and content management systems.",
+      ctaTxt: "Learn more",
+    },
+  
+    cards: [
+      {
+        icon: "/clock.svg",
+        alt: "Customer history",
+        title: "Customer History",
+        blurb: "Analyze customer behavior across product lines",
+      },
+      {
+        icon: "/uis_graph-bar.svg",
+        alt: "Actionable insights",
+        title: "Actionable Insights",
+        blurb: "Gain meaningful insights from customer data",
+      },
+      {
+        icon: "/patterns.svg",
+        alt: "Identify patterns",
+        title: "Identify Patterns",
+        blurb: "Discover trends and usage patterns efficiently",
+      },
+      {
+        icon: "/analysis.svg",
+        alt: "Predictive analysis",
+        title: "Predictive Analysis",
+        blurb: "Predict outcomes using historical customer data",
+      },
+    ],
+  };
+  
+  const contactUsCalender = {
+    introWithPettern: {
+      darkThemePettern: "/squres-pettern-dark.svg",
+      lightThemePettern: "/squres-pettern.svg",
+      title: "Manage Customers across the Lifetime of the product cycle",
+      blurb:
+        "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Schedule time with our team to explore how we can help.",
+      ctaTxt: "Learn more",
+    },
+  
+    cards: [
+      {
+        icon: "/clock.svg",
+        alt: "Customer history",
+        title: "Customer History",
+        blurb: "Analyze customer behavior across product lines",
+      },
+      {
+        icon: "/uis_graph-bar.svg",
+        alt: "Actionable insights",
+        title: "Actionable Insights",
+        blurb: "Turn data into actionable business insights",
+      },
+      {
+        icon: "/patterns.svg",
+        alt: "Identify patterns",
+        title: "Identify Patterns",
+        blurb: "Understand trends across customer journeys",
+      },
+      {
+        icon: "/analysis.svg",
+        alt: "Predictive analysis",
+        title: "Predictive Analysis",
+        blurb: "Forecast future outcomes with confidence",
+      },
+    ],
+  };
+  const ContactForm = () => {
+    return (
+      <form className="contactForm">
+        <div className="row">
+          <input type="text" placeholder="First name" />
+          <input type="text" placeholder="Last name" />
+        </div>
+  
+        <div className="row">
+          <input type="email" placeholder="Your mail" />
+          <input type="text" placeholder="Country" />
+        </div>
+  
+        <textarea placeholder="Message" />
+  
+        <button type="submit">Contact us</button>
+      </form>
+    );
+  };
+  
+  
   return (
     <>
       <div >
@@ -239,7 +336,23 @@ const Demo: React.FC = () => {
         <TitleSection {...titleSectionData2}  theme="light"/>
         <ThreeColumns data={colThreeCardsData} theme="light"  />
         <TitleSection {...titleSectionData3} theme="light"/>
-        
+        <ContactSection data={contactForm} theme="light" rightSlot={<ContactForm />} />
+<ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
+
+<ContactSection
+  data={contactUsCalender}
+  theme="dark"
+  rightSlot={<CalendlyCalendar theme="dark" />}
+/>
+
+<ContactSection
+  data={contactUsCalender}
+  theme="light"
+  rightSlot={<CalendlyCalendar theme="light" />}
+/>
+
+
+
         <GridCards data={gridCardsData} theme="light"/>
         <Cta data={ctaData} />
       </div>
