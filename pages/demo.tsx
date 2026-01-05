@@ -307,20 +307,39 @@ const Demo: React.FC = () => {
   const ContactForm = () => {
     return (
       <form className="contactForm">
-        <div className="row">
-          <input type="text" placeholder="First name" />
-          <input type="text" placeholder="Last name" />
-        </div>
-  
-        <div className="row">
-          <input type="email" placeholder="Your mail" />
-          <input type="text" placeholder="Country" />
-        </div>
-  
-        <textarea placeholder="Message" />
-  
-        <button type="submit">Contact us</button>
-      </form>
+  <div className="row">
+    <div className="field">
+      <label htmlFor="firstName">First name</label>
+      <input id="firstName" type="text" />
+    </div>
+
+    <div className="field">
+      <label htmlFor="lastName">Last name</label>
+      <input id="lastName" type="text" />
+    </div>
+  </div>
+
+  <div className="row">
+    <div className="field">
+      <label htmlFor="email">Your mail</label>
+      <input id="email" type="email" />
+    </div>
+
+    <div className="field">
+      <label htmlFor="country">Country</label>
+      <input id="country" type="text" />
+    </div>
+  </div>
+
+  <div className="field">
+    <label htmlFor="message">Message</label>
+    <textarea id="message" />
+  </div>
+
+  <button type="submit">Contact us</button>
+</form>
+
+    
     );
   };
   

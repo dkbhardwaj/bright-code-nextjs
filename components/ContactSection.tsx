@@ -37,17 +37,17 @@ const ContactSection: React.FC<Props> = ({
             : introWithPettern.lightThemePettern;
 
     return (
-        <section className={`${styles.section} ${styles[theme]}`}>
+        <section className={`${styles.contactSection} ${styles[theme]}`}>
             <div className="container">
                 <div className={styles.top}>
                     <div className={styles.left}>
-                        <div className="imgWrap">
-                          <Image src={pattern} alt="pattern" width={166} height={5.6} />
+                        <div className="imgWrap w-[166px] h-[5.6px] ">
+                          <Image className="w-auto" src={pattern} alt="pattern"  width={100} height={100} />
                         </div>
-                        <h2>{introWithPettern.title}</h2>
-                        <p>{introWithPettern.blurb}</p>
+                        <h2 className="mt-[20px]">{introWithPettern.title}</h2>
+                        <p className="mb-[20px]">{introWithPettern.blurb}</p>
 
-                        <button className={styles.cta}>
+                        <button className={`${styles.cta}`}>
                             {introWithPettern.ctaTxt}
                         </button>
                     </div>
@@ -61,7 +61,7 @@ const ContactSection: React.FC<Props> = ({
                     {cards.map((card, idx) => (
                         <div key={idx} className={styles.card}>
                             <Image src={card.icon} alt={card.alt} width={24} height={24} />
-                            <h4>{card.title}</h4>
+                            <h4 className="mt-[10px]">{card.title}</h4>
                             <p>{card.blurb}</p>
                         </div>
                     ))}

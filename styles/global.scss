@@ -1691,3 +1691,16 @@ section {
 .rdp-months {
   margin: 0 auto;
 }
+.contactForm {
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+  }
+}
