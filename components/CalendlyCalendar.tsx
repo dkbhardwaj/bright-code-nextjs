@@ -9,7 +9,7 @@ interface Props {
 
 const CalendlyCalendar: React.FC<Props> = ({ theme = "light" }) => {
     return (
-        <>
+        <div className={`${styles[theme]} ${styles.calandarWrap}`}>
             <div className={styles.header}>
                 <div className={styles.avatar} />
                 <div>
@@ -17,7 +17,7 @@ const CalendlyCalendar: React.FC<Props> = ({ theme = "light" }) => {
                     <p>CEO, Bright Code</p>
                 </div>
             </div>
-            <div className={`${styles.wrapper} ${styles[theme]}`}>
+            <div className={`${styles.wrapper} `}>
 
 
                 <DayPicker
@@ -26,7 +26,7 @@ const CalendlyCalendar: React.FC<Props> = ({ theme = "light" }) => {
                     className={styles.calendar}
                 />
             </div>
-        </>
+        </div>
     );
 };
 

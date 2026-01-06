@@ -352,6 +352,12 @@
 
   a {
     margin-right: 5px;
+    img{
+      transition: transform 0.2s ease;
+      &:hover{
+        transform: translateY(-2px);
+      }
+    }
   }
 }
 .chevron {

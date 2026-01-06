@@ -35,17 +35,35 @@
     --rdp-accent-color: #1f6bff;
     --rdp-background-color: transparent;
   }
-  
+  .wrapper{
+    border-radius: 16px;
+  }
+  .calandarWrap{
+    padding: 20px;
+  }
   /* LIGHT */
   .light {
-    background: #f7f7f7;
-    color: #0b0b0b;
+    .wrapper{
+      background: #f7f7f7;
+      color: #0b0b0b;
+    }
+    &.calandarWrap{
+      border-radius: 16px;
+      background: #F9FAFB;
+    }
   }
   
   /* DARK */
   .dark {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
+    .wrapper{
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+    
+    &.calandarWrap{
+      border-radius: 16px;
+      background: #F9FAFB0D;
+    }
   
     .calendar {
       --rdp-accent-color: #4f8cff;

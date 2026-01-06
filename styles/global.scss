@@ -225,7 +225,6 @@ section {
   &.orange,
   &.peach,
   &.pink {
-
     h1,
     h2,
     h3,
@@ -554,17 +553,21 @@ span.title {
       width: 100%;
       height: 100%;
       // background-image: linear-gradient(to right, $purplePink, $white 50%);
-      background-image: linear-gradient(to right,
-          rgba(183, 117, 249, 0.671),
-          rgba(250, 245, 254, 0.902) 70%);
+      background-image: linear-gradient(
+        to right,
+        rgba(183, 117, 249, 0.671),
+        rgba(250, 245, 254, 0.902) 70%
+      );
       border-radius: 55px;
       // opacity: 0.7;
       z-index: 1;
 
       @include tablet-down {
-        background-image: linear-gradient(to right,
-            rgba(183, 117, 249, 0.902),
-            rgba(246, 239, 252, 0.902) 70%);
+        background-image: linear-gradient(
+          to right,
+          rgba(183, 117, 249, 0.902),
+          rgba(246, 239, 252, 0.902) 70%
+        );
       }
     }
 
@@ -668,7 +671,6 @@ span.title {
 }
 
 .intro {
-
   h5,
   p {
     color: black;
@@ -690,7 +692,6 @@ span.title {
 }
 
 .footer-text {
-
   h4,
   h5,
   li {
@@ -750,9 +751,11 @@ span.title {
       border-width: 1px;
       border-style: solid;
       // border-color:black;
-      background: linear-gradient(90deg,
-          rgba(0, 117, 255, 0.07) 0%,
-          rgba(128, 0, 255, 0.07) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 117, 255, 0.07) 0%,
+        rgba(128, 0, 255, 0.07) 100%
+      );
     }
 
     .sub-title {
@@ -799,7 +802,6 @@ span.title {
     }
 
     &.purple {
-
       h2 span,
       .eyebrow {
         color: $purplePink;
@@ -811,7 +813,6 @@ span.title {
     }
 
     &.blue {
-
       h2 span,
       .eyebrow {
         color: $primaryBlue;
@@ -989,7 +990,6 @@ span.title {
 }
 
 section.image-checker-report {
-
   h2,
   p,
   span {
@@ -1046,7 +1046,6 @@ section.image-checker-report {
   }
 
   &.black-text {
-
     p,
     li {
       color: black;
@@ -1054,7 +1053,6 @@ section.image-checker-report {
   }
 
   &.white-text {
-
     p,
     li {
       color: white;
@@ -1103,7 +1101,6 @@ section.image-checker-report {
 }
 
 .banner-desc {
-
   h1,
   h2,
   h3,
@@ -1124,9 +1121,11 @@ section.image-checker-report {
   color: $vividBlue;
   border-radius: 9999px;
   margin-bottom: 16px;
-  background: linear-gradient(90deg,
-      rgba(0, 68, 255, 0.1) 0%,
-      rgba(27, 187, 255, 0.1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 68, 255, 0.1) 0%,
+    rgba(27, 187, 255, 0.1) 100%
+  );
   z-index: 1;
   overflow: hidden;
 
@@ -1224,9 +1223,11 @@ section {
 
 .timeline {
   .scroll_line_one {
-    background: linear-gradient(180deg,
-        rgba(0, 13, 32, 0.05) 0%,
-        rgba(0, 13, 32, 0.5) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 13, 32, 0.05) 0%,
+      rgba(0, 13, 32, 0.5) 100%
+    );
   }
 
   .left_content_wrap {
@@ -1234,21 +1235,59 @@ section {
     transform: translate(50%, 150px);
     transition: all 0.5s ease-in-out;
     opacity: 0;
+    @media (max-width: 1024px) {
+      transform: translate(50%, 0);
+    }
   }
 
   .right_content_wrap {
     transform: translate(-50%, 150px);
     transition: all 0.5s ease-in-out;
     opacity: 0;
+    @media (max-width: 1024px) {
+      transform: translate(50%, 0);
+    }
   }
 
   .row {
+    .circleTopline::before,
+    .circleBottomline::before {
+      content: "";
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 0;
+      background-color: #0164d3;
+      transition: all 0.3s ease-in-out;
+    }
+    .circleTopline2::before,
+    .circleBottomline2::before {
+      content: "";
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background-color: #0164d3;
+      transition: all 0.3s ease-in-out;
+      transition-delay: 0.3s;
+    }
     &.inview {
-
       .left_content_wrap,
       .right_content_wrap {
         transform: translate(0, 0);
         opacity: 1;
+      }
+      .circleTopline::before,
+      .circleBottomline::before {
+        height: 50px;
+      }
+      .circleTopline2::before,
+      .circleBottomline2::before {
+        width: 100px;
       }
     }
   }
@@ -1258,11 +1297,11 @@ section {
   padding-top: 40px;
   padding-bottom: 40px;
   position: relative;
-  .footer-top{
+  .footer-top {
     display: flex;
     justify-content: space-between;
-    .footer-logo-link{
-      img{
+    .footer-logo-link {
+      img {
         width: 230px;
       }
     }
@@ -1274,7 +1313,7 @@ section {
         font-size: 18px;
       }
     }
-    .footer-top-right{
+    .footer-top-right {
       margin-left: 20px;
       font-size: 16px;
       font-weight: 400;
@@ -1296,7 +1335,6 @@ section {
     grid-template-columns: 1.2fr 1.4fr 1.4fr 2fr 1.3fr;
     gap: 20px;
   }
-  
 
   h4 {
     font-size: 18px;
@@ -1318,8 +1356,8 @@ section {
       font-weight: 400;
       transition: opacity 0.2s ease;
       font-family: "Inter", sans-serif;
-      transition: text-decoration , 0.3s ease-in-out;
-      &:hover{
+      transition: text-decoration, 0.3s ease-in-out;
+      &:hover {
         text-decoration: underline;
       }
       @media (min-width: 1601px) {
@@ -1354,7 +1392,7 @@ section {
       font-weight: 500;
     }
 
-    a.email{
+    a.email {
       font-size: 16px;
       font-weight: 500;
       color: $carbonBlue;
@@ -1362,9 +1400,8 @@ section {
       @media (min-width: 1601px) {
         font-size: 18px;
       }
-      
     }
-    a.tel{
+    a.tel {
       display: block;
     }
   }
@@ -1386,7 +1423,7 @@ section {
   .footer-socials {
     display: flex;
     align-items: center;
-   
+
     .social-light {
       display: inline-block;
     }
@@ -1399,7 +1436,7 @@ section {
       margin-bottom: 5px;
       margin-top: 5px;
     }
- 
+
     img {
       transition: transform 0.2s ease;
       width: 24px;
@@ -1466,10 +1503,10 @@ section {
 
 .darkMode {
   &.new-footer {
-    .footer-top-right{
+    .footer-top-right {
       color: $white;
     }
-    h4{
+    h4 {
       color: $white;
     }
     ul li {
@@ -1539,9 +1576,11 @@ section {
 
   &.announcemnet-badge {
     color: $white;
-    background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
 
     &::before {
       background-image: url(/what-we-do-blades/megaphone-white.svg);
@@ -1576,9 +1615,11 @@ section {
     background-color: $carbonBlue;
 
     .scroll_line_one {
-      background: linear-gradient(180deg,
-          rgba(255, 255, 255, 0.05) 0%,
-          rgba(255, 255, 255, 0.4) 100%);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.4) 100%
+      );
     }
 
     .left_content_wrap,
@@ -1597,27 +1638,24 @@ section {
       }
     }
   }
-
-
-
 }
-@media (max-width: 595px){
-  .footer-top{
+@media (max-width: 595px) {
+  .footer-top {
     flex-wrap: wrap;
-    .footer-top-right{
+    .footer-top-right {
       margin-left: 0 !important;
-      margin-top: 15px ;
+      margin-top: 15px;
     }
   }
 }
 @media (max-width: 480px) {
-
   .new-footer {
     .footer-grid {
       display: block;
     }
 
-    .footer-col, .footer-contact {
+    .footer-col,
+    .footer-contact {
       width: 100%;
       padding-left: 20px;
       padding-right: 20px;
