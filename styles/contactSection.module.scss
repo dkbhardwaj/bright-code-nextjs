@@ -1,5 +1,7 @@
 .contactSection {
   padding: 96px 0;
+  font-family: "Inter", sans-serif;
+ 
 
   form {
     label {
@@ -37,10 +39,12 @@
 }
 
 .cards {
-  margin-top: 72px;
+  margin-top: 65px;
+  padding-top: 85px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
+  border-top: #D1D1D6 1px solid;
 }
 
 .card {
@@ -136,6 +140,11 @@
   p {
     color: #000;
   }
+  .card{
+    p{
+      color: #333333
+    }
+  }
 
   form {
     input , textarea{
@@ -163,14 +172,21 @@
     color: #F9FAFB;
     margin-bottom: 30px;
   }
-
-  h4 {
-    color: #F9FAFB;
-  }
-
   p {
     color: #F9FAFB;
   }
+
+  .card{
+    h4 {
+      color: #F9FAFB;
+    }
+    p{
+      font-weight: 400;
+      color: #D1D1D6
+    }
+  }
+
+
 
   form {
     input {
