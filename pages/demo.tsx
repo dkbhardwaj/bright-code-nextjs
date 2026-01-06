@@ -56,7 +56,7 @@ const Demo: React.FC = () => {
     buttonLink: "/services",
     theme: "light", // Blade-specific theme
   };
-  
+
   const cardData2 = {
     reverse: true,
     imageSrc: "/what-we-do-blades/Illustration.png",
@@ -78,7 +78,7 @@ const Demo: React.FC = () => {
     buttonText: "Learn more",
     buttonLink: "/services",
   } as const;
-  
+
   const titleSectionData2 = {
     badgeText: "About Bright Code",
     title: "Who we are here to help",
@@ -88,7 +88,7 @@ const Demo: React.FC = () => {
     buttonText: "",
     buttonLink: "",
   } as const;
-  
+
   const colThreeCardsData = {
     paddingLarge: true,
     featuredClass: false,
@@ -144,7 +144,7 @@ const Demo: React.FC = () => {
     btntext: "Learn more",
     btnUrl: "#",
   } as const;
-  
+
   const titleSectionData3 = {
     badgeText: "Bright Code Work",
     title: "What we actually build",
@@ -238,7 +238,7 @@ const Demo: React.FC = () => {
         "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Whether it’s building something from the ground up or enhancing existing architecture, we create sophisticated websites and content management systems.",
       ctaTxt: "Learn more",
     },
-  
+
     cards: [
       {
         icon: "/clock.svg",
@@ -266,7 +266,7 @@ const Demo: React.FC = () => {
       },
     ],
   };
-  
+
   const contactUsCalender = {
     introWithPettern: {
       darkThemePettern: "/squres-pettern-dark.svg",
@@ -276,7 +276,7 @@ const Demo: React.FC = () => {
         "Bright Code works seamlessly with your team to help you envision and create your clients’ digital presence. Schedule time with our team to explore how we can help.",
       ctaTxt: "Learn more",
     },
-  
+
     cards: [
       {
         icon: "/clock.svg",
@@ -306,44 +306,62 @@ const Demo: React.FC = () => {
   };
   const ContactForm = () => {
     return (
-      <form className="contactForm">
-  <div className="row">
-    <div className="field">
-      <label htmlFor="firstName">First name</label>
-      <input id="firstName" type="text" />
-    </div>
-
-    <div className="field">
-      <label htmlFor="lastName">Last name</label>
-      <input id="lastName" type="text" />
-    </div>
-  </div>
-
-  <div className="row">
-    <div className="field">
-      <label htmlFor="email">Your mail</label>
-      <input id="email" type="email" />
-    </div>
-
-    <div className="field">
-      <label htmlFor="country">Country</label>
-      <input id="country" type="text" />
-    </div>
-  </div>
-
-  <div className="field">
-    <label htmlFor="message">Message</label>
-    <textarea id="message" />
-  </div>
-
-  <button type="submit">Contact us</button>
-</form>
-
+      <form className="contactForm" autoComplete="on">
+      <div className="row">
+        <div className="field">
+          <label htmlFor="firstName">First name</label>
+          <input
+            id="firstName"
+            type="text"
+            autoComplete="given-name"
+          />
+        </div>
+    
+        <div className="field">
+          <label htmlFor="lastName">Last name</label>
+          <input
+            id="lastName"
+            type="text"
+            autoComplete="family-name"
+          />
+        </div>
+      </div>
+    
+      <div className="row">
+        <div className="field">
+          <label htmlFor="email">Your mail</label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+          />
+        </div>
+    
+        <div className="field">
+          <label htmlFor="country">Country</label>
+          <input
+            id="country"
+            type="text"
+            autoComplete="country-name"
+          />
+        </div>
+      </div>
+    
+      <div className="field">
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          autoComplete="off"
+        />
+      </div>
+    
+      <button type="submit">Contact us</button>
+    </form>
     
     );
   };
-  
-  
+
+
   return (
     <>
       <div >
@@ -352,27 +370,27 @@ const Demo: React.FC = () => {
         <ColTwoCard {...cardData} theme="light" />
         <ColTwoCard {...cardData2} theme="light" />
         <TitleSection {...titleSectionData} theme="light" />
-        <TitleSection {...titleSectionData2}  theme="light"/>
-        <ThreeColumns data={colThreeCardsData} theme="light"  />
-        <TitleSection {...titleSectionData3} theme="light"/>
+        <TitleSection {...titleSectionData2} theme="light" />
+        <ThreeColumns data={colThreeCardsData} theme="light" />
+        <TitleSection {...titleSectionData3} theme="light" />
         <ContactSection data={contactForm} theme="light" rightSlot={<ContactForm />} />
-<ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
+        <ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
 
-<ContactSection
-  data={contactUsCalender}
-  theme="dark"
-  rightSlot={<CalendlyCalendar theme="dark" />}
-/>
+        <ContactSection
+          data={contactUsCalender}
+          theme="dark"
+          rightSlot={<CalendlyCalendar theme="dark" />}
+        />
 
-<ContactSection
-  data={contactUsCalender}
-  theme="light"
-  rightSlot={<CalendlyCalendar theme="light" />}
-/>
+        <ContactSection
+          data={contactUsCalender}
+          theme="light"
+          rightSlot={<CalendlyCalendar theme="light" />}
+        />
 
 
 
-        <GridCards data={gridCardsData} theme="light"/>
+        <GridCards data={gridCardsData} theme="light" />
         <Cta data={ctaData} />
       </div>
     </>
