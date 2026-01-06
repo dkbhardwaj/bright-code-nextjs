@@ -144,6 +144,15 @@ const Demo: React.FC = () => {
     btntext: "Learn more",
     btnUrl: "#",
   } as const;
+  const titleSectionData01 = {
+    badgeText: "Values - Benefits",
+    title: "What we believe. What you feel",
+    description:
+      "Under the hood, we are a web development studio focused on CMS heavy, business critical sites.",
+    alignment: "center",
+    buttonText: "",
+    buttonLink: "",
+  } as const;
 
   const titleSectionData3 = {
     badgeText: "Bright Code Work",
@@ -366,6 +375,7 @@ const Demo: React.FC = () => {
     <>
       <div >
         <BannerThird data={bannerData} />
+        <TitleSection {...titleSectionData01} theme="dark" />
         <Timeline />
         <ColTwoCard {...cardData} theme="light" />
         <ColTwoCard {...cardData2} theme="light" />

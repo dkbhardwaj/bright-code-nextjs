@@ -14,15 +14,15 @@
   
   
   .avatar {
-    width: 36px;
-    height: 36px;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
     background: #cfcfcf;
   }
   
   /* calendar base overrides */
   .calendar {
-    --rdp-cell-size: 36px;
+    --rdp-cell-size: 62px;
     --rdp-accent-color: #1f6bff;
     --rdp-background-color: transparent;
   }
