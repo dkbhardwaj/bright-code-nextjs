@@ -46,10 +46,15 @@ const ContactSection: React.FC<Props> = ({
                         </div>
                         <h2 className="mt-[20px]">{introWithPettern.title}</h2>
                         <p className="mb-[20px]">{introWithPettern.blurb}</p>
-
-                        <button className={`${styles.cta}`}>
+                        {
+                            theme == "light" ?  <button className={`rounded-btn gray`}>
+                            {introWithPettern.ctaTxt}
+                        </button> : <button className={`rounded-btn gray blue-hover`}>
                             {introWithPettern.ctaTxt}
                         </button>
+                        }
+
+                       
                     </div>
 
                     <div className={styles.right}>

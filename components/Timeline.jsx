@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 // import { getLottieUrl } from './services/LottieServiceV2';
 // const Lottie = dynamic(() => import('react-lottie'), { ssr: false }); // Dynamic import
 
-const data = [
+const data = [  
   {
     id: 1,
     leftText: "We believe dev should calm a room. not stress it.",
@@ -198,7 +198,7 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
           className={`relative w-full z-10 desktop-mid-down:flex desktop-mid-down:flex-col`}
         >
           <div
-            className={`absolute top-0 left-[50%] w-[10rem] h-full lg:left-[0] lg-up:translate-x-[-50%] desktop-mid-down:w-[1rem] desktop-mid-down:top-1/2 desktop-mid-down:left-[0.4rem] desktop-mid-down:-translate-y-1/2`}
+            className={`absolute top-0 left-[50%] w-[10rem] h-full lg:left-[0] lg-up:translate-x-[-50%] desktop-mid-down:hidden desktop-mid-down:w-[1rem] desktop-mid-down:top-1/2 desktop-mid-down:left-[0.4rem] desktop-mid-down:-translate-y-1/2`}
           >
             <div className="relative w-full h-full">
               <div className="scroll_line_one absolute top-0 left-[50%] translate-x-[-50%] w-[10px] rounded-[10px] h-[calc(100%+50px)] bg-gray-300 desktop-mid-down:-top-[25px]"></div>
@@ -211,11 +211,11 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
           </div>
           {data.map((item, index) => (
             <div
-              className={`row relative w-full flex flex-wrap items-center mb-[50px] desktop-mid-down:pl-[100px] last:mb-0 border-b-[#F2F2F7] border-spacing-0 `}
+              className={`row relative w-full flex flex-wrap items-center mb-[50px] last:mb-0 border-spacing-0 desktop-mid-down:pb-[50px] desktop-mid-down:border-b-[2px] last:pb-0 last:border-none`}
               key={index}
             >
               <div
-                className={`${style.circle} circle circleOne absolute left-1/2 top-1/2 desktop-mid-down:left-0 -translate-x-1/2 -translate-y-1/2 w-[30px] h-[30px] rounded-[50%] lg:right-auto lg:translate-x-0`}
+                className={`${style.circle} desktop-mid-down:hidden circle circleOne absolute left-1/2 top-1/2 desktop-mid-down:left-0 -translate-x-1/2 -translate-y-1/2 w-[30px] h-[30px] rounded-[50%] lg:right-auto lg:translate-x-0`}
                 // style={leftOffest}
               >
                 <span className="circleTopline2 hidden relative desktop-mid-down:inline-block text-[0] w-[90px] h-[2px] top-[-51px] transition-all duration-300 rounded-tl-xl left-[15px]">
@@ -258,6 +258,11 @@ export default function ScrollDownColTwo({ theme = "dark" }) {
               </div>
             </div>
           ))}
+        </div>
+        <div className="btn-wrap w-full text-center mt-[70px] desktop-mid-down:mt-[40px]">
+          <Link href="/" className="gradient-btn-blue">
+            {`Learn more`}
+          </Link>
         </div>
       </div>
     </section>

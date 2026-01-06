@@ -1250,6 +1250,7 @@ section {
   }
 
   .row {
+    border-color: #000d20;
     .circleTopline::before,
     .circleBottomline::before {
       content: "";
@@ -1613,7 +1614,9 @@ section {
 
   &.timeline {
     background-color: $carbonBlue;
-
+    .row {
+      border-color: #f2f2f7;
+    }
     .scroll_line_one {
       background: linear-gradient(
         180deg,
@@ -1621,7 +1624,6 @@ section {
         rgba(255, 255, 255, 0.4) 100%
       );
     }
-
     .left_content_wrap,
     .right_content_wrap {
       background-color: rgba(255, 255, 255, 0.05);
@@ -1635,6 +1637,11 @@ section {
 
       p {
         color: $borderLight;
+      }
+    }
+    .left_content_wrap {
+      @media (max-width: 1024px) {
+        box-shadow: 0px 2px 5px 0px rgb(255 255 255 / 38%);
       }
     }
   }
@@ -1734,11 +1741,12 @@ section {
     display: flex;
     flex-direction: column;
     gap: 6px;
-
     label {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 500;
       opacity: 0.7;
+      font-family: "Inter", sans-serif;
     }
   }
 }
+
