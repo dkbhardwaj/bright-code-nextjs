@@ -149,7 +149,9 @@
   .calendar :global(.rdp-day) {
     color: #ffffff;
   }
-
+  .calendar :global(.rdp-today:not(.rdp-outside)) {
+    color: #1f6bff !important;
+  }
   .calendar :global(.rdp-nav_button) {
     color: #4f8cff;
   }

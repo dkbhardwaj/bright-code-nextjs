@@ -1707,24 +1707,24 @@ section {
     gap: 12px;
   }
 
-  button {
-    margin-top: 8px;
-    align-self: flex-start;
-    padding: 10px 20px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    background: #1f6bff;
-    color: #ffffff;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  // button {
+  //   margin-top: 8px;
+  //   align-self: flex-start;
+  //   padding: 10px 20px;
+  //   border-radius: 999px;
+  //   font-size: 14px;
+  //   font-weight: 500;
+  //   cursor: pointer;
+  //   border: none;
+  //   background: #1f6bff;
+  //   color: #ffffff;
+  //   transition: transform 0.15s ease, box-shadow 0.15s ease;
 
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(31, 107, 255, 0.25);
-    }
-  }
+  //   &:hover {
+  //     transform: translateY(-1px);
+  //     box-shadow: 0 8px 20px rgba(31, 107, 255, 0.25);
+  //   }
+  // }
 }
 @media (max-width: 767px) {
   .contactForm {

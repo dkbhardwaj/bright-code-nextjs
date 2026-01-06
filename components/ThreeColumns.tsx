@@ -56,7 +56,7 @@ const ThreeColumns: React.FC<ThreeColumnsProps> = ({
           {threeCards.map((card) => (
             <div
               key={card.id}
-              className="colThree relative w-[calc(33.3%-24px)] tablet:w-[calc(50%-24px)] phablet:w-[calc(50%-24px)] sm:w-[calc(100%-24px)] mx-[12px] mb-[24px]"
+              className="colThree relative w-[calc(33.3%-24px)] tablet:w-[calc(50%-24px)] phablet:w-[calc(100%-24px)] sm:w-[calc(100%-24px)] mx-[12px] mb-[24px]"
             >
               <Link
                 href={card.link}

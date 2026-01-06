@@ -364,7 +364,7 @@ const Demo: React.FC = () => {
         />
       </div>
     
-      <button type="submit">Contact us</button>
+      <button className="gradient-btn no-arrow rounded-btn" type="submit">Contact us</button>
     </form>
     
     );
