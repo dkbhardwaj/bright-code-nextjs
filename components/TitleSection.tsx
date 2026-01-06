@@ -25,7 +25,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
 }) => {
   return (
     <section
-      className={`title-section padding-large ${
+      className={`title-section padding-medium ${
         theme === "dark" ? "darkMode" : ""
       }`}
     >

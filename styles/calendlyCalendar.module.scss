@@ -1,63 +1,156 @@
+/* =====================
+   WRAPPERS
+===================== */
+
+.calandarWrap {
+  padding: 20px;
+  border-radius: 16px;
+}
+
 .wrapper {
-    border-radius: 16px;
-    padding: 24px;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* =====================
+   HEADER
+===================== */
+
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #cfcfcf;
+}
+
+/* =====================
+   DAY PICKER BASE
+===================== */
+
+.calendar {
+  --rdp-cell-size: 62px;
+  --rdp-accent-color: #1f6bff;
+  --rdp-background-color: transparent;
+
+  font-family: inherit;
+}
+
+/* =====================
+   DAY PICKER OVERRIDES
+===================== */
+
+/* Month + arrows (centered like design) */
+.calendar :global(.rdp-caption) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.calendar :global(.rdp-caption_label) {
+  font-size: 18px;
+  font-weight: 500;
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+/* Navigation arrows */
+.calendar :global(.rdp-nav) {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar :global(.rdp-nav_button) {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #1f6bff;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(31, 107, 255, 0.08);
   }
-  
-  .header {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 16px;
-  
-  
+}
+
+/* Weekday header */
+.calendar :global(.rdp-weekday) {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Day cells */
+.calendar :global(.rdp-day) {
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+/* Selected day */
+.calendar :global(.rdp-day_selected) {
+  background: var(--rdp-accent-color);
+  color: #ffffff;
+}
+
+/* Today */
+.calendar :global(.rdp-day_today) {
+  color: var(--rdp-accent-color);
+  font-weight: 500;
+}
+
+/* =====================
+   LIGHT THEME
+===================== */
+
+.light {
+  .wrapper {
+    background: #f7f7f7;
+    color: #0b0b0b;
   }
-  
-  
-  .avatar {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: #cfcfcf;
+
+  &.calandarWrap {
+    background: #f9fafb;
   }
-  
-  /* calendar base overrides */
+}
+
+/* =====================
+   DARK THEME
+===================== */
+
+.dark {
+  .wrapper {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+  }
+
+  &.calandarWrap {
+    background: #f9fafb0d;
+  }
+
   .calendar {
-    --rdp-cell-size: 62px;
-    --rdp-accent-color: #1f6bff;
-    --rdp-background-color: transparent;
+    --rdp-accent-color: #4f8cff;
   }
-  .wrapper{
-    border-radius: 16px;
+
+  .calendar :global(.rdp-weekday),
+  .calendar :global(.rdp-caption_label),
+  .calendar :global(.rdp-day) {
+    color: #ffffff;
   }
-  .calandarWrap{
-    padding: 20px;
+
+  .calendar :global(.rdp-nav_button) {
+    color: #4f8cff;
   }
-  /* LIGHT */
-  .light {
-    .wrapper{
-      background: #f7f7f7;
-      color: #0b0b0b;
-    }
-    &.calandarWrap{
-      border-radius: 16px;
-      background: #F9FAFB;
-    }
-  }
-  
-  /* DARK */
-  .dark {
-    .wrapper{
-      background: rgba(255, 255, 255, 0.06);
-      color: #ffffff;
-    }
-    
-    &.calandarWrap{
-      border-radius: 16px;
-      background: #F9FAFB0D;
-    }
-  
-    .calendar {
-      --rdp-accent-color: #4f8cff;
-    }
-  }
-  
+}

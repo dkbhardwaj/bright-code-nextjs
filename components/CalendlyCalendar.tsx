@@ -12,14 +12,14 @@ const CalendlyCalendar: React.FC<Props> = ({ theme = "light" }) => {
         <div className={`${styles[theme]} ${styles.calandarWrap}`}>
             <div className={styles.header}>
                 <div className={styles.avatar} >
-              
-                <Image
-                      src="/Ellipse.png"
-                      width={62}
-                      height={62}
-                      alt="img"
-                      className="w-full h-full object-contain "
-                      loading="lazy"
+
+                    <Image
+                        src="/Ellipse.png"
+                        width={62}
+                        height={62}
+                        alt="img"
+                        className="w-full h-full object-contain "
+                        loading="lazy"
                     />
                 </div>
                 <div>
@@ -32,9 +32,12 @@ const CalendlyCalendar: React.FC<Props> = ({ theme = "light" }) => {
 
                 <DayPicker
                     mode="single"
-                    showOutsideDays
+                    showOutsideDays={false}
+                    fixedWeeks
                     className={styles.calendar}
                 />
+
+
             </div>
         </div>
     );
