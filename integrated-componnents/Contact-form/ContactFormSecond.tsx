@@ -234,7 +234,7 @@ const ContactFormSecond: React.FC<ContactFormSecondProps> = ({ data }) => {
 
                   <button
                     type="submit"
-                    className="gradient-btn mx-auto max-w-full"
+                    className="gradient-btn mx-auto max-w-full no-arrow"
                     disabled={state.submitting}
                   >
                     <span>Submit</span>

@@ -170,6 +170,9 @@
   &:hover {
     text-decoration: underline;
   }
+  @media (min-width: 1601px) {
+    font-size: 18px;
+  }
 }
 
 .megaItem {
@@ -178,15 +181,12 @@
     font-size: 14px;
     font-weight: 400;
     color: $ironGray;
+    @media (min-width: 1601px) {
+      font-size: 16px;
+    }
   }
 }
 
-.megaFooter {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid #e5e7eb;
-  font-size: 13px;
-}
 
 /* ------------------ Close Button ------------------ */
 
