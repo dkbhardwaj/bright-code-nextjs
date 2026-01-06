@@ -115,7 +115,7 @@ const BannerThird: React.FC<BannerThirdData> = ({ data }) => {
           )}
 
           <span
-            className={`block mt-4 text-[12px] font-[400] ${
+            className={`block mt-4 text-[14px]  font-[400] ${
               isDark ? "text-[#D1D1D6]" : "text-[#333333]"
             }`}
           >
