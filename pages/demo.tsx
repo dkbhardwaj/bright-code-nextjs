@@ -46,7 +46,11 @@ const Demo: React.FC = () => {
   };
   const cardData = {
     reverse: false,
-    imageSrc: "/what-we-do-blades/Illustration.png",
+    image: {
+      light: "/what-we-do-blades/what_we_do.svg",
+      dark: "what-we-do-blades/what_we_do_dark_theme.svg",
+    },
+    imageSrc: "/what-we-do-blades/what_we_do_dark_theme.svg",
     imageAlt: "Digital transformation banner",
     badgeText: "Bright-Code does",
     title: "We Build Digital Presence for Future of Businesses",
@@ -59,7 +63,10 @@ const Demo: React.FC = () => {
 
   const cardData2 = {
     reverse: true,
-    imageSrc: "/what-we-do-blades/Illustration.png",
+    image: {
+      light: "/what-we-do-blades/what_we_do.svg",
+      dark: "what-we-do-blades/what_we_do_dark_theme.svg",
+    },
     imageAlt: "Digital transformation banner",
     badgeText: "Bright-Code does",
     title: "We Build Digital Presence for Future of Businesses",
@@ -100,8 +107,8 @@ const Demo: React.FC = () => {
         cardDelay: "0.1s",
         cardDuration: "0.6s",
         image: {
-          light: "/what-we-do-blades/channels.png",
-          dark: "/what-we-do-blades/channels-dark.png",
+          light: "/what-we-do-blades/creative.svg",
+          dark: "/what-we-do-blades/creative-dark-theme.svg",
         },
         imageAlt: "Channels",
         cardTitle: "Creative and Brand Agencies",
@@ -115,8 +122,8 @@ const Demo: React.FC = () => {
         cardDelay: "0.1s",
         cardDuration: "0.6s",
         image: {
-          light: "/what-we-do-blades/team.png",
-          dark: "/what-we-do-blades/team-dark.png",
+          light: "/what-we-do-blades/marketing.svg",
+          dark: "/what-we-do-blades/marketing-dark-theme.svg",
         },
         imageAlt: "Team",
         cardTitle: "Marketing and Digital Teams",
@@ -130,8 +137,8 @@ const Demo: React.FC = () => {
         cardDelay: "0.1s",
         cardDuration: "0.6s",
         image: {
-          light: "/what-we-do-blades/tools.png",
-          dark: "/what-we-do-blades/tools-dark.png",
+          light: "/what-we-do-blades/teams.svg",
+          dark: "/what-we-do-blades/teams-dark-theme.svg",
         },
         imageAlt: "Tools",
         cardTitle: "Teams with too much on their Plate",
@@ -172,8 +179,8 @@ const Demo: React.FC = () => {
       {
         id: 1,
         image: {
-          light: "/what-we-do-blades/websites.png",
-          dark: "/what-we-do-blades/websites-dark.png",
+          light: "/what-we-do-blades/white_label.svg",
+          dark: "/what-we-do-blades/white_label_dark_theme.svg",
         },
         imageAlt: "websites",
         cardTitle: "White label Website Builds",
@@ -186,8 +193,8 @@ const Demo: React.FC = () => {
       {
         id: 2,
         image: {
-          light: "/what-we-do-blades/infrastructure.png",
-          dark: "/what-we-do-blades/infrastructure-dark.png",
+          light: "/what-we-do-blades/legacy.svg",
+          dark: "/what-we-do-blades/legacy-dark-theme.svg",
         },
         imageAlt: "Infrastructure",
         cardTitle: "Legacy Rescue and Refractor",
@@ -200,8 +207,8 @@ const Demo: React.FC = () => {
       {
         id: 3,
         image: {
-          light: "/what-we-do-blades/care-optimization.png",
-          dark: "/what-we-do-blades/care-optimization-dark.png",
+          light: "/what-we-do-blades/care.svg",
+          dark: "/what-we-do-blades/care-dark-theme.svg",
         },
         imageAlt: "Care and Optimization",
         cardTitle: "Care and Optimization Plans",
@@ -214,8 +221,8 @@ const Demo: React.FC = () => {
       {
         id: 4,
         image: {
-          light: "/what-we-do-blades/scalable-team.png",
-          dark: "/what-we-do-blades/scalable-team-dark.png",
+          light: "/what-we-do-blades/embedded.svg",
+          dark: "/what-we-do-blades/embedded-dark-theme.svg",
         },
         imageAlt: "Scalable team",
         cardTitle: "Embedded Dev Squads",
@@ -378,10 +385,10 @@ const Demo: React.FC = () => {
         <TitleSection {...titleSectionData01} theme="dark" />
         <Timeline />
         <ColTwoCard {...cardData} theme="light" />
-        <ColTwoCard {...cardData2} theme="light" />
+        <ColTwoCard {...cardData2} theme="dark" />
         <TitleSection {...titleSectionData} theme="light" />
         <TitleSection {...titleSectionData2} theme="light" />
-        <ThreeColumns data={colThreeCardsData} theme="light" />
+        <ThreeColumns data={colThreeCardsData} theme="dark" />
         <TitleSection {...titleSectionData3} theme="light" />
         <ContactSection data={contactForm} theme="light" rightSlot={<ContactForm />} />
         <ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
@@ -400,7 +407,7 @@ const Demo: React.FC = () => {
 
 
 
-        <GridCards data={gridCardsData} theme="light" />
+        <GridCards data={gridCardsData} theme="dark" />
         <Cta data={ctaData} />
       </div>
     </>
