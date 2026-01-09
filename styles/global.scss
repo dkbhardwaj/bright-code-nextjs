@@ -1438,14 +1438,22 @@ section {
       margin-top: 5px;
     }
 
-    img {
+    svg {
       transition: transform 0.2s ease;
       width: 24px;
       height: 24px;
+      path{
+        transition: all 0.2s ease;
+      }
     }
 
-    a:hover img {
-      transform: translateY(-2px);
+    a:hover  {
+      svg{
+        transform: translateY(-2px);
+        path:not(mask path){
+          fill: #0044ff;
+        }
+      }
     }
   }
 

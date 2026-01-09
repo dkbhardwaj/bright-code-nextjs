@@ -225,7 +225,11 @@
       &:hover {
         background: $mistGray;
       }
+      &.menuLinkActive{
+        background: $mistGray;
+      }
     }
+    
   }
 
   .megaMenu {
@@ -352,10 +356,21 @@
 
   a {
     margin-right: 5px;
-    img{
-      transition: transform 0.2s ease;
-      &:hover{
-        transform: translateY(-2px);
+  }
+  svg {
+    transition: transform 0.2s ease;
+    width: 24px;
+    height: 24px;
+    path{
+      transition: all 0.2s ease;
+    }
+  }
+
+  a:hover  {
+    svg{
+      transform: translateY(-2px);
+      path:not(mask path){
+        fill: #0044ff;
       }
     }
   }
