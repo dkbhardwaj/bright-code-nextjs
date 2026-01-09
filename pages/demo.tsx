@@ -381,7 +381,7 @@ const Demo: React.FC = () => {
         />
       </div>
     
-      <button className="gradient-btn no-arrow rounded-btn" type="submit">Contact us</button>
+      <button className="gradient-btn no-arrow rounded-btn w-fit ml-auto mt-[15px] " type="submit">Contact us</button>
     </form>
     
     );
