@@ -15,6 +15,12 @@ module.exports = {
         "tablet-desktop": { min: "768px", max: "1366px" },
         // => @media (max-width: 1279px) { ... }
 
+        "xxl-up": { min: "1480px" },
+        // => @media (min-width: 1480px) { ... }
+
+        xxl: { max: "1479px" },
+        // => @media (max-width: 1479px) { ... }
+
         xl: { max: "1279px" },
         // => @media (max-width: 1279px) { ... }
 
