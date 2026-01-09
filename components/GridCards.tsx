@@ -50,7 +50,7 @@ const GridCards: React.FC<GridCardsProps> = ({
   
     return (
       <section
-        className={`GridCards padding-large-bottom ${
+        className={`GridCards padding-medium ${
           theme === "dark" ? "darkMode" : ""
         }`}
       >

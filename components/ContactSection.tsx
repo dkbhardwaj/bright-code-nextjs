@@ -47,9 +47,9 @@ const ContactSection: React.FC<Props> = ({
                         <h2 className="mt-[20px]">{introWithPettern.title}</h2>
                         <p className="mb-[20px]">{introWithPettern.blurb}</p>
                         {
-                            theme == "light" ?  <button className={`rounded-btn gray`}>
+                            theme == "light" ?  <button className={`rounded-btn gray no-arrow `}>
                             {introWithPettern.ctaTxt}
-                        </button> : <button className={`rounded-btn gray blue-hover`}>
+                        </button> : <button className={`rounded-btn gray no-arrow blue-hover`}>
                             {introWithPettern.ctaTxt}
                         </button>
                         }

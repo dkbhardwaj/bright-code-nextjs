@@ -355,7 +355,6 @@
   &.gray {
     background: $softGray;
     color: $carbonBlue;
-    padding: 10px 25px;
     box-shadow: 0px 2px 6px 2px #3C404326;
     transition: all 0.3s ease-in-out;
     &:hover {
@@ -376,8 +375,7 @@
   &.no-arrow {
     padding: 10px 30px;
     // background: linear-gradient(180deg, $vividBlue 0%, #0088ff 50%, #002db3 100%);
-    background: linear-gradient(180deg, $vividBlue 0%, $carbonBlue 100%);
-
+    // background: linear-gradient(180deg, $vividBlue 0%, $carbonBlue 100%);
     background-size: 100% 200%;
     background-position: 0% 0%;
     &:hover {
