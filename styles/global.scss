@@ -1451,7 +1451,7 @@ section {
       svg{
         transform: translateY(-2px);
         path:not(mask path){
-          fill: #0044ff;
+          fill: $vividBlue;
         }
       }
     }

@@ -6,6 +6,8 @@ import { NAV_DATA } from "./navigation.data";
 
 const Navigation = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [pendingMenu, setPendingMenu] = useState<string | null>(null);
+  
 
   /* =======================
      HANDLERS
@@ -24,6 +26,18 @@ const Navigation = () => {
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);
   }, []);
+
+  useEffect(() => {
+    if (!activeMenu && pendingMenu) {
+      const timer = setTimeout(() => {
+        setActiveMenu(pendingMenu);
+        setPendingMenu(null);
+      }, 500);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [activeMenu, pendingMenu]);
+  
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -73,7 +87,7 @@ const Navigation = () => {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const HEADER_THEME: "light" | "dark" = "light";
+  const HEADER_THEME: "light" | "dark" = "dark";
 
   return (
     <header
@@ -127,11 +141,21 @@ const Navigation = () => {
                   }}
                   onClick={() => {
                     if (window.innerWidth <= 1024 && hasMega) {
-                      setActiveMenu(
-                        activeMenu === item.label ? null : item.label
-                      );
+                      if (activeMenu && activeMenu !== item.label) {
+                        // close current first
+                        setPendingMenu(item.label);
+                        setActiveMenu(null);
+                      } else {
+                        // toggle normally
+                        setActiveMenu(prev =>
+                          prev === item.label ? null : item.label
+                        );
+                      }
                     }
                   }}
+                  
+                  
+                  
                 >
                   <span
                     className={`${Style.menuLink} ${activeMenu === item.label ? Style.menuLinkActive : ""
@@ -219,7 +243,7 @@ const Navigation = () => {
                           </Link>
 
                           <p>
-                            Follow us on our <span>Social Media</span>, to get
+                            Follow us on our <span>Social Media </span> , to get
                             Latest News and Updates
                           </p>
 
@@ -248,22 +272,27 @@ const Navigation = () => {
                             </Link>
 
                             <Link href="#" className="x">
-                              <svg className={Style.socialLight} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <mask id="mask0_275_235" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x="3" y="3" width="18" height="18">
-                                  <path d="M3 3H21V21H3V3Z" fill="white" />
-                                </mask>
-                                <g mask="url(#mask0_275_235)">
-                                  <path d="M17.175 3.84326H19.9354L13.9054 10.7527L21 20.1564H15.4457L11.0923 14.4543L6.11657 20.1564H3.35357L9.80271 12.7635L3 3.84455H8.69571L12.6249 9.05555L17.175 3.84326ZM16.2043 18.5004H17.7343L7.86 5.41312H6.21943L16.2043 18.5004Z" fill="#000D20" />
-                                </g>
+
+                              <svg className={Style.socialLight} width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path
+                                  d="M17.175 3.84326H19.9354L13.9054 10.7527L21 20.1564H15.4457L11.0923 14.4543L6.11657 20.1564H3.35357L9.80271 12.7635L3 3.84455H8.69571L12.6249 9.05555L17.175 3.84326ZM16.2043 18.5004H17.7343L7.86 5.41312H6.21943L16.2043 18.5004Z"
+                                  fill="#000D20"
+                                />
                               </svg>
-                              <svg className={Style.socialDark} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <mask id="mask0_275_339" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x="3" y="3" width="18" height="18">
-                                  <path d="M3 3H21V21H3V3Z" fill="white" />
-                                </mask>
-                                <g mask="url(#mask0_275_339)">
-                                  <path d="M17.175 3.84326H19.9354L13.9054 10.7527L21 20.1564H15.4457L11.0923 14.4543L6.11657 20.1564H3.35357L9.80271 12.7635L3 3.84455H8.69571L12.6249 9.05555L17.175 3.84326ZM16.2043 18.5004H17.7343L7.86 5.41312H6.21943L16.2043 18.5004Z" fill="#F9FAFB" />
-                                </g>
+
+                              <svg
+                                className={Style.socialDark}
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                              >
+                                <path
+                                  d="M17.175 3.84326H19.9354L13.9054 10.7527L21 20.1564H15.4457L11.0923 14.4543L6.11657 20.1564H3.35357L9.80271 12.7635L3 3.84455H8.69571L12.6249 9.05555L17.175 3.84326ZM16.2043 18.5004H17.7343L7.86 5.41312H6.21943L16.2043 18.5004Z"
+                                  fill="#F9FAFB"
+                                />
                               </svg>
+
                             </Link>
 
                             <Link href="#" className="github">

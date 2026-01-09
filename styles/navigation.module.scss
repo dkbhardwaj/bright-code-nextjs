@@ -145,13 +145,13 @@
     list-style: none;
     min-width: 240px;
     margin-right: 70px;
-    @media (max-width: 1024px){
+    @include desktop-mid-down {
       margin-right: 0;
     }
     li {
       &:not(:last-child) {
         margin-bottom: 50px;
-        @media (max-width: 1024px){
+        @include desktop-mid-down {
           margin-bottom: 0;
         }
       }
@@ -165,10 +165,11 @@
   transition: color 0.25s ease;
   font-family: "Inter", sans-serif;
   line-height: normal;
-  transition: text-decoration 0.3s ease-in-out;
+  transition: text-decoration 0.3s ease-in-out, color 0.3s ease-in-out;
 
   &:hover {
     text-decoration: underline;
+    color: $vividBlue;
   }
   @media (min-width: 1601px) {
     font-size: 18px;
@@ -245,15 +246,22 @@
 }
 
 .dark {
+  .hamburger {
+    span {
+      background: #f9fafb;
+    }
+  }
   background: radial-gradient(ellipse at top, #0a1228, #020617);
   color: $white;
 
   .menuLink {
     color: $white;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.08);
+    @media (min-width: 1025px) {
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
     }
+    
   }
 
   .megaMenu {
@@ -370,20 +378,24 @@
     svg{
       transform: translateY(-2px);
       path:not(mask path){
-        fill: #0044ff;
+        fill: $vividBlue;
       }
     }
   }
 }
 .chevron {
   margin-top: 3px;
-  background-image: url("/header/Vector.svg");
+  background-image: url("/header/vector.svg");
   width: 7px;
   height: 5.5px;
   background-size: 100%;
   background-repeat: no-repeat;
 }
-
+.dark{
+  .chevron{
+    background-image: url("/header/vector-white.svg");
+  }
+}
 /* ---------- HAMBURGER ---------- */
 .hamburger {
   display: none;
@@ -454,6 +466,11 @@
     transition: transform 0.35s ease, opacity 0.25s ease;
     z-index: 1000;
   }
+  .dark{
+    .navList {
+      background: #080e1f;
+    }
+  }
 
 
   .navOpen {
@@ -510,7 +527,7 @@
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
     &.megaOpen {
-      max-height: 1500px;
+      max-height: 1000px;
       min-width: auto;
     }
   }
@@ -571,6 +588,12 @@
     .socialLinks{
       justify-content: left;
       position: relative;
+    }
+  }
+  .dark{
+    .socialColumn {
+      background: #080e1f;
+      border-left: 0 solid #080e1f;
     }
   }
 
