@@ -1,0 +1,32 @@
+<svg width="1440" height="888" viewBox="0 0 1440 888" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.1">
+<line x1="-167" y1="41.5734" x2="1608" y2="41.5734" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="151.23" x2="1608" y2="151.23" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="260.888" x2="1608" y2="260.888" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="370.545" x2="1608" y2="370.545" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="480.202" x2="1608" y2="480.202" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="589.859" x2="1608" y2="589.859" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="699.516" x2="1608" y2="699.516" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="-167" y1="809.174" x2="1608" y2="809.174" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="1368.8" y1="-31.933" x2="1368.8" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="1259.15" y1="-31.933" x2="1259.15" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="1149.49" y1="-31.933" x2="1149.49" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="1039.83" y1="-31.933" x2="1039.83" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="930.174" y1="-31.933" x2="930.174" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="820.517" y1="-31.933" x2="820.517" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="710.86" y1="-31.933" x2="710.86" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="601.203" y1="-31.933" x2="601.203" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="491.546" y1="-31.933" x2="491.546" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="381.889" y1="-31.933" x2="381.889" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="272.231" y1="-31.933" x2="272.231" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="162.574" y1="-31.9331" x2="162.574" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+<line x1="52.917" y1="-31.9331" x2="52.9169" y2="918.831" stroke="#0044FF" stroke-width="1.20502"/>
+</g>
+<rect width="1439" height="888" fill="url(#paint0_radial_230_629)"/>
+<defs>
+<radialGradient id="paint0_radial_230_629" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(719.5 444) rotate(90) scale(444 719.5)">
+<stop stop-color="#000D20" stop-opacity="0"/>
+<stop offset="1" stop-color="#000D20"/>
+</radialGradient>
+</defs>
+</svg>

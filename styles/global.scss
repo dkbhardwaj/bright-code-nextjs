@@ -1560,19 +1560,12 @@ section {
   }
 
   &.banner-third {
-    background-image: url("/what-we-do/banner_third_dark.png");
+    // background-image: url("/what-we-do/banner_third_dark.png");
 
     h1 {
       color: $cloudWhite;
     }
 
-    p {
-      color: $borderLight;
-    }
-
-    span {
-      color: $borderLight;
-    }
   }
 
   &.announcemnet-badge {

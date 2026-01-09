@@ -13,8 +13,18 @@ const Demo: React.FC = () => {
   const bannerData = {
     theme: "dark" as "dark",
     bannerBgImg: {
-      light: "/what-we-do/banner_third.png",
-      dark: "/what-we-do/banner_third_dark.png",
+      bg:{
+        light: "/what-we-do-blades/.svg",
+        dark: "/what-we-do-blades/BG_dark_theme.svg",
+      },
+      leftIcons:{
+        light: "/what-we-do-blades/hero_icons.svg",
+        dark: "/what-we-do-blades/hero_icons-dark-theme.svg",
+      },
+      rightImg: {
+        light: "/what-we-do-blades/hero.svg",
+        dark: "/what-we-do-blades/hero-dark-theme.svg",
+      }
     },
     preTitle: "Protect your",
     highlightedText: "Reputation",
@@ -392,21 +402,16 @@ const Demo: React.FC = () => {
         <TitleSection {...titleSectionData3} theme="light" />
         <ContactSection data={contactForm} theme="light" rightSlot={<ContactForm />} />
         <ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
-
         <ContactSection
           data={contactUsCalender}
           theme="dark"
           rightSlot={<CalendlyCalendar theme="dark" />}
         />
-
         <ContactSection
           data={contactUsCalender}
           theme="light"
           rightSlot={<CalendlyCalendar theme="light" />}
         />
-
-
-
         <GridCards data={gridCardsData} theme="dark" />
         <Cta data={ctaData} />
       </div>
