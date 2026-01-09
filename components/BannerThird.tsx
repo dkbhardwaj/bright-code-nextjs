@@ -104,7 +104,7 @@ const BannerThird: React.FC<BannerThirdData> = ({ data }) => {
       {leftIcons && (
         <div
           className="
-      absolute left-[-2px] bottom-[100px] z-0
+      absolute left-[-2px] bottom-[50px] z-0
       hidden lg-up:block
       w-[420px] h-[300px]
       desktop:w-[600px] desktop:h-[420px]
@@ -126,7 +126,7 @@ const BannerThird: React.FC<BannerThirdData> = ({ data }) => {
       {rightImage && (
         <div
           className="
-      absolute right-[10%] desktop-mid-down:right-[20px] xxl:right-[50px] bottom-[100px] z-0
+      absolute right-[10%] desktop-mid-down:right-[20px] xxl:right-[50px] bottom-[80px] z-0
       hidden md-up:block
       w-[220px] h-[240px]
       tablet:w-[300px] tablet:h-[340px]
