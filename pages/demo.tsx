@@ -393,20 +393,31 @@ const Demo: React.FC = () => {
       <div >
         <BannerThird data={bannerData} />
         <TitleSection {...titleSectionData01} theme="dark" />
+        <TitleSection {...titleSectionData01} theme="light" />
         <Timeline />
         <ColTwoCard {...cardData} theme="dark" />
+        <ColTwoCard {...cardData} theme="light" />
         <ColTwoCard {...cardData2} theme="dark" />
         <TitleSection {...titleSectionData} theme="dark" />
+        <TitleSection {...titleSectionData} theme="light" />
         <TitleSection {...titleSectionData2} theme="dark" />
         <ThreeColumns data={colThreeCardsData} theme="dark" />
+        <ThreeColumns data={colThreeCardsData} theme="light" />
         <TitleSection {...titleSectionData3} theme="dark" />
         <ContactSection data={contactForm} theme="dark" rightSlot={<ContactForm />} />
+        <ContactSection data={contactForm} theme="light" rightSlot={<ContactForm />} />
         <ContactSection
           data={contactUsCalender}
           theme="dark"
           rightSlot={<CalendlyCalendar theme="dark" />}
         />
+         <ContactSection
+          data={contactUsCalender}
+          theme="light"
+          rightSlot={<CalendlyCalendar theme="dark" />}
+        />
         <GridCards data={gridCardsData} theme="dark" />
+        <GridCards data={gridCardsData} theme="light" />
         <Cta data={ctaData} />
       </div>
     </>
