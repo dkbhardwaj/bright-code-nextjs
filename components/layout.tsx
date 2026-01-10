@@ -1,18 +1,23 @@
-import React, { ReactNode } from "react";
+import { useRouter } from "next/router";
 import Navigation from "./navigation";
 import Footer from "./footer";
 
 interface LayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
   navigationData: any;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, navigationData }) => {
+  const router = useRouter();
+  const isHome = router.pathname === "/";
+
+  const theme: "light" | "dark" = isHome ? "light" : "dark";
+
   return (
     <>
-      <Navigation />
+      <Navigation theme={theme} />
       {children}
-      <Footer />
+      <Footer theme={theme} />
     </>
   );
 };

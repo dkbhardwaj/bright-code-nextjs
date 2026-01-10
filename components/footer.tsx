@@ -4,22 +4,16 @@ import Image from "next/image";
 import { client } from "../lib/contentful/client";
 import { UrlObject } from "url";
 
-interface NavigationItem {
-  menuLink: any;
-  cta?: {
-    fields: {
-      ctaLink: string;
-      ctaText: string;
-    };
-  };
+
+interface FooterProps {
+  theme?: "light" | "dark";
 }
 
-
-const Footer: React.FC = () => {
-  const year = new Date().getFullYear();
-
+const Footer: React.FC<FooterProps> = ({ theme = "light" }) => {
   return (
-    <footer className="footer new-footer ">
+    <footer
+      className={`new-footer ${theme === "dark" ? "darkMode" : ""}`}
+    >
       <div className="bgImg absolute w-full h-full top-0 z-[-1] ">
         <Image
           src="/bg-gradient.png"

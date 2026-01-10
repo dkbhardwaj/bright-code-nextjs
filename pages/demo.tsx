@@ -8,7 +8,6 @@ import Timeline from "@/components/Timeline";
 import Cta from "@/components/Cta";
 import ContactSection from "@/components/ContactSection";
 import CalendlyCalendar from "@/components/CalendlyCalendar";
-import Navigation from "@/components/navigation";
 
 const Demo: React.FC = () => {
   const bannerData = {

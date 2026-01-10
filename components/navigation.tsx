@@ -3,8 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Style from "../styles/navigation.module.scss";
 import { NAV_DATA } from "./navigation.data";
+interface NavigationProps {
+  theme?: "light" | "dark";
+}
 
-const Navigation = () => {
+const Navigation: React.FC<NavigationProps> = ({ theme = "dark" }) => {
+
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [pendingMenu, setPendingMenu] = useState<string | null>(null);
   
@@ -87,12 +91,13 @@ const Navigation = () => {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const HEADER_THEME: "light" | "dark" = "dark";
+  // const HEADER_THEME: "light" | "dark" = "dark";
 
   return (
     <header
-      className={`${Style.header} ${Style[HEADER_THEME]} absolute w-full top-0 z-[99]`}
-    >
+  className={`${Style.header} ${Style[theme]} absolute w-full top-0 z-[99]`}
+>
+
       <div className="container relative">
         <div className="flex items-center justify-between">
           {/* LOGO */}
