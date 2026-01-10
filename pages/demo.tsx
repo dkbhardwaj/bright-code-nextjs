@@ -8,6 +8,7 @@ import Timeline from "@/components/Timeline";
 import Cta from "@/components/Cta";
 import ContactSection from "@/components/ContactSection";
 import CalendlyCalendar from "@/components/CalendlyCalendar";
+import Navigation from "@/components/navigation";
 
 const Demo: React.FC = () => {
   const bannerData = {
@@ -220,7 +221,7 @@ const Demo: React.FC = () => {
     title: "What we actually build",
     description:
       "Under the hood, we are a web development studio focused on CMS heavy, business critical sites.",
-    alignment: "left",
+    alignment: "center",
     buttonText: "",
     buttonLink: "",
   } as const;
@@ -460,11 +461,12 @@ const Demo: React.FC = () => {
          <ContactSection
           data={contactUsCalender}
           theme="light"
-          rightSlot={<CalendlyCalendar theme="dark" />}
+          rightSlot={<CalendlyCalendar theme="light" />}
         />
         <GridCards data={gridCardsData} theme="dark" />
         <GridCards data={gridCardsData} theme="light" />
-        <Cta data={ctaData} />
+        <Cta data={ctaData} theme="dark"/>
+        <Cta data={ctaData} theme="light"/>
       </div>
     </>
   );
