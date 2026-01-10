@@ -14,7 +14,51 @@ const Demo: React.FC = () => {
     theme: "dark" as "dark",
     bannerBgImg: {
       bg:{
-        light: "/what-we-do-blades/.svg",
+        light: "/what-we-do-blades/BG.svg",
+        dark: "/what-we-do-blades/BG_dark_theme.svg",
+      },
+      leftIcons:{
+        light: "/what-we-do-blades/hero_icons.svg",
+        dark: "/what-we-do-blades/hero_icons-dark-theme.svg",
+      },
+      rightImg: {
+        light: "/what-we-do-blades/hero.svg",
+        dark: "/what-we-do-blades/hero-dark-theme.svg",
+      }
+    },
+    preTitle: "Protect your",
+    highlightedText: "Reputation",
+    postTitle: "Not just your Website.",
+    paragraphContent: [
+      {
+        id: 1,
+        paragraph: "Your clients hire you for vision.",
+      },
+      {
+        id: 2,
+        paragraph: "You hire us so the dev never lets that vision down.",
+      },
+    ],
+    buttons: [
+      {
+        id: 1,
+        url: "#",
+        text: "Book a 30-minute call",
+        className: "rounded-btn blue", // primary style
+      },
+      {
+        id: 2,
+        url: "#",
+        text: "We protect agencies",
+        className: "rounded-btn gray", // e.g., outlined style
+      },
+    ],
+  };
+  const bannerData2 = {
+    theme: "light" as "light",
+    bannerBgImg: {
+      bg:{
+        light: "/what-we-do-blades/BG.svg",
         dark: "/what-we-do-blades/BG_dark_theme.svg",
       },
       leftIcons:{
@@ -392,9 +436,11 @@ const Demo: React.FC = () => {
     <>
       <div >
         <BannerThird data={bannerData} />
+        <BannerThird data={bannerData2} />
         <TitleSection {...titleSectionData01} theme="dark" />
         <TitleSection {...titleSectionData01} theme="light" />
-        <Timeline />
+        <Timeline theme="dark" />
+        <Timeline theme="light" />
         <ColTwoCard {...cardData} theme="dark" />
         <ColTwoCard {...cardData} theme="light" />
         <ColTwoCard {...cardData2} theme="dark" />
