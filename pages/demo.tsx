@@ -50,7 +50,7 @@ const Demo: React.FC = () => {
         id: 2,
         url: "#",
         text: "We protect agencies",
-        className: "rounded-btn gray", // e.g., outlined style
+        className: "rounded-btn gray no-arrow", // e.g., outlined style
       },
     ],
   };
@@ -94,7 +94,7 @@ const Demo: React.FC = () => {
         id: 2,
         url: "#",
         text: "We protect agencies",
-        className: "rounded-btn gray", // e.g., outlined style
+        className: "rounded-btn gray no-arrow", // e.g., outlined style
       },
     ],
   };

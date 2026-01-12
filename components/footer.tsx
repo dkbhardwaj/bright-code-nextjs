@@ -29,25 +29,25 @@ const Footer: React.FC<FooterProps> = ({ theme = "light" }) => {
 
           {/* ================= TOP BAR ================= */}
           <div className="footer-top">
-            <div className="footer-top-left mr-[20px] ">
-              <Link href="/" className="footer-logo-link">
+            <div className="footer-top-left mr-[20px] flex flex-wrap items-center ">
+              <Link href="/" className="footer-logo-link mr-[20px] mb-[10px]">
                 <Image
                   src="/brightcode_logo_light.svg"
-                  width={180}
+                  width={180} 
                   height={48}
                   alt="Bright Code"
-                  className="footer-logo footer-logo--light"
+                  className="footer-logo footer-logo--light h-auto "
                 />
                 <Image
                   src="/brightcode_logo.svg"
                   width={180}
                   height={48}
                   alt="Bright Code"
-                  className="footer-logo footer-logo--dark"
+                  className="footer-logo footer-logo--dark h-auto"
                 />
               </Link>
 
-              <span className="footer-address-inline ">
+              <span className="footer-address-inline mb-[10px]">
                 2450 Colorado Ave, Suite 100E Santa Monica, CA 90404
               </span>
             </div>

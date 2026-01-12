@@ -6,18 +6,20 @@
   top: 0;
   left: 0;
   width: 100%;
-  margin-top: 0; /* start visible */
+  margin-top: 0;
+  /* start visible */
   transition: margin-top 0.35s ease, box-shadow 0.35s ease;
   z-index: 99;
 }
 
-// .headerHidden {
-//   margin-top: -100px; /* move header up completely (adjust to header height) */
-// }
+.headerHidden {
+  margin-top: -100px;
+  /* move header up completely (adjust to header height) */
+}
 
-// .header:not(.headerHidden) {
-//   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-// }
+.header:not(.headerHidden) {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
 
 .mobileMenuIcon {
   cursor: pointer;
@@ -33,6 +35,7 @@
   background-color: $white;
   transition: 0.4s;
 }
+
 .hamburger {
   span {
     transition: transform 0.3s ease, opacity 0.2s ease;
@@ -101,9 +104,6 @@
 
 /* ------------------ Menu ------------------ */
 
-.menuItem {
-  padding: 30px 0 25px;
-}
 
 .menuLink {
   display: inline-flex;
@@ -116,7 +116,7 @@
   cursor: pointer;
   font-family: "Inter", sans-serif;
   transition: background 0.25s ease, color 0.25s ease;
-  
+
   @media (min-width: 1601px) {
     font-size: 18px;
   }
@@ -126,6 +126,14 @@
 .menuItem,
 .menuLink {
   pointer-events: auto; // must not be 'none'
+ 
+}
+.menuItem{
+  @include desktop-mid-up{
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }
 
 .megaMenu {
@@ -142,6 +150,7 @@
   pointer-events: none;
   z-index: 999;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+
   @media (min-width: 1025px) {
     opacity: 0;
   }
@@ -158,16 +167,20 @@
 
 .megaGrid {
   display: flex;
+
   .megaColumn {
     list-style: none;
     min-width: 240px;
     margin-right: 70px;
+
     @include desktop-mid-down {
       margin-right: 0;
     }
+
     li {
       &:not(:last-child) {
         margin-bottom: 50px;
+
         @include desktop-mid-down {
           margin-bottom: 0;
         }
@@ -188,6 +201,7 @@
     text-decoration: underline;
     color: $vividBlue;
   }
+
   @media (min-width: 1601px) {
     font-size: 18px;
   }
@@ -199,6 +213,7 @@
     font-size: 14px;
     font-weight: 400;
     color: $ironGray;
+
     @media (min-width: 1601px) {
       font-size: 16px;
     }
@@ -239,19 +254,22 @@
 
   .menuLink {
     color: #0f172a;
-    @include desktop-mid-up { 
+
+    @include desktop-mid-up {
       &:hover {
         background: $mistGray;
       }
-      &.menuLinkActive{
+
+      &.menuLinkActive {
         background: $mistGray;
       }
     }
-    
+
   }
 
   .megaMenu {
     background: $softGray;
+
     @media (min-width: 1025px) {
       box-shadow: none;
     }
@@ -268,25 +286,25 @@
       background: #f9fafb;
     }
   }
+
   background: radial-gradient(ellipse at top, #0a1228, #020617);
   color: $white;
 
   .menuLink {
     color: $white;
+
     @media (min-width: 1025px) {
       &:hover {
         background: rgba(255, 255, 255, 0.08);
       }
     }
-    
+
   }
 
   .megaMenu {
-    background: linear-gradient(
-      145deg,
-      rgba(15, 23, 42, 0.9),
-      rgba(2, 6, 23, 0.95)
-    );
+    background: linear-gradient(145deg,
+        rgba(15, 23, 42, 0.9),
+        rgba(2, 6, 23, 0.95));
     backdrop-filter: blur(12px);
   }
 
@@ -302,6 +320,7 @@
     opacity: 0;
     transform: translate(-50%, 6px);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, 0);
@@ -348,11 +367,13 @@
   padding-left: 70px;
   position: relative;
   min-width: 260px;
+
   .iconLink {
     display: inline-flex;
     align-items: center;
     margin-bottom: 60px;
   }
+
   p,
   span {
     font-weight: 500;
@@ -360,20 +381,24 @@
     font-family: "Inter", sans-serif;
     line-height: normal;
   }
+
   p span {
     color: $vividBlue;
   }
 }
+
 .header.light {
   .socialDark {
     display: none;
   }
 }
+
 .header.dark {
   .socialLight {
     display: none;
   }
 }
+
 .socialLinks {
   position: absolute;
   bottom: 0;
@@ -382,24 +407,28 @@
   a {
     margin-right: 5px;
   }
+
   svg {
     transition: transform 0.2s ease;
     width: 24px;
     height: 24px;
-    path{
+
+    path {
       transition: all 0.2s ease;
     }
   }
 
-  a:hover  {
-    svg{
+  a:hover {
+    svg {
       transform: translateY(-2px);
-      path:not(mask path){
+
+      path:not(mask path) {
         fill: $vividBlue;
       }
     }
   }
 }
+
 .chevron {
   margin-top: 3px;
   background-image: url("/header/vector.svg");
@@ -408,11 +437,13 @@
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.dark{
-  .chevron{
+
+.dark {
+  .chevron {
     background-image: url("/header/vector-white.svg");
   }
 }
+
 /* ---------- HAMBURGER ---------- */
 .hamburger {
   display: none;
@@ -454,13 +485,15 @@
 }
 
 @include desktop-mid-down {
+
   /* ---------------- HAMBURGER ---------------- */
   .hamburger {
     display: flex;
     padding: 20px 0;
     z-index: 1100;
   }
-  .chevron{
+
+  .chevron {
     width: 14px;
     height: 10.5px;
   }
@@ -468,7 +501,8 @@
   /* ---------------- NAV WRAPPER ---------------- */
   .navList {
     position: fixed;
-    inset: 0; /* full screen overlay */
+    inset: 0;
+    /* full screen overlay */
     background: $white;
     margin-top: 57px;
     display: flex;
@@ -483,7 +517,8 @@
     transition: transform 0.35s ease, opacity 0.25s ease;
     z-index: 1000;
   }
-  .dark{
+
+  .dark {
     .navList {
       background: #080e1f;
     }
@@ -496,6 +531,7 @@
     visibility: visible;
     pointer-events: auto;
     overflow: scroll;
+
     .btnWrap {
       display: block !important;
       margin-right: auto;
@@ -504,9 +540,11 @@
 
   /* ---------------- MENU ITEMS ---------------- */
   .menuItem {
+    position: relative;
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid #e5e7eb;
+    padding: 5px 0 5px;
   }
 
   .menuLink {
@@ -543,6 +581,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out;
+
     &.megaOpen {
       max-height: 1000px;
       min-width: auto;
@@ -598,16 +637,19 @@
     border-radius: 12px;
     background: #ffffff;
     padding: 20px 15px;
+
     .iconLink {
       display: block;
       margin-bottom: 15px;
     }
-    .socialLinks{
+
+    .socialLinks {
       justify-content: left;
       position: relative;
     }
   }
-  .dark{
+
+  .dark {
     .socialColumn {
       background: #080e1f;
       border-left: 0 solid #080e1f;

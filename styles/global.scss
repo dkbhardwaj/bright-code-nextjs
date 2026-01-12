@@ -1302,12 +1302,15 @@ section {
     display: flex;
     justify-content: space-between;
     .footer-logo-link {
+      display: inline-flex;
+      align-items: center;
+      width: 230px;
       img {
         width: 230px;
       }
     }
     .footer-address-inline {
-      margin-top: 15px;
+      margin-top: 10px;
       display: inline-block;
       font-size: 16px;
       @media (min-width: 1601px) {
@@ -1315,7 +1318,7 @@ section {
       }
     }
     .footer-top-right {
-      margin-left: 20px;
+      margin-top: 10px;
       font-size: 16px;
       font-weight: 400;
       color: $ironGray;
