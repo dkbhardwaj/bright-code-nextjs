@@ -11,13 +11,46 @@ const Navigation: React.FC<NavigationProps> = ({ theme = "dark" }) => {
 
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [pendingMenu, setPendingMenu] = useState<string | null>(null);
-  
+  const [hideHeader, setHideHeader] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+
 
   /* =======================
      HANDLERS
   ======================= */
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+
+  //     // ignore tiny scrolls
+  //     if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+
+  //     if (currentScrollY > lastScrollY && currentScrollY > 80) {
+  //       // scrolling down → hide
+  //       setHideHeader(true);
+  //     } else {
+  //       // scrolling up → show
+  //       setHideHeader(false);
+  //     }
+
+  //     setLastScrollY(currentScrollY);
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY]);
+
+  // useEffect(() => {
+  //   if (isMobileMenuOpen) {
+  //     setHideHeader(false);
+  //   }
+  // }, [isMobileMenuOpen]);
+  
   useEffect(() => {
     const resize = () => {
       if (window.innerWidth <= 1024) {
@@ -37,11 +70,11 @@ const Navigation: React.FC<NavigationProps> = ({ theme = "dark" }) => {
         setActiveMenu(pendingMenu);
         setPendingMenu(null);
       }, 500);
-  
+
       return () => clearTimeout(timer);
     }
   }, [activeMenu, pendingMenu]);
-  
+
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -95,8 +128,13 @@ const Navigation: React.FC<NavigationProps> = ({ theme = "dark" }) => {
 
   return (
     <header
-  className={`${Style.header} ${Style[theme]} absolute w-full top-0 z-[99]`}
->
+      className={`
+      ${Style.header}
+      ${Style[theme]}
+      ${hideHeader ? Style.headerHidden : ""}
+      fixed w-full top-0 z-[99]
+    `}
+    >
 
       <div className="container relative">
         <div className="flex items-center justify-between">
@@ -158,9 +196,9 @@ const Navigation: React.FC<NavigationProps> = ({ theme = "dark" }) => {
                       }
                     }
                   }}
-                  
-                  
-                  
+
+
+
                 >
                   <span
                     className={`${Style.menuLink} ${activeMenu === item.label ? Style.menuLinkActive : ""

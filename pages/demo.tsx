@@ -438,8 +438,8 @@ const Demo: React.FC = () => {
         <BannerThird data={bannerData} />
         <BannerThird data={bannerData2} />
         <TitleSection {...titleSectionData01} theme="dark" />
-        <TitleSection {...titleSectionData01} theme="light" />
         <Timeline theme="dark" />
+        <TitleSection {...titleSectionData01} theme="light" />
         <Timeline theme="light" />
         <ColTwoCard {...cardData} theme="dark" />
         <ColTwoCard {...cardData} theme="light" />
