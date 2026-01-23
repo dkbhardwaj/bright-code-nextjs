@@ -19,6 +19,7 @@ const Home: React.FC<HomeProps> = ({entry,fullUrl}) => {
 
   let seoData = entry?.fields?.seoData?.fields
  
+  console.log("line 22")
   return(
     <>
      <NextSeo
